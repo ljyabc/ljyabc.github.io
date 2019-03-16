@@ -562,7 +562,7 @@
 <blockquote>
 </blockquote>
 <h3 id="阿里云站点"><a href="#阿里云站点" class="headerlink" title="阿里云站点"></a>阿里云站点</h3><blockquote>
-<p><a href="http://mirrors.aliyun.com" target="_blank" rel="noopener">http://mirrors.aliyun.com</a></p>
+<p><span class="exturl" data-url="aHR0cDovL21pcnJvcnMuYWxpeXVuLmNvbQ==" title="http://mirrors.aliyun.com">http://mirrors.aliyun.com<i class="fa fa-external-link"></i></span></p>
 </blockquote>
 <h2 id="1-常用软件安装"><a href="#1-常用软件安装" class="headerlink" title="1.常用软件安装:"></a>1.常用软件安装:</h2><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; yum install -y bash-completion vim lrzsz wget expect net-tools nc nmap tree dos2unix htop iftop iotop unzip telnet sl psmisc nethogs glances bc</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
@@ -815,8 +815,8 @@
 <h5 id="2-局域网yum源-ftp"><a href="#2-局域网yum源-ftp" class="headerlink" title="(2)局域网yum源(ftp)"></a>(2)局域网yum源(ftp)</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">1.安装ftp软件</span><br><span class="line">yum install -y vsftpd</span><br><span class="line">2.启动ftp服务</span><br><span class="line">[root@python3 ~]# systemctl start vsftpd</span><br><span class="line">开机自动启动</span><br><span class="line">[root@python3 ~]# systemctl enable  vsftpd</span><br><span class="line"></span><br><span class="line">3.创建站点目录,并将光盘软件拷贝其中</span><br><span class="line">[root@python3 ~]# mkdir /var/ftp/pub/centos7</span><br><span class="line"></span><br><span class="line">[root@python3 ~]# cp -a /mnt/*  /var/ftp/pub/centos7</span><br><span class="line"></span><br><span class="line">4.生成ftp站点的yum源配置文件</span><br><span class="line">[ftp]</span><br><span class="line">name=centos7</span><br><span class="line">baseurl=ftp://10.0.0.100/pub/centos7</span><br><span class="line">gpgcheck=0</span><br></pre></td></tr></table></figure>
 <h1 id="四-linux压缩包解压方式"><a href="#四-linux压缩包解压方式" class="headerlink" title="四.linux压缩包解压方式"></a>四.linux压缩包解压方式</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install -y gcc</span><br><span class="line">5.安装软件测试</span><br><span class="line"> yum install openssl-devel bzip2-devel expat-devel gdbm-devel readline-devel sqlite-devel gcc gcc-c++  openssl-devel zlib zlib-devel -y</span><br></pre></td></tr></table></figure>
 <h3 id="2-3-源码包应用"><a href="#2-3-源码包应用" class="headerlink" title="2.3 源码包应用"></a>2.3 源码包应用</h3><h4 id="2-3-1-解压"><a href="#2-3-1-解压" class="headerlink" title="2.3.1 解压"></a>2.3.1 解压</h4><p>.zip<br>unzip  xxx.zip<br>.tar<br>.tar.gz<br>.tgz<br>.tar.bz2<br>.tar.xz<br>tar xf  xxx.tar<br>.iso<br>mount -o loop xxx.iso  /test<br>.cpio<br>cpio -idcmv &lt; xxx.cpio</p>
-<h4 id="2-3-2-源码包安装"><a href="#2-3-2-源码包安装" class="headerlink" title="2.3.2 源码包安装"></a>2.3.2 源码包安装</h4><h1 id="五-python源码包安装"><a href="#五-python源码包安装" class="headerlink" title="五.python源码包安装"></a>五.python源码包安装</h1><h5 id="1-python3-6源码包安装"><a href="#1-python3-6源码包安装" class="headerlink" title="(1)python3.6源码包安装"></a>(1)python3.6源码包安装</h5><p><a href="https://www.jianshu.com/p/cd4bc18cdb7e" target="_blank" rel="noopener">https://www.jianshu.com/p/cd4bc18cdb7e</a></p>
-<p>wget <a href="https://www.python.org/ftp/python/3.6.7/Python-3.6.7.tgz" target="_blank" rel="noopener">https://www.python.org/ftp/python/3.6.7/Python-3.6.7.tgz</a> </p>
+<h4 id="2-3-2-源码包安装"><a href="#2-3-2-源码包安装" class="headerlink" title="2.3.2 源码包安装"></a>2.3.2 源码包安装</h4><h1 id="五-python源码包安装"><a href="#五-python源码包安装" class="headerlink" title="五.python源码包安装"></a>五.python源码包安装</h1><h5 id="1-python3-6源码包安装"><a href="#1-python3-6源码包安装" class="headerlink" title="(1)python3.6源码包安装"></a>(1)python3.6源码包安装</h5><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC9jZDRiYzE4Y2RiN2U=" title="https://www.jianshu.com/p/cd4bc18cdb7e">https://www.jianshu.com/p/cd4bc18cdb7e<i class="fa fa-external-link"></i></span></p>
+<p>wget <span class="exturl" data-url="aHR0cHM6Ly93d3cucHl0aG9uLm9yZy9mdHAvcHl0aG9uLzMuNi43L1B5dGhvbi0zLjYuNy50Z3o=" title="https://www.python.org/ftp/python/3.6.7/Python-3.6.7.tgz">https://www.python.org/ftp/python/3.6.7/Python-3.6.7.tgz<i class="fa fa-external-link"></i></span> </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">./configure       ------&gt; 定制功能</span><br><span class="line"> make</span><br><span class="line"> make install </span><br><span class="line"> make &amp; make install</span><br></pre></td></tr></table></figure>
 <h5 id="mysql-源码包"><a href="#mysql-源码包" class="headerlink" title="mysql 源码包"></a>mysql 源码包</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cmake</span><br><span class="line">	make </span><br><span class="line">	make install</span><br></pre></td></tr></table></figure>
 <h1 id="六-redis的安装及简易配置"><a href="#六-redis的安装及简易配置" class="headerlink" title="六.redis的安装及简易配置"></a>六.redis的安装及简易配置</h1><h5 id="2-redis-源码包安装"><a href="#2-redis-源码包安装" class="headerlink" title="(2) redis 源码包安装"></a>(2) redis 源码包安装</h5><p>tar xf 软件包</p>
@@ -870,7 +870,7 @@
 </blockquote>
 <h6 id="3-7-启动mysql"><a href="#3-7-启动mysql" class="headerlink" title="3.7 启动mysql"></a>3.7 启动mysql</h6><blockquote>
 <h6 id="cd-opt-mysql-support-files"><a href="#cd-opt-mysql-support-files" class="headerlink" title="cd /opt/mysql/support-files"></a>cd /opt/mysql/support-files</h6><h6 id="mysql-server-start"><a href="#mysql-server-start" class="headerlink" title="./mysql.server start"></a>./mysql.server start</h6><h6 id="将文件拷贝"><a href="#将文件拷贝" class="headerlink" title="将文件拷贝"></a>将文件拷贝</h6><h6 id="cp-mysql-server-etc-init-d-mysqld"><a href="#cp-mysql-server-etc-init-d-mysqld" class="headerlink" title="cp mysql.server /etc/init.d/mysqld"></a>cp mysql.server /etc/init.d/mysqld</h6><h6 id="etc-init-d-mysqld-restart"><a href="#etc-init-d-mysqld-restart" class="headerlink" title="/etc/init.d/mysqld restart"></a>/etc/init.d/mysqld restart</h6></blockquote>
-<h6 id="扩展-使用systemctl-管理mysql"><a href="#扩展-使用systemctl-管理mysql" class="headerlink" title="扩展:使用systemctl 管理mysql"></a>扩展:使用systemctl 管理mysql</h6><h6 id="vim-etc-systemd-system-mysqld-service"><a href="#vim-etc-systemd-system-mysqld-service" class="headerlink" title="vim /etc/systemd/system/mysqld.service"></a>vim /etc/systemd/system/mysqld.service</h6><p>[Unit]<br>Description=MySQL Server<br>Documentation=man:mysqld(8)<br>Documentation=<a href="http://dev.mysql.com/doc/refman/en/using-systemd.html" target="_blank" rel="noopener">http://dev.mysql.com/doc/refman/en/using-systemd.html</a><br>After=network.target<br>After=syslog.target</p>
+<h6 id="扩展-使用systemctl-管理mysql"><a href="#扩展-使用systemctl-管理mysql" class="headerlink" title="扩展:使用systemctl 管理mysql"></a>扩展:使用systemctl 管理mysql</h6><h6 id="vim-etc-systemd-system-mysqld-service"><a href="#vim-etc-systemd-system-mysqld-service" class="headerlink" title="vim /etc/systemd/system/mysqld.service"></a>vim /etc/systemd/system/mysqld.service</h6><p>[Unit]<br>Description=MySQL Server<br>Documentation=man:mysqld(8)<br>Documentation=<span class="exturl" data-url="aHR0cDovL2Rldi5teXNxbC5jb20vZG9jL3JlZm1hbi9lbi91c2luZy1zeXN0ZW1kLmh0bWw=" title="http://dev.mysql.com/doc/refman/en/using-systemd.html">http://dev.mysql.com/doc/refman/en/using-systemd.html<i class="fa fa-external-link"></i></span><br>After=network.target<br>After=syslog.target</p>
 <p>[Install]<br>WantedBy=multi-user.target<br>[Service]<br>User=mysql<br>Group=mysql<br>ExecStart=/opt/mysql/bin/mysqld –defaults-file=/etc/my.cnf<br>LimitNOFILE = 5000</p>
 <blockquote>
 <p>systemctl restart mysqld</p>
@@ -892,12 +892,12 @@
 <h1 id="九-互联网经典架构介绍-nginx安装"><a href="#九-互联网经典架构介绍-nginx安装" class="headerlink" title="九.互联网经典架构介绍+nginx安装"></a>九.互联网经典架构介绍+nginx安装</h1><h4 id="4-经典互联网架构项目-LNMP"><a href="#4-经典互联网架构项目-LNMP" class="headerlink" title="4.经典互联网架构项目(LNMP)"></a>4.经典互联网架构项目(LNMP)</h4><p>LNMPT =  Linux  Nginx  MySQL  PHP<br>LNMPJ =  Linux  Nginx  MySQL  PHP </p>
 <p>LNMP架构环境部署</p>
 <h5 id="1-使用官方Nginx-yum源"><a href="#1-使用官方Nginx-yum源" class="headerlink" title="1) 使用官方Nginx yum源"></a>1) 使用官方Nginx yum源</h5><blockquote>
-<p>[root@nginx ~]# vim /etc/yum.repos.d/nginx.repo<br>[nginx]<br>name=nginx repo<br>baseurl=<a href="http://nginx.org/packages/centos/7/$basearch/" target="_blank" rel="noopener">http://nginx.org/packages/centos/7/$basearch/</a><br>gpgcheck=0<br>enabled=1</p>
+<p>[root@nginx ~]# vim /etc/yum.repos.d/nginx.repo<br>[nginx]<br>name=nginx repo<br>baseurl=<span class="exturl" data-url="aHR0cDovL25naW54Lm9yZy9wYWNrYWdlcy9jZW50b3MvNy8kYmFzZWFyY2gv" title="http://nginx.org/packages/centos/7/$basearch/">http://nginx.org/packages/centos/7/$basearch/<i class="fa fa-external-link"></i></span><br>gpgcheck=0<br>enabled=1</p>
 </blockquote>
 <h6 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@nginx ~]# yum install nginx -y</span><br></pre></td></tr></table></figure>
 <h5 id="2-启动Nginx，并将Nginx加入开机自启"><a href="#2-启动Nginx，并将Nginx加入开机自启" class="headerlink" title="2) 启动Nginx，并将Nginx加入开机自启"></a>2) 启动Nginx，并将Nginx加入开机自启</h5><h6 id="systemctl-start-nginx"><a href="#systemctl-start-nginx" class="headerlink" title="systemctl start nginx"></a>systemctl start nginx</h6><h6 id="systemctl-enable-nginx"><a href="#systemctl-enable-nginx" class="headerlink" title="systemctl enable nginx"></a>systemctl enable nginx</h6><h1 id="十-php安装"><a href="#十-php安装" class="headerlink" title="十.php安装"></a>十.php安装</h1><h5 id="3-使用第三方扩展源安装php7-1"><a href="#3-使用第三方扩展源安装php7-1" class="headerlink" title="3) 使用第三方扩展源安装php7.1"></a>3) 使用第三方扩展源安装php7.1</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm</span><br><span class="line">rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>[root@nginx ~]# yum remove php-mysql-5.4 php php-fpm php-common<br>[root@nginx ~]#  vim  /etc/yum.repos.d/php.repo<br>[php]<br>name = php Repository<br>baseurl = <a href="http://us-east.repo.webtatic.com/yum/el7/x86_64/" target="_blank" rel="noopener">http://us-east.repo.webtatic.com/yum/el7/x86_64/</a><br>gpgcheck = 0</p>
+<p>[root@nginx ~]# yum remove php-mysql-5.4 php php-fpm php-common<br>[root@nginx ~]#  vim  /etc/yum.repos.d/php.repo<br>[php]<br>name = php Repository<br>baseurl = <span class="exturl" data-url="aHR0cDovL3VzLWVhc3QucmVwby53ZWJ0YXRpYy5jb20veXVtL2VsNy94ODZfNjQv" title="http://us-east.repo.webtatic.com/yum/el7/x86_64/">http://us-east.repo.webtatic.com/yum/el7/x86_64/<i class="fa fa-external-link"></i></span><br>gpgcheck = 0</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@nginx ~]# yum -y install php71w php71w-cli php71w-common php71w-devel php71w-embedded php71w-gd php71w-mcrypt php71w-mbstring php71w-pdo php71w-xml php71w-fpm php71w-mysqlnd php71w-opcache php71w-pecl-memcached php71w-pecl-redis php71w-pecl-mongodb</span><br></pre></td></tr></table></figure>
 <h1 id="十一-django安装所需包"><a href="#十一-django安装所需包" class="headerlink" title="十一.django安装所需包"></a>十一.django安装所需包</h1><h2 id="1-依赖包"><a href="#1-依赖包" class="headerlink" title="1.依赖包"></a>1.依赖包</h2><blockquote>
@@ -905,7 +905,7 @@
 </blockquote>
 <h2 id="2-安装Django框架和uwsgi"><a href="#2-安装Django框架和uwsgi" class="headerlink" title="2.安装Django框架和uwsgi"></a>2.安装Django框架和uwsgi</h2><blockquote>
 <p>vim  re.txt<br>asn1crypto==0.24.0<br>beautifulsoup4==4.6.3<br>bs4==0.0.1<br>certifi==2018.4.16<br>cffi==1.11.5<br>chardet==3.0.4<br>Click==7.0<br>cryptography==2.3.1<br>Django==1.11.9<br>Flask==1.0.2<br>Flask-Cors==3.0.6<br>gevent==1.3.6<br>greenlet==0.4.15<br>idna==2.7<br>ItsDangerous==1.1.0<br>Jinja2==2.10<br>lxml==4.2.6<br>MarkupSafe==1.0<br>numpy==1.15.3<br>Pillow==5.3.0<br>pycparser==2.18<br>PyMySQL==0.9.2<br>pytz==2018.7<br>requests==2.19.1<br>selenium==3.141.0<br>six==1.11.0<br>urllib3==1.23<br>virtualenv==16.1.0<br>Werkzeug==0.14.1<br>wordcloud==1.5.0</p>
-<p>pip3 install -i <a href="https://pypi.doubanio.com/simple/" target="_blank" rel="noopener">https://pypi.doubanio.com/simple/</a> -r re.txt</p>
+<p>pip3 install -i <span class="exturl" data-url="aHR0cHM6Ly9weXBpLmRvdWJhbmlvLmNvbS9zaW1wbGUv" title="https://pypi.doubanio.com/simple/">https://pypi.doubanio.com/simple/<i class="fa fa-external-link"></i></span> -r re.txt</p>
 </blockquote>
 <h1 id="十二-安装并测试uwsgi"><a href="#十二-安装并测试uwsgi" class="headerlink" title="十二.安装并测试uwsgi"></a>十二.安装并测试uwsgi</h1><h2 id="3-测试uwsgi是否正常，新建-test-py文件，内容如下："><a href="#3-测试uwsgi是否正常，新建-test-py文件，内容如下：" class="headerlink" title="3.测试uwsgi是否正常，新建 test.py文件，内容如下："></a>3.测试uwsgi是否正常，新建 test.py文件，内容如下：</h2><blockquote>
 <p>[root@web01 ~]# vim test.py<br>def application(env, start_response):<br>    start_response(‘200 OK’, [(‘Content-Type’,’text/html’)])<br>    return [b”Hello Django”]</p>
@@ -918,7 +918,7 @@
 <p>#然后在终端运行： </p>
 <h6 id="uwsgi-–http-8001-–wsgi-file-test-py-amp"><a href="#uwsgi-–http-8001-–wsgi-file-test-py-amp" class="headerlink" title="uwsgi –http :8001 –wsgi-file test.py &amp;"></a>uwsgi –http :8001 –wsgi-file test.py &amp;</h6><h1 id="十三-django测试"><a href="#十三-django测试" class="headerlink" title="十三.django测试"></a>十三.django测试</h1><h2 id="5-测试django是否正常，运行："><a href="#5-测试django是否正常，运行：" class="headerlink" title="5.测试django是否正常，运行："></a>5.测试django是否正常，运行：</h2><blockquote>
 <p>[root@web01 ~]# django-admin.py startproject demosite<br>[root@web01 ~]# cd demosite</p>
-<h6 id="vim-settings-py"><a href="#vim-settings-py" class="headerlink" title="vim settings.py"></a>vim settings.py</h6><h6 id="把-改成-‘-’"><a href="#把-改成-‘-’" class="headerlink" title="把[] 改成[‘*’]"></a>把[] 改成[‘*’]</h6><p>[root@web01 demosite]# python3 manage.py runserver 0.0.0.0:8002<br>在浏览器内输入：<a href="http://127.0.0.1:8002，检查django是否运行正常。" target="_blank" rel="noopener">http://127.0.0.1:8002，检查django是否运行正常。</a></p>
+<h6 id="vim-settings-py"><a href="#vim-settings-py" class="headerlink" title="vim settings.py"></a>vim settings.py</h6><h6 id="把-改成-‘-’"><a href="#把-改成-‘-’" class="headerlink" title="把[] 改成[‘*’]"></a>把[] 改成[‘*’]</h6><p>[root@web01 demosite]# python3 manage.py runserver 0.0.0.0:8002<br>在浏览器内输入：<span class="exturl" data-url="aHR0cDovLzEyNy4wLjAuMTo4MDAy77yM5qOA5p+lZGphbmdv5piv5ZCm6L+Q6KGM5q2j5bi444CC" title="http://127.0.0.1:8002，检查django是否运行正常。">http://127.0.0.1:8002，检查django是否运行正常。<i class="fa fa-external-link"></i></span></p>
 </blockquote>
 <h2 id="6-配置uwsgi-做代练发送给uwsgi"><a href="#6-配置uwsgi-做代练发送给uwsgi" class="headerlink" title="6.配置uwsgi(做代练发送给uwsgi)"></a>6.配置uwsgi(做代练发送给uwsgi)</h2><blockquote>
 <p>[root@web01 demosite]# vim /root/demosite/uwsgi.ini<br>[uwsgi]<br>socket = 127.0.0.1:9999<br>master = true<br>workers = 2<br>max-requests = 1000<br>buffer-size = 30000<br>pidfile = /run/uwsgi.pid<br>daemonize = /var/log/uwsgi.log</p>
@@ -933,7 +933,7 @@
 <p>systemctl restart nginx</p>
 </blockquote>
 <p>3) 配置php-fpm用户与Nginx的运行用户保持一致</p>
-<p>[root@nginx ~]# sed -i ‘/^user/c user = www’ /etc/php-fpm.d/<a href="http://www.conf" target="_blank" rel="noopener">www.conf</a><br>[root@nginx ~]# sed -i ‘/^group/c group = www’ /etc/php-fpm.d/<a href="http://www.conf" target="_blank" rel="noopener">www.conf</a><br>4) 启动php-fpm，并将其加入开机自启</p>
+<p>[root@nginx ~]# sed -i ‘/^user/c user = www’ /etc/php-fpm.d/<span class="exturl" data-url="aHR0cDovL3d3dy5jb25m" title="http://www.conf">www.conf<i class="fa fa-external-link"></i></span><br>[root@nginx ~]# sed -i ‘/^group/c group = www’ /etc/php-fpm.d/<span class="exturl" data-url="aHR0cDovL3d3dy5jb25m" title="http://www.conf">www.conf<i class="fa fa-external-link"></i></span><br>4) 启动php-fpm，并将其加入开机自启</p>
 <p>[root@nginx ~]# systemctl start php-fpm<br>[root@nginx ~]# systemctl enable php-fpm<br>5) 安装mysql数据库</p>
 <p>[root@nginx ~]# mysqladmin password ‘123’<br>[root@nginx ~]# mysql -uroot -p123<br>2.LNMP架构环境配置</p>
 <p>vim   /etc/nginx/conf.d/php.conf<br>server {<br>        server_name 10.0.0.12;<br>        listen 80;<br>        root /code/wordpress;<br>        index index.php index.html;</p>
@@ -992,12 +992,12 @@
 </blockquote>
 <p>==================</p>
 <h1 id="三-自动化运维体系中Python项目介绍Python-在运维工作中的经典应用"><a href="#三-自动化运维体系中Python项目介绍Python-在运维工作中的经典应用" class="headerlink" title="三.自动化运维体系中Python项目介绍Python 在运维工作中的经典应用"></a>三.自动化运维体系中Python项目介绍Python 在运维工作中的经典应用</h1><h2 id="1-安装ansible"><a href="#1-安装ansible" class="headerlink" title="1.安装ansible"></a>1.安装ansible</h2><blockquote>
-<p>wget -O /etc/yum.repos.d/epel.repo <a href="http://mirrors.aliyun.com/repo/epel-7.repo" target="_blank" rel="noopener">http://mirrors.aliyun.com/repo/epel-7.repo</a><br>curl -o /etc/yum.repos.d/CentOS-Base.repo <a href="http://mirrors.aliyun.com/repo/Centos-7.repo" target="_blank" rel="noopener">http://mirrors.aliyun.com/repo/Centos-7.repo</a><br>yum install ansible -y  </p>
+<p>wget -O /etc/yum.repos.d/epel.repo <span class="exturl" data-url="aHR0cDovL21pcnJvcnMuYWxpeXVuLmNvbS9yZXBvL2VwZWwtNy5yZXBv" title="http://mirrors.aliyun.com/repo/epel-7.repo">http://mirrors.aliyun.com/repo/epel-7.repo<i class="fa fa-external-link"></i></span><br>curl -o /etc/yum.repos.d/CentOS-Base.repo <span class="exturl" data-url="aHR0cDovL21pcnJvcnMuYWxpeXVuLmNvbS9yZXBvL0NlbnRvcy03LnJlcG8=" title="http://mirrors.aliyun.com/repo/Centos-7.repo">http://mirrors.aliyun.com/repo/Centos-7.repo<i class="fa fa-external-link"></i></span><br>yum install ansible -y  </p>
 </blockquote>
 <h1 id="四-ansible安装和使用"><a href="#四-ansible安装和使用" class="headerlink" title="四.ansible安装和使用"></a>四.ansible安装和使用</h1><h2 id="2-启动ansible"><a href="#2-启动ansible" class="headerlink" title="2.启动ansible"></a>2.启动ansible</h2><h6 id="ansble按tab键"><a href="#ansble按tab键" class="headerlink" title="ansble按tab键"></a>ansble按tab键</h6><h2 id="3-克隆虚拟机"><a href="#3-克隆虚拟机" class="headerlink" title="3.克隆虚拟机"></a>3.克隆虚拟机</h2><blockquote>
 <p>hostnamectl set-hostname standby</p>
 <p>vim /etc/sysconfig/network-scripts/ifcfg-eth0<br>IPADDR=10.0.0.200<br>UUID行删掉</p>
-<p><a href="https://blog.csdn.net/qq_28234213/article/details/73322875" target="_blank" rel="noopener">https://blog.csdn.net/qq_28234213/article/details/73322875</a></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI4MjM0MjEzL2FydGljbGUvZGV0YWlscy83MzMyMjg3NQ==" title="https://blog.csdn.net/qq_28234213/article/details/73322875">https://blog.csdn.net/qq_28234213/article/details/73322875<i class="fa fa-external-link"></i></span></p>
 <p>UUID=85152c24-8413-4f81-909c-5e095c6e90fc</p>
 <p>ifconfig eth0 192.168.1.5 netmask 255.255.255.0 </p>
 <p>vim /etc/hosts<br>10.0.0.200 standby<br>systemctl restart network</p>
@@ -1005,16 +1005,16 @@
 <h1 id="五-ansible自动化部署体验"><a href="#五-ansible自动化部署体验" class="headerlink" title="五.ansible自动化部署体验"></a>五.ansible自动化部署体验</h1><h2 id="Linux的-SSHD-22"><a href="#Linux的-SSHD-22" class="headerlink" title="Linux的 SSHD(22)"></a>Linux的 SSHD(22)</h2><h6 id="ssh-10-0-0-200"><a href="#ssh-10-0-0-200" class="headerlink" title="ssh 10.0.0.200"></a>ssh 10.0.0.200</h6><h6 id="想办法不使用密码"><a href="#想办法不使用密码" class="headerlink" title="想办法不使用密码"></a>想办法不使用密码</h6><h3 id="1-验证方式"><a href="#1-验证方式" class="headerlink" title="1.验证方式:"></a>1.验证方式:</h3><p>(1)用户+密码(PAM)<br>(2)秘钥验证(公钥:钥匙和私钥:锁)<br>    通过秘钥对实现,需要将公钥分发到各节点</p>
 <p>+++++++++++++++++++++++++++++++</p>
 <h3 id="2-管理被控端，管理机先生成秘钥，然后推送公钥"><a href="#2-管理被控端，管理机先生成秘钥，然后推送公钥" class="headerlink" title="2.管理被控端，管理机先生成秘钥，然后推送公钥"></a>2.管理被控端，管理机先生成秘钥，然后推送公钥</h3><blockquote>
-<p>ssh-keygen<br>ssh-copy-id -i ~/.ssh/id_rsa.pub <a href="mailto:root@10.0.0.200" target="_blank" rel="noopener">root@10.0.0.200</a></p>
+<p>ssh-keygen<br>ssh-copy-id -i ~/.ssh/id_rsa.pub <span class="exturl" data-url="bWFpbHRvOnJvb3RAMTAuMC4wLjIwMA==" title="mailto:root@10.0.0.200">root@10.0.0.200<i class="fa fa-external-link"></i></span></p>
 <p>多的用for</p>
-<p>[root@demo ~]# for i in {1..12};do ssh-copy-id -i ~/.ssh/id_rsa.pub <a href="mailto:root@10.0.0" target="_blank" rel="noopener">root@10.0.0</a>.$i;done</p>
+<p>[root@demo ~]# for i in {1..12};do ssh-copy-id -i ~/.ssh/id_rsa.pub <span class="exturl" data-url="bWFpbHRvOnJvb3RAMTAuMC4w" title="mailto:root@10.0.0">root@10.0.0<i class="fa fa-external-link"></i></span>.$i;done</p>
 </blockquote>
 <h3 id="3-配置被管理的主机清单"><a href="#3-配置被管理的主机清单" class="headerlink" title="3.配置被管理的主机清单"></a>3.配置被管理的主机清单</h3><blockquote>
 <p>[root@demo ~]# vim /etc/ansible/hosts<br>[web]<br>10.0.0.100<br>10.0.0.200</p>
 </blockquote>
 <h3 id="4-使用ansible的ad-hoc测试"><a href="#4-使用ansible的ad-hoc测试" class="headerlink" title="4.使用ansible的ad-hoc测试"></a>4.使用ansible的ad-hoc测试</h3><p>管理者自己的的密钥也要执行</p>
 <blockquote>
-<p>ssh-copy-id -i ~/.ssh/id_rsa.pub <a href="mailto:root@10.0.0.100" target="_blank" rel="noopener">root@10.0.0.100</a></p>
+<p>ssh-copy-id -i ~/.ssh/id_rsa.pub <span class="exturl" data-url="bWFpbHRvOnJvb3RAMTAuMC4wLjEwMA==" title="mailto:root@10.0.0.100">root@10.0.0.100<i class="fa fa-external-link"></i></span></p>
 </blockquote>
 <blockquote>
 <p>[root@demo ~]# ansible all -m ping</p>
@@ -1047,7 +1047,7 @@
 </blockquote>
 <blockquote>
 <p>cd /etc/yum.repos.d</p>
-<p>wget -O /etc/yum.repos.d/epel.repo <a href="http://mirrors.aliyun.com/repo/epel-7.repo" target="_blank" rel="noopener">http://mirrors.aliyun.com/repo/epel-7.repo</a><br>curl -o /etc/yum.repos.d/CentOS-Base.repo <a href="http://mirrors.aliyun.com/repo/Centos-7.repo" target="_blank" rel="noopener">http://mirrors.aliyun.com/repo/Centos-7.repo</a></p>
+<p>wget -O /etc/yum.repos.d/epel.repo <span class="exturl" data-url="aHR0cDovL21pcnJvcnMuYWxpeXVuLmNvbS9yZXBvL2VwZWwtNy5yZXBv" title="http://mirrors.aliyun.com/repo/epel-7.repo">http://mirrors.aliyun.com/repo/epel-7.repo<i class="fa fa-external-link"></i></span><br>curl -o /etc/yum.repos.d/CentOS-Base.repo <span class="exturl" data-url="aHR0cDovL21pcnJvcnMuYWxpeXVuLmNvbS9yZXBvL0NlbnRvcy03LnJlcG8=" title="http://mirrors.aliyun.com/repo/Centos-7.repo">http://mirrors.aliyun.com/repo/Centos-7.repo<i class="fa fa-external-link"></i></span></p>
 </blockquote>
 <h3 id="2-安装"><a href="#2-安装" class="headerlink" title="2.安装"></a>2.安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y yum-utils device-mapper-persistent-data lvm2</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">显示以下docter版本</span><br><span class="line">yum list docker-ce.x86_64 --showduplicates | sort -r</span><br></pre></td></tr></table></figure>
@@ -1064,12 +1064,12 @@
 <h3 id="5-看详细信息"><a href="#5-看详细信息" class="headerlink" title="5.看详细信息"></a>5.看详细信息</h3><blockquote>
 <p>docker  info</p>
 </blockquote>
-<h3 id="6-配置镜像加速"><a href="#6-配置镜像加速" class="headerlink" title="6.配置镜像加速"></a>6.配置镜像加速</h3><h4 id="阿里云Docker-hub"><a href="#阿里云Docker-hub" class="headerlink" title="阿里云Docker-hub"></a>阿里云Docker-hub</h4><p><a href="https://cr.console.aliyun.com/cn-hangzhou/mirrors" target="_blank" rel="noopener">https://cr.console.aliyun.com/cn-hangzhou/mirrors</a></p>
+<h3 id="6-配置镜像加速"><a href="#6-配置镜像加速" class="headerlink" title="6.配置镜像加速"></a>6.配置镜像加速</h3><h4 id="阿里云Docker-hub"><a href="#阿里云Docker-hub" class="headerlink" title="阿里云Docker-hub"></a>阿里云Docker-hub</h4><p><span class="exturl" data-url="aHR0cHM6Ly9jci5jb25zb2xlLmFsaXl1bi5jb20vY24taGFuZ3pob3UvbWlycm9ycw==" title="https://cr.console.aliyun.com/cn-hangzhou/mirrors">https://cr.console.aliyun.com/cn-hangzhou/mirrors<i class="fa fa-external-link"></i></span></p>
 <blockquote>
 <p>mkdir -p /etc/docker</p>
 </blockquote>
 <blockquote>
-<p>tee /etc/docker/daemon.json &lt;&lt;-‘EOF’<br>{<br>   “registry-mirrors”: [“<a href="https://68rmyzg7.mirror.aliyuncs.com&quot;]" target="_blank" rel="noopener">https://68rmyzg7.mirror.aliyuncs.com&quot;]</a><br>}<br>EOF      </p>
+<p>tee /etc/docker/daemon.json &lt;&lt;-‘EOF’<br>{<br>   “registry-mirrors”: [“<span class="exturl" data-url="aHR0cHM6Ly82OHJteXpnNy5taXJyb3IuYWxpeXVuY3MuY29tJnF1b3Q7XQ==" title="https://68rmyzg7.mirror.aliyuncs.com&quot;]">https://68rmyzg7.mirror.aliyuncs.com&quot;]<i class="fa fa-external-link"></i></span><br>}<br>EOF      </p>
 <p>​<br>或者:</p>
 </blockquote>
 <p>vim   /etc/docker/daemon.json</p>
@@ -1149,7 +1149,7 @@
 <p>删除镜像</p>
 <p>docker rmi $(docker images | grep “none” | awk ‘{print $3}’)</p>
 <hr>
-<p>作者：xjj1314<br>来源：CSDN<br>原文：<a href="https://blog.csdn.net/xjj1314/article/details/73550388" target="_blank" rel="noopener">https://blog.csdn.net/xjj1314/article/details/73550388</a><br>版权声明：本文为博主原创文章，转载请附上博文链接！</p>
+<p>作者：xjj1314<br>来源：CSDN<br>原文：<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3hqajEzMTQvYXJ0aWNsZS9kZXRhaWxzLzczNTUwMzg4" title="https://blog.csdn.net/xjj1314/article/details/73550388">https://blog.csdn.net/xjj1314/article/details/73550388<i class="fa fa-external-link"></i></span><br>版权声明：本文为博主原创文章，转载请附上博文链接！</p>
 </blockquote>
 <h2 id="1-4-导入导出镜像"><a href="#1-4-导入导出镜像" class="headerlink" title="1.4 导入导出镜像"></a>1.4 导入导出镜像</h2><blockquote>
 <p>[root@docker ~]# docker image save nginx &gt;/opt/nginx.tar.gz<br>[root@docker ~]# docker image load -i /opt/nginx.tar.gz</p>
@@ -1164,7 +1164,7 @@
 <p>docker run -it –name “centos7.5” 76d6bc25b8a5</p>
 </blockquote>
 <h2 id="2-优化yum源"><a href="#2-优化yum源" class="headerlink" title="2.优化yum源"></a>2.优化yum源</h2><blockquote>
-<p>mv /etc/yum.repos.d/*.repo /tmp<br>echo -e “[ftp]\nname=ftp\nbaseurl=<a href="ftp://10.0.0.100/pub/centos7\ngpgcheck=0&quot;&gt;/etc/yum.repos.d/ftp.repo" target="_blank" rel="noopener">ftp://10.0.0.100/pub/centos7\ngpgcheck=0&quot;&gt;/etc/yum.repos.d/ftp.repo</a></p>
+<p>mv /etc/yum.repos.d/*.repo /tmp<br>echo -e “[ftp]\nname=ftp\nbaseurl=<span class="exturl" data-url="ZnRwOi8vMTAuMC4wLjEwMC9wdWIvY2VudG9zN1xuZ3BnY2hlY2s9MCZxdW90OyZndDsvZXRjL3l1bS5yZXBvcy5kL2Z0cC5yZXBv" title="ftp://10.0.0.100/pub/centos7\ngpgcheck=0&quot;&gt;/etc/yum.repos.d/ftp.repo">ftp://10.0.0.100/pub/centos7\ngpgcheck=0&quot;&gt;/etc/yum.repos.d/ftp.repo<i class="fa fa-external-link"></i></span></p>
 </blockquote>
 <h2 id="3-安装必须软件包"><a href="#3-安装必须软件包" class="headerlink" title="3.安装必须软件包"></a>3.安装必须软件包</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y vim net-tools  iproute   openssh-*   -y</span><br></pre></td></tr></table></figure>
 <h2 id="4-启动SSHD"><a href="#4-启动SSHD" class="headerlink" title="4.启动SSHD"></a>4.启动SSHD</h2><blockquote>
@@ -1178,7 +1178,7 @@
 <p>cd /opt</p>
 <p>mkdir dockerfile</p>
 <p>cd dockerfile</p>
-<p>[root@docker sshd]# vim  dockerfile<br>FROM centos:7.5.1804<br>RUN mv /etc/yum.repos.d/<em>.repo /tmp<br>RUN echo -e “[ftp]\nname=ftp\nbaseurl=<a href="ftp://10.0.0.100/pub/centos7\ngpgcheck=0&quot;&gt;/etc/yum.repos.d/ftp.repo" target="_blank" rel="noopener">ftp://10.0.0.100/pub/centos7\ngpgcheck=0&quot;&gt;/etc/yum.repos.d/ftp.repo</a><br>RUN yum install -y openssh-server<br>RUN yum install -y openssh-clients<br>RUN yum install net-tools</em> -y<br>RUN yum install iproute-* -y<br>RUN mkdir /var/run/sshd<br>RUN echo ‘UseDNS no’ &gt;&gt; /etc/ssh/sshd_config<br>RUN sed -i -e ‘/pam_loginuid.so/d’ /etc/pam.d/sshd<br>RUN echo ‘root:123456’ | chpasswd<br>RUN /usr/bin/ssh-keygen -A<br>EXPOSE 22<br>CMD [“/usr/sbin/sshd”, “-D”]</p>
+<p>[root@docker sshd]# vim  dockerfile<br>FROM centos:7.5.1804<br>RUN mv /etc/yum.repos.d/<em>.repo /tmp<br>RUN echo -e “[ftp]\nname=ftp\nbaseurl=<span class="exturl" data-url="ZnRwOi8vMTAuMC4wLjEwMC9wdWIvY2VudG9zN1xuZ3BnY2hlY2s9MCZxdW90OyZndDsvZXRjL3l1bS5yZXBvcy5kL2Z0cC5yZXBv" title="ftp://10.0.0.100/pub/centos7\ngpgcheck=0&quot;&gt;/etc/yum.repos.d/ftp.repo">ftp://10.0.0.100/pub/centos7\ngpgcheck=0&quot;&gt;/etc/yum.repos.d/ftp.repo<i class="fa fa-external-link"></i></span><br>RUN yum install -y openssh-server<br>RUN yum install -y openssh-clients<br>RUN yum install net-tools</em> -y<br>RUN yum install iproute-* -y<br>RUN mkdir /var/run/sshd<br>RUN echo ‘UseDNS no’ &gt;&gt; /etc/ssh/sshd_config<br>RUN sed -i -e ‘/pam_loginuid.so/d’ /etc/pam.d/sshd<br>RUN echo ‘root:123456’ | chpasswd<br>RUN /usr/bin/ssh-keygen -A<br>EXPOSE 22<br>CMD [“/usr/sbin/sshd”, “-D”]</p>
 </blockquote>
 <h6 id="dockerfile取名"><a href="#dockerfile取名" class="headerlink" title="dockerfile取名"></a>dockerfile取名</h6><blockquote>
 <p>docker build -t “oldguo/centos7_sshd:v3” /opt/dockerfile</p>
@@ -1217,7 +1217,7 @@ docker  restart 容器ID|容器名称
 <p>4.1 配置私有仓库</p>
 <p>docker run -d -p 5000:5000 –restart=always –name registry -v /opt/Registry:/var/lib/registry  registry</p>
 <p>vim /etc/docker/daemon.json</p>
-<p>{<br>   “registry-mirrors”: [“<a href="https://68rmyzg7.mirror.aliyuncs.com&quot;]" target="_blank" rel="noopener">https://68rmyzg7.mirror.aliyuncs.com&quot;]</a>,<br>   “insecure-registries”: [“10.0.0.100:5000”]<br>}</p>
+<p>{<br>   “registry-mirrors”: [“<span class="exturl" data-url="aHR0cHM6Ly82OHJteXpnNy5taXJyb3IuYWxpeXVuY3MuY29tJnF1b3Q7XQ==" title="https://68rmyzg7.mirror.aliyuncs.com&quot;]">https://68rmyzg7.mirror.aliyuncs.com&quot;]<i class="fa fa-external-link"></i></span>,<br>   “insecure-registries”: [“10.0.0.100:5000”]<br>}</p>
 <p>systemctl  restart docker</p>
 <p>​<br>​<br>4.2 使用本地镜像:<br>4.2.1 制作本地镜像并push到</p>
 <p>[root@docker ~]# docker tag nginx 10.0.0.100:5000/oldguo/nginx:v1<br>[root@docker ~]# docker images<br>[root@docker ~]# docker push 10.0.0.100:5000/oldguo/nginx:v1</p>
