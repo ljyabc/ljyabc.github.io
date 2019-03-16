@@ -1,540 +1,95 @@
 <!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html>
 <head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
-
-<link rel="stylesheet" href="/css/main.css?v=7.0.1">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
-
-
-
-
-
-
-
-<script id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Gemini',
-    version: '7.0.1',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
-    fancybox: false,
-    fastclick: false,
-    lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
+  <meta charset="utf-8">
   
 
-
-
-
+  
+  <title>数据库笔记1 | aaaa</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="数据库管理一.MySQL1.版本介绍和选择1.1 版本123oracle mysqlmariadb perconadb 1.2 主流版本1234565.6 版本 5.6.36 5.6.38  5.6.40通用的二进制版  rpm版  源码包（需要编辑）5.7 版本 5.7.18  5.7.20  5.7.228.0 版本 最新的版本		企业版本选择：6-12月之间的GA 双数版  2. MySQL">
 <meta name="keywords" content="mysql,redis,mongdb">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据库笔记1">
-<meta property="og:url" content="https://ljyabcd.github.io.git/2019/03/02/数据库笔记1/index.html">
-<meta property="og:site_name" content="search out bug">
+<meta property="og:url" content="https://ljyabc.github.io/2019/03/02/数据库笔记1/index.html">
+<meta property="og:site_name" content="aaaa">
 <meta property="og:description" content="数据库管理一.MySQL1.版本介绍和选择1.1 版本123oracle mysqlmariadb perconadb 1.2 主流版本1234565.6 版本 5.6.36 5.6.38  5.6.40通用的二进制版  rpm版  源码包（需要编辑）5.7 版本 5.7.18  5.7.20  5.7.228.0 版本 最新的版本		企业版本选择：6-12月之间的GA 双数版  2. MySQL">
-<meta property="og:locale" content="zh-Hans">
+<meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2019-03-16T07:37:43.979Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库笔记1">
 <meta name="twitter:description" content="数据库管理一.MySQL1.版本介绍和选择1.1 版本123oracle mysqlmariadb perconadb 1.2 主流版本1234565.6 版本 5.6.36 5.6.38  5.6.40通用的二进制版  rpm版  源码包（需要编辑）5.7 版本 5.7.18  5.7.20  5.7.228.0 版本 最新的版本		企业版本选择：6-12月之间的GA 双数版  2. MySQL">
-
-
-
-
-
-
-  <link rel="canonical" href="https://ljyabcd.github.io.git/2019/03/02/数据库笔记1/">
-
-
-
-<script id="page.configurations">
-  CONFIG.page = {
-    sidebar: "",
-  };
-</script>
-
-  <title>数据库笔记1 | search out bug</title>
   
-
-
-
-
-
-
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .motion-element,
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
-
-  .use-motion .logo,
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
+    <link rel="alternate" href="/atom.xml" title="aaaa" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
 </head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">search out bug</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">aaaa</a>
+      </h1>
+      
     </div>
-    
-      
-        <p class="site-subtitle">There is always a secret to thinking</p>
-      
-    
-    
-  </div>
-
-  <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-
-
-<nav class="site-nav">
-  
-    <ul id="menu" class="menu">
-      
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
         
+          <a class="main-nav-link" href="/">Home</a>
         
+          <a class="main-nav-link" href="/archives">Archives</a>
         
-          
-          <li class="menu-item menu-item-home">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
-
-  </li>
+      </nav>
+      <nav id="sub-nav">
         
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        
-          
-          <li class="menu-item menu-item-about">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-post_asset_folder">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>post_asset_folder</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-categories">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-schedule">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-sitemap">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-commonweal">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
-
-  </li>
-
-      
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
-        </li>
-      
-    </ul>
-  
-
-  
-
-  
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://ljyabc.github.io"></form>
+      </div>
     </div>
   </div>
-  <div id="local-search-result"></div>
-</div>
-
-
-
-    </div>
-  
-</nav>
-
-
-
-  
-
-
-
-</div>
-    </header>
-
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-数据库笔记1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/02/数据库笔记1/" class="article-date">
+  <time datetime="2019-03-02T13:47:43.000Z" itemprop="datePublished">2019-03-02</time>
+</a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/数据库/">数据库</a>
+  </div>
 
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-            
-
-          
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
+  </div>
+  <div class="article-inner">
     
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ljyabcd.github.io.git/2019/03/02/数据库笔记1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ljy">
-      <meta itemprop="description" content="15615615615615">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="search out bug">
-    </span>
-
     
-      <header class="post-header">
-
+      <header class="article-header">
         
-        
-          <h1 class="post-title" itemprop="name headline">数据库笔记1
+  
+    <h1 class="article-title" itemprop="name">
+      数据库笔记1
+    </h1>
+  
 
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-02 21:47:43" itemprop="dateCreated datePublished" datetime="2019-03-02T21:47:43+08:00">2019-03-02</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-16 15:37:43" itemprop="dateModified" datetime="2019-03-16T15:37:43+08:00">2019-03-16</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
       </header>
     
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
+    <div class="article-entry" itemprop="articleBody">
       
         <h2 id="数据库管理"><a href="#数据库管理" class="headerlink" title="数据库管理"></a>数据库管理</h2><h3 id="一-MySQL"><a href="#一-MySQL" class="headerlink" title="一.MySQL"></a>一.MySQL</h3><h4 id="1-版本介绍和选择"><a href="#1-版本介绍和选择" class="headerlink" title="1.版本介绍和选择"></a>1.版本介绍和选择</h4><h5 id="1-1-版本"><a href="#1-1-版本" class="headerlink" title="1.1 版本"></a>1.1 版本</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">oracle mysql</span><br><span class="line">mariadb </span><br><span class="line">perconadb</span><br></pre></td></tr></table></figure>
 <h5 id="1-2-主流版本"><a href="#1-2-主流版本" class="headerlink" title="1.2 主流版本"></a>1.2 主流版本</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">5.6 版本 5.6.36 5.6.38  5.6.40</span><br><span class="line">通用的二进制版  rpm版  源码包（需要编辑）</span><br><span class="line">5.7 版本 5.7.18  5.7.20  5.7.22</span><br><span class="line">8.0 版本 最新的版本</span><br><span class="line">		</span><br><span class="line">企业版本选择：6-12月之间的GA 双数版</span><br></pre></td></tr></table></figure>
@@ -768,7 +323,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>atomic（原子性）</span><br><span class="line">所有的语句作为一个单元全部成功执行或全部取消，不应该有中间状态</span><br><span class="line">默认一条语句就是一个事务，需要将autocommit关闭掉</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>consistent（一致性）</span><br><span class="line">如果数据库在事务开始处于一致状态，则在执行该事务期间将保留一致的状态。</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span>isolated（隔离性）</span><br><span class="line">事务之间不相互影响，同一行操作时，不能同时修改数据 。</span><br><span class="line">两个方面：修改同一行，一致性读 --- 悲观锁的概念</span><br><span class="line"></span><br><span class="line"><span class="number">4.</span>durable（持久性）</span><br><span class="line">事务成功完成后，所做的所有更改都会准确的记录在数据库中，所做的更改不会丢失。</span><br></pre></td></tr></table></figure>
 <p><strong><font color="#DC143C">注意：</font></strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span></span><br><span class="line">redo 和 undo实现了ACD</span><br><span class="line"><span class="number">2.</span></span><br><span class="line">lock（行级锁）+ isolation（隔离级别）实现了I</span><br><span class="line"></span><br><span class="line">行级锁：事务修改行，会持有这行的锁 ---只有有锁的事务才能进行修改</span><br><span class="line"></span><br><span class="line">隔离级别：</span><br><span class="line">RU: 读未提交</span><br><span class="line">RC: 读已提交</span><br><span class="line">RR: 可重复读  读的是undo  mysql默认的是RR</span><br><span class="line">S: 可串行，序列化</span><br></pre></td></tr></table></figure>
-<h5 id="11-5-mysql的隔离级别"><a href="#11-5-mysql的隔离级别" class="headerlink" title="11.5 mysql的隔离级别"></a>11.5 <span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vaHVhbm9uZ3lpbmcvcC83MDIxNTU1Lmh0bWw=" title="https://www.cnblogs.com/huanongying/p/7021555.html">mysql的隔离级别<i class="fa fa-external-link"></i></span></h5><blockquote>
+<h5 id="11-5-mysql的隔离级别"><a href="#11-5-mysql的隔离级别" class="headerlink" title="11.5 mysql的隔离级别"></a>11.5 <a href="https://www.cnblogs.com/huanongying/p/7021555.html" target="_blank" rel="noopener">mysql的隔离级别</a></h5><blockquote>
 <p><strong>1.RU：读未提交     </strong> <strong><font color="#DC143C">脏读（没有提交的数据）/不可重复读/幻读</font></strong></p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>定义：就是一个事务可以读取另一个未提交事务的数据。</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>实例</span><br><span class="line">老板要给程序员发工资，程序员的工资是<span class="number">3.6</span>万/月。但是发工资时老板不小心按错了数字，按成<span class="number">3.9</span>万/月，该钱已经打到程序员的户口，但是事务还没有提交，就在这时，程序员去查看自己这个月的工资，发现比往常多了<span class="number">3</span>千元，以为涨工资了非常高兴。但是老板及时发现了不对，马上回滚差点就提交了的事务，将数字改成<span class="number">3.6</span>万再提交。</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span>分析：实际程序员这个月的工资还是<span class="number">3.6</span>万，但是程序员看到的是<span class="number">3.9</span>万。他看到的是老板还没提交事务时的数据。这就是脏读。</span><br></pre></td></tr></table></figure>
@@ -1020,7 +575,7 @@
 <h5 id="13-2-对redis的单实例进行连接操作"><a href="#13-2-对redis的单实例进行连接操作" class="headerlink" title="13.2  对redis的单实例进行连接操作"></a>13.2  对redis的单实例进行连接操作</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">python3</span><br><span class="line">&gt;&gt;&gt;<span class="keyword">import</span> redis</span><br><span class="line">&gt;&gt;&gt;r = redis.StrictRedis(host=<span class="string">'10.0.0.100'</span>, port=<span class="number">6379</span>, db=<span class="number">0</span>,password=<span class="string">'123'</span>)</span><br><span class="line">&gt;&gt;&gt;r.set(<span class="string">'foo'</span>, <span class="string">'bar'</span>)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line">&gt;&gt;&gt;r.get(<span class="string">'foo'</span>)</span><br><span class="line"><span class="string">'bar'</span></span><br></pre></td></tr></table></figure>
 <h5 id="13-3-sentinel集群连接并操作"><a href="#13-3-sentinel集群连接并操作" class="headerlink" title="13.3   sentinel集群连接并操作"></a>13.3   sentinel集群连接并操作</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 服务和sentinel服务开启</span><br><span class="line">[root@db01 ~]# redis-server /data/6380/redis.conf</span><br><span class="line">[root@db01 ~]# redis-server /data/6381/redis.conf</span><br><span class="line">[root@db01 ~]# redis-server /data/6382/redis.conf </span><br><span class="line">[root@db01 ~]# redis-sentinel /data/26380/sentinel.conf &amp;</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 导入redis sentinel包</span></span><br><span class="line">&gt;&gt;&gt;<span class="keyword">from</span> redis.sentinel <span class="keyword">import</span> Sentinel  </span><br><span class="line"><span class="comment">##指定sentinel的地址和端口号</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sentinel = Sentinel([(<span class="string">'localhost'</span>, <span class="number">26380</span>)], socket_timeout=<span class="number">0.1</span>)  </span><br><span class="line"><span class="comment">##测试，获取以下主库和从库的信息</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sentinel.discover_master(<span class="string">'mymaster'</span>)  </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sentinel.discover_slaves(<span class="string">'mymaster'</span>)  </span><br><span class="line"></span><br><span class="line"><span class="comment">##配置读写分离</span></span><br><span class="line"><span class="comment">#写节点</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>master = sentinel.master_for(<span class="string">'mymaster'</span>, socket_timeout=<span class="number">0.1</span>,password=<span class="string">"123"</span>)  </span><br><span class="line"><span class="comment">#读节点</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>slave = sentinel.slave_for(<span class="string">'mymaster'</span>, socket_timeout=<span class="number">0.1</span>,password=<span class="string">"123"</span>)  </span><br><span class="line"><span class="comment">###读写分离测试   key     </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>master.set(<span class="string">'oldboy'</span>, <span class="string">'123'</span>)  </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>slave.get(<span class="string">'oldboy'</span>)  </span><br><span class="line"><span class="string">'123'</span></span><br></pre></td></tr></table></figure>
-<h5 id="13-4-redis-cluster的连接并操作（python2-7-2以上版本才支持redis-cluster，我们选择的是3-5）"><a href="#13-4-redis-cluster的连接并操作（python2-7-2以上版本才支持redis-cluster，我们选择的是3-5）" class="headerlink" title="13.4  redis cluster的连接并操作（python2.7.2以上版本才支持redis cluster，我们选择的是3.5）"></a>13.4  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0dyb2t6ZW4vcmVkaXMtcHktY2x1c3Rlcg==" title="https://github.com/Grokzen/redis-py-cluster">redis cluster的连接并操作（python2.7.2以上版本才支持redis cluster，我们选择的是3.5）<i class="fa fa-external-link"></i></span></h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">python3</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> rediscluster <span class="keyword">import</span> StrictRedisCluster  </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>startup_nodes = [&#123;<span class="string">"host"</span>: <span class="string">"127.0.0.1"</span>, <span class="string">"port"</span>: <span class="string">"7000"</span>&#125;,&#123;<span class="string">"host"</span>: <span class="string">"127.0.0.1"</span>, <span class="string">"port"</span>: <span class="string">"7001"</span>&#125;,&#123;<span class="string">"host"</span>: <span class="string">"127.0.0.1"</span>, <span class="string">"port"</span>: <span class="string">"7002"</span>&#125;]  </span><br><span class="line"><span class="comment">### Note: decode_responses must be set to True when used with python3  </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>rc = StrictRedisCluster(startup_nodes=startup_nodes, decode_responses=<span class="literal">True</span>)  </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>rc.set(<span class="string">"foo0000"</span>, <span class="string">"bar0000"</span>)  </span><br><span class="line"><span class="literal">True</span>  </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(rc.get(<span class="string">"foo0000"</span>))  </span><br><span class="line"><span class="string">'bar'</span></span><br></pre></td></tr></table></figure>
+<h5 id="13-4-redis-cluster的连接并操作（python2-7-2以上版本才支持redis-cluster，我们选择的是3-5）"><a href="#13-4-redis-cluster的连接并操作（python2-7-2以上版本才支持redis-cluster，我们选择的是3-5）" class="headerlink" title="13.4  redis cluster的连接并操作（python2.7.2以上版本才支持redis cluster，我们选择的是3.5）"></a>13.4  <a href="https://github.com/Grokzen/redis-py-cluster" target="_blank" rel="noopener">redis cluster的连接并操作（python2.7.2以上版本才支持redis cluster，我们选择的是3.5）</a></h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">python3</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> rediscluster <span class="keyword">import</span> StrictRedisCluster  </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>startup_nodes = [&#123;<span class="string">"host"</span>: <span class="string">"127.0.0.1"</span>, <span class="string">"port"</span>: <span class="string">"7000"</span>&#125;,&#123;<span class="string">"host"</span>: <span class="string">"127.0.0.1"</span>, <span class="string">"port"</span>: <span class="string">"7001"</span>&#125;,&#123;<span class="string">"host"</span>: <span class="string">"127.0.0.1"</span>, <span class="string">"port"</span>: <span class="string">"7002"</span>&#125;]  </span><br><span class="line"><span class="comment">### Note: decode_responses must be set to True when used with python3  </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>rc = StrictRedisCluster(startup_nodes=startup_nodes, decode_responses=<span class="literal">True</span>)  </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>rc.set(<span class="string">"foo0000"</span>, <span class="string">"bar0000"</span>)  </span><br><span class="line"><span class="literal">True</span>  </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(rc.get(<span class="string">"foo0000"</span>))  </span><br><span class="line"><span class="string">'bar'</span></span><br></pre></td></tr></table></figure>
 <hr>
 <h4 id="14-redis可能会出现的问题"><a href="#14-redis可能会出现的问题" class="headerlink" title="14. redis可能会出现的问题"></a>14. redis可能会出现的问题</h4><h5 id="14-1-缓存穿透"><a href="#14-1-缓存穿透" class="headerlink" title="14.1 缓存穿透"></a>14.1 缓存穿透</h5><blockquote>
 <p><strong>1.概念</strong></p>
@@ -1221,925 +776,145 @@
 
       
     </div>
-
-    
-
-    
-    
-    
-
-    
-      <div>
-        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
-  <img id="wechat_subscriber_qcode" src="/path/to/your/wechatqcode e.g. /uploads/wechat-qcode.jpg" alt="ljy wechat" style="width: 200px; max-width: 100%;">
-  <div>e.g. subscribe to my blog by scanning my public wechat account</div>
-</div>
-
-      </div>
-    
-
-    
-      
-    
-    
-      <div>
-        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div>Donate comment here</div>
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>打赏</span>
-  </button>
-  <div id="QR" style="display: none;">
-
-    
-      <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="ljy 微信支付">
-        <p>微信支付</p>
-      </div>
-    
-
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="ljy 支付宝">
-        <p>支付宝</p>
-      </div>
-    
-
-    
-      <div id="bitcoin" style="display: inline-block">
-        <img id="bitcoin_qr" src="/images/bitcoin.jpg" alt="ljy 比特币">
-        <p>比特币</p>
-      </div>
-    
-
-  </div>
-</div>
-
-      </div>
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/mysql/" rel="tag"># mysql</a>
-          
-            <a href="/tags/redis/" rel="tag"># redis</a>
-          
-            <a href="/tags/mongdb/" rel="tag"># mongdb</a>
-          
-        </div>
-      
-
+    <footer class="article-footer">
+      <a data-url="https://ljyabc.github.io/2019/03/02/数据库笔记1/" data-id="cjtba8bvk0034c8uyo80ue5ye" class="article-share-link">Share</a>
       
       
-      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongdb/">mongdb</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
 
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/03/02/对象关系映射-orm/" rel="next" title="对象关系映射(orm)">
-                <i class="fa fa-chevron-left"></i> 对象关系映射(orm)
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/02/python正则/" rel="prev" title="python正则">
-                python正则 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
     </footer>
   </div>
   
+    
+<nav id="article-nav">
   
-  
-  </article>
-
-
-  </div>
-
-
-          </div>
-          
-
-  
-
-
-
-        </div>
+    <a href="/2019/03/02/python正则/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
-          
+          python正则
+        
+      </div>
+    </a>
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  
+    <a href="/2019/03/02/对象关系映射-orm/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">对象关系映射(orm)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/hexo命令/">hexo命令</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python入门到放弃系列/">python入门到放弃系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/查找-灵活/">查找,灵活</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/理解/">理解</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/理论/">理论</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/记忆/">记忆</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/逻辑/">逻辑</a></li></ul>
     </div>
   </div>
 
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
 
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="ljy">
-            
-              <p class="site-author-name" itemprop="name">ljy</p>
-              <p class="site-description motion-element" itemprop="description">15615615615615</p>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">34</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  <a href="/categories/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">10</span>
-                    <span class="site-state-item-name">分类</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">13</span>
-                    <span class="site-state-item-name">标签</span>
-                  </a>
-                </div>
-              
-            </nav>
-          
-
-          
-
-          
-            <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lvdXJuYW1l" title="GitHub &rarr; https://github.com/yourname"><i class="fa fa-fw fa-github"></i>GitHub</span>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <span class="exturl" data-url="bWFpbHRvOnlvdXJuYW1lQGdtYWlsLmNvbQ==" title="E-Mail &rarr; mailto:yourname@gmail.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <span class="exturl" data-url="aHR0cHM6Ly93ZWliby5jb20veW91cm5hbWU=" title="Weibo &rarr; https://weibo.com/yourname"><i class="fa fa-fw fa-weibo"></i>Weibo</span>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <span class="exturl" data-url="aHR0cHM6Ly9wbHVzLmdvb2dsZS5jb20veW91cm5hbWU=" title="Google &rarr; https://plus.google.com/yourname"><i class="fa fa-fw fa-google"></i>Google</span>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <span class="exturl" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS95b3VybmFtZQ==" title="Twitter &rarr; https://twitter.com/yourname"><i class="fa fa-fw fa-twitter"></i>Twitter</span>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <span class="exturl" data-url="aHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL3lvdXJuYW1l" title="FB Page &rarr; https://www.facebook.com/yourname"><i class="fa fa-fw fa-facebook"></i>FB Page</span>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <span class="exturl" data-url="aHR0cHM6Ly92ay5jb20veW91cm5hbWU=" title="VK Group &rarr; https://vk.com/yourname"><i class="fa fa-fw fa-vk"></i>VK Group</span>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS95b3VybmFtZQ==" title="StackOverflow &rarr; https://stackoverflow.com/yourname"><i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</span>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <span class="exturl" data-url="aHR0cHM6Ly95b3V0dWJlLmNvbS95b3VybmFtZQ==" title="YouTube &rarr; https://youtube.com/yourname"><i class="fa fa-fw fa-youtube"></i>YouTube</span>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <span class="exturl" data-url="aHR0cHM6Ly9pbnN0YWdyYW0uY29tL3lvdXJuYW1l" title="Instagram &rarr; https://instagram.com/yourname"><i class="fa fa-fw fa-instagram"></i>Instagram</span>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <span class="exturl" data-url="c2t5cGU6eW91cm5hbWU/Y2FsbHxjaGF0" title="Skype &rarr; skype:yourname?call|chat"><i class="fa fa-fw fa-skype"></i>Skype</span>
-                </span>
-              
-            </div>
-          
-
-          
-
-          
-          
-            <div class="links-of-blogroll motion-element links-of-blogroll-block">
-              <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Links
-              </div>
-              <ul class="links-of-blogroll-list">
-                
-                  <li class="links-of-blogroll-item">
-                    <span class="exturl" data-url="aHR0cDovL2V4YW1wbGUuY29t" title="http://example.com">Title</span>
-                  </li>
-                
-              </ul>
-            </div>
-          
-
-          
-            
-          
-          
-
-        </div>
-      </div>
-
-      
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库管理"><span class="nav-number">1.</span> <span class="nav-text">数据库管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一-MySQL"><span class="nav-number">1.1.</span> <span class="nav-text">一.MySQL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-版本介绍和选择"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.版本介绍和选择</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-版本"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">1.1 版本</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-主流版本"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">1.2 主流版本</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-MySQL的体系结构"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. MySQL的体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-MySQL是典型的-c-s结构"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">2.1 MySQL是典型的 c/s结构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-连接（linux）的2种方式"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">2.2 连接（linux）的2种方式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-MySQL实例"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">2.3 MySQL实例</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-4-mysqld三层结构"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">2.4 mysqld三层结构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-5-mysql逻辑结构"><span class="nav-number">1.1.2.5.</span> <span class="nav-text">2.5 mysql逻辑结构</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-sql语句（sql92-sql99标准）"><span class="nav-number">1.1.3.</span> <span class="nav-text">3. sql语句（sql92/sql99标准）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-sql种类"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">3.1 sql种类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-sql语句的操作对象"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">3.2 sql语句的操作对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-DDL语句作用"><span class="nav-number">1.1.3.3.</span> <span class="nav-text">3.3 DDL语句作用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-4-DCL语句作用"><span class="nav-number">1.1.3.4.</span> <span class="nav-text">3.4 DCL语句作用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-5-DML语句作用"><span class="nav-number">1.1.3.5.</span> <span class="nav-text">3.5 DML语句作用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-6-DQL语句的作用"><span class="nav-number">1.1.3.6.</span> <span class="nav-text">3.6 DQL语句的作用</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-mysql数据类型和字符集"><span class="nav-number">1.1.4.</span> <span class="nav-text">4.mysql数据类型和字符集</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-1-数据类型"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">4.1 数据类型</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-索引及执行计划"><span class="nav-number">1.1.5.</span> <span class="nav-text">5. 索引及执行计划</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#5-1-索引"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">5.1 索引</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-2-索引的种类（mysql中的一种对象）"><span class="nav-number">1.1.5.2.</span> <span class="nav-text">5.2 索引的种类（mysql中的一种对象）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-3-Btree分类"><span class="nav-number">1.1.5.3.</span> <span class="nav-text">5.3 Btree分类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-4-唯一索引：人为创建（普通索引）"><span class="nav-number">1.1.5.4.</span> <span class="nav-text">5.4 唯一索引：人为创建（普通索引）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-5-聚集索引和辅助索引的区别"><span class="nav-number">1.1.5.5.</span> <span class="nav-text">5.5 聚集索引和辅助索引的区别</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-6-索引管理的命令"><span class="nav-number">1.1.5.6.</span> <span class="nav-text">5.6 索引管理的命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-7-索引维护应该注意的地方"><span class="nav-number">1.1.5.7.</span> <span class="nav-text">5.7 索引维护应该注意的地方</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-8-如何解决索引导致的插入数据效率低的问题"><span class="nav-number">1.1.5.8.</span> <span class="nav-text">5.8 如何解决索引导致的插入数据效率低的问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-9-索引的优化"><span class="nav-number">1.1.5.9.</span> <span class="nav-text">5.9 索引的优化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-0-面试可以怎么写"><span class="nav-number">1.1.5.10.</span> <span class="nav-text">6.0 面试可以怎么写</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-mysql-5-7-初始化配置"><span class="nav-number">1.1.6.</span> <span class="nav-text">6. mysql 5.7 初始化配置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#6-1-数据库的初始化"><span class="nav-number">1.1.6.1.</span> <span class="nav-text">6.1 数据库的初始化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-2-配置文件的作用"><span class="nav-number">1.1.6.2.</span> <span class="nav-text">6.2 配置文件的作用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-3-如何书写配置文件"><span class="nav-number">1.1.6.3.</span> <span class="nav-text">6.3 如何书写配置文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-4-一台机器多个实例的架构（3307-3308-3309）"><span class="nav-number">1.1.6.4.</span> <span class="nav-text">6.4 一台机器多个实例的架构（3307,3308,3309）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-5-隐私相关的操作"><span class="nav-number">1.1.6.5.</span> <span class="nav-text">6.5 隐私相关的操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-6-忘记密码如何操作"><span class="nav-number">1.1.6.6.</span> <span class="nav-text">6.6 忘记密码如何操作</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-判断优化器是否选择索引"><span class="nav-number">1.1.7.</span> <span class="nav-text">7.判断优化器是否选择索引</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#7-1-explain（desc）命令的应用，获取优化器选择后的执行计划"><span class="nav-number">1.1.7.1.</span> <span class="nav-text">7.1 explain（desc）命令的应用，获取优化器选择后的执行计划</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-2-使用"><span class="nav-number">1.1.7.2.</span> <span class="nav-text">7.2 使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-3-信息详解"><span class="nav-number">1.1.7.3.</span> <span class="nav-text">7.3 信息详解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-4-什么是业务"><span class="nav-number">1.1.7.4.</span> <span class="nav-text">7.4 什么是业务</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-建立索引的原则（运维规范）"><span class="nav-number">1.1.8.</span> <span class="nav-text">8.建立索引的原则（运维规范）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#8-1-建表时一定要有主键-如果相关列可以作为主键-做一个无关列"><span class="nav-number">1.1.8.1.</span> <span class="nav-text">8.1 建表时一定要有主键,如果相关列可以作为主键,做一个无关列</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-2-选择唯一性索引"><span class="nav-number">1.1.8.2.</span> <span class="nav-text">8.2 选择唯一性索引</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#注意"><span class="nav-number">1.1.8.3.</span> <span class="nav-text">注意</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-3-为经常需要排序、分组和联合操作的字段建立索引"><span class="nav-number">1.1.8.4.</span> <span class="nav-text">8.3 为经常需要排序、分组和联合操作的字段建立索引</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-4-为常作为where查询条件的字段建立索引"><span class="nav-number">1.1.8.5.</span> <span class="nav-text">8.4 为常作为where查询条件的字段建立索引</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-5-尽量使用前缀来索引"><span class="nav-number">1.1.8.6.</span> <span class="nav-text">8.5 尽量使用前缀来索引</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-6-限制索引的数目"><span class="nav-number">1.1.8.7.</span> <span class="nav-text">8.6 限制索引的数目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-7-删除不再使用或者很少使用的索引-percona-toolkit"><span class="nav-number">1.1.8.8.</span> <span class="nav-text">8.7 删除不再使用或者很少使用的索引(percona toolkit)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-8-大表加索引-要在业务不繁忙期间操作"><span class="nav-number">1.1.8.9.</span> <span class="nav-text">8.8 大表加索引,要在业务不繁忙期间操作</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-不走索引的情况（开发规范）"><span class="nav-number">1.1.9.</span> <span class="nav-text">9. 不走索引的情况（开发规范）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#9-1-没有查询条件，或者查询条件没有建立索引"><span class="nav-number">1.1.9.1.</span> <span class="nav-text">9.1  没有查询条件，或者查询条件没有建立索引</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9-2-查询结果集是原表中的大部分数据，应该是25％以上。"><span class="nav-number">1.1.9.2.</span> <span class="nav-text">9.2 查询结果集是原表中的大部分数据，应该是25％以上。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9-3-索引本身失效，统计数据不真实"><span class="nav-number">1.1.9.3.</span> <span class="nav-text">9.3 索引本身失效，统计数据不真实</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9-4-查询条件使用函数在索引列上，或者对索引列进行运算，运算包括-，-，-，-，-等"><span class="nav-number">1.1.9.4.</span> <span class="nav-text">9.4 查询条件使用函数在索引列上，或者对索引列进行运算，运算包括(+，-，*，/，! 等)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9-5-隐式转换导致索引失效-这一点应当引起重视-也是开发中经常会犯的错误"><span class="nav-number">1.1.9.5.</span> <span class="nav-text">9.5 隐式转换导致索引失效.这一点应当引起重视.也是开发中经常会犯的错误.</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9-6-lt-gt-，not-in-不走索引"><span class="nav-number">1.1.9.6.</span> <span class="nav-text">9.6 &lt;&gt;  ，not in 不走索引</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9-7-like-“-”-百分号在最前面不走"><span class="nav-number">1.1.9.7.</span> <span class="nav-text">9.7 like “%_” 百分号在最前面不走</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9-8-单独引用联合索引里非第一位置的索引列-作为条件查询时不走索引"><span class="nav-number">1.1.9.8.</span> <span class="nav-text">9.8 单独引用联合索引里非第一位置的索引列.作为条件查询时不走索引.</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-压力测试"><span class="nav-number">1.1.10.</span> <span class="nav-text">10. 压力测试</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#10-1-模拟数据库数据模拟数据库数据"><span class="nav-number">1.1.10.1.</span> <span class="nav-text">10.1 模拟数据库数据模拟数据库数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#10-2-检查数据可用性"><span class="nav-number">1.1.10.2.</span> <span class="nav-text">10.2 检查数据可用性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#10-3-在没有优化之前我们使用mysqlslap来进行压力测试"><span class="nav-number">1.1.10.3.</span> <span class="nav-text">10.3 在没有优化之前我们使用mysqlslap来进行压力测试</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-mysql的存储引擎"><span class="nav-number">1.1.11.</span> <span class="nav-text">11.  mysql的存储引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#11-1-作用"><span class="nav-number">1.1.11.1.</span> <span class="nav-text">11.1 作用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#11-2-innodb存储引擎简介"><span class="nav-number">1.1.11.2.</span> <span class="nav-text">11.2 innodb存储引擎简介</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#11-3-myisam存储引擎简介"><span class="nav-number">1.1.11.3.</span> <span class="nav-text">11.3 myisam存储引擎简介</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#11-4-innodb的核心特性：事务、行锁定粒度，备份和恢复，自动故障修复"><span class="nav-number">1.1.11.4.</span> <span class="nav-text">11.4 innodb的核心特性：事务、行锁定粒度，备份和恢复，自动故障修复</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#11-5-mysql的隔离级别"><span class="nav-number">1.1.11.5.</span> <span class="nav-text">11.5 mysql的隔离级别</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#11-6-事务的控制语句"><span class="nav-number">1.1.11.6.</span> <span class="nav-text">11.6 事务的控制语句</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#11-7-隐式提交：（默认方式）"><span class="nav-number">1.1.11.7.</span> <span class="nav-text">11.7 隐式提交：（默认方式）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-日志"><span class="nav-number">1.1.12.</span> <span class="nav-text">12. 日志</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#12-1-错误日志"><span class="nav-number">1.1.12.1.</span> <span class="nav-text">12.1 错误日志</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#12-2-二进制日志"><span class="nav-number">1.1.12.2.</span> <span class="nav-text">12.2 二进制日志</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#12-3-慢日志：记录慢语句的日志；默认情况下是没有开启这个功能–需要手动开启"><span class="nav-number">1.1.12.3.</span> <span class="nav-text">12.3 慢日志：记录慢语句的日志；默认情况下是没有开启这个功能–需要手动开启</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-备份恢复"><span class="nav-number">1.1.13.</span> <span class="nav-text">13. 备份恢复</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#13-1-备份的分类"><span class="nav-number">1.1.13.1.</span> <span class="nav-text">13.1 备份的分类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#13-2-逻辑备份工具介绍"><span class="nav-number">1.1.13.2.</span> <span class="nav-text">13.2 逻辑备份工具介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#13-3-mysqldump的使用和参数"><span class="nav-number">1.1.13.3.</span> <span class="nav-text">13.3 mysqldump的使用和参数</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-主从复制：基于二进制日志实现的"><span class="nav-number">1.1.14.</span> <span class="nav-text">14. 主从复制：基于二进制日志实现的</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#14-1-为什么要有主从复制"><span class="nav-number">1.1.14.1.</span> <span class="nav-text">14.1 为什么要有主从复制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#14-2-主从复制的核心：读写分离（读多写少-适合–-读写分离）"><span class="nav-number">1.1.14.2.</span> <span class="nav-text">14.2 主从复制的核心：读写分离（读多写少 -适合– 读写分离）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#14-3-模拟主从复制功能"><span class="nav-number">1.1.14.3.</span> <span class="nav-text">14.3 模拟主从复制功能</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#15-mysql高可用架构（安全性）"><span class="nav-number">1.1.15.</span> <span class="nav-text">15. mysql高可用架构（安全性）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#15-1-“高可用”架构"><span class="nav-number">1.1.15.1.</span> <span class="nav-text">15.1 “高可用”架构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#15-2-MySQL高可用架构介绍"><span class="nav-number">1.1.15.2.</span> <span class="nav-text">15.2 MySQL高可用架构介绍</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#16-高性能架构（安全性-高性能）"><span class="nav-number">1.1.16.</span> <span class="nav-text">16. 高性能架构（安全性+高性能）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#16-1-基本概念"><span class="nav-number">1.1.16.1.</span> <span class="nav-text">16.1 基本概念</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#16-2-目前主流的读写分离架构"><span class="nav-number">1.1.16.2.</span> <span class="nav-text">16.2 目前主流的读写分离架构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#16-3-目前主流的分布式架构"><span class="nav-number">1.1.16.3.</span> <span class="nav-text">16.3 目前主流的分布式架构</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二-Redis缓存技术"><span class="nav-number">1.2.</span> <span class="nav-text">二. Redis缓存技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-NoSQL产品"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. NoSQL产品</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-redis面试常问问题：功能介绍"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. redis面试常问问题：功能介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-企业缓存产品介绍"><span class="nav-number">1.2.3.</span> <span class="nav-text">3. 企业缓存产品介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-memcached"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">3.1 memcached</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-redis"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">3.2 redis</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-memcache与redis在读写性能的对比"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">3.3 memcache与redis在读写性能的对比</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-4-Redis使用场景介绍"><span class="nav-number">1.2.3.4.</span> <span class="nav-text">3.4 Redis使用场景介绍</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Redis安装部署"><span class="nav-number">1.2.4.</span> <span class="nav-text">4. Redis安装部署</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-Redis基本管理操作"><span class="nav-number">1.2.5.</span> <span class="nav-text">5. Redis基本管理操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#5-1-基础配置文件介绍"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">5.1 基础配置文件介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-2-配置文件说明"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">5.2 配置文件说明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-3-redis-cli-客户端命令常用参数说明"><span class="nav-number">1.2.5.3.</span> <span class="nav-text">5.3 redis-cli 客户端命令常用参数说明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-4-redis安全配置-指定IP-设置验证密码"><span class="nav-number">1.2.5.4.</span> <span class="nav-text">5.4 redis安全配置:指定IP/设置验证密码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-5-在线查看和修改配置"><span class="nav-number">1.2.5.5.</span> <span class="nav-text">5.5 在线查看和修改配置</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-redis持久化（内存数据保存到磁盘）"><span class="nav-number">1.2.6.</span> <span class="nav-text">6. redis持久化（内存数据保存到磁盘）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#6-1-作用"><span class="nav-number">1.2.6.1.</span> <span class="nav-text">6.1 作用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-2-RDB-持久化"><span class="nav-number">1.2.6.2.</span> <span class="nav-text">6.2 RDB 持久化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-3-AOF-持久化-append-only-log-file"><span class="nav-number">1.2.6.3.</span> <span class="nav-text">6.3 AOF 持久化(append-only log file)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-4-redis-持久化方式有哪些？有什么区别？"><span class="nav-number">1.2.6.4.</span> <span class="nav-text">6.4 redis 持久化方式有哪些？有什么区别？</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-Redis数据类型-笔试"><span class="nav-number">1.2.7.</span> <span class="nav-text">7. Redis数据类型(笔试)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#7-1-介绍"><span class="nav-number">1.2.7.1.</span> <span class="nav-text">7.1 介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-2-键的通用操作"><span class="nav-number">1.2.7.2.</span> <span class="nav-text">7.2 键的通用操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-3-string类型的应用场景"><span class="nav-number">1.2.7.3.</span> <span class="nav-text">7.3 string类型的应用场景</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-4-hash类型的应用场景"><span class="nav-number">1.2.7.4.</span> <span class="nav-text">7.4 hash类型的应用场景</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-5-list列表的应用场景"><span class="nav-number">1.2.7.5.</span> <span class="nav-text">7.5 list列表的应用场景</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-6-SET-集合类型（类似于mysql中的join）应用场景"><span class="nav-number">1.2.7.6.</span> <span class="nav-text">7.6 SET 集合类型（类似于mysql中的join）应用场景</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-7-SortedSet（有序集合）应用场景"><span class="nav-number">1.2.7.7.</span> <span class="nav-text">7.7 SortedSet（有序集合）应用场景</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-redis的发布订阅"><span class="nav-number">1.2.8.</span> <span class="nav-text">8. redis的发布订阅</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#8-1-发布订阅系统的相关指令"><span class="nav-number">1.2.8.1.</span> <span class="nav-text">8.1 发布订阅系统的相关指令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-2-实例"><span class="nav-number">1.2.8.2.</span> <span class="nav-text">8.2 实例</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-Redis事务"><span class="nav-number">1.2.9.</span> <span class="nav-text">9. Redis事务</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#9-1-redis和mysql事务实现的原理"><span class="nav-number">1.2.9.1.</span> <span class="nav-text">9.1 redis和mysql事务实现的原理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9-2-开启事务"><span class="nav-number">1.2.9.2.</span> <span class="nav-text">9.2 开启事务</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9-3-redis乐观锁实现（模拟买票）"><span class="nav-number">1.2.9.3.</span> <span class="nav-text">9.3 redis乐观锁实现（模拟买票）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-服务器管理命令"><span class="nav-number">1.2.10.</span> <span class="nav-text">10. 服务器管理命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-redis（master-replicaset）主从复制"><span class="nav-number">1.2.11.</span> <span class="nav-text">11. redis（master-replicaset）主从复制</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#11-1-原理"><span class="nav-number">1.2.11.1.</span> <span class="nav-text">11.1 原理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#11-2-主从数据一致性保证"><span class="nav-number">1.2.11.2.</span> <span class="nav-text">11.2 主从数据一致性保证</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#11-3-主库是否要开启持久化？"><span class="nav-number">1.2.11.3.</span> <span class="nav-text">11.3 主库是否要开启持久化？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#11-4-主从复制实现"><span class="nav-number">1.2.11.4.</span> <span class="nav-text">11.4 主从复制实现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#11-5-redis-sentinel（哨兵）"><span class="nav-number">1.2.11.5.</span> <span class="nav-text">11.5 redis-sentinel（哨兵）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-redis-cluster-集群"><span class="nav-number">1.2.12.</span> <span class="nav-text">12. redis cluster(集群)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#12-1-高性能"><span class="nav-number">1.2.12.1.</span> <span class="nav-text">12.1 高性能</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#12-2-高可用"><span class="nav-number">1.2.12.2.</span> <span class="nav-text">12.2 高可用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#12-3-规划、搭建过程："><span class="nav-number">1.2.12.3.</span> <span class="nav-text">12.3 规划、搭建过程：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-redis的多API支持-python为例"><span class="nav-number">1.2.13.</span> <span class="nav-text">13. redis的多API支持:python为例</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#13-1-软件驱动下载"><span class="nav-number">1.2.13.1.</span> <span class="nav-text">13.1 软件驱动下载</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#13-2-对redis的单实例进行连接操作"><span class="nav-number">1.2.13.2.</span> <span class="nav-text">13.2  对redis的单实例进行连接操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#13-3-sentinel集群连接并操作"><span class="nav-number">1.2.13.3.</span> <span class="nav-text">13.3   sentinel集群连接并操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#13-4-redis-cluster的连接并操作（python2-7-2以上版本才支持redis-cluster，我们选择的是3-5）"><span class="nav-number">1.2.13.4.</span> <span class="nav-text">13.4  redis cluster的连接并操作（python2.7.2以上版本才支持redis cluster，我们选择的是3.5）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-redis可能会出现的问题"><span class="nav-number">1.2.14.</span> <span class="nav-text">14. redis可能会出现的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#14-1-缓存穿透"><span class="nav-number">1.2.14.1.</span> <span class="nav-text">14.1 缓存穿透</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#14-2-缓存雪崩"><span class="nav-number">1.2.14.2.</span> <span class="nav-text">14.2 缓存雪崩</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#14-3-缓存击穿"><span class="nav-number">1.2.14.3.</span> <span class="nav-text">14.3 缓存击穿</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三-Mongodb核心技术"><span class="nav-number">1.3.</span> <span class="nav-text">三. Mongodb核心技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-逻辑结构"><span class="nav-number">1.3.1.</span> <span class="nav-text">1. 逻辑结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-安装部署"><span class="nav-number">1.3.2.</span> <span class="nav-text">2. 安装部署</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-系统准备"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">2.1 系统准备</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-关闭大页内存机制"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">2.2 关闭大页内存机制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-MongoDB安装"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">2.3 MongoDB安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-4-YAML模式：非常经典的专门用作配置文件的格式"><span class="nav-number">1.3.2.4.</span> <span class="nav-text">2.4 YAML模式：非常经典的专门用作配置文件的格式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-MongoDB常用的基本操作"><span class="nav-number">1.3.3.</span> <span class="nav-text">3. MongoDB常用的基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-mongodb-默认存在的库"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">3.1 mongodb 默认存在的库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-命令分类"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">3.2 命令分类</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#3-2-1-逻辑对象"><span class="nav-number">1.3.3.2.1.</span> <span class="nav-text">3.2.1 逻辑对象</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-db-命令"><span class="nav-number">1.3.3.3.</span> <span class="nav-text">3.3 db.命令</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#3-3-1-DB级别命令"><span class="nav-number">1.3.3.3.1.</span> <span class="nav-text">3.3.1 DB级别命令</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-4-复制集有关-replication-set"><span class="nav-number">1.3.3.4.</span> <span class="nav-text">3.4 复制集有关(replication set)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-5-分片集群-sharding-cluster"><span class="nav-number">1.3.3.5.</span> <span class="nav-text">3.5 分片集群(sharding cluster)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-6-常用操作"><span class="nav-number">1.3.3.6.</span> <span class="nav-text">3.6 常用操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-7-库的操作"><span class="nav-number">1.3.3.7.</span> <span class="nav-text">3.7 库的操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-8-集合的操作"><span class="nav-number">1.3.3.8.</span> <span class="nav-text">3.8 集合的操作</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Mongodb数据查询语句"><span class="nav-number">1.3.4.</span> <span class="nav-text">4. Mongodb数据查询语句</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-1-查询集合中的记录数"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">4.1 查询集合中的记录数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-删除集合中的记录数"><span class="nav-number">1.3.4.2.</span> <span class="nav-text">4.2 删除集合中的记录数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-3-查看集合存储信息"><span class="nav-number">1.3.4.3.</span> <span class="nav-text">4.3 查看集合存储信息</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-用户管理"><span class="nav-number">1.3.5.</span> <span class="nav-text">5.  用户管理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#5-1-基本语法"><span class="nav-number">1.3.5.1.</span> <span class="nav-text">5.1 基本语法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-2-基本语法说明"><span class="nav-number">1.3.5.2.</span> <span class="nav-text">5.2 基本语法说明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-3-验证数据库"><span class="nav-number">1.3.5.3.</span> <span class="nav-text">5.3 验证数据库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-4-用户管理的例子：创建超级管理员"><span class="nav-number">1.3.5.4.</span> <span class="nav-text">5.4 用户管理的例子：创建超级管理员</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#5-4-1-创建超级管理员：管理所有的数据库（必须use-admin-再去创建）"><span class="nav-number">1.3.5.4.1.</span> <span class="nav-text">5.4.1 创建超级管理员：管理所有的数据库（必须use admin 再去创建）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-4-2-验证用户"><span class="nav-number">1.3.5.4.2.</span> <span class="nav-text">5.4.2 验证用户</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-4-3-配置文件中，加入以下配置（开启密码认证）"><span class="nav-number">1.3.5.4.3.</span> <span class="nav-text">5.4.3 配置文件中，加入以下配置（开启密码认证）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-4-4-重启MongoDB"><span class="nav-number">1.3.5.4.4.</span> <span class="nav-text">5.4.4 重启MongoDB</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-4-5-登录验证"><span class="nav-number">1.3.5.4.5.</span> <span class="nav-text">5.4.5 登录验证</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-5-用户管理的例子：创建库管理用户"><span class="nav-number">1.3.5.5.</span> <span class="nav-text">5.5 用户管理的例子：创建库管理用户</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#5-5-1-首先root用户登录"><span class="nav-number">1.3.5.5.1.</span> <span class="nav-text">5.5.1 首先root用户登录</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-5-2-创建库"><span class="nav-number">1.3.5.5.2.</span> <span class="nav-text">5.5.2 创建库</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-5-3-创建库管理用户"><span class="nav-number">1.3.5.5.3.</span> <span class="nav-text">5.5.3 创建库管理用户</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-5-4-验证"><span class="nav-number">1.3.5.5.4.</span> <span class="nav-text">5.5.4 验证</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-5-5-登录测试"><span class="nav-number">1.3.5.5.5.</span> <span class="nav-text">5.5.5 登录测试</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-6-创建对app数据库，读、写权限的用户app01"><span class="nav-number">1.3.5.6.</span> <span class="nav-text">5.6 创建对app数据库，读、写权限的用户app01</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#5-6-1-超级管理员登录"><span class="nav-number">1.3.5.6.1.</span> <span class="nav-text">5.6.1 超级管理员登录</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-6-2-选择一个验证库"><span class="nav-number">1.3.5.6.2.</span> <span class="nav-text">5.6.2 选择一个验证库</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-6-3-创建用户"><span class="nav-number">1.3.5.6.3.</span> <span class="nav-text">5.6.3 创建用户</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-6-4-登录"><span class="nav-number">1.3.5.6.4.</span> <span class="nav-text">5.6.4 登录</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-7-创建app数据库读写权限的用户并对test数据库具有读权限"><span class="nav-number">1.3.5.7.</span> <span class="nav-text">5.7 创建app数据库读写权限的用户并对test数据库具有读权限</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-8-查询MongoDB中的用户信息"><span class="nav-number">1.3.5.8.</span> <span class="nav-text">5.8 查询MongoDB中的用户信息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-9-删除用户（root身份登录，use到验证库）"><span class="nav-number">1.3.5.9.</span> <span class="nav-text">5.9 删除用户（root身份登录，use到验证库）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-mongodb复制集RS"><span class="nav-number">1.3.6.</span> <span class="nav-text">6. mongodb复制集RS</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#6-1-基本原理"><span class="nav-number">1.3.6.1.</span> <span class="nav-text">6.1 基本原理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-2-Replcation-Set配置过程详解"><span class="nav-number">1.3.6.2.</span> <span class="nav-text">6.2 Replcation Set配置过程详解</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#6-2-1-规划"><span class="nav-number">1.3.6.2.1.</span> <span class="nav-text">6.2.1 规划</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#6-2-2-配置复制集：一主两从（从库在默认情况下，只是实现了高可用，并没有实现高性能）"><span class="nav-number">1.3.6.2.2.</span> <span class="nav-text">6.2.2 配置复制集：一主两从（从库在默认情况下，只是实现了高可用，并没有实现高性能）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#6-2-2-一主一从一个仲裁者"><span class="nav-number">1.3.6.2.3.</span> <span class="nav-text">6.2.2 一主一从一个仲裁者</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#6-2-3-删除一个节点"><span class="nav-number">1.3.6.2.4.</span> <span class="nav-text">6.2.3 删除一个节点</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#6-2-4-新增一个节点"><span class="nav-number">1.3.6.2.5.</span> <span class="nav-text">6.2.4 新增一个节点</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-3-配置特殊节点"><span class="nav-number">1.3.6.3.</span> <span class="nav-text">6.3 配置特殊节点</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#6-3-1-特殊节点"><span class="nav-number">1.3.6.3.1.</span> <span class="nav-text">6.3.1 特殊节点</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#6-3-2-配置延时节点（一般延时节点也配置成hidden）"><span class="nav-number">1.3.6.3.2.</span> <span class="nav-text">6.3.2 配置延时节点（一般延时节点也配置成hidden）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#6-3-3-副本集其他操作命令"><span class="nav-number">1.3.6.3.3.</span> <span class="nav-text">6.3.3 副本集其他操作命令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-MongoDB-Sharding-Cluster-分片集群"><span class="nav-number">1.3.7.</span> <span class="nav-text">7. MongoDB Sharding Cluster 分片集群</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#7-1-规划"><span class="nav-number">1.3.7.1.</span> <span class="nav-text">7.1 规划</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#7-1-1-configserver"><span class="nav-number">1.3.7.1.1.</span> <span class="nav-text">7.1.1 configserver</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7-1-2-shard节点"><span class="nav-number">1.3.7.1.2.</span> <span class="nav-text">7.1.2 shard节点</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-2-分片集群配置过程"><span class="nav-number">1.3.7.2.</span> <span class="nav-text">7.2 分片集群配置过程</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#7-2-1-shard复制集配置"><span class="nav-number">1.3.7.2.1.</span> <span class="nav-text">7.2.1 shard复制集配置</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-3-config节点配置"><span class="nav-number">1.3.7.3.</span> <span class="nav-text">7.3 config节点配置</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#7-3-1-目录创建"><span class="nav-number">1.3.7.3.1.</span> <span class="nav-text">7.3.1 目录创建</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7-3-2-修改配置文件"><span class="nav-number">1.3.7.3.2.</span> <span class="nav-text">7.3.2 修改配置文件</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7-3-3-启动节点，并配置复制集"><span class="nav-number">1.3.7.3.3.</span> <span class="nav-text">7.3.3 启动节点，并配置复制集</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-4-mongos节点配置"><span class="nav-number">1.3.7.4.</span> <span class="nav-text">7.4 mongos节点配置</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#7-4-1-创建目录"><span class="nav-number">1.3.7.4.1.</span> <span class="nav-text">7.4.1 创建目录</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7-4-2-配置文件"><span class="nav-number">1.3.7.4.2.</span> <span class="nav-text">7.4.2 配置文件</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7-4-2-启动mongos"><span class="nav-number">1.3.7.4.3.</span> <span class="nav-text">7.4.2 启动mongos</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-5-range-分片配置及测试"><span class="nav-number">1.3.7.5.</span> <span class="nav-text">7.5 range 分片配置及测试</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#7-5-1-激活数据库分片功能"><span class="nav-number">1.3.7.5.1.</span> <span class="nav-text">7.5.1 激活数据库分片功能</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7-5-2-指定分片建对集合分片"><span class="nav-number">1.3.7.5.2.</span> <span class="nav-text">7.5.2 指定分片建对集合分片</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7-5-3-集合分片验证"><span class="nav-number">1.3.7.5.3.</span> <span class="nav-text">7.5.3 集合分片验证</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7-5-4-分片结果测试-连接到分片的主节点"><span class="nav-number">1.3.7.5.4.</span> <span class="nav-text">7.5.4 分片结果测试(连接到分片的主节点)</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-6-Hash分片例子"><span class="nav-number">1.3.7.6.</span> <span class="nav-text">7.6 Hash分片例子</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#7-6-1-对于oldguo开启分片功能"><span class="nav-number">1.3.7.6.1.</span> <span class="nav-text">7.6.1 对于oldguo开启分片功能</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7-6-2-对于oldguo库下的vast表建立hash索引"><span class="nav-number">1.3.7.6.2.</span> <span class="nav-text">7.6.2 对于oldguo库下的vast表建立hash索引</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7-6-3-开启分片"><span class="nav-number">1.3.7.6.3.</span> <span class="nav-text">7.6.3 开启分片</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7-6-4-录入10w行数据测试"><span class="nav-number">1.3.7.6.4.</span> <span class="nav-text">7.6.4 录入10w行数据测试</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7-6-5-hash分片结果测试"><span class="nav-number">1.3.7.6.5.</span> <span class="nav-text">7.6.5 hash分片结果测试</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-7-判断是否是shard集群"><span class="nav-number">1.3.7.7.</span> <span class="nav-text">7.7 判断是否是shard集群</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-8-列出所有分片信息"><span class="nav-number">1.3.7.8.</span> <span class="nav-text">7.8 列出所有分片信息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-9-列出开启分片的数据库"><span class="nav-number">1.3.7.9.</span> <span class="nav-text">7.9 列出开启分片的数据库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-0-查看分片的片键"><span class="nav-number">1.3.7.10.</span> <span class="nav-text">8.0 查看分片的片键</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-1-查看分片的详细信息"><span class="nav-number">1.3.7.11.</span> <span class="nav-text">8.1 查看分片的详细信息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-2-删除分片节点（谨慎）"><span class="nav-number">1.3.7.12.</span> <span class="nav-text">8.2 删除分片节点（谨慎）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-3-balancer操作"><span class="nav-number">1.3.7.13.</span> <span class="nav-text">8.3 balancer操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-4-自定义-自动平衡进行的时间段"><span class="nav-number">1.3.7.14.</span> <span class="nav-text">8.4 自定义 自动平衡进行的时间段</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-备份恢复"><span class="nav-number">1.3.8.</span> <span class="nav-text">8. 备份恢复</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#8-1-备份恢复工具介绍"><span class="nav-number">1.3.8.1.</span> <span class="nav-text">8.1 备份恢复工具介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-2-备份工具区别在哪里"><span class="nav-number">1.3.8.2.</span> <span class="nav-text">8.2 备份工具区别在哪里</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-3-导出工具mongoexport"><span class="nav-number">1.3.8.3.</span> <span class="nav-text">8.3 导出工具mongoexport</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-4-数据恢复"><span class="nav-number">1.3.8.4.</span> <span class="nav-text">8.4 数据恢复</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-5-注意"><span class="nav-number">1.3.8.5.</span> <span class="nav-text">8.5 注意</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-异构平台迁移案例"><span class="nav-number">1.3.9.</span> <span class="nav-text">9. 异构平台迁移案例</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#9-1-mysql-—–-gt-mongodb"><span class="nav-number">1.3.9.1.</span> <span class="nav-text">9.1 mysql   —–&gt; mongodb</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#9-1-1-mysql开启安全路径"><span class="nav-number">1.3.9.1.1.</span> <span class="nav-text">9.1.1 mysql开启安全路径</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#9-1-2-导出mysql的city表数据"><span class="nav-number">1.3.9.1.2.</span> <span class="nav-text">9.1.2 导出mysql的city表数据</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#9-1-2-处理备份文件-表的字段：mysql不会导出字段"><span class="nav-number">1.3.9.1.3.</span> <span class="nav-text">9.1.2 处理备份文件(表的字段：mysql不会导出字段)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#9-1-3-vim-tmp-city-csv-—-gt-添加第一行列名信息"><span class="nav-number">1.3.9.1.4.</span> <span class="nav-text">9.1.3 vim /tmp/city.csv   —-&gt; 添加第一行列名信息</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#9-1-4-在mongodb中导入备份"><span class="nav-number">1.3.9.1.5.</span> <span class="nav-text">9.1.4 在mongodb中导入备份</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#9-1-5-查看"><span class="nav-number">1.3.9.1.6.</span> <span class="nav-text">9.1.5 查看</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9-2-mysql导出csv"><span class="nav-number">1.3.9.2.</span> <span class="nav-text">9.2 mysql导出csv</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9-3-mysql导入csv"><span class="nav-number">1.3.9.3.</span> <span class="nav-text">9.3 mysql导入csv</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-python连接使用MongoDB"><span class="nav-number">1.3.10.</span> <span class="nav-text">10. python连接使用MongoDB</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#10-1-单机链接"><span class="nav-number">1.3.10.1.</span> <span class="nav-text">10.1 单机链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#10-2-replication-set-链接"><span class="nav-number">1.3.10.2.</span> <span class="nav-text">10.2 replication set 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#10-3-分片集群连接"><span class="nav-number">1.3.10.3.</span> <span class="nav-text">10.3 分片集群连接</span></a></li></ol></li></ol></li></ol></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
-      
-
-      
-
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/django项目/">django项目</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo介绍/">hexo介绍</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux-git/">linux&git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongdb/">mongdb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python基础/">python基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python框架/">python框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代理服务/">代理服务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代码工具/">代码工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机原理/">计算机原理</a></li></ul>
     </div>
-  </aside>
-  
+  </div>
 
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">ljy</span>
 
   
-
-  
-</div>
-
-
-  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动 v3.8.0</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Gemini</span> v7.0.1</div>
-
-
-
-
-        
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
-    
-
-    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/django项目/" style="font-size: 13.33px;">django项目</a> <a href="/tags/hexo介绍/" style="font-size: 10px;">hexo介绍</a> <a href="/tags/linux-git/" style="font-size: 10px;">linux&git</a> <a href="/tags/mongdb/" style="font-size: 10px;">mongdb</a> <a href="/tags/mysql/" style="font-size: 16.67px;">mysql</a> <a href="/tags/python基础/" style="font-size: 20px;">python基础</a> <a href="/tags/python框架/" style="font-size: 13.33px;">python框架</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/代理服务/" style="font-size: 13.33px;">代理服务</a> <a href="/tags/代码工具/" style="font-size: 10px;">代码工具</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/计算机原理/" style="font-size: 10px;">计算机原理</a>
+    </div>
   </div>
 
   
-
-<script>
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
+    </div>
+  </div>
 
 
   
-  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/16/python元类/">python元类</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/16/python单例模式/">python单例模式</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/15/常用pycharm快捷键/">常用pycharm快捷键</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/15/python函数递归/">python函数递归</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/15/python常用模块/">python常用模块</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
 
   
-  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
+</aside>
+        
+      </div>
+      <footer id="footer">
   
-  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 李江洋<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
   
-
-
-  <script src="/js/src/utils.js?v=7.0.1"></script>
-
-  <script src="/js/src/motion.js?v=7.0.1"></script>
-
-
-
+    <a href="/" class="mobile-nav-link">Home</a>
   
+    <a href="/archives" class="mobile-nav-link">Archives</a>
   
+</nav>
+    
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
-  <script src="/js/src/affix.js?v=7.0.1"></script>
 
-  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
+<script src="/js/script.js"></script>
 
 
-  
-  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
-<script src="/js/src/post-details.js?v=7.0.1"></script>
 
-
-
-  
-
-
-  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
-
-
-  
-  
-
-
-  
-
-
-  
-  <script>
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
-      
-
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('1');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  <script src="/js/src/exturl.js?v=7.0.1"></script>
-
-
-  
-
-  
-
-   <!-- 代码块复制功能 -->
-  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
-  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+  </div>
 </body>
 </html>

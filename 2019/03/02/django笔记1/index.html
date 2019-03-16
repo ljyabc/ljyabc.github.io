@@ -1,596 +1,151 @@
 <!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html>
 <head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
-
-<link rel="stylesheet" href="/css/main.css?v=7.0.1">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
-
-
-
-
-
-
-
-<script id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Gemini',
-    version: '7.0.1',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
-    fancybox: false,
-    fastclick: false,
-    lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
+  <meta charset="utf-8">
   
 
-
-
-
+  
+  <title>django笔记1 | aaaa</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="django框架1 基于wsgiref定义自己的web框架.note  0 基于socket手写web框架.note  day011.web应用 web应用：  123web应用：是一种可以通过web访问的应用程序，最大的好处就是用户可以很容易访问应用程序，用户只需要在浏览器中打开网页，不需要安装其他软件。cs架构web应用：大部分是基于b/s架构的程序。  web应用的优点 123451.只需要">
 <meta name="keywords" content="python框架">
 <meta property="og:type" content="article">
 <meta property="og:title" content="django笔记1">
-<meta property="og:url" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/index.html">
-<meta property="og:site_name" content="search out bug">
+<meta property="og:url" content="https://ljyabc.github.io/2019/03/02/django笔记1/index.html">
+<meta property="og:site_name" content="aaaa">
 <meta property="og:description" content="django框架1 基于wsgiref定义自己的web框架.note  0 基于socket手写web框架.note  day011.web应用 web应用：  123web应用：是一种可以通过web访问的应用程序，最大的好处就是用户可以很容易访问应用程序，用户只需要在浏览器中打开网页，不需要安装其他软件。cs架构web应用：大部分是基于b/s架构的程序。  web应用的优点 123451.只需要">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/clipboard.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/clipboard1.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/clipboard2.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/01.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/2.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/ard.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/rd.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/cliboard.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/aclipboard.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/clipbossard.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/clipb1oard.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/clipb2oard.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/clipbo4ard.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/clipboard02.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/clipboard03.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/clipboard04.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/clipboard05.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/clipboard06.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/clipboard07.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/clipboard08.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/clipboard09.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/clipboard10.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/clipboard11.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/clipboard12.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/clipboard13.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/clipboard14.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/clipboard15.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/C:/Users/aaa/AppData/Local/Temp/1552228994449.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/1552229746713.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/1552231144528.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/1552233166530.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/1552234194253.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/1552234212442.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/1552488359923.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/1552488778206.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/1552489301361.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/1552489506222.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/1552489924936.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/1552490963768.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/1552492082082.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/1552492635768.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/1552153143351.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/1552153361848.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/1552153728832.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/1552153847052.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/1552154157269.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/1552154010685.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/1552154293200.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/1552154436732.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/1552156641791.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/1552156970809.png">
-<meta property="og:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/1552157199316.png">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/clipboard.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/clipboard1.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/clipboard2.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/01.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/2.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/ard.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/rd.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/cliboard.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/aclipboard.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/clipbossard.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/clipb1oard.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/clipb2oard.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/clipbo4ard.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/clipboard02.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/clipboard03.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/clipboard04.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/clipboard05.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/clipboard06.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/clipboard07.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/clipboard08.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/clipboard09.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/clipboard10.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/clipboard11.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/clipboard12.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/clipboard13.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/clipboard14.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/clipboard15.png">
+<meta property="og:image" content="c:/Users/aaa/AppData/Local/Temp/1552228994449.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/1552229746713.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/1552231144528.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/1552233166530.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/1552234194253.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/1552234212442.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/1552488359923.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/1552488778206.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/1552489301361.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/1552489506222.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/1552489924936.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/1552490963768.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/1552492082082.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/1552492635768.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/1552153143351.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/1552153361848.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/1552153728832.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/1552153847052.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/1552154157269.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/1552154010685.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/1552154293200.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/1552154436732.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/1552156641791.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/1552156970809.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/1552157199316.png">
 <meta property="og:updated_time" content="2019-03-14T11:11:45.680Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="django笔记1">
 <meta name="twitter:description" content="django框架1 基于wsgiref定义自己的web框架.note  0 基于socket手写web框架.note  day011.web应用 web应用：  123web应用：是一种可以通过web访问的应用程序，最大的好处就是用户可以很容易访问应用程序，用户只需要在浏览器中打开网页，不需要安装其他软件。cs架构web应用：大部分是基于b/s架构的程序。  web应用的优点 123451.只需要">
-<meta name="twitter:image" content="https://ljyabcd.github.io.git/2019/03/02/django笔记1/clipboard.png">
-
-
-
-
-
-
-  <link rel="canonical" href="https://ljyabcd.github.io.git/2019/03/02/django笔记1/">
-
-
-
-<script id="page.configurations">
-  CONFIG.page = {
-    sidebar: "",
-  };
-</script>
-
-  <title>django笔记1 | search out bug</title>
+<meta name="twitter:image" content="https://ljyabc.github.io/2019/03/02/django笔记1/django笔记1/clipboard.png">
   
-
-
-
-
-
-
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .motion-element,
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
-
-  .use-motion .logo,
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
+    <link rel="alternate" href="/atom.xml" title="aaaa" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
 </head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">search out bug</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">aaaa</a>
+      </h1>
+      
     </div>
-    
-      
-        <p class="site-subtitle">There is always a secret to thinking</p>
-      
-    
-    
-  </div>
-
-  <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-
-
-<nav class="site-nav">
-  
-    <ul id="menu" class="menu">
-      
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
         
+          <a class="main-nav-link" href="/">Home</a>
         
+          <a class="main-nav-link" href="/archives">Archives</a>
         
-          
-          <li class="menu-item menu-item-home">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
-
-  </li>
+      </nav>
+      <nav id="sub-nav">
         
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        
-          
-          <li class="menu-item menu-item-about">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-post_asset_folder">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>post_asset_folder</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-categories">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-schedule">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-sitemap">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-commonweal">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
-
-  </li>
-
-      
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
-        </li>
-      
-    </ul>
-  
-
-  
-
-  
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://ljyabc.github.io"></form>
+      </div>
     </div>
   </div>
-  <div id="local-search-result"></div>
-</div>
-
-
-
-    </div>
-  
-</nav>
-
-
-
-  
-
-
-
-</div>
-    </header>
-
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-django笔记1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/02/django笔记1/" class="article-date">
+  <time datetime="2019-03-02T13:21:50.000Z" itemprop="datePublished">2019-03-02</time>
+</a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python入门到放弃系列/">python入门到放弃系列</a>
+  </div>
 
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-            
-
-          
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
+  </div>
+  <div class="article-inner">
     
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ljyabcd.github.io.git/2019/03/02/django笔记1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ljy">
-      <meta itemprop="description" content="15615615615615">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="search out bug">
-    </span>
-
     
-      <header class="post-header">
-
+      <header class="article-header">
         
-        
-          <h1 class="post-title" itemprop="name headline">django笔记1
+  
+    <h1 class="article-title" itemprop="name">
+      django笔记1
+    </h1>
+  
 
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-02 21:21:50" itemprop="dateCreated datePublished" datetime="2019-03-02T21:21:50+08:00">2019-03-02</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-14 19:11:45" itemprop="dateModified" datetime="2019-03-14T19:11:45+08:00">2019-03-14</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python入门到放弃系列/" itemprop="url" rel="index"><span itemprop="name">python入门到放弃系列</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
       </header>
     
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+    <div class="article-entry" itemprop="articleBody">
       
-      
-
-      
-        <h2 id="django框架"><a href="#django框架" class="headerlink" title="django框架"></a>django框架</h2><p><span class="exturl" data-url="bm90ZTovLzQ2Q0IzQTMzODYyNTQyMkRCNjcwQzI3QjkwRTA3NUM5" title="note://46CB3A338625422DB670C27B90E075C9">1 基于wsgiref定义自己的web框架.note<i class="fa fa-external-link"></i></span> </p>
-<p><span class="exturl" data-url="bm90ZTovLzk4RTQ1REJDNDFBNDRFNDE5Q0M2MDFEQjVDRjhDODlD" title="note://98E45DBC41A44E419CC601DB5CF8C89C">0 基于socket手写web框架.note<i class="fa fa-external-link"></i></span> </p>
+        <h2 id="django框架"><a href="#django框架" class="headerlink" title="django框架"></a>django框架</h2><p><a href="note://46CB3A338625422DB670C27B90E075C9" target="_blank" rel="noopener">1 基于wsgiref定义自己的web框架.note</a> </p>
+<p><a href="note://98E45DBC41A44E419CC601DB5CF8C89C" target="_blank" rel="noopener">0 基于socket手写web框架.note</a> </p>
 <h3 id="day01"><a href="#day01" class="headerlink" title="day01"></a>day01</h3><h4 id="1-web应用"><a href="#1-web应用" class="headerlink" title="1.web应用"></a>1.web应用</h4><ul>
 <li><p>web应用：</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">web应用：是一种可以通过web访问的应用程序，最大的好处就是用户可以很容易访问应用程序，用户只需要在浏览器中打开网页，不需要安装其他软件。</span><br><span class="line">cs架构</span><br><span class="line">web应用：大部分是基于b/s架构的程序。</span><br></pre></td></tr></table></figure>
@@ -626,40 +181,40 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">统一资源定位符是对可以从互联网上得到的资源的位置和访问方法的一种简洁的表示，是互联网上标准支援你的地址。互联网上标准资源的地址，互联网上的每个文件都有一个唯一的url，它包含的信息支出文件的位置以及浏览器应该怎么处理它</span><br><span class="line"></span><br><span class="line">格式：</span><br><span class="line">协议：//ip:端口(80) /路径?name=lqz$age=age=18</span><br><span class="line"></span><br><span class="line">?之前的是请求路径，？之后的是请求数据部分</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h4 id="3-python中的web主流的框架-MVC"><a href="#3-python中的web主流的框架-MVC" class="headerlink" title="3.python中的web主流的框架(MVC)"></a>3.python中的web主流的框架(MVC)</h4><p><img src="/2019/03/02/django笔记1/clipboard.png" alt="clipboard"></p>
-<p><img src="/2019/03/02/django笔记1/clipboard1.png" alt="clipboard1"></p>
-<p><img src="/2019/03/02/django笔记1/clipboard2.png" alt="clipboard2"></p>
+<h4 id="3-python中的web主流的框架-MVC"><a href="#3-python中的web主流的框架-MVC" class="headerlink" title="3.python中的web主流的框架(MVC)"></a>3.python中的web主流的框架(MVC)</h4><p><img src="django笔记1\clipboard.png" alt="clipboard"></p>
+<p><img src="django笔记1\clipboard1.png" alt="clipboard1"></p>
+<p><img src="django笔记1\clipboard2.png" alt="clipboard2"></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a：socket b:路由和视图匹配关系 c:模板渲染</span><br><span class="line"></span><br><span class="line">django: a：用了wsgiref b：自己 c:自己</span><br><span class="line">flask: a:用了别人的 b：自己 c:jinja2</span><br><span class="line">tornado：a：自己 b:自己 c:自己</span><br></pre></td></tr></table></figure>
-<p><img src="/2019/03/02/django笔记1/01.png" alt="img"> </p>
-<p><img src="/2019/03/02/django笔记1/2.png" alt="img"> </p>
-<p><img src="/2019/03/02/django笔记1/ard.png" alt="img"> </p>
-<p><img src="/2019/03/02/django笔记1/rd.png" alt="img"> </p>
-<p><img src="/2019/03/02/django笔记1/cliboard.png" alt="img"> </p>
-<p><img src="/2019/03/02/django笔记1/aclipboard.png" alt="img"> </p>
-<p><img src="/2019/03/02/django笔记1/clipbossard.png" alt="img"> </p>
+<p><img src="django笔记1\01.png" alt="img"> </p>
+<p><img src="django笔记1\2.png" alt="img"> </p>
+<p><img src="django笔记1\ard.png" alt="img"> </p>
+<p><img src="django笔记1\rd.png" alt="img"> </p>
+<p><img src="django笔记1\cliboard.png" alt="img"> </p>
+<p><img src="django笔记1\aclipboard.png" alt="img"> </p>
+<p><img src="django笔记1\clipbossard.png" alt="img"> </p>
 <h3 id="6-内容总结"><a href="#6-内容总结" class="headerlink" title="6 内容总结"></a>6 内容总结</h3><p>6 内容总结</p>
-<p><img src="/2019/03/02/django笔记1/clipb1oard.png" alt="img"></p>
-<p><img src="/2019/03/02/django笔记1/clipb2oard.png" alt="img"></p>
-<p><img src="/2019/03/02/django笔记1/clipbo4ard.png" alt="img"></p>
+<p><img src="django笔记1\clipb1oard.png" alt="img"></p>
+<p><img src="django笔记1\clipb2oard.png" alt="img"></p>
+<p><img src="django笔记1\clipbo4ard.png" alt="img"></p>
 <p>django安装</p>
 <p>1.几大部分</p>
-<p><img src="/2019/03/02/django笔记1/clipboard02.png" alt="img"></p>
-<p><img src="/2019/03/02/django笔记1/clipboard03.png" alt="ig"></p>
-<p><img src="/2019/03/02/django笔记1/clipboard04.png" alt="img"></p>
-<p><img src="/2019/03/02/django笔记1/clipboard05.png" alt="img"></p>
-<p><img src="/2019/03/02/django笔记1/clipboard06.png" alt="img"></p>
-<p><img src="/2019/03/02/django笔记1/clipboard07.png" alt="img"></p>
+<p><img src="django笔记1\clipboard02.png" alt="img"></p>
+<p><img src="django笔记1\clipboard03.png" alt="ig"></p>
+<p><img src="django笔记1\clipboard04.png" alt="img"></p>
+<p><img src="django笔记1\clipboard05.png" alt="img"></p>
+<p><img src="django笔记1\clipboard06.png" alt="img"></p>
+<p><img src="django笔记1\clipboard07.png" alt="img"></p>
 <p>可以有多个APP</p>
-<p><img src="/2019/03/02/django笔记1/clipboard08.png" alt="img"></p>
-<p><img src="/2019/03/02/django笔记1/clipboard09.png" alt="img"></p>
-<p><img src="/2019/03/02/django笔记1/clipboard10.png" alt="ig"></p>
+<p><img src="django笔记1\clipboard08.png" alt="img"></p>
+<p><img src="django笔记1\clipboard09.png" alt="img"></p>
+<p><img src="django笔记1\clipboard10.png" alt="ig"></p>
 <p>注意事项</p>
-<p><img src="/2019/03/02/django笔记1/clipboard11.png" alt="ig"></p>
-<p><img src="/2019/03/02/django笔记1/clipboard12.png" alt="ig"></p>
+<p><img src="django笔记1\clipboard11.png" alt="ig"></p>
+<p><img src="django笔记1\clipboard12.png" alt="ig"></p>
 <p>命令运行django</p>
-<p><img src="/2019/03/02/django笔记1/clipboard13.png" alt="mg"></p>
-<p><img src="/2019/03/02/django笔记1/clipboard14.png" alt="mg"></p>
-<p><img src="/2019/03/02/django笔记1/clipboard15.png" alt="ig"></p>
+<p><img src="django笔记1\clipboard13.png" alt="mg"></p>
+<p><img src="django笔记1\clipboard14.png" alt="mg"></p>
+<p><img src="django笔记1\clipboard15.png" alt="ig"></p>
 <ul>
 <li><p>django安装</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">下载django</span><br><span class="line">1.pip install django==1.11.9 </span><br><span class="line"></span><br><span class="line">创建项目</span><br><span class="line">2.django-admin startproject 项目名 </span><br><span class="line"></span><br><span class="line">创建app</span><br><span class="line">3.python manage.py startapp app01</span><br><span class="line"></span><br><span class="line">运行项目</span><br><span class="line">4.python mansge.py runserver 127.0.0.1:8001</span><br></pre></td></tr></table></figure>
@@ -670,7 +225,7 @@
 </ul>
 <h3 id="day02"><a href="#day02" class="headerlink" title="day02"></a>day02</h3><h4 id="1-django中的app的概念"><a href="#1-django中的app的概念" class="headerlink" title="1.django中的app的概念"></a>1.django中的app的概念</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">大学：项目</span><br><span class="line">信息学院：app01</span><br><span class="line">物理学院：app02</span><br><span class="line">注意：创建了app，要在配置文件中注册</span><br><span class="line">INSTALLED_APPS = [</span><br><span class="line">    &apos;django.contrib.admin&apos;,</span><br><span class="line">    &apos;django.contrib.auth&apos;,</span><br><span class="line">    &apos;django.contrib.contenttypes&apos;,</span><br><span class="line">    &apos;django.contrib.sessions&apos;,</span><br><span class="line">    &apos;django.contrib.messages&apos;,</span><br><span class="line">    &apos;django.contrib.staticfiles&apos;,</span><br><span class="line">    &apos;app01.apps.App01Config&apos;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 <h4 id="2-模板路径配置"><a href="#2-模板路径配置" class="headerlink" title="2.模板路径配置"></a>2.模板路径配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">1.templates文件夹</span><br><span class="line">2.settings里注册一下</span><br><span class="line">TEMPLATES = [</span><br><span class="line">    &#123;</span><br><span class="line">        &apos;BACKEND&apos;: &apos;django.template.backends.django.DjangoTemplates&apos;,</span><br><span class="line">        &apos;DIRS&apos;: [os.path.join(BASE_DIR, &apos;templates&apos;)]</span><br><span class="line">        ,</span><br><span class="line">        &apos;APP_DIRS&apos;: True,</span><br><span class="line">        &apos;OPTIONS&apos;: &#123;</span><br><span class="line">            &apos;context_processors&apos;: [</span><br><span class="line">                &apos;django.template.context_processors.debug&apos;,</span><br><span class="line">                &apos;django.template.context_processors.request&apos;,</span><br><span class="line">                &apos;django.contrib.auth.context_processors.auth&apos;,</span><br><span class="line">                &apos;django.contrib.messages.context_processors.messages&apos;,</span><br><span class="line">            ],</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<h4 id="3-静态文件配置"><a href="#3-静态文件配置" class="headerlink" title="3.静态文件配置"></a>3.静态文件配置</h4><p><img src="/2019/03/02/django笔记1/C:/Users\aaa\AppData\Local\Temp\1552228994449.png" alt="1552228994449"></p>
+<h4 id="3-静态文件配置"><a href="#3-静态文件配置" class="headerlink" title="3.静态文件配置"></a>3.静态文件配置</h4><p><img src="C:\Users\aaa\AppData\Local\Temp\1552228994449.png" alt="1552228994449"></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.STATIC_URL = &apos;/static&apos;  一般不要改</span><br><span class="line">2.创建一个static文件夹       一般不要改</span><br><span class="line">3.STATICFILES_DIRS = [</span><br><span class="line">    os.path.join(BASE_DIR,&apos;static&apos;),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 <h4 id="4-完整版登录功能"><a href="#4-完整版登录功能" class="headerlink" title="4.完整版登录功能"></a>4.完整版登录功能</h4><ul>
 <li><h5 id="templates（模板）"><a href="#templates（模板）" class="headerlink" title="templates（模板）"></a>templates（模板）</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1.login.html</span><br><span class="line">	1.1 action:提交到后台的地址三种写法：</span><br><span class="line">        http://127.0.0.1:8000/login</span><br><span class="line">        /login/</span><br><span class="line">        不写</span><br><span class="line">	1.2 method post方式</span><br><span class="line">	1.3 input type=&quot;submit&quot; value= &quot;提交&quot; 或 button</span><br></pre></td></tr></table></figure>
@@ -683,14 +238,14 @@
 </ul>
 <h4 id="5-GET请求和POST请求"><a href="#5-GET请求和POST请求" class="headerlink" title="5.GET请求和POST请求"></a>5.GET请求和POST请求</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">get：获取数据，页面，携带数据是不重要的数据（数据量有大小限制）</span><br><span class="line"></span><br><span class="line">post：往后台提交数据，没有长度限制</span><br></pre></td></tr></table></figure>
 <h4 id="6-新手三件套总结"><a href="#6-新手三件套总结" class="headerlink" title="6.新手三件套总结"></a>6.新手三件套总结</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1.render 返回页面，默认会templates里找，注意路径</span><br><span class="line">book_list = models.BookList.objects.values()</span><br><span class="line">    return render(request, &apos;select.html&apos;, &#123;&apos;book_list&apos;: book_list&#125;)</span><br><span class="line">    </span><br><span class="line">2.redirect 重定向</span><br><span class="line">return redirect(&apos;http://www.baidu.com&apos;)</span><br><span class="line"></span><br><span class="line">3.HttpResponse 返回的是HttpResponse的对象</span><br></pre></td></tr></table></figure>
-<h4 id="7-pycharm连接数据库"><a href="#7-pycharm连接数据库" class="headerlink" title="7.pycharm连接数据库"></a>7.pycharm连接数据库</h4><p><img src="/2019/03/02/django笔记1/1552229746713.png" alt="1552229746713"></p>
+<h4 id="7-pycharm连接数据库"><a href="#7-pycharm连接数据库" class="headerlink" title="7.pycharm连接数据库"></a>7.pycharm连接数据库</h4><p><img src="django笔记1\1552229746713.png" alt="1552229746713"></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">参靠视频</span><br></pre></td></tr></table></figure>
 <h4 id="8-orm介绍"><a href="#8-orm介绍" class="headerlink" title="8.orm介绍"></a>8.orm介绍</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">1.orm即object relational mapping ，对象关系映射</span><br><span class="line">优点：</span><br><span class="line">	不用写sql语句</span><br><span class="line">	开发效率高</span><br><span class="line">缺点：</span><br><span class="line">	可能sql效率低</span><br><span class="line"></span><br><span class="line">2.如何使用</span><br><span class="line">	如果连接mysql，在setting里配置</span><br><span class="line">	DATABASES = &#123;</span><br><span class="line">    &apos;default&apos;: &#123;</span><br><span class="line">        &apos;ENGINE&apos;: &apos;django.db.backends.mysql&apos;,</span><br><span class="line">        &apos;HOST&apos;: &apos;127.0.0.1&apos;,</span><br><span class="line">        &apos;PORT&apos;: 3306,</span><br><span class="line">        &apos;USER&apos;: &apos;root&apos;,</span><br><span class="line">        &apos;PASSWORD&apos;: &apos;123&apos;,</span><br><span class="line">        &apos;NAME&apos;: &apos;homework&apos;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">3.django-orm</span><br><span class="line">	3.1 不能创建数据库（需要手动创建数据库）</span><br><span class="line">	3.2 可以创建数据表</span><br><span class="line">	3.3 可以创建字段</span><br><span class="line">	</span><br><span class="line">4.数据库迁移</span><br><span class="line">	4.1 python manage.py makemigrations</span><br><span class="line">	4.2 python manage.py migrate</span><br></pre></td></tr></table></figure>
-<p><img src="/2019/03/02/django笔记1/1552231144528.png" alt="1552231144528"></p>
+<p><img src="django笔记1\1552231144528.png" alt="1552231144528"></p>
 <p>9.orm创建表</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class BookList(models.Model):</span><br><span class="line">    id = models.AutoField(primary_key=True)</span><br><span class="line">    name = models.CharField(max_length=32)</span><br><span class="line">    price = models.CharField(max_length=32)</span><br><span class="line">    author = models.CharField(max_length=32)</span><br><span class="line">    publish = models.CharField(max_length=32)</span><br></pre></td></tr></table></figure>
 <h3 id="day3"><a href="#day3" class="headerlink" title="day3"></a>day3</h3><h4 id="一-orm操作表，记录"><a href="#一-orm操作表，记录" class="headerlink" title="一.orm操作表，记录"></a>一.orm操作表，记录</h4><h4 id="1-orm增加字段-table操作"><a href="#1-orm增加字段-table操作" class="headerlink" title="1.orm增加字段(table操作)"></a>1.orm增加字段(table操作)</h4><p>方法一</p>
-<p><img src="/2019/03/02/django笔记1/1552233166530.png" alt="1552233166530"></p>
+<p><img src="django笔记1\1552233166530.png" alt="1552233166530"></p>
 <p>二</p>
 <figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">models.py里面添加一个字段，一定要给增加的字段设为初始值，为null都可以，然后重新数据库迁移</span></span><br><span class="line"><span class="xml">phone=models.CharField(max_length=64,default='120')</span></span><br></pre></td></tr></table></figure>
 <h4 id="2-orm删除字段"><a href="#2-orm删除字段" class="headerlink" title="2.orm删除字段"></a>2.orm删除字段</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">models.py里面将字段删除，然后重新数据库迁移,注释也可以</span><br></pre></td></tr></table></figure>
@@ -700,8 +255,8 @@
 <h4 id="6-orm删除记录"><a href="#6-orm删除记录" class="headerlink" title="6.orm删除记录"></a>6.orm删除记录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ret = models.User.objects.filter(id=id).delete()</span><br></pre></td></tr></table></figure>
 <h4 id="7-orm修改记录"><a href="#7-orm修改记录" class="headerlink" title="7.orm修改记录"></a>7.orm修改记录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">models.User.objects.filter(id=id).update(name=name, password=pwd, address=addr)</span><br></pre></td></tr></table></figure>
 <h4 id="8-orm查询记录"><a href="#8-orm查询记录" class="headerlink" title="8.orm查询记录"></a>8.orm查询记录</h4><p>出来的是对象可以全部,可以点字段出想要的数据</p>
-<p><img src="/2019/03/02/django笔记1/1552234194253.png" alt="1552234194253"></p>
-<p><img src="/2019/03/02/django笔记1/1552234212442.png" alt="1552234212442"></p>
+<p><img src="django笔记1\1552234194253.png" alt="1552234194253"></p>
+<p><img src="django笔记1\1552234212442.png" alt="1552234212442"></p>
 <h6 id="数据在reder里面就已经替换完成"><a href="#数据在reder里面就已经替换完成" class="headerlink" title="数据在reder里面就已经替换完成"></a>数据在reder里面就已经替换完成</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ret = models.User.objects.all()列表</span><br><span class="line">ret = models.User.objects.filter（id=id).first()</span><br></pre></td></tr></table></figure>
 <h4 id="二-django中前端向后端发送请求后携带值得2种方式"><a href="#二-django中前端向后端发送请求后携带值得2种方式" class="headerlink" title="二.django中前端向后端发送请求后携带值得2种方式"></a>二.django中前端向后端发送请求后携带值得2种方式</h4><ul>
 <li><p>方式一</p>
@@ -719,17 +274,17 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2.</span>在模型层</span><br><span class="line">	<span class="number">2.1</span> 无参数</span><br><span class="line">    &#123;% url <span class="string">'ddd'</span> %&#125;【</span><br><span class="line">    <span class="number">2.2</span> 无名分组</span><br><span class="line">    &#123;% url <span class="string">'ddd'</span> <span class="number">2018</span> <span class="number">12</span> %&#125;</span><br><span class="line">    <span class="number">2.3</span> 有名分组</span><br><span class="line">    &#123;% url <span class="string">'ddd'</span> <span class="number">2018</span> <span class="number">12</span> %&#125;  还可以 &#123;% url <span class="string">'ddd'</span> year=<span class="number">2018</span> mounth=<span class="number">12</span> %&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3.</span>在视图层</span><br><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> reverse</span><br><span class="line">	<span class="number">3.1</span> 无参数</span><br><span class="line">    url=reverse(<span class="string">'ddd'</span>)</span><br><span class="line">    <span class="number">3.2</span> 无名分组</span><br><span class="line">    url=reverse(<span class="string">'ddd'</span>,args=(<span class="number">2018</span>,<span class="number">12</span>,))</span><br><span class="line">    <span class="number">3.3</span> 有名分组</span><br><span class="line">    url=reverse(<span class="string">'ddd'</span>,args=(<span class="number">2018</span>,<span class="number">12</span>,)) 还可以 url=reverse(<span class="string">'ddd'</span>,kwargs=&#123;<span class="string">'year'</span>:<span class="number">2018</span>,<span class="string">'mounth'</span>:<span class="number">12</span>&#125;)</span><br></pre></td></tr></table></figure>
 <h5 id="路由分发"><a href="#路由分发" class="headerlink" title="路由分发"></a>路由分发</h5><p>创建APP</p>
-<p><img src="/2019/03/02/django笔记1/1552488359923.png" alt="1552488359923"></p>
-<p>settings.py里面配置<img src="/2019/03/02/django笔记1/1552488778206.png" alt="1552488778206"></p>
+<p><img src="django笔记1\1552488359923.png" alt="1552488359923"></p>
+<p>settings.py里面配置<img src="django笔记1\1552488778206.png" alt="1552488778206"></p>
 <p>app的视图函数要和路由一致</p>
-<p><img src="/2019/03/02/django笔记1/1552489301361.png" alt="1552489301361"></p>
-<p><img src="/2019/03/02/django笔记1/1552489506222.png" alt="1552489506222"></p>
+<p><img src="django笔记1\1552489301361.png" alt="1552489301361"></p>
+<p><img src="django笔记1\1552489506222.png" alt="1552489506222"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> 在不同的app里创建urls.py</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> 在总路由 </span><br><span class="line">导入 app01 urls</span><br><span class="line">-<span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> include </span><br><span class="line">-url(<span class="string">r'^blog/'</span>,include(<span class="string">'blog.urls'</span>)),</span><br><span class="line">-url(<span class="string">r'^app01/'</span>,include(<span class="string">'app01.urls'</span>)),</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span> 在不同的app的urls里配置路由关系	</span><br><span class="line">***重点***总路由,不能加结束符$</span><br></pre></td></tr></table></figure>
 <h5 id="名称空间"><a href="#名称空间" class="headerlink" title="名称空间"></a>名称空间</h5><p>这样不用多此一举加入名称空间</p>
-<p><img src="/2019/03/02/django笔记1/1552489924936.png" alt="1552489924936"></p>
+<p><img src="django笔记1\1552489924936.png" alt="1552489924936"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>url(<span class="string">r'^blog/'</span>,include(<span class="string">'blog.urls'</span>,namespace=<span class="string">'blog'</span>)),</span><br><span class="line">子路由:url(<span class="string">r'^publish/$'</span>, views.publish,name=<span class="string">'test'</span>),</span><br><span class="line">    反向解析:</span><br><span class="line">        视图层:url = reverse(<span class="string">'blog:test'</span>)</span><br><span class="line">        模板层:&#123;% url <span class="string">'app01:test'</span>%&#125;</span><br><span class="line">                ***一般不要用***</span><br><span class="line">                子路由:url(<span class="string">r'^publish/$'</span>, views.publish,name=<span class="string">'app01_test'</span>),</span><br></pre></td></tr></table></figure>
 <h5 id="伪静态"><a href="#伪静态" class="headerlink" title="伪静态"></a>伪静态</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">路由:url(<span class="string">r'^book/(?P&lt;id&gt;\d+.html)'</span>,views.book),</span><br><span class="line">访问:http://<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8000</span>/book/<span class="number">4.</span>html</span><br></pre></td></tr></table></figure>
-<h5 id="根路径响应到指定"><a href="#根路径响应到指定" class="headerlink" title="根路径响应到指定"></a>根路径响应到指定</h5><p><img src="/2019/03/02/django笔记1/1552490963768.png" alt="552490897960"></p>
+<h5 id="根路径响应到指定"><a href="#根路径响应到指定" class="headerlink" title="根路径响应到指定"></a>根路径响应到指定</h5><p><img src="django笔记1\1552490963768.png" alt="552490897960"></p>
 <h3 id="day5"><a href="#day5" class="headerlink" title="day5"></a>day5</h3><h4 id="一-虚拟环境"><a href="#一-虚拟环境" class="headerlink" title="一.虚拟环境"></a>一.虚拟环境</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.虚拟环境的应用场景</span><br><span class="line">在同一台电脑上可以同时运行多个不同版本的软件</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">2.通过virtualenv软件创建</span><br><span class="line">安装：</span><br><span class="line">	pip install virtualenv</span><br><span class="line">创建虚拟环境：</span><br><span class="line">	virtualenv env_django --&gt;创建纯净环境</span><br><span class="line">	virtualenv --system-site-packages env_django 继承原安装的模块</span><br><span class="line">激活该虚拟环境：</span><br><span class="line">	windows进入都目录里的script文件夹输入：active</span><br><span class="line">退出虚拟环境：</span><br><span class="line">	deactivate</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">3.在pycharm中创建虚拟环境</span><br><span class="line">File---&gt;New Project--&gt; Project Interpreter：New Virtualenv environment</span><br></pre></td></tr></table></figure>
@@ -737,8 +292,8 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">5.参数说明</span><br><span class="line"></span><br><span class="line">Name中填写新虚拟环境的名字，或者使用默认名字，方便以后安装第三方包和其他项目使用；</span><br><span class="line">在Location中填写新环境的文件目录;</span><br><span class="line">在Base interpreter下拉框中选择Python解释器；</span><br><span class="line">勾选Inherit global site-packages可以使用base interpreter中的第三方库，不选将和外界完全隔离；</span><br><span class="line">勾选Make available to all projects可将此虚拟环境提供给其他项目使用。</span><br></pre></td></tr></table></figure>
 <h4 id="二-django2和django1的路由的区别"><a href="#二-django2和django1的路由的区别" class="headerlink" title="二.django2和django1的路由的区别"></a>二.django2和django1的路由的区别</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.django1和django2的路由区别</span><br><span class="line">django1中使用url</span><br><span class="line">django2中使用path，或re_path</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">path:传的路径,是准确路径</span><br><span class="line">5个转换器--&gt;path('test/&lt;path:year&gt;', views.re_test),</span><br><span class="line">            str,匹配除了路径分隔符（/）之外的非空字符串，这是默认的形式</span><br><span class="line">            int,匹配正整数，包含<span class="number">0</span>。</span><br><span class="line">            slug,匹配字母、数字以及横杠、下划线组成的字符串。</span><br><span class="line">            uuid,匹配格式化的uuid，如 <span class="number">075194</span>d3<span class="number">-6885</span><span class="number">-417</span>e-a8a8<span class="number">-6</span>c931e272f00。</span><br><span class="line">            path,匹配任何非空字符串，包含了路径分隔符（/）（不能用？）</span><br><span class="line">-自定义转换器</span><br><span class="line">    <span class="number">1</span> 定义一个类:</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">MyCon</span>:</span></span><br><span class="line">        <span class="comment"># 写一个正则表达式</span></span><br><span class="line">        regex = <span class="string">'[0-9]&#123;4&#125;'</span></span><br><span class="line">        <span class="comment"># 匹配出來的数据,会传到这里,retrun回去的,会被视图函数接收</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">to_python</span><span class="params">(self, value)</span>:</span></span><br><span class="line">        	<span class="keyword">return</span> int(value)</span><br><span class="line">        <span class="comment"># 反向解析用的</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">to_url</span><span class="params">(self, value)</span>:</span></span><br><span class="line">       	 	<span class="keyword">return</span> <span class="string">'%04d'</span> % value</span><br><span class="line">        </span><br><span class="line">    <span class="number">2</span> <span class="keyword">from</span> django.urls <span class="keyword">import</span> register_converter</span><br><span class="line">        register_converter(MyCon,<span class="string">'yyy'</span>)</span><br><span class="line">    <span class="number">3</span> path(<span class="string">'test/&lt;yyy:year&gt;'</span>, views.re_test,name=<span class="string">'test'</span>),</span><br></pre></td></tr></table></figure>
-<h6 id="反斜杠-settings-py里面"><a href="#反斜杠-settings-py里面" class="headerlink" title="反斜杠(settings.py里面)"></a>反斜杠(settings.py里面)</h6><p><img src="/2019/03/02/django笔记1/1552492082082.png" alt="1552492082082"></p>
-<h4 id="3-视图层之HttpResquest对象"><a href="#3-视图层之HttpResquest对象" class="headerlink" title="3.视图层之HttpResquest对象"></a>3.视图层之HttpResquest对象</h4><p><img src="/2019/03/02/django笔记1/1552492635768.png" alt="1552492635768"></p>
+<h6 id="反斜杠-settings-py里面"><a href="#反斜杠-settings-py里面" class="headerlink" title="反斜杠(settings.py里面)"></a>反斜杠(settings.py里面)</h6><p><img src="django笔记1\1552492082082.png" alt="1552492082082"></p>
+<h4 id="3-视图层之HttpResquest对象"><a href="#3-视图层之HttpResquest对象" class="headerlink" title="3.视图层之HttpResquest对象"></a>3.视图层之HttpResquest对象</h4><p><img src="django笔记1\1552492635768.png" alt="1552492635768"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 前台Post传过来的数据,包装到POST字典中</span></span><br><span class="line"><span class="comment"># request.POST</span></span><br><span class="line"><span class="comment"># 前台浏览器窗口里携带的数据,包装到GET字典中</span></span><br><span class="line"><span class="comment"># request.GET</span></span><br><span class="line"><span class="comment"># 前台请求的方式</span></span><br><span class="line"><span class="comment"># request.method</span></span><br><span class="line"><span class="comment"># post提交的数据,body体的内容,前台会封装成:name=lqz&amp;age=18&amp;sex=1</span></span><br><span class="line"><span class="comment"># request.body</span></span><br><span class="line"><span class="comment"># 取出请求的路径,取不到数据部分</span></span><br><span class="line"><span class="comment"># print(request.path)</span></span><br><span class="line"><span class="comment"># 取出请求的路径,能取到数据部分</span></span><br><span class="line"><span class="comment"># print(request.get_full_path())</span></span><br><span class="line"><span class="comment"># print(request.META)</span></span><br></pre></td></tr></table></figure>
 <h4 id="4-视图层之三件套"><a href="#4-视图层之三件套" class="headerlink" title="4.视图层之三件套"></a>4.视图层之三件套</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">三件套:render,HttpResponse,redirect</span><br><span class="line">render函数:</span><br><span class="line">    temp=Template(<span class="string">'&lt;h1&gt;&#123;&#123; user &#125;&#125;&lt;/h1&gt;'</span>)</span><br><span class="line">    con=Context(&#123;<span class="string">'user'</span>:<span class="string">'lqz'</span>&#125;)</span><br><span class="line">    ret=temp.render(con)</span><br><span class="line">    print(ret)</span><br><span class="line">    <span class="comment"># return render(request,'index.html')</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(ret)</span><br></pre></td></tr></table></figure>
 <h4 id="5-视图层之JsonResponse"><a href="#5-视图层之JsonResponse" class="headerlink" title="5.视图层之JsonResponse"></a>5.视图层之JsonResponse</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">导入：</span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> JsonResponse</span><br><span class="line">视图函数中：</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="keyword">import</span> json</span><br><span class="line">    <span class="comment"># dic=&#123;'name':'lqz','age':18&#125;</span></span><br><span class="line">    ll = [<span class="string">'name'</span>, <span class="string">'age'</span>]</span><br><span class="line">    <span class="comment"># 把字典转换成json格式,返回到前台</span></span><br><span class="line">    <span class="comment"># return HttpResponse(json.dumps(dic))</span></span><br><span class="line">    <span class="comment"># 把列表转换成json格式,返回到前台</span></span><br><span class="line">    <span class="comment"># return HttpResponse(json.dumps(ll))</span></span><br><span class="line">    <span class="comment"># 把字典转换成json格式,返回到前台</span></span><br><span class="line">    <span class="comment"># return JsonResponse(dic)</span></span><br><span class="line">    <span class="comment"># 报错,默认不支持列表形式</span></span><br><span class="line">    <span class="comment"># return JsonResponse(ll)</span></span><br><span class="line">    <span class="comment"># 支持列表形式</span></span><br><span class="line">    <span class="keyword">return</span> JsonResponse(ll,safe=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">注意：</span><br><span class="line">如果json中包含中文，可以</span><br><span class="line"><span class="keyword">return</span> JsonResponse(list_new, safe=<span class="literal">False</span>, json_dumps_params=&#123;<span class="string">"ensure_ascii"</span>: <span class="literal">False</span>&#125;)</span><br></pre></td></tr></table></figure>
@@ -923,17 +478,17 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">注意：****</span><br><span class="line">只能加在dispatch方法或者类上面，如上</span><br></pre></td></tr></table></figure>
 <h4 id="6-csrf：局部禁用，局部使用-FBV"><a href="#6-csrf：局部禁用，局部使用-FBV" class="headerlink" title="6.csrf：局部禁用，局部使用(FBV)"></a>6.csrf：局部禁用，局部使用(FBV)</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">用装饰器:<span class="keyword">from</span> django.views.decorators.csrf <span class="keyword">import</span> csrf_exempt,csrf_protect</span><br><span class="line">    fbv---&gt;直接加载fbv上就行了</span><br><span class="line">    局部禁用,全局得使用</span><br><span class="line"><span class="meta">    @csrf_exempt</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">csrf_disable</span><span class="params">(request)</span>:</span></span><br><span class="line">        print(request.POST)</span><br><span class="line">        <span class="keyword">return</span> HttpResponse(<span class="string">'ok'</span>)</span><br><span class="line">    局部使用,全局得禁用</span><br><span class="line"><span class="meta">    @csrf_protect</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">csrf_disable</span><span class="params">(request)</span>:</span></span><br><span class="line">        print(request.POST)</span><br><span class="line">        <span class="keyword">return</span> HttpResponse(<span class="string">'ok'</span>)</span><br></pre></td></tr></table></figure>
 <h3 id="day16"><a href="#day16" class="headerlink" title="day16"></a>day16</h3><h4 id="1-auth组件"><a href="#1-auth组件" class="headerlink" title="1.auth组件"></a>1.auth组件</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>什么是auth组件</span><br><span class="line">是django内置的用户认证的组件</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>作用</span><br><span class="line">可以快速的实现用户的登录，注册，修改，注销等操作</span><br></pre></td></tr></table></figure>
-<p><img src="/2019/03/02/django笔记1/1552153143351.png" alt="1552153143351"></p>
-<h5 id="is-superuser是0普通用户-1超级用户"><a href="#is-superuser是0普通用户-1超级用户" class="headerlink" title="is_superuser是0普通用户,1超级用户"></a>is_superuser是0普通用户,1超级用户</h5><p><img src="/2019/03/02/django笔记1/1552153361848.png" alt="1552153361848"></p>
-<h5 id="干了3件事生成一个随机字符串-把随机字符串写到cookie里-再写道session的字典里"><a href="#干了3件事生成一个随机字符串-把随机字符串写到cookie里-再写道session的字典里" class="headerlink" title="干了3件事生成一个随机字符串,把随机字符串写到cookie里,再写道session的字典里"></a>干了3件事生成一个随机字符串,把随机字符串写到cookie里,再写道session的字典里</h5><p><img src="/2019/03/02/django笔记1/1552153728832.png" alt="1552153728832"></p>
-<h5 id="以后在任意视图可以调用user的方法"><a href="#以后在任意视图可以调用user的方法" class="headerlink" title="以后在任意视图可以调用user的方法"></a>以后在任意视图可以调用user的方法</h5><p><img src="/2019/03/02/django笔记1/1552153847052.png" alt="1552153847052"></p>
-<p><img src="/2019/03/02/django笔记1/1552154157269.png" alt="1552154157269"></p>
-<h6 id="auth中间件"><a href="#auth中间件" class="headerlink" title="auth中间件"></a>auth中间件</h6><p><img src="/2019/03/02/django笔记1/1552154010685.png" alt="1552154010685"></p>
+<p><img src="django笔记1\1552153143351.png" alt="1552153143351"></p>
+<h5 id="is-superuser是0普通用户-1超级用户"><a href="#is-superuser是0普通用户-1超级用户" class="headerlink" title="is_superuser是0普通用户,1超级用户"></a>is_superuser是0普通用户,1超级用户</h5><p><img src="django笔记1\1552153361848.png" alt="1552153361848"></p>
+<h5 id="干了3件事生成一个随机字符串-把随机字符串写到cookie里-再写道session的字典里"><a href="#干了3件事生成一个随机字符串-把随机字符串写到cookie里-再写道session的字典里" class="headerlink" title="干了3件事生成一个随机字符串,把随机字符串写到cookie里,再写道session的字典里"></a>干了3件事生成一个随机字符串,把随机字符串写到cookie里,再写道session的字典里</h5><p><img src="django笔记1\1552153728832.png" alt="1552153728832"></p>
+<h5 id="以后在任意视图可以调用user的方法"><a href="#以后在任意视图可以调用user的方法" class="headerlink" title="以后在任意视图可以调用user的方法"></a>以后在任意视图可以调用user的方法</h5><p><img src="django笔记1\1552153847052.png" alt="1552153847052"></p>
+<p><img src="django笔记1\1552154157269.png" alt="1552154157269"></p>
+<h6 id="auth中间件"><a href="#auth中间件" class="headerlink" title="auth中间件"></a>auth中间件</h6><p><img src="django笔记1\1552154010685.png" alt="1552154010685"></p>
 <h4 id="2-auth组件常用的功能"><a href="#2-auth组件常用的功能" class="headerlink" title="2.auth组件常用的功能"></a>2.auth组件常用的功能</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>auth验证功能  --authenticate</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> auth</span><br><span class="line">user = auth.authenticate(request, username = name, password = password)</span><br><span class="line">**通过返回一个user对象</span><br><span class="line">相当于：</span><br><span class="line">user = User.objects.filter(name = name, password = password).first()</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2.</span>auth登录功能   --login</span><br><span class="line"></span><br><span class="line">auth.login(request, user)</span><br><span class="line">目的：就是将用户信息存到session里面，并返回给客户端一个cookie里面包含一个随机字符串</span><br><span class="line">相当于：</span><br><span class="line">request.session[<span class="string">'name'</span>] = name</span><br><span class="line"></span><br><span class="line">注意：</span><br><span class="line">一旦登录成功，以后无论在哪个视图函数中，会多一个request.user的属性</span><br><span class="line">无论在哪个视图函数中都可以通过request.user取出当前登录的用户对象</span><br><span class="line">如果没有登录：request.user = AnonymousUser匿名用户</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">3.auth注销功能  --logout</span><br><span class="line"></span><br><span class="line">auth.logout(request)</span><br><span class="line">相当于：</span><br><span class="line">request.session.flush(),删除用户的状态</span><br></pre></td></tr></table></figure>
-<p><img src="/2019/03/02/django笔记1/1552154293200.png" alt="1552154293200"></p>
-<p><img src="/2019/03/02/django笔记1/1552154436732.png" alt="1552154436732"></p>
+<p><img src="django笔记1\1552154293200.png" alt="1552154293200"></p>
+<p><img src="django笔记1\1552154436732.png" alt="1552154436732"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4.</span>auth的登录认证装饰器</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.contrib.auth.decorators <span class="keyword">import</span> login_required</span><br><span class="line"><span class="meta">@login_required(redirect_field_name = 'mmm',login_url='/login/')</span></span><br><span class="line">相当于：</span><br><span class="line">?next=/.../ ...代表上次访问的路径，登录成功后返回到上次访问的路径</span><br><span class="line">redirect_field_name --相当于？后面的key值</span><br><span class="line">login_url = <span class="string">'/login/'</span></span><br><span class="line"></span><br><span class="line">注意:可以全局配置(setting配置)</span><br><span class="line"><span class="comment"># 全局的配置,如果没有登录,跳到这个路由</span></span><br><span class="line">LOGIN_URL=<span class="string">'/login/'</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5.</span>auth创建用户   --create_user/create_superuser</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.contrib.auth.models <span class="keyword">import</span> User</span><br><span class="line">-创建普通用户</span><br><span class="line">user = User.objects.create_user(username = name, password = password)</span><br><span class="line">-创建超级用户</span><br><span class="line">user = User.objects.create_superuser(username = name, password = password)</span><br><span class="line"></span><br><span class="line">注意：</span><br><span class="line">不能使用create直接创建用户，因为密码是密文的，而create的密码是明文的，所以反解时会出错</span><br><span class="line">user=User.objects.create(username=name,password=pwd)</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">6.</span>auth校验密码  ---check_password</span><br><span class="line">res = request.user.check_password(password)</span><br><span class="line">返回时boolean类型</span><br></pre></td></tr></table></figure>
@@ -941,931 +496,155 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">8.auth判断当前用户是否通过认证   ---is_authenticated(调用了login方法)</span><br><span class="line">res = request.user.is_authenticated()</span><br><span class="line">返回boolean类型</span><br><span class="line">应用场景登陆了显示requset.user.username,没有登陆显示注册</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">9.</span></span><br><span class="line">auth判断用户是否拥有网站的管理权限（is_staff）</span><br><span class="line"><span class="number">10.</span></span><br><span class="line">is_active ： 是否允许用户登录, 设置为 <span class="literal">False</span>，可以在不删除用户的前提下禁止用户登录。</span><br></pre></td></tr></table></figure>
 <p>orm删除</p>
-<h4 id="3-扩展默认的auth-user表-增加一个字段"><a href="#3-扩展默认的auth-user表-增加一个字段" class="headerlink" title="3.扩展默认的auth_user表(增加一个字段)"></a>3.扩展默认的auth_user表(增加一个字段)</h4><p><img src="/2019/03/02/django笔记1/1552156641791.png" alt="1552156641791"></p>
+<h4 id="3-扩展默认的auth-user表-增加一个字段"><a href="#3-扩展默认的auth-user表-增加一个字段" class="headerlink" title="3.扩展默认的auth_user表(增加一个字段)"></a>3.扩展默认的auth_user表(增加一个字段)</h4><p><img src="django笔记1\1552156641791.png" alt="1552156641791"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">方式一：使用一对一关联</span><br><span class="line"><span class="keyword">from</span> django.contrib.auth.models <span class="keyword">import</span> User</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第一种方式</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserDetail</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    phone=models.CharField(max_length=<span class="number">32</span>)</span><br><span class="line">    <span class="comment"># 一对一跟auth_user表做关联</span></span><br><span class="line">    <span class="comment"># 如果是从外部引入的表模型,是不能加引号的</span></span><br><span class="line">    <span class="comment"># 如果加引号,只是在当前model找</span></span><br><span class="line">    user=models.OneToOneField(to=User)</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">方式二：使用类继承AbstractUser,因为user模块也是继承了AbstractUser</span><br><span class="line"><span class="keyword">from</span> django.contrib.auth.models <span class="keyword">import</span> AbstractUser</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserInfo</span><span class="params">(AbstractUser)</span>:</span></span><br><span class="line">    <span class="comment"># username,password...都有</span></span><br><span class="line">    phone = models.CharField(max_length=<span class="number">32</span>)</span><br><span class="line">    sex = models.BooleanField()</span><br><span class="line">    </span><br><span class="line">注意：一定要在setting里面做配置</span><br><span class="line"><span class="comment"># 引用Django自带的User表，继承使用时需要设置</span></span><br><span class="line">AUTH_USER_MODEL = <span class="string">"app名.UserInfo"</span></span><br><span class="line"><span class="comment"># 一旦我们指定了新的认证系统所使用的表，我们就需要重新在数据库中创建该表，而不能继续使用原来默认的auth_user表了。</span></span><br></pre></td></tr></table></figure>
-<p><img src="/2019/03/02/django笔记1/1552156970809.png" alt="1552156970809"></p>
-<h6 id="重构后导入自己的"><a href="#重构后导入自己的" class="headerlink" title="重构后导入自己的"></a>重构后导入自己的</h6><p><img src="/2019/03/02/django笔记1/1552157199316.png" alt="1552157199316"></p>
+<p><img src="django笔记1\1552156970809.png" alt="1552156970809"></p>
+<h6 id="重构后导入自己的"><a href="#重构后导入自己的" class="headerlink" title="重构后导入自己的"></a>重构后导入自己的</h6><p><img src="django笔记1\1552157199316.png" alt="1552157199316"></p>
 <h4 id="4-auth使用login-required如何重定向回去"><a href="#4-auth使用login-required如何重定向回去" class="headerlink" title="4.auth使用login_required如何重定向回去"></a>4.auth使用login_required如何重定向回去</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 需要登录的视图函数</span></span><br><span class="line"><span class="meta">@login_required(redirect_field_name='next')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">back</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        blog = request.user.blog</span><br><span class="line">        article_list = Article.objects.filter(blog=blog)</span><br><span class="line">        <span class="keyword">return</span> render(request, <span class="string">'back_edit/detail.html'</span>, locals())</span><br><span class="line">        </span><br><span class="line"><span class="comment"># login视图函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        <span class="keyword">return</span> render(request, <span class="string">'login.html'</span>, locals())</span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'POST'</span>:</span><br><span class="line">        print(request.body)</span><br><span class="line">        dic = json.loads(request.body)</span><br><span class="line">        url = request.GET.get(<span class="string">'next'</span>) <span class="comment"># 获得next后面值</span></span><br><span class="line">        <span class="keyword">if</span> dic[<span class="string">'code'</span>] == request.session.get(<span class="string">'valid_code'</span>):</span><br><span class="line">            dic.pop(<span class="string">'code'</span>)</span><br><span class="line">            user = auth.authenticate(request, **dic)</span><br><span class="line">            <span class="keyword">if</span> user:</span><br><span class="line">                auth.login(request, user)</span><br><span class="line">                <span class="keyword">if</span> url: <span class="comment"># 有就重定向指定url</span></span><br><span class="line">                    res = &#123;<span class="string">'status'</span>: <span class="string">'101'</span>, <span class="string">'url'</span>: url&#125;</span><br><span class="line">                <span class="keyword">else</span>: <span class="comment"># 没有就返回到主页</span></span><br><span class="line">                    res = &#123;<span class="string">'status'</span>: <span class="string">'101'</span>, <span class="string">'url'</span>: <span class="string">'/index/'</span>&#125;</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                res = &#123;<span class="string">'status'</span>: <span class="string">'404'</span>, <span class="string">'data'</span>: <span class="string">'用户名或密码错误'</span>&#125;</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            res = &#123;<span class="string">'status'</span>: <span class="string">'404'</span>, <span class="string">'data'</span>: <span class="string">'验证码输入错误'</span>&#125;</span><br><span class="line">        <span class="keyword">return</span> JsonResponse(res)</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.ajax按照上面的方式重定向</span><br><span class="line"></span><br><span class="line">2.form表单，直接视图函数中重定向</span><br></pre></td></tr></table></figure>
 
       
     </div>
-
-    
-
-    
-    
-    
-
-    
-      <div>
-        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
-  <img id="wechat_subscriber_qcode" src="/path/to/your/wechatqcode e.g. /uploads/wechat-qcode.jpg" alt="ljy wechat" style="width: 200px; max-width: 100%;">
-  <div>e.g. subscribe to my blog by scanning my public wechat account</div>
-</div>
-
-      </div>
-    
-
-    
-      
-    
-    
-      <div>
-        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div>Donate comment here</div>
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>打赏</span>
-  </button>
-  <div id="QR" style="display: none;">
-
-    
-      <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="ljy 微信支付">
-        <p>微信支付</p>
-      </div>
-    
-
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="ljy 支付宝">
-        <p>支付宝</p>
-      </div>
-    
-
-    
-      <div id="bitcoin" style="display: inline-block">
-        <img id="bitcoin_qr" src="/images/bitcoin.jpg" alt="ljy 比特币">
-        <p>比特币</p>
-      </div>
-    
-
-  </div>
-</div>
-
-      </div>
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/python框架/" rel="tag"># python框架</a>
-          
-        </div>
-      
-
+    <footer class="article-footer">
+      <a data-url="https://ljyabc.github.io/2019/03/02/django笔记1/" data-id="cjtba8bvy003bc8uyuvtc0iff" class="article-share-link">Share</a>
       
       
-      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python框架/">python框架</a></li></ul>
 
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/03/02/flask/" rel="next" title="flask">
-                <i class="fa fa-chevron-left"></i> flask
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/02/对象关系映射-orm/" rel="prev" title="对象关系映射(orm)">
-                对象关系映射(orm) <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
     </footer>
   </div>
   
+    
+<nav id="article-nav">
   
-  
-  </article>
-
-
-  </div>
-
-
-          </div>
-          
-
-  
-
-
-
-        </div>
+    <a href="/2019/03/02/对象关系映射-orm/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
-          
+          对象关系映射(orm)
+        
+      </div>
+    </a>
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  
+    <a href="/2019/03/02/flask/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">flask</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/hexo命令/">hexo命令</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python入门到放弃系列/">python入门到放弃系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/查找-灵活/">查找,灵活</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/理解/">理解</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/理论/">理论</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/记忆/">记忆</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/逻辑/">逻辑</a></li></ul>
     </div>
   </div>
 
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
 
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="ljy">
-            
-              <p class="site-author-name" itemprop="name">ljy</p>
-              <p class="site-description motion-element" itemprop="description">15615615615615</p>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">34</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  <a href="/categories/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">10</span>
-                    <span class="site-state-item-name">分类</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">13</span>
-                    <span class="site-state-item-name">标签</span>
-                  </a>
-                </div>
-              
-            </nav>
-          
-
-          
-
-          
-            <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lvdXJuYW1l" title="GitHub &rarr; https://github.com/yourname"><i class="fa fa-fw fa-github"></i>GitHub</span>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <span class="exturl" data-url="bWFpbHRvOnlvdXJuYW1lQGdtYWlsLmNvbQ==" title="E-Mail &rarr; mailto:yourname@gmail.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <span class="exturl" data-url="aHR0cHM6Ly93ZWliby5jb20veW91cm5hbWU=" title="Weibo &rarr; https://weibo.com/yourname"><i class="fa fa-fw fa-weibo"></i>Weibo</span>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <span class="exturl" data-url="aHR0cHM6Ly9wbHVzLmdvb2dsZS5jb20veW91cm5hbWU=" title="Google &rarr; https://plus.google.com/yourname"><i class="fa fa-fw fa-google"></i>Google</span>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <span class="exturl" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS95b3VybmFtZQ==" title="Twitter &rarr; https://twitter.com/yourname"><i class="fa fa-fw fa-twitter"></i>Twitter</span>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <span class="exturl" data-url="aHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL3lvdXJuYW1l" title="FB Page &rarr; https://www.facebook.com/yourname"><i class="fa fa-fw fa-facebook"></i>FB Page</span>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <span class="exturl" data-url="aHR0cHM6Ly92ay5jb20veW91cm5hbWU=" title="VK Group &rarr; https://vk.com/yourname"><i class="fa fa-fw fa-vk"></i>VK Group</span>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS95b3VybmFtZQ==" title="StackOverflow &rarr; https://stackoverflow.com/yourname"><i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</span>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <span class="exturl" data-url="aHR0cHM6Ly95b3V0dWJlLmNvbS95b3VybmFtZQ==" title="YouTube &rarr; https://youtube.com/yourname"><i class="fa fa-fw fa-youtube"></i>YouTube</span>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <span class="exturl" data-url="aHR0cHM6Ly9pbnN0YWdyYW0uY29tL3lvdXJuYW1l" title="Instagram &rarr; https://instagram.com/yourname"><i class="fa fa-fw fa-instagram"></i>Instagram</span>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <span class="exturl" data-url="c2t5cGU6eW91cm5hbWU/Y2FsbHxjaGF0" title="Skype &rarr; skype:yourname?call|chat"><i class="fa fa-fw fa-skype"></i>Skype</span>
-                </span>
-              
-            </div>
-          
-
-          
-
-          
-          
-            <div class="links-of-blogroll motion-element links-of-blogroll-block">
-              <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Links
-              </div>
-              <ul class="links-of-blogroll-list">
-                
-                  <li class="links-of-blogroll-item">
-                    <span class="exturl" data-url="aHR0cDovL2V4YW1wbGUuY29t" title="http://example.com">Title</span>
-                  </li>
-                
-              </ul>
-            </div>
-          
-
-          
-            
-          
-          
-
-        </div>
-      </div>
-
-      
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#django框架"><span class="nav-number">1.</span> <span class="nav-text">django框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#day01"><span class="nav-number">1.1.</span> <span class="nav-text">day01</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-web应用"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.web应用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-http协议"><span class="nav-number">1.1.2.</span> <span class="nav-text">2.http协议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-python中的web主流的框架-MVC"><span class="nav-number">1.1.3.</span> <span class="nav-text">3.python中的web主流的框架(MVC)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-内容总结"><span class="nav-number">1.2.</span> <span class="nav-text">6 内容总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#day02"><span class="nav-number">1.3.</span> <span class="nav-text">day02</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-django中的app的概念"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.django中的app的概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-模板路径配置"><span class="nav-number">1.3.2.</span> <span class="nav-text">2.模板路径配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-静态文件配置"><span class="nav-number">1.3.3.</span> <span class="nav-text">3.静态文件配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-完整版登录功能"><span class="nav-number">1.3.4.</span> <span class="nav-text">4.完整版登录功能</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#templates（模板）"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">templates（模板）</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#views（视图层）"><span class="nav-number">1.3.4.1.1.</span> <span class="nav-text">views（视图层）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-GET请求和POST请求"><span class="nav-number">1.3.5.</span> <span class="nav-text">5.GET请求和POST请求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-新手三件套总结"><span class="nav-number">1.3.6.</span> <span class="nav-text">6.新手三件套总结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-pycharm连接数据库"><span class="nav-number">1.3.7.</span> <span class="nav-text">7.pycharm连接数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-orm介绍"><span class="nav-number">1.3.8.</span> <span class="nav-text">8.orm介绍</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#day3"><span class="nav-number">1.4.</span> <span class="nav-text">day3</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一-orm操作表，记录"><span class="nav-number">1.4.1.</span> <span class="nav-text">一.orm操作表，记录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-orm增加字段-table操作"><span class="nav-number">1.4.2.</span> <span class="nav-text">1.orm增加字段(table操作)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-orm删除字段"><span class="nav-number">1.4.3.</span> <span class="nav-text">2.orm删除字段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-orm修改字段"><span class="nav-number">1.4.4.</span> <span class="nav-text">3.orm修改字段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-orm查字段"><span class="nav-number">1.4.5.</span> <span class="nav-text">4.orm查字段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-orm添加记录"><span class="nav-number">1.4.6.</span> <span class="nav-text">5.orm添加记录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-orm删除记录"><span class="nav-number">1.4.7.</span> <span class="nav-text">6.orm删除记录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-orm修改记录"><span class="nav-number">1.4.8.</span> <span class="nav-text">7.orm修改记录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-orm查询记录"><span class="nav-number">1.4.9.</span> <span class="nav-text">8.orm查询记录</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#数据在reder里面就已经替换完成"><span class="nav-number">1.4.9.0.1.</span> <span class="nav-text">数据在reder里面就已经替换完成</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二-django中前端向后端发送请求后携带值得2种方式"><span class="nav-number">1.4.10.</span> <span class="nav-text">二.django中前端向后端发送请求后携带值得2种方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三-django请求的生命周期"><span class="nav-number">1.4.11.</span> <span class="nav-text">三.django请求的生命周期</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#day4"><span class="nav-number">1.5.</span> <span class="nav-text">day4</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一-路由层"><span class="nav-number">1.5.1.</span> <span class="nav-text">一.路由层</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#简单配置"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">简单配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#无名分组"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">无名分组</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#有名分组"><span class="nav-number">1.5.1.3.</span> <span class="nav-text">有名分组</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#反向解析"><span class="nav-number">1.5.1.4.</span> <span class="nav-text">反向解析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#路由分发"><span class="nav-number">1.5.1.5.</span> <span class="nav-text">路由分发</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#名称空间"><span class="nav-number">1.5.1.6.</span> <span class="nav-text">名称空间</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#伪静态"><span class="nav-number">1.5.1.7.</span> <span class="nav-text">伪静态</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#根路径响应到指定"><span class="nav-number">1.5.1.8.</span> <span class="nav-text">根路径响应到指定</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#day5"><span class="nav-number">1.6.</span> <span class="nav-text">day5</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一-虚拟环境"><span class="nav-number">1.6.1.</span> <span class="nav-text">一.虚拟环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二-django2和django1的路由的区别"><span class="nav-number">1.6.2.</span> <span class="nav-text">二.django2和django1的路由的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#反斜杠-settings-py里面"><span class="nav-number">1.6.2.0.1.</span> <span class="nav-text">反斜杠(settings.py里面)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-视图层之HttpResquest对象"><span class="nav-number">1.6.3.</span> <span class="nav-text">3.视图层之HttpResquest对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-视图层之三件套"><span class="nav-number">1.6.4.</span> <span class="nav-text">4.视图层之三件套</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-视图层之JsonResponse"><span class="nav-number">1.6.5.</span> <span class="nav-text">5.视图层之JsonResponse</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-CBV和FBV"><span class="nav-number">1.6.6.</span> <span class="nav-text">6.CBV和FBV</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-简单的文件上传功能"><span class="nav-number">1.6.7.</span> <span class="nav-text">7.简单的文件上传功能</span></a></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#day6"><span class="nav-number">1.7.</span> <span class="nav-text">day6</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-模板层"><span class="nav-number">1.7.1.</span> <span class="nav-text">1.模板层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-模板语法之变量"><span class="nav-number">1.7.2.</span> <span class="nav-text">2.模板语法之变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-模板语法之过滤器"><span class="nav-number">1.7.3.</span> <span class="nav-text">3.模板语法之过滤器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-模板语法之标签"><span class="nav-number">1.7.4.</span> <span class="nav-text">4.模板语法之标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-模板语法之自定义过滤器"><span class="nav-number">1.7.5.</span> <span class="nav-text">5.模板语法之自定义过滤器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-模板语法之自定义标签"><span class="nav-number">1.7.6.</span> <span class="nav-text">6.模板语法之自定义标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-模板的导入"><span class="nav-number">1.7.7.</span> <span class="nav-text">7.模板的导入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-模板的继承"><span class="nav-number">1.7.8.</span> <span class="nav-text">8.模板的继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-静态文件相关"><span class="nav-number">1.7.9.</span> <span class="nav-text">9.静态文件相关</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#day7"><span class="nav-number">1.8.</span> <span class="nav-text">day7</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-单表操作"><span class="nav-number">1.8.1.</span> <span class="nav-text">1.单表操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#day8"><span class="nav-number">1.9.</span> <span class="nav-text">day8</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-一对多的增删改"><span class="nav-number">1.9.1.</span> <span class="nav-text">1.一对多的增删改</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-多对多的增删改"><span class="nav-number">1.9.2.</span> <span class="nav-text">2.多对多的增删改</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-一对一的增删改"><span class="nav-number">1.9.3.</span> <span class="nav-text">3.一对一的增删改</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-基于对象的跨表查询"><span class="nav-number">1.9.4.</span> <span class="nav-text">4.基于对象的跨表查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-基于双下划线的连表查询"><span class="nav-number">1.9.5.</span> <span class="nav-text">5.基于双下划线的连表查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-聚合查询aggregate-–-Avg-Count-Max-Min-Sum"><span class="nav-number">1.9.6.</span> <span class="nav-text">6.聚合查询aggregate –(Avg, Count, Max, Min, Sum)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-分组查询annotate"><span class="nav-number">1.9.7.</span> <span class="nav-text">7.分组查询annotate ()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-F函数-同一张表中的2个字段作比较"><span class="nav-number">1.9.8.</span> <span class="nav-text">8.F函数:同一张表中的2个字段作比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-Q函数：与或非（-amp-）"><span class="nav-number">1.9.9.</span> <span class="nav-text">9.Q函数：与或非（&amp;|~）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#day9"><span class="nav-number">1.10.</span> <span class="nav-text">day9</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-ORM常用字段"><span class="nav-number">1.10.1.</span> <span class="nav-text">1.ORM常用字段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-ORM不常用的字段"><span class="nav-number">1.10.2.</span> <span class="nav-text">2.ORM不常用的字段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-ORM和mysql中对应的字段关系"><span class="nav-number">1.10.3.</span> <span class="nav-text">3.ORM和mysql中对应的字段关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-ORM字段参数"><span class="nav-number">1.10.4.</span> <span class="nav-text">4.ORM字段参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-关系字段"><span class="nav-number">1.10.5.</span> <span class="nav-text">5.关系字段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-元信息"><span class="nav-number">1.10.6.</span> <span class="nav-text">6.元信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-自定义字段-了解"><span class="nav-number">1.10.7.</span> <span class="nav-text">7.自定义字段(了解)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-多对多关联关系三种创建方式"><span class="nav-number">1.10.8.</span> <span class="nav-text">8.多对多关联关系三种创建方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#day10"><span class="nav-number">1.11.</span> <span class="nav-text">day10</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-inclusion-tag"><span class="nav-number">1.11.1.</span> <span class="nav-text">1.inclusion_tag</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-defer-only（数据库优化）"><span class="nav-number">1.11.2.</span> <span class="nav-text">2.defer/only（数据库优化）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-事务-原子性操作"><span class="nav-number">1.11.3.</span> <span class="nav-text">3.事务(原子性操作)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-choice"><span class="nav-number">1.11.4.</span> <span class="nav-text">4.choice</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#day11"><span class="nav-number">1.12.</span> <span class="nav-text">day11</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-ajax组件"><span class="nav-number">1.12.1.</span> <span class="nav-text">1.ajax组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-通过ajax上传文件"><span class="nav-number">1.12.2.</span> <span class="nav-text">2.通过ajax上传文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-基于ajax提交json格式的数据"><span class="nav-number">1.12.3.</span> <span class="nav-text">3.基于ajax提交json格式的数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-基于ajax如何实现用户认证通过后的页面转跳"><span class="nav-number">1.12.4.</span> <span class="nav-text">4.基于ajax如何实现用户认证通过后的页面转跳</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-视图函数通过装饰器将json数据格式自动转成python中的数据类型"><span class="nav-number">1.12.5.</span> <span class="nav-text">4.视图函数通过装饰器将json数据格式自动转成python中的数据类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-ajax路径相关问题（-）"><span class="nav-number">1.12.6.</span> <span class="nav-text">5.ajax路径相关问题（**）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-ajax获取响应头以及自定义请求头"><span class="nav-number">1.12.7.</span> <span class="nav-text">6.ajax获取响应头以及自定义请求头</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-ajax传json格式字典，如何通过验证"><span class="nav-number">1.12.8.</span> <span class="nav-text">7.ajax传json格式字典，如何通过验证(***)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-ajax静态刷新"><span class="nav-number">1.12.9.</span> <span class="nav-text">8.ajax静态刷新</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-简单的控制上传文件的方法"><span class="nav-number">1.12.10.</span> <span class="nav-text">9.简单的控制上传文件的方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#day12"><span class="nav-number">1.13.</span> <span class="nav-text">day12</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-分页器组件（-）"><span class="nav-number">1.13.1.</span> <span class="nav-text">1.分页器组件（*）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#day13"><span class="nav-number">1.14.</span> <span class="nav-text">day13</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Forms校验功能组件"><span class="nav-number">1.14.1.</span> <span class="nav-text">1.Forms校验功能组件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#day14"><span class="nav-number">1.15.</span> <span class="nav-text">day14</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-cookie组件"><span class="nav-number">1.15.1.</span> <span class="nav-text">1.cookie组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-django中如何使用cookie"><span class="nav-number">1.15.2.</span> <span class="nav-text">2.django中如何使用cookie</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-session组件（一定要做数据库迁移）"><span class="nav-number">1.15.3.</span> <span class="nav-text">3.session组件（一定要做数据库迁移）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#day15"><span class="nav-number">1.16.</span> <span class="nav-text">day15</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-中间件"><span class="nav-number">1.16.1.</span> <span class="nav-text">1.中间件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-自定义中间件"><span class="nav-number">1.16.2.</span> <span class="nav-text">2.自定义中间件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-中间件的方法（最重要前2个）"><span class="nav-number">1.16.3.</span> <span class="nav-text">3.中间件的方法（最重要前2个）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-csrf：跨站请求伪造"><span class="nav-number">1.16.4.</span> <span class="nav-text">4.csrf：跨站请求伪造</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-csrf：局部禁用，局部使用-CBV"><span class="nav-number">1.16.5.</span> <span class="nav-text">5.csrf：局部禁用，局部使用(CBV)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-csrf：局部禁用，局部使用-FBV"><span class="nav-number">1.16.6.</span> <span class="nav-text">6.csrf：局部禁用，局部使用(FBV)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#day16"><span class="nav-number">1.17.</span> <span class="nav-text">day16</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-auth组件"><span class="nav-number">1.17.1.</span> <span class="nav-text">1.auth组件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#is-superuser是0普通用户-1超级用户"><span class="nav-number">1.17.1.1.</span> <span class="nav-text">is_superuser是0普通用户,1超级用户</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#干了3件事生成一个随机字符串-把随机字符串写到cookie里-再写道session的字典里"><span class="nav-number">1.17.1.2.</span> <span class="nav-text">干了3件事生成一个随机字符串,把随机字符串写到cookie里,再写道session的字典里</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#以后在任意视图可以调用user的方法"><span class="nav-number">1.17.1.3.</span> <span class="nav-text">以后在任意视图可以调用user的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#auth中间件"><span class="nav-number">1.17.1.3.1.</span> <span class="nav-text">auth中间件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-auth组件常用的功能"><span class="nav-number">1.17.2.</span> <span class="nav-text">2.auth组件常用的功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-扩展默认的auth-user表-增加一个字段"><span class="nav-number">1.17.3.</span> <span class="nav-text">3.扩展默认的auth_user表(增加一个字段)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#重构后导入自己的"><span class="nav-number">1.17.3.0.1.</span> <span class="nav-text">重构后导入自己的</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-auth使用login-required如何重定向回去"><span class="nav-number">1.17.4.</span> <span class="nav-text">4.auth使用login_required如何重定向回去</span></a></li></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
-      
-
-      
-
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/django项目/">django项目</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo介绍/">hexo介绍</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux-git/">linux&git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongdb/">mongdb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python基础/">python基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python框架/">python框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代理服务/">代理服务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代码工具/">代码工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机原理/">计算机原理</a></li></ul>
     </div>
-  </aside>
-  
+  </div>
 
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">ljy</span>
 
   
-
-  
-</div>
-
-
-  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动 v3.8.0</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Gemini</span> v7.0.1</div>
-
-
-
-
-        
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
-    
-
-    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/django项目/" style="font-size: 13.33px;">django项目</a> <a href="/tags/hexo介绍/" style="font-size: 10px;">hexo介绍</a> <a href="/tags/linux-git/" style="font-size: 10px;">linux&git</a> <a href="/tags/mongdb/" style="font-size: 10px;">mongdb</a> <a href="/tags/mysql/" style="font-size: 16.67px;">mysql</a> <a href="/tags/python基础/" style="font-size: 20px;">python基础</a> <a href="/tags/python框架/" style="font-size: 13.33px;">python框架</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/代理服务/" style="font-size: 13.33px;">代理服务</a> <a href="/tags/代码工具/" style="font-size: 10px;">代码工具</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/计算机原理/" style="font-size: 10px;">计算机原理</a>
+    </div>
   </div>
 
   
-
-<script>
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
+    </div>
+  </div>
 
 
   
-  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/16/python元类/">python元类</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/16/python单例模式/">python单例模式</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/15/常用pycharm快捷键/">常用pycharm快捷键</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/15/python函数递归/">python函数递归</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/15/python常用模块/">python常用模块</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
 
   
-  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
+</aside>
+        
+      </div>
+      <footer id="footer">
   
-  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 李江洋<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
   
-
-
-  <script src="/js/src/utils.js?v=7.0.1"></script>
-
-  <script src="/js/src/motion.js?v=7.0.1"></script>
-
-
-
+    <a href="/" class="mobile-nav-link">Home</a>
   
+    <a href="/archives" class="mobile-nav-link">Archives</a>
   
+</nav>
+    
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
-  <script src="/js/src/affix.js?v=7.0.1"></script>
 
-  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
+<script src="/js/script.js"></script>
 
 
-  
-  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
-<script src="/js/src/post-details.js?v=7.0.1"></script>
 
-
-
-  
-
-
-  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
-
-
-  
-  
-
-
-  
-
-
-  
-  <script>
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
-      
-
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('1');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  <script src="/js/src/exturl.js?v=7.0.1"></script>
-
-
-  
-
-  
-
-   <!-- 代码块复制功能 -->
-  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
-  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+  </div>
 </body>
 </html>
