@@ -1,95 +1,524 @@
 <!DOCTYPE html>
-<html>
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="utf-8">
-  
+
+
+
+
+
+
+
+
+
+
+
 
   
-  <title>flask | aaaa</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<html class="theme-next gemini use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
   <meta name="description" content="Flask框架STEP-1一.flask简介 1234567&quot;&quot;&quot;1. Flask是一个基于Python开发并且依赖jinja2模板和Werkzeug  WSGI服务的一个微型框架，对于Werkzeug本质是Socket服务端，其用于接收http请求并对请求进行预处理，然后触发Flask框架，开发人员基于Flask框架提供的功能对请求进行相应的处理，并返回给用户，如果要返回给用户复杂的内容时，需要">
 <meta name="keywords" content="python框架">
 <meta property="og:type" content="article">
 <meta property="og:title" content="flask">
 <meta property="og:url" content="https://ljyabc.github.io/2019/03/02/flask/index.html">
-<meta property="og:site_name" content="aaaa">
+<meta property="og:site_name" content="search out bug">
 <meta property="og:description" content="Flask框架STEP-1一.flask简介 1234567&quot;&quot;&quot;1. Flask是一个基于Python开发并且依赖jinja2模板和Werkzeug  WSGI服务的一个微型框架，对于Werkzeug本质是Socket服务端，其用于接收http请求并对请求进行预处理，然后触发Flask框架，开发人员基于Flask框架提供的功能对请求进行相应的处理，并返回给用户，如果要返回给用户复杂的内容时，需要">
 <meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2019-03-02T13:40:21.539Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="flask">
 <meta name="twitter:description" content="Flask框架STEP-1一.flask简介 1234567&quot;&quot;&quot;1. Flask是一个基于Python开发并且依赖jinja2模板和Werkzeug  WSGI服务的一个微型框架，对于Werkzeug本质是Socket服务端，其用于接收http请求并对请求进行预处理，然后触发Flask框架，开发人员基于Flask框架提供的功能对请求进行相应的处理，并返回给用户，如果要返回给用户复杂的内容时，需要">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ljyabc.github.io/2019/03/02/flask/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>flask | search out bug</title>
   
-    <link rel="alternate" href="/atom.xml" title="aaaa" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
 </head>
-</html>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">aaaa</a>
-      </h1>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">search out bug</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
       
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
         
-          <a class="main-nav-link" href="/">Home</a>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
         
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://ljyabc.github.io"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-flask" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/02/flask/" class="article-date">
-  <time datetime="2019-03-02T13:01:43.000Z" itemprop="datePublished">2019-03-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/python入门到放弃系列/">python入门到放弃系列</a>
-  </div>
+          
+          <li class="menu-item menu-item-home">
 
-  </div>
-  <div class="article-inner">
     
     
-      <header class="article-header">
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+
+  </li>
         
-  
-    <h1 class="article-title" itemprop="name">
-      flask
-    </h1>
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>Über</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-post_asset_folder">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>post_asset_folder</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Kategorien</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>Schedule</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>Sitemap</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>Commonweal 404</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Suche</a>
+        </li>
+      
+    </ul>
   
 
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2019/03/02/flask/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李江洋">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="search out bug">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">flask
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-03-02 21:01:43 / Updated at: 21:40:21" itemprop="dateCreated datePublished" datetime="2019-03-02T21:01:43+08:00">2019-03-02</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python入门到放弃系列/" itemprop="url" rel="index"><span itemprop="name">python入门到放弃系列</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
       
         <h2 id="Flask框架"><a href="#Flask框架" class="headerlink" title="Flask框架"></a>Flask框架</h2><h3 id="STEP-1"><a href="#STEP-1" class="headerlink" title="STEP-1"></a>STEP-1</h3><h4 id="一-flask简介"><a href="#一-flask简介" class="headerlink" title="一.flask简介"></a>一.flask简介</h4><hr>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">1. Flask是一个基于Python开发并且依赖jinja2模板和Werkzeug  WSGI服务的一个微型框架，对于Werkzeug本质是Socket服务端，其用于接收http请求并对请求进行预处理，然后触发Flask框架，开发人员基于Flask框架提供的功能对请求进行相应的处理，并返回给用户，如果要返回给用户复杂的内容时，需要借助jinja2模板来实现对模板的处理，即：将模板和数据进行渲染，将渲染后的字符串返回给用户浏览器。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">2. “微”(micro) 并不表示你需要把整个 Web 应用塞进单个 Python 文件（虽然确实可以 ），也不意味着 Flask  在功能上有所欠缺。微框架中的“微”意味着 Flask 旨在保持核心简单而易于扩展。Flask 不会替你做出太多决策——比如使用何种数据库。而那些  Flask 所选择的——比如使用何种模板引擎——则很容易替换。除此之外的一切都由可由你掌握。如此，Flask 可以与您珠联璧合。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">3. 默认情况下，Flask 不包含数据库抽象层、表单验证，或是其它任何已有多种库可以胜任的功能。然而，Flask  支持用扩展来给应用添加这些功能，如同是 Flask  本身实现的一样。众多的扩展提供了数据库集成、表单验证、上传处理、各种各样的开放认证技术等功能。Flask  也许是“微小”的，但它已准备好在需求繁杂的生产环境中投入使用。</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
@@ -698,145 +1127,921 @@
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="https://ljyabc.github.io/2019/03/02/flask/" data-id="cjtba8bwc003gc8uygys2qfv6" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python框架/">python框架</a></li></ul>
 
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/path/to/your/wechatqcode e.g. /uploads/wechat-qcode.jpg" alt="李江洋 wechat" style="width: 200px; max-width: 100%;">
+  <div>e.g. subscribe to my blog by scanning my public wechat account</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Donate comment here</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="李江洋 WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="李江洋 Alipay">
+        <p>Alipay</p>
+      </div>
+    
+
+    
+      <div id="bitcoin" style="display: inline-block">
+        <img id="bitcoin_qr" src="/images/bitcoin.jpg" alt="李江洋 Bitcoin">
+        <p>Bitcoin</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python框架/" rel="tag"># python框架</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/02/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/02/django笔记1/" rel="prev" title="django笔记1">
+                django笔记1 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
     </footer>
   </div>
   
-    
-<nav id="article-nav">
   
-    <a href="/2019/03/02/django笔记1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
         
-          django笔记1
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="李江洋">
+            
+              <p class="site-author-name" itemprop="name">李江洋</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">Kategorien</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">Tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lvdXJuYW1l" title="GitHub &rarr; https://github.com/yourname"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="bWFpbHRvOnlvdXJuYW1lQGdtYWlsLmNvbQ==" title="E-Mail &rarr; mailto:yourname@gmail.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly93ZWliby5jb20veW91cm5hbWU=" title="Weibo &rarr; https://weibo.com/yourname"><i class="fa fa-fw fa-weibo"></i>Weibo</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9wbHVzLmdvb2dsZS5jb20veW91cm5hbWU=" title="Google &rarr; https://plus.google.com/yourname"><i class="fa fa-fw fa-google"></i>Google</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS95b3VybmFtZQ==" title="Twitter &rarr; https://twitter.com/yourname"><i class="fa fa-fw fa-twitter"></i>Twitter</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL3lvdXJuYW1l" title="FB Page &rarr; https://www.facebook.com/yourname"><i class="fa fa-fw fa-facebook"></i>FB Page</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly92ay5jb20veW91cm5hbWU=" title="VK Group &rarr; https://vk.com/yourname"><i class="fa fa-fw fa-vk"></i>VK Group</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS95b3VybmFtZQ==" title="StackOverflow &rarr; https://stackoverflow.com/yourname"><i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly95b3V0dWJlLmNvbS95b3VybmFtZQ==" title="YouTube &rarr; https://youtube.com/yourname"><i class="fa fa-fw fa-youtube"></i>YouTube</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9pbnN0YWdyYW0uY29tL3lvdXJuYW1l" title="Instagram &rarr; https://instagram.com/yourname"><i class="fa fa-fw fa-instagram"></i>Instagram</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="c2t5cGU6eW91cm5hbWU/Y2FsbHxjaGF0" title="Skype &rarr; skype:yourname?call|chat"><i class="fa fa-fw fa-skype"></i>Skype</span>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL2V4YW1wbGUuY29t" title="http://example.com">Title</span>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Flask框架"><span class="nav-number">1.</span> <span class="nav-text">Flask框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#STEP-1"><span class="nav-number">1.1.</span> <span class="nav-text">STEP-1</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一-flask简介"><span class="nav-number">1.1.1.</span> <span class="nav-text">一.flask简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二-flask安装"><span class="nav-number">1.1.2.</span> <span class="nav-text">二.flask安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三-werkzeug"><span class="nav-number">1.1.3.</span> <span class="nav-text">三.werkzeug</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-简介"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">3.1 简介</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-示例"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">3.2 示例</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四-flask的快速使用"><span class="nav-number">1.1.4.</span> <span class="nav-text">四.flask的快速使用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-1-首先导入Flask这个类"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">4.1 首先导入Flask这个类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-实例化产生一个Flask的对象"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">4.2 实例化产生一个Flask的对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-3-设置成调试模式，自动刷新重启"><span class="nav-number">1.1.4.3.</span> <span class="nav-text">4.3 设置成调试模式，自动刷新重启</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-4-写视图函数并配置路由"><span class="nav-number">1.1.4.4.</span> <span class="nav-text">4.4 写视图函数并配置路由</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-5-启动flask项目"><span class="nav-number">1.1.4.5.</span> <span class="nav-text">4.5 启动flask项目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-6-示例"><span class="nav-number">1.1.4.6.</span> <span class="nav-text">4.6 示例</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五-基于Flask写一个项目具备：登录，显示用户信息"><span class="nav-number">1.1.5.</span> <span class="nav-text">五. 基于Flask写一个项目具备：登录，显示用户信息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#5-1-目录结构"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">5.1 目录结构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-2-flask-damon-py"><span class="nav-number">1.1.5.2.</span> <span class="nav-text">5.2 flask_damon.py</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-3-login-html"><span class="nav-number">1.1.5.3.</span> <span class="nav-text">5.3 login.html</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-4-user-list-html"><span class="nav-number">1.1.5.4.</span> <span class="nav-text">5.4 user_list.html</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-5-user-detail-html"><span class="nav-number">1.1.5.5.</span> <span class="nav-text">5.5 user_detail.html</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#六-基于flask的登录认证装饰器"><span class="nav-number">1.1.6.</span> <span class="nav-text">六. 基于flask的登录认证装饰器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#STEP-2"><span class="nav-number">1.2.</span> <span class="nav-text">STEP-2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一-Flask的配置文件"><span class="nav-number">1.2.1.</span> <span class="nav-text">一. Flask的配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-默认的配置文件是一个flask-config-Config对象（继承字典"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">1.1 默认的配置文件是一个flask.config.Config对象（继承字典)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-配置文件的方式一：通过config对象字典特性"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">1.2 配置文件的方式一：通过config对象字典特性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-配置文件方式二：通过py文件配置"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">1.3 配置文件方式二：通过py文件配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-4-配置文件方式三：通过环境变量配置"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">1.4 配置文件方式三：通过环境变量配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-5-配置文件方式四：通过json文件"><span class="nav-number">1.2.1.5.</span> <span class="nav-text">1.5 配置文件方式四：通过json文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-6-配置文件方式五：通过字典映射"><span class="nav-number">1.2.1.6.</span> <span class="nav-text">1.6 配置文件方式五：通过字典映射</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-7-配置文件方式六：通过对象的方式"><span class="nav-number">1.2.1.7.</span> <span class="nav-text">1.7 配置文件方式六：通过对象的方式</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-7-1-实例"><span class="nav-number">1.2.1.7.1.</span> <span class="nav-text">1.7.1 实例</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-8-配置文件的路径问题"><span class="nav-number">1.2.1.8.</span> <span class="nav-text">1.8 配置文件的路径问题</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二-Flask的路由系统"><span class="nav-number">1.2.2.</span> <span class="nav-text">二. Flask的路由系统</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-路由的典型写法"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">2.1 路由的典型写法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-默认的内置转换器"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">2.2 默认的内置转换器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-自定义正则转换器"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">2.3 自定义正则转换器</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#2-3-1-写一个类继承BaseConverter"><span class="nav-number">1.2.2.3.1.</span> <span class="nav-text">2.3.1 写一个类继承BaseConverter</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-3-2-注册转换器"><span class="nav-number">1.2.2.3.2.</span> <span class="nav-text">2.3.2 注册转换器</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-3-3-使用转换器"><span class="nav-number">1.2.2.3.3.</span> <span class="nav-text">2.3.3 使用转换器</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-3-4-注意"><span class="nav-number">1.2.2.3.4.</span> <span class="nav-text">2.3.4 注意</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-4-路由的本质"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">2.4 路由的本质</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#2-4-0-执行流程"><span class="nav-number">1.2.2.4.1.</span> <span class="nav-text">2.4.0 执行流程</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-4-1-例子代码"><span class="nav-number">1.2.2.4.2.</span> <span class="nav-text">2.4.1 例子代码</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-4-2-源码分析：route"><span class="nav-number">1.2.2.4.3.</span> <span class="nav-text">2.4.2 源码分析：route</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-4-3-源码分析：add-url-rule"><span class="nav-number">1.2.2.4.4.</span> <span class="nav-text">2.4.3 源码分析：add_url_rule</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-4-4-源码分析：-endpoint-from-view-func"><span class="nav-number">1.2.2.4.5.</span> <span class="nav-text">2.4.4 源码分析：_endpoint_from_view_func</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-4-5-源码分析：url-rule-class"><span class="nav-number">1.2.2.4.6.</span> <span class="nav-text">2.4.5 源码分析：url_rule_class</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-4-6-源码分析：self-url-map-add-rule"><span class="nav-number">1.2.2.4.7.</span> <span class="nav-text">2.4.6 源码分析：self.url_map.add(rule)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-4-7-装饰器执行流程"><span class="nav-number">1.2.2.4.8.</span> <span class="nav-text">2.4.7 装饰器执行流程</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-4-8-例子代码改写"><span class="nav-number">1.2.2.4.9.</span> <span class="nav-text">2.4.8 例子代码改写</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-5-CBV源码解析"><span class="nav-number">1.2.2.5.</span> <span class="nav-text">2.5 CBV源码解析</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#2-5-1-例子代码"><span class="nav-number">1.2.2.5.1.</span> <span class="nav-text">2.5.1 例子代码</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-5-1-as-view"><span class="nav-number">1.2.2.5.2.</span> <span class="nav-text">2.5.1 as_view</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-5-2-dispatch-request"><span class="nav-number">1.2.2.5.3.</span> <span class="nav-text">2.5.2 dispatch_request</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-5-3-MethodViewType元类的作用"><span class="nav-number">1.2.2.5.4.</span> <span class="nav-text">2.5.3 MethodViewType元类的作用</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-6-add-url-rule参数"><span class="nav-number">1.2.2.6.</span> <span class="nav-text">2.6 add_url_rule参数</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#2-6-1-rule"><span class="nav-number">1.2.2.6.1.</span> <span class="nav-text">2.6.1 rule</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-6-2-view-func"><span class="nav-number">1.2.2.6.2.</span> <span class="nav-text">2.6.2 view_func</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-6-3-defaults"><span class="nav-number">1.2.2.6.3.</span> <span class="nav-text">2.6.3 defaults</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-6-4-endpoint"><span class="nav-number">1.2.2.6.4.</span> <span class="nav-text">2.6.4 endpoint</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-6-5-methods"><span class="nav-number">1.2.2.6.5.</span> <span class="nav-text">2.6.5 methods</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-6-6-strict-slashes"><span class="nav-number">1.2.2.6.6.</span> <span class="nav-text">2.6.6 strict_slashes</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-6-7-redirect-to"><span class="nav-number">1.2.2.6.7.</span> <span class="nav-text">2.6.7 redirect_to</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-6-8-subdomain"><span class="nav-number">1.2.2.6.8.</span> <span class="nav-text">2.6.8 subdomain</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三-Flask的模板语言-依赖于jinjia2"><span class="nav-number">1.2.3.</span> <span class="nav-text">三.Flask的模板语言(依赖于jinjia2)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-和django模板的不同"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">3.1 和django模板的不同</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-实例"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">3.2 实例</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#3-2-1-视图"><span class="nav-number">1.2.3.2.1.</span> <span class="nav-text">3.2.1 视图</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-2-2-模板"><span class="nav-number">1.2.3.2.2.</span> <span class="nav-text">3.2.2 模板</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-flask处理了xss攻击-如果想显示原生html"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">3.3 flask处理了xss攻击,如果想显示原生html</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-4-注意"><span class="nav-number">1.2.3.4.</span> <span class="nav-text">3.4 注意</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-5-标签：template-global"><span class="nav-number">1.2.3.5.</span> <span class="nav-text">3.5 标签：template_global</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#3-5-1-使用"><span class="nav-number">1.2.3.5.1.</span> <span class="nav-text">3.5.1 使用</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-5-2-实例"><span class="nav-number">1.2.3.5.2.</span> <span class="nav-text">3.5.2 实例</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-6-过滤器：template-filter"><span class="nav-number">1.2.3.6.</span> <span class="nav-text">3.6 过滤器：template_filter</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#3-6-1-使用"><span class="nav-number">1.2.3.6.1.</span> <span class="nav-text">3.6.1 使用</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-6-2-实例"><span class="nav-number">1.2.3.6.2.</span> <span class="nav-text">3.6.2 实例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四-Flask的请求与响应"><span class="nav-number">1.2.4.</span> <span class="nav-text">四. Flask的请求与响应</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-1-request"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">4.1 request</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-response"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">4.2 response</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-3-往响应头里面加东西"><span class="nav-number">1.2.4.3.</span> <span class="nav-text">4.3 往响应头里面加东西</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-4-参考实例"><span class="nav-number">1.2.4.4.</span> <span class="nav-text">4.4 参考实例</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五-session"><span class="nav-number">1.2.5.</span> <span class="nav-text">五.session</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#5-1-使用-一定要加盐"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">5.1 使用:一定要加盐</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-2-实例"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">5.2 实例</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-3-session源码分析之wsgi-app"><span class="nav-number">1.2.5.3.</span> <span class="nav-text">5.3 session源码分析之wsgi_app</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-流程分析"><span class="nav-number">1.2.5.3.1.</span> <span class="nav-text">1. 流程分析</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-wsgi-app"><span class="nav-number">1.2.5.3.2.</span> <span class="nav-text">2.  wsgi_app</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-4-session源码分析之：ctx-self-request-context-environ"><span class="nav-number">1.2.5.4.</span> <span class="nav-text">5.4 session源码分析之：ctx = self.request_context(environ)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-5-session源码分析之：ctx-push"><span class="nav-number">1.2.5.5.</span> <span class="nav-text">5.5 session源码分析之：ctx.push()</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-ctx-push"><span class="nav-number">1.2.5.5.1.</span> <span class="nav-text">1. ctx.push()</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-open-session"><span class="nav-number">1.2.5.5.2.</span> <span class="nav-text">2. open_session</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-6-session源码分析之：response-self-full-dispatch-request"><span class="nav-number">1.2.5.6.</span> <span class="nav-text">5.6 session源码分析之：response = self.full_dispatch_request()</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-full-dispatch-request"><span class="nav-number">1.2.5.6.1.</span> <span class="nav-text">1. full_dispatch_request</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-self-finalize-request-rv"><span class="nav-number">1.2.5.6.2.</span> <span class="nav-text">2. self.finalize_request(rv)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-response-self-process-response-response"><span class="nav-number">1.2.5.6.3.</span> <span class="nav-text">3. response = self.process_response(response)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-save-session-self-ctx-session-response"><span class="nav-number">1.2.5.6.4.</span> <span class="nav-text">4. save_session(self, ctx.session, response)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#六-闪现-message"><span class="nav-number">1.2.6.</span> <span class="nav-text">六. 闪现(message)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#6-1-作用"><span class="nav-number">1.2.6.1.</span> <span class="nav-text">6.1 作用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-2-设置值"><span class="nav-number">1.2.6.2.</span> <span class="nav-text">6.2 设置值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-3-取值"><span class="nav-number">1.2.6.3.</span> <span class="nav-text">6.3 取值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-4-实例"><span class="nav-number">1.2.6.4.</span> <span class="nav-text">6.4 实例</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#七-请求拓展（类似于django中的中间件）"><span class="nav-number">1.2.7.</span> <span class="nav-text">七. 请求拓展（类似于django中的中间件）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#7-1-before-request"><span class="nav-number">1.2.7.1.</span> <span class="nav-text">7.1 before_request</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#7-1-1-作用"><span class="nav-number">1.2.7.1.1.</span> <span class="nav-text">7.1.1 作用</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-2-after-request"><span class="nav-number">1.2.7.2.</span> <span class="nav-text">7.2 after_request</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#7-2-1-作用"><span class="nav-number">1.2.7.2.1.</span> <span class="nav-text">7.2.1 作用</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-3-before-first-request"><span class="nav-number">1.2.7.3.</span> <span class="nav-text">7.3 before_first_request</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#7-3-1-作用"><span class="nav-number">1.2.7.3.1.</span> <span class="nav-text">7.3.1 作用</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-4-teardown-request"><span class="nav-number">1.2.7.4.</span> <span class="nav-text">7.4 teardown_request</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#7-4-1-作用"><span class="nav-number">1.2.7.4.1.</span> <span class="nav-text">7.4.1 作用</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7-4-2-实例"><span class="nav-number">1.2.7.4.2.</span> <span class="nav-text">7.4.2 实例</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-5-errorhandler"><span class="nav-number">1.2.7.5.</span> <span class="nav-text">7.5 errorhandler</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#7-5-1-实例"><span class="nav-number">1.2.7.5.1.</span> <span class="nav-text">7.5.1 实例</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-6-总结"><span class="nav-number">1.2.7.6.</span> <span class="nav-text">7.6 总结</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-7-实例"><span class="nav-number">1.2.7.7.</span> <span class="nav-text">7.7 实例</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#7-7-1-实例一：before-request返回None"><span class="nav-number">1.2.7.7.1.</span> <span class="nav-text">7.7.1 实例一：before_request返回None</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7-7-2-实例二：before-request返回非None"><span class="nav-number">1.2.7.7.2.</span> <span class="nav-text">7.7.2 实例二：before_request返回非None</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#八-中间件"><span class="nav-number">1.2.8.</span> <span class="nav-text">八. 中间件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#8-1-作用"><span class="nav-number">1.2.8.1.</span> <span class="nav-text">8.1 作用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-2-源码分析"><span class="nav-number">1.2.8.2.</span> <span class="nav-text">8.2 源码分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-3-如何自定义中间件"><span class="nav-number">1.2.8.3.</span> <span class="nav-text">8.3 如何自定义中间件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#STEP-3"><span class="nav-number">1.3.</span> <span class="nav-text">STEP-3</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一-蓝图（Blueprint）"><span class="nav-number">1.3.1.</span> <span class="nav-text">一. 蓝图（Blueprint）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-蓝图的作用"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">1. 蓝图的作用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-不使用蓝图自己分文件"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">2. 不使用蓝图自己分文件</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#2-1-目录结构"><span class="nav-number">1.3.1.2.1.</span> <span class="nav-text">2.1 目录结构</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-2-manage-py"><span class="nav-number">1.3.1.2.2.</span> <span class="nav-text">2.2 manage.py</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-3-flask-test下的init-py"><span class="nav-number">1.3.1.2.3.</span> <span class="nav-text">2.3 flask_test下的init.py</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-4-order-py"><span class="nav-number">1.3.1.2.4.</span> <span class="nav-text">2.4 order.py</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-5-user-py"><span class="nav-number">1.3.1.2.5.</span> <span class="nav-text">2.5 user.py</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-6-views下面的init"><span class="nav-number">1.3.1.2.6.</span> <span class="nav-text">2.6 views下面的init</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-使用蓝图之中小型项目"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">3. 使用蓝图之中小型项目</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#3-1-目录结构"><span class="nav-number">1.3.1.3.1.</span> <span class="nav-text">3.1 目录结构</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-2-manage-py"><span class="nav-number">1.3.1.3.2.</span> <span class="nav-text">3.2 manage.py</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-3-flask-test下的init-py"><span class="nav-number">1.3.1.3.3.</span> <span class="nav-text">3.3 flask_test下的init.py</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-4-order-py"><span class="nav-number">1.3.1.3.4.</span> <span class="nav-text">3.4 order.py</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-5-user-py"><span class="nav-number">1.3.1.3.5.</span> <span class="nav-text">3.5 user.py</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-6-views下面的init"><span class="nav-number">1.3.1.3.6.</span> <span class="nav-text">3.6 views下面的init</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-使用蓝图之大型项目"><span class="nav-number">1.3.1.4.</span> <span class="nav-text">4. 使用蓝图之大型项目</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#4-1-项目目录"><span class="nav-number">1.3.1.4.1.</span> <span class="nav-text">4.1 项目目录</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-2-manage-py"><span class="nav-number">1.3.1.4.2.</span> <span class="nav-text">4.2 manage.py</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-3-flask-app下面的init-py"><span class="nav-number">1.3.1.4.3.</span> <span class="nav-text">4.3 flask_app下面的init.py</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-4-flask-admin-flask-user下面的init-py"><span class="nav-number">1.3.1.4.4.</span> <span class="nav-text">4.4 flask_admin/flask_user下面的init.py</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-5-views下面的init-py"><span class="nav-number">1.3.1.4.5.</span> <span class="nav-text">4.5 views下面的init.py</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-6-views下面的order-py"><span class="nav-number">1.3.1.4.6.</span> <span class="nav-text">4.6 views下面的order.py</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-7-views下面的user-py"><span class="nav-number">1.3.1.4.7.</span> <span class="nav-text">4.7 views下面的user.py</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-使用蓝图注意事项"><span class="nav-number">1.3.1.5.</span> <span class="nav-text">5. 使用蓝图注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#5-1-当为templates目录添加目录解耦时"><span class="nav-number">1.3.1.5.1.</span> <span class="nav-text">5.1 当为templates目录添加目录解耦时</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-蓝图总结"><span class="nav-number">1.3.1.6.</span> <span class="nav-text">6. 蓝图总结</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二-请求上下文源码分析"><span class="nav-number">1.3.2.</span> <span class="nav-text">二. 请求上下文源码分析</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-Flask上下文的种类"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">1. Flask上下文的种类</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-1-应用上下文"><span class="nav-number">1.3.2.1.1.</span> <span class="nav-text">1.1 应用上下文</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-2-请求上下文"><span class="nav-number">1.3.2.1.2.</span> <span class="nav-text">1.2 请求上下文</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-上下文的作用"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">2. 上下文的作用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-上下文的生命周期"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">3. 上下文的生命周期</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-请求上下文环境构造"><span class="nav-number">1.3.2.4.</span> <span class="nav-text">4. 请求上下文环境构造</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#4-1-wsgi-app"><span class="nav-number">1.3.2.4.1.</span> <span class="nav-text">4.1 wsgi_app</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-2-request-context"><span class="nav-number">1.3.2.4.2.</span> <span class="nav-text">4.2 request_context</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-3-ctx-push"><span class="nav-number">1.3.2.4.3.</span> <span class="nav-text">4.3  ctx.push</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-4-full-dispatch-request"><span class="nav-number">1.3.2.4.4.</span> <span class="nav-text">4.4 full_dispatch_request</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-5-RequestCentext类auto-pop"><span class="nav-number">1.3.2.4.5.</span> <span class="nav-text">4.5 RequestCentext类auto_pop</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-LocalStack"><span class="nav-number">1.3.2.5.</span> <span class="nav-text">5. LocalStack</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#5-1-作用"><span class="nav-number">1.3.2.5.1.</span> <span class="nav-text">5.1 作用</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-2-源码"><span class="nav-number">1.3.2.5.2.</span> <span class="nav-text">5.2 源码</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-Local"><span class="nav-number">1.3.2.6.</span> <span class="nav-text">6. Local</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#6-1-作用-1"><span class="nav-number">1.3.2.6.1.</span> <span class="nav-text">6.1 作用</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#6-2-源码"><span class="nav-number">1.3.2.6.2.</span> <span class="nav-text">6.2 源码</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-LocalProxy"><span class="nav-number">1.3.2.7.</span> <span class="nav-text">7. LocalProxy</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#7-1-作用"><span class="nav-number">1.3.2.7.1.</span> <span class="nav-text">7.1 作用</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7-2-源码"><span class="nav-number">1.3.2.7.2.</span> <span class="nav-text">7.2 源码</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-g对象"><span class="nav-number">1.3.2.8.</span> <span class="nav-text">8. g对象</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#8-1-作用-1"><span class="nav-number">1.3.2.8.1.</span> <span class="nav-text">8.1 作用</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#8-2-g对象和session的区别"><span class="nav-number">1.3.2.8.2.</span> <span class="nav-text">8.2 g对象和session的区别</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#8-3-实例"><span class="nav-number">1.3.2.8.3.</span> <span class="nav-text">8.3 实例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三-flask-session插件"><span class="nav-number">1.3.3.</span> <span class="nav-text">三. flask_session插件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-作用"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">1 作用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-安装"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">2 安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-使用方式一"><span class="nav-number">1.3.3.3.</span> <span class="nav-text">3 使用方式一</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-使用方式二"><span class="nav-number">1.3.3.4.</span> <span class="nav-text">4 使用方式二</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四-flask-script插件"><span class="nav-number">1.3.4.</span> <span class="nav-text">四. flask_script插件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-作用-1"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">1. 作用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-安装-1"><span class="nav-number">1.3.4.2.</span> <span class="nav-text">2. 安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-使用"><span class="nav-number">1.3.4.3.</span> <span class="nav-text">3. 使用</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五-多app应用"><span class="nav-number">1.3.5.</span> <span class="nav-text">五. 多app应用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-作用-2"><span class="nav-number">1.3.5.1.</span> <span class="nav-text">1. 作用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-使用"><span class="nav-number">1.3.5.2.</span> <span class="nav-text">2. 使用</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#六-信号"><span class="nav-number">1.3.6.</span> <span class="nav-text">六. 信号</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-作用-3"><span class="nav-number">1.3.6.1.</span> <span class="nav-text">1. 作用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-内置信号"><span class="nav-number">1.3.6.2.</span> <span class="nav-text">2. 内置信号</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-使用信号"><span class="nav-number">1.3.6.3.</span> <span class="nav-text">3. 使用信号</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-Flask中信号的触发点"><span class="nav-number">1.3.6.4.</span> <span class="nav-text">4. Flask中信号的触发点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-自定义信号-了解"><span class="nav-number">1.3.6.5.</span> <span class="nav-text">5. 自定义信号(了解)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#STEP-4"><span class="nav-number">1.4.</span> <span class="nav-text">STEP-4</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一-wtforms组件"><span class="nav-number">1.4.1.</span> <span class="nav-text">一. wtforms组件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-安装"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">1. 安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-作用"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">2. 作用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-使用-1"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">3. 使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-简单使用"><span class="nav-number">1.4.1.4.</span> <span class="nav-text">4. 简单使用</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#4-0-使用步骤"><span class="nav-number">1.4.1.4.1.</span> <span class="nav-text">4.0 使用步骤</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-1-视图"><span class="nav-number">1.4.1.4.2.</span> <span class="nav-text">4.1 视图</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-2-模板"><span class="nav-number">1.4.1.4.3.</span> <span class="nav-text">4.2 模板</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-3-关闭html的form验证功能"><span class="nav-number">1.4.1.4.4.</span> <span class="nav-text">4.3 关闭html的form验证功能</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-复杂使用"><span class="nav-number">1.4.1.5.</span> <span class="nav-text">5. 复杂使用</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#5-1-视图"><span class="nav-number">1.4.1.5.1.</span> <span class="nav-text">5.1 视图</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-2-模板"><span class="nav-number">1.4.1.5.2.</span> <span class="nav-text">5.2 模板</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二-Python中的数据库连接池DBUtils"><span class="nav-number">1.4.2.</span> <span class="nav-text">二. Python中的数据库连接池DBUtils</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-为什么要用数据库连接池"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">1. 为什么要用数据库连接池</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-1-每个请求开个连接"><span class="nav-number">1.4.2.1.1.</span> <span class="nav-text">1.1 每个请求开个连接</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-2-加锁使用单个数据库连接对象"><span class="nav-number">1.4.2.1.2.</span> <span class="nav-text">1.2 加锁使用单个数据库连接对象</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-3-结论"><span class="nav-number">1.4.2.1.3.</span> <span class="nav-text">1.3 结论</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-什么是DBUtils"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">2. 什么是DBUtils</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-DBUtils的2种模式"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">3. DBUtils的2种模式</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#3-1-模式一：PersistentDB"><span class="nav-number">1.4.2.3.1.</span> <span class="nav-text">3.1 模式一：PersistentDB</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-2-模式二：PooledDB"><span class="nav-number">1.4.2.3.2.</span> <span class="nav-text">3.2 模式二：PooledDB</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三-SQLAlchemy模块"><span class="nav-number">1.4.3.</span> <span class="nav-text">三. SQLAlchemy模块</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-什么是SQLAlchemy"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">1. 什么是SQLAlchemy</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-安装-2"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">2. 安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-组成"><span class="nav-number">1.4.3.3.</span> <span class="nav-text">3. 组成</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-注意"><span class="nav-number">1.4.3.4.</span> <span class="nav-text">4. 注意</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#4-1-SQLAlchemy本身无法操作数据库，其必须以来pymsql等第三方插件"><span class="nav-number">1.4.3.4.1.</span> <span class="nav-text">4.1 SQLAlchemy本身无法操作数据库，其必须以来pymsql等第三方插件</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-2-Dialect用于和数据API进行交流，根据配置文件的不同调用不同的数据库API，从而实现对数据库的操作"><span class="nav-number">1.4.3.4.2.</span> <span class="nav-text">4.2 Dialect用于和数据API进行交流，根据配置文件的不同调用不同的数据库API，从而实现对数据库的操作</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-简单使用"><span class="nav-number">1.4.3.5.</span> <span class="nav-text">5. 简单使用</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#5-1-注意事项"><span class="nav-number">1.4.3.5.1.</span> <span class="nav-text">5.1 注意事项</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-2-执行原生sql（不常用）"><span class="nav-number">1.4.3.5.2.</span> <span class="nav-text">5.2 执行原生sql（不常用）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-3-orm使用"><span class="nav-number">1.4.3.5.3.</span> <span class="nav-text">5.3 orm使用</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-单表操作"><span class="nav-number">1.4.3.6.</span> <span class="nav-text">6. 单表操作</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#6-1-增"><span class="nav-number">1.4.3.6.1.</span> <span class="nav-text">6.1 增</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#6-2-改"><span class="nav-number">1.4.3.6.2.</span> <span class="nav-text">6.2 改</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#6-3-删"><span class="nav-number">1.4.3.6.3.</span> <span class="nav-text">6.3 删</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#6-4-查"><span class="nav-number">1.4.3.6.4.</span> <span class="nav-text">6.4 查</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-orm一对多关系"><span class="nav-number">1.4.3.7.</span> <span class="nav-text">7. orm一对多关系</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#7-1-关联字段写在多的地方"><span class="nav-number">1.4.3.7.1.</span> <span class="nav-text">7.1 关联字段写在多的地方</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-多对多关系"><span class="nav-number">1.4.3.8.</span> <span class="nav-text">8. 多对多关系</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9-单表查询"><span class="nav-number">1.4.3.9.</span> <span class="nav-text">9. 单表查询</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#10-常用操作-增删改"><span class="nav-number">1.4.3.10.</span> <span class="nav-text">10.常用操作:增删改</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#10-1-插入数据"><span class="nav-number">1.4.3.10.1.</span> <span class="nav-text">10.1 插入数据</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#10-2-修改数据"><span class="nav-number">1.4.3.10.2.</span> <span class="nav-text">10.2 修改数据</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#10-3-删除数据"><span class="nav-number">1.4.3.10.3.</span> <span class="nav-text">10.3 删除数据</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#11-常用操作：查"><span class="nav-number">1.4.3.11.</span> <span class="nav-text">11. 常用操作：查</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#11-1-算术操作符"><span class="nav-number">1.4.3.11.1.</span> <span class="nav-text">11.1 算术操作符</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#11-2-模糊查询"><span class="nav-number">1.4.3.11.2.</span> <span class="nav-text">11.2 模糊查询</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#11-3-区间选取"><span class="nav-number">1.4.3.11.3.</span> <span class="nav-text">11.3 区间选取</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#11-4-分页"><span class="nav-number">1.4.3.11.4.</span> <span class="nav-text">11.4 分页</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#11-5-排序"><span class="nav-number">1.4.3.11.5.</span> <span class="nav-text">11.5 排序</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#11-6-分组"><span class="nav-number">1.4.3.11.6.</span> <span class="nav-text">11.6 分组</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#11-7-having：分组之后条件过滤"><span class="nav-number">1.4.3.11.7.</span> <span class="nav-text">11.7 having：分组之后条件过滤</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#11-8-计数"><span class="nav-number">1.4.3.11.8.</span> <span class="nav-text">11.8 计数</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#11-9-去重"><span class="nav-number">1.4.3.11.9.</span> <span class="nav-text">11.9 去重</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#11-10-空值"><span class="nav-number">1.4.3.11.10.</span> <span class="nav-text">11.10 空值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#11-11-逻辑操作"><span class="nav-number">1.4.3.11.11.</span> <span class="nav-text">11.11 逻辑操作</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#11-12-text：原生sql语句"><span class="nav-number">1.4.3.11.12.</span> <span class="nav-text">11.12 text：原生sql语句</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#11-13-使用别名"><span class="nav-number">1.4.3.11.13.</span> <span class="nav-text">11.13 使用别名</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#11-14-取值"><span class="nav-number">1.4.3.11.14.</span> <span class="nav-text">11.14 取值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#11-15-chain链式调用"><span class="nav-number">1.4.3.11.15.</span> <span class="nav-text">11.15 chain链式调用</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#12-一对多的操作"><span class="nav-number">1.4.3.12.</span> <span class="nav-text">12. 一对多的操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#13-多对多的操作"><span class="nav-number">1.4.3.13.</span> <span class="nav-text">13. 多对多的操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#14-其他不常用操作"><span class="nav-number">1.4.3.14.</span> <span class="nav-text">14. 其他不常用操作</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四-Flask-sqlalchemy"><span class="nav-number">1.4.4.</span> <span class="nav-text">四. Flask-sqlalchemy</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-目录"><span class="nav-number">1.4.4.1.</span> <span class="nav-text">1. 目录</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-init-py"><span class="nav-number">1.4.4.2.</span> <span class="nav-text">2. init.py</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-models-py"><span class="nav-number">1.4.4.3.</span> <span class="nav-text">3. models.py</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-settings-py"><span class="nav-number">1.4.4.4.</span> <span class="nav-text">4. settings.py</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-create-table-py"><span class="nav-number">1.4.4.5.</span> <span class="nav-text">5. create_table.py</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-account-py"><span class="nav-number">1.4.4.6.</span> <span class="nav-text">6. account.py</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-run-py"><span class="nav-number">1.4.4.7.</span> <span class="nav-text">7. run.py</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
         
       </div>
-    </a>
-  
-  
-    <a href="/2019/03/02/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Hello World</div>
-    </a>
-  
-</nav>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李江洋</span>
 
   
-</article>
 
-</section>
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Gemini</span> v7.0.1</div>
+
+
+
+
         
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/hexo命令/">hexo命令</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python入门到放弃系列/">python入门到放弃系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/查找-灵活/">查找,灵活</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/理解/">理解</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/理论/">理论</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/记忆/">记忆</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/逻辑/">逻辑</a></li></ul>
-    </div>
-  </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/django项目/">django项目</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo介绍/">hexo介绍</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux-git/">linux&git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongdb/">mongdb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python基础/">python基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python框架/">python框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代理服务/">代理服务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代码工具/">代码工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机原理/">计算机原理</a></li></ul>
-    </div>
-  </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/django项目/" style="font-size: 13.33px;">django项目</a> <a href="/tags/hexo介绍/" style="font-size: 10px;">hexo介绍</a> <a href="/tags/linux-git/" style="font-size: 10px;">linux&git</a> <a href="/tags/mongdb/" style="font-size: 10px;">mongdb</a> <a href="/tags/mysql/" style="font-size: 16.67px;">mysql</a> <a href="/tags/python基础/" style="font-size: 20px;">python基础</a> <a href="/tags/python框架/" style="font-size: 13.33px;">python框架</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/代理服务/" style="font-size: 13.33px;">代理服务</a> <a href="/tags/代码工具/" style="font-size: 10px;">代码工具</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/计算机原理/" style="font-size: 10px;">计算机原理</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
-    </div>
-  </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2019/03/16/python元类/">python元类</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/16/python单例模式/">python单例模式</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/15/常用pycharm快捷键/">常用pycharm快捷键</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/15/python函数递归/">python函数递归</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/15/python常用模块/">python常用模块</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
 
-  
-</aside>
+
         
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2019 李江洋<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    
 
+    
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
-
-
-
+    
   </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/exturl.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+   <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
 </body>
 </html>

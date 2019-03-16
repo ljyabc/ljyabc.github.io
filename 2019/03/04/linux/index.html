@@ -1,18 +1,107 @@
 <!DOCTYPE html>
-<html>
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="utf-8">
-  
+
+
+
+
+
+
+
+
+
+
+
 
   
-  <title>linux | aaaa</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<html class="theme-next gemini use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
   <meta name="description" content="———-day1———-centos系统安装后的基本配置:CentOS的官方站 123&amp;gt; http://www.centos.org,&amp;gt; http://vault.centos.org/   &amp;gt;    阿里云站点 http://mirrors.aliyun.com  1.常用软件安装: 12&amp;gt; yum install -y bash-completion vim lrzsz">
 <meta name="keywords" content="linux&amp;git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux">
 <meta property="og:url" content="https://ljyabc.github.io/2019/03/04/linux/index.html">
-<meta property="og:site_name" content="aaaa">
+<meta property="og:site_name" content="search out bug">
 <meta property="og:description" content="———-day1———-centos系统安装后的基本配置:CentOS的官方站 123&amp;gt; http://www.centos.org,&amp;gt; http://vault.centos.org/   &amp;gt;    阿里云站点 http://mirrors.aliyun.com  1.常用软件安装: 12&amp;gt; yum install -y bash-completion vim lrzsz">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://img-blog.csdn.net/20161028152622277">
@@ -43,77 +132,429 @@
 <meta name="twitter:title" content="linux">
 <meta name="twitter:description" content="———-day1———-centos系统安装后的基本配置:CentOS的官方站 123&amp;gt; http://www.centos.org,&amp;gt; http://vault.centos.org/   &amp;gt;    阿里云站点 http://mirrors.aliyun.com  1.常用软件安装: 12&amp;gt; yum install -y bash-completion vim lrzsz">
 <meta name="twitter:image" content="https://img-blog.csdn.net/20161028152622277">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ljyabc.github.io/2019/03/04/linux/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>linux | search out bug</title>
   
-    <link rel="alternate" href="/atom.xml" title="aaaa" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
 </head>
-</html>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">aaaa</a>
-      </h1>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">search out bug</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
       
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
         
-          <a class="main-nav-link" href="/">Home</a>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
         
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://ljyabc.github.io"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-linux" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/04/linux/" class="article-date">
-  <time datetime="2019-03-04T13:38:00.000Z" itemprop="datePublished">2019-03-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/记忆/">记忆</a>
-  </div>
+          
+          <li class="menu-item menu-item-home">
 
-  </div>
-  <div class="article-inner">
     
     
-      <header class="article-header">
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+
+  </li>
         
-  
-    <h1 class="article-title" itemprop="name">
-      linux
-    </h1>
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>Über</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-post_asset_folder">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>post_asset_folder</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Kategorien</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>Schedule</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>Sitemap</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>Commonweal 404</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Suche</a>
+        </li>
+      
+    </ul>
   
 
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2019/03/04/linux/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李江洋">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="search out bug">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">linux
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-03-04 21:38:00" itemprop="dateCreated datePublished" datetime="2019-03-04T21:38:00+08:00">2019-03-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-03-12 02:15:18" itemprop="dateModified" datetime="2019-03-12T02:15:18+08:00">2019-03-12</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/记忆/" itemprop="url" rel="index"><span itemprop="name">记忆</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
       
         <h1 id="———-day1———"><a href="#———-day1———" class="headerlink" title="———-day1———-"></a>———-day1———-</h1><h1 id="centos系统安装后的基本配置"><a href="#centos系统安装后的基本配置" class="headerlink" title="centos系统安装后的基本配置:"></a>centos系统安装后的基本配置:</h1><h2 id="CentOS的官方站"><a href="#CentOS的官方站" class="headerlink" title="CentOS的官方站"></a>CentOS的官方站</h2><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; http://www.centos.org,</span><br><span class="line">&gt; http://vault.centos.org/   </span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
@@ -788,145 +1229,921 @@ docker  restart 容器ID|容器名称
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="https://ljyabc.github.io/2019/03/04/linux/" data-id="cjtba8bts002wc8uyqjoqsxmb" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux-git/">linux&git</a></li></ul>
 
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/path/to/your/wechatqcode e.g. /uploads/wechat-qcode.jpg" alt="李江洋 wechat" style="width: 200px; max-width: 100%;">
+  <div>e.g. subscribe to my blog by scanning my public wechat account</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Donate comment here</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="李江洋 WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="李江洋 Alipay">
+        <p>Alipay</p>
+      </div>
+    
+
+    
+      <div id="bitcoin" style="display: inline-block">
+        <img id="bitcoin_qr" src="/images/bitcoin.jpg" alt="李江洋 Bitcoin">
+        <p>Bitcoin</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux-git/" rel="tag"># linux&git</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/03/git/" rel="next" title="git">
+                <i class="fa fa-chevron-left"></i> git
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/05/nginx高级/" rel="prev" title="nginx高级">
+                nginx高级 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
     </footer>
   </div>
   
-    
-<nav id="article-nav">
   
-    <a href="/2019/03/05/nginx高级/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
         
-          nginx高级
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="李江洋">
+            
+              <p class="site-author-name" itemprop="name">李江洋</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">Kategorien</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">Tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lvdXJuYW1l" title="GitHub &rarr; https://github.com/yourname"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="bWFpbHRvOnlvdXJuYW1lQGdtYWlsLmNvbQ==" title="E-Mail &rarr; mailto:yourname@gmail.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly93ZWliby5jb20veW91cm5hbWU=" title="Weibo &rarr; https://weibo.com/yourname"><i class="fa fa-fw fa-weibo"></i>Weibo</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9wbHVzLmdvb2dsZS5jb20veW91cm5hbWU=" title="Google &rarr; https://plus.google.com/yourname"><i class="fa fa-fw fa-google"></i>Google</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS95b3VybmFtZQ==" title="Twitter &rarr; https://twitter.com/yourname"><i class="fa fa-fw fa-twitter"></i>Twitter</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL3lvdXJuYW1l" title="FB Page &rarr; https://www.facebook.com/yourname"><i class="fa fa-fw fa-facebook"></i>FB Page</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly92ay5jb20veW91cm5hbWU=" title="VK Group &rarr; https://vk.com/yourname"><i class="fa fa-fw fa-vk"></i>VK Group</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS95b3VybmFtZQ==" title="StackOverflow &rarr; https://stackoverflow.com/yourname"><i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly95b3V0dWJlLmNvbS95b3VybmFtZQ==" title="YouTube &rarr; https://youtube.com/yourname"><i class="fa fa-fw fa-youtube"></i>YouTube</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9pbnN0YWdyYW0uY29tL3lvdXJuYW1l" title="Instagram &rarr; https://instagram.com/yourname"><i class="fa fa-fw fa-instagram"></i>Instagram</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="c2t5cGU6eW91cm5hbWU/Y2FsbHxjaGF0" title="Skype &rarr; skype:yourname?call|chat"><i class="fa fa-fw fa-skype"></i>Skype</span>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL2V4YW1wbGUuY29t" title="http://example.com">Title</span>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#———-day1———"><span class="nav-number">1.</span> <span class="nav-text">———-day1———-</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#centos系统安装后的基本配置"><span class="nav-number">2.</span> <span class="nav-text">centos系统安装后的基本配置:</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CentOS的官方站"><span class="nav-number">2.1.</span> <span class="nav-text">CentOS的官方站</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#阿里云站点"><span class="nav-number">2.1.1.</span> <span class="nav-text">阿里云站点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-常用软件安装"><span class="nav-number">2.2.</span> <span class="nav-text">1.常用软件安装:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-主机名和网络"><span class="nav-number">2.3.</span> <span class="nav-text">2.主机名和网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-关闭防火墙"><span class="nav-number">2.4.</span> <span class="nav-text">3.关闭防火墙</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#确定防火墙"><span class="nav-number">2.4.1.</span> <span class="nav-text">确定防火墙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#永久关闭"><span class="nav-number">2.4.2.</span> <span class="nav-text">永久关闭</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#systemctl-disable-firewalld"><span class="nav-number">2.4.2.0.0.1.</span> <span class="nav-text">systemctl disable firewalld</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询防火墙"><span class="nav-number">2.4.3.</span> <span class="nav-text">查询防火墙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三种防火墙状态"><span class="nav-number">2.4.4.</span> <span class="nav-text">三种防火墙状态</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#disabled-No-SELinux-policy-is-loaded"><span class="nav-number">2.4.4.0.0.1.</span> <span class="nav-text">disabled - No SELinux policy is loaded.</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Centos命令基本结构"><span class="nav-number">3.</span> <span class="nav-text">2.Centos命令基本结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux命令"><span class="nav-number">3.1.</span> <span class="nav-text">Linux命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令的基本构成"><span class="nav-number">3.1.1.</span> <span class="nav-text">命令的基本构成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一般的套路"><span class="nav-number">3.1.1.1.</span> <span class="nav-text">一般的套路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参数-文件"><span class="nav-number">3.1.1.2.</span> <span class="nav-text">参数:文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#命令提示符"><span class="nav-number">3.1.1.3.</span> <span class="nav-text">命令提示符:</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四-Centos常用快捷键"><span class="nav-number">4.</span> <span class="nav-text">四.Centos常用快捷键</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用快捷键-bash-shell支持的快捷键"><span class="nav-number">4.1.</span> <span class="nav-text">常用快捷键(bash shell支持的快捷键)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TAB"><span class="nav-number">4.1.1.</span> <span class="nav-text">[TAB]:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#system-加tab键"><span class="nav-number">4.1.2.</span> <span class="nav-text">system 加tab键</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#了解一下ctrl"><span class="nav-number">4.1.2.0.1.</span> <span class="nav-text">了解一下ctrl+:</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#ctrl-a-把光标移动到行首"><span class="nav-number">4.1.2.0.1.1.</span> <span class="nav-text">ctrl + a  把光标移动到行首</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#ctrl-e-把光标移动到行尾"><span class="nav-number">4.1.2.0.1.2.</span> <span class="nav-text">ctrl + e  把光标移动到行尾</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#ctrl-y-粘贴"><span class="nav-number">4.1.2.0.1.3.</span> <span class="nav-text">ctrl + y  粘贴</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#tab键命令补全"><span class="nav-number">4.1.2.0.2.</span> <span class="nav-text">tab键命令补全</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五-Linux命令帮助及关机重启命令"><span class="nav-number">5.</span> <span class="nav-text">五.Linux命令帮助及关机重启命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-获取帮助"><span class="nav-number">5.1.</span> <span class="nav-text">1.获取帮助</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-关机重启"><span class="nav-number">5.2.</span> <span class="nav-text">2.关机重启</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#reboot"><span class="nav-number">5.2.0.0.0.1.</span> <span class="nav-text">reboot</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#关机"><span class="nav-number">5.2.0.0.0.2.</span> <span class="nav-text">关机</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#poweroff"><span class="nav-number">5.2.0.0.0.3.</span> <span class="nav-text">poweroff</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六-Linux-FHS文件系统层次化标准"><span class="nav-number">6.</span> <span class="nav-text">六.Linux FHS文件系统层次化标准</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#linux命令分类"><span class="nav-number">6.1.</span> <span class="nav-text">linux命令分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#绿色的是二进制的可执行文件"><span class="nav-number">6.1.1.</span> <span class="nav-text">绿色的是二进制的可执行文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-针对不同文件的管理命令"><span class="nav-number">6.1.2.</span> <span class="nav-text">1.针对不同文件的管理命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-目录"><span class="nav-number">6.1.3.</span> <span class="nav-text">1.1 目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FHS-文件系统层次化标准"><span class="nav-number">6.1.4.</span> <span class="nav-text">FHS 文件系统层次化标准</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2绝对路径-从”-“开始一个具体路径"><span class="nav-number">6.1.5.</span> <span class="nav-text">1.2绝对路径:从”/“开始一个具体路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3相对路径-从当前目录开始的具体路径-pwd可以查看当前所在目录"><span class="nav-number">6.1.6.</span> <span class="nav-text">1.3相对路径:从当前目录开始的具体路径(pwd可以查看当前所在目录)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#七-Linux目录基础管理"><span class="nav-number">7.</span> <span class="nav-text">七.Linux目录基础管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-1-创建目录"><span class="nav-number">7.1.</span> <span class="nav-text">1.1.1 创建目录:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#根下面创建一个目录"><span class="nav-number">7.1.1.</span> <span class="nav-text">根下面创建一个目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在当前所在目录创建目录"><span class="nav-number">7.1.2.</span> <span class="nav-text">在当前所在目录创建目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一次性创建3层目录"><span class="nav-number">7.1.3.</span> <span class="nav-text">一次性创建3层目录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-2-查询目录"><span class="nav-number">7.2.</span> <span class="nav-text">1.1.2 查询目录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#只能看一层"><span class="nav-number">7.2.1.</span> <span class="nav-text">只能看一层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#直接看所有目录"><span class="nav-number">7.2.2.</span> <span class="nav-text">直接看所有目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#只看2层"><span class="nav-number">7.2.3.</span> <span class="nav-text">只看2层</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-3-删除目录-危险"><span class="nav-number">7.3.</span> <span class="nav-text">1.1.3 删除目录(危险)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#通过文件句柄-有可能可以找回丢失数据-前提-不能重启-不能有大量数据写入"><span class="nav-number">7.3.1.</span> <span class="nav-text">通过文件句柄,有可能可以找回丢失数据(前提:不能重启,不能有大量数据写入)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-4-修改目录-剪切-复制"><span class="nav-number">7.4.</span> <span class="nav-text">1.1.4 修改目录(剪切,复制)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#剪切重命名"><span class="nav-number">7.4.1.</span> <span class="nav-text">剪切重命名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#只是重命名"><span class="nav-number">7.4.2.</span> <span class="nav-text">只是重命名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#把权限也复制"><span class="nav-number">7.4.3.</span> <span class="nav-text">把权限也复制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建a1-10"><span class="nav-number">7.4.4.</span> <span class="nav-text">创建a1-10</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-5-切换目录"><span class="nav-number">7.5.</span> <span class="nav-text">1.1.5 切换目录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#返回上一次的目录"><span class="nav-number">7.5.1.</span> <span class="nav-text">返回上一次的目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建a1-10-1"><span class="nav-number">7.5.2.</span> <span class="nav-text">创建a1-10</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#所有"><span class="nav-number">7.5.3.</span> <span class="nav-text">所有</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#八-目录与文件管理"><span class="nav-number">8.</span> <span class="nav-text">八.目录与文件管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-普通文件"><span class="nav-number">8.1.</span> <span class="nav-text">1.2 普通文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-0-种类"><span class="nav-number">8.1.1.</span> <span class="nav-text">1.2.0 种类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-1-文件创建"><span class="nav-number">8.2.</span> <span class="nav-text">1.2.1 文件创建</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#touch-a-txt-不能创建同名"><span class="nav-number">8.2.0.0.0.1.</span> <span class="nav-text">touch a.txt (不能创建同名)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-2-文件删除"><span class="nav-number">8.3.</span> <span class="nav-text">1.2.2 文件删除</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#rm-rf-a-txt"><span class="nav-number">8.3.0.0.0.1.</span> <span class="nav-text">rm -rf a.txt</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-3-文件查看"><span class="nav-number">8.4.</span> <span class="nav-text">1.2.3 文件查看</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#ls-l-a-txt-看文件属性"><span class="nav-number">8.4.0.0.0.1.</span> <span class="nav-text">ls -l a.txt    看文件属性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-小文件内容查看"><span class="nav-number">8.4.1.</span> <span class="nav-text">(1)小文件内容查看</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#cat-etc-passwd"><span class="nav-number">8.4.1.0.0.1.</span> <span class="nav-text">cat /etc/passwd</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-分页显示大文件内容"><span class="nav-number">8.4.2.</span> <span class="nav-text">(2)分页显示大文件内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-文件前多少行"><span class="nav-number">8.4.3.</span> <span class="nav-text">(3)文件前多少行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-文件后多少行"><span class="nav-number">8.4.4.</span> <span class="nav-text">(4)文件后多少行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#监控"><span class="nav-number">8.4.4.1.</span> <span class="nav-text">监控</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-4-剪切-复制"><span class="nav-number">8.5.</span> <span class="nav-text">1.2.4 剪切 复制</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#mv-命令和目录的操作一样"><span class="nav-number">8.5.0.0.0.1.</span> <span class="nav-text">mv 命令和目录的操作一样</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#cp-命令和目录的区别不需要加-r-加上也不报错"><span class="nav-number">8.5.0.0.0.2.</span> <span class="nav-text">cp 命令和目录的区别不需要加-r (加上也不报错)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-5-内容修改"><span class="nav-number">8.6.</span> <span class="nav-text">1.2.5 内容修改</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#重定向"><span class="nav-number">8.6.0.1.</span> <span class="nav-text">重定向</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cd-到当前目录"><span class="nav-number">8.6.0.2.</span> <span class="nav-text">cd 到当前目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vim-编辑器"><span class="nav-number">8.6.0.3.</span> <span class="nav-text">vim 编辑器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-查看文件内容"><span class="nav-number">8.6.0.4.</span> <span class="nav-text">1.查看文件内容</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#上下左右光标移动"><span class="nav-number">8.6.0.4.1.</span> <span class="nav-text">上下左右光标移动</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#搜索关键字"><span class="nav-number">8.6.0.4.2.</span> <span class="nav-text">/ 搜索关键字</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#yy-复制光标所在行"><span class="nav-number">8.6.0.4.3.</span> <span class="nav-text">yy 复制光标所在行</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#dG-删除光标到文本末尾"><span class="nav-number">8.6.0.4.4.</span> <span class="nav-text">dG  删除光标到文本末尾</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#r-替换光标所在字符"><span class="nav-number">8.6.0.4.5.</span> <span class="nav-text">r   替换光标所在字符</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#九-VIM的编辑模式与末行模式"><span class="nav-number">9.</span> <span class="nav-text">九.VIM的编辑模式与末行模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-编辑模式"><span class="nav-number">9.1.</span> <span class="nav-text">1.编辑模式:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-末行模式"><span class="nav-number">9.2.</span> <span class="nav-text">2.末行模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#只是退出"><span class="nav-number">9.2.1.</span> <span class="nav-text">只是退出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#保存退出"><span class="nav-number">9.2.2.</span> <span class="nav-text">保存退出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#替换退出"><span class="nav-number">9.2.3.</span> <span class="nav-text">替换退出</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#链接-快捷方式"><span class="nav-number">9.2.3.1.</span> <span class="nav-text">链接(快捷方式)</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#十-磁盘-文件系统管理-raid技术"><span class="nav-number">10.</span> <span class="nav-text">十.磁盘.文件系统管理,raid技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘-和-文件系统"><span class="nav-number">10.1.</span> <span class="nav-text">磁盘   和    文件系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-企业级磁盘类型"><span class="nav-number">10.2.</span> <span class="nav-text">2.1 企业级磁盘类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-文件系统"><span class="nav-number">10.3.</span> <span class="nav-text">2.2 文件系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方便用户使用和管理磁盘硬件的-辅助系统-Filesystem"><span class="nav-number">10.3.1.</span> <span class="nav-text">方便用户使用和管理磁盘硬件的,辅助系统(Filesystem)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux文件系统类型"><span class="nav-number">10.3.2.</span> <span class="nav-text">Linux文件系统类型:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-文件系统管理"><span class="nav-number">10.4.</span> <span class="nav-text">2.3 文件系统管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-分区"><span class="nav-number">10.4.1.</span> <span class="nav-text">2.3.1 分区</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#fdisk-dev-sdb"><span class="nav-number">10.4.1.0.0.1.</span> <span class="nav-text">fdisk   /dev/sdb</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#百度以下"><span class="nav-number">10.4.2.</span> <span class="nav-text">百度以下:</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-首先我们要添加一块足够我们使用的硬盘（我这里添加一块20G-的硬盘）"><span class="nav-number">10.4.2.0.1.</span> <span class="nav-text">1.首先我们要添加一块足够我们使用的硬盘（我这里添加一块20G 的硬盘）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-打开我们的命令行模式，"><span class="nav-number">10.4.2.0.2.</span> <span class="nav-text">2.打开我们的命令行模式，</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-在新建逻辑卷之前，我们要先新建一个物理卷，以便我-们创建逻辑卷组的时候引用。"><span class="nav-number">10.4.2.0.3.</span> <span class="nav-text">3.在新建逻辑卷之前，我们要先新建一个物理卷，以便我 们创建逻辑卷组的时候引用。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-创建完了以后我们要先查看我们系统中的逻辑卷组"><span class="nav-number">10.4.2.0.4.</span> <span class="nav-text">4.创建完了以后我们要先查看我们系统中的逻辑卷组</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#"><span class="nav-number">10.4.2.0.5.</span> <span class="nav-text"> </span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#-1"><span class="nav-number">10.4.2.0.6.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-下面我们就开始对根分区对应的逻辑卷进行扩展"><span class="nav-number">10.4.2.0.7.</span> <span class="nav-text">5.下面我们就开始对根分区对应的逻辑卷进行扩展</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-扩展完成以后，是不会立刻生效的，我们需要输入"><span class="nav-number">10.4.2.0.8.</span> <span class="nav-text">6.扩展完成以后，是不会立刻生效的，我们需要输入</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-格式化成文件系统-XFS"><span class="nav-number">10.4.3.</span> <span class="nav-text">2.3.2 格式化成文件系统(XFS)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#mkfs-xfs-dev-sdb1"><span class="nav-number">10.4.3.0.0.1.</span> <span class="nav-text">mkfs.xfs /dev/sdb1</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-3-挂载设备"><span class="nav-number">10.4.4.</span> <span class="nav-text">2.3.3 挂载设备</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#mkdir-data"><span class="nav-number">10.4.4.0.0.1.</span> <span class="nav-text">mkdir /data</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-4-查看挂载的磁盘使用情况"><span class="nav-number">10.4.5.</span> <span class="nav-text">2.3.4 查看挂载的磁盘使用情况</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#df-h"><span class="nav-number">10.4.5.0.0.1.</span> <span class="nav-text">df -h</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-5-自动挂载文件系统"><span class="nav-number">10.4.6.</span> <span class="nav-text">2.3.5 自动挂载文件系统</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#vim-etc-fstab"><span class="nav-number">10.4.6.0.0.1.</span> <span class="nav-text">vim /etc/fstab</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用UUID更加安全"><span class="nav-number">10.4.6.1.</span> <span class="nav-text">使用UUID更加安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Raid"><span class="nav-number">10.5.</span> <span class="nav-text">Raid</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#功能特性"><span class="nav-number">10.5.0.1.</span> <span class="nav-text">功能特性:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Raid的工作级别"><span class="nav-number">10.5.0.2.</span> <span class="nav-text">Raid的工作级别    :</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#十一-Linux用户和组管理"><span class="nav-number">11.</span> <span class="nav-text">十一.Linux用户和组管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-用户-组-权限"><span class="nav-number">11.1.</span> <span class="nav-text">3.用户,组,权限</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-用户的作用"><span class="nav-number">11.1.1.</span> <span class="nav-text">3.1 用户的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-用户的定义"><span class="nav-number">11.1.2.</span> <span class="nav-text">3.2 用户的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-组"><span class="nav-number">11.1.3.</span> <span class="nav-text">3.3 组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-用户和组的管理"><span class="nav-number">11.1.4.</span> <span class="nav-text">3.4 用户和组的管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#组的管理"><span class="nav-number">11.1.4.1.</span> <span class="nav-text">组的管理:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用户的管理"><span class="nav-number">11.1.4.2.</span> <span class="nav-text">用户的管理:</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#设置密码"><span class="nav-number">11.1.4.2.1.</span> <span class="nav-text">设置密码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#切换用户"><span class="nav-number">11.1.4.2.2.</span> <span class="nav-text">切换用户</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#删除"><span class="nav-number">11.1.4.2.3.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#修改id"><span class="nav-number">11.1.4.2.4.</span> <span class="nav-text">修改id</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#十二用户-组-权限"><span class="nav-number">12.</span> <span class="nav-text">十二用户,组,权限</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1权限"><span class="nav-number">12.1.</span> <span class="nav-text">1权限:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#权限是作用在文件上的属性"><span class="nav-number">12.2.</span> <span class="nav-text">权限是作用在文件上的属性.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#普通权限的规划"><span class="nav-number">12.3.</span> <span class="nav-text">普通权限的规划:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#rwxr-xr-x"><span class="nav-number">12.3.1.</span> <span class="nav-text">rwxr-xr-x</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2程序管理666"><span class="nav-number">12.4.</span> <span class="nav-text">2程序管理666</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看所有进程"><span class="nav-number">12.4.1.</span> <span class="nav-text">查看所有进程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3安装启动httpd"><span class="nav-number">12.5.</span> <span class="nav-text">3安装启动httpd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4网络管理"><span class="nav-number">12.6.</span> <span class="nav-text">4网络管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修改IP地址"><span class="nav-number">12.6.1.</span> <span class="nav-text">修改IP地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重启网卡"><span class="nav-number">12.6.2.</span> <span class="nav-text">重启网卡</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#—————day3————"><span class="nav-number">13.</span> <span class="nav-text">—————day3————</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#软件包管理"><span class="nav-number">14.</span> <span class="nav-text">﻿软件包管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-经典互联网架构"><span class="nav-number">14.1.</span> <span class="nav-text">一.经典互联网架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#昨天补充"><span class="nav-number">14.2.</span> <span class="nav-text">昨天补充:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看已启动服务的端口"><span class="nav-number">14.3.</span> <span class="nav-text">查看已启动服务的端口</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#netstat-tulnp"><span class="nav-number">14.3.0.0.0.1.</span> <span class="nav-text">netstat -tulnp</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux要能上网"><span class="nav-number">14.4.</span> <span class="nav-text">Linux要能上网</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-使用网络yum源安装软件"><span class="nav-number">14.5.</span> <span class="nav-text">二.使用网络yum源安装软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-掌握Linux软件包安装方法"><span class="nav-number">14.6.</span> <span class="nav-text">1.掌握Linux软件包安装方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-rpm包管理"><span class="nav-number">14.6.1.</span> <span class="nav-text">2.1 rpm包管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-1-光盘挂载"><span class="nav-number">14.6.1.1.</span> <span class="nav-text">2.1.1 光盘挂载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-2-安装rpm包"><span class="nav-number">14.6.1.2.</span> <span class="nav-text">2.1.2 安装rpm包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-13-卸载rpm"><span class="nav-number">14.6.1.3.</span> <span class="nav-text">2.13 卸载rpm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-4-rpm包的查询"><span class="nav-number">14.6.1.4.</span> <span class="nav-text">2.1.4 rpm包的查询</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#所有软件包查询"><span class="nav-number">14.6.1.4.1.</span> <span class="nav-text">所有软件包查询</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#which查看命令的路径"><span class="nav-number">14.6.1.4.2.</span> <span class="nav-text">which查看命令的路径</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#依赖关系"><span class="nav-number">14.6.1.5.</span> <span class="nav-text">依赖关系</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-yum-使用"><span class="nav-number">14.6.2.</span> <span class="nav-text">2.2 yum 使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1-使用aliyun-yum站点源"><span class="nav-number">14.6.2.1.</span> <span class="nav-text">2.2.1 使用aliyun yum站点源</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Base源"><span class="nav-number">14.6.2.1.1.</span> <span class="nav-text">Base源</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在阿里云的光盘"><span class="nav-number">14.6.2.2.</span> <span class="nav-text">在阿里云的光盘</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#EPEL源"><span class="nav-number">14.6.2.2.1.</span> <span class="nav-text">EPEL源</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2-使用yum安装软件"><span class="nav-number">14.6.2.3.</span> <span class="nav-text">2.2.2 使用yum安装软件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三-本地yum源和局域网yum优化"><span class="nav-number">14.7.</span> <span class="nav-text">三.本地yum源和局域网yum优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-3-软件包查询及组安装"><span class="nav-number">14.7.0.1.</span> <span class="nav-text">2.2.3 软件包查询及组安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-4-卸载软件包"><span class="nav-number">14.7.0.2.</span> <span class="nav-text">2.2.4 卸载软件包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-5-优化yum源"><span class="nav-number">14.7.0.3.</span> <span class="nav-text">2.2.5 优化yum源</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-本地镜像yum源-光盘挂载到-mnt下"><span class="nav-number">14.7.0.3.1.</span> <span class="nav-text">(1)本地镜像yum源(光盘挂载到/mnt下)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-局域网yum源-ftp"><span class="nav-number">14.7.0.3.2.</span> <span class="nav-text">(2)局域网yum源(ftp)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四-linux压缩包解压方式"><span class="nav-number">15.</span> <span class="nav-text">四.linux压缩包解压方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-源码包应用"><span class="nav-number">15.0.1.</span> <span class="nav-text">2.3 源码包应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-1-解压"><span class="nav-number">15.0.1.1.</span> <span class="nav-text">2.3.1 解压</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-源码包安装"><span class="nav-number">15.0.1.2.</span> <span class="nav-text">2.3.2 源码包安装</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五-python源码包安装"><span class="nav-number">16.</span> <span class="nav-text">五.python源码包安装</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-python3-6源码包安装"><span class="nav-number">16.0.0.0.1.</span> <span class="nav-text">(1)python3.6源码包安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#mysql-源码包"><span class="nav-number">16.0.0.0.2.</span> <span class="nav-text">mysql 源码包</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六-redis的安装及简易配置"><span class="nav-number">17.</span> <span class="nav-text">六.redis的安装及简易配置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-redis-源码包安装"><span class="nav-number">17.0.0.0.1.</span> <span class="nav-text">(2) redis 源码包安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#修改环境变量"><span class="nav-number">17.0.0.0.2.</span> <span class="nav-text">修改环境变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#添加以下一行"><span class="nav-number">17.0.0.0.3.</span> <span class="nav-text">添加以下一行:</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#export-PATH-opt-redis-3-2-10-src-PATH"><span class="nav-number">17.0.0.0.3.1.</span> <span class="nav-text">export PATH=/opt/redis-3.2.10/src:$PATH</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#生效配置"><span class="nav-number">17.0.0.0.4.</span> <span class="nav-text">生效配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#启动redis"><span class="nav-number">17.0.0.0.5.</span> <span class="nav-text">启动redis</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#redis-server-amp"><span class="nav-number">17.0.0.0.5.1.</span> <span class="nav-text">redis-server &amp;</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-让python链接redis"><span class="nav-number">17.0.0.0.6.</span> <span class="nav-text">(3) 让python链接redis</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#手动安装python包"><span class="nav-number">17.0.0.0.7.</span> <span class="nav-text">手动安装python包</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#对redis的单实例进行连接操作"><span class="nav-number">17.0.0.0.8.</span> <span class="nav-text">对redis的单实例进行连接操作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#七-mysql5-7二进制包简易安装"><span class="nav-number">18.</span> <span class="nav-text">七.mysql5.7二进制包简易安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#二进制包-mysql5-7-20"><span class="nav-number">18.1.</span> <span class="nav-text">二进制包(mysql5.7.20)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-解压及制作软连接"><span class="nav-number">18.1.0.0.1.</span> <span class="nav-text">3.1 解压及制作软连接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-编辑环境变量"><span class="nav-number">18.1.0.0.2.</span> <span class="nav-text">3.2 编辑环境变量</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#export-PATH-opt-mysql-bin-PATH"><span class="nav-number">18.1.0.0.2.1.</span> <span class="nav-text">export PATH=/opt/mysql/bin:$PATH</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#source-etc-profile"><span class="nav-number">18.1.0.0.2.2.</span> <span class="nav-text">source /etc/profile</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-卸载自带mariadb"><span class="nav-number">18.1.0.0.3.</span> <span class="nav-text">3.3 卸载自带mariadb</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-4-生成配置文件-etc-my-cnf"><span class="nav-number">18.1.0.0.4.</span> <span class="nav-text">3.4 生成配置文件(/etc/my.cnf)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#八-mysql安装及测试"><span class="nav-number">19.</span> <span class="nav-text">八.mysql安装及测试</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-5-创建用户和数据目录-并授权"><span class="nav-number">19.0.0.0.1.</span> <span class="nav-text">3.5 创建用户和数据目录,并授权</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-6-初始化数据"><span class="nav-number">19.0.0.0.2.</span> <span class="nav-text">3.6 初始化数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#报错解决"><span class="nav-number">19.0.0.0.3.</span> <span class="nav-text">报错解决:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#再次初始化"><span class="nav-number">19.0.0.0.4.</span> <span class="nav-text">再次初始化:</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#3-7-启动mysql"><span class="nav-number">19.0.0.0.4.1.</span> <span class="nav-text">3.7 启动mysql</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#cd-opt-mysql-support-files"><span class="nav-number">19.0.0.0.4.2.</span> <span class="nav-text">cd /opt/mysql/support-files</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#mysql-server-start"><span class="nav-number">19.0.0.0.4.3.</span> <span class="nav-text">./mysql.server start</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#将文件拷贝"><span class="nav-number">19.0.0.0.4.4.</span> <span class="nav-text">将文件拷贝</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#cp-mysql-server-etc-init-d-mysqld"><span class="nav-number">19.0.0.0.4.5.</span> <span class="nav-text">cp mysql.server /etc/init.d/mysqld</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#etc-init-d-mysqld-restart"><span class="nav-number">19.0.0.0.4.6.</span> <span class="nav-text">/etc/init.d/mysqld restart</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#扩展-使用systemctl-管理mysql"><span class="nav-number">19.0.0.0.4.7.</span> <span class="nav-text">扩展:使用systemctl 管理mysql</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#vim-etc-systemd-system-mysqld-service"><span class="nav-number">19.0.0.0.4.8.</span> <span class="nav-text">vim /etc/systemd/system/mysqld.service</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-8-测试python3链接mysql"><span class="nav-number">19.0.0.0.5.</span> <span class="nav-text">3.8 测试python3链接mysql</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#grant-all-on-to-root-’10-0-0-’-identified-by-‘123’"><span class="nav-number">19.0.0.0.5.1.</span> <span class="nav-text">grant all on   .  to root@’10.0.0.%’ identified by ‘123’;</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#安装pymysql"><span class="nav-number">19.0.0.0.5.2.</span> <span class="nav-text">安装pymysql</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#九-互联网经典架构介绍-nginx安装"><span class="nav-number">20.</span> <span class="nav-text">九.互联网经典架构介绍+nginx安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-经典互联网架构项目-LNMP"><span class="nav-number">20.0.0.1.</span> <span class="nav-text">4.经典互联网架构项目(LNMP)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-使用官方Nginx-yum源"><span class="nav-number">20.0.0.1.1.</span> <span class="nav-text">1) 使用官方Nginx yum源</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#安装Nginx"><span class="nav-number">20.0.0.1.1.1.</span> <span class="nav-text">安装Nginx</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-启动Nginx，并将Nginx加入开机自启"><span class="nav-number">20.0.0.1.2.</span> <span class="nav-text">2) 启动Nginx，并将Nginx加入开机自启</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#systemctl-start-nginx"><span class="nav-number">20.0.0.1.2.1.</span> <span class="nav-text">systemctl start nginx</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#systemctl-enable-nginx"><span class="nav-number">20.0.0.1.2.2.</span> <span class="nav-text">systemctl enable nginx</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#十-php安装"><span class="nav-number">21.</span> <span class="nav-text">十.php安装</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-使用第三方扩展源安装php7-1"><span class="nav-number">21.0.0.0.1.</span> <span class="nav-text">3) 使用第三方扩展源安装php7.1</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#十一-django安装所需包"><span class="nav-number">22.</span> <span class="nav-text">十一.django安装所需包</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-依赖包"><span class="nav-number">22.1.</span> <span class="nav-text">1.依赖包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-安装Django框架和uwsgi"><span class="nav-number">22.2.</span> <span class="nav-text">2.安装Django框架和uwsgi</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#十二-安装并测试uwsgi"><span class="nav-number">23.</span> <span class="nav-text">十二.安装并测试uwsgi</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-测试uwsgi是否正常，新建-test-py文件，内容如下："><span class="nav-number">23.1.</span> <span class="nav-text">3.测试uwsgi是否正常，新建 test.py文件，内容如下：</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#useradd-test"><span class="nav-number">23.1.0.0.0.1.</span> <span class="nav-text">useradd test</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#su-test"><span class="nav-number">23.1.0.0.0.2.</span> <span class="nav-text">su - test</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-安装uwsgi"><span class="nav-number">23.2.</span> <span class="nav-text">4.安装uwsgi</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#uwsgi-–http-8001-–wsgi-file-test-py-amp"><span class="nav-number">23.2.0.0.0.1.</span> <span class="nav-text">uwsgi –http :8001 –wsgi-file test.py &amp;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#十三-django测试"><span class="nav-number">24.</span> <span class="nav-text">十三.django测试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-测试django是否正常，运行："><span class="nav-number">24.1.</span> <span class="nav-text">5.测试django是否正常，运行：</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#vim-settings-py"><span class="nav-number">24.1.0.0.0.1.</span> <span class="nav-text">vim settings.py</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#把-改成-‘-’"><span class="nav-number">24.1.0.0.0.2.</span> <span class="nav-text">把[] 改成[‘*’]</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-配置uwsgi-做代练发送给uwsgi"><span class="nav-number">24.2.</span> <span class="nav-text">6.配置uwsgi(做代练发送给uwsgi)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-配置Nginx"><span class="nav-number">24.3.</span> <span class="nav-text">7.配置Nginx</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#day4"><span class="nav-number">25.</span> <span class="nav-text">day4</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一-bbs项目-MySQL处理过程"><span class="nav-number">26.</span> <span class="nav-text">一.bbs项目-MySQL处理过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-LNM-Python-Django-uwsgi-redis项目"><span class="nav-number">26.1.</span> <span class="nav-text">1.LNM+Python Django+uwsgi+redis项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-数据库的处理"><span class="nav-number">26.1.1.</span> <span class="nav-text">1.数据库的处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-查看项目settings-py配置文件-修改以下两处"><span class="nav-number">26.1.2.</span> <span class="nav-text">2 查看项目settings.py配置文件,修改以下两处</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-MySQL用户的定义"><span class="nav-number">26.1.3.</span> <span class="nav-text">3.MySQL用户的定义</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#USERNAME-’白名单’"><span class="nav-number">26.1.3.0.0.1.</span> <span class="nav-text">USERNAME@’白名单’</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-grant-select-update-insert"><span class="nav-number">26.1.4.</span> <span class="nav-text">4.grant select,update,insert</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#比较麻烦"><span class="nav-number">26.1.5.</span> <span class="nav-text">比较麻烦</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#加状态-state状态"><span class="nav-number">26.1.5.0.0.1.</span> <span class="nav-text">加状态(state状态)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-创建mysql用户"><span class="nav-number">26.1.6.</span> <span class="nav-text">5.创建mysql用户:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二-bbs项目部署"><span class="nav-number">27.</span> <span class="nav-text">二.bbs项目部署</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-BBS项目部署"><span class="nav-number">27.1.</span> <span class="nav-text">6.BBS项目部署</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1-配置Nginx"><span class="nav-number">27.1.0.1.</span> <span class="nav-text">6.1 配置Nginx</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-配置uwsgi"><span class="nav-number">27.1.0.2.</span> <span class="nav-text">2.2 配置uwsgi</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#关闭所有已有的uwsgi进程"><span class="nav-number">27.1.0.2.0.1.</span> <span class="nav-text">关闭所有已有的uwsgi进程</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#kill-9-ps-ef-grep-uwsgi-awk-39-print-2-39"><span class="nav-number">27.1.0.2.0.2.</span> <span class="nav-text">kill -9 ps -ef |grep uwsgi|awk {&#39;print $2&#39;}`</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启动uwsgi"><span class="nav-number">27.1.0.3.</span> <span class="nav-text">启动uwsgi</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重启nginx"><span class="nav-number">27.1.0.4.</span> <span class="nav-text">重启nginx</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三-自动化运维体系中Python项目介绍Python-在运维工作中的经典应用"><span class="nav-number">28.</span> <span class="nav-text">三.自动化运维体系中Python项目介绍Python 在运维工作中的经典应用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-安装ansible"><span class="nav-number">28.1.</span> <span class="nav-text">1.安装ansible</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四-ansible安装和使用"><span class="nav-number">29.</span> <span class="nav-text">四.ansible安装和使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-启动ansible"><span class="nav-number">29.1.</span> <span class="nav-text">2.启动ansible</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#ansble按tab键"><span class="nav-number">29.1.0.0.0.1.</span> <span class="nav-text">ansble按tab键</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-克隆虚拟机"><span class="nav-number">29.2.</span> <span class="nav-text">3.克隆虚拟机</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五-ansible自动化部署体验"><span class="nav-number">30.</span> <span class="nav-text">五.ansible自动化部署体验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux的-SSHD-22"><span class="nav-number">30.1.</span> <span class="nav-text">Linux的 SSHD(22)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#ssh-10-0-0-200"><span class="nav-number">30.1.0.0.0.1.</span> <span class="nav-text">ssh 10.0.0.200</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#想办法不使用密码"><span class="nav-number">30.1.0.0.0.2.</span> <span class="nav-text">想办法不使用密码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-验证方式"><span class="nav-number">30.1.1.</span> <span class="nav-text">1.验证方式:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-管理被控端，管理机先生成秘钥，然后推送公钥"><span class="nav-number">30.1.2.</span> <span class="nav-text">2.管理被控端，管理机先生成秘钥，然后推送公钥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-配置被管理的主机清单"><span class="nav-number">30.1.3.</span> <span class="nav-text">3.配置被管理的主机清单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-使用ansible的ad-hoc测试"><span class="nav-number">30.1.4.</span> <span class="nav-text">4.使用ansible的ad-hoc测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-测试命令"><span class="nav-number">30.1.5.</span> <span class="nav-text">5.测试命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#执行远程命令"><span class="nav-number">30.1.5.1.</span> <span class="nav-text">#执行远程命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-ansible-playbook自动化安装nginx"><span class="nav-number">30.1.6.</span> <span class="nav-text">6.ansible playbook自动化安装nginx</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-default-conf-template文件如下"><span class="nav-number">30.1.7.</span> <span class="nav-text">7.default.conf.template文件如下</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-执行ansible-playbook"><span class="nav-number">30.1.8.</span> <span class="nav-text">8.执行ansible-playbook</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#检查语法"><span class="nav-number">30.1.8.1.</span> <span class="nav-text">检查语法</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#必须打印playbook-playbook-nginx-yml"><span class="nav-number">30.1.8.1.0.1.</span> <span class="nav-text">必须打印playbook: playbook_nginx.yml</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模拟执行"><span class="nav-number">30.1.8.2.</span> <span class="nav-text">模拟执行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行"><span class="nav-number">30.1.8.3.</span> <span class="nav-text">执行</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六-docker基础环境准备"><span class="nav-number">31.</span> <span class="nav-text">六.docker基础环境准备</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Docker容器技术"><span class="nav-number">31.1.</span> <span class="nav-text">1.Docker容器技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、环境准备类："><span class="nav-number">31.1.1.</span> <span class="nav-text">1、环境准备类：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-安装"><span class="nav-number">31.1.2.</span> <span class="nav-text">2.安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-启动"><span class="nav-number">31.1.3.</span> <span class="nav-text">3.启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-看版本"><span class="nav-number">31.1.4.</span> <span class="nav-text">4.看版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-看详细信息"><span class="nav-number">31.1.5.</span> <span class="nav-text">5.看详细信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-配置镜像加速"><span class="nav-number">31.1.6.</span> <span class="nav-text">6.配置镜像加速</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#阿里云Docker-hub"><span class="nav-number">31.1.6.1.</span> <span class="nav-text">阿里云Docker-hub</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-pull常用镜像"><span class="nav-number">31.1.7.</span> <span class="nav-text">7.pull常用镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-启动docker镜像"><span class="nav-number">31.1.8.</span> <span class="nav-text">8.启动docker镜像</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#七-docker简介"><span class="nav-number">32.</span> <span class="nav-text">七.docker简介</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#D-软件-qq记录-1328044392-FileRecv-Docker技术v4-1-pptx"><span class="nav-number">32.0.0.0.0.1.</span> <span class="nav-text">D:\软件\qq记录\1328044392\FileRecv\Docker技术v4 (1).pptx</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#day5"><span class="nav-number">33.</span> <span class="nav-text">day5</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#先启动docker"><span class="nav-number">33.0.0.0.0.1.</span> <span class="nav-text">先启动docker</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#镜像-镜像仓库-容器"><span class="nav-number">33.0.0.0.0.2.</span> <span class="nav-text">镜像-镜像仓库-容器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-2"><span class="nav-number">34.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-镜像管理"><span class="nav-number">35.</span> <span class="nav-text">1.镜像管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-获取镜像"><span class="nav-number">35.1.</span> <span class="nav-text">1.1 获取镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-查询镜像"><span class="nav-number">35.2.</span> <span class="nav-text">1.2 查询镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#只显示镜像的id号"><span class="nav-number">35.2.1.</span> <span class="nav-text">只显示镜像的id号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#详细的说明"><span class="nav-number">35.2.2.</span> <span class="nav-text">详细的说明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-删除镜像"><span class="nav-number">35.3.</span> <span class="nav-text">1.3 删除镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#安装一个最小镜像测试"><span class="nav-number">35.3.0.0.0.1.</span> <span class="nav-text">安装一个最小镜像测试</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-导入导出镜像"><span class="nav-number">35.4.</span> <span class="nav-text">1.4 导入导出镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-启动容器并获取镜像"><span class="nav-number">35.5.</span> <span class="nav-text">1.5 启动容器并获取镜像</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二-Docker镜像制作"><span class="nav-number">36.</span> <span class="nav-text">二.Docker镜像制作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-docker一步一步学习制作镜像"><span class="nav-number">36.1.</span> <span class="nav-text">1.6 docker一步一步学习制作镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-启动新容器"><span class="nav-number">36.2.</span> <span class="nav-text">1.启动新容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-优化yum源"><span class="nav-number">36.3.</span> <span class="nav-text">2.优化yum源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-安装必须软件包"><span class="nav-number">36.4.</span> <span class="nav-text">3.安装必须软件包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-启动SSHD"><span class="nav-number">36.5.</span> <span class="nav-text">4.启动SSHD</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#注意-以上操作做完之后-会一直不退出-需要用以下命令退回到宿主机-并不关闭容器"><span class="nav-number">36.5.0.0.0.1.</span> <span class="nav-text">注意: 以上操作做完之后,会一直不退出,需要用以下命令退回到宿主机,并不关闭容器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-制作镜像"><span class="nav-number">36.6.</span> <span class="nav-text">5.制作镜像</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三-使用dockerfile构建镜像"><span class="nav-number">37.</span> <span class="nav-text">三.使用dockerfile构建镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-dockerfile-制作镜像的过程"><span class="nav-number">37.1.</span> <span class="nav-text">6. dockerfile 制作镜像的过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Centos7-5"><span class="nav-number">37.2.</span> <span class="nav-text">Centos7.5</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#dockerfile取名"><span class="nav-number">37.2.0.0.0.1.</span> <span class="nav-text">dockerfile取名</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四-容器的管理"><span class="nav-number">38.</span> <span class="nav-text">四.容器的管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-容器基本管理"><span class="nav-number">38.1.</span> <span class="nav-text">2.容器基本管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-0-容器的类型"><span class="nav-number">38.1.1.</span> <span class="nav-text">2.0 容器的类型</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#报错"><span class="nav-number">38.1.1.0.0.1.</span> <span class="nav-text">报错</span></a></li></ol></li></ol></li></ol></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
         
       </div>
-    </a>
-  
-  
-    <a href="/2019/03/03/git/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">git</div>
-    </a>
-  
-</nav>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李江洋</span>
 
   
-</article>
 
-</section>
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Gemini</span> v7.0.1</div>
+
+
+
+
         
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/hexo命令/">hexo命令</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python入门到放弃系列/">python入门到放弃系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/查找-灵活/">查找,灵活</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/理解/">理解</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/理论/">理论</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/记忆/">记忆</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/逻辑/">逻辑</a></li></ul>
-    </div>
-  </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/django项目/">django项目</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo介绍/">hexo介绍</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux-git/">linux&git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongdb/">mongdb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python基础/">python基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python框架/">python框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代理服务/">代理服务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代码工具/">代码工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机原理/">计算机原理</a></li></ul>
-    </div>
-  </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/django项目/" style="font-size: 13.33px;">django项目</a> <a href="/tags/hexo介绍/" style="font-size: 10px;">hexo介绍</a> <a href="/tags/linux-git/" style="font-size: 10px;">linux&git</a> <a href="/tags/mongdb/" style="font-size: 10px;">mongdb</a> <a href="/tags/mysql/" style="font-size: 16.67px;">mysql</a> <a href="/tags/python基础/" style="font-size: 20px;">python基础</a> <a href="/tags/python框架/" style="font-size: 13.33px;">python框架</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/代理服务/" style="font-size: 13.33px;">代理服务</a> <a href="/tags/代码工具/" style="font-size: 10px;">代码工具</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/计算机原理/" style="font-size: 10px;">计算机原理</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
-    </div>
-  </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2019/03/16/python元类/">python元类</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/16/python单例模式/">python单例模式</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/15/常用pycharm快捷键/">常用pycharm快捷键</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/15/python函数递归/">python函数递归</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/15/python常用模块/">python常用模块</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
 
-  
-</aside>
+
         
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2019 李江洋<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    
 
+    
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
-
-
-
+    
   </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/exturl.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+   <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
 </body>
 </html>
