@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="search out bug">
 <meta property="og:description" content="冒泡排序算法描述冒泡排序的基本思想就是：从无序序列头部开始，进行两两比较，根据大小交换位置，直到最后将最大的数据元素交换到了无序队列的队尾，从而成为有序序列的一部分；下一次继续这个过程，直到所有数据元素都排好序。  算法的核心在于每次通过两两比较交换位置，选出剩余无序序列里最大的数据元素放到队尾。  代码实现 比较相邻的元素，如果第一个比第二个大(升序)，就交换他们两个； 对每一对相邻元素做同样的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-14T15:13:39.887Z">
+<meta property="og:updated_time" content="2019-03-17T06:15:24.705Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python小项目">
 <meta name="twitter:description" content="冒泡排序算法描述冒泡排序的基本思想就是：从无序序列头部开始，进行两两比较，根据大小交换位置，直到最后将最大的数据元素交换到了无序队列的队尾，从而成为有序序列的一部分；下一次继续这个过程，直到所有数据元素都排好序。  算法的核心在于每次通过两两比较交换位置，选出剩余无序序列里最大的数据元素放到队尾。  代码实现 比较相邻的元素，如果第一个比第二个大(升序)，就交换他们两个； 对每一对相邻元素做同样的">
@@ -248,7 +248,7 @@
         
         
           
-          <li class="menu-item menu-item-post_asset_folder">
+          <li class="menu-item menu-item-tags">
 
     
     
@@ -258,7 +258,7 @@
 
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>post_asset_folder</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
 
   </li>
         
@@ -344,6 +344,23 @@
     
 
     <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/book" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>book</a>
 
   </li>
 
@@ -467,12 +484,24 @@
                 
               
 
-              <time title="创建时间：2019-03-14 20:07:25 / 修改时间：23:13:39" itemprop="dateCreated datePublished" datetime="2019-03-14T20:07:25+08:00">2019-03-14</time>
+              <time title="创建时间：2019-03-14 20:07:25" itemprop="dateCreated datePublished" datetime="2019-03-14T20:07:25+08:00">2019-03-14</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-17 14:15:24" itemprop="dateModified" datetime="2019-03-17T14:15:24+08:00">2019-03-17</time>
               
             
           </span>
@@ -585,6 +614,7 @@
 <h2 id="字符串大小写转换"><a href="#字符串大小写转换" class="headerlink" title="字符串大小写转换"></a>字符串大小写转换</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">trans_str</span><span class="params">()</span>:</span></span><br><span class="line">    str = <span class="string">"https://liuyude.COM"</span></span><br><span class="line">    print(str.upper())  <span class="comment"># 把所有字符中的小写字母转换成大写字母</span></span><br><span class="line">    print(str.lower())  <span class="comment"># 把所有字符串中大写字母转换成小写字母</span></span><br><span class="line">    print(str.capitalize())  <span class="comment"># 把第一个字母转化为大写字母，其余小写</span></span><br><span class="line">    print(str.title())  <span class="comment"># 把每个单词的第一个字母转化为大写，其余小写</span></span><br></pre></td></tr></table></figure>
 <h2 id="计算每个月天数"><a href="#计算每个月天数" class="headerlink" title="计算每个月天数"></a>计算每个月天数</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_month_days</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">import</span> calendar</span><br><span class="line">    monthRange = calendar.monthcalendar(<span class="number">2019</span>, <span class="number">2</span>)</span><br><span class="line">    print(monthRange)</span><br></pre></td></tr></table></figure>
 <h2 id="获取昨天的日期"><a href="#获取昨天的日期" class="headerlink" title="获取昨天的日期"></a>获取昨天的日期</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_last_day</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">import</span> datetime</span><br><span class="line">    today = datetime.date.today()</span><br><span class="line">    oneday = datetime.timedelta(days=<span class="number">1</span>)</span><br><span class="line">    yesterday = today - oneday</span><br><span class="line">    print(yesterday)</span><br><span class="line">    <span class="keyword">return</span> yesterday</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dic = &#123;<span class="string">"k1"</span>:<span class="string">"vlvl"</span>,<span class="string">"k2"</span>:[<span class="number">11</span>,<span class="number">22</span>,<span class="number">33</span>,<span class="number">44</span>,<span class="number">55</span>]&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> key <span class="keyword">in</span> dic:</span><br><span class="line">    dic[key] = dic[key][:<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">print(dic)</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -747,7 +777,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-count">45</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -780,7 +810,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">10</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -821,7 +855,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">14</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -877,6 +917,9 @@
               </ul>
             </div>
           
+          <div id="music163player">
+              <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=5271400&auto=0&height=66"></iframe>
+          </div>
 
           
             
