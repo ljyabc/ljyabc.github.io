@@ -440,7 +440,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2019/03/14/python数据类型/">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2019/03/19/生产者与消费者模型/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="李江洋">
@@ -460,7 +460,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/03/14/python数据类型/" class="post-title-link" itemprop="url">python数据类型</a>
+                <a href="/2019/03/19/生产者与消费者模型/" class="post-title-link" itemprop="url">生产者与消费者模型</a>
               
             
           </h1>
@@ -485,7 +485,7 @@
                 
               
 
-              <time title="创建时间：2019-03-14 20:45:10 / 修改时间：21:53:46" itemprop="dateCreated datePublished" datetime="2019-03-14T20:45:10+08:00">2019-03-14</time>
+              <time title="创建时间：2019-03-19 16:33:23 / 修改时间：16:40:51" itemprop="dateCreated datePublished" datetime="2019-03-19T16:33:23+08:00">2019-03-19</time>
             
 
             
@@ -507,7 +507,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/记忆/" itemprop="url" rel="index"><span itemprop="name">记忆</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/理解/" itemprop="url" rel="index"><span itemprop="name">理解</span></a></span>
 
                 
                 
@@ -526,8 +526,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/03/14/python数据类型/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/14/python数据类型/" itemprop="commentCount"></span>
+                <a href="/2019/03/19/生产者与消费者模型/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/19/生产者与消费者模型/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -558,19 +558,33 @@
         
           
             <p>
-              数据类型引用计数如果一个变量的引用计数为0,那么就会被python的垃圾回收机制自动回收 
-id和值id相等,值一定相等: 值相等,但id不一定相等(存放值的内存空间相同则值一定相同,值相同但是存放值的内存空间不一定相同)
-字符串索引,
-切片(顾头不顾尾,步长),
-len,成员运算(in和not in),
-循环 for ,
-方法(strip split lower upper startswith
+              生产者与消费者模型
+
+	
+    
+	
+
+
+
+
+
+	
+    
+	
+
+
+
+基于加锁能带来效率低和需要自己手动加锁的问题，我们最好寻找一种解决方案能够兼顾:
+1.效率高（多个进程共享一块内存的数据）
+2.帮我们处理好锁的问题，这就是multiprocessing模块为我们提供的基于消息的IPC通信机制:队列和管道。
+3.队列和管道都是将数据存放于内存中
+4.队列又是基于（管道+锁）实现的，可以让我们
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/03/14/python数据类型/#more" rel="contents">
+              <a class="btn" href="/2019/03/19/生产者与消费者模型/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -630,7 +644,7 @@ len,成员运算(in和not in),
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2019/03/14/python小项目/">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2019/03/18/python数据库连接DButils/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="李江洋">
@@ -650,7 +664,7 @@ len,成员运算(in和not in),
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/03/14/python小项目/" class="post-title-link" itemprop="url">python小项目</a>
+                <a href="/2019/03/18/python数据库连接DButils/" class="post-title-link" itemprop="url">python数据库连接DButils</a>
               
             
           </h1>
@@ -675,24 +689,12 @@ len,成员运算(in和not in),
                 
               
 
-              <time title="创建时间：2019-03-14 20:07:25" itemprop="dateCreated datePublished" datetime="2019-03-14T20:07:25+08:00">2019-03-14</time>
+              <time title="创建时间：2019-03-18 16:42:37 / 修改时间：16:45:03" itemprop="dateCreated datePublished" datetime="2019-03-18T16:42:37+08:00">2019-03-18</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-17 14:15:24" itemprop="dateModified" datetime="2019-03-17T14:15:24+08:00">2019-03-17</time>
               
             
           </span>
@@ -709,7 +711,7 @@ len,成员运算(in和not in),
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/逻辑/" itemprop="url" rel="index"><span itemprop="name">逻辑</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/理解/" itemprop="url" rel="index"><span itemprop="name">理解</span></a></span>
 
                 
                 
@@ -728,8 +730,8 @@ len,成员运算(in和not in),
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/03/14/python小项目/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/14/python小项目/" itemprop="commentCount"></span>
+                <a href="/2019/03/18/python数据库连接DButils/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/18/python数据库连接DButils/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -760,218 +762,16 @@ len,成员运算(in和not in),
         
           
             <p>
-              冒泡排序算法描述冒泡排序的基本思想就是：从无序序列头部开始，进行两两比较，根据大小交换位置，直到最后将最大的数据元素交换到了无序队列的队尾，从而成为有序序列的一部分；下一次继续这个过程，直到所有数据元素都排好序。
-
-算法的核心在于每次通过两两比较交换位置，选出剩余无序序列里最大的数据元素放到队尾。
-
-代码实现
-比较相邻的元素，如果第一个比第二个大(升序)，就交换他们两个；
-对每一对相邻元素做同样的
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/14/python小项目/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2019/03/14/Python数据库连接池DBUtils/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="李江洋">
-      <meta itemprop="description" content="记录学习的技能和遇到的问题">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="search out bug">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/14/Python数据库连接池DBUtils/" class="post-title-link" itemprop="url">Python数据库连接池DBUtils</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-14 19:25:09" itemprop="dateCreated datePublished" datetime="2019-03-14T19:25:09+08:00">2019-03-14</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-17 11:52:30" itemprop="dateModified" datetime="2019-03-17T11:52:30+08:00">2019-03-17</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/03/14/Python数据库连接池DBUtils/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/14/Python数据库连接池DBUtils/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              一：简介DBUtils是Python的一个用于实现数据库连接池的模块
+              Python–数据库连接DButilsDBUtils是Python的一个用于实现数据库连接池的模块。
 此连接池有两种连接模式：
-​    DBUtils提供两种外部接口：    PersistentDB ：提供线程专用的数据库连接，并自动管理连接。    PooledDB ：提供线程间可共享的数据库连接，并自动管理连接。
-二：模式一为每个线程创建一个连接，线程即使调用了close方法，也不会关闭，只是把连接重新放到连接池，供自己
+模式一：为每个线程创建一个连接，线程即使调用了close方法，也不会关闭，只是把连接重新放到连接池，供自己线程再次使用。当线程终止时，连接自动关闭。
+模式二：创建一批连接到连接池，供所有线程共享使用。 PS：由于pymysql、MySQLdb等threadsafety值为
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/03/14/Python数据库连接池DBUtils/#more" rel="contents">
+              <a class="btn" href="/2019/03/18/python数据库连接DButils/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1031,7 +831,7 @@ len,成员运算(in和not in),
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2019/03/10/django笔记2/">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2019/03/18/多进程多线程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="李江洋">
@@ -1051,7 +851,7 @@ len,成员运算(in和not in),
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/03/10/django笔记2/" class="post-title-link" itemprop="url">'django笔记2'</a>
+                <a href="/2019/03/18/多进程多线程/" class="post-title-link" itemprop="url">多进程多线程</a>
               
             
           </h1>
@@ -1076,7 +876,7 @@ len,成员运算(in和not in),
                 
               
 
-              <time title="创建时间：2019-03-10 23:56:47" itemprop="dateCreated datePublished" datetime="2019-03-10T23:56:47+08:00">2019-03-10</time>
+              <time title="创建时间：2019-03-18 16:25:50" itemprop="dateCreated datePublished" datetime="2019-03-18T16:25:50+08:00">2019-03-18</time>
             
 
             
@@ -1093,185 +893,7 @@ len,成员运算(in和not in),
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-11 00:00:04" itemprop="dateModified" datetime="2019-03-11T00:00:04+08:00">2019-03-11</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/03/10/django笔记2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/10/django笔记2/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              day17–BBS项目：1.模型层from django.db import models# Create your models here.from django.contrib.auth.models import AbstractUser"""1.userinfo：用户信息表，    字段：        id        username        password        p
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/10/django笔记2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2019/03/07/nginxlinux班/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="李江洋">
-      <meta itemprop="description" content="记录学习的技能和遇到的问题">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="search out bug">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/07/nginxlinux班/" class="post-title-link" itemprop="url">nginxlinux班</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-07 23:29:59" itemprop="dateCreated datePublished" datetime="2019-03-07T23:29:59+08:00">2019-03-07</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-08 01:00:19" itemprop="dateModified" datetime="2019-03-08T01:00:19+08:00">2019-03-08</time>
+                <time title="修改时间：2019-03-19 16:47:02" itemprop="dateModified" datetime="2019-03-19T16:47:02+08:00">2019-03-19</time>
               
             
           </span>
@@ -1288,7 +910,7 @@ len,成员运算(in和not in),
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/记忆/" itemprop="url" rel="index"><span itemprop="name">记忆</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/理解/" itemprop="url" rel="index"><span itemprop="name">理解</span></a></span>
 
                 
                 
@@ -1307,8 +929,8 @@ len,成员运算(in和not in),
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/03/07/nginxlinux班/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/07/nginxlinux班/" itemprop="commentCount"></span>
+                <a href="/2019/03/18/多进程多线程/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/18/多进程多线程/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1339,14 +961,14 @@ len,成员运算(in和not in),
         
           
             <p>
-              一1.用户输入URL—&gt;
-浏览器跳转–&gt;浏览器缓存–&gt;DNS域名解析–&gt;tcp三次握手–&gt;http请求–&gt;http响应–&gt;tcp四次挥手        http请求            方法：GET 请求            协议：http://     http1.0短连接   http1.1长连接            域名：www.oldboye
+              一 进程与线程的概念1.1 进程
+考虑一个场景：浏览器，网易云音乐以及notepad++ 三个软件只能顺序执行是怎样一种场景呢？另外，假如有两个程序A和B，程序A在执行到一半的过程中，需要读取大量的数据输入（I/O操作），而此时CPU只能静静地等待任务A读取完数据才能继续执行，这样就白白浪费了CPU资源。你是不是已经想到在程序A读取数据的过程中，让程序B去执行，当程序A读取完数据之后，让程序B暂停
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/03/07/nginxlinux班/#more" rel="contents">
+              <a class="btn" href="/2019/03/18/多进程多线程/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1406,7 +1028,7 @@ len,成员运算(in和not in),
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2019/03/06/bbs-1/">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2019/03/18/lock-守护进程-IPC机制/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="李江洋">
@@ -1426,7 +1048,7 @@ len,成员运算(in和not in),
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/03/06/bbs-1/" class="post-title-link" itemprop="url">bbs</a>
+                <a href="/2019/03/18/lock-守护进程-IPC机制/" class="post-title-link" itemprop="url">lock/守护进程/IPC机制</a>
               
             
           </h1>
@@ -1451,554 +1073,12 @@ len,成员运算(in和not in),
                 
               
 
-              <time title="创建时间：2019-03-06 16:38:50" itemprop="dateCreated datePublished" datetime="2019-03-06T16:38:50+08:00">2019-03-06</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/03/06/bbs-1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/06/bbs-1/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              
-              
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/06/bbs-1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2019/03/06/bbs表达/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="李江洋">
-      <meta itemprop="description" content="记录学习的技能和遇到的问题">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="search out bug">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/06/bbs表达/" class="post-title-link" itemprop="url">'bbs表达'</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-06 09:40:26" itemprop="dateCreated datePublished" datetime="2019-03-06T09:40:26+08:00">2019-03-06</time>
+              <time title="创建时间：2019-03-18 16:24:09 / 修改时间：16:25:10" itemprop="dateCreated datePublished" datetime="2019-03-18T16:24:09+08:00">2019-03-18</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-07 02:34:12" itemprop="dateModified" datetime="2019-03-07T02:34:12+08:00">2019-03-07</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/03/06/bbs表达/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/06/bbs表达/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              1..先创建
-2.在setting里面配置数据库
-3.在启动django项目的init里面配置pymysql自动启动
-4.在start里面配置静态文件路径,要加逗号
-5.在view导入auth
-6.创建用户表
-7.用户表的头像上传up_load
-8.一对一的关联用户表和主站表
-9.创建主站表
-10.创建主站表的名字,创建分类表
-11.创建主站表的主题,创建标签表
-12.创建文章表
-13.创建文章表
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/06/bbs表达/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2019/03/06/bbs/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="李江洋">
-      <meta itemprop="description" content="记录学习的技能和遇到的问题">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="search out bug">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/06/bbs/" class="post-title-link" itemprop="url">bbs</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-06 08:34:50" itemprop="dateCreated datePublished" datetime="2019-03-06T08:34:50+08:00">2019-03-06</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-10 02:53:52" itemprop="dateModified" datetime="2019-03-10T02:53:52+08:00">2019-03-10</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/03/06/bbs/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/06/bbs/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              BBS1.-首页(显示文章)​        -文章详情        -点赞,点踩        -文章评论            -字评论            -评论的展示        -登录功能(图片验证码)        -注册功能(基于form验证,ajax)        -个人站点(不同人不同样式,文章过滤)        -后台管理:            -文章展示     
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/06/bbs/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2019/03/06/mysql笔记b/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="李江洋">
-      <meta itemprop="description" content="记录学习的技能和遇到的问题">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="search out bug">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/06/mysql笔记b/" class="post-title-link" itemprop="url">mysql笔记b</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-06 00:36:37" itemprop="dateCreated datePublished" datetime="2019-03-06T00:36:37+08:00">2019-03-06</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-07 02:34:20" itemprop="dateModified" datetime="2019-03-07T02:34:20+08:00">2019-03-07</time>
               
             
           </span>
@@ -2015,7 +1095,7 @@ len,成员运算(in和not in),
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/理解/" itemprop="url" rel="index"><span itemprop="name">理解</span></a></span>
 
                 
                 
@@ -2034,8 +1114,8 @@ len,成员运算(in和not in),
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/03/06/mysql笔记b/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/06/mysql笔记b/" itemprop="commentCount"></span>
+                <a href="/2019/03/18/lock-守护进程-IPC机制/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/18/lock-守护进程-IPC机制/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -2066,19 +1146,16 @@ len,成员运算(in和not in),
         
           
             <p>
-              MySQL1.Windows服务– 启动MySQL
-​    net start mysql
-
-– 创建Windows服务
-​    sc create mysql binPath= mysqld_bin_path(注意：等号与值之间有空格)
-
-2.连接与断开服务器mysql -h 地址 -P 端口 -u 用户名 -p 密码SHOW PROCESSLIST -- 显示哪些线程正在运行SHOW VA
+              Lock/守护
+守护进程看主程序是否还在执行最后回收进程如果最后一行主程序代码执行完还没有执行，那就直接被干死同步锁/互斥锁：
+LOCK 模块锁住一部分并行一部分串行lock=Lock()在args里面将lock传进去lock.acquire()来枷锁 加锁中间是要执行这段程序，别人等待开锁再进行lock.release()来解放锁  开锁速度慢但是牺牲速度保证安全问题效率低需要自己加锁处理
+IP
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/03/06/mysql笔记b/#more" rel="contents">
+              <a class="btn" href="/2019/03/18/lock-守护进程-IPC机制/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2138,7 +1215,7 @@ len,成员运算(in和not in),
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2019/03/05/面试/">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2019/03/18/操作系统的原理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="李江洋">
@@ -2158,7 +1235,7 @@ len,成员运算(in和not in),
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/03/05/面试/" class="post-title-link" itemprop="url">面试</a>
+                <a href="/2019/03/18/操作系统的原理/" class="post-title-link" itemprop="url">操作系统的原理</a>
               
             
           </h1>
@@ -2183,24 +1260,12 @@ len,成员运算(in和not in),
                 
               
 
-              <time title="创建时间：2019-03-05 13:52:32" itemprop="dateCreated datePublished" datetime="2019-03-05T13:52:32+08:00">2019-03-05</time>
+              <time title="创建时间：2019-03-18 13:58:43 / 修改时间：16:04:06" itemprop="dateCreated datePublished" datetime="2019-03-18T13:58:43+08:00">2019-03-18</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-17 00:25:33" itemprop="dateModified" datetime="2019-03-17T00:25:33+08:00">2019-03-17</time>
               
             
           </span>
@@ -2217,7 +1282,7 @@ len,成员运算(in和not in),
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/理论/" itemprop="url" rel="index"><span itemprop="name">理论</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/理解/" itemprop="url" rel="index"><span itemprop="name">理解</span></a></span>
 
                 
                 
@@ -2236,8 +1301,563 @@ len,成员运算(in和not in),
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/03/05/面试/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/05/面试/" itemprop="commentCount"></span>
+                <a href="/2019/03/18/操作系统的原理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/18/操作系统的原理/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              操作系统的原理
+
+	
+    
+	
+
+
+
+1、串行：​    一个任务完完整整地运行完毕后，才能运行下一个任务
+2、并发​    看起来多个任务是同时运行的即可，单核也可以实现并发
+3、并行：​    真正意义上多个任务的同时运行，只有多核才实现并行
+4、cpu的功能：​    cpu是用来做计算，cpu是无法执行IO操作的，一旦遇到io操作，应该让cpu去执行别的任务
+5、多道技术​    1、
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/18/操作系统的原理/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2019/03/17/计算机网络/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李江洋">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="search out bug">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/17/计算机网络/" class="post-title-link" itemprop="url">计算机网络</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-17 21:51:40" itemprop="dateCreated datePublished" datetime="2019-03-17T21:51:40+08:00">2019-03-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-18 13:41:56" itemprop="dateModified" datetime="2019-03-18T13:41:56+08:00">2019-03-18</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/理解/" itemprop="url" rel="index"><span itemprop="name">理解</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/03/17/计算机网络/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/17/计算机网络/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              1. 网络层次划分　　为了使不同计算机厂家生产的计算机能够相互通信，以便在更大的范围内建立计算机网络，国际标准化组织（ISO）在1978年提出了“开放系统互联参考模型”，即著名的OSI/RM模型（Open System Interconnection/Reference Model）。它将计算机网络体系结构的通信协议划分为七层，自下而上依次为：物理层（Physics Layer）、数据链路层（Da
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/17/计算机网络/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2019/03/17/Socket/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李江洋">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="search out bug">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/17/Socket/" class="post-title-link" itemprop="url">Socket</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-17 21:44:10 / 修改时间：21:51:19" itemprop="dateCreated datePublished" datetime="2019-03-17T21:44:10+08:00">2019-03-17</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/理解/" itemprop="url" rel="index"><span itemprop="name">理解</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/03/17/Socket/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/17/Socket/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              网络通信标准—网络协议互联网协议–osi七层协议五层协议：应用层：应用层、表示层、会话层          传输层：传输层        网络层：网络层        数据链路层：数据链路层        物理层：物理层物理层就是用来发送电信号的数据链路层跑协议，分组标准。 ethernet以太网协议，规定电信号如何分组电信号拿来后是一堆数据，只要规定了怎么分组才能拿到正确数据
+ethernet规
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/17/Socket/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2019/03/17/Linux-Centos安装mysql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李江洋">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="search out bug">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/17/Linux-Centos安装mysql/" class="post-title-link" itemprop="url">Linux--Centos安装mysql</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-17 19:37:00" itemprop="dateCreated datePublished" datetime="2019-03-17T19:37:00+08:00">2019-03-17</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/03/17/Linux-Centos安装mysql/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/17/Linux-Centos安装mysql/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -2269,17 +1889,385 @@ len,成员运算(in和not in),
           
             <p>
               
+              
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/17/Linux-Centos安装mysql/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
 
-一1SELECT city,count FROM 表名 
-2models.User.objects.filter（city=”上海”）.count()
-3User.objects.all().annotate(city_num=Count(“city”)).values(‘city_num’) 
-4mysql&gt; SELECT city,count(id)FROM user GROUP B
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2019/03/17/linux配置python3-6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李江洋">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="search out bug">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/17/linux配置python3-6/" class="post-title-link" itemprop="url">linux配置python3.6</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-17 15:57:22 / 修改时间：16:02:17" itemprop="dateCreated datePublished" datetime="2019-03-17T15:57:22+08:00">2019-03-17</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/配置/" itemprop="url" rel="index"><span itemprop="name">配置</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/03/17/linux配置python3-6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/17/linux配置python3-6/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              linux配置python3.6一、服务器环境配置在 CentOS 7 中安装 Python 之前，请确保系统中已经有了所有必要的开发依赖：    # yum -y groupinstall development# yum -y install zlib-devel在 Debian 中，我们需要安装 gcc、make 和 zlib 压缩/解压缩库：# aptitude -y install gc
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/03/05/面试/#more" rel="contents">
+              <a class="btn" href="/2019/03/17/linux配置python3-6/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2019/03/17/linux设置环境变量/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李江洋">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="search out bug">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/17/linux设置环境变量/" class="post-title-link" itemprop="url">linux设置环境变量</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-17 15:27:43 / 修改时间：15:29:42" itemprop="dateCreated datePublished" datetime="2019-03-17T15:27:43+08:00">2019-03-17</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/配置/" itemprop="url" rel="index"><span itemprop="name">配置</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/03/17/linux设置环境变量/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/17/linux设置环境变量/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              linux设置环境变量一：用于当前终端：在当前终端中输入：export PATH=$PATH:&lt;你的要加入的路径&gt;
+不过上面的方法只适用于当前终端，一旦当前终端关闭或在另一个终端中，则无效。
+二：用于当前用户：在用户主目录下有一个 .bashrc 隐藏文件，可以在此文件中加入 PATH 的设置如下：
+vi ~/.bashrc
+加入：
+export PATH=&lt;你的要加入的路径&g
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/17/linux设置环境变量/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2328,7 +2316,7 @@ len,成员运算(in和not in),
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2372,7 +2360,7 @@ len,成员运算(in和not in),
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">71</span>
+                    <span class="site-state-item-count">100</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2413,7 +2401,11 @@ len,成员运算(in和not in),
                     
                       
                     
-                    <span class="site-state-item-count">14</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2472,7 +2464,17 @@ len,成员运算(in和not in),
                     
                       
                     
-                    <span class="site-state-item-count">23</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">28</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -2553,7 +2555,7 @@ len,成员运算(in和not in),
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>

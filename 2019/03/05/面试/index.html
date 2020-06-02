@@ -125,7 +125,21 @@
 <meta property="og:image" content="https://ljyabc.github.io/2019/03/05/面试/155224243201.png">
 <meta property="og:image" content="https://ljyabc.github.io/2019/03/05/面试/1552324952431.png">
 <meta property="og:image" content="https://ljyabc.github.io/2019/03/05/面试/1552327887878.png">
-<meta property="og:updated_time" content="2019-03-16T16:25:33.474Z">
+<meta property="og:image" content="file:///D:/软件/qq记录/1328044392/Image/Group/Image5/X%60_%60SC9TJUYRY$T0QV%60DC22.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/05/面试/E:/blog-git/ljy/source/_posts/面试/1554533776140.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/05/面试/E:/blog-git/ljy/source/_posts/面试/1554533802192.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/05/面试/E:/blog-git/ljy/source/_posts/面试/1554533812760.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/05/面试/E:/blog-git/ljy/source/_posts/面试/1554533860876.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/05/面试/E:/blog-git/ljy/source/_posts/面试/1554533870606.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/05/面试/E:/blog-git/ljy/source/_posts/面试/1554533906551.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/05/面试/E:/blog-git/ljy/source/_posts/面试/1554533914991.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/05/面试/E:/blog-git/ljy/source/_posts/面试/1554533921912.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/05/面试/E:/blog-git/ljy/source/_posts/面试/1554533938472.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/05/面试/E:/blog-git/ljy/source/_posts/面试/1554533988647.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/05/面试/E:/blog-git/ljy/source/_posts/面试/1554534139075.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/05/面试/E:/blog-git/ljy/source/_posts/面试/1554534192959.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/05/面试/E:/blog-git/ljy/source/_posts/面试/1554534207867.png">
+<meta property="og:updated_time" content="2019-04-06T07:03:45.200Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面试">
 <meta name="twitter:description" content="一1SELECT city,count FROM 表名  2models.User.objects.filter（city=”上海”）.count() 3User.objects.all().annotate(city_num=Count(“city”)).values(‘city_num’)  4mysql&amp;gt; SELECT city,count(id)FROM user GROUP B">
@@ -523,7 +537,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-17 00:25:33" itemprop="dateModified" datetime="2019-03-17T00:25:33+08:00">2019-03-17</time>
+                <time title="修改时间：2019-04-06 15:03:45" itemprop="dateModified" datetime="2019-04-06T15:03:45+08:00">2019-04-06</time>
               
             
           </span>
@@ -655,6 +669,22 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Interface</span>:</span><span class="comment">#定义接口Interface类来模仿接口的概念，python中压根就没有interface关键字来定义一个接口。</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">read</span><span class="params">(self)</span>:</span> <span class="comment">#定接口函数read</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">write</span><span class="params">(self)</span>:</span> <span class="comment">#定义接口函数write</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Txt</span><span class="params">(Interface)</span>:</span> <span class="comment">#文本，具体实现read和write</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">read</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'文本数据的读取方法'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">write</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'文本数据的读取方法'</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sata</span><span class="params">(Interface)</span>:</span> <span class="comment">#磁盘，具体实现read和write</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">read</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'硬盘数据的读取方法'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">write</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'硬盘数据的读取方法'</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Process</span><span class="params">(Interface)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">read</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'进程数据的读取方法'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">write</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'进程数据的读取方法'</span>)</span><br></pre></td></tr></table></figure>
 <p>上面的代码只是看起来像接口，其实并没有起到接口的作用，子类完全可以不用去实现接口 ，这就用到了抽象类 </p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>、类的属性和对象的属性有什么区别?<span class="string">'''</span></span><br><span class="line"><span class="string">#类属性是共有的，任何实例化的对象都能够拿到类属性，而对象属性是对象自己本身的特性。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">'''</span><span class="number">2</span>、面向过程编程与面向对象编程的区别与应用场景?<span class="string">'''</span></span><br><span class="line"><span class="string">#面向过程是机械化的思维方式，解决问题的步骤是先干什么，后干什么， 把简单的问题流程化进而简单化。代码的扩展性不好</span></span><br><span class="line"><span class="string">#一般运用在程序不需要经常改变的地方</span></span><br><span class="line"><span class="string">#面向过程是一种上帝式的思维，解决问题是找一个个的对象，由对象之间相互交互，代码的扩展性好。经常用在需要改动的地方</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">'''</span><span class="number">3</span>、类和对象在内存中是如何保存的。<span class="string">'''</span></span><br><span class="line"><span class="string">#类在定义阶段就会产生一个名称空间，然后将产生的名字放到内存空间中，对象是在实例化过程中产生的名称空间，该名称空间存放对象私有的属性，以及绑定方法。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">'''</span>    <span class="number">4</span>、什么是绑定到对象的方法，、如何定义，如何调用，给谁用？有什么特性<span class="string">'''</span></span><br><span class="line"><span class="string">#类中定义的方法就是给实例化的对象绑定的方法，在类的定义阶段就定义一个函数，函数必须要加上一个参数，用来接收对象本身</span></span><br><span class="line"><span class="string">#实例化的对象可以直接调用绑定方法，谁来调用就给谁绑定一个方法。</span></span><br></pre></td></tr></table></figure>
+<p><img src="file:///D:\软件\qq记录\1328044392\Image\Group\Image5\X`_`SC9TJUYRY$T0QV`DC22.png" alt="img"> </p>
+<p><img src="/2019/03/05/面试/E:/blog-git\ljy\source\_posts\面试\1554533776140.png" alt="1554533776140"></p>
+<p><img src="/2019/03/05/面试/E:/blog-git\ljy\source\_posts\面试\1554533802192.png" alt="1554533802192"></p>
+<p><img src="/2019/03/05/面试/E:/blog-git\ljy\source\_posts\面试\1554533812760.png" alt="1554533812760"></p>
+<p><img src="/2019/03/05/面试/E:/blog-git\ljy\source\_posts\面试\1554533860876.png" alt="1554533860876"></p>
+<p><img src="/2019/03/05/面试/E:/blog-git\ljy\source\_posts\面试\1554533870606.png" alt="1554533870606"></p>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">装饰器</span><br><span class="line"><span class="meta"># def outter(cls):</span></span><br><span class="line"><span class="meta">#     instance = cls(IP,PORT)</span></span><br><span class="line"><span class="meta">#     def wrapper(*args,**kwargs):</span></span><br><span class="line"><span class="meta">#         if len(args) != 0 or len(kwargs) != 0:</span></span><br><span class="line"><span class="meta">#             obj = cls(*args,**kwargs)</span></span><br><span class="line"><span class="meta">#             return obj</span></span><br><span class="line"><span class="meta">#         return instance</span></span><br><span class="line"><span class="meta">#     return wrapper</span></span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="meta"># @outter</span></span><br><span class="line"><span class="meta"># class Mysql:</span></span><br><span class="line"><span class="meta">#     def __init__(self,ip,port):</span></span><br><span class="line"><span class="meta">#         self.ip = ip</span></span><br><span class="line"><span class="meta">#         self.port = port</span></span><br></pre></td></tr></table></figure>
+<p><img src="/2019/03/05/面试/E:/blog-git\ljy\source\_posts\面试\1554533906551.png" alt="1554533906551"></p>
+<p><img src="/2019/03/05/面试/E:/blog-git\ljy\source\_posts\面试\1554533914991.png" alt="1554533914991"></p>
+<p><img src="/2019/03/05/面试/E:/blog-git\ljy\source\_posts\面试\1554533921912.png" alt="1554533921912"></p>
+<p><img src="/2019/03/05/面试/E:/blog-git\ljy\source\_posts\面试\1554533938472.png" alt="1554533938472"></p>
+<p><img src="/2019/03/05/面试/E:/blog-git\ljy\source\_posts\面试\1554533988647.png" alt="1554533988647"></p>
+<p><img src="/2019/03/05/面试/E:/blog-git\ljy\source\_posts\面试\1554534139075.png" alt="1554534139075"></p>
+<p><img src="/2019/03/05/面试/E:/blog-git\ljy\source\_posts\面试\1554534192959.png" alt="1554534192959"></p>
+<p><img src="/2019/03/05/面试/E:/blog-git\ljy\source\_posts\面试\1554534207867.png" alt="1554534207867"></p>
+
       
     </div>
 
@@ -817,7 +847,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">71</span>
+                    <span class="site-state-item-count">100</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -858,7 +888,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">14</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -917,7 +951,17 @@
                     
                       
                     
-                    <span class="site-state-item-count">23</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">28</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1015,7 +1059,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
