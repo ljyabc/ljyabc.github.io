@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[你好]]></title>
+    <url>%2F2021%2F03%2F22%2F%E4%BD%A0%E5%A5%BD%2F</url>
+    <content type="text"><![CDATA[测试aa3443432]]></content>
+      <categories>
+        <category>记忆</category>
+      </categories>
+      <tags>
+        <tag>python基础</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[scratch贪吃蛇]]></title>
     <url>%2F2020%2F06%2F12%2Fscratch%E8%B4%AA%E5%90%83%E8%9B%87%2F</url>
     <content type="text"></content>
