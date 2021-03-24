@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[摸具制造上课第二章]]></title>
+    <url>%2F2021%2F03%2F24%2F%E6%91%B8%E5%85%B7%E5%88%B6%E9%80%A0%E4%B8%8A%E8%AF%BE%E7%AC%AC%E4%BA%8C%E7%AB%A0%2F</url>
+    <content type="text"><![CDATA[冲裁工艺与模具设计第一节 4.冲裁间隙 123456789git config --global user.name 'ljyabc'git config --global user.email '1328044392@qq.com'git config --global --listssh-agent -sssh-keygen -t rsa -C '1328044392@qq.com'配置完私钥ssh -T git@github.com_config.yml文件git@github.com:ljyabc/ljyabc.github.io.git]]></content>
+      <categories>
+        <category>记忆</category>
+      </categories>
+      <tags>
+        <tag>摸具</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[模具制造上课]]></title>
     <url>%2F2021%2F03%2F24%2F%E6%A8%A1%E5%85%B7%E5%88%B6%E9%80%A0%E4%B8%8A%E8%AF%BE%2F</url>
-    <content type="text"><![CDATA[第一节冲压成型的特点和基本工序 第二节冲压成形的基本理论 第三节冲压材料的选用]]></content>
+    <content type="text"><![CDATA[第一节冲压成型的特点和基本工序 冲压成型的特点和基本工序选择题 第二节冲压成形的基本理论 第三节冲压材料的选用 冲压材料的选用选择题 第四节冲模材料的选用 第五节1.冲压常用设备概念 2.摸具与压力机的安装关系 3.设备技术参数的确定]]></content>
       <categories>
         <category>记忆</category>
       </categories>
