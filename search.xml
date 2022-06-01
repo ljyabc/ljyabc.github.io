@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[变量]]></title>
+    <url>%2F2022%2F06%2F01%2F%E5%8F%98%E9%87%8F%2F</url>
+    <content type="text"><![CDATA[变量一.引入我们学习python语言是为了控制计算机，让计算机能够像人一样去工作，所以在python这门语言中，所有语法存在的意义都是为了让计算机具备人的某一项技能，这句话是我们理解后续所有python语法的根本。 二.变量 一.什么是变量？1变量就是可以变化的量，量指的是事物的状态，比如人的年龄、性别，游戏角色的等级、金钱等等 二.为什么要有变量？12345为了让计算机能够像人一样去记忆事物的某种状态，并且状态是可以发生变化的详细地说：程序执行的本质就是一系列状态的变化，变是程序执行的直接体现，所以我们需要有一种机制能够反映或者说是保存下来程序执行时状态，以及状态的变化。 三.怎么使用变量（先定义，后调用）3.1.变量的定义与使用插图：定义变量的三个组成部分 定义变量示范如下1234name = 'dahai'sex = '男'age = 35 # 记下人的年龄为35岁salary = 21000.65 # 记下人的薪资为21000.65元 解释器执行到变量定义的代码时会申请内存空间存放变量值，然后将变量值的内存地址绑定给变量名，以变量的定义age=18为例子，如下图 插图:定义变量申请内存 通过变量名即可引用到对应的值12# 通过变量名即可引用到值，我们可以结合print()功能将其打印出来print(age) # 通过变量名age找到值18，然后执行print(18),输出：18 3.2.变量名的命名规范变量名的命名应该见名知意1234# 如果我们要存储的数据18代表的是一个人的年龄，那么变量名推荐命名为ageage = 18 # 如果我们要存储的数据dahai代表的是一个人的名字，那么变量名推荐命名为namename = 'dahai' 其他详细的规范如下12345678910111213141516171819# 命名规范1. 变量名只能是 字母、数字或下划线的任意组合2. 变量名的第一个字符不能是数字3. 关键字不能声明为变量名，常用关键字如下['and', 'as', 'assert', 'break', 'class', 'continue', 'def', 'del', 'elif', 'else', 'except', 'exec', 'finally', 'for', 'from','global', 'if', 'import', 'in', 'is', 'lambda', 'not', 'or', 'pass', 'print', 'raise', 'return', 'try', 'while', 'with', 'yield'] # 错误示范如下：*a=123$b=456c$=7892_name='lili'123='lili'and=123年龄=18 # 强烈建议不要使用中文命名 # 正确示范如下age_of_jason=31page1='首页'_class='终极一班' 3.3.变量名的命名风格 1234# 风格一：驼峰体AgeOfDahai = 56 # 风格二：纯小写下划线(在python中，变量名的命名推荐使用该风格)age_of_dahai = 56 3.4.变量值的三大特性变量的值具备三大特性 12345678#1、id反应的是变量在内存中的唯一编号，内存地址不同id肯定不同 #2、type变量值的类型 #3、value变量值 查看变量值三大特性的方式如下，我们将会在运算符中用到变量值的三大特性 12345678910111213name = '大海'# 1.id相当于在内存中位置或者地址print(id(name))# 2.变量值的类型print(type(name))# 3.变量值print(name)# 结果 '''2403112027888&lt;class 'str'&gt;大海''' 三.常量3.1.什么时常量？常量指的程序运行过程中不会改变的量 3.2.为什么要有常量？ 在程序运行过程中，有些值是固定的，不应该被改变，比如圆周率 3.141592653… 3.3.怎么使用常量？在python中没有一个专门的语法定义常量，约定俗称是用全部大写的变量名表示常量。如：PI=3.14159 所以单从语法层面去讲，常量的使用与变量完全一致。 插图:]]></content>
+      <categories>
+        <category>理解</category>
+      </categories>
+      <tags>
+        <tag>图灵python核心编程</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[pycharm憨憨安装]]></title>
     <url>%2F2021%2F08%2F28%2Fpycharm%E6%86%A8%E6%86%A8%E5%AE%89%E8%A3%85%2F</url>
     <content type="text"><![CDATA[一.pycharm安装安装包下载可以去官网，当然老师也下载好了 官网下载https://www.jetbrains.com/pycharm/ 点击其他版本 下载2018.1.3这个是和老师上课的一个版本（只是一个pycharm编辑器） 下载专业版2018.1.3 1.双击软件 2.可以选择自己想要安装到的目录 3.选择64位（看你电脑多少位） 4.点击install 二.打开pycharm1.点击图标 2.点击ok 3.点击免费30天 4.Accept 5.选择主题 6.创建项目 7.代码位置 8.选择D盘 9.点击新建文件夹 10.输入文件夹名字点击ok创建 11.选择创建好的文件夹 12.选择python解释器，也就是开始安装的python软件 13.选择现有的解释器 14.找到自己开始安装的python.exe路径 15.选择系统的解释器（我们的python就是安装在windows系统上的） 16.找到python安装的python.exe文件 17.就是开始安装python的这个路径下 18.就是这个python.exe文件导入pycharm 19.点击ok 20.点击创建项目 三.pycharm创建python文件 1.点击鼠标右键 2.new==&gt;python file 3.新建python文件名 4.输入print(‘hello world’)注意靠左边，符号英文 5.运行代码 运行结果 故意写错 四.pycharm字体鼠标滚轮放大和缩小1.file==&gt;&gt;settings 2.keymap=&gt;&gt;输入inc搜索 3.添加鼠标向上滚轮放大字体 4.添加鼠标向下滚轮缩小字体输入dec搜索]]></content>
@@ -1717,6 +1728,11 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[hex]]></title>
+    <url>%2F2019%2F03%2F02%2Fhex%2F</url>
+    <content type="text"><![CDATA[就看见]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[Hello World]]></title>
     <url>%2F2019%2F03%2F02%2Fhello-world%2F</url>
     <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment https://www.jianshu.com/p/3e9d614c1e77]]></content>
@@ -1726,10 +1742,5 @@
       <tags>
         <tag>hexo介绍</tag>
       </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[hex]]></title>
-    <url>%2F2019%2F03%2F02%2Fhex%2F</url>
-    <content type="text"><![CDATA[就看见]]></content>
   </entry>
 </search>
