@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="day14购物车系统登录注册注销 1.项目需求业务逻辑功能“1”:登录“2”:注册“3”:查看余额“4”:转账“5”:存款“6”:取款“7”:查看流水“8”:购物“9”:查看购买商品“10”:注销 这节课我们先讲注册，登录，注销2.一个完整的项目我们上节课讲了模块 介绍了模块的优势: ​    1.程序的组织结构更加清晰 ​    2.维护起来更加方便 ​    3.模块可以被重复使用 ​">
+<meta name="keywords" content="图灵python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="day14大海老师之购物车系统登录注册注销">
+<meta property="og:url" content="https://ljyabc.github.io/2022/10/24/day14购物车系统登录注册注销/index.html">
+<meta property="og:site_name" content="search out bug">
+<meta property="og:description" content="day14购物车系统登录注册注销 1.项目需求业务逻辑功能“1”:登录“2”:注册“3”:查看余额“4”:转账“5”:存款“6”:取款“7”:查看流水“8”:购物“9”:查看购买商品“10”:注销 这节课我们先讲注册，登录，注销2.一个完整的项目我们上节课讲了模块 介绍了模块的优势: ​    1.程序的组织结构更加清晰 ​    2.维护起来更加方便 ​    3.模块可以被重复使用 ​">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ljyabc.github.io/2022/10/24/day14购物车系统登录注册注销/1655293543161.png">
+<meta property="og:image" content="https://ljyabc.github.io/2022/10/24/day14购物车系统登录注册注销/1655293768407.png">
+<meta property="og:image" content="https://ljyabc.github.io/2022/10/24/day14购物车系统登录注册注销/1655293974248.png">
+<meta property="og:image" content="https://ljyabc.github.io/2022/10/24/day14购物车系统登录注册注销/1655294302235.png">
+<meta property="og:image" content="https://ljyabc.github.io/2022/10/24/day14购物车系统登录注册注销/1655294356781.png">
+<meta property="og:image" content="https://ljyabc.github.io/2022/10/24/day14购物车系统登录注册注销/D:/新课程/day14购物车系统登录注册注销/课件/day14购物车系统登录注册注销/1655360123558.png">
+<meta property="og:image" content="https://ljyabc.github.io/2022/10/24/day14购物车系统登录注册注销/D:/新课程/day14购物车系统登录注册注销/课件/day14购物车系统登录注册注销/1655360195221.png">
+<meta property="og:updated_time" content="2022-10-24T07:56:34.287Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="day14大海老师之购物车系统登录注册注销">
+<meta name="twitter:description" content="day14购物车系统登录注册注销 1.项目需求业务逻辑功能“1”:登录“2”:注册“3”:查看余额“4”:转账“5”:存款“6”:取款“7”:查看流水“8”:购物“9”:查看购买商品“10”:注销 这节课我们先讲注册，登录，注销2.一个完整的项目我们上节课讲了模块 介绍了模块的优势: ​    1.程序的组织结构更加清晰 ​    2.维护起来更加方便 ​    3.模块可以被重复使用 ​">
+<meta name="twitter:image" content="https://ljyabc.github.io/2022/10/24/day14购物车系统登录注册注销/1655293543161.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ljyabc.github.io/2022/10/24/day14购物车系统登录注册注销/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>day14大海老师之购物车系统登录注册注销 | search out bug</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">search out bug</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">学编程利国利民，写代码走遍天下！</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/book" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>book</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2022/10/24/day14购物车系统登录注册注销/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="图灵python大海老师">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="search out bug">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">day14大海老师之购物车系统登录注册注销
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2022-10-24 15:22:10 / 修改时间：15:56:34" itemprop="dateCreated datePublished" datetime="2022-10-24T15:22:10+08:00">2022-10-24</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python核心编程/" itemprop="url" rel="index"><span itemprop="name">python核心编程</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2022/10/24/day14购物车系统登录注册注销/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/10/24/day14购物车系统登录注册注销/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="day14购物车系统登录注册注销"><a href="#day14购物车系统登录注册注销" class="headerlink" title="day14购物车系统登录注册注销"></a>day14购物车系统登录注册注销</h1><p><img src="/2022/10/24/day14购物车系统登录注册注销/1655293543161.png" alt="1655293543161"></p>
+<h2 id="1-项目需求"><a href="#1-项目需求" class="headerlink" title="1.项目需求"></a>1.项目需求</h2><h3 id="业务逻辑功能"><a href="#业务逻辑功能" class="headerlink" title="业务逻辑功能"></a>业务逻辑功能</h3><p>“1”:登录<br>“2”:注册<br>“3”:查看余额<br>“4”:转账<br>“5”:存款<br>“6”:取款<br>“7”:查看流水<br>“8”:购物<br>“9”:查看购买商品<br>“10”:注销</p>
+<h3 id="这节课我们先讲注册，登录，注销"><a href="#这节课我们先讲注册，登录，注销" class="headerlink" title="这节课我们先讲注册，登录，注销"></a>这节课我们先讲注册，登录，注销</h3><h2 id="2-一个完整的项目"><a href="#2-一个完整的项目" class="headerlink" title="2.一个完整的项目"></a>2.一个完整的项目</h2><p>我们上节课讲了模块</p>
+<p>介绍了模块的优势:</p>
+<p>​    1.程序的组织结构更加清晰</p>
+<p>​    2.维护起来更加方便</p>
+<p>​    3.模块可以被重复使用</p>
+<p>​    4.提高了程序员的开发效率</p>
+<p>这节课老师就通过这个购物车系统来证明这些优势</p>
+<h3 id="需要有的模块目录"><a href="#需要有的模块目录" class="headerlink" title="需要有的模块目录"></a>需要有的模块目录</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">运行启动目录文件</span><br><span class="line">    bin</span><br><span class="line">        start.py</span><br><span class="line">配置文件</span><br><span class="line">	conf</span><br><span class="line">		setting.py</span><br><span class="line">执行任务文件</span><br><span class="line">	core</span><br><span class="line">		src.py</span><br><span class="line">数据存储目录</span><br><span class="line">	db</span><br><span class="line">		db_handle.py</span><br><span class="line">业务逻辑接口</span><br><span class="line">	interface</span><br><span class="line">		bank.py</span><br><span class="line">		shop.py</span><br><span class="line">		user.py</span><br><span class="line">公用逻辑接口</span><br><span class="line">	lib</span><br><span class="line">		common.py</span><br><span class="line">历史日志记录</span><br><span class="line">	log</span><br><span class="line">		user1.log</span><br></pre></td></tr></table></figure>
+<h2 id="那么我们来创建一下项目"><a href="#那么我们来创建一下项目" class="headerlink" title="那么我们来创建一下项目"></a>那么我们来创建一下项目</h2><h3 id="1-第一种以shoppingcart为根目录"><a href="#1-第一种以shoppingcart为根目录" class="headerlink" title="1.第一种以shoppingcart为根目录"></a>1.第一种以shoppingcart为根目录</h3><p>第一种导入模块不会报红色波浪线</p>
+<p><img src="/2022/10/24/day14购物车系统登录注册注销/1655293768407.png" alt="1655293688518"></p>
+<h3 id="2-第二种不以shoppingcart为根目录创建"><a href="#2-第二种不以shoppingcart为根目录创建" class="headerlink" title="2.第二种不以shoppingcart为根目录创建"></a>2.第二种不以shoppingcart为根目录创建</h3><p>第二种导入模块会报红色波浪线，对程序没影响但是会影响效率</p>
+<p><img src="/2022/10/24/day14购物车系统登录注册注销/1655293974248.png" alt="1655293974248"></p>
+<h4 id="第二种报红色波浪线的解决办法"><a href="#第二种报红色波浪线的解决办法" class="headerlink" title="第二种报红色波浪线的解决办法"></a>第二种报红色波浪线的解决办法</h4><h5 id="将文件夹Mark-Directory-as成source-root的方法"><a href="#将文件夹Mark-Directory-as成source-root的方法" class="headerlink" title="将文件夹Mark Directory as成source root的方法"></a>将文件夹Mark Directory as成source root的方法</h5><p>pycharm标记成项目路径来源文件夹</p>
+<p><img src="/2022/10/24/day14购物车系统登录注册注销/1655294302235.png" alt="1655294302235"></p>
+<h5 id="文件夹变成蓝色"><a href="#文件夹变成蓝色" class="headerlink" title="文件夹变成蓝色"></a>文件夹变成蓝色</h5><p><img src="/2022/10/24/day14购物车系统登录注册注销/1655294356781.png" alt="1655294356781"></p>
+<h2 id="3-代码编写流程"><a href="#3-代码编写流程" class="headerlink" title="3.代码编写流程"></a>3.代码编写流程</h2><h3 id="一-启动程序路径配置bin-start-py"><a href="#一-启动程序路径配置bin-start-py" class="headerlink" title="一.启动程序路径配置bin/start.py"></a>一.启动程序路径配置bin/start.py</h3><h4 id="1-拿到当前的项目执行目录"><a href="#1-拿到当前的项目执行目录" class="headerlink" title="1.拿到当前的项目执行目录"></a>1.拿到当前的项目执行目录</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="comment"># 拿到当前的执行路径</span></span><br><span class="line">print(os.path.dirname(__file__))</span><br><span class="line">Source_path = os.path.dirname(os.path.dirname(__file__))</span><br><span class="line"></span><br><span class="line">print(Source_path)</span><br></pre></td></tr></table></figure>
+<h4 id="2-添加到解释器的路径里面去"><a href="#2-添加到解释器的路径里面去" class="headerlink" title="2.添加到解释器的路径里面去"></a>2.添加到解释器的路径里面去</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys.path.append(Source_path)</span><br><span class="line"><span class="comment"># 添加到解释器路径当中</span></span><br><span class="line">print(sys.path)</span><br></pre></td></tr></table></figure>
+<h4 id="3-启动core-src-py文件run函数"><a href="#3-启动core-src-py文件run函数" class="headerlink" title="3.启动core/src.py文件run函数"></a>3.启动core/src.py文件run函数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> core <span class="keyword">import</span> src</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    src.run()</span><br></pre></td></tr></table></figure>
+<h5 id="补充-name"><a href="#补充-name" class="headerlink" title="补充  name "></a>补充 <strong> name </strong></h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(__name__)</span><br><span class="line"><span class="comment"># # start.py作为执行文件，当前文件作为主程序</span></span><br></pre></td></tr></table></figure>
+<p><img src="/2022/10/24/day14购物车系统登录注册注销/D:/新课程\day14购物车系统登录注册注销\课件\day14购物车系统登录注册注销\1655360123558.png" alt="1655360123558"></p>
+<h6 id="运行其他文件比如spam-py"><a href="#运行其他文件比如spam-py" class="headerlink" title="运行其他文件比如spam.py"></a>运行其他文件比如spam.py</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> start</span><br></pre></td></tr></table></figure>
+<p><img src="/2022/10/24/day14购物车系统登录注册注销/D:/新课程\day14购物车系统登录注册注销\课件\day14购物车系统登录注册注销\1655360195221.png" alt="1655360195221"></p>
+<p>我们看到运行自己print(<strong> name </strong> ) 结果是 <strong> main </strong> ,而把导入start.py 这个结果确实 start</p>
+<p>所有我们就可以通过一个if判断的条件，来判断你的这个文件是不是主程序。</p>
+<h5 id="if-name-‘-main-‘"><a href="#if-name-‘-main-‘" class="headerlink" title="if  name  == ‘ main ‘:"></a>if <strong> name </strong> == ‘<strong> main </strong>‘:</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:<span class="comment"># 的意思是：只有在本程序直接运行的情况下，才会执行某些操作。</span></span><br><span class="line">    src.run()</span><br></pre></td></tr></table></figure>
+<h4 id="4-写run函数，通过序号选择相应的函数功能"><a href="#4-写run函数，通过序号选择相应的函数功能" class="headerlink" title="4.写run函数，通过序号选择相应的函数功能"></a>4.写run函数，通过序号选择相应的函数功能</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    登录函数，密码输错三次锁定，用户名输错可以一直输入</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">register</span><span class="params">()</span>:</span></span><br><span class="line">	print(<span class="string">'注册'</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">check_balance</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'查看余额'</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">transfer</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'转账'</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">repay</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'还款'</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">withdraw</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'取款'</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">check_record</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'查看流水'</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shopping</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'购物'</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">look_shoppingcart</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'查看购物车'</span>)</span><br><span class="line">fun_dic=&#123;<span class="string">'1'</span>:login,</span><br><span class="line">         <span class="string">'2'</span>:register,</span><br><span class="line">         <span class="string">'3'</span>:check_balance,</span><br><span class="line">         <span class="string">'4'</span>:transfer,</span><br><span class="line">         <span class="string">'5'</span>:repay,</span><br><span class="line">         <span class="string">'6'</span>:withdraw,</span><br><span class="line">         <span class="string">'7'</span>:check_record,</span><br><span class="line">         <span class="string">'8'</span>:shopping,</span><br><span class="line">         <span class="string">'9'</span>:look_shoppingcart,</span><br><span class="line">         <span class="string">'10'</span>:loginout,</span><br><span class="line">         &#125;</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        print(<span class="string">"""</span></span><br><span class="line"><span class="string">    "1":登录</span></span><br><span class="line"><span class="string">    "2":注册</span></span><br><span class="line"><span class="string">    "3":查看余额</span></span><br><span class="line"><span class="string">    "4":转账</span></span><br><span class="line"><span class="string">    "5":还款</span></span><br><span class="line"><span class="string">    "6":取款</span></span><br><span class="line"><span class="string">    "7":查看流水</span></span><br><span class="line"><span class="string">    "8":购物</span></span><br><span class="line"><span class="string">    "9":查看购买商品</span></span><br><span class="line"><span class="string">    "10":注销</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        """</span>)</span><br><span class="line">        choice=input(<span class="string">'输入操作编号'</span>).strip()</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> choice <span class="keyword">not</span> <span class="keyword">in</span> fun_dic:<span class="keyword">continue</span></span><br><span class="line">        <span class="comment"># fun_dic[choice]拿到函数内存地址，加括号调用</span></span><br><span class="line">        fun_dic[choice]()</span><br></pre></td></tr></table></figure>
+<h3 id="二-设置一个用户的信息，登录的状态"><a href="#二-设置一个用户的信息，登录的状态" class="headerlink" title="二.设置一个用户的信息，登录的状态"></a>二.设置一个用户的信息，登录的状态</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">user_data=&#123;<span class="string">'name'</span>:<span class="literal">None</span>,</span><br><span class="line">           <span class="string">'is_auth'</span>:<span class="literal">False</span>,&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="三-注册register之1接口user-get-userinfo-by-name"><a href="#三-注册register之1接口user-get-userinfo-by-name" class="headerlink" title="三.注册register之1接口user.get_userinfo_by_name"></a>三.注册register之1接口user.get_userinfo_by_name</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">register</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">if</span> user_data[<span class="string">'is_auth'</span>]:</span><br><span class="line">        print(<span class="string">'你已登录'</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    print(<span class="string">'注册'</span>)</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        name = input(<span class="string">'输入用户名'</span>).strip()</span><br><span class="line">        <span class="comment"># 四</span></span><br><span class="line">        <span class="comment"># 查看用户是否已经注册需要用到接口interface  对应的  user</span></span><br><span class="line">        user_dic = user.get_userinfo_by_name(name)</span><br><span class="line">        <span class="comment">#</span></span><br><span class="line">        print(user_dic)</span><br></pre></td></tr></table></figure>
+<h3 id="五-写一个查询用户信息的接口"><a href="#五-写一个查询用户信息的接口" class="headerlink" title="五.写一个查询用户信息的接口"></a>五.写一个查询用户信息的接口</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_userinfo_by_name</span><span class="params">(name)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    写一个查询用户信息的接口</span></span><br><span class="line"><span class="string">    :param name:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="comment"># 这里需要用到一个db 下面的 db_handle 数据管理的方法在这个文件夹下</span></span><br><span class="line">    <span class="comment"># 这里需要返回用户信息   ？？？</span></span><br><span class="line">    <span class="keyword">return</span> db_serialization.select(name)</span><br></pre></td></tr></table></figure>
+<h3 id="六-查看用户信息接口，通过反序列化去查询"><a href="#六-查看用户信息接口，通过反序列化去查询" class="headerlink" title="六.查看用户信息接口，通过反序列化去查询"></a>六.查看用户信息接口，通过反序列化去查询</h3><h4 id="思路保存到db-db-handle-py"><a href="#思路保存到db-db-handle-py" class="headerlink" title="思路保存到db/db_handle.py"></a>思路保存到db/db_handle.py</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 思路</span></span><br><span class="line"><span class="comment"># 1.路径在 conf/setting.py进行配置</span></span><br><span class="line"><span class="comment"># 2.有json模块,存储成序列化文件</span></span><br></pre></td></tr></table></figure>
+<h4 id="假设已经注册了，我们读取序列化文件，也就是反序列化李老师-json"><a href="#假设已经注册了，我们读取序列化文件，也就是反序列化李老师-json" class="headerlink" title="假设已经注册了，我们读取序列化文件，也就是反序列化李老师.json"></a>假设已经注册了，我们读取序列化文件，也就是反序列化李老师.json</h4><h4 id="db-handle-py之1"><a href="#db-handle-py之1" class="headerlink" title="db_handle.py之1"></a>db_handle.py之1</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">from</span>  conf <span class="keyword">import</span> setting</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Serialization</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">select</span><span class="params">(self,name)</span>:</span></span><br><span class="line">        <span class="comment"># 读取一个文件信息，我们需要什么？</span></span><br><span class="line">        <span class="comment"># 1.需要文件路径</span></span><br><span class="line">        <span class="comment"># 思路</span></span><br><span class="line">        <span class="comment"># 我们可以通过json文件名进行查询，</span></span><br><span class="line">        <span class="comment"># 如果查到文件存在，说明已经注册了，</span></span><br><span class="line">        <span class="comment"># 不存在，代表没注册</span></span><br><span class="line">        <span class="comment">#七 路径写道setting里面  ？？？</span></span><br><span class="line">        path = <span class="string">r'%s/%s.json'</span>%(setting.DB_path,name)</span><br><span class="line">        <span class="comment"># 有李老师这个json文件就返回，没有就返回False</span></span><br><span class="line">        <span class="comment"># 返回给谁  bank shop user 这个三个接口 都可能用的上</span></span><br><span class="line">        <span class="keyword">if</span> os.path.isfile(path):</span><br><span class="line">            <span class="keyword">with</span> open(path,<span class="string">'r'</span>,encoding=<span class="string">'utf-8'</span>)<span class="keyword">as</span> f:</span><br><span class="line">                <span class="comment"># 对序列化json文件操作load</span></span><br><span class="line">                <span class="keyword">return</span> json.load(f)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"><span class="comment"># 记得要实例化</span></span><br><span class="line">db_serialization=Serialization()</span><br></pre></td></tr></table></figure>
+<h3 id="七-setting-py"><a href="#七-setting-py" class="headerlink" title="七.setting.py"></a>七.setting.py</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># @Author : 大海</span></span><br><span class="line"><span class="comment"># @File : setting.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="comment"># 拿到当前的执行路径</span></span><br><span class="line">Source_path = os.path.dirname(os.path.dirname(__file__))</span><br><span class="line"></span><br><span class="line">DB_path = os.path.join(Source_path,<span class="string">'db'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加日志文件路径</span></span><br><span class="line">LOG1_path=os.path.join(Source_path,<span class="string">'log'</span>,<span class="string">'user1.log'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="八-注册register之1接口user-register-user"><a href="#八-注册register之1接口user-register-user" class="headerlink" title="八.注册register之1接口user.register_user"></a>八.注册register之1接口user.register_user</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">register</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">if</span> user_data[<span class="string">'is_auth'</span>]:</span><br><span class="line">        print(<span class="string">'你已登录'</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    print(<span class="string">'注册'</span>)</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        name = input(<span class="string">'输入用户名'</span>).strip()</span><br><span class="line">        <span class="comment"># 四</span></span><br><span class="line">        <span class="comment"># 查看用户是否已经注册需要用到接口interface  对应的  user</span></span><br><span class="line">        user_dic = user.get_userinfo_by_name(name)</span><br><span class="line">        <span class="comment">#</span></span><br><span class="line">        print(user_dic)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> user_dic:</span><br><span class="line">            pwd = input(<span class="string">'输入密码'</span>).strip()</span><br><span class="line">            pwd1 = input(<span class="string">'确认密码'</span>).strip()</span><br><span class="line">            <span class="keyword">if</span> pwd == pwd1:</span><br><span class="line">                <span class="comment"># 八</span></span><br><span class="line">                user.register_user(name,pwd)</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                print(<span class="string">'2次密码不一致'</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">'用户名已经存在'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="九-注册拼接的字典进行序列化注册"><a href="#九-注册拼接的字典进行序列化注册" class="headerlink" title="九.注册拼接的字典进行序列化注册"></a>九.注册拼接的字典进行序列化注册</h3><h4 id="register-user接口1"><a href="#register-user接口1" class="headerlink" title="register_user接口1"></a>register_user接口1</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">register_user</span><span class="params">(name,password,balance=<span class="number">15000</span>)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    注册用户接口</span></span><br><span class="line"><span class="string">    :param name:</span></span><br><span class="line"><span class="string">    :param password:</span></span><br><span class="line"><span class="string">    :param balance:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="comment"># 信息传入定义的字典</span></span><br><span class="line">    user_dic = &#123;<span class="string">'name'</span>: name, <span class="string">'password'</span>: password, <span class="string">'locked'</span>: <span class="literal">False</span>, <span class="string">'account'</span>: balance, <span class="string">'shopping_cart'</span>: &#123;&#125;, <span class="string">'bankflow'</span>: []&#125;</span><br><span class="line">    <span class="comment"># 这个字典到时候会存储成json文件</span></span><br><span class="line">    <span class="comment"># 需要通过谁写入    ？？？</span></span><br><span class="line">    <span class="comment"># db包  db_handle模块 的 db_serialization 对象的方法</span></span><br><span class="line">    <span class="comment"># db_serialization</span></span><br><span class="line">    db_serialization.update(user_dic)</span><br></pre></td></tr></table></figure>
+<h4 id="db-handle-py之2"><a href="#db-handle-py之2" class="headerlink" title="db_handle.py之2"></a>db_handle.py之2</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">from</span>  conf <span class="keyword">import</span> setting</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Serialization</span>:</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">select</span><span class="params">(self,name)</span>:</span></span><br><span class="line">        <span class="comment"># 读取一个文件信息，我们需要什么？</span></span><br><span class="line">        <span class="comment"># 1.需要文件路径</span></span><br><span class="line">        <span class="comment"># 思路</span></span><br><span class="line">        <span class="comment"># 我们可以通过json文件名进行查询，</span></span><br><span class="line">        <span class="comment"># 如果查到文件存在，说明已经注册了，</span></span><br><span class="line">        <span class="comment"># 不存在，代表没注册</span></span><br><span class="line">        <span class="comment"># 路径写道setting里面  ？？？</span></span><br><span class="line">        path = <span class="string">r'%s/%s.json'</span>%(setting.DB_path,name)</span><br><span class="line">        <span class="comment"># 有ljy这个json文件就返回，没有就返回False</span></span><br><span class="line">        <span class="comment"># 返回给谁  bank shop user 这个三个接口 都可能用的上</span></span><br><span class="line">        <span class="keyword">if</span> os.path.isfile(path):</span><br><span class="line">            <span class="keyword">with</span> open(path,<span class="string">'r'</span>,encoding=<span class="string">'utf-8'</span>)<span class="keyword">as</span> f:</span><br><span class="line">                <span class="comment"># 对序列化json文件操作load</span></span><br><span class="line">                <span class="keyword">return</span> json.load(f)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="comment"># 十.序列化存储用户信息</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update</span><span class="params">(self,user_dic)</span>:</span></span><br><span class="line">        <span class="comment"># 拿到 # 路径</span></span><br><span class="line">        path_file = os.path.join(setting.Source_path,<span class="string">'db'</span>,<span class="string">'%s.json'</span>%user_dic[<span class="string">'name'</span>])</span><br><span class="line">        <span class="comment"># 注册是利用json文件名注册</span></span><br><span class="line">        <span class="keyword">with</span> open(path_file, <span class="string">'w'</span>, encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</span><br><span class="line">            <span class="comment">#  对序列化json文件操dump</span></span><br><span class="line">            json.dump(user_dic, f)</span><br><span class="line">            <span class="comment"># 刷新</span></span><br><span class="line">            f.flush()</span><br><span class="line"><span class="comment"># 记得要实例化</span></span><br><span class="line">db_serialization=Serialization()</span><br></pre></td></tr></table></figure>
+<h4 id="register-user接口2之添加日志"><a href="#register-user接口2之添加日志" class="headerlink" title="register_user接口2之添加日志"></a>register_user接口2之添加日志</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">register_user</span><span class="params">(name,password,balance=<span class="number">15000</span>)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    注册用户接口</span></span><br><span class="line"><span class="string">    :param name:</span></span><br><span class="line"><span class="string">    :param password:</span></span><br><span class="line"><span class="string">    :param balance:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="comment"># 信息传入定义的字典</span></span><br><span class="line">    user_dic = &#123;<span class="string">'name'</span>: name, <span class="string">'password'</span>: password, <span class="string">'locked'</span>: <span class="literal">False</span>, <span class="string">'account'</span>: balance, <span class="string">'shopping_cart'</span>: &#123;&#125;, <span class="string">'bankflow'</span>: []&#125;</span><br><span class="line">    <span class="comment"># 这个字典到时候会存储成json文件</span></span><br><span class="line">    <span class="comment"># 需要通过谁写入    ？？？</span></span><br><span class="line">    <span class="comment"># db包  db_handle模块 的 db_serialization 对象的方法</span></span><br><span class="line">    <span class="comment"># db_serialization</span></span><br><span class="line">    db_serialization.update(user_dic)</span><br><span class="line">    print(<span class="string">'%s 注册了'</span> % name)</span><br><span class="line">    <span class="comment"># 十一 调用日志的接口 common存储</span></span><br><span class="line">    <span class="comment"># 存储一个日志</span></span><br><span class="line">    <span class="comment"># 日志是公用的 在lib 文件夹 common 写方法 数据存储到 log 文件夹里面</span></span><br><span class="line">    <span class="comment"># 需要添加log 下面日志文件的路径到 setting 里面</span></span><br><span class="line">    common.log(<span class="string">'%s 注册了'</span> % name)</span><br></pre></td></tr></table></figure>
+<h3 id="十二-日志写入数据方法"><a href="#十二-日志写入数据方法" class="headerlink" title="十二.日志写入数据方法"></a>十二.日志写入数据方法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">log</span><span class="params">(msg)</span>:</span></span><br><span class="line">    <span class="comment"># 当前时间年月日时分秒</span></span><br><span class="line">    current_time = time.strftime(<span class="string">'%Y-%m-%d %X'</span>)</span><br><span class="line">    <span class="keyword">with</span> open(setting.LOG1_path, <span class="string">'a'</span>, encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        f.write(current_time + <span class="string">'-'</span> * <span class="number">5</span> + msg + <span class="string">'\n'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="十三-login"><a href="#十三-login" class="headerlink" title="十三.login"></a>十三.login</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    登录函数，密码输错三次锁定，用户名输错可以一直输入</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">if</span> user_data[<span class="string">'is_auth'</span>]:</span><br><span class="line">        print(<span class="string">'你已登录'</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    print(<span class="string">'请登录'</span>)</span><br><span class="line"></span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        name = input(<span class="string">'输入用户名'</span>).strip()</span><br><span class="line">        <span class="comment"># 九</span></span><br><span class="line">        <span class="comment"># 需要查询是否用户存在</span></span><br><span class="line">        <span class="comment"># 省了多少代码</span></span><br><span class="line">        user_dic = user.get_userinfo_by_name(name)</span><br><span class="line">        <span class="keyword">if</span> user_dic:</span><br><span class="line">            <span class="comment"># 是否锁定</span></span><br><span class="line">            print(user_dic[<span class="string">'locked'</span>])</span><br><span class="line">            <span class="comment"># 先写锁定</span></span><br><span class="line">            <span class="keyword">if</span> user_dic[<span class="string">'locked'</span>]:</span><br><span class="line">                <span class="comment"># 十四 解锁接口</span></span><br><span class="line">                <span class="comment"># 需要的解锁定 写入 user_dic  locked 变 True  写入 json数据修改</span></span><br><span class="line">                time.sleep(<span class="number">5</span>)</span><br><span class="line">                user.unlock_user(name)</span><br><span class="line">                count = <span class="number">0</span></span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            pwd = input(<span class="string">'输入密码'</span>).strip()</span><br><span class="line">            <span class="keyword">if</span> user_dic[<span class="string">'password'</span>] == pwd <span class="keyword">and</span> <span class="keyword">not</span> user_dic == user_dic[<span class="string">'locked'</span>]:</span><br><span class="line">                user_data[<span class="string">'name'</span>] = name</span><br><span class="line">                user_data[<span class="string">'is_auth'</span>] = <span class="literal">True</span></span><br><span class="line">                print(<span class="string">'登录成功'</span>)</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                print(<span class="string">'密码错误'</span>)</span><br><span class="line">                count += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> count &gt;= <span class="number">3</span>:</span><br><span class="line">                <span class="comment"># 十三。锁定接口</span></span><br><span class="line">                <span class="comment"># 需要的是锁定 写入 user_dic  locked 变 True  写入 json数据修改</span></span><br><span class="line">                user.lock_user(name)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">'用户名不存在'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="十四-锁定和解锁接口"><a href="#十四-锁定和解锁接口" class="headerlink" title="十四.锁定和解锁接口"></a>十四.锁定和解锁接口</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">unlock_user</span><span class="params">(name)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    解锁用户接口</span></span><br><span class="line"><span class="string">    :param name:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="comment"># 拿到用户的信息</span></span><br><span class="line">    user_dic = get_userinfo_by_name(name)</span><br><span class="line">    user_dic[<span class="string">'locked'</span>] = <span class="literal">False</span></span><br><span class="line">    db_serialization.update(user_dic)</span><br><span class="line">    print(<span class="string">'已经解锁'</span>)</span><br><span class="line">    common.log(<span class="string">'已经解锁'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">lock_user</span><span class="params">(name)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    解锁用户接口</span></span><br><span class="line"><span class="string">    :param name:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="comment"># 拿到用户的信息</span></span><br><span class="line">    user_dic = get_userinfo_by_name(name)</span><br><span class="line">    user_dic[<span class="string">'locked'</span>] = <span class="literal">True</span></span><br><span class="line">    db_serialization.update(user_dic)</span><br><span class="line">    print(<span class="string">'已被锁定'</span>)</span><br><span class="line">    <span class="comment"># 记录日志</span></span><br><span class="line">    common.log(<span class="string">'已被锁定'</span>).锁定和解锁接口</span><br></pre></td></tr></table></figure>
+<h2 id="4-项目文件"><a href="#4-项目文件" class="headerlink" title="4.项目文件"></a>4.项目文件</h2><h3 id="start-py"><a href="#start-py" class="headerlink" title="start.py"></a>start.py</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line">Source_path = os.path.dirname(os.path.dirname(__file__))</span><br><span class="line"><span class="comment"># D:/shopping_cartA8</span></span><br><span class="line"><span class="comment"># print(Source_path)</span></span><br><span class="line"></span><br><span class="line">sys.path.append(Source_path)</span><br><span class="line"></span><br><span class="line"><span class="comment"># print(sys.path)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> core <span class="keyword">import</span> src</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># src.run()</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># print(__name__)</span></span><br><span class="line"><span class="comment"># # start.py作为执行文件，当前文件作为主程序</span></span><br><span class="line"><span class="comment"># if __name__ == '__main__':的意思是：只有在本程序直接运行的情况下，才会执行某些操作。</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    src.run()</span><br></pre></td></tr></table></figure>
+<h3 id="setting-py"><a href="#setting-py" class="headerlink" title="setting.py"></a>setting.py</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># @Author : 大海</span></span><br><span class="line"><span class="comment"># @File : setting.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line">Source_path = os.path.dirname(os.path.dirname(__file__))</span><br><span class="line"><span class="comment"># D:/shopping_cartA8</span></span><br><span class="line"><span class="comment"># D:/shopping_cartA8/db</span></span><br><span class="line"><span class="comment"># D:/shopping_cartA8\db</span></span><br><span class="line"><span class="comment"># 添加保存用户数据路径</span></span><br><span class="line">DB_path = os.path.join(Source_path,<span class="string">'db'</span>)</span><br><span class="line"><span class="comment"># print(DB_path)</span></span><br><span class="line"><span class="comment"># 添加保存日志信息路径</span></span><br><span class="line">LOG1_path=os.path.join(Source_path,<span class="string">'log'</span>,<span class="string">'user1.log'</span>)</span><br><span class="line"><span class="comment"># D:/shopping_cartA8\log\user1.log</span></span><br><span class="line"><span class="comment"># print(LOG1_path)</span></span><br></pre></td></tr></table></figure>
+<h3 id="src-py"><a href="#src-py" class="headerlink" title="src.py"></a>src.py</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> interface <span class="keyword">import</span> user</span><br><span class="line"><span class="comment"># 设置一个用户的信息，登录的状态</span></span><br><span class="line">user_data=&#123;<span class="string">'name'</span>:<span class="literal">None</span>,</span><br><span class="line">           <span class="string">'is_auth'</span>:<span class="literal">False</span>,&#125;</span><br><span class="line"><span class="keyword">from</span> lib <span class="keyword">import</span> common</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    登录函数，密码输错三次锁定，用户名输错可以一直输入</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">if</span> user_data[<span class="string">'is_auth'</span>]:</span><br><span class="line">        print(<span class="string">'已登录'</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    print(<span class="string">'请登录'</span>)</span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        name = input(<span class="string">'输入用户名'</span>).strip()</span><br><span class="line">        <span class="comment"># 需要查询是否用户存在</span></span><br><span class="line">        <span class="comment"># 开始省代码</span></span><br><span class="line">        user_dic = user.get_userinfo_by_name(name)</span><br><span class="line">        <span class="keyword">if</span> user_dic:</span><br><span class="line">            <span class="comment"># 是否锁定</span></span><br><span class="line">            <span class="comment"># 锁定状态</span></span><br><span class="line">            <span class="keyword">if</span> user_dic[<span class="string">'locked'</span>]:</span><br><span class="line">                time.sleep(<span class="number">5</span>)</span><br><span class="line">                count = <span class="number">0</span></span><br><span class="line">                <span class="comment"># 需要的解锁定 写入 user_dic  locked 变 False  写入 json数据修改</span></span><br><span class="line">                <span class="comment"># ???</span></span><br><span class="line">                user.unlock_user(name)</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            pwd = input(<span class="string">'输入密码'</span>).strip()</span><br><span class="line">            <span class="keyword">if</span> user_dic[<span class="string">'password'</span>] == pwd <span class="keyword">and</span> user_dic[<span class="string">'locked'</span>] == <span class="literal">False</span>:</span><br><span class="line">                user_data[<span class="string">'name'</span>] = name</span><br><span class="line">                user_data[<span class="string">'is_auth'</span>] = <span class="literal">True</span></span><br><span class="line">                common.log(<span class="string">'登录成功'</span>)</span><br><span class="line">                print(<span class="string">'登录成功'</span>)</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                print(<span class="string">'密码错误'</span>)</span><br><span class="line">                count += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> count&gt;=<span class="number">3</span>:</span><br><span class="line">                user.lock_user(name)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">'用户名不存在'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 注册函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">register</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">if</span> user_data[<span class="string">'is_auth'</span>]:</span><br><span class="line">        print(<span class="string">'已登录'</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    print(<span class="string">'注册'</span>)</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        name = input(<span class="string">'输入用户名'</span>).strip()</span><br><span class="line">        <span class="comment"># 查看用户是否已经注册需要用到接口interface  对应的  user</span></span><br><span class="line">        user_dic=user.get_userinfo_by_name(name)</span><br><span class="line">        <span class="comment"># print(user_dic)</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> user_dic:</span><br><span class="line">            pwd = input(<span class="string">'输入密码'</span>).strip()</span><br><span class="line">            pwd1 = input(<span class="string">'确认密码'</span>).strip()</span><br><span class="line">            <span class="keyword">if</span> pwd == pwd1:</span><br><span class="line"></span><br><span class="line">                user.register_user(name,pwd)</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">'用户名已经存在'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">check_balance</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'查看余额'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">transfer</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'转账'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">repay</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'存款'</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">withdraw</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'取款'</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">check_record</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'查看流水'</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shopping</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'购物'</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">look_shoppingcart</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'查看购物车'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">loginout</span><span class="params">()</span>:</span></span><br><span class="line">    user_data[<span class="string">'is_auth'</span>] = <span class="literal">False</span></span><br><span class="line">    print(<span class="string">'注销'</span>)</span><br><span class="line"></span><br><span class="line">fun_dic=&#123;<span class="string">'1'</span>:login,</span><br><span class="line">         <span class="string">'2'</span>:register,</span><br><span class="line">         <span class="string">'3'</span>:check_balance,</span><br><span class="line">         <span class="string">'4'</span>:transfer,</span><br><span class="line">         <span class="string">'5'</span>:repay,</span><br><span class="line">         <span class="string">'6'</span>:withdraw,</span><br><span class="line">         <span class="string">'7'</span>:check_record,</span><br><span class="line">         <span class="string">'8'</span>:shopping,</span><br><span class="line">         <span class="string">'9'</span>:look_shoppingcart,</span><br><span class="line">         <span class="string">'10'</span>:loginout,</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 选择运行函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        print(<span class="string">"""</span></span><br><span class="line"><span class="string">        "1":登录</span></span><br><span class="line"><span class="string">        "2":注册</span></span><br><span class="line"><span class="string">        "3":查看余额</span></span><br><span class="line"><span class="string">        "4":转账</span></span><br><span class="line"><span class="string">        "5":还款</span></span><br><span class="line"><span class="string">        "6":取款</span></span><br><span class="line"><span class="string">        "7":查看流水</span></span><br><span class="line"><span class="string">        "8":购物</span></span><br><span class="line"><span class="string">        "9":查看购买商品</span></span><br><span class="line"><span class="string">        "10":注销</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">            """</span>)</span><br><span class="line">        choice = input(<span class="string">'输入操作编号'</span>).strip()</span><br><span class="line">        <span class="keyword">if</span> choice <span class="keyword">not</span>  <span class="keyword">in</span> fun_dic:<span class="keyword">continue</span></span><br><span class="line">        <span class="comment"># print(fun_dic[choice])</span></span><br><span class="line">        fun_dic[choice]()</span><br></pre></td></tr></table></figure>
+<h3 id="db-handle-py"><a href="#db-handle-py" class="headerlink" title="db_handle.py"></a>db_handle.py</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 六.注册的用户信息保存成序列化json文件</span></span><br><span class="line"><span class="comment"># 思路</span></span><br><span class="line"><span class="comment"># 1.路径</span></span><br><span class="line"><span class="comment"># 2.有json模块,存储成序列化文件</span></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> conf <span class="keyword">import</span> setting</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Serialization</span>:</span></span><br><span class="line">    <span class="comment"># 反序列化方法，读的方法</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">select</span><span class="params">(self,name)</span>:</span></span><br><span class="line">        <span class="comment"># print(name)</span></span><br><span class="line">        <span class="comment"># print('select')</span></span><br><span class="line">        <span class="comment"># 读取一个文件信息，我们需要什么？</span></span><br><span class="line">        <span class="comment"># 1.需要文件路径</span></span><br><span class="line">        <span class="comment"># 思路</span></span><br><span class="line">        <span class="comment"># 我们可以通过json文件名进行查询，</span></span><br><span class="line">        <span class="comment"># 如果查到文件存在，说明已经注册了，</span></span><br><span class="line">        <span class="comment"># 不存在，代表没注册</span></span><br><span class="line">        <span class="comment"># 路径写道setting里面  ？？？</span></span><br><span class="line">        <span class="comment"># D:\shopping_cartA8\db/dahai.json</span></span><br><span class="line">        <span class="comment"># 存在</span></span><br><span class="line">        <span class="comment"># D:/shoping_cart_A7\db/李老师.json</span></span><br><span class="line">        path = <span class="string">r'%s/%s.json'</span>%(setting.DB_path,name)</span><br><span class="line">        <span class="comment"># print(path)</span></span><br><span class="line">        <span class="comment"># 有李老师.json这个json文件就返回，没有就返回False</span></span><br><span class="line">        <span class="comment"># 返回给谁  bank shop user 这个三个接口 都可能用的上</span></span><br><span class="line">        <span class="keyword">if</span> os.path.isfile(path):</span><br><span class="line">            <span class="comment"># print('文件存在')</span></span><br><span class="line">            <span class="comment"># print('用户存在')</span></span><br><span class="line">            <span class="keyword">with</span> open(path,<span class="string">'r'</span>,encoding=<span class="string">'utf-8'</span>)<span class="keyword">as</span> f:</span><br><span class="line">                dic=json.load(f)</span><br><span class="line">                <span class="comment"># print(dic)</span></span><br><span class="line">                <span class="keyword">return</span> dic</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># print('文件不存在')</span></span><br><span class="line">            <span class="comment"># print('用户不存在')</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 序列化</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update</span><span class="params">(self,user_dic)</span>:</span></span><br><span class="line">        path_file = os.path.join(setting.DB_path,<span class="string">'%s.json'</span>%user_dic[<span class="string">'name'</span>])</span><br><span class="line">        <span class="comment"># D:\shopping_cartA8\db\李老师.json</span></span><br><span class="line">        <span class="comment"># 注册是利用json文件名注册  数据写入文件</span></span><br><span class="line">        <span class="keyword">with</span> open(path_file,<span class="string">'w'</span>,encoding=<span class="string">'utf-8'</span>)<span class="keyword">as</span> f:</span><br><span class="line">            json.dump(user_dic,f)</span><br><span class="line">            f.flush()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">db_serialization=Serialization()</span><br></pre></td></tr></table></figure>
+<h3 id="user-py"><a href="#user-py" class="headerlink" title="user.py"></a>user.py</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> db.db_handle <span class="keyword">import</span>  db_serialization</span><br><span class="line"><span class="keyword">from</span> lib <span class="keyword">import</span> common</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_userinfo_by_name</span><span class="params">(name)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">            写一个查询用户信息的接口</span></span><br><span class="line"><span class="string">            :param name:</span></span><br><span class="line"><span class="string">            :return:</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="comment"># 这里需要用到一个db 下面的 db_handle 数据管理的方法在这个文件夹下</span></span><br><span class="line">    <span class="comment"># 这里需要返回用户信息   ？？？</span></span><br><span class="line">    <span class="keyword">return</span> db_serialization.select(name)</span><br><span class="line">    <span class="comment"># return ????</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">register_user</span><span class="params">(name,password,balance= <span class="number">15000</span>)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">            注册用户接口</span></span><br><span class="line"><span class="string">            :param name:</span></span><br><span class="line"><span class="string">            :param password:</span></span><br><span class="line"><span class="string">            :param balance:</span></span><br><span class="line"><span class="string">            :return:</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="comment"># 信息传入定义的字典</span></span><br><span class="line">    user_dic = &#123;<span class="string">'name'</span>: name, <span class="string">'password'</span>: password, <span class="string">'locked'</span>: <span class="literal">False</span>, <span class="string">'account'</span>: balance, <span class="string">'shopping_cart'</span>: &#123;&#125;,</span><br><span class="line">                <span class="string">'bankflow'</span>: []&#125;</span><br><span class="line">    <span class="comment"># 这个字典到时候会存储成json文件</span></span><br><span class="line">    <span class="comment"># 需要通过谁写入    ？？？</span></span><br><span class="line">    <span class="comment"># db包  db_handle模块 的 db_serialization 对象的方法</span></span><br><span class="line">    <span class="comment"># db_serialization</span></span><br><span class="line">    db_serialization.update(user_dic)</span><br><span class="line">    print(<span class="string">'%s 注册了'</span>%name)</span><br><span class="line">    <span class="comment"># 存储一个日志</span></span><br><span class="line">    <span class="comment"># 日志是公用的 在lib 文件夹 common 写方法 数据存储到 log 文件夹里面</span></span><br><span class="line">    <span class="comment"># 需要添加log 下面日志文件的路径到 setting 里面</span></span><br><span class="line">    common.log(<span class="string">'%s 注册了'</span>%name)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">lock_user</span><span class="params">(name)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">        锁定用户接口</span></span><br><span class="line"><span class="string">        :param name:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        '''</span></span><br><span class="line">    <span class="comment"># 拿到注册用户的字典信息</span></span><br><span class="line">    user_dic = db_serialization.select(name)</span><br><span class="line">    <span class="comment"># 锁定改成True</span></span><br><span class="line">    user_dic[<span class="string">'locked'</span>] = <span class="literal">True</span></span><br><span class="line">    <span class="comment"># 重新写入字典信息</span></span><br><span class="line">    db_serialization.update(user_dic)</span><br><span class="line">    print(<span class="string">'密码输入错误3次锁定5秒,请5秒后再登录'</span>)</span><br><span class="line">    print(<span class="string">'已被锁定'</span>)</span><br><span class="line">    <span class="comment"># 记录日志</span></span><br><span class="line">    common.log(<span class="string">'已被锁定'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">unlock_user</span><span class="params">(name)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">            解锁用户接口</span></span><br><span class="line"><span class="string">            :param name:</span></span><br><span class="line"><span class="string">            :return:</span></span><br><span class="line"><span class="string">            '''</span></span><br><span class="line">    <span class="comment"># 拿到注册用户的字典信息</span></span><br><span class="line">    user_dic = db_serialization.select(name)</span><br><span class="line">    <span class="comment"># 锁定改成True</span></span><br><span class="line">    user_dic[<span class="string">'locked'</span>] = <span class="literal">False</span></span><br><span class="line">    <span class="comment"># 重新写入字典信息</span></span><br><span class="line">    db_serialization.update(user_dic)</span><br><span class="line">    print(<span class="string">'已被解锁'</span>)</span><br><span class="line">    <span class="comment"># 记录日志</span></span><br><span class="line">    common.log(<span class="string">'已被解锁'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="common-py"><a href="#common-py" class="headerlink" title="common.py"></a>common.py</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span>  conf <span class="keyword">import</span> setting</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="comment"># 日志写入数据方法</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">log</span><span class="params">(msg)</span>:</span></span><br><span class="line">    current_time = time.strftime(<span class="string">'%Y-%m-%d %X'</span>)</span><br><span class="line">    <span class="keyword">with</span> open(setting.LOG1_path,<span class="string">'a'</span>,encoding=<span class="string">'utf-8'</span>)<span class="keyword">as</span> f:</span><br><span class="line">        f.write(current_time+<span class="string">'-'</span>*<span class="number">6</span>+msg+<span class="string">'\n'</span>)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/gongzhonghao.jpg" alt="图灵python大海老师 wechat" style="width: 200px; max-width: 100%;">
+  <div>python分享公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="图灵python大海老师 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="图灵python大海老师 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/图灵python/" rel="tag"># 图灵python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/10/24/day13模块二/" rel="next" title="day13大海老师之模块二与购物车系统的搭建">
+                <i class="fa fa-chevron-left"></i> day13大海老师之模块二与购物车系统的搭建
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/10/24/day15购物车系统查看余额转账存款取款查看流水/" rel="prev" title="day15大海老师之购物车系统查看余额转账存款取款查看流水">
+                day15大海老师之购物车系统查看余额转账存款取款查看流水 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="图灵python大海老师">
+            
+              <p class="site-author-name" itemprop="name">图灵python大海老师</p>
+              <p class="site-description motion-element" itemprop="description">记录学习的技能和遇到的问题</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">188</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lvdXJuYW1l" title="GitHub &rarr; https://github.com/yourname"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="bWFpbHRvOjEzMjgwNDQzOTJAcXEuY29t" title="E-Mail &rarr; mailto:1328044392@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL2V4YW1wbGUuY29t" title="http://example.com">Title</span>
+                  </li>
+                
+              </ul>
+            </div>
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#day14购物车系统登录注册注销"><span class="nav-number">1.</span> <span class="nav-text">day14购物车系统登录注册注销</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-项目需求"><span class="nav-number">1.1.</span> <span class="nav-text">1.项目需求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#业务逻辑功能"><span class="nav-number">1.1.1.</span> <span class="nav-text">业务逻辑功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#这节课我们先讲注册，登录，注销"><span class="nav-number">1.1.2.</span> <span class="nav-text">这节课我们先讲注册，登录，注销</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-一个完整的项目"><span class="nav-number">1.2.</span> <span class="nav-text">2.一个完整的项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#需要有的模块目录"><span class="nav-number">1.2.1.</span> <span class="nav-text">需要有的模块目录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#那么我们来创建一下项目"><span class="nav-number">1.3.</span> <span class="nav-text">那么我们来创建一下项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-第一种以shoppingcart为根目录"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.第一种以shoppingcart为根目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-第二种不以shoppingcart为根目录创建"><span class="nav-number">1.3.2.</span> <span class="nav-text">2.第二种不以shoppingcart为根目录创建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第二种报红色波浪线的解决办法"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">第二种报红色波浪线的解决办法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#将文件夹Mark-Directory-as成source-root的方法"><span class="nav-number">1.3.2.1.1.</span> <span class="nav-text">将文件夹Mark Directory as成source root的方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#文件夹变成蓝色"><span class="nav-number">1.3.2.1.2.</span> <span class="nav-text">文件夹变成蓝色</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-代码编写流程"><span class="nav-number">1.4.</span> <span class="nav-text">3.代码编写流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一-启动程序路径配置bin-start-py"><span class="nav-number">1.4.1.</span> <span class="nav-text">一.启动程序路径配置bin/start.py</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-拿到当前的项目执行目录"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">1.拿到当前的项目执行目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-添加到解释器的路径里面去"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">2.添加到解释器的路径里面去</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-启动core-src-py文件run函数"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">3.启动core/src.py文件run函数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#补充-name"><span class="nav-number">1.4.1.3.1.</span> <span class="nav-text">补充  name </span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#运行其他文件比如spam-py"><span class="nav-number">1.4.1.3.1.1.</span> <span class="nav-text">运行其他文件比如spam.py</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#if-name-‘-main-‘"><span class="nav-number">1.4.1.3.2.</span> <span class="nav-text">if  name  == ‘ main ‘:</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-写run函数，通过序号选择相应的函数功能"><span class="nav-number">1.4.1.4.</span> <span class="nav-text">4.写run函数，通过序号选择相应的函数功能</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二-设置一个用户的信息，登录的状态"><span class="nav-number">1.4.2.</span> <span class="nav-text">二.设置一个用户的信息，登录的状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三-注册register之1接口user-get-userinfo-by-name"><span class="nav-number">1.4.3.</span> <span class="nav-text">三.注册register之1接口user.get_userinfo_by_name</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五-写一个查询用户信息的接口"><span class="nav-number">1.4.4.</span> <span class="nav-text">五.写一个查询用户信息的接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六-查看用户信息接口，通过反序列化去查询"><span class="nav-number">1.4.5.</span> <span class="nav-text">六.查看用户信息接口，通过反序列化去查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路保存到db-db-handle-py"><span class="nav-number">1.4.5.1.</span> <span class="nav-text">思路保存到db/db_handle.py</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#假设已经注册了，我们读取序列化文件，也就是反序列化李老师-json"><span class="nav-number">1.4.5.2.</span> <span class="nav-text">假设已经注册了，我们读取序列化文件，也就是反序列化李老师.json</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#db-handle-py之1"><span class="nav-number">1.4.5.3.</span> <span class="nav-text">db_handle.py之1</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七-setting-py"><span class="nav-number">1.4.6.</span> <span class="nav-text">七.setting.py</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#八-注册register之1接口user-register-user"><span class="nav-number">1.4.7.</span> <span class="nav-text">八.注册register之1接口user.register_user</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#九-注册拼接的字典进行序列化注册"><span class="nav-number">1.4.8.</span> <span class="nav-text">九.注册拼接的字典进行序列化注册</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#register-user接口1"><span class="nav-number">1.4.8.1.</span> <span class="nav-text">register_user接口1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#db-handle-py之2"><span class="nav-number">1.4.8.2.</span> <span class="nav-text">db_handle.py之2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#register-user接口2之添加日志"><span class="nav-number">1.4.8.3.</span> <span class="nav-text">register_user接口2之添加日志</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#十二-日志写入数据方法"><span class="nav-number">1.4.9.</span> <span class="nav-text">十二.日志写入数据方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#十三-login"><span class="nav-number">1.4.10.</span> <span class="nav-text">十三.login</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#十四-锁定和解锁接口"><span class="nav-number">1.4.11.</span> <span class="nav-text">十四.锁定和解锁接口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-项目文件"><span class="nav-number">1.5.</span> <span class="nav-text">4.项目文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#start-py"><span class="nav-number">1.5.1.</span> <span class="nav-text">start.py</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#setting-py"><span class="nav-number">1.5.2.</span> <span class="nav-text">setting.py</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#src-py"><span class="nav-number">1.5.3.</span> <span class="nav-text">src.py</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#db-handle-py"><span class="nav-number">1.5.4.</span> <span class="nav-text">db_handle.py</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#user-py"><span class="nav-number">1.5.5.</span> <span class="nav-text">user.py</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#common-py"><span class="nav-number">1.5.6.</span> <span class="nav-text">common.py</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">图灵python大海老师</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Pisces</span> v7.0.1</div>
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script id="ribbon" size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+  
+  <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ljyabc.github.io/2022/10/24/day14购物车系统登录注册注销/";
+    this.page.identifier = "2022/10/24/day14购物车系统登录注册注销/";
+    this.page.title = 'day14大海老师之购物车系统登录注册注销';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/exturl.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+   <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+</body>
+</html>

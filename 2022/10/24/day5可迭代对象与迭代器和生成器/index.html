@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="day5大海老师之可迭代对象与迭代器和生成器1.迭代器的基本概念1.1.什么是迭代器123456789101112131415迭代就是更新换代    1.1. 迭代器指的是迭代取值的工具    1.2. 迭代是一个重复的过程，每一次重复都是基于上一次的结果而来    比如：爹生了儿子，儿子生了孙子        1.第一次开发的项目，互联网公司        前面实现基本功能，保证用户量">
+<meta name="keywords" content="图灵python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="day5大海老师之可迭代对象与迭代器和生成器">
+<meta property="og:url" content="https://ljyabc.github.io/2022/10/24/day5可迭代对象与迭代器和生成器/index.html">
+<meta property="og:site_name" content="search out bug">
+<meta property="og:description" content="day5大海老师之可迭代对象与迭代器和生成器1.迭代器的基本概念1.1.什么是迭代器123456789101112131415迭代就是更新换代    1.1. 迭代器指的是迭代取值的工具    1.2. 迭代是一个重复的过程，每一次重复都是基于上一次的结果而来    比如：爹生了儿子，儿子生了孙子        1.第一次开发的项目，互联网公司        前面实现基本功能，保证用户量">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2022-10-24T07:58:02.660Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="day5大海老师之可迭代对象与迭代器和生成器">
+<meta name="twitter:description" content="day5大海老师之可迭代对象与迭代器和生成器1.迭代器的基本概念1.1.什么是迭代器123456789101112131415迭代就是更新换代    1.1. 迭代器指的是迭代取值的工具    1.2. 迭代是一个重复的过程，每一次重复都是基于上一次的结果而来    比如：爹生了儿子，儿子生了孙子        1.第一次开发的项目，互联网公司        前面实现基本功能，保证用户量">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ljyabc.github.io/2022/10/24/day5可迭代对象与迭代器和生成器/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>day5大海老师之可迭代对象与迭代器和生成器 | search out bug</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">search out bug</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">学编程利国利民，写代码走遍天下！</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/book" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>book</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2022/10/24/day5可迭代对象与迭代器和生成器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="图灵python大海老师">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="search out bug">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">day5大海老师之可迭代对象与迭代器和生成器
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2022-10-24 15:18:03 / 修改时间：15:58:02" itemprop="dateCreated datePublished" datetime="2022-10-24T15:18:03+08:00">2022-10-24</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python核心编程/" itemprop="url" rel="index"><span itemprop="name">python核心编程</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2022/10/24/day5可迭代对象与迭代器和生成器/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/10/24/day5可迭代对象与迭代器和生成器/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="day5大海老师之可迭代对象与迭代器和生成器"><a href="#day5大海老师之可迭代对象与迭代器和生成器" class="headerlink" title="day5大海老师之可迭代对象与迭代器和生成器"></a>day5大海老师之可迭代对象与迭代器和生成器</h1><h2 id="1-迭代器的基本概念"><a href="#1-迭代器的基本概念" class="headerlink" title="1.迭代器的基本概念"></a>1.迭代器的基本概念</h2><h3 id="1-1-什么是迭代器"><a href="#1-1-什么是迭代器" class="headerlink" title="1.1.什么是迭代器"></a>1.1.什么是迭代器</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">迭代就是更新换代</span><br><span class="line">    <span class="number">1.1</span>. 迭代器指的是迭代取值的工具</span><br><span class="line">    <span class="number">1.2</span>. 迭代是一个重复的过程，每一次重复都是基于上一次的结果而来</span><br><span class="line">    比如：爹生了儿子，儿子生了孙子</span><br><span class="line">        <span class="number">1.</span>第一次开发的项目，互联网公司</span><br><span class="line">        前面实现基本功能，保证用户量</span><br><span class="line">        后面可以慢慢改，提升品质</span><br><span class="line">        <span class="number">2.</span>老师第一次上课，紧张，技术难点，第一次不可能</span><br><span class="line">        讲的完美，但是慢慢提升，如果存在问题同学们可以指出，</span><br><span class="line">        也是一个迭代的过程。</span><br><span class="line"></span><br><span class="line">		<span class="number">3.</span>学习也是一个迭代的过程，它是基于上次学习的结果的</span><br><span class="line">        一次理解了<span class="number">60</span>%，下次看看变成<span class="number">80</span>%，运用了<span class="number">100</span>%。</span><br><span class="line"></span><br><span class="line">		<span class="number">4.</span>第一次恋爱，也不可能完美，也是慢慢提升的过程</span><br></pre></td></tr></table></figure>
+<h3 id="1-2-为何要用迭代器"><a href="#1-2-为何要用迭代器" class="headerlink" title="1.2.为何要用迭代器"></a>1.2.为何要用迭代器</h3><pre><code>器是工具
+迭代器提供了一种通用的且不依赖于索引的迭代取值方式的功能
+</code></pre><h2 id="2-如何用迭代器"><a href="#2-如何用迭代器" class="headerlink" title="2.如何用迭代器"></a>2.如何用迭代器</h2><h3 id="2-1-迭代取值"><a href="#2-1-迭代取值" class="headerlink" title="2.1.迭代取值"></a>2.1.迭代取值</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#单纯的重复不是迭代</span></span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    print(i)</span><br><span class="line"><span class="comment"># 1.2. 迭代是一重复的过程，每一次重复都是基于上一次的结果而来</span></span><br><span class="line">l = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>]</span><br><span class="line"><span class="comment"># # # #  0   1   2</span></span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> i&lt; len(l):</span><br><span class="line">    <span class="comment"># print(i)</span></span><br><span class="line">    print(l[i])</span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line"><span class="comment"># # 哪些数据类型需要这样迭代取值?</span></span><br><span class="line"><span class="comment"># # 字符串 列表 元组 字典 集合 文件等等</span></span><br><span class="line">l = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>]</span><br><span class="line">a = <span class="string">'abc'</span></span><br><span class="line">t = (<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>)</span><br><span class="line"><span class="comment"># dic = &#123;'name':'dahai','age':18&#125;</span></span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> i&lt; len(t):</span><br><span class="line">    <span class="comment"># print(i)</span></span><br><span class="line">    print(t[i])</span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 所以我们需要一种不依赖索引取值的方式</span></span><br><span class="line"><span class="comment"># 迭代器提供了一种通用的且不依赖于索引的迭代取值方式的功能</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-2-可迭代对象"><a href="#2-2-可迭代对象" class="headerlink" title="2.2.可迭代对象"></a>2.2.可迭代对象</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 可迭代对象</span></span><br><span class="line"><span class="comment">#一 ：可迭代的对象iterable：但凡内置有__iter__方法的对象都称之为可迭代的对象</span></span><br><span class="line"><span class="comment"># 因为__iter__方法这个方法可以生成迭代器</span></span><br><span class="line"><span class="comment"># 作者是个天才，每个需要取值的都加了__iter__方法</span></span><br><span class="line">a = <span class="number">1</span></span><br><span class="line"><span class="comment"># a.__iter__没有</span></span><br><span class="line">b = <span class="number">1.1</span></span><br><span class="line"><span class="comment"># # b.__iter__没有</span></span><br><span class="line">c = <span class="string">'hello'</span></span><br><span class="line"><span class="comment"># c.__iter__()</span></span><br><span class="line">d = [<span class="string">'a'</span>,<span class="string">'c'</span>]</span><br><span class="line"><span class="comment"># d.__iter__()</span></span><br><span class="line">g = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"><span class="comment"># g.__iter__()</span></span><br><span class="line">f = open(<span class="string">'c.txt'</span>,<span class="string">'rt'</span>)</span><br><span class="line"><span class="comment"># f.__iter__()</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-3-迭代器"><a href="#2-3-迭代器" class="headerlink" title="2.3.迭代器"></a>2.3.迭代器</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 迭代器</span></span><br><span class="line"><span class="comment"># 执行可迭代对象下的__iter__方法，返回的值就是一个迭代器</span></span><br><span class="line"><span class="comment"># dic是可迭代对象</span></span><br><span class="line"></span><br><span class="line">dic = &#123;<span class="string">'x'</span>:<span class="number">1</span>,<span class="string">'y'</span>:<span class="number">2</span>,<span class="string">'z'</span>:<span class="number">3</span>&#125;</span><br><span class="line"><span class="comment"># # # # # # 可迭代对象变成迭代器</span></span><br><span class="line">iter_dic=dic.__iter__()</span><br><span class="line">print(iter_dic)</span><br><span class="line"><span class="comment"># # # # 迭代器  range 母鸡</span></span><br><span class="line">print(iter_dic.__next__())</span><br><span class="line">print(iter_dic.__next__())</span><br><span class="line">print(iter_dic.__next__())</span><br><span class="line"><span class="comment"># # # # # #StopIteration应该被当成一种结束信号，代表迭代器取干净了</span></span><br><span class="line"><span class="comment"># print(iter_dic.__next__())</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 列表不依赖索引取值</span></span><br><span class="line">l = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">iter_l = l.__iter__()</span><br><span class="line"><span class="comment"># # print(iter_l)</span></span><br><span class="line">print(iter_l.__next__())</span><br><span class="line">print(iter_l.__next__())</span><br><span class="line">print(iter_l.__next__())</span><br><span class="line"><span class="comment"># # # # # # #StopIteration应该被当成一种结束信号，代表迭代器取干净了</span></span><br><span class="line"><span class="comment"># print(iter_l.__next__())</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 误区</span></span><br><span class="line">l = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="comment"># 基于新的迭代器 l.__iter__()</span></span><br><span class="line"><span class="comment"># # 生成了一个迭代器，并且取了第一个值</span></span><br><span class="line">print(l.__iter__().__next__())<span class="comment"># 1</span></span><br><span class="line"><span class="comment"># # 又生成了一个迭代器，并且取了第一个值</span></span><br><span class="line">print(l.__iter__().__next__())</span><br><span class="line"><span class="comment"># # 又生成了一个迭代器，并且取了第一个值</span></span><br><span class="line">print(l.__iter__().__next__())</span><br><span class="line"><span class="comment"># # # # # 迭代是基于老的</span></span><br><span class="line">iter_l = l.__iter__()</span><br><span class="line">print(iter_l.__next__())</span><br><span class="line">print(iter_l.__next__())</span><br><span class="line">print(iter_l.__next__())</span><br><span class="line"><span class="comment"># # StopIteration应该被当成一种结束信号，代表迭代器取干净了</span></span><br><span class="line"><span class="comment"># print(iter_l.__next__())</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-4-可迭代对象与迭代器"><a href="#2-4-可迭代对象与迭代器" class="headerlink" title="2.4.可迭代对象与迭代器"></a>2.4.可迭代对象与迭代器</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 作者是个天才，每个需要取值的都加了__iter__方法，可以变成迭代器，还有些直接就是迭代器，比如文件</span></span><br><span class="line">a = <span class="number">1</span></span><br><span class="line"><span class="comment"># a.__iter__没有</span></span><br><span class="line">b = <span class="number">1.1</span></span><br><span class="line"><span class="comment"># # b.__iter__没有</span></span><br><span class="line">c = <span class="string">'hello'</span></span><br><span class="line"><span class="comment"># c.__iter__()</span></span><br><span class="line"><span class="comment"># # c.__next__()没有</span></span><br><span class="line">d = [<span class="string">'a'</span>,<span class="string">'c'</span>]</span><br><span class="line"><span class="comment"># d.__iter__()</span></span><br><span class="line"><span class="comment"># # d.__next__没有</span></span><br><span class="line">g = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"><span class="comment"># g.__iter__()</span></span><br><span class="line"><span class="comment"># g.__next__没有</span></span><br><span class="line">f = open(<span class="string">'c.txt'</span>,<span class="string">'rt'</span>)</span><br><span class="line">f.__iter__()</span><br><span class="line">f.__next__()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可迭代对象与迭代器  *****</span></span><br><span class="line"><span class="comment"># 可迭代对象</span></span><br><span class="line"><span class="comment"># 只有__iter__方法，没有__next__方法</span></span><br><span class="line"><span class="comment"># 迭代器</span></span><br><span class="line"><span class="comment">#1. 既内置有__next__方法的对象，执行迭代器__next__方法可以不依赖索引取值</span></span><br><span class="line"><span class="comment">#2. 又内置有__iter__方法的对象，执行迭代器__iter__方法得到的仍然是迭代器本身</span></span><br><span class="line"><span class="comment"># 1 迭代器一定是可迭代的对象，而可迭代的对象却不一定是迭代器</span></span><br><span class="line"><span class="comment">#    可迭代的对象只需要有__iter__()</span></span><br><span class="line"><span class="comment">#    迭代器对象 __iter__()  __next__()</span></span><br><span class="line">f = open(<span class="string">'c.txt'</span>,<span class="string">'rt'</span>)</span><br><span class="line"><span class="comment"># f是迭代器</span></span><br><span class="line">print(f)</span><br><span class="line">print(f.__next__(),end=<span class="string">''</span>)</span><br><span class="line">print(f.__next__())</span><br><span class="line"><span class="comment"># # StopIteration应该被当成一种结束信号，代表迭代器取干净了</span></span><br><span class="line"><span class="comment"># print(f.__next__())</span></span><br><span class="line"><span class="comment"># # # #  调用可迭代的对象__iter__得到的是迭代器，</span></span><br><span class="line"><span class="comment"># # # # 执行迭代器__iter__方法得到的仍然是迭代器本身,那么有什么用</span></span><br><span class="line">print(f.__iter__() <span class="keyword">is</span> f.__iter__().__iter__().__iter__().__iter__())</span><br></pre></td></tr></table></figure>
+<h3 id="2-5-迭代器为什么和for循环使用"><a href="#2-5-迭代器为什么和for循环使用" class="headerlink" title="2.5.迭代器为什么和for循环使用"></a>2.5.迭代器为什么和for循环使用</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># # 为了for循环</span></span><br><span class="line"><span class="comment">#   iter()  next()</span></span><br><span class="line">dic = &#123;<span class="string">'x'</span>:<span class="number">1</span>,<span class="string">'y'</span>:<span class="number">2</span>,<span class="string">'z'</span>:<span class="number">3</span>&#125;</span><br><span class="line"><span class="comment"># # # # 可迭代对象生成迭代器</span></span><br><span class="line"><span class="comment"># # # # 底层</span></span><br><span class="line">iter_dic = dic.__iter__()</span><br><span class="line">print(iter_dic)</span><br><span class="line">iter_dic = iter(dic)</span><br><span class="line">print(iter_dic)</span><br><span class="line"><span class="comment"># # # 内置方法</span></span><br><span class="line">print(next(iter_dic))</span><br><span class="line">print(next(iter_dic))</span><br><span class="line">print(next(iter_dic))</span><br><span class="line"><span class="comment"># # StopIteration应该被当成一种结束信号，代表迭代器取干净了</span></span><br><span class="line"><span class="comment"># print(next(iter_dic))</span></span><br><span class="line"></span><br><span class="line">dic = &#123;<span class="string">'x'</span>:<span class="number">1</span>,<span class="string">'y'</span>:<span class="number">2</span>,<span class="string">'z'</span>:<span class="number">3</span>&#125;</span><br><span class="line">iter_dic1=iter(dic)</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        print(next(iter_dic1))</span><br><span class="line">    <span class="keyword">except</span> StopIteration:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">print(<span class="string">'================='</span>)</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        print(next(iter_dic1))</span><br><span class="line">    <span class="keyword">except</span> StopIteration:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 有没有一种好的方法自己把</span></span><br><span class="line"><span class="comment"># 1.可迭代对象变成迭代器</span></span><br><span class="line"><span class="comment"># 2.能够自己获取迭代器next的值</span></span><br><span class="line"><span class="comment"># 3.next最后不报错</span></span><br><span class="line"><span class="comment">#for本质应该称之为迭代器循环</span></span><br><span class="line"><span class="comment"># 生成一个迭代器</span></span><br><span class="line">l = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">iter_l = l.__iter__()</span><br><span class="line">print(iter_l)</span><br><span class="line"><span class="comment"># # # # #  调用可迭代的对象__iter__得到的是迭代器，</span></span><br><span class="line"><span class="comment"># # # # # 执行迭代器__iter__方法得到的仍然是迭代器本身,那么有什么用</span></span><br><span class="line">print(f.__iter__() <span class="keyword">is</span> f.__iter__().__iter__().__iter__().__iter__())</span><br><span class="line"></span><br><span class="line"><span class="comment"># # 为了for循环</span></span><br><span class="line"><span class="comment">#1. 先调用in后面那个对象的__iter__方法，将其变成一个迭代器</span></span><br><span class="line">    <span class="comment"># 如果是个迭代器__iter__可以变成迭代器         老的迭代器</span></span><br><span class="line"><span class="comment">#     # 如果是个可迭代对象__iter__可以变成迭代器   新的迭代器</span></span><br><span class="line"><span class="comment">#2. 调用next(迭代器)，将得到的返回值赋值给变量名  k</span></span><br><span class="line"><span class="comment">#3. 循环往复直到next(迭代器)抛出异常，for会自动捕捉异常StopIteration然后结束循环</span></span><br><span class="line">l= [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> l:</span><br><span class="line">    print(k)</span><br><span class="line"><span class="comment"># # # # # # 为什么下一次又可以</span></span><br><span class="line"><span class="comment"># # # # # # 因为又做了上面三件事 又变成了一个新的迭代器</span></span><br><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> l:</span><br><span class="line">    print(k)</span><br><span class="line"></span><br><span class="line">f = open(<span class="string">'c.txt'</span>,<span class="string">'rt'</span>)</span><br><span class="line">print(f <span class="keyword">is</span> f.__iter__())</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> f:</span><br><span class="line">    print(line,end=<span class="string">''</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="2-6-迭代器总结"><a href="#2-6-迭代器总结" class="headerlink" title="2.6.迭代器总结"></a>2.6.迭代器总结</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#迭代器总结</span></span><br><span class="line"><span class="comment"># 优点：</span></span><br><span class="line"><span class="comment">#     1. 提供一种通用的且不依赖于索引的迭代取值方式</span></span><br><span class="line"><span class="comment">#     2. 同一时刻在内存中只存在一个值，更节省内存</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 缺点：</span></span><br><span class="line"><span class="comment">#     1. 取值不如按照索引的方式灵活，（不能取指定的某一个值，而且只能往后取）</span></span><br><span class="line"><span class="comment">#     2. 无法预测迭代器的长度</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 还记得range吗</span></span><br><span class="line">obj_iter = range(<span class="number">1</span>,<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">print(obj_iter)</span><br><span class="line"><span class="comment"># obj_iter可迭代对象</span></span><br><span class="line">obj_next=obj_iter.__iter__()</span><br><span class="line"><span class="comment"># obj_next就是迭代器</span></span><br><span class="line"><span class="comment"># print(obj_next)</span></span><br><span class="line">print(obj_next.__next__())</span><br><span class="line">print(obj_next.__next__())</span><br><span class="line">print(obj_next.__next__())</span><br><span class="line"><span class="comment"># i  1  4</span></span><br><span class="line"><span class="comment"># 同一个迭代器</span></span><br><span class="line">print(<span class="string">'迭代器的for循环下了三个鸡蛋的母鸡'</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> obj_next:</span><br><span class="line">    print(i)</span><br><span class="line">print(<span class="string">'再次'</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> obj_next:</span><br><span class="line">    print(i)</span><br><span class="line">print(<span class="string">'可迭代对象的for循环没下蛋的母鸡'</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> obj_iter:</span><br><span class="line">    print(i)</span><br><span class="line">print(<span class="string">'可迭代对象的for循环2没下蛋的母鸡'</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> obj_iter:</span><br><span class="line">    print(i)</span><br><span class="line"><span class="comment"># # obj_iter可迭代对象是会生成新的迭代器</span></span><br><span class="line"><span class="comment"># # obj_next迭代器是基于老的迭代器取值</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-生成器"><a href="#3-生成器" class="headerlink" title="3.生成器"></a>3.生成器</h2><p>大前提：生成器就是一种自定义的迭代器，本质就是迭代器</p>
+<h3 id="3-1-生成器的使用"><a href="#3-1-生成器的使用" class="headerlink" title="3.1.生成器的使用"></a>3.1.生成器的使用</h3><p>但凡函数内包含yield关键字，调用函数不会执行函数体代码</p>
+<p>会得到一个返回值，该返回值就是生成器对象</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'======1'</span>)</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">1</span></span><br><span class="line">    print(<span class="string">'======2'</span>)</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">2</span></span><br><span class="line">g=func()</span><br><span class="line">print(g)</span><br><span class="line"><span class="comment"># # g.__iter__()</span></span><br><span class="line"><span class="comment"># # g.__next__()</span></span><br><span class="line"><span class="comment"># # print(g is g.__iter__().__iter__())</span></span><br><span class="line"><span class="comment"># # # # #  #会触发函数的执行，直到碰到一个yield停下来，并且将yield后的值当作本次next的结果返回</span></span><br><span class="line">res1=next(g)</span><br><span class="line">print(res1)</span><br><span class="line">res2=next(g)</span><br><span class="line">print(res2)</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-生成器和for循环使用"><a href="#3-2-生成器和for循环使用" class="headerlink" title="3.2.生成器和for循环使用"></a>3.2.生成器和for循环使用</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 提问 最好和谁搭配使用</span></span><br><span class="line"><span class="comment"># for i in g:</span></span><br><span class="line"><span class="comment">#     print(i)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 总结yield:只能在函数内使用</span></span><br><span class="line"><span class="comment">#1. yield提供了一种自定义迭代器的解决方案</span></span><br><span class="line"><span class="comment">#2. yield可以保存函数的暂停的状态</span></span><br><span class="line"><span class="comment">#3. yield对比return</span></span><br><span class="line"><span class="comment">#   1. 相同点：都可以返回值，值的类型与个数都没有限制</span></span><br><span class="line"><span class="comment">#   2. 不同点：yield可以返回多次值（暂停），而return只能返回一次值函数就结束了（结束）</span></span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">定义一个生成器，这个生成器可以生成10位斐波拉契数列，得到斐波拉契数列</span></span><br><span class="line"><span class="string"># （斐波那契数列：数列中每一个数的值都等于前两个数相加的值 [1, 1, 2, 3, 5, 8, 13, 21, 34, 55.........]）</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(n)</span>:</span></span><br><span class="line">    i,a,b = <span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; n:</span><br><span class="line">        <span class="keyword">yield</span> a<span class="comment"># a 第一是a 1  b 1 第二次 a 1  b 2  第三次 a 2  b 3 第四次 a 3 b 5 第五次 a 5 b 8</span></span><br><span class="line">        a , b = b ,a +b</span><br><span class="line">        i+=<span class="number">1</span></span><br><span class="line"></span><br><span class="line">my_run=run(<span class="number">10</span>)</span><br><span class="line"><span class="comment"># print(my_run)</span></span><br><span class="line"></span><br><span class="line">print(list(my_run))</span><br><span class="line"></span><br><span class="line"><span class="comment"># for i in my_run:</span></span><br><span class="line"><span class="comment">#     print(i)</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-3-生成器计算阶乘"><a href="#3-3-生成器计算阶乘" class="headerlink" title="3.3.生成器计算阶乘"></a>3.3.生成器计算阶乘</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># @Author : 大海</span></span><br><span class="line"><span class="comment"># @File : 3.生成器计算阶乘.py</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">用生成器来计算1!+2!+3!+4!+......10!的和</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="comment"># 阶乘</span></span><br><span class="line"><span class="comment"># 1! = 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2! = 2*1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3! = 3*2*1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 4! = 4*3*2*1</span></span><br><span class="line"><span class="comment"># 计数变量i</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(n)</span>:</span><span class="comment"># n 的阶乘</span></span><br><span class="line">    i = <span class="number">1</span> <span class="comment"># 计数的变量 第一次  i  1</span></span><br><span class="line">    j = <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> i &lt;= n:</span><br><span class="line">        <span class="keyword">yield</span> j <span class="comment"># 第一次  j  1</span></span><br><span class="line">        i+=<span class="number">1</span><span class="comment"># 计数自增1 第二次  i  2 第三次   i  3 第四次   i  4  第5 次  i 5</span></span><br><span class="line">        j = j * i <span class="comment">#  第二次  j  2 第三次  j   1*2 * 3 = 6 第四次   j  1 *2 * 3 * 4 = 24 第5 次 1 *2 * 3 * 4 * 5</span></span><br><span class="line">a=func(<span class="number">10</span>)</span><br><span class="line">print(a)</span><br><span class="line"><span class="comment"># s = 0</span></span><br><span class="line"><span class="comment"># for i in a:</span></span><br><span class="line"><span class="comment">#     # print(i)</span></span><br><span class="line"><span class="comment">#     s += i</span></span><br><span class="line"><span class="comment"># print(s)</span></span><br><span class="line"></span><br><span class="line">print(sum(list(a)))</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/gongzhonghao.jpg" alt="图灵python大海老师 wechat" style="width: 200px; max-width: 100%;">
+  <div>python分享公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="图灵python大海老师 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="图灵python大海老师 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/图灵python/" rel="tag"># 图灵python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/10/24/day4函数基础/" rel="next" title="day4大海老师之函数基础">
+                <i class="fa fa-chevron-left"></i> day4大海老师之函数基础
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/10/24/day7异常与枚举和装饰器/" rel="prev" title="day7大海老师之异常与枚举和装饰器">
+                day7大海老师之异常与枚举和装饰器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="图灵python大海老师">
+            
+              <p class="site-author-name" itemprop="name">图灵python大海老师</p>
+              <p class="site-description motion-element" itemprop="description">记录学习的技能和遇到的问题</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">188</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lvdXJuYW1l" title="GitHub &rarr; https://github.com/yourname"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="bWFpbHRvOjEzMjgwNDQzOTJAcXEuY29t" title="E-Mail &rarr; mailto:1328044392@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL2V4YW1wbGUuY29t" title="http://example.com">Title</span>
+                  </li>
+                
+              </ul>
+            </div>
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#day5大海老师之可迭代对象与迭代器和生成器"><span class="nav-number">1.</span> <span class="nav-text">day5大海老师之可迭代对象与迭代器和生成器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-迭代器的基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">1.迭代器的基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-什么是迭代器"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1.什么是迭代器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-为何要用迭代器"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2.为何要用迭代器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-如何用迭代器"><span class="nav-number">1.2.</span> <span class="nav-text">2.如何用迭代器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-迭代取值"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1.迭代取值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-可迭代对象"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2.可迭代对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-迭代器"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3.迭代器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-可迭代对象与迭代器"><span class="nav-number">1.2.4.</span> <span class="nav-text">2.4.可迭代对象与迭代器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-迭代器为什么和for循环使用"><span class="nav-number">1.2.5.</span> <span class="nav-text">2.5.迭代器为什么和for循环使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-迭代器总结"><span class="nav-number">1.2.6.</span> <span class="nav-text">2.6.迭代器总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-生成器"><span class="nav-number">1.3.</span> <span class="nav-text">3.生成器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-生成器的使用"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1.生成器的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-生成器和for循环使用"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2.生成器和for循环使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-生成器计算阶乘"><span class="nav-number">1.3.3.</span> <span class="nav-text">3.3.生成器计算阶乘</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">图灵python大海老师</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Pisces</span> v7.0.1</div>
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script id="ribbon" size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+  
+  <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ljyabc.github.io/2022/10/24/day5可迭代对象与迭代器和生成器/";
+    this.page.identifier = "2022/10/24/day5可迭代对象与迭代器和生成器/";
+    this.page.title = 'day5大海老师之可迭代对象与迭代器和生成器';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/exturl.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+   <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+</body>
+</html>

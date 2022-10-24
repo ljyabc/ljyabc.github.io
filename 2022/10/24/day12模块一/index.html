@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="day12模块1.模块介绍 1.1.认识模块在python中，一个py文件就是一个模块，文件名xxx.py模块名则是xxx，导入模块可以引用模块中已经写好的功能。如果把开发程序比喻成制造一台电脑，编写模块就像是在制造电脑的零部件，准备好零部件后，剩下的工作就是按照逻辑把它们组装到一起。 将程序模块化会使得程序的组织结构更加清晰，维护起来更加方便。比起直接开发一个完整的程序，单独开发一个小的模块会更">
+<meta name="keywords" content="图灵python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="day12大海老师之模块一">
+<meta property="og:url" content="https://ljyabc.github.io/2022/10/24/day12模块一/index.html">
+<meta property="og:site_name" content="search out bug">
+<meta property="og:description" content="day12模块1.模块介绍 1.1.认识模块在python中，一个py文件就是一个模块，文件名xxx.py模块名则是xxx，导入模块可以引用模块中已经写好的功能。如果把开发程序比喻成制造一台电脑，编写模块就像是在制造电脑的零部件，准备好零部件后，剩下的工作就是按照逻辑把它们组装到一起。 将程序模块化会使得程序的组织结构更加清晰，维护起来更加方便。比起直接开发一个完整的程序，单独开发一个小的模块会更">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ljyabc.github.io/2022/10/24/day12模块一/1655185331757.png">
+<meta property="og:image" content="https://ljyabc.github.io/2022/10/24/day12模块一/1655186470730.png">
+<meta property="og:image" content="https://ljyabc.github.io/2022/10/24/day12模块一/1655186569345.png">
+<meta property="og:image" content="https://ljyabc.github.io/2022/10/24/day12模块一/1666597349537.png">
+<meta property="og:image" content="https://ljyabc.github.io/2022/10/24/day12模块一/1666597403613.png">
+<meta property="og:image" content="https://ljyabc.github.io/2022/10/24/day12模块一/1666597436661.png">
+<meta property="og:image" content="https://ljyabc.github.io/2022/10/24/day12模块一/1655187333201.png">
+<meta property="og:updated_time" content="2022-10-24T07:56:51.324Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="day12大海老师之模块一">
+<meta name="twitter:description" content="day12模块1.模块介绍 1.1.认识模块在python中，一个py文件就是一个模块，文件名xxx.py模块名则是xxx，导入模块可以引用模块中已经写好的功能。如果把开发程序比喻成制造一台电脑，编写模块就像是在制造电脑的零部件，准备好零部件后，剩下的工作就是按照逻辑把它们组装到一起。 将程序模块化会使得程序的组织结构更加清晰，维护起来更加方便。比起直接开发一个完整的程序，单独开发一个小的模块会更">
+<meta name="twitter:image" content="https://ljyabc.github.io/2022/10/24/day12模块一/1655185331757.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ljyabc.github.io/2022/10/24/day12模块一/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>day12大海老师之模块一 | search out bug</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">search out bug</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">学编程利国利民，写代码走遍天下！</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/book" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>book</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2022/10/24/day12模块一/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="图灵python大海老师">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="search out bug">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">day12大海老师之模块一
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2022-10-24 15:21:49 / 修改时间：15:56:51" itemprop="dateCreated datePublished" datetime="2022-10-24T15:21:49+08:00">2022-10-24</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python核心编程/" itemprop="url" rel="index"><span itemprop="name">python核心编程</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2022/10/24/day12模块一/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/10/24/day12模块一/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="day12模块"><a href="#day12模块" class="headerlink" title="day12模块"></a>day12模块</h1><h2 id="1-模块介绍"><a href="#1-模块介绍" class="headerlink" title="1.模块介绍"></a>1.模块介绍</h2><p><img src="/2022/10/24/day12模块一/1655185331757.png" alt="1655185331757"></p>
+<h3 id="1-1-认识模块"><a href="#1-1-认识模块" class="headerlink" title="1.1.认识模块"></a>1.1.认识模块</h3><p>在python中，一个py文件就是一个模块，文件名xxx.py模块名则是xxx，导入模块可以引用模块中已经写好的功能。如果把开发程序比喻成制造一台电脑，编写模块就像是在制造电脑的零部件，准备好零部件后，剩下的工作就是按照逻辑把它们组装到一起。</p>
+<p>将程序模块化会使得程序的组织结构更加清晰，维护起来更加方便。比起直接开发一个完整的程序，单独开发一个小的模块会更加简单，并且程序中的模块与电脑中的零部件稍微不同的是：程序中的模块可以被重复使用。所以总结下来，使用模块既保证了代码的重用性，又增强了程序的结构性和可维护性。另外除了自定义模块外，我们还可以导入使用内置模块提供的现成的功能，这种“拿来主义”极大地提高了程序员的开发效率。</p>
+<h3 id="1-2-模块的分类"><a href="#1-2-模块的分类" class="headerlink" title="1.2.模块的分类"></a>1.2.模块的分类</h3><p>模块就是一系列功能的集合体</p>
+<p>模块有二种来源:1. 自定义模块 py文件，2. 内置的模块。</p>
+<h3 id="1-3-模块的格式"><a href="#1-3-模块的格式" class="headerlink" title="1.3.模块的格式"></a>1.3.模块的格式</h3><p> 1 使用python编写的.py文件<br>  python文件就是一系列功能的集合体</p>
+<h3 id="1-4-为何要用模块"><a href="#1-4-为何要用模块" class="headerlink" title="1.4.为何要用模块"></a>1.4.为何要用模块</h3><p>1.使用内置模块的好处是: 拿来主义,可以极大提升开发效率</p>
+<p>2.使用自定义模块的好处是: 可以减少代码冗余</p>
+<p>(抽取我们自己程序中要公用的一些功能定义成模块,<br>    然后程序的各部分组件都去模块中调用共享的功能)</p>
+<h3 id="1-5-导入模块的方式"><a href="#1-5-导入模块的方式" class="headerlink" title="1.5.导入模块的方式"></a>1.5.导入模块的方式</h3><h4 id="1-首次导入模块发生的事情"><a href="#1-首次导入模块发生的事情" class="headerlink" title="1.首次导入模块发生的事情"></a>1.首次导入模块发生的事情</h4><ol>
+<li>会产生一个模块的名称空间</li>
+<li>执行文件spam.py,将执行过程中产生的名字都放到模块的名称空间中</li>
+<li>在当前执行文件run.py的名称空间中拿到一个模块名,该名字指向模块的名称空间</li>
+</ol>
+<h4 id="2-import导入模块"><a href="#2-import导入模块" class="headerlink" title="2.import导入模块"></a>2.import导入模块</h4><h5 id="spam-py（作为模块）"><a href="#spam-py（作为模块）" class="headerlink" title="spam.py（作为模块）"></a>spam.py（作为模块）</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># @Author : 大海</span></span><br><span class="line"><span class="comment"># @File : spam.py</span></span><br><span class="line"><span class="comment"># print('from the spam.py')</span></span><br><span class="line"></span><br><span class="line">money = <span class="number">100</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read1</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'spam.py模块'</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>:</span></span><br><span class="line">    a = <span class="number">111</span></span><br></pre></td></tr></table></figure>
+<h5 id="run-py（作为执行文件，也就是pycharm右键点击运行的文件）"><a href="#run-py（作为执行文件，也就是pycharm右键点击运行的文件）" class="headerlink" title="run.py（作为执行文件，也就是pycharm右键点击运行的文件）"></a>run.py（作为执行文件，也就是pycharm右键点击运行的文件）</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># @Author : 大海</span></span><br><span class="line"><span class="comment"># @File : run.py</span></span><br><span class="line"><span class="comment"># 文件名是spam.py,模块名则是spam</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> spam</span><br><span class="line"><span class="comment"># 之后的导入,都是直接引用第一次导入的成果,不会重新执行文件</span></span><br><span class="line"><span class="comment"># import spam</span></span><br><span class="line"><span class="comment"># import spam</span></span><br><span class="line"></span><br><span class="line">money = <span class="number">222</span></span><br><span class="line">print(money)</span><br><span class="line"><span class="comment"># # # # 在执行文件中访问模块名称空间中名字的语法:模块名.名字</span></span><br><span class="line"><span class="comment"># # # # 指名道姓地跟spam要名字money,肯定不会与当前执行文件中的名字冲突</span></span><br><span class="line">print(spam.money)</span><br><span class="line">print(spam.read1)</span><br><span class="line"><span class="comment">#</span></span><br><span class="line">spam.read1()</span><br><span class="line">print(spam.A)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 一行导入多个模块(不推荐)</span></span><br><span class="line"><span class="keyword">import</span> spam,time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># # 可以为模块起别名</span></span><br><span class="line"><span class="keyword">import</span> spam <span class="keyword">as</span> sm</span><br><span class="line"><span class="comment">#</span></span><br><span class="line">print(sm.money)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 总结import导入模块:在使用时必须加上前缀:模块名.</span></span><br><span class="line"><span class="comment"># 优点: 指名道姓地向某一个名称空间要名字,肯定不会与当前名称空间中的名字冲突</span></span><br><span class="line"><span class="comment"># 缺点: 但凡应用模块中的名字都需要加前缀,不够简洁</span></span><br></pre></td></tr></table></figure>
+<h4 id="3-from-import"><a href="#3-from-import" class="headerlink" title="3.from..import.."></a>3.from..import..</h4><h5 id="spam-py（作为模块）-1"><a href="#spam-py（作为模块）-1" class="headerlink" title="spam.py（作为模块）"></a>spam.py（作为模块）</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># @Author : 大海</span></span><br><span class="line"><span class="comment"># @File : spam.py</span></span><br><span class="line"><span class="comment"># print('from the spam.py')</span></span><br><span class="line"></span><br><span class="line">money = <span class="number">100</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read1</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'spam.py模块'</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>:</span></span><br><span class="line">    a = <span class="number">111</span></span><br></pre></td></tr></table></figure>
+<h5 id="dir文件夹下面的模块（m1-py）-作为模块"><a href="#dir文件夹下面的模块（m1-py）-作为模块" class="headerlink" title="dir文件夹下面的模块（m1.py）(作为模块)"></a>dir文件夹下面的模块（m1.py）(作为模块)</h5><p><img src="/2022/10/24/day12模块一/1655186470730.png" alt="1655186470730"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># @Author : 大海</span></span><br><span class="line"><span class="comment"># @File : m1.py</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f1</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'from f1'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f2</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'f2'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f3</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'f3'</span>)</span><br></pre></td></tr></table></figure>
+<h5 id="run-py（作为执行文件）"><a href="#run-py（作为执行文件）" class="headerlink" title="run.py（作为执行文件）"></a>run.py（作为执行文件）</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># @Author : 大海</span></span><br><span class="line"><span class="comment"># @File : run.py</span></span><br><span class="line"><span class="comment"># 首次导入模块发生3件事</span></span><br><span class="line"><span class="comment"># 1. 创建一个模块的名称空间</span></span><br><span class="line"><span class="comment"># 2. 执行文件spam.py,将执行过程中产生的名字都放到模块的名称空间中</span></span><br><span class="line"><span class="comment"># 3. 在当前执行文件中直接拿到一个名字,该名字就是执行模块中相对应的名字的</span></span><br><span class="line"><span class="comment"># from 模块名  import 各种名字:    变量名，函数名,类名等等</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span>  spam <span class="keyword">import</span>  money,read1,A</span><br><span class="line">money = <span class="number">222</span></span><br><span class="line"><span class="comment"># # # 容易与当前名称空间中的名字冲突</span></span><br><span class="line">print(money)</span><br><span class="line">read1()</span><br><span class="line">print(A)</span><br><span class="line"></span><br><span class="line"><span class="comment"># *代表从被导入模块中拿到所有名字（不推荐使用）</span></span><br><span class="line"><span class="keyword">from</span> spam  <span class="keyword">import</span>  *</span><br><span class="line">print(money)</span><br><span class="line">read1()</span><br><span class="line">print(A)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 起别名</span></span><br><span class="line"><span class="keyword">from</span> spam  <span class="keyword">import</span>  money <span class="keyword">as</span> r1</span><br><span class="line">money = <span class="number">222</span></span><br><span class="line">print(r1)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 总结from...import...</span></span><br><span class="line"><span class="comment"># 优点: 使用时,无需再加前缀,更简洁</span></span><br><span class="line"><span class="comment"># 缺点: 容易与当前名称空间中的名字冲突</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 绝对导入</span></span><br><span class="line"><span class="comment"># from 文件夹 import 模块名</span></span><br><span class="line"><span class="keyword">from</span> dir <span class="keyword">import</span> m1</span><br><span class="line"><span class="comment">#</span></span><br><span class="line">m1.f1()</span><br><span class="line">m1.f2()</span><br><span class="line">m1.f3()</span><br><span class="line"></span><br><span class="line"><span class="comment"># from 文件夹.模块名 import 函数名</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># from dir.m1 import f1</span></span><br><span class="line"><span class="keyword">from</span> dir.m1 <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">f1()</span><br><span class="line">f2()</span><br><span class="line">f3()</span><br></pre></td></tr></table></figure>
+<h5 id="dir1文件夹下面的模块（m1-py和m2-py）"><a href="#dir1文件夹下面的模块（m1-py和m2-py）" class="headerlink" title="dir1文件夹下面的模块（m1.py和m2.py）"></a>dir1文件夹下面的模块（m1.py和m2.py）</h5><p><img src="/2022/10/24/day12模块一/1655186569345.png" alt="1655186569345"></p>
+<h5 id="m1模块"><a href="#m1模块" class="headerlink" title="m1模块,"></a>m1模块,</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 绝对导入</span></span><br><span class="line"><span class="comment"># import m2</span></span><br><span class="line"><span class="comment"># 绝对导入必须以执行文件为主</span></span><br><span class="line"><span class="comment"># D:\python代码A9\day12模块一\2.from</span></span><br><span class="line"><span class="comment"># from dir1 import m2</span></span><br><span class="line"><span class="comment"># # 没有前缀</span></span><br><span class="line"><span class="comment"># from dir1.m2 import f2</span></span><br><span class="line"><span class="comment"># 最正确方式用相对导入</span></span><br><span class="line"><span class="comment"># D:\python代码A9\day12模块一\2.from\dir1</span></span><br><span class="line"><span class="keyword">from</span> .m2 <span class="keyword">import</span> f2</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f1</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'from f1'</span>)</span><br><span class="line">    <span class="comment"># 去调用m2模块里面的f2函数</span></span><br><span class="line">    <span class="comment"># m2.f2()</span></span><br><span class="line">    f2()</span><br></pre></td></tr></table></figure>
+<h5 id="m2模块"><a href="#m2模块" class="headerlink" title="m2模块"></a>m2模块</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># @Author : 大海</span></span><br><span class="line"><span class="comment"># @File : m2.py</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f2</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'from f2'</span>)</span><br></pre></td></tr></table></figure>
+<h5 id="run1-py（作为执行文件）"><a href="#run1-py（作为执行文件）" class="headerlink" title="run1.py（作为执行文件）"></a>run1.py（作为执行文件）</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># @Author : 大海</span></span><br><span class="line"><span class="comment"># @File : run1.py</span></span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string"># 相对导入</span></span><br><span class="line"><span class="string">#         from .文件夹 import 模块</span></span><br><span class="line"><span class="string">#         from ..文件夹 import 模块</span></span><br><span class="line"><span class="string">#         from ...文件夹 import 模块</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 相对导入: 参照当前所在文件的文件夹为起始开始查找,称之为相对导入</span></span><br><span class="line"><span class="string">#        符号: .代表当前所在文件夹的文件,..代表上一级文件夹,...代表上一级的上一级文件夹</span></span><br><span class="line"><span class="string">#        优点: 导入更加简单</span></span><br><span class="line"><span class="string">#        缺点: 只能在导入包中的模块时才能使用,不能在执行文件中用</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="comment"># 错误</span></span><br><span class="line"><span class="comment"># from .dir import m1</span></span><br><span class="line"><span class="comment">#  执行文件中只能用绝对导入</span></span><br><span class="line"><span class="comment"># from  dir import m1</span></span><br><span class="line"><span class="comment"># D:\python代码A8\day12模块一\2.from</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> dir1 <span class="keyword">import</span> m1</span><br><span class="line"></span><br><span class="line">m1.f1()</span><br></pre></td></tr></table></figure>
+<h3 id="1-6-模块红色波浪线"><a href="#1-6-模块红色波浪线" class="headerlink" title="1.6.模块红色波浪线"></a>1.6.模块红色波浪线</h3><p>导入模块会报红色波浪线，对程序没影响但是会影响效率</p>
+<h4 id="报红色波浪线的解决办法"><a href="#报红色波浪线的解决办法" class="headerlink" title="报红色波浪线的解决办法"></a>报红色波浪线的解决办法</h4><h5 id="将文件夹Mark-Directory-as成source-root的方法"><a href="#将文件夹Mark-Directory-as成source-root的方法" class="headerlink" title="将文件夹Mark Directory as成source root的方法"></a>将文件夹Mark Directory as成source root的方法</h5><p>pycharm标记成项目路径来源文件夹</p>
+<p><img src="/2022/10/24/day12模块一/1666597349537.png" alt="1655294302235"></p>
+<h5 id="文件夹变成蓝色"><a href="#文件夹变成蓝色" class="headerlink" title="文件夹变成蓝色"></a>文件夹变成蓝色</h5><p><img src="/2022/10/24/day12模块一/1666597403613.png" alt="1655294356781"></p>
+<h2 id="2-json模块序列化与反序列化"><a href="#2-json模块序列化与反序列化" class="headerlink" title="2.json模块序列化与反序列化"></a>2.json模块序列化与反序列化</h2><h3 id="1-回忆变量"><a href="#1-回忆变量" class="headerlink" title="1.回忆变量"></a>1.回忆变量</h3><h4 id="什么是变量"><a href="#什么是变量" class="headerlink" title="什么是变量?"></a>什么是变量?</h4><p>变量即变化的量，核心是“变”与“量”二字，变即变化，量即衡量状态。</p>
+<h4 id="为什么要有变量"><a href="#为什么要有变量" class="headerlink" title="为什么要有变量?"></a>为什么要有变量?</h4><p>程序执行的本质就是一系列状态的变化，变是程序执行的直接体现，<br>所以我们需要有一种机制能够反映或者说是保存下来程序执行时状态以及状态的变化。</p>
+<h3 id="2-什么是序列化-反序列化"><a href="#2-什么是序列化-反序列化" class="headerlink" title="2.什么是序列化/反序列化"></a>2.什么是序列化/反序列化</h3><p>我们把对象(变量)从内存中变成可存储或传输的过程称之为序列化<br>序列化就是将内存中的数据结构转换成一种中间格式存储到硬盘或者基于网络传输<br>反序列化就是硬盘中或者网络中传来的一种数据格式转换成内存中数据结构</p>
+<h4 id="为什么要有"><a href="#为什么要有" class="headerlink" title="为什么要有"></a>为什么要有</h4><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#     1、可以保存程序的运行状态</span></span><br><span class="line"><span class="meta">#     2、数据的跨平台交互</span></span><br></pre></td></tr></table></figure>
+<p><img src="/2022/10/24/day12模块一/1666597436661.png" alt="1666597436661"></p>
+<h3 id="3-序列化-反序列化方法"><a href="#3-序列化-反序列化方法" class="headerlink" title="3.序列化/反序列化方法"></a>3.序列化/反序列化方法</h3><p>序列化<br>            dumps  处理字符串<br>            dump   处理文件</p>
+<p>反序列化</p>
+<p>​        loads 处理字符串<br>            load  处理文件</p>
+<h3 id="4-json的类型"><a href="#4-json的类型" class="headerlink" title="4.json的类型"></a>4.json的类型</h3><p><img src="/2022/10/24/day12模块一/1655187333201.png" alt="1655187333201"></p>
+<h3 id="5-那么我们以字典为例子进行编写代码"><a href="#5-那么我们以字典为例子进行编写代码" class="headerlink" title="5.那么我们以字典为例子进行编写代码"></a>5.那么我们以字典为例子进行编写代码</h3><h4 id="1-json序列化"><a href="#1-json序列化" class="headerlink" title="1.json序列化"></a>1.json序列化</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line">dic = &#123;<span class="string">'name'</span>:<span class="string">'dahai'</span>,<span class="string">'age'</span>:<span class="number">18</span>,<span class="string">'sex'</span>:<span class="string">'man'</span>&#125;</span><br><span class="line"><span class="comment">#序列化：内存中的数据类型------&gt;中间格式json</span></span><br><span class="line"><span class="comment"># dumps(数据类型)</span></span><br><span class="line"><span class="comment"># 1、序列化得到json_str</span></span><br><span class="line">json_str = json.dumps(dic)</span><br><span class="line">print(json_str)</span><br><span class="line">print(type(json_str))</span><br><span class="line"><span class="comment"># # 2、把json_str写入文件</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'db.json'</span>,<span class="string">'wt'</span>,encoding=<span class="string">'utf-8'</span>)<span class="keyword">as</span> f:</span><br><span class="line">    f.write(json_str)</span><br><span class="line"></span><br><span class="line"><span class="comment"># #1和2合为一步</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'db1.json'</span>,<span class="string">'wt'</span>,encoding=<span class="string">'utf-8'</span>)<span class="keyword">as</span> f:</span><br><span class="line">    json.dump(dic,f)</span><br></pre></td></tr></table></figure>
+<h4 id="2-json反序列化"><a href="#2-json反序列化" class="headerlink" title="2.json反序列化"></a>2.json反序列化</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># @Author : 大海</span></span><br><span class="line"><span class="comment"># @File : json反序列化.py</span></span><br><span class="line"><span class="comment"># 反序列化</span></span><br><span class="line"><span class="comment">#             loads 处理字符串</span></span><br><span class="line"><span class="comment">#             load  处理文件</span></span><br><span class="line"><span class="comment">#反序列化：中间格式json-----》内存中的数据类型</span></span><br><span class="line"><span class="comment"># loads(json格式字符串)</span></span><br><span class="line"><span class="comment"># 1.读出json文件的json字符串</span></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'db.json'</span>,<span class="string">'rt'</span>,encoding=<span class="string">'utf-8'</span>)<span class="keyword">as</span> f:</span><br><span class="line">    json_str = f.read()</span><br><span class="line">    print(json_str)</span><br><span class="line">    print(type(json_str))</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># #2、将json_str转成内存中的数据类型</span></span><br><span class="line">    dic = json.loads(json_str)</span><br><span class="line">    print(dic)</span><br><span class="line">    print(type(dic))</span><br><span class="line"></span><br><span class="line"><span class="comment">#1和2可以合作一步</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'db1.json'</span>,<span class="string">'rt'</span>,encoding=<span class="string">'utf-8'</span>)<span class="keyword">as</span> f:</span><br><span class="line">    dic = json.load(f)</span><br><span class="line">    print(dic)</span><br><span class="line">    print(type(dic))</span><br></pre></td></tr></table></figure>
+<h2 id="3-os模块"><a href="#3-os模块" class="headerlink" title="3.os模块"></a>3.os模块</h2><h3 id="1-认识os模块"><a href="#1-认识os模块" class="headerlink" title="1.认识os模块"></a>1.认识os模块</h3><p>os表示操作系统相关的一个模块</p>
+<p>os模块是与操作系统交互的一个接口</p>
+<p>它可以围绕文件和目录进行操作</p>
+<h3 id="2-os和文件夹或文件相关的操作"><a href="#2-os和文件夹或文件相关的操作" class="headerlink" title="2.os和文件夹或文件相关的操作"></a>2.os和文件夹或文件相关的操作</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="comment"># 工作目录，当前目录，父级目录都是一个</span></span><br><span class="line"><span class="comment"># D:\python代码A8\day12模块一</span></span><br><span class="line"><span class="comment"># 获取当前工作目录，绝对路径</span></span><br><span class="line">print(os.getcwd())</span><br><span class="line"><span class="comment"># 生成目录</span></span><br><span class="line">os.mkdir(<span class="string">'dirname1'</span>)</span><br><span class="line"><span class="comment"># 空目录，若目录不为空则无法删除</span></span><br><span class="line">os.rmdir(<span class="string">'dirname1'</span>)</span><br><span class="line"><span class="comment"># 拿到当前脚本工作的目录，相当于cd</span></span><br><span class="line">os.chdir(<span class="string">'dirname1'</span>)</span><br><span class="line"><span class="comment"># # # # 删除文件</span></span><br><span class="line">os.remove(<span class="string">'aaaa.py'</span>)</span><br><span class="line"></span><br><span class="line">os.rmdir(<span class="string">'dirname1'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可生成多层递归目录</span></span><br><span class="line">os.makedirs(<span class="string">'dir1/dir2/dir3/dir4'</span>)</span><br><span class="line"><span class="comment"># 在dir2下面创建一个文件，会产生保护机制只删除到dir2</span></span><br><span class="line">os.removedirs(<span class="string">'dir1/dir2/dir3/dir4'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 拿到当前文件夹的文件名或者文件夹放入列表</span></span><br><span class="line"><span class="comment"># 绝对路径</span></span><br><span class="line"></span><br><span class="line">print(os.listdir(<span class="string">'D:\python代码A8\day12模块一'</span>))</span><br><span class="line"><span class="comment"># # 相对路径</span></span><br><span class="line">print(os.listdir(<span class="string">'.'</span>))</span><br><span class="line"><span class="comment"># 上一级</span></span><br><span class="line">print(os.listdir(<span class="string">'..'</span>))</span><br><span class="line"><span class="comment"># 重命名文件/目录</span></span><br><span class="line">os.rename(<span class="string">'oldname'</span>,<span class="string">'newname'</span>)</span><br><span class="line"><span class="comment"># 运行终端命令 了解</span></span><br><span class="line">os.system(<span class="string">'tasklist'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="3-os和路径相关的操作"><a href="#3-os和路径相关的操作" class="headerlink" title="3.os和路径相关的操作"></a>3.os和路径相关的操作</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># os.path 下面的方法  path是路径</span></span><br><span class="line"><span class="comment"># 将path分割成目录和文件名二元组返回</span></span><br><span class="line">print(os.path.split(<span class="string">'/a/b/c/d.txt'</span>))</span><br><span class="line"><span class="comment"># # 文件夹</span></span><br><span class="line">print(os.path.split(<span class="string">'/a/b/c/d.txt'</span>)[<span class="number">0</span>])</span><br><span class="line"><span class="comment"># # 文件</span></span><br><span class="line">print(os.path.split(<span class="string">'/a/b/c/d.txt'</span>)[<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">#返回path的目录。其实就是os.path.split(path)的第一个元素</span></span><br><span class="line">print(os.path.dirname(<span class="string">'/a/b/c/d.txt'</span>))</span><br><span class="line"><span class="comment"># # 返回path最后的文件名。即os.path.split(path)的第二个元素</span></span><br><span class="line">print(os.path.basename(<span class="string">'/a/b/c/d.txt'</span>))</span><br><span class="line"><span class="comment"># 判断路径是否存在 文件和文件夹都可以 如果path存在，返回True；如果path不存在，返回False</span></span><br><span class="line">print(os.path.exists(<span class="string">'D:\python代码A8\day12模块一'</span>))</span><br><span class="line">print(os.path.exists(<span class="string">'D:\python代码A8\day12模块一dddd'</span>))</span><br><span class="line">print(os.path.exists(<span class="string">r'D:\python代码A8\day12模块一\2.time_test.py'</span>))</span><br><span class="line">print(os.path.exists(<span class="string">r'D:\python代码A8\day12模块一\2.timedddd_test.py'</span>))</span><br><span class="line"><span class="comment"># 如果path是一个存在的文件，返回True。否则返回False</span></span><br><span class="line">print(os.path.isfile(<span class="string">'D:\python代码A8\day12模块一'</span>))</span><br><span class="line">print(os.path.isfile(<span class="string">r'D:\python代码A8\day12模块一\2.time_test.py'</span>))</span><br><span class="line"><span class="comment"># 也可以用相对路径</span></span><br><span class="line">print(os.path.isfile(<span class="string">r'./4.hash.py'</span>))</span><br><span class="line">print(os.path.isfile(<span class="string">r'../day12模块一/4.hash.py'</span>))</span><br><span class="line"><span class="comment"># 如果path是一个存在的目录，则返回True。否则返回False</span></span><br><span class="line">print(os.path.isdir(<span class="string">'D:\python代码A8\day12模块一'</span>))</span><br><span class="line">print(os.path.isdir(<span class="string">r'D:\python代码A8\day12模块一\2.time_test.py'</span>))</span><br><span class="line"><span class="comment"># 拼接一个绝对路径，会忽略前面的路径</span></span><br><span class="line">print(os.path.join(<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'D:\\'</span>,<span class="string">'f'</span>,<span class="string">'d.txt'</span>))</span><br><span class="line">print(os.path.join(<span class="string">'D:\\'</span>,<span class="string">'f'</span>,<span class="string">'d.txt'</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="4-random模块"><a href="#4-random模块" class="headerlink" title="4.random模块"></a>4.random模块</h2><p>random随机数相关模块</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="comment"># 左闭右开 </span></span><br><span class="line"><span class="comment"># 0 - 1 随机浮点 不包含1 random 0-1 闭开</span></span><br><span class="line"><span class="comment">#[0,1)   闭是包含   开是不包含  </span></span><br><span class="line">print(random.random())</span><br><span class="line"><span class="comment"># randint 1 - 3    [1,3]  左闭右闭 整型</span></span><br><span class="line">print(random.randint(<span class="number">1</span>,<span class="number">3</span>))</span><br><span class="line"><span class="comment"># randrange 1 - 3  [1,3)    左闭右开</span></span><br><span class="line">print(random.randrange(<span class="number">1</span>,<span class="number">3</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 随机选⼀个</span></span><br><span class="line">print(random.choice([<span class="number">1</span>,<span class="number">4</span>,<span class="number">3</span>]))</span><br><span class="line"><span class="comment"># 随机选指定个数sample(列表，指定列表的个数)</span></span><br><span class="line">print(random.sample([<span class="number">1</span>,<span class="number">4</span>,<span class="number">3</span>],<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打乱顺序shuffle(列表)</span></span><br><span class="line">l = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">random.shuffle(l)</span><br><span class="line">print(l)</span><br><span class="line"></span><br><span class="line"><span class="comment">#  [1,2]    左闭右闭 浮点</span></span><br><span class="line">print(random.uniform(<span class="number">1</span>,<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+<h4 id="生产验证码函数"><a href="#生产验证码函数" class="headerlink" title="生产验证码函数"></a>生产验证码函数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生产验证码函数  整型数字和字母结合(全字母或全数字也可以)随机组成 可以指定长度</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">make_code</span><span class="params">(i)</span>:</span></span><br><span class="line">    res = <span class="string">''</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(i):</span><br><span class="line">        n = str(random.randint(<span class="number">0</span>,<span class="number">9</span>))</span><br><span class="line">        <span class="comment"># 65到90刚好是ASCII表对应的大写字母</span></span><br><span class="line">        d=chr(random.randint(<span class="number">65</span>, <span class="number">90</span>))</span><br><span class="line">        x = chr(random.randint(<span class="number">65</span>, <span class="number">90</span>)).lower()</span><br><span class="line">        s= random.choice([n,d,x])</span><br><span class="line"></span><br><span class="line">        res+=s</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">print(make_code(<span class="number">6</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="5-sys模块"><a href="#5-sys模块" class="headerlink" title="5.sys模块"></a>5.sys模块</h2><p>sys模块是与python解释器交互的一个接口</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="comment"># print(sys.path)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># D:\\python代码A8\\day12模块一</span></span><br><span class="line">sys.path.append(<span class="string">'D:\python代码A8\day12模块一\dir0'</span>)</span><br><span class="line"><span class="comment"># print(sys.path)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> dir2.aaaaa <span class="keyword">import</span> a</span><br><span class="line">a()</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/gongzhonghao.jpg" alt="图灵python大海老师 wechat" style="width: 200px; max-width: 100%;">
+  <div>python分享公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="图灵python大海老师 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="图灵python大海老师 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/图灵python/" rel="tag"># 图灵python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/10/24/day11面向对象进阶/" rel="next" title="day11大海老师之面向对象进阶">
+                <i class="fa fa-chevron-left"></i> day11大海老师之面向对象进阶
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/10/24/day13模块二/" rel="prev" title="day13大海老师之模块二与购物车系统的搭建">
+                day13大海老师之模块二与购物车系统的搭建 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="图灵python大海老师">
+            
+              <p class="site-author-name" itemprop="name">图灵python大海老师</p>
+              <p class="site-description motion-element" itemprop="description">记录学习的技能和遇到的问题</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">188</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lvdXJuYW1l" title="GitHub &rarr; https://github.com/yourname"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="bWFpbHRvOjEzMjgwNDQzOTJAcXEuY29t" title="E-Mail &rarr; mailto:1328044392@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL2V4YW1wbGUuY29t" title="http://example.com">Title</span>
+                  </li>
+                
+              </ul>
+            </div>
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#day12模块"><span class="nav-number">1.</span> <span class="nav-text">day12模块</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-模块介绍"><span class="nav-number">1.1.</span> <span class="nav-text">1.模块介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-认识模块"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1.认识模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-模块的分类"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2.模块的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-模块的格式"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3.模块的格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-为何要用模块"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.4.为何要用模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-导入模块的方式"><span class="nav-number">1.1.5.</span> <span class="nav-text">1.5.导入模块的方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-首次导入模块发生的事情"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">1.首次导入模块发生的事情</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-import导入模块"><span class="nav-number">1.1.5.2.</span> <span class="nav-text">2.import导入模块</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#spam-py（作为模块）"><span class="nav-number">1.1.5.2.1.</span> <span class="nav-text">spam.py（作为模块）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#run-py（作为执行文件，也就是pycharm右键点击运行的文件）"><span class="nav-number">1.1.5.2.2.</span> <span class="nav-text">run.py（作为执行文件，也就是pycharm右键点击运行的文件）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-from-import"><span class="nav-number">1.1.5.3.</span> <span class="nav-text">3.from..import..</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#spam-py（作为模块）-1"><span class="nav-number">1.1.5.3.1.</span> <span class="nav-text">spam.py（作为模块）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#dir文件夹下面的模块（m1-py）-作为模块"><span class="nav-number">1.1.5.3.2.</span> <span class="nav-text">dir文件夹下面的模块（m1.py）(作为模块)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#run-py（作为执行文件）"><span class="nav-number">1.1.5.3.3.</span> <span class="nav-text">run.py（作为执行文件）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#dir1文件夹下面的模块（m1-py和m2-py）"><span class="nav-number">1.1.5.3.4.</span> <span class="nav-text">dir1文件夹下面的模块（m1.py和m2.py）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#m1模块"><span class="nav-number">1.1.5.3.5.</span> <span class="nav-text">m1模块,</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#m2模块"><span class="nav-number">1.1.5.3.6.</span> <span class="nav-text">m2模块</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#run1-py（作为执行文件）"><span class="nav-number">1.1.5.3.7.</span> <span class="nav-text">run1.py（作为执行文件）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-模块红色波浪线"><span class="nav-number">1.1.6.</span> <span class="nav-text">1.6.模块红色波浪线</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#报红色波浪线的解决办法"><span class="nav-number">1.1.6.1.</span> <span class="nav-text">报红色波浪线的解决办法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#将文件夹Mark-Directory-as成source-root的方法"><span class="nav-number">1.1.6.1.1.</span> <span class="nav-text">将文件夹Mark Directory as成source root的方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#文件夹变成蓝色"><span class="nav-number">1.1.6.1.2.</span> <span class="nav-text">文件夹变成蓝色</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-json模块序列化与反序列化"><span class="nav-number">1.2.</span> <span class="nav-text">2.json模块序列化与反序列化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-回忆变量"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.回忆变量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是变量"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">什么是变量?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么要有变量"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">为什么要有变量?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-什么是序列化-反序列化"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.什么是序列化/反序列化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么要有"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">为什么要有</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-序列化-反序列化方法"><span class="nav-number">1.2.3.</span> <span class="nav-text">3.序列化/反序列化方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-json的类型"><span class="nav-number">1.2.4.</span> <span class="nav-text">4.json的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-那么我们以字典为例子进行编写代码"><span class="nav-number">1.2.5.</span> <span class="nav-text">5.那么我们以字典为例子进行编写代码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-json序列化"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">1.json序列化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-json反序列化"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">2.json反序列化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-os模块"><span class="nav-number">1.3.</span> <span class="nav-text">3.os模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-认识os模块"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.认识os模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-os和文件夹或文件相关的操作"><span class="nav-number">1.3.2.</span> <span class="nav-text">2.os和文件夹或文件相关的操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-os和路径相关的操作"><span class="nav-number">1.3.3.</span> <span class="nav-text">3.os和路径相关的操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-random模块"><span class="nav-number">1.4.</span> <span class="nav-text">4.random模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#生产验证码函数"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">生产验证码函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-sys模块"><span class="nav-number">1.5.</span> <span class="nav-text">5.sys模块</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">图灵python大海老师</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Pisces</span> v7.0.1</div>
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script id="ribbon" size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+  
+  <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ljyabc.github.io/2022/10/24/day12模块一/";
+    this.page.identifier = "2022/10/24/day12模块一/";
+    this.page.title = 'day12大海老师之模块一';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/exturl.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+   <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+</body>
+</html>

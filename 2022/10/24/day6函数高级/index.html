@@ -1,0 +1,1541 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="day6大海老师之函数高级1.有名函数123456789101112131415# @Author : 大海# @File : 1.有名函数.py# print(&apos;aaa&apos;)# print(&apos;aaa&apos;)def run(x,y):    # print(x)    # x=x+1    # print(y)    print(x+y)    # return x+y# print(run)# pri">
+<meta name="keywords" content="图灵python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="day6大海老师之函数高级">
+<meta property="og:url" content="https://ljyabc.github.io/2022/10/24/day6函数高级/index.html">
+<meta property="og:site_name" content="search out bug">
+<meta property="og:description" content="day6大海老师之函数高级1.有名函数123456789101112131415# @Author : 大海# @File : 1.有名函数.py# print(&apos;aaa&apos;)# print(&apos;aaa&apos;)def run(x,y):    # print(x)    # x=x+1    # print(y)    print(x+y)    # return x+y# print(run)# pri">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2022-10-24T07:57:52.689Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="day6大海老师之函数高级">
+<meta name="twitter:description" content="day6大海老师之函数高级1.有名函数123456789101112131415# @Author : 大海# @File : 1.有名函数.py# print(&apos;aaa&apos;)# print(&apos;aaa&apos;)def run(x,y):    # print(x)    # x=x+1    # print(y)    print(x+y)    # return x+y# print(run)# pri">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ljyabc.github.io/2022/10/24/day6函数高级/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>day6大海老师之函数高级 | search out bug</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">search out bug</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">学编程利国利民，写代码走遍天下！</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/book" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>book</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2022/10/24/day6函数高级/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="图灵python大海老师">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="search out bug">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">day6大海老师之函数高级
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2022-10-24 15:20:23 / 修改时间：15:57:52" itemprop="dateCreated datePublished" datetime="2022-10-24T15:20:23+08:00">2022-10-24</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python核心编程/" itemprop="url" rel="index"><span itemprop="name">python核心编程</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2022/10/24/day6函数高级/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/10/24/day6函数高级/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="day6大海老师之函数高级"><a href="#day6大海老师之函数高级" class="headerlink" title="day6大海老师之函数高级"></a>day6大海老师之函数高级</h1><h2 id="1-有名函数"><a href="#1-有名函数" class="headerlink" title="1.有名函数"></a>1.有名函数</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># @Author : 大海</span></span><br><span class="line"><span class="comment"># @File : 1.有名函数.py</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># print('aaa')</span></span><br><span class="line"><span class="comment"># print('aaa')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(x,y)</span>:</span></span><br><span class="line">    <span class="comment"># print(x)</span></span><br><span class="line">    <span class="comment"># x=x+1</span></span><br><span class="line">    <span class="comment"># print(y)</span></span><br><span class="line">    print(x+y)</span><br><span class="line">    <span class="comment"># return x+y</span></span><br><span class="line"><span class="comment"># print(run)</span></span><br><span class="line"><span class="comment"># print(run(1, 2))</span></span><br><span class="line">run(<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line"><span class="comment"># print('aaa')</span></span><br></pre></td></tr></table></figure>
+<h4 id="断点"><a href="#断点" class="headerlink" title="断点"></a>断点</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 断点</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动断点 鼠标右键 点击debug</span></span><br><span class="line"><span class="comment"># ctrl + F5 重启程序</span></span><br><span class="line"><span class="comment"># ctrl + F2 停止</span></span><br><span class="line"><span class="comment"># F9 绿色的三角形是调到下一个断点</span></span><br><span class="line"><span class="comment"># F8 蓝色朝下的箭头是单步走</span></span><br><span class="line"><span class="comment"># Alt +shift+F7蓝色朝右下角的箭头是进入函数自己定义的函数,</span></span><br><span class="line"><span class="comment"># F7蓝色朝右下角的箭头是进入函数</span></span><br><span class="line"><span class="comment"># shift + F8跳出函数</span></span><br><span class="line"><span class="comment"># Alt+F8  搜索数据</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-匿名函数"><a href="#2-匿名函数" class="headerlink" title="2.匿名函数"></a>2.匿名函数</h2><h3 id="2-1-匿名函数的含义"><a href="#2-1-匿名函数的含义" class="headerlink" title="2.1.匿名函数的含义"></a>2.1.匿名函数的含义</h3><p>就是没有名字的函数</p>
+<h3 id="2-2-为何要用"><a href="#2-2-为何要用" class="headerlink" title="2.2.为何要用"></a>2.2.为何要用</h3><p>用于仅仅临时使用一次的场景，没有重复使用的需求</p>
+<h3 id="2-3-使用"><a href="#2-3-使用" class="headerlink" title="2.3.使用"></a>2.3.使用</h3><p>匿名函数，除了没有名字其他的都有</p>
+<h5 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h5><p>lambda空格+参数+冒号+函数体代码(表达式或者函数)</p>
+<h6 id="一行代码图省事"><a href="#一行代码图省事" class="headerlink" title="一行代码图省事"></a>一行代码图省事</h6><h5 id="匿名函数的定义"><a href="#匿名函数的定义" class="headerlink" title="匿名函数的定义"></a>匿名函数的定义</h5><p>lambda x,y 形参 x+y 返回值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="keyword">lambda</span> x, y: x + y)</span><br></pre></td></tr></table></figure>
+<h5 id="匿名函数的调用"><a href="#匿名函数的调用" class="headerlink" title="匿名函数的调用"></a>匿名函数的调用</h5><p>调用直接内存地址加括号（它虽然没有名字）+括号可以调用</p>
+<h6 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print((<span class="keyword">lambda</span> x, y: x + y)(<span class="number">1</span>, <span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+<h6 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">lambda</span> x, y: print(x + y))(<span class="number">1</span>, <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<h6 id="把内存地址赋值给一个变量没有意义"><a href="#把内存地址赋值给一个变量没有意义" class="headerlink" title="把内存地址赋值给一个变量没有意义"></a>把内存地址赋值给一个变量没有意义</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="keyword">lambda</span> x, y: x + y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 把内存地址赋值给一个变量没有意义</span></span><br><span class="line"><span class="comment"># 匿名函数的精髓就是没有名字，为其绑定名字是没有意义的</span></span><br><span class="line"></span><br><span class="line">f=<span class="keyword">lambda</span> x, y: x + y</span><br><span class="line"><span class="comment"># # print(f)</span></span><br><span class="line">print(f(<span class="number">1</span>, <span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+<h3 id="2-4匿名函数与内置函数结合使用"><a href="#2-4匿名函数与内置函数结合使用" class="headerlink" title="2.4匿名函数与内置函数结合使用"></a>2.4匿名函数与内置函数结合使用</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># max,min,sorted</span></span><br><span class="line">salaries= &#123;</span><br><span class="line">    <span class="string">'xialuo'</span>:<span class="number">3000000</span>,</span><br><span class="line">    <span class="string">'xishi'</span>:<span class="number">30000</span>,</span><br><span class="line">    <span class="string">'dahai'</span>:<span class="number">3000</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="1-max（可迭代对象）"><a href="#1-max（可迭代对象）" class="headerlink" title="1.max（可迭代对象）"></a>1.max（可迭代对象）</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">list1 = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">2</span>]</span><br><span class="line">salaries= &#123;</span><br><span class="line">    <span class="string">'xialuo'</span>:<span class="number">3000000</span>,</span><br><span class="line">    <span class="string">'xishi'</span>:<span class="number">30000</span>,</span><br><span class="line">    <span class="string">'dahai'</span>:<span class="number">3000</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># max(可迭代对象)</span></span><br><span class="line"><span class="comment"># 底层按照for循环遍历进行比较</span></span><br><span class="line">print(max(list1))</span><br><span class="line">print(max(salaries))</span><br></pre></td></tr></table></figure>
+<h4 id="2-max-可迭代对象-key-函数名"><a href="#2-max-可迭代对象-key-函数名" class="headerlink" title="2.max(可迭代对象,key = 函数名)"></a>2.max(可迭代对象,key = 函数名)</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 我们要比较的是薪资 求薪资最高的那个人名：即比较的是value，但取结果是key</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 该函数的返回值作为比较规则</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(name)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> salaries[name]</span><br><span class="line"></span><br><span class="line"><span class="comment"># max(可迭代对象,key = 函数名)</span></span><br><span class="line"><span class="comment"># 这个key = 函数名 参数可以改变max的比较规则</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 底层</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> salaries:</span><br><span class="line">    <span class="comment"># 改变了比较的值</span></span><br><span class="line">    print(run(i))</span><br><span class="line">    </span><br><span class="line"><span class="comment"># max的返回值性质没变，还是返回字典的key</span></span><br><span class="line">print(max(salaries,key = run))</span><br><span class="line">print(min(salaries,key = run))</span><br></pre></td></tr></table></figure>
+<h5 id="写成匿名函数"><a href="#写成匿名函数" class="headerlink" title="写成匿名函数"></a>写成匿名函数</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 求最大值</span></span><br><span class="line">print(max(salaries, key=<span class="keyword">lambda</span> name:salaries[name]))</span><br><span class="line"><span class="comment"># 求最小值</span></span><br><span class="line">print(min(salaries, key=<span class="keyword">lambda</span> name:salaries[name]))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 排序</span></span><br><span class="line">nums = [<span class="number">11</span>,<span class="number">33</span>,<span class="number">22</span>,<span class="number">9</span>,<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">res = sorted(nums,reverse=<span class="literal">True</span>)</span><br><span class="line">print(res)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 循环遍历薪资</span></span><br><span class="line"><span class="keyword">for</span> v <span class="keyword">in</span> salaries.values():</span><br><span class="line">    print(v)</span><br><span class="line"><span class="comment"># 要返回人名</span></span><br><span class="line">print(sorted(salaries.values(),reverse=<span class="literal">True</span>))</span><br><span class="line">print(sorted(salaries.values(),reverse=<span class="literal">False</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 求最大值</span></span><br><span class="line">print(max(salaries, key=<span class="keyword">lambda</span> name:salaries[name]))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 但是我们是要比较薪资，返回的却是人名</span></span><br><span class="line"><span class="comment"># 薪资反序</span></span><br><span class="line">print(sorted(salaries,key=<span class="keyword">lambda</span> name:salaries[name],reverse=<span class="literal">True</span>))</span><br><span class="line">print(sorted(salaries,key=<span class="keyword">lambda</span> name:salaries[name],reverse=<span class="literal">False</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="3-列表生成式与字典生成式"><a href="#3-列表生成式与字典生成式" class="headerlink" title="3.列表生成式与字典生成式"></a>3.列表生成式与字典生成式</h2><h3 id="列表生成式"><a href="#列表生成式" class="headerlink" title="列表生成式"></a>列表生成式</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 列表生成式</span></span><br><span class="line"><span class="comment"># L = []</span></span><br><span class="line"><span class="comment"># for i in range(1,10):</span></span><br><span class="line"><span class="comment">#     L.append(i)</span></span><br><span class="line"><span class="comment"># print(L)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># L1 = [i for i in range(1,10)]</span></span><br><span class="line"><span class="comment"># print(L1)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># L1 = [i * 3 for i in range(1,10)]</span></span><br><span class="line"><span class="comment"># print(L1)</span></span><br><span class="line"><span class="comment"># L1 = [i * 3 for i in range(1,10)if i % 2 == 0]</span></span><br><span class="line"><span class="comment"># print(L1)</span></span><br></pre></td></tr></table></figure>
+<h3 id="列表生成式排序"><a href="#列表生成式排序" class="headerlink" title="列表生成式排序"></a>列表生成式排序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 列表生成式排序</span></span><br><span class="line">ts_file = [<span class="string">'2.ts'</span>,<span class="string">'3.ts'</span>,<span class="string">'1.ts'</span>,<span class="string">'4.ts'</span>,<span class="string">'5.ts'</span>,<span class="string">'6.ts'</span>,<span class="string">'8.ts'</span>,<span class="string">'10.ts'</span>,<span class="string">'11.ts'</span>]</span><br><span class="line"><span class="comment"># print(sorted(ts_file))</span></span><br><span class="line"><span class="comment"># 把后缀 .ts 去掉  变成int类型</span></span><br><span class="line">int_test=[int(i.replace(<span class="string">'.ts'</span>,<span class="string">''</span>)) <span class="keyword">for</span> i <span class="keyword">in</span> ts_file]</span><br><span class="line">print(int_test)</span><br><span class="line"><span class="comment"># 排序</span></span><br><span class="line">s1=sorted(int_test)</span><br><span class="line">print(s1)</span><br><span class="line"><span class="comment"># 变成str类型   把后缀 .ts 加上</span></span><br><span class="line">s2=[str(i)+<span class="string">'.ts'</span> <span class="keyword">for</span> i <span class="keyword">in</span> s1]</span><br><span class="line">print(s2)</span><br><span class="line"></span><br><span class="line">print([str(i) + <span class="string">'.ts'</span> <span class="keyword">for</span> i <span class="keyword">in</span> sorted([int(i.replace(<span class="string">'.ts'</span>, <span class="string">''</span>)) <span class="keyword">for</span> i <span class="keyword">in</span> ts_file])])</span><br></pre></td></tr></table></figure>
+<h3 id="字典生成式"><a href="#字典生成式" class="headerlink" title="字典生成式"></a>字典生成式</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 字典生成式</span></span><br><span class="line"></span><br><span class="line">dict1=&#123;k+<span class="string">'aaa'</span>:v <span class="keyword">for</span> k,v <span class="keyword">in</span> &#123;<span class="string">'name'</span>:<span class="string">'大海'</span>,<span class="string">'age'</span>:<span class="number">18</span>&#125;.items() <span class="keyword">if</span> k == <span class="string">'age'</span>&#125;</span><br><span class="line">print(dict1)</span><br></pre></td></tr></table></figure>
+<h2 id="3-递归函数"><a href="#3-递归函数" class="headerlink" title="3.递归函数"></a>3.递归函数</h2><h3 id="3-1-什么是递归函数"><a href="#3-1-什么是递归函数" class="headerlink" title="3.1.什么是递归函数"></a>3.1.什么是递归函数</h3><p>函数的递归调用是函数嵌套调用的一种特殊形式,<br>    在调用一个函数的过程中又直接或者间接地调用该函数<br>本身,称之为函数的递归调用<br>递归死循环是没有意义的</p>
+<h4 id="递归调用必须有两个明确的阶段"><a href="#递归调用必须有两个明确的阶段" class="headerlink" title="递归调用必须有两个明确的阶段:"></a>递归调用必须有两个明确的阶段:</h4><ol>
+<li>回溯: 一次次递归调用下去,说白了就一个重复的过程,<pre><code>但需要注意的是每一次重复问题的规模都应该有所减少,
+直到逼近一个最终的结果,即回溯阶段一定要有一个明确的结束条件
+</code></pre></li>
+<li>递推: 往回一层一层推算出结果</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">(n)</span>:</span></span><br><span class="line">    print(<span class="string">'from foo'</span>,n)</span><br><span class="line">    foo(n+<span class="number">1</span>)</span><br><span class="line">foo(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># A同学  B同学 C同学 D同学 E同学</span></span><br><span class="line"><span class="comment"># 第五个人年龄为第4个人加2岁</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">age(5) = age(4) + 2</span></span><br><span class="line"><span class="string">age(4) = age(3) + 2</span></span><br><span class="line"><span class="string">age(3) = age(2) + 2</span></span><br><span class="line"><span class="string">age(2) = age(1) + 2</span></span><br><span class="line"><span class="string">age(1) = 18</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="comment"># 第几个人定义成n</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">age(n) = age(n-1) + 2     # n&gt;1</span></span><br><span class="line"><span class="string">age(n) = 18               # n=1</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="comment"># # 递归调用就是一个重复的过程,但是每一次重复问题的规模都应该有所减少,</span></span><br><span class="line"><span class="comment"># # # 并且应该在满足某种条件的情况下结束重复,开始进入递推阶段</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">age</span><span class="params">(n)</span>:</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">1</span>:</span><br><span class="line"><span class="comment">#         #               所以要在这里写递归结束条件</span></span><br><span class="line"><span class="comment">#         #         # #     #     # 在这个找到条件并且导致函数不再自己调用自己的时候</span></span><br><span class="line"><span class="comment">#         #         # #     #     # 叫做回溯   左边</span></span><br><span class="line"><span class="comment">#         #         # 从结束条件一步步进行返回的结果</span></span><br><span class="line"><span class="comment">#         #         # #     #     # 叫做递推   右边</span></span><br><span class="line"><span class="comment">#         #         #              第一次  # age(5)=age(4)+2                  26</span></span><br><span class="line"><span class="comment">#         #         # #     #     # 第二次   age(4)=age(3)+2                 24</span></span><br><span class="line"><span class="comment">#         #         # #     #     # 第三次 # age(3)=age(2)+2                 22</span></span><br><span class="line"><span class="comment">#         #         # #     #     # 第四次 # age(2)=age(1)+2                 20</span></span><br><span class="line"><span class="comment">#         #         # #     #     # 但是我们不知道age(1)是多少</span></span><br><span class="line"><span class="comment">#         #         # #     #     # 第五次 age(1)=18                    递推  18</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">18</span></span><br><span class="line">    <span class="keyword">if</span> n&gt;<span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> age(n<span class="number">-1</span>) + <span class="number">2</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">print(age(<span class="number">5</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 把里面的数字取出来</span></span><br><span class="line">L = [<span class="number">1</span>,[<span class="number">2</span>,[<span class="number">3</span>,[<span class="number">4</span>,[<span class="number">5</span>,[<span class="number">6</span>,[<span class="number">7</span>,[<span class="number">8</span>,[<span class="number">9</span>,]]]]]]]]]</span><br><span class="line"><span class="comment"># 循环需要考虑次数</span></span><br><span class="line"><span class="keyword">for</span> n <span class="keyword">in</span> L:</span><br><span class="line">    <span class="comment"># print(n)</span></span><br><span class="line">    <span class="keyword">if</span> type(n) <span class="keyword">is</span> <span class="keyword">not</span>  list:</span><br><span class="line">        print(n,<span class="string">'第一层'</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment"># print(n)</span></span><br><span class="line">        <span class="comment"># [2, [3, [4, [5, [6, [7, [8, [9]]]]]]]]</span></span><br><span class="line">        <span class="keyword">for</span> n <span class="keyword">in</span> n:</span><br><span class="line">            <span class="keyword">if</span> type(n) <span class="keyword">is</span> <span class="keyword">not</span> list:</span><br><span class="line">                print(n,<span class="string">'第二层'</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line"><span class="comment">#</span></span><br><span class="line">                <span class="comment"># [3, [4, [5, [6, [7, [8, [9]]]]]]]</span></span><br><span class="line">                <span class="keyword">for</span> n <span class="keyword">in</span> n:</span><br><span class="line">                    <span class="keyword">if</span> type(n) <span class="keyword">is</span> <span class="keyword">not</span> list:</span><br><span class="line">                        print(n, <span class="string">'第三层'</span>)</span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        print(n, <span class="string">'第三层'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">search</span><span class="params">(L)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> n <span class="keyword">in</span> L:</span><br><span class="line">        <span class="comment"># print(n)</span></span><br><span class="line">        <span class="comment"># 当n 有9</span></span><br><span class="line">        <span class="keyword">if</span> type(n) <span class="keyword">is</span> <span class="keyword">not</span> list:</span><br><span class="line">            print(n)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># print(n)</span></span><br><span class="line">            <span class="comment"># [2, [3, [4, [5, [6, [7, [8, [9]]]]]]]]</span></span><br><span class="line"></span><br><span class="line">            search(n)</span><br><span class="line"></span><br><span class="line">search(L)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 递归是函数的定义里面嵌套函数的调用</span></span><br><span class="line"><span class="comment"># 递归与循环的区别，循环每一次都要判断，需要考虑多少次  *****</span></span><br><span class="line"><span class="comment"># 而递归只需要确定结束条件就行，按照规律进行重复调用，不需要考虑次数</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-闭包函数"><a href="#4-闭包函数" class="headerlink" title="4.闭包函数"></a>4.闭包函数</h2><h4 id="4-1-回顾函数基础"><a href="#4-1-回顾函数基础" class="headerlink" title="4.1.回顾函数基础"></a>4.1.回顾函数基础</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 编程来源于生活</span></span><br><span class="line"><span class="comment"># 1、什么是函数？ *****</span></span><br><span class="line"><span class="comment"># 在程序中,函数就具备某一功能的工具事先将工具准备好   锤子  扳手   工厂</span></span><br><span class="line"><span class="comment"># 即函数的定义遇到应用场景拿来就用即函数的调用所以务必记住：</span></span><br><span class="line"><span class="comment"># 函数的使用必须遵循先定义,后调用的原则（先制造了工具，工具才能使用）</span></span><br><span class="line">name = <span class="string">'dahai'</span></span><br><span class="line">print(name)</span><br><span class="line"><span class="comment"># 2、为何要用函数 不用函数产生问题是：</span></span><br><span class="line"><span class="comment"># 1、程序冗长</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 2 程序的扩展性差</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 3 程序的可读性差</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.如何用函数:</span></span><br><span class="line"><span class="comment"># 1、函数定义阶段: *****</span></span><br><span class="line"><span class="comment"># 只检测函数体的语法( 工厂合不合格)，不执行函数体代码 （不使用工厂）</span></span><br><span class="line"><span class="comment"># def 函数名+括号+冒号</span></span><br><span class="line"><span class="comment"># # # 缩进+体代码</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">factory</span><span class="params">()</span>:</span> <span class="comment"># 制造一个工厂</span></span><br><span class="line"><span class="comment">#     '''</span></span><br><span class="line"><span class="comment">#     注释：制造手机的工厂</span></span><br><span class="line"><span class="comment">#     :return:</span></span><br><span class="line"><span class="comment">#     '''</span></span><br><span class="line">    print(<span class="string">'正在制造手机'</span>)  <span class="comment"># 代码相当于员工和机器</span></span><br><span class="line">    print(<span class="string">'正在制造手机'</span>)  <span class="comment"># 代码相当于员工和机器</span></span><br><span class="line">    print(<span class="string">'正在制造手机'</span>)  <span class="comment"># 代码相当于员工和机器</span></span><br><span class="line"><span class="comment"># # # # # # 2、函数调用阶 段: *****</span></span><br><span class="line"><span class="comment"># # # # # # 函数的调用：函数名加括号</span></span><br><span class="line"><span class="comment"># # # # # # 1 先找到名字   (找到工厂的位置)</span></span><br><span class="line"><span class="comment"># # # # # # 2 根据名字调用代码   ( 加了括号执行工厂进行加工)</span></span><br><span class="line"> <span class="comment"># 1 先找到名字   (找到工厂的位置)</span></span><br><span class="line">print(factory)</span><br><span class="line">factory()</span><br><span class="line">factory()</span><br><span class="line">factory()</span><br></pre></td></tr></table></figure>
+<h4 id="4-2-闭包函数"><a href="#4-2-闭包函数" class="headerlink" title="4.2.闭包函数"></a>4.2.闭包函数</h4><h5 id="1-闭包的作用"><a href="#1-闭包的作用" class="headerlink" title="1.闭包的作用"></a>1.闭包的作用</h5><p>保证数据安全</p>
+<h6 id="1-全局的情况"><a href="#1-全局的情况" class="headerlink" title="1.全局的情况"></a>1.全局的情况</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">name = <span class="string">'大海'</span></span><br><span class="line">print(name)</span><br><span class="line">name = <span class="string">'小红'</span></span><br><span class="line">print(name)</span><br></pre></td></tr></table></figure>
+<p>虽然全局可以用，但是却可以直接修改，所以数据不安全</p>
+<h6 id="2-一个函数局部的情况"><a href="#2-一个函数局部的情况" class="headerlink" title="2.一个函数局部的情况"></a>2.一个函数局部的情况</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">outer</span><span class="params">()</span>:</span></span><br><span class="line">    name = <span class="string">'大海'</span></span><br><span class="line">outer()</span><br><span class="line"><span class="comment"># 无法引用</span></span><br><span class="line">print(name)</span><br></pre></td></tr></table></figure>
+<p>如果直接放到函数里面，数据是安全了，但是无法引用</p>
+<p>所以就需要一种方法做到，既能引用函数里面的变量，又能保证这个变量不被修改</p>
+<p>所以就想到了一种嵌套函数的办法，它就是闭包的结构，我们一起来认识一下</p>
+<h5 id="2-闭包的结构"><a href="#2-闭包的结构" class="headerlink" title="2.闭包的结构"></a>2.闭包的结构</h5><h6 id="1-闭包的概念"><a href="#1-闭包的概念" class="headerlink" title="1.闭包的概念"></a>1.闭包的概念</h6><p>闭指的是:该函数是一个内部函数</p>
+<p>包指的是:指的是该内部的函数名字在外部被引用</p>
+<h6 id="2-构成条件"><a href="#2-构成条件" class="headerlink" title="2.构成条件:"></a>2.构成条件:</h6><p>1.函数嵌套前提</p>
+<p>2.外部函数返回内部函数名</p>
+<p>3.内部函数使用外部函数的变量</p>
+<h6 id="3-闭包获得内层函数的内存地址"><a href="#3-闭包获得内层函数的内存地址" class="headerlink" title="3.闭包获得内层函数的内存地址"></a>3.闭包获得内层函数的内存地址</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">outer</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'外面的函数正在运行'</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inner</span><span class="params">()</span>:</span></span><br><span class="line">        print(<span class="string">'里面的函数正在运行'</span>)</span><br><span class="line">    <span class="keyword">return</span> inner</span><br><span class="line">inner=outer() </span><br><span class="line">inner()</span><br></pre></td></tr></table></figure>
+<h6 id="4-闭包获得内层返回值，该返回值是外层函数内的变量名"><a href="#4-闭包获得内层返回值，该返回值是外层函数内的变量名" class="headerlink" title="4.闭包获得内层返回值，该返回值是外层函数内的变量名"></a>4.闭包获得内层返回值，该返回值是外层函数内的变量名</h6><p>外层函数内的变量名被称为：非全局变量，也叫做自由变量</p>
+<p>这个自由变量会和内层函数形成一种绑定关系</p>
+<p>自由变量不会和全局变量产生冲突，所以保证了数据安全</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">outer</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># 自由变量</span></span><br><span class="line">    name = <span class="string">'大海'</span></span><br><span class="line">    print(<span class="string">'外面的函数正在运行'</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inner</span><span class="params">()</span>:</span></span><br><span class="line">        print(<span class="string">'里面的函数正在运行'</span>)</span><br><span class="line">        <span class="keyword">return</span> name</span><br><span class="line">    <span class="keyword">return</span> inner</span><br><span class="line">inner=outer() </span><br><span class="line">inner()</span><br></pre></td></tr></table></figure>
+<h4 id="计算大海多次跑步的平均路程"><a href="#计算大海多次跑步的平均路程" class="headerlink" title="计算大海多次跑步的平均路程"></a>计算大海多次跑步的平均路程</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#　计算大海多次跑步的平均路程</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">outer</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># 自由变量</span></span><br><span class="line">    L1 = []</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inner</span><span class="params">(s)</span>:</span></span><br><span class="line">        L1.append(s)</span><br><span class="line">        <span class="comment"># print(L1)</span></span><br><span class="line">        <span class="comment"># print(sum(L1))</span></span><br><span class="line">        total=sum(L1)</span><br><span class="line">        count = len(L1)</span><br><span class="line">        <span class="comment"># print(L1)</span></span><br><span class="line">        <span class="comment"># print(count)</span></span><br><span class="line">        avg_s=total/count</span><br><span class="line">        print(id(L1))</span><br><span class="line">        <span class="keyword">return</span> avg_s</span><br><span class="line">    <span class="keyword">return</span> inner</span><br><span class="line">inner=outer()</span><br><span class="line"></span><br><span class="line">print(inner(<span class="number">1000</span>))</span><br><span class="line">print(inner(<span class="number">1050</span>))</span><br><span class="line">print(inner(<span class="number">1030</span>))</span><br><span class="line">print(inner(<span class="number">1070</span>))</span><br><span class="line">inner=outer()</span><br><span class="line">print(inner(<span class="number">1000</span>))</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/gongzhonghao.jpg" alt="图灵python大海老师 wechat" style="width: 200px; max-width: 100%;">
+  <div>python分享公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="图灵python大海老师 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="图灵python大海老师 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/图灵python/" rel="tag"># 图灵python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/10/24/day7异常与枚举和装饰器/" rel="next" title="day7大海老师之异常与枚举和装饰器">
+                <i class="fa fa-chevron-left"></i> day7大海老师之异常与枚举和装饰器
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/10/24/day8-购物车与三级菜单/" rel="prev" title="day8大海老师之购物车与三级菜单">
+                day8大海老师之购物车与三级菜单 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="图灵python大海老师">
+            
+              <p class="site-author-name" itemprop="name">图灵python大海老师</p>
+              <p class="site-description motion-element" itemprop="description">记录学习的技能和遇到的问题</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">188</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lvdXJuYW1l" title="GitHub &rarr; https://github.com/yourname"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="bWFpbHRvOjEzMjgwNDQzOTJAcXEuY29t" title="E-Mail &rarr; mailto:1328044392@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL2V4YW1wbGUuY29t" title="http://example.com">Title</span>
+                  </li>
+                
+              </ul>
+            </div>
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#day6大海老师之函数高级"><span class="nav-number">1.</span> <span class="nav-text">day6大海老师之函数高级</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-有名函数"><span class="nav-number">1.1.</span> <span class="nav-text">1.有名函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#断点"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">断点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-匿名函数"><span class="nav-number">1.2.</span> <span class="nav-text">2.匿名函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-匿名函数的含义"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1.匿名函数的含义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-为何要用"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2.为何要用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-使用"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3.使用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法"><span class="nav-number">1.2.3.0.1.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#一行代码图省事"><span class="nav-number">1.2.3.0.1.1.</span> <span class="nav-text">一行代码图省事</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#匿名函数的定义"><span class="nav-number">1.2.3.0.2.</span> <span class="nav-text">匿名函数的定义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#匿名函数的调用"><span class="nav-number">1.2.3.0.3.</span> <span class="nav-text">匿名函数的调用</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#表达式"><span class="nav-number">1.2.3.0.3.1.</span> <span class="nav-text">表达式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#函数"><span class="nav-number">1.2.3.0.3.2.</span> <span class="nav-text">函数</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#把内存地址赋值给一个变量没有意义"><span class="nav-number">1.2.3.0.3.3.</span> <span class="nav-text">把内存地址赋值给一个变量没有意义</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4匿名函数与内置函数结合使用"><span class="nav-number">1.2.4.</span> <span class="nav-text">2.4匿名函数与内置函数结合使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-max（可迭代对象）"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">1.max（可迭代对象）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-max-可迭代对象-key-函数名"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">2.max(可迭代对象,key = 函数名)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#写成匿名函数"><span class="nav-number">1.2.4.2.1.</span> <span class="nav-text">写成匿名函数</span></a></li></ol></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#3-列表生成式与字典生成式"><span class="nav-number">1.3.</span> <span class="nav-text">3.列表生成式与字典生成式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#列表生成式"><span class="nav-number">1.3.1.</span> <span class="nav-text">列表生成式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列表生成式排序"><span class="nav-number">1.3.2.</span> <span class="nav-text">列表生成式排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字典生成式"><span class="nav-number">1.3.3.</span> <span class="nav-text">字典生成式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-递归函数"><span class="nav-number">1.4.</span> <span class="nav-text">3.递归函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-什么是递归函数"><span class="nav-number">1.4.1.</span> <span class="nav-text">3.1.什么是递归函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#递归调用必须有两个明确的阶段"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">递归调用必须有两个明确的阶段:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-闭包函数"><span class="nav-number">1.5.</span> <span class="nav-text">4.闭包函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-回顾函数基础"><span class="nav-number">1.5.0.1.</span> <span class="nav-text">4.1.回顾函数基础</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-闭包函数"><span class="nav-number">1.5.0.2.</span> <span class="nav-text">4.2.闭包函数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-闭包的作用"><span class="nav-number">1.5.0.2.1.</span> <span class="nav-text">1.闭包的作用</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-全局的情况"><span class="nav-number">1.5.0.2.1.1.</span> <span class="nav-text">1.全局的情况</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-一个函数局部的情况"><span class="nav-number">1.5.0.2.1.2.</span> <span class="nav-text">2.一个函数局部的情况</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-闭包的结构"><span class="nav-number">1.5.0.2.2.</span> <span class="nav-text">2.闭包的结构</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-闭包的概念"><span class="nav-number">1.5.0.2.2.1.</span> <span class="nav-text">1.闭包的概念</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-构成条件"><span class="nav-number">1.5.0.2.2.2.</span> <span class="nav-text">2.构成条件:</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-闭包获得内层函数的内存地址"><span class="nav-number">1.5.0.2.2.3.</span> <span class="nav-text">3.闭包获得内层函数的内存地址</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-闭包获得内层返回值，该返回值是外层函数内的变量名"><span class="nav-number">1.5.0.2.2.4.</span> <span class="nav-text">4.闭包获得内层返回值，该返回值是外层函数内的变量名</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#计算大海多次跑步的平均路程"><span class="nav-number">1.5.0.3.</span> <span class="nav-text">计算大海多次跑步的平均路程</span></a></li></ol></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">图灵python大海老师</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Pisces</span> v7.0.1</div>
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script id="ribbon" size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+  
+  <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ljyabc.github.io/2022/10/24/day6函数高级/";
+    this.page.identifier = "2022/10/24/day6函数高级/";
+    this.page.title = 'day6大海老师之函数高级';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/exturl.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+   <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+</body>
+</html>
