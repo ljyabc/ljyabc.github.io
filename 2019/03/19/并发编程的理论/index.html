@@ -1,0 +1,1552 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Cpython解释器下实现并发编程一、      背景知识进程（抽象概念，起源于操作系统）： 一个正在执行的过程/一个正在运行的程序 操作系统：一个协调、管理控制计算机硬件资源和软件资源的控制程序 操作系统的作用：隐藏丑陋复杂的硬件接口，提供良好的抽象接口（用户态）；管理、调度进程，并且将多个进程对硬件的竞争变得有序（内核态） 多道技术（第三代计算机；针对单核而言）：多道指的是多个程序，多道技术的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="并发编程的理论">
+<meta property="og:url" content="https://ljyabc.github.io/2019/03/19/并发编程的理论/index.html">
+<meta property="og:site_name" content="择墅居:李江洋">
+<meta property="og:description" content="Cpython解释器下实现并发编程一、      背景知识进程（抽象概念，起源于操作系统）： 一个正在执行的过程/一个正在运行的程序 操作系统：一个协调、管理控制计算机硬件资源和软件资源的控制程序 操作系统的作用：隐藏丑陋复杂的硬件接口，提供良好的抽象接口（用户态）；管理、调度进程，并且将多个进程对硬件的竞争变得有序（内核态） 多道技术（第三代计算机；针对单核而言）：多道指的是多个程序，多道技术的">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2025-04-08T14:37:59.645Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="并发编程的理论">
+<meta name="twitter:description" content="Cpython解释器下实现并发编程一、      背景知识进程（抽象概念，起源于操作系统）： 一个正在执行的过程/一个正在运行的程序 操作系统：一个协调、管理控制计算机硬件资源和软件资源的控制程序 操作系统的作用：隐藏丑陋复杂的硬件接口，提供良好的抽象接口（用户态）；管理、调度进程，并且将多个进程对硬件的竞争变得有序（内核态） 多道技术（第三代计算机；针对单核而言）：多道指的是多个程序，多道技术的">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ljyabc.github.io/2019/03/19/并发编程的理论/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>并发编程的理论 | 择墅居:李江洋</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">择墅居:李江洋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">争做长沙别墅豪装第一品牌</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/book" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>book</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2019/03/19/并发编程的理论/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李江洋">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="择墅居:李江洋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">并发编程的理论
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-19 21:27:54" itemprop="dateCreated datePublished" datetime="2019-03-19T21:27:54+08:00">2019-03-19</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2025-04-08 22:37:59" itemprop="dateModified" datetime="2025-04-08T22:37:59+08:00">2025-04-08</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/03/19/并发编程的理论/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/19/并发编程的理论/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Cpython解释器下实现并发编程"><a href="#Cpython解释器下实现并发编程" class="headerlink" title="Cpython解释器下实现并发编程"></a>Cpython解释器下实现并发编程</h1><h2 id="一、-背景知识"><a href="#一、-背景知识" class="headerlink" title="一、      背景知识"></a>一、      背景知识</h2><h3 id="进程（抽象概念，起源于操作系统）："><a href="#进程（抽象概念，起源于操作系统）：" class="headerlink" title="进程（抽象概念，起源于操作系统）："></a>进程（抽象概念，起源于操作系统）：</h3><p> 一个正在执行的过程/一个正在运行的程序</p>
+<h3 id="操作系统："><a href="#操作系统：" class="headerlink" title="操作系统："></a>操作系统：</h3><p>一个协调、管理控制计算机硬件资源和软件资源的控制程序</p>
+<h3 id="操作系统的作用："><a href="#操作系统的作用：" class="headerlink" title="操作系统的作用："></a>操作系统的作用：</h3><p>隐藏丑陋复杂的硬件接口，提供良好的抽象接口（用户态）；管理、调度进程，并且将多个进程对硬件的竞争变得有序（内核态）</p>
+<h3 id="多道技术（第三代计算机；针对单核而言）："><a href="#多道技术（第三代计算机；针对单核而言）：" class="headerlink" title="多道技术（第三代计算机；针对单核而言）："></a>多道技术（第三代计算机；针对单核而言）：</h3><p>多道指的是多个程序，多道技术的实现是为了解决多个程序竞争或者说共享同一个资源（比如cpu）的有序调度问题，解决方式即多路复用，多路复用分为时间上的复用和空间上的复用。</p>
+<h3 id="空间上的复用："><a href="#空间上的复用：" class="headerlink" title="空间上的复用："></a>空间上的复用：</h3><p>将内存分为几部分，每个部分放入一个程序，这样，同一时间内存中就有了多道程序。</p>
+<h3 id="时间上的复用（复用一个CPU的时间片）："><a href="#时间上的复用（复用一个CPU的时间片）：" class="headerlink" title="时间上的复用（复用一个CPU的时间片）："></a>时间上的复用（复用一个CPU的时间片）：</h3><p>当一个程序在等待I/O时，另一个程序可以使用cpu，如果内存中可以同时存放足够多的作业，则cpu的利用率可以接近100%</p>
+<p> 操作系统采用了多道技术，可以控制进程的切换，或者说进程之间去争抢cpu的执行权限。这种切换不仅会在一个进程遇到io时进行，一个进程占用cpu时间过长也会切换，或者说被操作系统夺走cpu的执行权限</p>
+<p> 分时操作系统：多个联机终端+多道技术 （第三代计算机广泛采用了必须的保护硬件（程序之间内存彼此隔离）之后，分时系统才开始流行）</p>
+<h2 id="二、并发编程之多进程"><a href="#二、并发编程之多进程" class="headerlink" title="二、并发编程之多进程"></a>二、并发编程之多进程</h2><h3 id="程序："><a href="#程序：" class="headerlink" title="程序："></a>程序：</h3><p>一堆代码</p>
+<h3 id="进程："><a href="#进程：" class="headerlink" title="进程："></a>进程：</h3><p>正在进行的一个过程（任务）。而负责执行任务则是cpu。需知进程的调度、分配给哪个cpu运行，由操作系统说了算。</p>
+<p> 同一个程序执行两次，那也是两个进程，一个进程一个PID</p>
+<h3 id="并行："><a href="#并行：" class="headerlink" title="并行："></a>并行：</h3><p>同时运行，只有具备多个cpu才能实现并行；并行属于并发</p>
+<h3 id="并发："><a href="#并发：" class="headerlink" title="并发："></a>并发：</h3><p>是伪并行，即看起来是同时运行； 切换+状态保存</p>
+<h3 id="串行："><a href="#串行：" class="headerlink" title="串行："></a>串行：</h3><p>直到一个任务完完全全结束才开始进行下一个任务</p>
+<h3 id="同步："><a href="#同步：" class="headerlink" title="同步："></a>同步：</h3><p>发出一个功能调用时，在没有得到结果前，该调用就不会返回。（绝大多数函数）</p>
+<h3 id="异步："><a href="#异步：" class="headerlink" title="异步："></a>异步：</h3><p>当一个异步功能调用发出后，调用者不能立刻得到结果。当该异步功能完成后，通过状态（效率低）、通知或回调（效率高）来通知调用者。</p>
+<p> 同步与异步针对的是函数/任务的调用方式</p>
+<h3 id="阻塞："><a href="#阻塞：" class="headerlink" title="阻塞："></a>阻塞：</h3><p>遇到IO就发生阻塞，程序一旦遇到阻塞操作就会停在原地，并且立刻释放CPU资源</p>
+<h3 id="非阻塞（就绪态或运行态）"><a href="#非阻塞（就绪态或运行态）" class="headerlink" title="非阻塞（就绪态或运行态）"></a>非阻塞（就绪态或运行态）</h3><p>：没有遇到IO操作，或者通过某种手段让程序即便是遇到IO操作也不会停在原地，执行其他操作，力求尽可能多的占有CPU</p>
+<p>阻塞与非阻塞指的是程序的两种运行状态</p>
+<h3 id="僵尸进程（有害：占用pid）："><a href="#僵尸进程（有害：占用pid）：" class="headerlink" title="僵尸进程（有害：占用pid）："></a>僵尸进程（有害：占用pid）：</h3><p>子代先于父代终结，其部分信息（pid等）没有从系统中删除，需要父代回收。join中含有回收子代信息的功能。</p>
+<h3 id="孤儿进程（无害）："><a href="#孤儿进程（无害）：" class="headerlink" title="孤儿进程（无害）："></a>孤儿进程（无害）：</h3><p>父代先于子代终结，子代终结后的部分信息由init代收。</p>
+<h3 id="守护进程："><a href="#守护进程：" class="headerlink" title="守护进程："></a>守护进程：</h3><p>守护进程会在主进程代码执行结束后就终止并回收；守护进程内无法再开启子进程,否则抛出异常</p>
+<h3 id="互斥锁（进程、线程）："><a href="#互斥锁（进程、线程）：" class="headerlink" title="互斥锁（进程、线程）："></a>互斥锁（进程、线程）：</h3><p>将并发变成串行，从而保证有序（在多个程序共享一个资源时，为保证有序不乱，需将并发变成串行），牺牲了效率而保证了数据安全。</p>
+<h3 id="互斥锁和join的区别："><a href="#互斥锁和join的区别：" class="headerlink" title="互斥锁和join的区别："></a>互斥锁和join的区别：</h3><p> join是按照人为指定的顺序执行，而互斥锁是所以进程平等地竞争，谁先抢到谁执行；互斥锁可以让一部分代码（修改共享数据的代码）串行，而join只能将代码整体串行</p>
+<h3 id="IPC通信机制（队列，管道）："><a href="#IPC通信机制（队列，管道）：" class="headerlink" title="IPC通信机制（队列，管道）："></a>IPC通信机制（队列，管道）：</h3><p>进程之间通信必须找到一种介质，该介质必须满足，是所有进程共享的，必须是内存空间，附加：帮我们自动处理好锁的问题</p>
+<h3 id="from-multiprocessing-import-Manager："><a href="#from-multiprocessing-import-Manager：" class="headerlink" title="from multiprocessing import Manager："></a>from multiprocessing import Manager：</h3><p>共享，内存，自己解决锁的问题</p>
+<h3 id="IPC中的队列（Queue：管道-锁）"><a href="#IPC中的队列（Queue：管道-锁）" class="headerlink" title="IPC中的队列（Queue：管道+锁）"></a>IPC中的队列（Queue：管道+锁）</h3><p> 共享，内存，自动处理锁的问题（最常用）</p>
+<h3 id="IPC中的管道（Pipe）"><a href="#IPC中的管道（Pipe）" class="headerlink" title="IPC中的管道（Pipe）"></a>IPC中的管道（Pipe）</h3><p>，共享，内存，需自己解决锁的问题</p>
+<h4 id="强调："><a href="#强调：" class="headerlink" title="强调："></a>强调：</h4><p>队列用来存成进程之间沟通的消息，数据量不应该过大；maxsize的值超过的内存限制就变得毫无意义</p>
+<h5 id="生产者消费者模型："><a href="#生产者消费者模型：" class="headerlink" title="生产者消费者模型："></a>生产者消费者模型：</h5><p>该模型中包含两类重要的角色：生产者和消费者</p>
+<h6 id="生产者："><a href="#生产者：" class="headerlink" title="生产者："></a>生产者：</h6><p>将负责造数据的任务比喻为生产者</p>
+<h6 id="消费者："><a href="#消费者：" class="headerlink" title="消费者："></a>消费者：</h6><p>接收生产者造出的数据来做进一步的处理，该类人物被比喻成消费者</p>
+<p> 实现生产者消费者模型三要素：生产者、消费者、队列</p>
+<p> 生产者消费者模型是解决问题的思路不是技术。可以用进程和队列来实现，也可以用其他的来实现。</p>
+<p> 生产者消费者模型应用场景：程序中出现明显的两类任何，一类任务是负责生产，另外一类任务是负责处理生产的数据的</p>
+<p> 生产者消费者模型作用：实现了生产者与消费者解耦和；平衡了生产者的生产力与消费者的处理数据的能力</p>
+<h2 id="三、-并发编程之多线程"><a href="#三、-并发编程之多线程" class="headerlink" title="三、      并发编程之多线程"></a>三、      并发编程之多线程</h2><h3 id="线程："><a href="#线程：" class="headerlink" title="线程："></a>线程：</h3><p>指的是一条流水线的工作过程；一个进程内自带一个线程，线程是执行单位</p>
+<p>进程不是执行单位，是资源单位</p>
+<h3 id="进程vs线程"><a href="#进程vs线程" class="headerlink" title="进程vs线程"></a>进程vs线程</h3><p> 同一进程内的线程们共享该进程内资源，不同进程内的线程资源肯定是隔离的</p>
+<p>创建线程的开销比创建进程要小的多</p>
+<p> 线程中没有父子关系。相较于子线程、主线程特殊之处在于其代变了主进程的生命周期。</p>
+<p>主进程等待子进程结束然后结束，是为子进程回收资源。主线程等待子线程结束然后结束，是等待这个进程的代码（其他非守护线程）执行完毕。</p>
+<h3 id="主进程："><a href="#主进程：" class="headerlink" title="主进程："></a>主进程：</h3><p>执行完代码就结束。</p>
+<h3 id="主线程："><a href="#主线程：" class="headerlink" title="主线程："></a>主线程：</h3><p>所有子线程结束才结束。</p>
+<p>一个进程中的子线程pid（process id）相同</p>
+<h3 id="守护线程："><a href="#守护线程：" class="headerlink" title="守护线程："></a>守护线程：</h3><p>守护线程会在主进程代码执行结束（所有非守护子线程代码执行结束）后就终止并回收</p>
+<p>对于守护进程\线程，只要进程内没有可执行的代码守护就结束<br>死锁现象：程序中有多把互斥锁，A持有B需要的锁、且需要B手中的锁，B持有A需要的锁、且需要A手中的锁，程序卡死。</p>
+<h3 id="递归锁（解决死锁问题）："><a href="#递归锁（解决死锁问题）：" class="headerlink" title="递归锁（解决死锁问题）："></a>递归锁（解决死锁问题）：</h3><p>是一把可连续acquire的锁，但只有其上的计数为0时其他线程才可对其调用。</p>
+<h3 id="信号量（semaphore，进程-线程）："><a href="#信号量（semaphore，进程-线程）：" class="headerlink" title="信号量（semaphore，进程\线程）："></a>信号量（semaphore，进程\线程）：</h3><p> 5把钥匙，即可同时有5个对象进行执行</p>
+<h3 id="全局解释器锁（GIL）："><a href="#全局解释器锁（GIL）：" class="headerlink" title="全局解释器锁（GIL）："></a>全局解释器锁（GIL）：</h3><h4 id="CPython解释器的特性；"><a href="#CPython解释器的特性；" class="headerlink" title="CPython解释器的特性；"></a>CPython解释器的特性；</h4><p>GIL本质就是一把夹在解释器身上的互斥锁（执行权限）。同一个进程内的所有线程都需要先抢到GIL锁，才能执行解释器代码</p>
+<h4 id="GIL优点："><a href="#GIL优点：" class="headerlink" title="GIL优点："></a>GIL优点：</h4><p>保证Cpython解释器内存管理的线程安全</p>
+<h4 id="GIL缺点："><a href="#GIL缺点：" class="headerlink" title="GIL缺点："></a>GIL缺点：</h4><p>在Cpython解释器中，同一个进程下开启的多线程，同一时刻只能有一个线程执行，也就说Cpython解释器的多线程无法实现并行无法利用多核优势</p>
+<p>注意：GIL不能并行，但有可能并发，不一定为串行。因为串行是一个任务完完全全执行完毕后才进行下一个；而cpython中，一个线程在io时，被CPU释放时，会被强行取消GIL的使用权限</p>
+<p>GIL能保护解释器级别代码（和垃圾回收机制有关）但保护不了其他共享数据（比如自己的代码）。所以在程序中对于需要保护的数据要自行加锁</p>
+<h3 id="计算密集型–》"><a href="#计算密集型–》" class="headerlink" title="计算密集型–》"></a>计算密集型–》</h3><p>使用多进程，以用上多核</p>
+<h3 id="IO密集型–》"><a href="#IO密集型–》" class="headerlink" title="IO密集型–》"></a>IO密集型–》</h3><p> 使用多线程</p>
+<h3 id="进程池、线程池："><a href="#进程池、线程池：" class="headerlink" title="进程池、线程池："></a>进程池、线程池：</h3><p>进程和线程都不能无限多，导入模块来限制进程和线程池重点数目，从而使计算机在一个自己可承受的范围内去并发地执行任务；进程线程池中封装了Process、Thread模块的功能</p>
+<h3 id="异步-回调机制（进程、线程）："><a href="#异步-回调机制（进程、线程）：" class="headerlink" title="异步+回调机制（进程、线程）："></a>异步+回调机制（进程、线程）：</h3><p> 使任务的返回值得到及时的处理，且使后续的处理阶段也并发执行，且使几个阶段之间解耦合；进程版：主进程作为回调的执行者；线程版：哪个子进程空闲就由那个子进程作为回调的执行者</p>
+<h3 id="线程queue（常用三种）："><a href="#线程queue（常用三种）：" class="headerlink" title="线程queue（常用三种）："></a>线程queue（常用三种）：</h3><p>队列、堆栈、优先级队列（数字越小优先级越高）</p>
+<h3 id="线程event："><a href="#线程event：" class="headerlink" title="线程event："></a>线程event：</h3><p>内部维护一个全局变量，等待函数一重置event内的值后，函数二从event.wait()后继续运行</p>
+<h2 id="四、并发编程之多协程"><a href="#四、并发编程之多协程" class="headerlink" title="四、并发编程之多协程"></a>四、并发编程之多协程</h2><h3 id="1、协程："><a href="#1、协程：" class="headerlink" title="1、协程："></a>1、协程：</h3><p>单线程下实现并发:协程 （为了提高效率；但不是说所有协程都会提升效率）；效的协程在一定程度‘骗过’了CPU；通过自己内部协调，一遇到IO就切到自己的其他程序中，使得CPU以为这个程序一直在运行，从而使其更有可能处于就绪态或运行态，以更多的占用CPU。</p>
+<h3 id="2、实现并发的三种手段："><a href="#2、实现并发的三种手段：" class="headerlink" title="2、实现并发的三种手段："></a>2、实现并发的三种手段：</h3><p>   a、单线程下的并发；由程序自己控制，相对速度快</p>
+<p>   b、多线程下的并发；由操作系统控制，相对速度较慢</p>
+<p>   c、多进程下的并发；由操作系统控制，相对速度慢</p>
+<h3 id="3、yield："><a href="#3、yield：" class="headerlink" title="3、yield："></a>3、yield：</h3><p>基于yield保存状态,可实现两个任务直接来回切换,即并发的效果。但yield不会遇到阻塞自动切程序。</p>
+<h3 id="4、greenlet"><a href="#4、greenlet" class="headerlink" title="4、greenlet"></a>4、greenlet</h3><p>：封装yield，遇到IO不自动切</p>
+<h3 id="5、gevent："><a href="#5、gevent：" class="headerlink" title="5、gevent："></a>5、gevent：</h3><p>封装greenlet，不处理的话，遇到自己的IO才主动切；处理后，遇到其他IO也主动切</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/gongzhonghao.jpg" alt="李江洋 wechat" style="width: 200px; max-width: 100%;">
+  <div>python分享公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="李江洋 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="李江洋 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/19/pycharm使用秘籍/" rel="next" title="pycharm使用秘籍">
+                <i class="fa fa-chevron-left"></i> pycharm使用秘籍
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/20/虚拟机/" rel="prev" title="虚拟机">
+                虚拟机 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="李江洋">
+            
+              <p class="site-author-name" itemprop="name">李江洋</p>
+              <p class="site-description motion-element" itemprop="description">记录学习的技能和遇到的问题</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">179</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lvdXJuYW1l" title="GitHub &rarr; https://github.com/yourname"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="bWFpbHRvOjEzMjgwNDQzOTJAcXEuY29t" title="E-Mail &rarr; mailto:1328044392@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL2V4YW1wbGUuY29t" title="http://example.com">Title</span>
+                  </li>
+                
+              </ul>
+            </div>
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Cpython解释器下实现并发编程"><span class="nav-number">1.</span> <span class="nav-text">Cpython解释器下实现并发编程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、-背景知识"><span class="nav-number">1.1.</span> <span class="nav-text">一、      背景知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#进程（抽象概念，起源于操作系统）："><span class="nav-number">1.1.1.</span> <span class="nav-text">进程（抽象概念，起源于操作系统）：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作系统："><span class="nav-number">1.1.2.</span> <span class="nav-text">操作系统：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作系统的作用："><span class="nav-number">1.1.3.</span> <span class="nav-text">操作系统的作用：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多道技术（第三代计算机；针对单核而言）："><span class="nav-number">1.1.4.</span> <span class="nav-text">多道技术（第三代计算机；针对单核而言）：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空间上的复用："><span class="nav-number">1.1.5.</span> <span class="nav-text">空间上的复用：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间上的复用（复用一个CPU的时间片）："><span class="nav-number">1.1.6.</span> <span class="nav-text">时间上的复用（复用一个CPU的时间片）：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、并发编程之多进程"><span class="nav-number">1.2.</span> <span class="nav-text">二、并发编程之多进程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#程序："><span class="nav-number">1.2.1.</span> <span class="nav-text">程序：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程："><span class="nav-number">1.2.2.</span> <span class="nav-text">进程：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并行："><span class="nav-number">1.2.3.</span> <span class="nav-text">并行：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并发："><span class="nav-number">1.2.4.</span> <span class="nav-text">并发：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#串行："><span class="nav-number">1.2.5.</span> <span class="nav-text">串行：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同步："><span class="nav-number">1.2.6.</span> <span class="nav-text">同步：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异步："><span class="nav-number">1.2.7.</span> <span class="nav-text">异步：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#阻塞："><span class="nav-number">1.2.8.</span> <span class="nav-text">阻塞：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非阻塞（就绪态或运行态）"><span class="nav-number">1.2.9.</span> <span class="nav-text">非阻塞（就绪态或运行态）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#僵尸进程（有害：占用pid）："><span class="nav-number">1.2.10.</span> <span class="nav-text">僵尸进程（有害：占用pid）：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#孤儿进程（无害）："><span class="nav-number">1.2.11.</span> <span class="nav-text">孤儿进程（无害）：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#守护进程："><span class="nav-number">1.2.12.</span> <span class="nav-text">守护进程：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#互斥锁（进程、线程）："><span class="nav-number">1.2.13.</span> <span class="nav-text">互斥锁（进程、线程）：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#互斥锁和join的区别："><span class="nav-number">1.2.14.</span> <span class="nav-text">互斥锁和join的区别：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IPC通信机制（队列，管道）："><span class="nav-number">1.2.15.</span> <span class="nav-text">IPC通信机制（队列，管道）：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#from-multiprocessing-import-Manager："><span class="nav-number">1.2.16.</span> <span class="nav-text">from multiprocessing import Manager：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IPC中的队列（Queue：管道-锁）"><span class="nav-number">1.2.17.</span> <span class="nav-text">IPC中的队列（Queue：管道+锁）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IPC中的管道（Pipe）"><span class="nav-number">1.2.18.</span> <span class="nav-text">IPC中的管道（Pipe）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#强调："><span class="nav-number">1.2.18.1.</span> <span class="nav-text">强调：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#生产者消费者模型："><span class="nav-number">1.2.18.1.1.</span> <span class="nav-text">生产者消费者模型：</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#生产者："><span class="nav-number">1.2.18.1.1.1.</span> <span class="nav-text">生产者：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#消费者："><span class="nav-number">1.2.18.1.1.2.</span> <span class="nav-text">消费者：</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、-并发编程之多线程"><span class="nav-number">1.3.</span> <span class="nav-text">三、      并发编程之多线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#线程："><span class="nav-number">1.3.1.</span> <span class="nav-text">线程：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程vs线程"><span class="nav-number">1.3.2.</span> <span class="nav-text">进程vs线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主进程："><span class="nav-number">1.3.3.</span> <span class="nav-text">主进程：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主线程："><span class="nav-number">1.3.4.</span> <span class="nav-text">主线程：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#守护线程："><span class="nav-number">1.3.5.</span> <span class="nav-text">守护线程：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#递归锁（解决死锁问题）："><span class="nav-number">1.3.6.</span> <span class="nav-text">递归锁（解决死锁问题）：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信号量（semaphore，进程-线程）："><span class="nav-number">1.3.7.</span> <span class="nav-text">信号量（semaphore，进程\线程）：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全局解释器锁（GIL）："><span class="nav-number">1.3.8.</span> <span class="nav-text">全局解释器锁（GIL）：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CPython解释器的特性；"><span class="nav-number">1.3.8.1.</span> <span class="nav-text">CPython解释器的特性；</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GIL优点："><span class="nav-number">1.3.8.2.</span> <span class="nav-text">GIL优点：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GIL缺点："><span class="nav-number">1.3.8.3.</span> <span class="nav-text">GIL缺点：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算密集型–》"><span class="nav-number">1.3.9.</span> <span class="nav-text">计算密集型–》</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IO密集型–》"><span class="nav-number">1.3.10.</span> <span class="nav-text">IO密集型–》</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程池、线程池："><span class="nav-number">1.3.11.</span> <span class="nav-text">进程池、线程池：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异步-回调机制（进程、线程）："><span class="nav-number">1.3.12.</span> <span class="nav-text">异步+回调机制（进程、线程）：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程queue（常用三种）："><span class="nav-number">1.3.13.</span> <span class="nav-text">线程queue（常用三种）：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程event："><span class="nav-number">1.3.14.</span> <span class="nav-text">线程event：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、并发编程之多协程"><span class="nav-number">1.4.</span> <span class="nav-text">四、并发编程之多协程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、协程："><span class="nav-number">1.4.1.</span> <span class="nav-text">1、协程：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、实现并发的三种手段："><span class="nav-number">1.4.2.</span> <span class="nav-text">2、实现并发的三种手段：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、yield："><span class="nav-number">1.4.3.</span> <span class="nav-text">3、yield：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、greenlet"><span class="nav-number">1.4.4.</span> <span class="nav-text">4、greenlet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、gevent："><span class="nav-number">1.4.5.</span> <span class="nav-text">5、gevent：</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李江洋</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Pisces</span> v7.0.1</div>
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script id="ribbon" size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+  
+  <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ljyabc.github.io/2019/03/19/并发编程的理论/";
+    this.page.identifier = "2019/03/19/并发编程的理论/";
+    this.page.title = '并发编程的理论';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/exturl.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+   <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+</body>
+</html>

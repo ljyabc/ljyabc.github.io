@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="创建django！百度一下 创建app1python manage.py startapp app2 django的安装与使用12345678910111 pip3 install django==1.11.9	2 django-admin startproject 项目名字	3 切到项目里python3 mangage.py startapp app的名字	4 pycharm打开项目,启动项目,">
+<meta name="keywords" content="lnhdjango基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="django创建基本知识">
+<meta property="og:url" content="https://ljyabc.github.io/2021/04/30/django创建基本知识/index.html">
+<meta property="og:site_name" content="择墅居:李江洋">
+<meta property="og:description" content="创建django！百度一下 创建app1python manage.py startapp app2 django的安装与使用12345678910111 pip3 install django==1.11.9	2 django-admin startproject 项目名字	3 切到项目里python3 mangage.py startapp app的名字	4 pycharm打开项目,启动项目,">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ljyabc.github.io/2021/04/30/django创建基本知识/1607243613054.png">
+<meta property="og:image" content="https://ljyabc.github.io/2021/04/30/django创建基本知识/1607244313860.png">
+<meta property="og:image" content="https://ljyabc.github.io/2021/04/30/django创建基本知识/1607254007047.png">
+<meta property="og:image" content="https://ljyabc.github.io/2021/04/30/django创建基本知识/1607254199520.png">
+<meta property="og:image" content="https://ljyabc.github.io/2021/04/30/django创建基本知识/1607255009816.png">
+<meta property="og:image" content="https://ljyabc.github.io/2021/04/30/django创建基本知识/1607260640053.png">
+<meta property="og:image" content="https://ljyabc.github.io/2021/04/30/django创建基本知识/1607321316240.png">
+<meta property="og:image" content="https://ljyabc.github.io/2021/04/30/django创建基本知识/1607322076819.png">
+<meta property="og:image" content="https://ljyabc.github.io/2021/04/30/django创建基本知识/D:/Windows%2010%20Documents/Desktop/新建文件夹/1607322556099.png">
+<meta property="og:image" content="https://ljyabc.github.io/2021/04/30/django创建基本知识/1607330641816.png">
+<meta property="og:image" content="https://ljyabc.github.io/2021/04/30/django创建基本知识/1607329199491.png">
+<meta property="og:image" content="https://ljyabc.github.io/2021/04/30/django创建基本知识/1607331366010.png">
+<meta property="og:image" content="https://ljyabc.github.io/2021/04/30/django创建基本知识/1607331511877.png">
+<meta property="og:image" content="https://ljyabc.github.io/2021/04/30/django创建基本知识/1607331647273.png">
+<meta property="og:image" content="https://ljyabc.github.io/2021/04/30/django创建基本知识/1607331719941.png">
+<meta property="og:image" content="https://ljyabc.github.io/2021/04/30/django创建基本知识/v2-b4b21e27ab85a9c3e38a30f19fb9dbc8_r.jpg">
+<meta property="og:image" content="https://ljyabc.github.io/2021/04/30/django创建基本知识/1607353680216.png">
+<meta property="og:image" content="https://ljyabc.github.io/2021/04/30/django创建基本知识/1607354131586.png">
+<meta property="og:image" content="https://ljyabc.github.io/2021/04/30/django创建基本知识/1607428512301.png">
+<meta property="og:image" content="https://ljyabc.github.io/2021/04/30/django创建基本知识/1607494517190.png">
+<meta property="og:image" content="https://ljyabc.github.io/2021/04/30/django创建基本知识/1607494560241.png">
+<meta property="og:image" content="https://ljyabc.github.io/2021/04/30/django创建基本知识/1607495517731.png">
+<meta property="og:image" content="https://ljyabc.github.io/2021/04/30/django创建基本知识/1607495762532.png">
+<meta property="og:image" content="https://ljyabc.github.io/2021/04/30/django创建基本知识/1607496819666.png">
+<meta property="og:image" content="https://ljyabc.github.io/2021/04/30/django创建基本知识/1607497209102.png">
+<meta property="og:updated_time" content="2025-04-08T14:37:23.546Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="django创建基本知识">
+<meta name="twitter:description" content="创建django！百度一下 创建app1python manage.py startapp app2 django的安装与使用12345678910111 pip3 install django==1.11.9	2 django-admin startproject 项目名字	3 切到项目里python3 mangage.py startapp app的名字	4 pycharm打开项目,启动项目,">
+<meta name="twitter:image" content="https://ljyabc.github.io/2021/04/30/django创建基本知识/1607243613054.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ljyabc.github.io/2021/04/30/django创建基本知识/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>django创建基本知识 | 择墅居:李江洋</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">择墅居:李江洋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">争做长沙别墅豪装第一品牌</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/book" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>book</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2021/04/30/django创建基本知识/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李江洋">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="择墅居:李江洋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">django创建基本知识
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-04-30 16:42:11" itemprop="dateCreated datePublished" datetime="2021-04-30T16:42:11+08:00">2021-04-30</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2025-04-08 22:37:23" itemprop="dateModified" datetime="2025-04-08T22:37:23+08:00">2025-04-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/理解/" itemprop="url" rel="index"><span itemprop="name">理解</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2021/04/30/django创建基本知识/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/04/30/django创建基本知识/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="创建django！"><a href="#创建django！" class="headerlink" title="创建django！"></a>创建django！</h1><p>百度一下</p>
+<h1 id="创建app"><a href="#创建app" class="headerlink" title="创建app"></a>创建app</h1><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">python</span> manage.<span class="keyword">py</span> startapp app2</span><br></pre></td></tr></table></figure>
+<h2 id="django的安装与使用"><a href="#django的安装与使用" class="headerlink" title="django的安装与使用"></a>django的安装与使用</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> pip3 install django==<span class="number">1.11</span><span class="number">.9</span></span><br><span class="line">	<span class="number">2</span> django-admin startproject 项目名字</span><br><span class="line">	<span class="number">3</span> 切到项目里python3 mangage.py startapp app的名字</span><br><span class="line">	<span class="number">4</span> pycharm打开项目,启动项目,点绿色三角</span><br><span class="line">	<span class="number">5</span> 执行项目:python3 manage.py runserver <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8006</span></span><br><span class="line">			   python3 manage.py runserver <span class="number">8006</span></span><br><span class="line">			   python3 manage.py runserver</span><br><span class="line">	<span class="number">6</span> 目录结构:</span><br><span class="line">		<span class="number">1</span> 工程名的文件夹:settings:全局配置 </span><br><span class="line">						urls:路由根视图函数映射关系</span><br><span class="line">		   app名字的文件夹:views:视图函数   models:orm关系映射</span><br></pre></td></tr></table></figure>
+<h2 id="app的概念"><a href="#app的概念" class="headerlink" title="app的概念"></a>app的概念</h2><p>在你的项目里面加一个功能，在你的项目里面加一个系统</p>
+<p>一个项目里面没有app也是可以的</p>
+<p>大学:—————– 项目<br>        信息学院 ———-app01<br>        物理学院———–app02</p>
+<h2 id="强调-创建了app-要在配置文件中注册配置"><a href="#强调-创建了app-要在配置文件中注册配置" class="headerlink" title="强调:创建了app,要在配置文件中注册配置"></a>强调:创建了app,要在配置文件中注册配置</h2><p>配置文件setting的INSTALLED_APPS        ‘app1.apps.App1Config’,  </p>
+<p>和      apps文件        class App2Config(AppConfig):    name = ‘app2’   一一一对应</p>
+<h4 id="1-app的概念图解"><a href="#1-app的概念图解" class="headerlink" title="1.app的概念图解"></a>1.app的概念图解</h4><p><img src="/2021/04/30/django创建基本知识/1607243613054.png" alt="1607243613054"></p>
+<p>简单来说就是一个项目不便于管理，就出现了app这些小项目</p>
+<h2 id="1-url-自带"><a href="#1-url-自带" class="headerlink" title="1.url 自带"></a>1.url 自带</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url(<span class="string">r'^admin/'</span>, admin.site.urls),</span><br></pre></td></tr></table></figure>
+<p><img src="/2021/04/30/django创建基本知识/1607244313860.png" alt="1607244313860"></p>
+<h3 id="ufl与视图函数views的连接"><a href="#ufl与视图函数views的连接" class="headerlink" title="ufl与视图函数views的连接"></a>ufl与视图函数views的连接</h3><h4 id="项目url-py"><a href="#项目url-py" class="headerlink" title="项目url.py"></a>项目url.py</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 先要导入views模块</span></span><br><span class="line"><span class="keyword">from</span> app1 <span class="keyword">import</span> views</span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(<span class="string">r'^admin/'</span>, admin.site.urls),</span><br><span class="line">    url(<span class="string">'login'</span>,views.login)<span class="comment"># 通过app视图views函数找到login</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p><img src="/2021/04/30/django创建基本知识/1607254007047.png" alt="1607254007047"></p>
+<h2 id="2-templates模板"><a href="#2-templates模板" class="headerlink" title="2.templates模板"></a>2.templates模板</h2><h3 id="2-模板路径配置"><a href="#2-模板路径配置" class="headerlink" title="2 模板路径配置:"></a>2 模板路径配置:</h3><p>1 templates文件夹<br>2 settings里注册一下</p>
+<h4 id="2-settings里注册一下-注意一下项目的配置图解"><a href="#2-settings里注册一下-注意一下项目的配置图解" class="headerlink" title="2.settings里注册一下   注意一下项目的配置图解"></a>2.settings里注册一下   注意一下项目的配置图解</h4><p><img src="/2021/04/30/django创建基本知识/1607254199520.png" alt="1607254199520"></p>
+<h4 id="模板流程"><a href="#模板流程" class="headerlink" title="模板流程"></a>模板流程</h4><p><img src="/2021/04/30/django创建基本知识/1607255009816.png" alt="1607255009816"></p>
+<h2 id="3-static配置"><a href="#3-static配置" class="headerlink" title="3.static配置"></a>3.static配置</h2><h3 id="3-静态文件配置"><a href="#3-静态文件配置" class="headerlink" title="3 静态文件配置:"></a>3 静态文件配置:</h3><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> STATIC_URL = <span class="string">'/static/'</span>    一般不要改</span><br><span class="line"><span class="number">2</span> 创建一个<span class="keyword">static</span>文件夹       一般不要改</span><br><span class="line"><span class="number">3</span> STATICFILES_DIRS=[</span><br><span class="line">	os.path.<span class="keyword">join</span>(BASE_DIR, <span class="string">'static'</span>),  创建的文件夹路径(可以写多个)</span><br></pre></td></tr></table></figure>
+<h3 id="3-静态文件配置图解"><a href="#3-静态文件配置图解" class="headerlink" title="3.静态文件配置图解"></a>3.静态文件配置图解</h3><p><img src="/2021/04/30/django创建基本知识/1607260640053.png" alt="1607260640053"></p>
+<p>找不到报错404</p>
+<h2 id="4-完整版登录功能"><a href="#4-完整版登录功能" class="headerlink" title="4 完整版登录功能"></a>4 完整版登录功能</h2><h3 id="POST请求图解"><a href="#POST请求图解" class="headerlink" title="POST请求图解"></a>POST请求图解</h3><p><img src="/2021/04/30/django创建基本知识/1607321316240.png" alt="1607321316240"></p>
+<h3 id="request-POST的含义"><a href="#request-POST的含义" class="headerlink" title="request.POST的含义"></a>request.POST的含义</h3><p><img src="/2021/04/30/django创建基本知识/1607322076819.png" alt="1607322076819"></p>
+<h3 id="request-POST-getlist-‘name’"><a href="#request-POST-getlist-‘name’" class="headerlink" title="request.POST.getlist(‘name’)"></a>request.POST.getlist(‘name’)</h3><p><img src="/2021/04/30/django创建基本知识/D:/Windows 10 Documents\Desktop\新建文件夹\1607322556099.png" alt="1607322556099"></p>
+<h3 id="1-login-html"><a href="#1-login-html" class="headerlink" title="1 login.html"></a>1 login.html</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">***重点***1 action:提交到后台的地址三种写法:</span></span><br><span class="line">		1 http:<span class="comment">//127.0.0.1:8000/login</span></span><br><span class="line">		2 /login/   推荐用</span><br><span class="line">		3 空</span><br><span class="line">	  2 method  <span class="keyword">post</span>方式</span><br><span class="line">	  3 &lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"submit"</span> value=<span class="string">"提交"</span>&gt;或&lt;button&gt;&lt;/button&gt;</span><br><span class="line">		<span class="keyword">type</span>不可以是button</span><br><span class="line">   &lt;<span class="keyword">form</span> action=<span class="string">"http://127.0.0.1:8000/login"</span> method=<span class="string">"post"</span>&gt;</span><br><span class="line">	&lt;p&gt;用户名:&lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"text"</span> name=<span class="string">"name"</span> <span class="keyword">class</span>=<span class="string">"form-control"</span>&gt;&lt;/p&gt;</span><br><span class="line">	&lt;p &gt;</span><br><span class="line">		密码:&lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"password"</span> name=<span class="string">"pwd"</span> <span class="keyword">class</span>=<span class="string">"form-control"</span>&gt;</span><br><span class="line">	&lt;/p&gt;</span><br><span class="line">	&lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"submit"</span> value=<span class="string">"提交"</span>&gt;</span><br><span class="line">&lt;/<span class="keyword">form</span>&gt;</span><br></pre></td></tr></table></figure>
+<h3 id><a href="#" class="headerlink" title=" "></a> </h3><h3 id="2-视图层"><a href="#2-视图层" class="headerlink" title="2 视图层:"></a>2 视图层:</h3><p>​        </p>
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> request<span class="function">.<span class="keyword">method</span>  ----前台提交过来请求的方式</span></span><br><span class="line"><span class="function">		2 <span class="title">request</span>.<span class="title">POST</span><span class="params">(相当于字典)</span>----<span class="title">post</span>形式提交过来的数据,<span class="params">(http请求报文的请求体重)</span></span></span><br><span class="line"><span class="function">		3 <span class="title">request</span>.<span class="title">POST</span>.<span class="title">get</span><span class="params">(<span class="string">'name'</span>)</span> ----推荐用<span class="title">get</span>取值<span class="params">(取出列表最后一个值)</span></span></span><br><span class="line"><span class="function">		4 <span class="title">request</span>.<span class="title">POST</span>.<span class="title">getlist</span><span class="params">(<span class="string">'name'</span>)</span>-----取出列表所有的值_</span></span><br><span class="line"><span class="function">		5 前台<span class="title">get</span>方式提交的数据,从<span class="title">request</span>.<span class="title">GET</span>字典里取</span></span><br></pre></td></tr></table></figure>
+<h3 id="get提交图解"><a href="#get提交图解" class="headerlink" title="get提交图解"></a>get提交图解</h3><p><img src="/2021/04/30/django创建基本知识/1607330641816.png" alt="1607330641816"></p>
+<h3 id="3-链接数据库-防止注入-推荐以下写法"><a href="#3-链接数据库-防止注入-推荐以下写法" class="headerlink" title="3 链接数据库(防止注入,推荐以下写法)"></a>3 链接数据库(防止注入,推荐以下写法)</h3><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cur.execute('<span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> name=%s <span class="keyword">and</span> <span class="keyword">password</span>=%s <span class="string">',[name,pwd])</span></span><br></pre></td></tr></table></figure>
+<h4 id="登录访问数据库图解"><a href="#登录访问数据库图解" class="headerlink" title="登录访问数据库图解"></a>登录访问数据库图解</h4><p><img src="/2021/04/30/django创建基本知识/1607329199491.png" alt="1607329199491"></p>
+<h2 id="5-get请求和post请求"><a href="#5-get请求和post请求" class="headerlink" title="5 get请求和post请求"></a>5 get请求和post请求</h2><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">get:获取数据,页面,携带数据是不重要的数据(数据量有大小限制)</span></span><br><span class="line"><span class="xml">	post:往后台提交数据</span></span><br></pre></td></tr></table></figure>
+<h2 id="6-新手三件套总结"><a href="#6-新手三件套总结" class="headerlink" title="6 新手三件套总结"></a>6 新手三件套总结</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> <span class="string">render--返回页面</span></span><br><span class="line">		<span class="string">默认会去templates里找,注意路径</span></span><br><span class="line">	<span class="number">2</span> <span class="string">redirect--重定向</span></span><br><span class="line">	<span class="number">3</span> <span class="string">HttpResponse</span></span><br><span class="line">	<span class="string">本质:都是返回HttpResponse的对象</span></span><br></pre></td></tr></table></figure>
+<h2 id="7-pycharm连接mysql"><a href="#7-pycharm连接mysql" class="headerlink" title="7 pycharm连接mysql"></a>7 pycharm连接mysql</h2><h3 id="1-点击右边的database"><a href="#1-点击右边的database" class="headerlink" title="1 点击右边的database"></a>1 点击右边的database</h3><p><img src="/2021/04/30/django创建基本知识/1607331366010.png" alt="1607331366010"></p>
+<h3 id="2-点击加号-找到mysql"><a href="#2-点击加号-找到mysql" class="headerlink" title="2.点击加号,找到mysql"></a>2.点击加号,找到mysql</h3><p><img src="/2021/04/30/django创建基本知识/1607331511877.png" alt="1607331511877"></p>
+<h3 id="3-添加数据库名字，用户名，密码，下载msyql"><a href="#3-添加数据库名字，用户名，密码，下载msyql" class="headerlink" title="3.添加数据库名字，用户名，密码，下载msyql"></a>3.添加数据库名字，用户名，密码，下载msyql</h3><p><img src="/2021/04/30/django创建基本知识/1607331647273.png" alt="1607331647273"></p>
+<h3 id="4-测试"><a href="#4-测试" class="headerlink" title="4.测试"></a>4.测试</h3><p><img src="/2021/04/30/django创建基本知识/1607331719941.png" alt="1607331719941"></p>
+<h2 id="8-orm介绍"><a href="#8-orm介绍" class="headerlink" title="8.orm介绍"></a>8.orm介绍</h2><p>不管是java，其他语言只要是web开发都有这个</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> <span class="string">ORM即Object</span> <span class="string">Relational</span> <span class="string">Mapping，全称对象关系映射。</span></span><br><span class="line"><span class="comment"># 思考一下</span></span><br><span class="line"><span class="comment"># 对象关系映射 ，</span></span><br><span class="line"><span class="comment"># 1.就是程序的类对应的我的mysql的表</span></span><br><span class="line"><span class="comment"># 2.类里面的数据属性对应的mysql字段 </span></span><br><span class="line"><span class="comment"># 3.那么我只需要写这些python语法就可以把数据查出来，爽死</span></span><br><span class="line"><span class="comment"># 4.其实就是把我们的sql语句翻译成sql,拿到数据库里面去执行，执行完以后再翻译回来</span></span><br><span class="line"><span class="comment"># 5。返回回来是一个字典的格式的数据，再回到程序，它就变成了类对应的对象，所以说查出来的数据是一个个的对象。</span></span><br><span class="line"><span class="comment"># 6.那么这样就爽了。我们拿到的是一个个对象，那么对象点什么就是什么的字段信息，</span></span><br><span class="line"><span class="string">比如对象.name</span> <span class="string">就是name字段像这样</span></span><br><span class="line">	<span class="string">优点:</span> </span><br><span class="line">		<span class="number">1</span> <span class="string">不用写sql,不会sql的人也可以写程序,爽死</span></span><br><span class="line">		<span class="number">2</span> <span class="string">开发效率高</span></span><br><span class="line">	<span class="number">2</span> <span class="string">缺点:</span></span><br><span class="line">		<span class="number">1</span> <span class="string">可能sql的效率低</span></span><br><span class="line"><span class="number">1</span> <span class="string">ORM即Object</span> <span class="string">Relational</span> <span class="string">Mapping，全称对象关系映射。</span></span><br><span class="line">	<span class="string">优点:</span> </span><br><span class="line">		<span class="number">1</span> <span class="string">不用写sql,不会sql的人也可以写程序</span></span><br><span class="line">		<span class="number">2</span> <span class="string">开发效率高</span></span><br><span class="line">	<span class="number">2</span> <span class="string">缺点:</span></span><br><span class="line">		<span class="number">1</span> <span class="string">可能sql的效率低</span></span><br><span class="line">	<span class="number">3</span> <span class="string">如何使用:</span></span><br><span class="line">		<span class="string">如果连接mysql:在setting里配置:</span></span><br><span class="line">		    <span class="attr">'default':</span> <span class="string">&#123;</span></span><br><span class="line">				<span class="attr">'ENGINE':</span> <span class="string">'django.db.backends.mysql'</span><span class="string">,</span></span><br><span class="line">				<span class="attr">'HOST':</span> <span class="string">'127.0.0.1'</span><span class="string">,</span></span><br><span class="line">				<span class="attr">'PORT':</span> <span class="number">3306</span><span class="string">,</span></span><br><span class="line">				<span class="attr">'USER':</span> <span class="string">'root'</span><span class="string">,</span></span><br><span class="line">				<span class="attr">'PASSWORD':</span> <span class="string">'admin'</span><span class="string">,</span></span><br><span class="line">				<span class="attr">'NAME':</span> <span class="string">'lqz'</span><span class="string">,</span></span><br><span class="line">			<span class="string">&#125;</span></span><br><span class="line">		<span class="string">在app下的__init__.py里写:</span></span><br><span class="line">		<span class="string">import</span> <span class="string">pymysql</span></span><br><span class="line">		<span class="string">pymysql.install_as_MySQLdb()</span></span><br><span class="line">	</span><br><span class="line">	<span class="attr">4 django-orm:</span></span><br><span class="line">		<span class="number">1</span> <span class="string">不能创建数据库(需要手动创建数据库)</span></span><br><span class="line">		<span class="number">2</span> <span class="string">可以创建数据表</span></span><br><span class="line">		<span class="number">3</span> <span class="string">可以创建字段</span></span><br><span class="line">		</span><br><span class="line">	<span class="number">5</span> <span class="string">数据库迁移</span></span><br><span class="line">		<span class="number">1</span> <span class="string">python3</span> <span class="string">manage.py</span> <span class="string">makemigrations</span>   <span class="string">----记录一下数据库的变化</span></span><br><span class="line">		<span class="number">2</span> <span class="string">python3</span> <span class="string">manage.py</span> <span class="string">migrate</span>          <span class="string">----将变化同步到数据库中</span></span><br><span class="line">	<span class="number">6</span> <span class="string">增加字段</span></span><br><span class="line">		<span class="string">注意:后来增加的字段,需要有默认值</span></span><br><span class="line">		<span class="string">phone=models.CharField(max_length=64,default='120')</span></span><br></pre></td></tr></table></figure>
+<h3 id="图解orm"><a href="#图解orm" class="headerlink" title="图解orm"></a>图解orm</h3><p><img src="/2021/04/30/django创建基本知识/v2-b4b21e27ab85a9c3e38a30f19fb9dbc8_r.jpg" alt="v2-b4b21e27ab85a9c3e38a30f19fb9dbc8_r"></p>
+<h3 id="把mysqldb连接数据库替换成pymysql连接图解"><a href="#把mysqldb连接数据库替换成pymysql连接图解" class="headerlink" title="把mysqldb连接数据库替换成pymysql连接图解"></a>把mysqldb连接数据库替换成pymysql连接图解</h3><p><img src="/2021/04/30/django创建基本知识/1607353680216.png" alt="1607353680216"></p>
+<h3 id="连接pymysql图解"><a href="#连接pymysql图解" class="headerlink" title="连接pymysql图解"></a>连接pymysql图解</h3><p><img src="/2021/04/30/django创建基本知识/1607354131586.png" alt="1607354131586"></p>
+<h3 id="django三件套"><a href="#django三件套" class="headerlink" title="django三件套"></a>django三件套</h3><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#### <span class="number">1</span> render--返回页面</span><br></pre></td></tr></table></figure>
+<p>​        默认会去templates里找,注意路径</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#### <span class="number">2</span> redirect--重定向</span><br></pre></td></tr></table></figure>
+<p>​        重新用get请求另一个html</p>
+<h4 id="3-HttpResponse"><a href="#3-HttpResponse" class="headerlink" title="3 HttpResponse"></a>3 HttpResponse</h4><p>​    本质:都是返回HttpResponse的对象</p>
+<h3 id="图解django三件套"><a href="#图解django三件套" class="headerlink" title="图解django三件套"></a>图解django三件套</h3><p><img src="/2021/04/30/django创建基本知识/1607428512301.png" alt="1607428512301"></p>
+<h3 id="数据库迁移图解"><a href="#数据库迁移图解" class="headerlink" title="数据库迁移图解"></a>数据库迁移图解</h3><p>1，把mysqldb连接数据库替换成pymysql连接图解</p>
+<p>2，连接pymysql图解</p>
+<h4 id="3，1-python3manage-pymakemigrations—-记录一下数据库的变化图解"><a href="#3，1-python3manage-pymakemigrations—-记录一下数据库的变化图解" class="headerlink" title="3，1 python3manage.pymakemigrations—-记录一下数据库的变化图解"></a>3，1 python3manage.pymakemigrations—-记录一下数据库的变化图解</h4><p><img src="/2021/04/30/django创建基本知识/1607494517190.png" alt="1607494517190"></p>
+<h4 id="2-python3manage-pymigrate—-将变化同步到数据库中图解"><a href="#2-python3manage-pymigrate—-将变化同步到数据库中图解" class="headerlink" title="2 python3manage.pymigrate—-将变化同步到数据库中图解"></a>2 python3manage.pymigrate—-将变化同步到数据库中图解</h4><p><img src="/2021/04/30/django创建基本知识/1607494560241.png" alt="1607494560241"></p>
+<h4 id="4-后来增加的字段图解"><a href="#4-后来增加的字段图解" class="headerlink" title="4,后来增加的字段图解"></a>4,后来增加的字段图解</h4><h5 id="1-方法一-命令选择pythonmanage-pymakemigrations图解"><a href="#1-方法一-命令选择pythonmanage-pymakemigrations图解" class="headerlink" title="1.  方法一 命令选择pythonmanage.pymakemigrations图解"></a>1.  方法一 命令选择pythonmanage.pymakemigrations图解</h5><p><img src="/2021/04/30/django创建基本知识/1607495517731.png" alt="1607495517731"></p>
+<p>2.然后迁移命令python3 manage.py migrate   </p>
+<h5 id="1-2-方法二-添加一个字段的约束-默认值-default-图解"><a href="#1-2-方法二-添加一个字段的约束-默认值-default-图解" class="headerlink" title="1.2 方法二 添加一个字段的约束 默认值 default 图解"></a>1.2 方法二 添加一个字段的约束 默认值 default 图解</h5><p><img src="/2021/04/30/django创建基本知识/1607495762532.png" alt="1607495762532"></p>
+<p>2.然后迁移命令python3 manage.py migrate  </p>
+<h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><p><img src="/2021/04/30/django创建基本知识/1607496819666.png" alt="1607496819666"></p>
+<p>1，把mysqldb连接数据库替换成pymysql连接图解</p>
+<h4 id="5-后来修改的字段"><a href="#5-后来修改的字段" class="headerlink" title="5.后来修改的字段"></a>5.后来修改的字段</h4><h5 id="直接修改类的属性"><a href="#直接修改类的属性" class="headerlink" title="直接修改类的属性"></a>直接修改类的属性</h5><p><img src="/2021/04/30/django创建基本知识/1607497209102.png" alt="1607497209102"></p>
+<h5 id="再写命令"><a href="#再写命令" class="headerlink" title="再写命令"></a>再写命令</h5><p>1 python3 manage.py makemigrations   —-记录一下数据库的变化<br>        2 python3 manage.py migrate          —-将变化同步到数据库中</p>
+<h2 id="表User的增删改查"><a href="#表User的增删改查" class="headerlink" title="表User的增删改查"></a>表User的增删改查</h2><p>？？</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/gongzhonghao.jpg" alt="李江洋 wechat" style="width: 200px; max-width: 100%;">
+  <div>python分享公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="李江洋 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="李江洋 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/lnhdjango基础/" rel="tag"># lnhdjango基础</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/04/30/django之聚合函数/" rel="next" title="django之聚合函数">
+                <i class="fa fa-chevron-left"></i> django之聚合函数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/04/30/django文件上传/" rel="prev" title="django文件上传">
+                django文件上传 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="李江洋">
+            
+              <p class="site-author-name" itemprop="name">李江洋</p>
+              <p class="site-description motion-element" itemprop="description">记录学习的技能和遇到的问题</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">179</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lvdXJuYW1l" title="GitHub &rarr; https://github.com/yourname"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="bWFpbHRvOjEzMjgwNDQzOTJAcXEuY29t" title="E-Mail &rarr; mailto:1328044392@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL2V4YW1wbGUuY29t" title="http://example.com">Title</span>
+                  </li>
+                
+              </ul>
+            </div>
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#创建django！"><span class="nav-number">1.</span> <span class="nav-text">创建django！</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建app"><span class="nav-number">2.</span> <span class="nav-text">创建app</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#django的安装与使用"><span class="nav-number">2.1.</span> <span class="nav-text">django的安装与使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#app的概念"><span class="nav-number">2.2.</span> <span class="nav-text">app的概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#强调-创建了app-要在配置文件中注册配置"><span class="nav-number">2.3.</span> <span class="nav-text">强调:创建了app,要在配置文件中注册配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-app的概念图解"><span class="nav-number">2.3.0.1.</span> <span class="nav-text">1.app的概念图解</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-url-自带"><span class="nav-number">2.4.</span> <span class="nav-text">1.url 自带</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ufl与视图函数views的连接"><span class="nav-number">2.4.1.</span> <span class="nav-text">ufl与视图函数views的连接</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#项目url-py"><span class="nav-number">2.4.1.1.</span> <span class="nav-text">项目url.py</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-templates模板"><span class="nav-number">2.5.</span> <span class="nav-text">2.templates模板</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-模板路径配置"><span class="nav-number">2.5.1.</span> <span class="nav-text">2 模板路径配置:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-settings里注册一下-注意一下项目的配置图解"><span class="nav-number">2.5.1.1.</span> <span class="nav-text">2.settings里注册一下   注意一下项目的配置图解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模板流程"><span class="nav-number">2.5.1.2.</span> <span class="nav-text">模板流程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-static配置"><span class="nav-number">2.6.</span> <span class="nav-text">3.static配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-静态文件配置"><span class="nav-number">2.6.1.</span> <span class="nav-text">3 静态文件配置:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-静态文件配置图解"><span class="nav-number">2.6.2.</span> <span class="nav-text">3.静态文件配置图解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-完整版登录功能"><span class="nav-number">2.7.</span> <span class="nav-text">4 完整版登录功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#POST请求图解"><span class="nav-number">2.7.1.</span> <span class="nav-text">POST请求图解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#request-POST的含义"><span class="nav-number">2.7.2.</span> <span class="nav-text">request.POST的含义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#request-POST-getlist-‘name’"><span class="nav-number">2.7.3.</span> <span class="nav-text">request.POST.getlist(‘name’)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-login-html"><span class="nav-number">2.7.4.</span> <span class="nav-text">1 login.html</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.7.5.</span> <span class="nav-text"> </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-视图层"><span class="nav-number">2.7.6.</span> <span class="nav-text">2 视图层:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#get提交图解"><span class="nav-number">2.7.7.</span> <span class="nav-text">get提交图解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-链接数据库-防止注入-推荐以下写法"><span class="nav-number">2.7.8.</span> <span class="nav-text">3 链接数据库(防止注入,推荐以下写法)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#登录访问数据库图解"><span class="nav-number">2.7.8.1.</span> <span class="nav-text">登录访问数据库图解</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-get请求和post请求"><span class="nav-number">2.8.</span> <span class="nav-text">5 get请求和post请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-新手三件套总结"><span class="nav-number">2.9.</span> <span class="nav-text">6 新手三件套总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-pycharm连接mysql"><span class="nav-number">2.10.</span> <span class="nav-text">7 pycharm连接mysql</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-点击右边的database"><span class="nav-number">2.10.1.</span> <span class="nav-text">1 点击右边的database</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-点击加号-找到mysql"><span class="nav-number">2.10.2.</span> <span class="nav-text">2.点击加号,找到mysql</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-添加数据库名字，用户名，密码，下载msyql"><span class="nav-number">2.10.3.</span> <span class="nav-text">3.添加数据库名字，用户名，密码，下载msyql</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-测试"><span class="nav-number">2.10.4.</span> <span class="nav-text">4.测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-orm介绍"><span class="nav-number">2.11.</span> <span class="nav-text">8.orm介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图解orm"><span class="nav-number">2.11.1.</span> <span class="nav-text">图解orm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#把mysqldb连接数据库替换成pymysql连接图解"><span class="nav-number">2.11.2.</span> <span class="nav-text">把mysqldb连接数据库替换成pymysql连接图解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连接pymysql图解"><span class="nav-number">2.11.3.</span> <span class="nav-text">连接pymysql图解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#django三件套"><span class="nav-number">2.11.4.</span> <span class="nav-text">django三件套</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-HttpResponse"><span class="nav-number">2.11.4.1.</span> <span class="nav-text">3 HttpResponse</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图解django三件套"><span class="nav-number">2.11.5.</span> <span class="nav-text">图解django三件套</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库迁移图解"><span class="nav-number">2.11.6.</span> <span class="nav-text">数据库迁移图解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3，1-python3manage-pymakemigrations—-记录一下数据库的变化图解"><span class="nav-number">2.11.6.1.</span> <span class="nav-text">3，1 python3manage.pymakemigrations—-记录一下数据库的变化图解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-python3manage-pymigrate—-将变化同步到数据库中图解"><span class="nav-number">2.11.6.2.</span> <span class="nav-text">2 python3manage.pymigrate—-将变化同步到数据库中图解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-后来增加的字段图解"><span class="nav-number">2.11.6.3.</span> <span class="nav-text">4,后来增加的字段图解</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-方法一-命令选择pythonmanage-pymakemigrations图解"><span class="nav-number">2.11.6.3.1.</span> <span class="nav-text">1.  方法一 命令选择pythonmanage.pymakemigrations图解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-方法二-添加一个字段的约束-默认值-default-图解"><span class="nav-number">2.11.6.3.2.</span> <span class="nav-text">1.2 方法二 添加一个字段的约束 默认值 default 图解</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结果"><span class="nav-number">2.11.6.4.</span> <span class="nav-text">结果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-后来修改的字段"><span class="nav-number">2.11.6.5.</span> <span class="nav-text">5.后来修改的字段</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#直接修改类的属性"><span class="nav-number">2.11.6.5.1.</span> <span class="nav-text">直接修改类的属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#再写命令"><span class="nav-number">2.11.6.5.2.</span> <span class="nav-text">再写命令</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表User的增删改查"><span class="nav-number">2.12.</span> <span class="nav-text">表User的增删改查</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李江洋</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Pisces</span> v7.0.1</div>
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script id="ribbon" size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+  
+  <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ljyabc.github.io/2021/04/30/django创建基本知识/";
+    this.page.identifier = "2021/04/30/django创建基本知识/";
+    this.page.title = 'django创建基本知识';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/exturl.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+   <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+</body>
+</html>

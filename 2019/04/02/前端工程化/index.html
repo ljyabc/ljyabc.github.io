@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="2 前端工程化2.1 支持环境 Node1234node.js JavaScript的解释器用于后端开发作为前端工具的支持环境  2.2 NPM 包管理工具  1234包管理工具集成在node.js中，不需要单独下载前端的一切资源都可以都过npm下载 包括 各种前端工具(webpack\grunt...) 各种前端资源(jquery\bootstrap...) 1234npm install 包名">
+<meta name="keywords" content="前端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端工程化">
+<meta property="og:url" content="https://ljyabc.github.io/2019/04/02/前端工程化/index.html">
+<meta property="og:site_name" content="择墅居:李江洋">
+<meta property="og:description" content="2 前端工程化2.1 支持环境 Node1234node.js JavaScript的解释器用于后端开发作为前端工具的支持环境  2.2 NPM 包管理工具  1234包管理工具集成在node.js中，不需要单独下载前端的一切资源都可以都过npm下载 包括 各种前端工具(webpack\grunt...) 各种前端资源(jquery\bootstrap...) 1234npm install 包名">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ljyabc.github.io/2019/04/02/前端工程化/1554218423001.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/04/02/前端工程化/E:/blog-git/ljy/source/_posts/前端工程化/1554218780692.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/04/02/前端工程化/E:/blog-git/ljy/source/_posts/前端工程化/1554218854247.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/04/02/前端工程化/E:/blog-git/ljy/source/_posts/前端工程化/1554218921391.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/04/02/前端工程化/E:/blog-git/ljy/source/_posts/前端工程化/1554219511727.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/04/02/前端工程化/E:/blog-git/ljy/source/_posts/前端工程化/1554219661526.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/04/02/前端工程化/E:/blog-git/ljy/source/_posts/前端工程化/1554219728681.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/04/02/前端工程化/E:/blog-git/ljy/source/_posts/前端工程化/1554219935181.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/04/02/前端工程化/E:/blog-git/ljy/source/_posts/前端工程化/1554273819879.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/04/02/前端工程化/E:/blog-git/ljy/source/_posts/前端工程化/1554273891994.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/04/02/前端工程化/E:/blog-git/ljy/source/_posts/前端工程化/1554274224152.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/04/02/前端工程化/E:/blog-git/ljy/source/_posts/前端工程化/clipboard.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/04/02/前端工程化/E:/blog-git/ljy/source/_posts/前端工程化/clipboad.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/04/02/前端工程化/6d2709fa4c13412a84e71d9cb9e2c638/clipboard.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/04/02/前端工程化/2d1aa0e8f0ef4c5fa6e7071e714988ec/clipboard.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/04/02/前端工程化/4dbfe159058545f180aa5a991914e934/clipboard.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/04/02/前端工程化/df44b48993e544f88845f8fea3e710cb/clipboard.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/04/02/前端工程化/9d09c35ea7054178b5cdbfb9f4b92272/clipboard.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/04/02/前端工程化/28565f12046a4b5590b66cacc1e97cfb/clipboard.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/04/02/前端工程化/E:/blog-git/ljy/source/_posts/前端工程化/1554221204905.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/04/02/前端工程化/E:/blog-git/ljy/source/_posts/前端工程化/1554277133323.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/04/02/前端工程化/E:/blog-git/ljy/source/_posts/前端工程化/clipboard1.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/04/02/前端工程化/E:/blog-git/ljy/source/_posts/前端工程化/clipboard2.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/04/02/前端工程化/E:/blog-git/ljy/source/_posts/前端工程化/clipboard3.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/04/02/前端工程化/E:/blog-git/ljy/source/_posts/前端工程化/1554283980982.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/04/02/前端工程化/E:/blog-git/ljy/source/_posts/前端工程化/clipboard5.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/04/02/前端工程化/E:/blog-git/ljy/source/_posts/前端工程化/1554345368124.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/04/02/前端工程化/E:/blog-git/ljy/source/_posts/前端工程化/1554348317971.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/04/02/前端工程化/E:/blog-git/ljy/source/_posts/前端工程化/1554348576794.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/04/02/前端工程化/E:/blog-git/ljy/source/_posts/前端工程化/1554348606379.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/04/02/前端工程化/E:/blog-git/ljy/source/_posts/前端工程化/1554349380041.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/04/02/前端工程化/E:/blog-git/ljy/source/_posts/前端工程化/1554349654116.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/04/02/前端工程化/E:/blog-git/ljy/source/_posts/前端工程化/1554278364913.png">
+<meta property="og:updated_time" content="2025-04-08T14:38:17.743Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端工程化">
+<meta name="twitter:description" content="2 前端工程化2.1 支持环境 Node1234node.js JavaScript的解释器用于后端开发作为前端工具的支持环境  2.2 NPM 包管理工具  1234包管理工具集成在node.js中，不需要单独下载前端的一切资源都可以都过npm下载 包括 各种前端工具(webpack\grunt...) 各种前端资源(jquery\bootstrap...) 1234npm install 包名">
+<meta name="twitter:image" content="https://ljyabc.github.io/2019/04/02/前端工程化/1554218423001.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ljyabc.github.io/2019/04/02/前端工程化/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>前端工程化 | 择墅居:李江洋</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">择墅居:李江洋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">争做长沙别墅豪装第一品牌</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/book" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>book</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2019/04/02/前端工程化/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李江洋">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="择墅居:李江洋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">前端工程化
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-02 23:22:00" itemprop="dateCreated datePublished" datetime="2019-04-02T23:22:00+08:00">2019-04-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2025-04-08 22:38:17" itemprop="dateModified" datetime="2025-04-08T22:38:17+08:00">2025-04-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/理解/" itemprop="url" rel="index"><span itemprop="name">理解</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/04/02/前端工程化/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/04/02/前端工程化/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="2-前端工程化"><a href="#2-前端工程化" class="headerlink" title="2 前端工程化"></a>2 前端工程化</h2><h3 id="2-1-支持环境-Node"><a href="#2-1-支持环境-Node" class="headerlink" title="2.1 支持环境 Node"></a>2.1 支持环境 Node</h3><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">node</span>.<span class="title">js</span> JavaScript的解释器</span><br><span class="line"></span><br><span class="line">用于后端开发</span><br><span class="line">作为前端工具的支持环境</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/04/02/前端工程化/1554218423001.png" alt="1554218423001"></p>
+<h3 id="2-2-NPM-包管理工具"><a href="#2-2-NPM-包管理工具" class="headerlink" title="2.2 NPM 包管理工具"></a>2.2 NPM 包管理工具</h3><p><img src="/2019/04/02/前端工程化/E:/blog-git\ljy\source\_posts\前端工程化\1554218780692.png" alt="1554218780692"></p>
+<p><img src="/2019/04/02/前端工程化/E:/blog-git\ljy\source\_posts\前端工程化\1554218854247.png" alt="1554218854247"></p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">包管理工具</span><br><span class="line">集成在<span class="keyword">node</span>.<span class="title">js</span>中，不需要单独下载</span><br><span class="line"></span><br><span class="line">前端的一切资源都可以都过npm下载 包括 各种前端工具(webpack\grunt...) 各种前端资源(jquery\bootstrap...)</span><br></pre></td></tr></table></figure>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> install 包名        本地安装（本项目目录） （资源类）</span><br><span class="line"><span class="built_in">npm</span> install -g 包名     全局安装（命令行工具）</span><br><span class="line"><span class="built_in">npm</span> uninstall 包名     删掉本地的包</span><br><span class="line"><span class="built_in">npm</span> uninstall 包名 -g  删除全局安装的包</span><br></pre></td></tr></table></figure>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#项目初始化</span></span><br><span class="line"><span class="built_in">npm</span> init</span><br><span class="line">创建一个package.json 里面是对项目的描述，指定依赖</span><br></pre></td></tr></table></figure>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">项目中的node_moudules 目录 不需要上传</span><br><span class="line">运行 npm install 自动安装项目所有的依赖（存在<span class="class"><span class="keyword">package</span>.<span class="title">json</span>）</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install 包 --save 下载包的同时，加入到package.json中的 `dependencies`</span><br><span class="line">npm install 包 --save-dev 下载包的同时，加入到package.json中的 `devDependencies`  开发阶段的依赖</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/04/02/前端工程化/E:/blog-git\ljy\source\_posts\前端工程化\1554218921391.png" alt="1554218921391"></p>
+<h3 id="删"><a href="#删" class="headerlink" title="删"></a>删</h3><p><img src="/2019/04/02/前端工程化/E:/blog-git\ljy\source\_posts\前端工程化\1554219511727.png" alt="1554219511727"></p>
+<h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><p><img src="/2019/04/02/前端工程化/E:/blog-git\ljy\source\_posts\前端工程化\1554219661526.png" alt="1554219661526"></p>
+<h3 id="开发和正式"><a href="#开发和正式" class="headerlink" title="开发和正式"></a>开发和正式</h3><p><img src="/2019/04/02/前端工程化/E:/blog-git\ljy\source\_posts\前端工程化\1554219728681.png" alt="1554219728681"></p>
+<h3 id="2-3-模块化工具"><a href="#2-3-模块化工具" class="headerlink" title="2.3 模块化工具"></a>2.3 模块化工具</h3><ul>
+<li>webpack</li>
+<li>Browserify </li>
+</ul>
+<p>把前端所有的资源当做模块，向引入模块一样去使用</p>
+<p><img src="/2019/04/02/前端工程化/E:/blog-git\ljy\source\_posts\前端工程化\1554219935181.png" alt="1554219935181"></p>
+<h3 id="2-4-自动化工具"><a href="#2-4-自动化工具" class="headerlink" title="2.4 自动化工具"></a>2.4 自动化工具</h3><p>集成各种应用：代码压缩、图片压缩、编译sass….</p>
+<ul>
+<li>grunt</li>
+<li>gulp</li>
+<li>webpack</li>
+</ul>
+<h2 id="element"><a href="#element" class="headerlink" title="element"></a>element</h2><p><img src="/2019/04/02/前端工程化/E:/blog-git\ljy\source\_posts\前端工程化\1554273819879.png" alt="1554273819879"></p>
+<p><img src="/2019/04/02/前端工程化/E:/blog-git\ljy\source\_posts\前端工程化\1554273891994.png" alt="1554273891994"></p>
+<h2 id="vuex"><a href="#vuex" class="headerlink" title="vuex"></a>vuex</h2><p><img src="/2019/04/02/前端工程化/E:/blog-git\ljy\source\_posts\前端工程化\1554274224152.png" alt="1554274224152"></p>
+<h2 id="3-Vue生成器"><a href="#3-Vue生成器" class="headerlink" title="3 Vue生成器"></a>3 Vue生成器</h2><p>集成了webpack、以及其他各种需要的工具</p>
+<h3 id="3-1-安装"><a href="#3-1-安装" class="headerlink" title="3.1 安装"></a>3.1 安装</h3><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> install -g @vue/cli   安装<span class="number">3.</span>x</span><br><span class="line"><span class="built_in">npm</span> install -g vue/cli  安装的<span class="number">2.</span>x</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-使用"><a href="#3-2-使用" class="headerlink" title="3.2 使用"></a>3.2 使用</h3><p>可视化vue ui</p>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue <span class="keyword">create</span> 项目名称   自动生成项目的目录</span><br></pre></td></tr></table></figure>
+<p>创建create vue 项目名</p>
+<p>选择自定义</p>
+<p><img src="/2019/04/02/前端工程化/E:/blog-git\ljy\source\_posts\前端工程化\clipboard.png" alt="img"></p>
+<p>编译器</p>
+<p><img src="/2019/04/02/前端工程化/E:/blog-git\ljy\source\_posts\前端工程化\clipboad.png" alt="img"></p>
+<p><img src="/2019/04/02/前端工程化/6d2709fa4c13412a84e71d9cb9e2c638/clipboard.png" alt="img"></p>
+<p>TypeScript语言超级</p>
+<p>pwa项目优化,架构师</p>
+<p><img src="/2019/04/02/前端工程化/2d1aa0e8f0ef4c5fa6e7071e714988ec/clipboard.png" alt="img"></p>
+<p>Router路由器</p>
+<p>Vuex状态管理器</p>
+<p>css Pre-processors预编译器</p>
+<p><img src="/2019/04/02/前端工程化/4dbfe159058545f180aa5a991914e934/clipboard.png" alt="img"></p>
+<p>单独的和集成到一个文件中</p>
+<p><img src="/2019/04/02/前端工程化/df44b48993e544f88845f8fea3e710cb/clipboard.png" alt="img"></p>
+<p>3</p>
+<p><img src="/2019/04/02/前端工程化/9d09c35ea7054178b5cdbfb9f4b92272/clipboard.png" alt="img"></p>
+<p><img src="/2019/04/02/前端工程化/28565f12046a4b5590b66cacc1e97cfb/clipboard.png" alt="img"></p>
+<p><img src="/2019/04/02/前端工程化/E:/blog-git\ljy\source\_posts\前端工程化\1554221204905.png" alt="1554221204905"></p>
+<h3 id="3-3-包含的东西"><a href="#3-3-包含的东西" class="headerlink" title="3.3 包含的东西"></a>3.3 包含的东西</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">webpack  </span><br><span class="line">babel   把ES6编译成ES5</span><br><span class="line">eslint  代码语法规范</span><br><span class="line">TypeScript   负责把TypeScript编译成JavaScript</span><br><span class="line"><span class="function"><span class="title">Router</span><span class="params">(vue-router Vue全家桶成员)</span></span>   路由</span><br><span class="line"><span class="function"><span class="title">Vuex</span><span class="params">(Vue全家桶成员)</span></span>     vue状态管理 </span><br><span class="line">CSS Pre-processors    CSS预处理 会让你再次选择器(SASS、LESS、Stylus...)</span><br><span class="line">Linter / Formatter   语法检查</span><br><span class="line">Unit Testing      单元测试</span><br><span class="line">E2E Testing      端到端测试</span><br></pre></td></tr></table></figure>
+<h3 id="2-4-命令打包"><a href="#2-4-命令打包" class="headerlink" title="2.4 命令打包"></a>2.4 命令打包</h3><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">run</span><span class="bash"> serve  临时编译，创建临时服务器  loacalhost:8080</span></span><br><span class="line">npm <span class="keyword">run</span><span class="bash"> build  编译，生成dist目录</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-前端的集成环境-WebStorm"><a href="#4-前端的集成环境-WebStorm" class="headerlink" title="4. 前端的集成环境 WebStorm"></a>4. 前端的集成环境 WebStorm</h2><h2 id="5-项目目录结构"><a href="#5-项目目录结构" class="headerlink" title="5 项目目录结构"></a>5 项目目录结构</h2><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">dist: 打包的项目目录(打包后会生成)</span><br><span class="line"><span class="string">|- node_modules </span></span><br><span class="line"></span><br><span class="line"><span class="string">|- public</span></span><br><span class="line">	<span class="string">|- index.html   </span></span><br><span class="line">	<span class="string">|- assets  静态文件 图片、字体</span></span><br><span class="line"><span class="string">|- src</span></span><br><span class="line">	<span class="string">|- assets 资源</span></span><br><span class="line">	<span class="string">|- components   普通组件(局部)个体</span></span><br><span class="line">		<span class="string">|- HelloWorld.vue</span></span><br><span class="line">	<span class="string">|- views  页面组件 页面</span></span><br><span class="line">		<span class="string">|- Home.vue</span></span><br><span class="line">		<span class="string">|- About.vue</span></span><br><span class="line">	<span class="string">|- main.js  入口</span></span><br><span class="line">	<span class="string">|- App.vue  总体结构组件(根组件)</span></span><br><span class="line">	<span class="string">|- router.js  路由设置</span></span><br><span class="line">	<span class="string">|- store.js   状态管理 </span></span><br><span class="line"><span class="string">|- pageage.json</span></span><br><span class="line"><span class="string">|-vue.config.js 改端口</span></span><br></pre></td></tr></table></figure>
+<h3 id="main-js"><a href="#main-js" class="headerlink" title="main.js"></a>main.js</h3><p><img src="/2019/04/02/前端工程化/E:/blog-git\ljy\source\_posts\前端工程化\1554277133323.png" alt="1554277133323"></p>
+<h3 id="3-vue"><a href="#3-vue" class="headerlink" title="3.*.vue"></a>3.*.vue</h3><figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="comment">&lt;!-- 模板区域 --&gt;</span></span></span><br><span class="line"><span class="xml">    router-link渲染为a标签</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml">    // 逻辑代码区域</span></span><br><span class="line"><span class="xml">    // export default </span><span class="template-variable">&#123;&#125;</span><span class="xml"> 与 script标签 绑定出现</span></span><br><span class="line"><span class="xml">    export default </span><span class="template-variable">&#123;</span></span><br><span class="line"><span class="template-variable">        导出该组件的数据,方法,计算,监听,生命周期构造等</span></span><br><span class="line"><span class="template-variable">    &#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">style</span> <span class="attr">scoped</span>&gt;</span></span></span><br><span class="line"><span class="xml">    /* 样式区域 */</span></span><br><span class="line"><span class="xml">    /* scoped表示这里的样式只适用于组件内部, scoped与style绑定出现 */</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="router-js"><a href="#router-js" class="headerlink" title="router.js"></a>router.js</h3><h4 id="router-link替换router-view"><a href="#router-link替换router-view" class="headerlink" title="router-link替换router-view"></a>router-link替换router-view</h4><p>router提供了2个标签一个是router-link一个是router-view</p>
+<p><img src="/2019/04/02/前端工程化/E:/blog-git\ljy\source\_posts\前端工程化\clipboard1.png" alt="img"></p>
+<h4 id="替换"><a href="#替换" class="headerlink" title="替换"></a>替换</h4><p><img src="/2019/04/02/前端工程化/E:/blog-git\ljy\source\_posts\前端工程化\clipboard2.png" alt="img"></p>
+<h4 id="router-link样式"><a href="#router-link样式" class="headerlink" title="router-link样式"></a>router-link样式</h4><p><img src="/2019/04/02/前端工程化/E:/blog-git\ljy\source\_posts\前端工程化\clipboard3.png" alt="img"> </p>
+<h4 id="路由别名-一级路由"><a href="#路由别名-一级路由" class="headerlink" title="路由别名(一级路由)"></a>路由别名(一级路由)</h4><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;router-link <span class="symbol">:to=<span class="string">"&#123;name: 'one'&#125;"</span>&gt;One&lt;/router-link&gt;</span></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">            /<span class="regexp">/ 一级路由, 在根组件中被渲染, 替换根组件的&lt;router-view/</span>&gt;标签</span><br><span class="line">            <span class="symbol">path:</span> <span class="string">'/one-view'</span>,</span><br><span class="line">            <span class="symbol">name:</span> <span class="string">'one'</span>, <span class="regexp">//</span>别名</span><br><span class="line">            <span class="symbol">component:</span> () =&gt; <span class="keyword">import</span>(<span class="string">'./views/OneView.vue'</span>)</span><br><span class="line">        &#125;,</span><br></pre></td></tr></table></figure>
+<h4 id="二级路由"><a href="#二级路由" class="headerlink" title="二级路由"></a>二级路由</h4><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">            <span class="regexp">//</span> 二级路由, 在根组件中被渲染, 替换根组件的&lt;router-view/&gt;标签</span><br><span class="line">            path: <span class="string">'/one-view/one-detail'</span>,</span><br><span class="line">            component: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'./views/OneDetail.vue'</span>),</span><br><span class="line">            <span class="regexp">//</span> 子路由, 在所属路由指向的组件中被渲染, 替换该组件(OneDetail)的&lt;router-view/&gt;标签</span><br><span class="line">            children: [&#123;</span><br><span class="line">                path: <span class="string">'show'</span>,</span><br><span class="line">                component: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'./components/OneShow.vue'</span>)</span><br><span class="line">            &#125;]</span><br><span class="line">        &#125;,</span><br></pre></td></tr></table></figure>
+<h5 id="router-push"><a href="#router-push" class="headerlink" title="$router.push"></a>$router.push</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">export</span> <span class="selector-tag">default</span> &#123;</span><br><span class="line">	<span class="attribute">methods</span>: &#123;</span><br><span class="line">		// 完成router的逻辑转跳</span><br><span class="line">		<span class="built_in">detail</span>() &#123;</span><br><span class="line">			this.$router.<span class="built_in">push</span>(<span class="string">"/one-view/one-detail"</span>)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="子路由children"><a href="#子路由children" class="headerlink" title="子路由children"></a>子路由children</h4><h5 id="父组件层-router-go-1"><a href="#父组件层-router-go-1" class="headerlink" title="父组件层 $router.go(-1)"></a>父组件层 $router.go(-1)</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"one-detail"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> @<span class="attr">click</span>=<span class="string">"back"</span>&gt;</span>返回<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> @<span class="attr">click</span>=<span class="string">"show"</span>&gt;</span>显示<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 会被替换为该路由下的子路由指向的组件 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">router-view</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line">    methods: &#123;</span><br><span class="line">        back() &#123;</span><br><span class="line"><span class="actionscript">            <span class="comment">// router采用history方式访问上一级</span></span></span><br><span class="line"><span class="actionscript">            <span class="keyword">this</span>.$router.go(<span class="number">-1</span>)</span></span><br><span class="line">        &#125;,</span><br><span class="line">        show() &#123;</span><br><span class="line"><span class="actionscript">            <span class="comment">// router的逻辑转跳</span></span></span><br><span class="line"><span class="actionscript">            <span class="keyword">this</span>.$router.push(<span class="string">'/one-view/one-detail/show'</span>)</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="路由层"><a href="#路由层" class="headerlink" title="路由层"></a>路由层</h5><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">            <span class="regexp">//</span> 二级路由, 在根组件中被渲染, 替换根组件的&lt;router-view/&gt;标签</span><br><span class="line">            path: <span class="string">'/one-view/one-detail'</span>,</span><br><span class="line">            component: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'./views/OneDetail.vue'</span>),</span><br><span class="line">            <span class="regexp">//</span> 子路由, 在所属路由指向的组件中被渲染, 替换该组件(OneDetail)的&lt;router-view/&gt;标签</span><br><span class="line">            children: [&#123;</span><br><span class="line">                path: <span class="string">'show'</span>,</span><br><span class="line">                component: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'./components/OneShow.vue'</span>)</span><br><span class="line">            &#125;]</span><br><span class="line">        &#125;,</span><br></pre></td></tr></table></figure>
+<h5 id="子路由"><a href="#子路由" class="headerlink" title="子路由"></a>子路由</h5><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;<span class="keyword">div</span> id=<span class="string">"one-show"</span>&gt;</span><br><span class="line">		<span class="literal">one</span> show <span class="literal">one</span> show <span class="literal">one</span> show <span class="literal">one</span> show <span class="literal">one</span> show <span class="literal">one</span> show <span class="literal">one</span> show <span class="literal">one</span> show <span class="literal">one</span> show <span class="literal">one</span> show <span class="literal">one</span> show <span class="literal">one</span> show <span class="literal">one</span> show <span class="literal">one</span> show <span class="literal">one</span> show</span><br><span class="line">	&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/04/02/前端工程化/E:/blog-git\ljy\source\_posts\前端工程化\1554283980982.png" alt="1554283980982"></p>
+<h2 id="状态管理器vuex"><a href="#状态管理器vuex" class="headerlink" title="状态管理器vuex"></a>状态管理器vuex</h2><p><img src="/2019/04/02/前端工程化/E:/blog-git\ljy\source\_posts\前端工程化\clipboard5.png" alt="img"> </p>
+<h4 id="state-mutations-actions"><a href="#state-mutations-actions" class="headerlink" title="state,mutations,actions"></a>state,mutations,actions</h4><figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">// 状态管理</span><br><span class="line">import Vue <span class="keyword">from</span> 'vue'</span><br><span class="line">import Vuex <span class="keyword">from</span> 'vuex'</span><br><span class="line"></span><br><span class="line">Vue.use(Vuex)</span><br><span class="line"></span><br><span class="line">export <span class="keyword">default</span> new Vuex.Store(&#123;</span><br><span class="line">    // 在任何一个组件中,均可以通过this.<span class="variable">$store</span>.<span class="keyword">state</span>.msg访问msg的数据</span><br><span class="line">    // <span class="keyword">state</span>永远只能拥有一种状态值</span><br><span class="line">    <span class="keyword">state</span>: &#123;</span><br><span class="line">        msg: <span class="string">"状态管理器"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    // 让<span class="keyword">state</span>拥有多个状态值</span><br><span class="line">    mutations: &#123;</span><br><span class="line">        // 在一个一个组件纵,均可以通过this.<span class="variable">$store</span>.commit('<span class="built_in">set</span>Msg', new_msg)来修改<span class="keyword">state</span>中的msg</span><br><span class="line">        <span class="built_in">set</span>Msg(<span class="keyword">state</span>, new_msg) &#123;</span><br><span class="line">            <span class="keyword">state</span>.msg = new_msg</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    // 让mutations拥有多个状态值</span><br><span class="line">    actions: &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="mutations修改"><a href="#mutations修改" class="headerlink" title="mutations修改"></a>mutations修改</h4><p><img src="/2019/04/02/前端工程化/E:/blog-git\ljy\source\_posts\前端工程化\1554345368124.png" alt="1554345368124"></p>
+<h2 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h2><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"two-Detail"</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>two-Detail<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="xml">        </span><span class="template-variable">&#123;&#123; msg &#125;&#125;</span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">div</span> @<span class="attr">click</span>=<span class="string">'divClick'</span> <span class="attr">:class</span>=<span class="string">"&#123;active: isAble&#125;"</span> <span class="attr">ref</span>=<span class="string">'div_box'</span>&gt;</span>vue选择器<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml">export default &#123;</span></span><br><span class="line"><span class="xml">    data() &#123;</span></span><br><span class="line"><span class="xml">        return &#123;</span></span><br><span class="line"><span class="xml">            msg: "",</span></span><br><span class="line"><span class="xml">            isAble: false</span></span><br><span class="line"><span class="xml">        &#125;</span></span><br><span class="line"><span class="xml">    &#125;,</span></span><br><span class="line"><span class="xml">    methods: &#123;</span></span><br><span class="line"><span class="xml">        divClick() &#123;</span></span><br><span class="line"><span class="xml">            this.isAble = !this.isAble;</span></span><br><span class="line"><span class="xml">            // 在vue逻辑中,通过$refs可以获取页面标签(vue的选择器)</span></span><br><span class="line"><span class="xml">            let div = this.$refs.div_box;</span></span><br><span class="line"><span class="xml">            div.style.height = "200px"</span></span><br><span class="line"><span class="xml">        &#125;</span></span><br><span class="line"><span class="xml">    &#125;,</span></span><br><span class="line"><span class="xml">    // 生命周期钩子</span></span><br><span class="line"><span class="xml">    mounted() &#123;</span></span><br><span class="line"><span class="xml">        this.msg = this.$store.state.msg</span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">style</span> <span class="attr">scoped</span>&gt;</span></span></span><br><span class="line"><span class="xml">.active &#123;</span></span><br><span class="line"><span class="xml">    background-color: orange</span></span><br><span class="line"><span class="xml">&#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h1 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h1><h2 id="子元素动画"><a href="#子元素动画" class="headerlink" title="子元素动画"></a>子元素动画</h2><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"three-box"</span> <span class="attr">:class</span>=<span class="string">"&#123;move: isMove&#125;"</span> @<span class="attr">mouseover</span>=<span class="string">"moving"</span> @<span class="attr">mouseout</span>=<span class="string">"moved"</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span></span><span class="template-variable">&#123;&#123; val.title &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><span class="template-variable">&#123;&#123; val.info &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml">export default &#123;</span></span><br><span class="line"><span class="xml">    props: ['val'],</span></span><br><span class="line"><span class="xml">    data() &#123;</span></span><br><span class="line"><span class="xml">        return &#123;</span></span><br><span class="line"><span class="xml">            isMove: false</span></span><br><span class="line"><span class="xml">        &#125;</span></span><br><span class="line"><span class="xml">    &#125;,</span></span><br><span class="line"><span class="xml">    methods: &#123;</span></span><br><span class="line"><span class="xml">        moving() &#123;</span></span><br><span class="line"><span class="xml">            this.isMove = true;</span></span><br><span class="line"><span class="xml">        &#125;,</span></span><br><span class="line"><span class="xml">        moved() &#123;</span></span><br><span class="line"><span class="xml">            this.isMove = false;</span></span><br><span class="line"><span class="xml">        &#125;</span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">style</span> <span class="attr">scoped</span>&gt;</span></span></span><br><span class="line"><span class="xml">#three-box &#123;</span></span><br><span class="line"><span class="xml">    width: 120px;</span></span><br><span class="line"><span class="xml">    height: 200px;</span></span><br><span class="line"><span class="xml">    border: 3px solid red;</span></span><br><span class="line"><span class="xml">    float: left;</span></span><br><span class="line"><span class="xml">    transition: .3s;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="xml">.move &#123;</span></span><br><span class="line"><span class="xml">    transform: translateY(-10px);</span></span><br><span class="line"><span class="xml">&#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="父元素动画"><a href="#父元素动画" class="headerlink" title="父元素动画"></a>父元素动画</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"three-view"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"boxs"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ThreeBox</span> <span class="attr">v-for</span>=<span class="string">"(v, i) in box_list"</span> <span class="attr">:key</span>=<span class="string">'i'</span> <span class="attr">:val</span>=<span class="string">'v'</span>&gt;</span><span class="tag">&lt;/<span class="name">ThreeBox</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"isShow = !isShow"</span>&gt;</span>切换<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 将要做动画的标签用transition标签嵌套 --&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- transition标签结合v-show|v-if条件指令完成动画 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">transition</span> <span class="attr">name</span>=<span class="string">"p_show"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-show</span>=<span class="string">'isShow'</span>&gt;</span>你是p<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">transition</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> ThreeBox <span class="keyword">from</span> <span class="string">'../components/ThreeBox.vue'</span></span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line">    data() &#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="actionscript">            isShow: <span class="literal">false</span>,</span></span><br><span class="line">            box_list: [&#123;</span><br><span class="line"><span class="actionscript">                    title: <span class="string">"苹果"</span>,</span></span><br><span class="line"><span class="actionscript">                    info: <span class="string">"美国公司"</span></span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line"><span class="actionscript">                    title: <span class="string">"华为"</span>,</span></span><br><span class="line"><span class="actionscript">                    info: <span class="string">"中国公司"</span></span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line"><span class="actionscript">                    title: <span class="string">"诺基亚"</span>,</span></span><br><span class="line"><span class="actionscript">                    info: <span class="string">"洛基亚"</span></span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line"><span class="actionscript">                    title: <span class="string">"苹果"</span>,</span></span><br><span class="line"><span class="actionscript">                    info: <span class="string">"美国公司"</span></span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line"><span class="actionscript">                    title: <span class="string">"华为"</span>,</span></span><br><span class="line"><span class="actionscript">                    info: <span class="string">"中国公司"</span></span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line"><span class="actionscript">                    title: <span class="string">"诺基亚"</span>,</span></span><br><span class="line"><span class="actionscript">                    info: <span class="string">"洛基亚"</span></span></span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    components: &#123;</span><br><span class="line">        ThreeBox,</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line">    mounted: &#123;</span><br><span class="line"><span class="actionscript">        <span class="comment">// ajax请求数据</span></span></span><br><span class="line"><span class="actionscript">        <span class="comment">// this.box_list = ?</span></span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">scoped</span>&gt;</span></span><br><span class="line"><span class="css"><span class="selector-id">#three-view</span> &#123;</span></span><br><span class="line">    width: 100%;</span><br><span class="line">    height: 500px;</span><br><span class="line">    background-color: brown</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="css"><span class="selector-class">.boxs</span><span class="selector-pseudo">:after</span> &#123;</span></span><br><span class="line">    content: "";</span><br><span class="line">    display: block;</span><br><span class="line">    clear: both;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">p &#123;</span><br><span class="line">    background-color: orange</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="css"><span class="comment">/*此动画针对于显隐切换*/</span></span></span><br><span class="line"><span class="css"><span class="selector-class">.p_show-enter-active</span>,</span></span><br><span class="line"><span class="css"><span class="selector-class">.p_show-leave-active</span> &#123;</span></span><br><span class="line">    transition: 1s</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="css"><span class="selector-class">.p_show-enter</span>,</span></span><br><span class="line"><span class="css"><span class="selector-class">.p_show-leave-active</span> &#123;</span></span><br><span class="line">    opacity: 0</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="插槽"><a href="#插槽" class="headerlink" title="插槽"></a>插槽</h2><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"four-view"</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="comment">&lt;!-- 被FourBox包裹的均属于子组件 --&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">FourBox</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="comment">&lt;!-- 子组件只是需要渲染父组件的内容,可以通过插槽失去数据的传递 --&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="comment">&lt;!-- 父组件写在子组件标签内部,用全局属性slot与子组件内部插槽name属性一一对应 --&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">slot</span>=<span class="string">'st'</span> @<span class="attr">click</span>=<span class="string">"divClick"</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">span</span>&gt;</span></span><span class="template-variable">&#123;&#123; msg &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">span</span>&gt;</span></span><span class="template-variable">&#123;&#123; msg &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">FourBox</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml">import FourBox from '../components/FourBox.vue'</span></span><br><span class="line"><span class="xml">export default &#123;</span></span><br><span class="line"><span class="xml">    data() &#123;</span></span><br><span class="line"><span class="xml">        return &#123;</span></span><br><span class="line"><span class="xml">            msg: "four 信息"</span></span><br><span class="line"><span class="xml">        &#125;</span></span><br><span class="line"><span class="xml">    &#125;,</span></span><br><span class="line"><span class="xml">    components: &#123;</span></span><br><span class="line"><span class="xml">        FourBox</span></span><br><span class="line"><span class="xml">    &#125;,</span></span><br><span class="line"><span class="xml">    methods: &#123;</span></span><br><span class="line"><span class="xml">        // 子组件的事件可以在父组件中实现</span></span><br><span class="line"><span class="xml">        divClick() &#123;</span></span><br><span class="line"><span class="xml">            this.msg = "插槽 信息"</span></span><br><span class="line"><span class="xml">        &#125;</span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">style</span> <span class="attr">scoped</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="数据持久化"><a href="#数据持久化" class="headerlink" title="数据持久化"></a>数据持久化</h2><p><img src="/2019/04/02/前端工程化/E:/blog-git\ljy\source\_posts\前端工程化\1554348317971.png" alt="1554348317971"></p>
+<h3 id="在main-js里面创建VueCookie-全局"><a href="#在main-js里面创建VueCookie-全局" class="headerlink" title="在main.js里面创建VueCookie(全局)"></a>在main.js里面创建VueCookie(全局)</h3><p><img src="/2019/04/02/前端工程化/E:/blog-git\ljy\source\_posts\前端工程化\1554348576794.png" alt="1554348576794"></p>
+<h4 id="局部"><a href="#局部" class="headerlink" title="局部"></a>局部</h4><p><img src="/2019/04/02/前端工程化/E:/blog-git\ljy\source\_posts\前端工程化\1554348606379.png" alt="1554348606379"></p>
+<h3 id="拿到cooke值和修改-生命周期mounted"><a href="#拿到cooke值和修改-生命周期mounted" class="headerlink" title="拿到cooke值和修改   生命周期mounted()"></a>拿到cooke值和修改   生命周期mounted()</h3><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"five-view"</span>&gt;</span></span></span><br><span class="line"><span class="xml">        </span><span class="template-variable">&#123;&#123; str &#125;&#125;</span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model</span>=<span class="string">"val"</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"btnClick"</span>&gt;</span>修改数据<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml">// 局部使用vue-cookie</span></span><br><span class="line"><span class="xml">import Vue from 'vue'</span></span><br><span class="line"><span class="xml">import VueCookie from 'vue-cookie'</span></span><br><span class="line"><span class="xml">Vue.use(VueCookie)</span></span><br><span class="line"></span><br><span class="line"><span class="xml">export default &#123;</span></span><br><span class="line"><span class="xml">    data() &#123;</span></span><br><span class="line"><span class="xml">        return &#123;</span></span><br><span class="line"><span class="xml">            // cookie中有val字段值,将该值赋值给str,否则将abc赋值str</span></span><br><span class="line"><span class="xml">            str: this.$cookie.get('val') ? this.$cookie.get('val') : 'abc',</span></span><br><span class="line"><span class="xml">            val: ""</span></span><br><span class="line"><span class="xml">        &#125;</span></span><br><span class="line"><span class="xml">    &#125;,</span></span><br><span class="line"><span class="xml">    methods: &#123;</span></span><br><span class="line"><span class="xml">        // 修改完数据后,重新刷新页面数据为上一次修改的结果</span></span><br><span class="line"><span class="xml">        // 数据的持久化</span></span><br><span class="line"><span class="xml">        btnClick() &#123;</span></span><br><span class="line"><span class="xml">            if (this.val) &#123;</span></span><br><span class="line"><span class="xml">                this.str = this.val;</span></span><br><span class="line"><span class="xml">                // 持久化存储val的值到cookie中</span></span><br><span class="line"><span class="xml">                this.$cookie.set('val', this.val)</span></span><br><span class="line"><span class="xml">            &#125;</span></span><br><span class="line"><span class="xml">        &#125;</span></span><br><span class="line"><span class="xml">    &#125;,</span></span><br><span class="line"><span class="xml">    mounted() &#123;</span></span><br><span class="line"><span class="xml">        // 通过局部设置的VueCookie可以设置和访问cookie中的值</span></span><br><span class="line"><span class="xml">        // var res = VueCookie.get('name');</span></span><br><span class="line"></span><br><span class="line"><span class="xml">        // 通过全局设置的原型属性$cookie也可以设置和访问cookie中的值</span></span><br><span class="line"><span class="xml">        // var res = this.$cookie.get('name');</span></span><br><span class="line"><span class="xml">        // console.log(res);</span></span><br><span class="line"><span class="xml">        // this.$cookie.set('name', 'hehe');</span></span><br><span class="line"><span class="xml">        // console.log(this.$cookie.get('name'));</span></span><br><span class="line"><span class="xml">        // set('key', 'value')对cookie进行设置</span></span><br><span class="line"><span class="xml">        // get('key')来去key对应的value值(value永远是字符串形式)</span></span><br><span class="line"></span><br><span class="line"><span class="xml">        // cookie默认字段的生命周期同浏览器窗口(不是标签页被关闭,是浏览器大退)</span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">style</span> <span class="attr">scoped</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="前后台ajax请求"><a href="#前后台ajax请求" class="headerlink" title="前后台ajax请求"></a>前后台ajax请求</h2><p><img src="/2019/04/02/前端工程化/E:/blog-git\ljy\source\_posts\前端工程化\1554349380041.png" alt="1554349380041"></p>
+<h3 id="配置全局"><a href="#配置全局" class="headerlink" title="配置全局"></a>配置全局</h3><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 安装 axios(ajax)的命令</span></span><br><span class="line"><span class="comment">// npm install axios--save</span></span><br><span class="line"> <span class="comment">// 为项目配置全局axios</span></span><br><span class="line"> <span class="keyword">import</span> Axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br><span class="line"> Vue.prototype.$ajax = Axios</span><br></pre></td></tr></table></figure>
+<h3 id="举列子flask后台"><a href="#举列子flask后台" class="headerlink" title="举列子flask后台"></a>举列子flask后台</h3><p><img src="/2019/04/02/前端工程化/E:/blog-git\ljy\source\_posts\前端工程化\1554349654116.png" alt="1554349654116"></p>
+<h3 id="前台ajxa"><a href="#前台ajxa" class="headerlink" title="前台ajxa"></a>前台ajxa</h3><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"six-view"</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span></span><span class="template-variable">&#123;&#123; title &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model</span>=<span class="string">'usr'</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">v-model</span>=<span class="string">'ps'</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"loginAction"</span>&gt;</span>登录<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml">export default &#123;</span></span><br><span class="line"><span class="xml">    data() &#123;</span></span><br><span class="line"><span class="xml">        return &#123;</span></span><br><span class="line"><span class="xml">            title: "登录",</span></span><br><span class="line"><span class="xml">            usr: "",</span></span><br><span class="line"><span class="xml">            ps: ""</span></span><br><span class="line"><span class="xml">        &#125;</span></span><br><span class="line"><span class="xml">    &#125;,</span></span><br><span class="line"><span class="xml">    methods: &#123;</span></span><br><span class="line"><span class="xml">        // 通过ajax请求后台数据</span></span><br><span class="line"><span class="xml">        loginAction() &#123;</span></span><br><span class="line"><span class="xml">            // 将vue对象this保留到_this中,那么在this发生重指向后,还可以拿到vue实例</span></span><br><span class="line"><span class="xml">            let _this = this</span></span><br><span class="line"><span class="xml">            this.$ajax(&#123;</span></span><br><span class="line"><span class="xml">                method: 'post',</span></span><br><span class="line"><span class="xml">                url: 'http://127.0.0.1:5000/loginAction',</span></span><br><span class="line"><span class="xml">                params: &#123;</span></span><br><span class="line"><span class="xml">                    usr: this.usr,</span></span><br><span class="line"><span class="xml">                    ps: this.ps</span></span><br><span class="line"><span class="xml">                &#125;</span></span><br><span class="line"><span class="xml">            &#125;).then(function(res) &#123;</span></span><br><span class="line"><span class="xml">                // this代表的是回调then这个方法的调用者(axios插件),也就是发生了this的重指向</span></span><br><span class="line"><span class="xml">                // 要更新页面的title变量,title属于vue实例</span></span><br><span class="line"><span class="xml">                // res为回调的对象,该对象的data属性就是后台返回的数据</span></span><br><span class="line"><span class="xml">                _this.title = res.data</span></span><br><span class="line"><span class="xml">            &#125;).catch(function(err) &#123;</span></span><br><span class="line"><span class="xml">                console.log(err)</span></span><br><span class="line"><span class="xml">            &#125;)</span></span><br><span class="line"><span class="xml">        &#125;</span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">style</span> <span class="attr">scoped</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="6-Vue全家桶"><a href="#6-Vue全家桶" class="headerlink" title="6 Vue全家桶"></a>6 Vue全家桶</h3><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">vue 本身</span><br><span class="line">vue-router  路由 路径和组件一一对应</span><br><span class="line">vuex        状态管理 兄弟组件跟全局的单例相似(再任何一个类里面拿到这个对象都是同一个)</span><br><span class="line">vue-ssr     服务端渲染</span><br><span class="line">element-ui   vue样式组件库</span><br><span class="line">vue-cookie 持续化存储</span><br><span class="line"><span class="symbol">ajax:</span> axios 前后台交互</span><br><span class="line">插吵 把父级里面的动西传递给子集</span><br></pre></td></tr></table></figure>
+<h2 id="pycharm启动wue项目"><a href="#pycharm启动wue项目" class="headerlink" title="pycharm启动wue项目"></a>pycharm启动wue项目</h2><p><img src="/2019/04/02/前端工程化/E:/blog-git\ljy\source\_posts\前端工程化\1554278364913.png" alt="1554278364913"></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/gongzhonghao.jpg" alt="李江洋 wechat" style="width: 200px; max-width: 100%;">
+  <div>python分享公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="李江洋 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="李江洋 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag"># 前端</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/01/vue组件/" rel="next" title="vue组件">
+                <i class="fa fa-chevron-left"></i> vue组件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/21/django表达/" rel="prev" title="django表达">
+                django表达 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="李江洋">
+            
+              <p class="site-author-name" itemprop="name">李江洋</p>
+              <p class="site-description motion-element" itemprop="description">记录学习的技能和遇到的问题</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">179</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lvdXJuYW1l" title="GitHub &rarr; https://github.com/yourname"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="bWFpbHRvOjEzMjgwNDQzOTJAcXEuY29t" title="E-Mail &rarr; mailto:1328044392@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL2V4YW1wbGUuY29t" title="http://example.com">Title</span>
+                  </li>
+                
+              </ul>
+            </div>
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-前端工程化"><span class="nav-number">1.</span> <span class="nav-text">2 前端工程化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-支持环境-Node"><span class="nav-number">1.1.</span> <span class="nav-text">2.1 支持环境 Node</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-NPM-包管理工具"><span class="nav-number">1.2.</span> <span class="nav-text">2.2 NPM 包管理工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删"><span class="nav-number">1.3.</span> <span class="nav-text">删</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装依赖"><span class="nav-number">1.4.</span> <span class="nav-text">安装依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发和正式"><span class="nav-number">1.5.</span> <span class="nav-text">开发和正式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-模块化工具"><span class="nav-number">1.6.</span> <span class="nav-text">2.3 模块化工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-自动化工具"><span class="nav-number">1.7.</span> <span class="nav-text">2.4 自动化工具</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#element"><span class="nav-number">2.</span> <span class="nav-text">element</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vuex"><span class="nav-number">3.</span> <span class="nav-text">vuex</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Vue生成器"><span class="nav-number">4.</span> <span class="nav-text">3 Vue生成器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-安装"><span class="nav-number">4.1.</span> <span class="nav-text">3.1 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-使用"><span class="nav-number">4.2.</span> <span class="nav-text">3.2 使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-包含的东西"><span class="nav-number">4.3.</span> <span class="nav-text">3.3 包含的东西</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-命令打包"><span class="nav-number">4.4.</span> <span class="nav-text">2.4 命令打包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-前端的集成环境-WebStorm"><span class="nav-number">5.</span> <span class="nav-text">4. 前端的集成环境 WebStorm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-项目目录结构"><span class="nav-number">6.</span> <span class="nav-text">5 项目目录结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#main-js"><span class="nav-number">6.1.</span> <span class="nav-text">main.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-vue"><span class="nav-number">6.2.</span> <span class="nav-text">3.*.vue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#router-js"><span class="nav-number">6.3.</span> <span class="nav-text">router.js</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#router-link替换router-view"><span class="nav-number">6.3.1.</span> <span class="nav-text">router-link替换router-view</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#替换"><span class="nav-number">6.3.2.</span> <span class="nav-text">替换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#router-link样式"><span class="nav-number">6.3.3.</span> <span class="nav-text">router-link样式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#路由别名-一级路由"><span class="nav-number">6.3.4.</span> <span class="nav-text">路由别名(一级路由)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二级路由"><span class="nav-number">6.3.5.</span> <span class="nav-text">二级路由</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#router-push"><span class="nav-number">6.3.5.1.</span> <span class="nav-text">$router.push</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#子路由children"><span class="nav-number">6.3.6.</span> <span class="nav-text">子路由children</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#父组件层-router-go-1"><span class="nav-number">6.3.6.1.</span> <span class="nav-text">父组件层 $router.go(-1)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#路由层"><span class="nav-number">6.3.6.2.</span> <span class="nav-text">路由层</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#子路由"><span class="nav-number">6.3.6.3.</span> <span class="nav-text">子路由</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#状态管理器vuex"><span class="nav-number">7.</span> <span class="nav-text">状态管理器vuex</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#state-mutations-actions"><span class="nav-number">7.0.1.</span> <span class="nav-text">state,mutations,actions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mutations修改"><span class="nav-number">7.0.2.</span> <span class="nav-text">mutations修改</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#选择器"><span class="nav-number">8.</span> <span class="nav-text">选择器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动画"><span class="nav-number"></span> <span class="nav-text">动画</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#子元素动画"><span class="nav-number">1.</span> <span class="nav-text">子元素动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#父元素动画"><span class="nav-number">2.</span> <span class="nav-text">父元素动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插槽"><span class="nav-number">3.</span> <span class="nav-text">插槽</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据持久化"><span class="nav-number">4.</span> <span class="nav-text">数据持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在main-js里面创建VueCookie-全局"><span class="nav-number">4.1.</span> <span class="nav-text">在main.js里面创建VueCookie(全局)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#局部"><span class="nav-number">4.1.1.</span> <span class="nav-text">局部</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拿到cooke值和修改-生命周期mounted"><span class="nav-number">4.2.</span> <span class="nav-text">拿到cooke值和修改   生命周期mounted()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前后台ajax请求"><span class="nav-number">5.</span> <span class="nav-text">前后台ajax请求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置全局"><span class="nav-number">5.1.</span> <span class="nav-text">配置全局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#举列子flask后台"><span class="nav-number">5.2.</span> <span class="nav-text">举列子flask后台</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前台ajxa"><span class="nav-number">5.3.</span> <span class="nav-text">前台ajxa</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-Vue全家桶"><span class="nav-number">5.4.</span> <span class="nav-text">6 Vue全家桶</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pycharm启动wue项目"><span class="nav-number">6.</span> <span class="nav-text">pycharm启动wue项目</span></a></li></ol></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李江洋</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Pisces</span> v7.0.1</div>
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script id="ribbon" size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+  
+  <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ljyabc.github.io/2019/04/02/前端工程化/";
+    this.page.identifier = "2019/04/02/前端工程化/";
+    this.page.title = '前端工程化';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/exturl.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+   <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+</body>
+</html>

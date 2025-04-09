@@ -1,0 +1,1660 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="1.变量和数据类型的介绍  	      	    1.编程和编程语言1.1.什么是编程语言​    语言是一个事物与另外一个事物沟通的介质    比如人与人交流汉语，英语，日语    编程语言是程序员与计算机沟通的介质    计算机只能读懂二进制，python解释器可以将python语言转换成计算机理解的二进制  1.2.什么是编程 ​    编程就是程序按照某种编程语言的语法规范将自己想要让计">
+<meta name="keywords" content="江洋python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1.变量和数据类型的介绍">
+<meta property="og:url" content="https://ljyabc.github.io/2022/10/23/day1变量和数据类型的介绍/index.html">
+<meta property="og:site_name" content="择墅居:李江洋">
+<meta property="og:description" content="1.变量和数据类型的介绍  	      	    1.编程和编程语言1.1.什么是编程语言​    语言是一个事物与另外一个事物沟通的介质    比如人与人交流汉语，英语，日语    编程语言是程序员与计算机沟通的介质    计算机只能读懂二进制，python解释器可以将python语言转换成计算机理解的二进制  1.2.什么是编程 ​    编程就是程序按照某种编程语言的语法规范将自己想要让计">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ljyabc.github.io/2022/10/23/day1变量和数据类型的介绍/1654839510081.png">
+<meta property="og:image" content="https://ljyabc.github.io/2022/10/23/day1变量和数据类型的介绍/1654839717891.png">
+<meta property="og:image" content="https://ljyabc.github.io/2022/10/23/day1变量和数据类型的介绍/1654839883539.png">
+<meta property="og:image" content="https://ljyabc.github.io/2022/10/23/day1变量和数据类型的介绍/1654843412060.png">
+<meta property="og:image" content="https://ljyabc.github.io/2022/10/23/day1变量和数据类型的介绍/1654843590146.png">
+<meta property="og:image" content="https://ljyabc.github.io/2022/10/23/day1变量和数据类型的介绍/1654843619016.png">
+<meta property="og:image" content="https://ljyabc.github.io/2022/10/23/day1变量和数据类型的介绍/1654844275543.png">
+<meta property="og:image" content="https://ljyabc.github.io/2022/10/23/day1变量和数据类型的介绍/1654844463642.png">
+<meta property="og:image" content="https://ljyabc.github.io/2022/10/23/day1变量和数据类型的介绍/1654847788590.png">
+<meta property="og:image" content="https://ljyabc.github.io/2022/10/23/day1变量和数据类型的介绍/1654861563900.png">
+<meta property="og:image" content="https://ljyabc.github.io/2022/10/23/day1变量和数据类型的介绍/1654863658733.png">
+<meta property="og:image" content="https://ljyabc.github.io/2022/10/23/day1变量和数据类型的介绍/1653985002381.png">
+<meta property="og:image" content="https://ljyabc.github.io/2022/10/23/day1变量和数据类型的介绍/1653985637071.png">
+<meta property="og:image" content="https://ljyabc.github.io/2022/10/23/day1变量和数据类型的介绍/1653986018117.png">
+<meta property="og:image" content="https://ljyabc.github.io/2022/10/23/day1变量和数据类型的介绍/1653986697645.png">
+<meta property="og:image" content="https://ljyabc.github.io/2022/10/23/day1变量和数据类型的介绍/1653987404921.png">
+<meta property="og:image" content="https://ljyabc.github.io/2022/10/23/day1变量和数据类型的介绍/1654850031419.png">
+<meta property="og:image" content="https://ljyabc.github.io/2022/10/23/day1变量和数据类型的介绍/1654850734632.png">
+<meta property="og:image" content="https://ljyabc.github.io/2022/10/23/day1变量和数据类型的介绍/1654850617179.png">
+<meta property="og:image" content="https://ljyabc.github.io/2022/10/23/day1变量和数据类型的介绍/1654864640683.png">
+<meta property="og:image" content="https://ljyabc.github.io/2022/10/23/day1变量和数据类型的介绍/1654865021657.png">
+<meta property="og:updated_time" content="2025-04-08T16:19:46.921Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="1.变量和数据类型的介绍">
+<meta name="twitter:description" content="1.变量和数据类型的介绍  	      	    1.编程和编程语言1.1.什么是编程语言​    语言是一个事物与另外一个事物沟通的介质    比如人与人交流汉语，英语，日语    编程语言是程序员与计算机沟通的介质    计算机只能读懂二进制，python解释器可以将python语言转换成计算机理解的二进制  1.2.什么是编程 ​    编程就是程序按照某种编程语言的语法规范将自己想要让计">
+<meta name="twitter:image" content="https://ljyabc.github.io/2022/10/23/day1变量和数据类型的介绍/1654839510081.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ljyabc.github.io/2022/10/23/day1变量和数据类型的介绍/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>1.变量和数据类型的介绍 | 择墅居:李江洋</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">择墅居:李江洋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">争做长沙别墅豪装第一品牌</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/book" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>book</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2022/10/23/day1变量和数据类型的介绍/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李江洋">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="择墅居:李江洋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">1.变量和数据类型的介绍
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2022-10-23 22:49:15" itemprop="dateCreated datePublished" datetime="2022-10-23T22:49:15+08:00">2022-10-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2025-04-09 00:19:46" itemprop="dateModified" datetime="2025-04-09T00:19:46+08:00">2025-04-09</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python核心编程/" itemprop="url" rel="index"><span itemprop="name">python核心编程</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2022/10/23/day1变量和数据类型的介绍/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/10/23/day1变量和数据类型的介绍/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-变量和数据类型的介绍"><a href="#1-变量和数据类型的介绍" class="headerlink" title="1.变量和数据类型的介绍"></a>1.变量和数据类型的介绍</h1>
+
+	<div class="row">
+    <embed src="1图灵python大海老师变量和数据类型的介绍.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+<h2 id="1-编程和编程语言"><a href="#1-编程和编程语言" class="headerlink" title="1.编程和编程语言"></a>1.编程和编程语言</h2><h3 id="1-1-什么是编程语言"><a href="#1-1-什么是编程语言" class="headerlink" title="1.1.什么是编程语言"></a>1.1.什么是编程语言</h3><p>​    语言是一个事物与另外一个事物沟通的介质<br>    比如人与人交流汉语，英语，日语<br>    编程语言是程序员与计算机沟通的介质<br>    计算机只能读懂二进制，python解释器可以将python语言转换成计算机理解的二进制</p>
+<p><img src="/2022/10/23/day1变量和数据类型的介绍/1654839510081.png" alt="1654839510081"></p>
+<h3 id="1-2-什么是编程"><a href="#1-2-什么是编程" class="headerlink" title="1.2.什么是编程"></a>1.2.什么是编程</h3><p><img src="/2022/10/23/day1变量和数据类型的介绍/1654839717891.png" alt="1654839717891"></p>
+<p>​    编程就是程序按照某种编程语言的语法规范将自己想要让计算机做的事情表达出来<br>    我要让电脑进行记录或者判断一种状态，或者我让电脑循环做一件事情<br>    表达的结果就是程序，程序就是一系列的文件<br>    程序就是代码的结合体，一堆代码代表让电脑做一堆的事情</p>
+<h3 id="1-3-为什么要编程"><a href="#1-3-为什么要编程" class="headerlink" title="1.3.为什么要编程"></a>1.3.为什么要编程</h3><p><img src="/2022/10/23/day1变量和数据类型的介绍/1654839883539.png" alt="1654839883539"></p>
+<p>​    在编程的过程中，计算机就像是人的奴隶<br>    我们编程的目的就是为了让计算机代替人类去工作，从而解放人力</p>
+<h2 id="2-学习python的套路"><a href="#2-学习python的套路" class="headerlink" title="2.学习python的套路"></a>2.学习python的套路</h2><h3 id="2-1-英语学习-VS-python"><a href="#2-1-英语学习-VS-python" class="headerlink" title="2.1.英语学习 VS python"></a>2.1.英语学习 VS python</h3><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Python是语言，而学习语言的套路都是一样的</span><br><span class="line">，以英语学习为例，你需要学单词，然后学语法，最后写作文。</span><br><span class="line">    英语的单词<span class="comment">----------&gt;Python中的关键字,方法</span></span><br><span class="line">    英语的语法<span class="comment">----------&gt;Python的语法</span></span><br><span class="line">    英语的作文<span class="comment">----------&gt;用Python语言写的程序</span></span><br><span class="line">    当然python比英语好学，单词基本不用记，语法写错也会有提示</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-python的注释"><a href="#2-2-python的注释" class="headerlink" title="2.2.python的注释"></a>2.2.python的注释</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">认识注释</span><br><span class="line">    注释就是就是对代码的解释说明，注释的内容不会被当作代码运行</span><br><span class="line">怎么用注释</span><br><span class="line">    代码注释分单行和多行注释</span><br><span class="line">      <span class="number">1</span>、单行注释用<span class="comment">#号</span></span><br><span class="line">      <span class="number">2</span>、多行注释可以用三对双引号<span class="string">''''''</span></span><br></pre></td></tr></table></figure>
+<h4 id="代码实例"><a href="#代码实例" class="headerlink" title="代码实例"></a>代码实例</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 单行注释</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">多行注释可以用三对双引号</span></span><br><span class="line"><span class="string">多行注释可以用三对双引号</span></span><br><span class="line"><span class="string">多行注释可以用三对双引号</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-运行代码的2种方式"><a href="#3-运行代码的2种方式" class="headerlink" title="3.运行代码的2种方式"></a>3.运行代码的2种方式</h2><h3 id="方式一-交互式"><a href="#方式一-交互式" class="headerlink" title="方式一:交互式"></a>方式一:交互式</h3><p>操作人员和系统之间存在交互作用的信息处理方式</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">方式一:交互式 直接输入代码运行</span><br><span class="line">    最好用来测试代码</span><br><span class="line">        <span class="keyword">cmd</span></span><br><span class="line"><span class="bash">        使用方法 win + R</span></span><br><span class="line">    输入python启动，要有环境变量添加的情况下才能启动</span><br></pre></td></tr></table></figure>
+<p><img src="/2022/10/23/day1变量和数据类型的介绍/1654843412060.png" alt="1654843412060"></p>
+<h4 id="1-输入python进入python解释器"><a href="#1-输入python进入python解释器" class="headerlink" title="1.输入python进入python解释器"></a>1.输入python进入python解释器</h4><p><img src="/2022/10/23/day1变量和数据类型的介绍/1654843590146.png" alt="1654843590146"></p>
+<h4 id="2-在-gt-gt-gt-游标输入python代码进行回车"><a href="#2-在-gt-gt-gt-游标输入python代码进行回车" class="headerlink" title="2.在&gt;&gt;&gt;游标输入python代码进行回车"></a>2.在&gt;&gt;&gt;游标输入python代码进行回车</h4><p><img src="/2022/10/23/day1变量和数据类型的介绍/1654843619016.png" alt="1654843619016"></p>
+<h4 id="3-交互式优缺点"><a href="#3-交互式优缺点" class="headerlink" title="3.交互式优缺点"></a>3.交互式优缺点</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">优点：</span><br><span class="line">        输入一行代码立刻就返回</span><br><span class="line">缺点：</span><br><span class="line">        无法永久保存代码</span><br></pre></td></tr></table></figure>
+<h3 id="方式二-运行python文件"><a href="#方式二-运行python文件" class="headerlink" title="方式二: 运行python文件"></a>方式二: 运行python文件</h3><h4 id="1-什么是文件"><a href="#1-什么是文件" class="headerlink" title="1.什么是文件"></a>1.什么是文件</h4><p>文件是操作系统为用户/应用程序提供的一种操作硬盘的抽象单位</p>
+<h4 id="2-为何要用文件"><a href="#2-为何要用文件" class="headerlink" title="2.为何要用文件"></a>2.为何要用文件</h4><p>用户/应用程序对文件的读写操作会由操作系统转换成具体的硬盘操作</p>
+<h4 id="3-什么是python文件"><a href="#3-什么是python文件" class="headerlink" title="3.什么是python文件"></a>3.什么是python文件</h4><p>后缀名是py的文件称为python文件</p>
+<h4 id="4-cmd-运行python文件"><a href="#4-cmd-运行python文件" class="headerlink" title="4.cmd 运行python文件"></a>4.cmd 运行python文件</h4><h5 id="1-python-python文件的绝对路径"><a href="#1-python-python文件的绝对路径" class="headerlink" title="1.python python文件的绝对路径"></a>1.python python文件的绝对路径</h5><p><img src="/2022/10/23/day1变量和数据类型的介绍/1654844275543.png" alt="1654844275543"></p>
+<h5 id="2-python-python文件的相对路径"><a href="#2-python-python文件的相对路径" class="headerlink" title="2.python python文件的相对路径"></a>2.python python文件的相对路径</h5><p>(这个是必须切换到python运行文件的文件夹下)</p>
+<p> tab可以补全</p>
+<p><img src="/2022/10/23/day1变量和数据类型的介绍/1654844463642.png" alt="1654844463642"></p>
+<h4 id="5-pycharm运行python文件"><a href="#5-pycharm运行python文件" class="headerlink" title="5.pycharm运行python文件"></a>5.pycharm运行python文件</h4><h5 id="5-1-pycharm运行python代码文件，右键代码空白部分run"><a href="#5-1-pycharm运行python代码文件，右键代码空白部分run" class="headerlink" title="5.1.pycharm运行python代码文件，右键代码空白部分run"></a>5.1.pycharm运行python代码文件，右键代码空白部分run</h5><p><img src="/2022/10/23/day1变量和数据类型的介绍/1654847788590.png" alt="1654847788590"></p>
+<h5 id="5-2-pycharm运行代码的优势"><a href="#5-2-pycharm运行代码的优势" class="headerlink" title="5.2.pycharm运行代码的优势"></a>5.2.pycharm运行代码的优势</h5><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">优点：</span><br><span class="line">            pycharm自动保存代码</span><br><span class="line">            语法错误pycharm可以自动检查红色波浪线</span><br><span class="line">注意： <span class="keyword">python</span>文件的后缀名是<span class="keyword">py</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-变量"><a href="#4-变量" class="headerlink" title="4.变量"></a>4.变量</h2><h3 id="4-1-什么是变量？"><a href="#4-1-什么是变量？" class="headerlink" title="4.1.什么是变量？"></a>4.1.什么是变量？</h3><p>量：是衡量/记录现实世界中的某种特征/状态<br>变：指的是记录的状态是可以发生变化的</p>
+<h4 id="人的表情"><a href="#人的表情" class="headerlink" title="人的表情"></a>人的表情</h4><p><img src="/2022/10/23/day1变量和数据类型的介绍/1654861563900.png" alt="1654861563900"></p>
+<h4 id="女孩的衣服"><a href="#女孩的衣服" class="headerlink" title="女孩的衣服"></a>女孩的衣服</h4><p><img src="/2022/10/23/day1变量和数据类型的介绍/1654863658733.png" alt="1654863658733"></p>
+<p>比如人的年龄、性别，游戏角色的等级、金钱等等</p>
+<h3 id="4-2-为什么要有变量？"><a href="#4-2-为什么要有变量？" class="headerlink" title="4.2.为什么要有变量？"></a>4.2.为什么要有变量？</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">为了让计算机能够像人一样去记忆事物的某种状态，并且状态是可以发生变化的</span><br><span class="line"></span><br><span class="line">详细地说：</span><br><span class="line"></span><br><span class="line">程序执行的本质就是一系列状态的变化，变是程序执行的直接体现，所以我们需要有一种机制能够反映或者说是保存下来程序执行时状态，以及状态的变化。</span><br></pre></td></tr></table></figure>
+<h3 id="4-3-怎么使用变量（先定义，后调用）"><a href="#4-3-怎么使用变量（先定义，后调用）" class="headerlink" title="4.3.怎么使用变量（先定义，后调用）"></a>4.3.怎么使用变量（先定义，后调用）</h3><h4 id="4-3-1-变量的定义与使用"><a href="#4-3-1-变量的定义与使用" class="headerlink" title="4.3.1.变量的定义与使用"></a>4.3.1.变量的定义与使用</h4><p>插图：定义变量的三个组成部分</p>
+<p><img src="/2022/10/23/day1变量和数据类型的介绍/1653985002381.png" alt="1653985002381"></p>
+<h5 id="定义变量示范如下"><a href="#定义变量示范如下" class="headerlink" title="定义变量示范如下"></a>定义变量示范如下</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">name = <span class="string">'dahai'</span></span><br><span class="line">sex = <span class="string">'男'</span></span><br><span class="line">age = <span class="number">35</span>      <span class="comment"># 记下人的年龄为35岁</span></span><br><span class="line">salary = <span class="number">21000.65</span>  <span class="comment"># 记下人的薪资为21000.65元</span></span><br></pre></td></tr></table></figure>
+<p>解释器执行到变量定义的代码时会申请内存空间存放变量值，然后将变量值的内存地址绑定给变量名，以变量的定义age=18为例子，如下图</p>
+<p>插图:定义变量申请内存</p>
+<p><img src="/2022/10/23/day1变量和数据类型的介绍/1653985637071.png" alt="1653985637071"></p>
+<h5 id="通过变量名即可引用到对应的值"><a href="#通过变量名即可引用到对应的值" class="headerlink" title="通过变量名即可引用到对应的值"></a>通过变量名即可引用到对应的值</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 通过变量名即可引用到值，我们可以结合print()功能将其打印出来</span></span><br><span class="line">print(age) <span class="comment"># 通过变量名age找到值18，然后执行print(18),输出：18</span></span><br></pre></td></tr></table></figure>
+<h4 id="4-3-2-变量名的命名规范"><a href="#4-3-2-变量名的命名规范" class="headerlink" title="4.3.2.变量名的命名规范"></a>4.3.2.变量名的命名规范</h4><h5 id="变量名的命名应该见名知意"><a href="#变量名的命名应该见名知意" class="headerlink" title="变量名的命名应该见名知意"></a>变量名的命名应该见名知意</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果我们要存储的数据18代表的是一个人的年龄，那么变量名推荐命名为age</span></span><br><span class="line">age = <span class="number">18</span> </span><br><span class="line"><span class="comment"># 如果我们要存储的数据dahai代表的是一个人的名字，那么变量名推荐命名为name</span></span><br><span class="line">name = <span class="string">'dahai'</span></span><br></pre></td></tr></table></figure>
+<h5 id="其他详细的规范如下"><a href="#其他详细的规范如下" class="headerlink" title="其他详细的规范如下"></a>其他详细的规范如下</h5><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 命名规范</span></span><br><span class="line">1. 变量名只能是 字母、数字或下划线的任意组合</span><br><span class="line">2. 变量名的第一个字符不能是数字</span><br><span class="line">3. 关键字不能声明为变量名，常用关键字如下</span><br><span class="line">[<span class="string">'and'</span>, <span class="string">'as'</span>, <span class="string">'assert'</span>, <span class="string">'break'</span>, <span class="string">'class'</span>, <span class="string">'continue'</span>, <span class="string">'def'</span>, <span class="string">'del'</span>, <span class="string">'elif'</span>, <span class="string">'else'</span>, <span class="string">'except'</span>, <span class="string">'exec'</span>, <span class="string">'finally'</span>, <span class="string">'for'</span>, <span class="string">'from'</span>,<span class="string">'global'</span>, <span class="string">'if'</span>, <span class="string">'import'</span>, <span class="string">'in'</span>, <span class="string">'is'</span>, <span class="string">'lambda'</span>, <span class="string">'not'</span>, <span class="string">'or'</span>, <span class="string">'pass'</span>, <span class="string">'print'</span>, <span class="string">'raise'</span>, <span class="string">'return'</span>, <span class="string">'try'</span>, <span class="string">'while'</span>, <span class="string">'with'</span>, <span class="string">'yield'</span>]</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 错误示范如下：</span></span><br><span class="line"><span class="number">*a</span>=123</span><br><span class="line"><span class="variable">$b</span>=456</span><br><span class="line">c$=789</span><br><span class="line"><span class="attribute">2_name</span>=<span class="string">'lili'</span></span><br><span class="line"><span class="attribute">123</span>=<span class="string">'lili'</span></span><br><span class="line"><span class="attribute">and</span>=123</span><br><span class="line">年龄=18 # 强烈建议不要使用中文命名</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 正确示范如下</span></span><br><span class="line"><span class="attribute">age_of_dahai</span>=31</span><br><span class="line"><span class="attribute">page1</span>=<span class="string">'首页'</span></span><br><span class="line"><span class="attribute">_class</span>=<span class="string">'终极一班'</span></span><br></pre></td></tr></table></figure>
+<h4 id="4-3-3-变量名的命名风格"><a href="#4-3-3-变量名的命名风格" class="headerlink" title="4.3.3.变量名的命名风格"></a>4.3.3.变量名的命名风格</h4><p><img src="/2022/10/23/day1变量和数据类型的介绍/1653986018117.png" alt="1653986018117"></p>
+<h5 id="形容一个复杂的变量"><a href="#形容一个复杂的变量" class="headerlink" title="形容一个复杂的变量"></a>形容一个复杂的变量</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 风格一：驼峰体</span></span><br><span class="line">AgeOfDahai = <span class="number">56</span> </span><br><span class="line"><span class="comment"># 风格二：纯小写下划线(在python中，变量名的命名推荐使用该风格)</span></span><br><span class="line">age_of_dahai = <span class="number">56</span></span><br></pre></td></tr></table></figure>
+<h4 id="4-3-4-变量值的三大特性"><a href="#4-3-4-变量值的三大特性" class="headerlink" title="4.3.4.变量值的三大特性"></a>4.3.4.变量值的三大特性</h4><p>变量的值具备三大特性</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1、id</span></span><br><span class="line">反应的是变量在内存中的唯一编号，内存地址不同id肯定不同</span><br><span class="line"> </span><br><span class="line"><span class="comment">#2、type</span></span><br><span class="line">变量值的类型</span><br><span class="line"> </span><br><span class="line"><span class="comment">#3、value</span></span><br><span class="line">变量值</span><br></pre></td></tr></table></figure>
+<p>查看变量值三大特性的方式如下，我们将会在运算符中用到变量值的三大特性</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">name = <span class="string">'大海'</span></span><br><span class="line"><span class="comment"># 1.id相当于在内存中位置或者地址</span></span><br><span class="line">print(id(name))</span><br><span class="line"><span class="comment"># 2.变量值的类型</span></span><br><span class="line">print(type(name))</span><br><span class="line"><span class="comment"># 3.变量值</span></span><br><span class="line">print(name)</span><br><span class="line"><span class="comment"># 结果  </span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">2403112027888</span></span><br><span class="line"><span class="string">&lt;class 'str'&gt;</span></span><br><span class="line"><span class="string">大海</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+<h2 id="5-常量"><a href="#5-常量" class="headerlink" title="5.常量"></a>5.常量</h2><h3 id="5-1-什么时常量？"><a href="#5-1-什么时常量？" class="headerlink" title="5.1.什么时常量？"></a>5.1.什么时常量？</h3><p>常量指的程序运行过程中不会改变的量</p>
+<h3 id="5-2-为什么要有常量？"><a href="#5-2-为什么要有常量？" class="headerlink" title="5.2.为什么要有常量？"></a>5.2.为什么要有常量？</h3><p><img src="/2022/10/23/day1变量和数据类型的介绍/1653986697645.png" alt="1653986697645"></p>
+<p>在程序运行过程中，有些值是固定的，不应该被改变，比如圆周率 3.141592653…</p>
+<h3 id="5-3-怎么使用常量？"><a href="#5-3-怎么使用常量？" class="headerlink" title="5.3.怎么使用常量？"></a>5.3.怎么使用常量？</h3><p>在python中没有一个专门的语法定义常量，约定俗称是用全部大写的变量名表示常量。如：PI=3.14159   所以单从语法层面去讲，常量的使用与变量完全一致。</p>
+<p>插图:</p>
+<p><img src="/2022/10/23/day1变量和数据类型的介绍/1653987404921.png" alt="1653987404921"></p>
+<h2 id="6-字符串类型-str-的介绍"><a href="#6-字符串类型-str-的介绍" class="headerlink" title="6.字符串类型(str)的介绍"></a>6.字符串类型(str)的介绍</h2><p><img src="/2022/10/23/day1变量和数据类型的介绍/1654850031419.png" alt="1654850031419"></p>
+<h3 id="6-1-什么是字符"><a href="#6-1-什么是字符" class="headerlink" title="6.1.什么是字符"></a>6.1.什么是字符</h3><p>电子计算机或无线电通信中字母、数字和各种符号的统称。</p>
+<h3 id="6-2-什么是字符串"><a href="#6-2-什么是字符串" class="headerlink" title="6.2.什么是字符串"></a>6.2.什么是字符串</h3><p>由数字、字母、下划线组成的一<em>串字符</em>。 </p>
+<h3 id="6-3-字符串的作用"><a href="#6-3-字符串的作用" class="headerlink" title="6.3.字符串的作用"></a>6.3.字符串的作用</h3><p>记录描述性质的数据，比如人的名字、性别、家庭地址、公司简介</p>
+<h3 id="6-4-字符串的定义"><a href="#6-4-字符串的定义" class="headerlink" title="6.4.字符串的定义"></a>6.4.字符串的定义</h3><p>在引号内按照从左到右的顺序依次包含一个个字符，引号可以是单引号、双引号、三引号</p>
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">name = <span class="string">'大海'</span></span><br><span class="line"></span><br><span class="line">name1 = <span class="string">"大海1"</span></span><br><span class="line"></span><br><span class="line">info = <span class="string">'''在苍茫的大海上</span></span><br><span class="line"><span class="string">狂风.....</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+<h5 id="字符串的简单操作"><a href="#字符串的简单操作" class="headerlink" title="字符串的简单操作"></a>字符串的简单操作</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">print(name)</span><br><span class="line">print(name1)</span><br><span class="line"><span class="comment"># 打印2个变量</span></span><br><span class="line">print(name,name1)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 字符串里面要有引号</span></span><br><span class="line">print(<span class="string">'my name is "dahai"'</span>)</span><br><span class="line">print(<span class="string">"my name is 'dahai'"</span>)</span><br><span class="line"></span><br><span class="line">name4 = <span class="string">'abcdef'</span></span><br><span class="line"><span class="comment">#        012345</span></span><br><span class="line">name5 = <span class="string">'大海'</span></span><br><span class="line"><span class="comment"># 索引从0开始，现实中书本的页码从1开始</span></span><br><span class="line"><span class="comment"># 取出第一个英文字符</span></span><br><span class="line">print(name4[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">print(name4[<span class="number">1</span>])</span><br><span class="line">print(name4)</span><br><span class="line"></span><br><span class="line">print(name4[<span class="number">5</span>])</span><br><span class="line">print(name4[<span class="number">-1</span>])</span><br><span class="line"></span><br><span class="line">print(name5[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+<h2 id="7-用户交互"><a href="#7-用户交互" class="headerlink" title="7.用户交互"></a>7.用户交互</h2><p><img src="/2022/10/23/day1变量和数据类型的介绍/1654850734632.png" alt="1654850734632"></p>
+<h3 id="7-1-什么是与用户交互"><a href="#7-1-什么是与用户交互" class="headerlink" title="7.1.什么是与用户交互"></a>7.1.什么是与用户交互</h3><p>程序等待用户输入一些数据，然后程序执行完毕后为用户反馈信息</p>
+<h3 id="7-2-为何程序要与用户交互"><a href="#7-2-为何程序要与用户交互" class="headerlink" title="7.2.为何程序要与用户交互"></a>7.2.为何程序要与用户交互</h3><p>为了让计算机能够像人一样与用户的交互</p>
+<h3 id="7-3-如何用"><a href="#7-3-如何用" class="headerlink" title="7.3.如何用"></a>7.3.如何用</h3><p>cmd输入和输出不需要input和print 用于测试</p>
+<p><img src="/2022/10/23/day1变量和数据类型的介绍/1654850617179.png" alt="1654850617179"></p>
+<h4 id="input输入"><a href="#input输入" class="headerlink" title="input输入"></a>input输入</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># input(提示用户的输入信息) 输入的数据都会变成字符串类型</span></span><br><span class="line">name=input(<span class="string">'请输入名字'</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="print输出"><a href="#print输出" class="headerlink" title="print输出"></a>print输出</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(name)</span><br></pre></td></tr></table></figure>
+<h4 id="输入的数据都会变成字符串类型"><a href="#输入的数据都会变成字符串类型" class="headerlink" title="输入的数据都会变成字符串类型"></a>输入的数据都会变成字符串类型</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(type(name))</span><br></pre></td></tr></table></figure>
+<h2 id="7-数字类型"><a href="#7-数字类型" class="headerlink" title="7.数字类型"></a>7.数字类型</h2><h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>所有的加了引号的数据类型都是字符串类型</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(type(<span class="string">'17'</span>))</span><br></pre></td></tr></table></figure>
+<h3 id="7-1-整数类型（int）"><a href="#7-1-整数类型（int）" class="headerlink" title="7.1.整数类型（int）"></a>7.1.整数类型（int）</h3><h4 id="7-1-2-作用"><a href="#7-1-2-作用" class="headerlink" title="7.1.2.作用"></a>7.1.2.作用</h4><p>记录年龄，等级，QQ号，各种号码</p>
+<h4 id="7-1-2-定义"><a href="#7-1-2-定义" class="headerlink" title="7.1.2.定义"></a>7.1.2.定义</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">age = <span class="number">18</span></span><br><span class="line">print(age)</span><br><span class="line">print(type(age))</span><br></pre></td></tr></table></figure>
+<h3 id="7-2-浮点型（float）"><a href="#7-2-浮点型（float）" class="headerlink" title="7.2.浮点型（float）"></a>7.2.浮点型（float）</h3><h4 id="7-2-2-作用"><a href="#7-2-2-作用" class="headerlink" title="7.2.2.作用"></a>7.2.2.作用</h4><p>记录身高、体重weight、薪资</p>
+<h4 id="7-2-2-定义"><a href="#7-2-2-定义" class="headerlink" title="7.2.2.定义"></a>7.2.2.定义</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">weight = <span class="number">151.2</span></span><br><span class="line">print(type(weight))</span><br><span class="line">print(weight)</span><br></pre></td></tr></table></figure>
+<h2 id="8-字符串的格式化输出"><a href="#8-字符串的格式化输出" class="headerlink" title="8.字符串的格式化输出"></a>8.字符串的格式化输出</h2><h3 id="8-1-应用格式"><a href="#8-1-应用格式" class="headerlink" title="8.1.应用格式"></a>8.1.应用格式</h3><p>程序中经常会有这样场景：要求用户输入信息，然后打印成固定的格式<br>    比如要求用户输入用户名和年龄，然后打印如下格式：<br>    My name is xxx，my age is xxx.<br>这就用到了占位符，如：%s、%d</p>
+<h3 id="8-2-s-占位符"><a href="#8-2-s-占位符" class="headerlink" title="8.2.%s 占位符"></a>8.2.%s 占位符</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># %s 占位符 可以接受字符和数字 全能</span></span><br><span class="line">name = input(<span class="string">'输入名字'</span>)</span><br><span class="line"><span class="comment"># 一个值的话直接放到%后面</span></span><br><span class="line">print(<span class="string">'My name is %s'</span>%name)</span><br></pre></td></tr></table></figure>
+<h3 id="8-3-d-占位符"><a href="#8-3-d-占位符" class="headerlink" title="8.3.%d 占位符"></a>8.3.%d 占位符</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># %d只能接受数字 有局限性</span></span><br><span class="line"><span class="comment"># 这样只能输入数字了</span></span><br><span class="line">age = input(<span class="string">'输入年龄'</span>)</span><br><span class="line">age = int(age)</span><br><span class="line">print(type(age))</span><br><span class="line">print(<span class="string">'my age is %s'</span>%age)</span><br></pre></td></tr></table></figure>
+<h3 id="8-4-多个占位符的使用"><a href="#8-4-多个占位符的使用" class="headerlink" title="8.4.多个占位符的使用"></a>8.4.多个占位符的使用</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">name = input(<span class="string">'输入名字'</span>)</span><br><span class="line">age = input(<span class="string">'输入年龄'</span>)</span><br><span class="line"><span class="comment"># 多个值的话直接放到%后面要有括号</span></span><br><span class="line">print(<span class="string">'My name is %s，my age is %s'</span>%(name,age))</span><br><span class="line"><span class="comment"># 错误演示 输入的是一个字符串 %d无法接收</span></span><br><span class="line"><span class="comment"># print('My name is %d，my age is %d'%(name,age))</span></span><br></pre></td></tr></table></figure>
+<h3 id="8-5-简化写法"><a href="#8-5-简化写法" class="headerlink" title="8.5.简化写法"></a>8.5.简化写法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">name = input(<span class="string">'输入名字'</span>)</span><br><span class="line">age = input(<span class="string">'输入年龄'</span>)</span><br><span class="line"><span class="comment">#  f'其他字符&#123;变量名&#125;'</span></span><br><span class="line">print(<span class="string">f'my name is <span class="subst">&#123;name&#125;</span>,my age is <span class="subst">&#123;age&#125;</span>'</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="9-数字类型的运算符"><a href="#9-数字类型的运算符" class="headerlink" title="9.数字类型的运算符"></a>9.数字类型的运算符</h2><h3 id="9-1-算术运算符号"><a href="#9-1-算术运算符号" class="headerlink" title="9.1.算术运算符号"></a>9.1.算术运算符号</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 加 +</span></span><br><span class="line"><span class="comment"># 减 -</span></span><br><span class="line"><span class="comment"># 乘 *</span></span><br><span class="line"><span class="comment"># 除 /</span></span><br><span class="line"><span class="comment"># 地板除 //    （取整数部分）</span></span><br><span class="line"><span class="comment"># 取余 %       （取余数部分)</span></span><br><span class="line"><span class="comment"># 乘方 **</span></span><br></pre></td></tr></table></figure>
+<h4 id="实例-1"><a href="#实例-1" class="headerlink" title="实例"></a>实例</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="number">2</span>+<span class="number">2</span>)</span><br><span class="line">print(<span class="number">2</span><span class="number">-2</span>)</span><br><span class="line">print(<span class="number">2</span>*<span class="number">3</span>)</span><br><span class="line">print(int(<span class="number">4</span>/<span class="number">2</span>))</span><br><span class="line">print(<span class="number">7</span>//<span class="number">3</span>) <span class="comment"># 取整</span></span><br><span class="line">print(<span class="number">7</span>%<span class="number">3</span>) <span class="comment"># 余数是1</span></span><br><span class="line">print(<span class="number">4</span>**<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="9-2-比较运算符"><a href="#9-2-比较运算符" class="headerlink" title="9.2.比较运算符"></a>9.2.比较运算符</h3><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># 等于 ==</span></span><br><span class="line"><span class="meta"># 不等于 !=</span></span><br><span class="line"><span class="meta"># 大于 &gt;</span></span><br><span class="line"><span class="meta"># 小于 &lt;</span></span><br><span class="line"><span class="meta"># 大于或等于 &gt;=</span></span><br><span class="line"><span class="meta"># 小于或等于 &lt;=</span></span><br></pre></td></tr></table></figure>
+<h4 id="实例-2"><a href="#实例-2" class="headerlink" title="实例"></a>实例</h4><p>返回布尔类型</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="number">3</span>==<span class="number">4</span>)</span><br><span class="line">print(<span class="number">3</span>==<span class="number">3</span>)</span><br><span class="line"><span class="comment"># 返回对就是True，False就是错误的</span></span><br><span class="line">print(<span class="number">3</span>!=<span class="number">3</span>)</span><br><span class="line">print(<span class="number">3</span>&gt;<span class="number">2</span>)</span><br><span class="line">print(<span class="number">3</span>&lt;<span class="number">3</span>)</span><br><span class="line">print(<span class="number">3</span>&lt;=<span class="number">3</span>)</span><br><span class="line"><span class="comment"># 错误演示</span></span><br><span class="line">print(<span class="string">'3&gt;=3'</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="10-布尔类型（bool）"><a href="#10-布尔类型（bool）" class="headerlink" title="10.布尔类型（bool）"></a>10.布尔类型（bool）</h2><h3 id="10-1-布尔类型的作用"><a href="#10-1-布尔类型的作用" class="headerlink" title="10.1.布尔类型的作用"></a>10.1.布尔类型的作用</h3><p>用来作为判断的条件去用</p>
+<h3 id="10-2-布尔值的含义"><a href="#10-2-布尔值的含义" class="headerlink" title="10.2.布尔值的含义"></a>10.2.布尔值的含义</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">布尔值，一个<span class="literal">True</span>一个<span class="literal">False</span></span><br><span class="line">计算机俗称电脑，即我们编写程序让计算机运行时，</span><br><span class="line">应该是让计算机无限接近人脑，或者说人脑能干什么，</span><br><span class="line">计算机就应该能干什么，</span><br><span class="line">人脑的主要作用是数据运行与逻辑运算，此处的布尔类型就模拟人的逻辑运行，</span><br><span class="line">即判断一个条件成立时，用<span class="literal">True</span>标识，不成立则用<span class="literal">False</span>标识</span><br></pre></td></tr></table></figure>
+<h3 id="10-3-代码实例"><a href="#10-3-代码实例" class="headerlink" title="10.3.代码实例"></a>10.3.代码实例</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tag = <span class="literal">False</span></span><br><span class="line">print(tag)</span><br><span class="line">print(type(tag))</span><br></pre></td></tr></table></figure>
+<h2 id="11-复数类型（complex）"><a href="#11-复数类型（complex）" class="headerlink" title="11.复数类型（complex）"></a>11.复数类型（complex）</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 是一个线性的参数(了解)</span></span><br><span class="line">x = <span class="number">1</span> - <span class="number">2j</span></span><br><span class="line">print(x)</span><br><span class="line">print(type(x))</span><br></pre></td></tr></table></figure>
+<h2 id="12-列表类型（list）"><a href="#12-列表类型（list）" class="headerlink" title="12.列表类型（list）"></a>12.列表类型（list）</h2><h3 id="12-1-对比之前的数据类型"><a href="#12-1-对比之前的数据类型" class="headerlink" title="12.1.对比之前的数据类型"></a>12.1.对比之前的数据类型</h3><p>字符串，数字，布尔，复数 都是一个值</p>
+<h3 id="12-2-列表作用"><a href="#12-2-列表作用" class="headerlink" title="12.2.列表作用"></a>12.2.列表作用</h3><p>记录/存多个值，可以方便地取出来指定位置的值，比如人的多个爱好，一堆学生姓名</p>
+<h3 id="12-3-列表定义"><a href="#12-3-列表定义" class="headerlink" title="12.3.列表定义"></a>12.3.列表定义</h3><p>在[]内用逗号分隔开多个任意类型的值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">L = [<span class="string">'dahai'</span>,<span class="number">1</span>,<span class="number">1.2</span>,[<span class="number">1.22</span>,<span class="string">'小海'</span>]]</span><br><span class="line"><span class="comment">#    0       1 2    3</span></span><br><span class="line"><span class="comment">#                   0     1</span></span><br><span class="line">print(L)</span><br><span class="line">print(type(L))</span><br></pre></td></tr></table></figure>
+<h3 id="12-4-列表使用"><a href="#12-4-列表使用" class="headerlink" title="12.4.列表使用"></a>12.4.列表使用</h3><h4 id="12-4-1-列表的取值"><a href="#12-4-1-列表的取值" class="headerlink" title="12.4.1.列表的取值"></a>12.4.1.列表的取值</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># # 索引从0开始  相当于我们书的页码</span></span><br><span class="line">print(L[<span class="number">0</span>])</span><br><span class="line">print(L[<span class="number">1</span>])</span><br><span class="line">print(L[<span class="number">0</span>][<span class="number">0</span>])</span><br><span class="line"><span class="comment"># 反向取</span></span><br><span class="line">print(L[<span class="number">-1</span>])</span><br><span class="line">print(L[<span class="number">-1</span>][<span class="number">1</span>])</span><br><span class="line">print(L[<span class="number">-1</span>][<span class="number">1</span>][<span class="number">0</span>])</span><br><span class="line">dahai=L[<span class="number">0</span>]</span><br><span class="line">print(dahai)</span><br></pre></td></tr></table></figure>
+<h4 id="12-4-2-列表内元素的修改"><a href="#12-4-2-列表内元素的修改" class="headerlink" title="12.4.2.列表内元素的修改"></a>12.4.2.列表内元素的修改</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">L[<span class="number">0</span>]= <span class="string">'红海'</span></span><br><span class="line">print(L)</span><br><span class="line">print(L[<span class="number">0</span>])</span><br><span class="line">honghai=L[<span class="number">0</span>]</span><br><span class="line">print(honghai)</span><br></pre></td></tr></table></figure>
+<h2 id="13-字典"><a href="#13-字典" class="headerlink" title="13.字典"></a>13.字典</h2><h3 id="13-1-字典作用"><a href="#13-1-字典作用" class="headerlink" title="13.1.字典作用"></a>13.1.字典作用</h3><p>记录多个key:value值,优势是每一个值value都有其对应关系/映射关系key,而key对value有描述性的功能</p>
+<h3 id="13-2-字典定义"><a href="#13-2-字典定义" class="headerlink" title="13.2.字典定义"></a>13.2.字典定义</h3><p>在{}内用逗号分隔开多个key:value元素,其中value可以是任意的数据类型,而key通常应该是字符串类型</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">info = &#123;<span class="string">'name'</span>:<span class="string">'大海'</span>,<span class="string">'age'</span>:<span class="number">18</span>&#125;</span><br><span class="line">print(info)</span><br><span class="line">print(type(info))</span><br></pre></td></tr></table></figure>
+<h3 id="13-3-字典简单使用"><a href="#13-3-字典简单使用" class="headerlink" title="13.3.字典简单使用"></a>13.3.字典简单使用</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 简单使用</span></span><br><span class="line"><span class="comment"># 通过key进行取值</span></span><br><span class="line">print(info[<span class="string">'name'</span>])</span><br><span class="line">print(info[<span class="string">'age'</span>])</span><br></pre></td></tr></table></figure>
+<h3 id="13-4-列表和字典的区别"><a href="#13-4-列表和字典的区别" class="headerlink" title="13.4.列表和字典的区别"></a>13.4.列表和字典的区别</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 列表是依靠索引</span></span><br><span class="line"><span class="comment"># 字典是依靠键值对 # key描述性的信息</span></span><br></pre></td></tr></table></figure>
+<h2 id="14-元组（tuple）"><a href="#14-元组（tuple）" class="headerlink" title="14.元组（tuple）"></a>14.元组（tuple）</h2><h3 id="14-1-元组作用"><a href="#14-1-元组作用" class="headerlink" title="14.1.元组作用"></a>14.1.元组作用</h3><p>记录多个值，当多个值没有改的需求，此时用元组更合适</p>
+<h3 id="14-2-元组定义"><a href="#14-2-元组定义" class="headerlink" title="14.2.元组定义"></a>14.2.元组定义</h3><p>在()内用逗号分隔开多个任意类型的值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">t = (<span class="number">1</span>,<span class="number">2</span>,<span class="string">'大海'</span>,(<span class="number">2</span>,<span class="number">3</span>),[<span class="string">'红海'</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line"><span class="comment">#    0 1  2     3     4</span></span><br><span class="line"><span class="comment">#                     0       1 2</span></span><br><span class="line">print(t)</span><br><span class="line">print(type(t))</span><br></pre></td></tr></table></figure>
+<h3 id="14-3-元组的简单使用"><a href="#14-3-元组的简单使用" class="headerlink" title="14.3.元组的简单使用"></a>14.3.元组的简单使用</h3><h4 id="14-3-1-取值方式和列表一样"><a href="#14-3-1-取值方式和列表一样" class="headerlink" title="14.3.1.取值方式和列表一样"></a>14.3.1.取值方式和列表一样</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 简单使用</span></span><br><span class="line">print(t[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+<h4 id="14-3-2-不能修改元组内的元素"><a href="#14-3-2-不能修改元组内的元素" class="headerlink" title="14.3.2.不能修改元组内的元素"></a>14.3.2.不能修改元组内的元素</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># t[0]= 5</span></span><br><span class="line"><span class="comment"># t[4] = 2</span></span><br></pre></td></tr></table></figure>
+<h4 id="14-3-3-元组里面列表的值可以修改（因为列表可以修改）"><a href="#14-3-3-元组里面列表的值可以修改（因为列表可以修改）" class="headerlink" title="14.3.3.元组里面列表的值可以修改（因为列表可以修改）"></a>14.3.3.元组里面列表的值可以修改（因为列表可以修改）</h4><p><img src="/2022/10/23/day1变量和数据类型的介绍/1654864640683.png" alt="1654864640683"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(t[<span class="number">4</span>])</span><br><span class="line">t[<span class="number">4</span>][<span class="number">0</span>]=<span class="string">'黄海'</span></span><br><span class="line">print(t)</span><br></pre></td></tr></table></figure>
+<h2 id="15-集合"><a href="#15-集合" class="headerlink" title="15.集合"></a>15.集合</h2><h3 id="15-1-集合的作用"><a href="#15-1-集合的作用" class="headerlink" title="15.1.集合的作用"></a>15.1.集合的作用</h3><p>关系运算</p>
+<h3 id="15-2-集合定义"><a href="#15-2-集合定义" class="headerlink" title="15.2.集合定义"></a>15.2.集合定义</h3><p>在{}内用逗号分开个的多个值</p>
+<h4 id="注意-1"><a href="#注意-1" class="headerlink" title="注意"></a>注意</h4><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>元素不能重复(定义不能这样写相同的)</span><br><span class="line"><span class="number">2.</span>集合里面的元素是无序</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line">print(s)</span><br><span class="line">print(type(s))</span><br></pre></td></tr></table></figure>
+<h3 id="15-3-集合的使用"><a href="#15-3-集合的使用" class="headerlink" title="15.3.集合的使用"></a>15.3.集合的使用</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">s1 = &#123;<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>&#125;</span><br><span class="line">s2 = &#123;<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>&#125;</span><br><span class="line"><span class="comment"># # 拿2个集合相同的元素 shift + 7交集符号  交集</span></span><br><span class="line">print(s1 &amp; s2)</span><br><span class="line"><span class="comment"># 拿2个集合所有的元素  并集</span></span><br><span class="line">print(s1 | s2)</span><br><span class="line"><span class="comment"># s1 去 抵消它们的交集 差集</span></span><br><span class="line">print(s1 - s2)</span><br><span class="line"><span class="comment"># s2 去 抵消它们的交集 差集</span></span><br><span class="line">print(s2 - s1)</span><br></pre></td></tr></table></figure>
+<h2 id="16-总结规律"><a href="#16-总结规律" class="headerlink" title="16.总结规律"></a>16.总结规律</h2><h3 id="一切事务都有规律，掌握了规律，必然会提高学习效率"><a href="#一切事务都有规律，掌握了规律，必然会提高学习效率" class="headerlink" title="一切事务都有规律，掌握了规律，必然会提高学习效率"></a>一切事务都有规律，掌握了规律，必然会提高学习效率</h3><p><img src="/2022/10/23/day1变量和数据类型的介绍/1654865021657.png" alt="1654865021657"></p>
+<h3 id="16-1-按照容器分类"><a href="#16-1-按照容器分类" class="headerlink" title="16.1.按照容器分类"></a>16.1.按照容器分类</h3><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">一个值 字符串，数字，布尔，复数</span><br><span class="line">多个值容器 有序的      列表       元组<span class="comment">(不能存和修改)</span></span><br><span class="line">          无序的     字典        集合<span class="comment">(关系运算，不是为了取)</span></span><br><span class="line">字符串，数字，布尔,列表,字典,元组,集合,复数</span><br></pre></td></tr></table></figure>
+<h3 id="16-2-按照数值和顺序分类"><a href="#16-2-按照数值和顺序分类" class="headerlink" title="16.2.按照数值和顺序分类"></a>16.2.按照数值和顺序分类</h3><p>那么就分为3类：数值类型，序列类型，散列类型</p>
+<h4 id="16-2-1-什么是数值类型？"><a href="#16-2-1-什么是数值类型？" class="headerlink" title="16.2.1.什么是数值类型？"></a>16.2.1.什么是数值类型？</h4><p>表示数字类的一个数据</p>
+<h5 id="分别有"><a href="#分别有" class="headerlink" title="分别有"></a>分别有</h5><p>整型（int）：代表一个整数 作用  表示 年龄  分数</p>
+<p>浮点型 （float）：  代表一个小数   表示 身高 体重</p>
+<p>布尔类型（ bool）： 计算机的真假代表一个数字类的数据   0  和 1   True    False     首字母大写  判断真假</p>
+<p>复数（complex（了解）):  z = 4 - 4j  # 表示坐标  实部，虚部  表示一个线性的参数</p>
+<h4 id="16-2-2-什么是序列类型？"><a href="#16-2-2-什么是序列类型？" class="headerlink" title="16.2.2.什么是序列类型？"></a>16.2.2.什么是序列类型？</h4><p>按照一定顺序排序的数据类型<br>列表（list ）:             多个数据     存储数据：可以放任任意的数据类型<br>元组（ tuple）：       多个数据     存储数据：可以放任任意的数据类型  不能修改和添加里面的值  私密的数据<br>字符串 （str ）：      一个数据     描述性质：表示名字</p>
+<h4 id="16-2-3-什么是散列类型？"><a href="#16-2-3-什么是散列类型？" class="headerlink" title="16.2.3.什么是散列类型？"></a>16.2.3.什么是散列类型？</h4><p>不可以进行索引取值</p>
+<p>没有顺序，一盘散沙</p>
+<p>集合（set ）： 多个数据 ，存储数据：可以放任任意的数据类型, 可变类型，无序,</p>
+<p>字典 （dict）：多个数据 ，存储数据：key里面只能放入不可变类型，最好字符串类型，value里面可以放任任意的数据类型</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/gongzhonghao.jpg" alt="李江洋 wechat" style="width: 200px; max-width: 100%;">
+  <div>python分享公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="李江洋 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="李江洋 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/江洋python/" rel="tag"># 江洋python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/10/23/day3-大海老师之控制流程/" rel="next" title="3.控制流程">
+                <i class="fa fa-chevron-left"></i> 3.控制流程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/10/24/day2数据类型的操作和方法/" rel="prev" title="2.数据类型的操作和方法">
+                2.数据类型的操作和方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="李江洋">
+            
+              <p class="site-author-name" itemprop="name">李江洋</p>
+              <p class="site-description motion-element" itemprop="description">记录学习的技能和遇到的问题</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">179</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lvdXJuYW1l" title="GitHub &rarr; https://github.com/yourname"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="bWFpbHRvOjEzMjgwNDQzOTJAcXEuY29t" title="E-Mail &rarr; mailto:1328044392@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL2V4YW1wbGUuY29t" title="http://example.com">Title</span>
+                  </li>
+                
+              </ul>
+            </div>
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-变量和数据类型的介绍"><span class="nav-number">1.</span> <span class="nav-text">1.变量和数据类型的介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-编程和编程语言"><span class="nav-number">1.1.</span> <span class="nav-text">1.编程和编程语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-什么是编程语言"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1.什么是编程语言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-什么是编程"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2.什么是编程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-为什么要编程"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3.为什么要编程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-学习python的套路"><span class="nav-number">1.2.</span> <span class="nav-text">2.学习python的套路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-英语学习-VS-python"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1.英语学习 VS python</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-python的注释"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2.python的注释</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实例"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">代码实例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-运行代码的2种方式"><span class="nav-number">1.3.</span> <span class="nav-text">3.运行代码的2种方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方式一-交互式"><span class="nav-number">1.3.1.</span> <span class="nav-text">方式一:交互式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-输入python进入python解释器"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">1.输入python进入python解释器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-在-gt-gt-gt-游标输入python代码进行回车"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">2.在&gt;&gt;&gt;游标输入python代码进行回车</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-交互式优缺点"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">3.交互式优缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方式二-运行python文件"><span class="nav-number">1.3.2.</span> <span class="nav-text">方式二: 运行python文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-什么是文件"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">1.什么是文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-为何要用文件"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">2.为何要用文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-什么是python文件"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">3.什么是python文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-cmd-运行python文件"><span class="nav-number">1.3.2.4.</span> <span class="nav-text">4.cmd 运行python文件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-python-python文件的绝对路径"><span class="nav-number">1.3.2.4.1.</span> <span class="nav-text">1.python python文件的绝对路径</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-python-python文件的相对路径"><span class="nav-number">1.3.2.4.2.</span> <span class="nav-text">2.python python文件的相对路径</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-pycharm运行python文件"><span class="nav-number">1.3.2.5.</span> <span class="nav-text">5.pycharm运行python文件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#5-1-pycharm运行python代码文件，右键代码空白部分run"><span class="nav-number">1.3.2.5.1.</span> <span class="nav-text">5.1.pycharm运行python代码文件，右键代码空白部分run</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-2-pycharm运行代码的优势"><span class="nav-number">1.3.2.5.2.</span> <span class="nav-text">5.2.pycharm运行代码的优势</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-变量"><span class="nav-number">1.4.</span> <span class="nav-text">4.变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-什么是变量？"><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1.什么是变量？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#人的表情"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">人的表情</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#女孩的衣服"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">女孩的衣服</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-为什么要有变量？"><span class="nav-number">1.4.2.</span> <span class="nav-text">4.2.为什么要有变量？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-怎么使用变量（先定义，后调用）"><span class="nav-number">1.4.3.</span> <span class="nav-text">4.3.怎么使用变量（先定义，后调用）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-1-变量的定义与使用"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">4.3.1.变量的定义与使用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#定义变量示范如下"><span class="nav-number">1.4.3.1.1.</span> <span class="nav-text">定义变量示范如下</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#通过变量名即可引用到对应的值"><span class="nav-number">1.4.3.1.2.</span> <span class="nav-text">通过变量名即可引用到对应的值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-2-变量名的命名规范"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">4.3.2.变量名的命名规范</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#变量名的命名应该见名知意"><span class="nav-number">1.4.3.2.1.</span> <span class="nav-text">变量名的命名应该见名知意</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#其他详细的规范如下"><span class="nav-number">1.4.3.2.2.</span> <span class="nav-text">其他详细的规范如下</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-3-变量名的命名风格"><span class="nav-number">1.4.3.3.</span> <span class="nav-text">4.3.3.变量名的命名风格</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#形容一个复杂的变量"><span class="nav-number">1.4.3.3.1.</span> <span class="nav-text">形容一个复杂的变量</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-4-变量值的三大特性"><span class="nav-number">1.4.3.4.</span> <span class="nav-text">4.3.4.变量值的三大特性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-常量"><span class="nav-number">1.5.</span> <span class="nav-text">5.常量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-什么时常量？"><span class="nav-number">1.5.1.</span> <span class="nav-text">5.1.什么时常量？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-为什么要有常量？"><span class="nav-number">1.5.2.</span> <span class="nav-text">5.2.为什么要有常量？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-怎么使用常量？"><span class="nav-number">1.5.3.</span> <span class="nav-text">5.3.怎么使用常量？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-字符串类型-str-的介绍"><span class="nav-number">1.6.</span> <span class="nav-text">6.字符串类型(str)的介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-什么是字符"><span class="nav-number">1.6.1.</span> <span class="nav-text">6.1.什么是字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-什么是字符串"><span class="nav-number">1.6.2.</span> <span class="nav-text">6.2.什么是字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-字符串的作用"><span class="nav-number">1.6.3.</span> <span class="nav-text">6.3.字符串的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-4-字符串的定义"><span class="nav-number">1.6.4.</span> <span class="nav-text">6.4.字符串的定义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实例"><span class="nav-number">1.6.4.1.</span> <span class="nav-text">实例</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#字符串的简单操作"><span class="nav-number">1.6.4.1.1.</span> <span class="nav-text">字符串的简单操作</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-用户交互"><span class="nav-number">1.7.</span> <span class="nav-text">7.用户交互</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-什么是与用户交互"><span class="nav-number">1.7.1.</span> <span class="nav-text">7.1.什么是与用户交互</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-为何程序要与用户交互"><span class="nav-number">1.7.2.</span> <span class="nav-text">7.2.为何程序要与用户交互</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-3-如何用"><span class="nav-number">1.7.3.</span> <span class="nav-text">7.3.如何用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#input输入"><span class="nav-number">1.7.3.1.</span> <span class="nav-text">input输入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#print输出"><span class="nav-number">1.7.3.2.</span> <span class="nav-text">print输出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输入的数据都会变成字符串类型"><span class="nav-number">1.7.3.3.</span> <span class="nav-text">输入的数据都会变成字符串类型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-数字类型"><span class="nav-number">1.8.</span> <span class="nav-text">7.数字类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注意"><span class="nav-number">1.8.1.</span> <span class="nav-text">注意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-整数类型（int）"><span class="nav-number">1.8.2.</span> <span class="nav-text">7.1.整数类型（int）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#7-1-2-作用"><span class="nav-number">1.8.2.1.</span> <span class="nav-text">7.1.2.作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-1-2-定义"><span class="nav-number">1.8.2.2.</span> <span class="nav-text">7.1.2.定义</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-浮点型（float）"><span class="nav-number">1.8.3.</span> <span class="nav-text">7.2.浮点型（float）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#7-2-2-作用"><span class="nav-number">1.8.3.1.</span> <span class="nav-text">7.2.2.作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-2-2-定义"><span class="nav-number">1.8.3.2.</span> <span class="nav-text">7.2.2.定义</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-字符串的格式化输出"><span class="nav-number">1.9.</span> <span class="nav-text">8.字符串的格式化输出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-应用格式"><span class="nav-number">1.9.1.</span> <span class="nav-text">8.1.应用格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-s-占位符"><span class="nav-number">1.9.2.</span> <span class="nav-text">8.2.%s 占位符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-d-占位符"><span class="nav-number">1.9.3.</span> <span class="nav-text">8.3.%d 占位符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-4-多个占位符的使用"><span class="nav-number">1.9.4.</span> <span class="nav-text">8.4.多个占位符的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-5-简化写法"><span class="nav-number">1.9.5.</span> <span class="nav-text">8.5.简化写法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-数字类型的运算符"><span class="nav-number">1.10.</span> <span class="nav-text">9.数字类型的运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#9-1-算术运算符号"><span class="nav-number">1.10.1.</span> <span class="nav-text">9.1.算术运算符号</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实例-1"><span class="nav-number">1.10.1.1.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-2-比较运算符"><span class="nav-number">1.10.2.</span> <span class="nav-text">9.2.比较运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实例-2"><span class="nav-number">1.10.2.1.</span> <span class="nav-text">实例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-布尔类型（bool）"><span class="nav-number">1.11.</span> <span class="nav-text">10.布尔类型（bool）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#10-1-布尔类型的作用"><span class="nav-number">1.11.1.</span> <span class="nav-text">10.1.布尔类型的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-2-布尔值的含义"><span class="nav-number">1.11.2.</span> <span class="nav-text">10.2.布尔值的含义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-3-代码实例"><span class="nav-number">1.11.3.</span> <span class="nav-text">10.3.代码实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-复数类型（complex）"><span class="nav-number">1.12.</span> <span class="nav-text">11.复数类型（complex）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-列表类型（list）"><span class="nav-number">1.13.</span> <span class="nav-text">12.列表类型（list）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#12-1-对比之前的数据类型"><span class="nav-number">1.13.1.</span> <span class="nav-text">12.1.对比之前的数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-2-列表作用"><span class="nav-number">1.13.2.</span> <span class="nav-text">12.2.列表作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-3-列表定义"><span class="nav-number">1.13.3.</span> <span class="nav-text">12.3.列表定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-4-列表使用"><span class="nav-number">1.13.4.</span> <span class="nav-text">12.4.列表使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#12-4-1-列表的取值"><span class="nav-number">1.13.4.1.</span> <span class="nav-text">12.4.1.列表的取值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-4-2-列表内元素的修改"><span class="nav-number">1.13.4.2.</span> <span class="nav-text">12.4.2.列表内元素的修改</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-字典"><span class="nav-number">1.14.</span> <span class="nav-text">13.字典</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#13-1-字典作用"><span class="nav-number">1.14.1.</span> <span class="nav-text">13.1.字典作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-2-字典定义"><span class="nav-number">1.14.2.</span> <span class="nav-text">13.2.字典定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-3-字典简单使用"><span class="nav-number">1.14.3.</span> <span class="nav-text">13.3.字典简单使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-4-列表和字典的区别"><span class="nav-number">1.14.4.</span> <span class="nav-text">13.4.列表和字典的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-元组（tuple）"><span class="nav-number">1.15.</span> <span class="nav-text">14.元组（tuple）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#14-1-元组作用"><span class="nav-number">1.15.1.</span> <span class="nav-text">14.1.元组作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-2-元组定义"><span class="nav-number">1.15.2.</span> <span class="nav-text">14.2.元组定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-3-元组的简单使用"><span class="nav-number">1.15.3.</span> <span class="nav-text">14.3.元组的简单使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#14-3-1-取值方式和列表一样"><span class="nav-number">1.15.3.1.</span> <span class="nav-text">14.3.1.取值方式和列表一样</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-3-2-不能修改元组内的元素"><span class="nav-number">1.15.3.2.</span> <span class="nav-text">14.3.2.不能修改元组内的元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-3-3-元组里面列表的值可以修改（因为列表可以修改）"><span class="nav-number">1.15.3.3.</span> <span class="nav-text">14.3.3.元组里面列表的值可以修改（因为列表可以修改）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-集合"><span class="nav-number">1.16.</span> <span class="nav-text">15.集合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#15-1-集合的作用"><span class="nav-number">1.16.1.</span> <span class="nav-text">15.1.集合的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-2-集合定义"><span class="nav-number">1.16.2.</span> <span class="nav-text">15.2.集合定义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#注意-1"><span class="nav-number">1.16.2.1.</span> <span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-3-集合的使用"><span class="nav-number">1.16.3.</span> <span class="nav-text">15.3.集合的使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-总结规律"><span class="nav-number">1.17.</span> <span class="nav-text">16.总结规律</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一切事务都有规律，掌握了规律，必然会提高学习效率"><span class="nav-number">1.17.1.</span> <span class="nav-text">一切事务都有规律，掌握了规律，必然会提高学习效率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16-1-按照容器分类"><span class="nav-number">1.17.2.</span> <span class="nav-text">16.1.按照容器分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16-2-按照数值和顺序分类"><span class="nav-number">1.17.3.</span> <span class="nav-text">16.2.按照数值和顺序分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#16-2-1-什么是数值类型？"><span class="nav-number">1.17.3.1.</span> <span class="nav-text">16.2.1.什么是数值类型？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#分别有"><span class="nav-number">1.17.3.1.1.</span> <span class="nav-text">分别有</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#16-2-2-什么是序列类型？"><span class="nav-number">1.17.3.2.</span> <span class="nav-text">16.2.2.什么是序列类型？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#16-2-3-什么是散列类型？"><span class="nav-number">1.17.3.3.</span> <span class="nav-text">16.2.3.什么是散列类型？</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李江洋</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Pisces</span> v7.0.1</div>
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script id="ribbon" size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+  
+  <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ljyabc.github.io/2022/10/23/day1变量和数据类型的介绍/";
+    this.page.identifier = "2022/10/23/day1变量和数据类型的介绍/";
+    this.page.title = '1.变量和数据类型的介绍';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/exturl.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+   <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+</body>
+</html>

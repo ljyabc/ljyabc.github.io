@@ -1,0 +1,1599 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="数据库管理一.MySQL1.版本介绍和选择排名https://db-engines.com/en/ranking 1.1 版本123oracle mysqlmariadb perconadb 1.2 主流版本1234565.6 版本 5.6.36 5.6.38  5.6.40通用的二进制版  rpm版  源码包（需要编辑）5.7 版本 5.7.18  5.7.20  5.7.228.0 版本 最新">
+<meta name="keywords" content="mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql数据库管理">
+<meta property="og:url" content="https://ljyabc.github.io/2019/03/31/mysql数据库管理/index.html">
+<meta property="og:site_name" content="择墅居:李江洋">
+<meta property="og:description" content="数据库管理一.MySQL1.版本介绍和选择排名https://db-engines.com/en/ranking 1.1 版本123oracle mysqlmariadb perconadb 1.2 主流版本1234565.6 版本 5.6.36 5.6.38  5.6.40通用的二进制版  rpm版  源码包（需要编辑）5.7 版本 5.7.18  5.7.20  5.7.228.0 版本 最新">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/31/mysql数据库管理/C:/Users/aaa/AppData/Local/Temp/1553244169534.png">
+<meta property="og:updated_time" content="2025-04-08T14:37:43.468Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mysql数据库管理">
+<meta name="twitter:description" content="数据库管理一.MySQL1.版本介绍和选择排名https://db-engines.com/en/ranking 1.1 版本123oracle mysqlmariadb perconadb 1.2 主流版本1234565.6 版本 5.6.36 5.6.38  5.6.40通用的二进制版  rpm版  源码包（需要编辑）5.7 版本 5.7.18  5.7.20  5.7.228.0 版本 最新">
+<meta name="twitter:image" content="https://ljyabc.github.io/2019/03/31/mysql数据库管理/C:/Users/aaa/AppData/Local/Temp/1553244169534.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ljyabc.github.io/2019/03/31/mysql数据库管理/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>mysql数据库管理 | 择墅居:李江洋</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">择墅居:李江洋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">争做长沙别墅豪装第一品牌</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/book" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>book</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2019/03/31/mysql数据库管理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李江洋">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="择墅居:李江洋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">mysql数据库管理
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-31 15:52:52" itemprop="dateCreated datePublished" datetime="2019-03-31T15:52:52+08:00">2019-03-31</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2025-04-08 22:37:43" itemprop="dateModified" datetime="2025-04-08T22:37:43+08:00">2025-04-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/记忆/" itemprop="url" rel="index"><span itemprop="name">记忆</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/03/31/mysql数据库管理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/31/mysql数据库管理/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="数据库管理"><a href="#数据库管理" class="headerlink" title="数据库管理"></a>数据库管理</h1><h3 id="一-MySQL"><a href="#一-MySQL" class="headerlink" title="一.MySQL"></a>一.MySQL</h3><h4 id="1-版本介绍和选择"><a href="#1-版本介绍和选择" class="headerlink" title="1.版本介绍和选择"></a>1.版本介绍和选择</h4><h5 id="排名"><a href="#排名" class="headerlink" title="排名"></a>排名</h5><p><span class="exturl" data-url="aHR0cHM6Ly9kYi1lbmdpbmVzLmNvbS9lbi9yYW5raW5n" title="https://db-engines.com/en/ranking">https://db-engines.com/en/ranking<i class="fa fa-external-link"></i></span></p>
+<h5 id="1-1-版本"><a href="#1-1-版本" class="headerlink" title="1.1 版本"></a>1.1 版本</h5><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">oracle</span> mysql</span><br><span class="line"><span class="keyword">mariadb </span></span><br><span class="line"><span class="symbol">perconadb</span></span><br></pre></td></tr></table></figure>
+<h5 id="1-2-主流版本"><a href="#1-2-主流版本" class="headerlink" title="1.2 主流版本"></a>1.2 主流版本</h5><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5.6</span> 版本 <span class="number">5.6</span><span class="number">.36</span> <span class="number">5.6</span><span class="number">.38</span>  <span class="number">5.6</span><span class="number">.40</span></span><br><span class="line">通用的二进制版  rpm版  源码包（需要编辑）</span><br><span class="line"><span class="number">5.7</span> 版本 <span class="number">5.7</span><span class="number">.18</span>  <span class="number">5.7</span><span class="number">.20</span>  <span class="number">5.7</span><span class="number">.22</span></span><br><span class="line"><span class="number">8.0</span> 版本 最新的版本</span><br><span class="line">		</span><br><span class="line">企业版本选择：<span class="number">6</span><span class="number">-12</span>月之间的GA 双数版</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="2-MySQL的体系结构"><a href="#2-MySQL的体系结构" class="headerlink" title="2. MySQL的体系结构"></a>2. MySQL的体系结构</h4><h5 id="2-1-MySQL是典型的-c-s结构"><a href="#2-1-MySQL是典型的-c-s结构" class="headerlink" title="2.1 MySQL是典型的 c/s结构"></a>2.1 MySQL是典型的 c/s结构</h5><h5 id="2-2-连接（linux）的2种方式"><a href="#2-2-连接（linux）的2种方式" class="headerlink" title="2.2 连接（linux）的2种方式"></a>2.2 连接（linux）的2种方式</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">方式一：tcp/ip（远程本地都可以）</span><br><span class="line">方式二：socket（本地）</span><br></pre></td></tr></table></figure>
+<p>mysql -uroot -poldboy123 -h 10.0.0.200 -P3306</p>
+<h6 id="mysql-uroot-poldboy123-S-tmp-mysql-sock"><a href="#mysql-uroot-poldboy123-S-tmp-mysql-sock" class="headerlink" title="mysql -uroot -poldboy123 -S /tmp/mysql.sock"></a>mysql -uroot -poldboy123 -S /tmp/mysql.sock</h6><h5 id="2-3-MySQL实例"><a href="#2-3-MySQL实例" class="headerlink" title="2.3 MySQL实例"></a>2.3 MySQL实例</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>程序不会关闭</span><br><span class="line"><span class="number">2.</span>内存先预支的</span><br><span class="line">实例 = 后台运行的守护的进程mysqld + 内存结构</span><br><span class="line">mysqld ----&gt;master thread(经理)-----&gt;N thread（员工） -----&gt;办公区域（内存结构）</span><br></pre></td></tr></table></figure>
+<h5 id="2-4-mysqld三层结构"><a href="#2-4-mysqld三层结构" class="headerlink" title="2.4 mysqld三层结构"></a>2.4 mysqld三层结构</h5><p><img src="/2019/03/31/mysql数据库管理/C:/Users\aaa\AppData\Local\Temp\1553244169534.png" alt="1553244169534"></p>
+<blockquote>
+<p><strong><font color="#00FA9A">1 连接层</font></strong></p>
+</blockquote>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">提供连接协议（tcp/<span class="built_in">socket</span>）</span><br><span class="line">用户验证</span><br><span class="line">提供专业连接线程</span><br></pre></td></tr></table></figure>
+<h6 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h6><blockquote>
+<p>desc mysql.user;</p>
+<p>select user ,authentication_string, host from mysql.user;</p>
+</blockquote>
+<p>1.提供连接协议(TCP ,Socket)</p>
+<p>2.用户验证</p>
+<blockquote>
+<p>mysql&gt; show processlist;<br>+—-+——+———–+——+———+——+———-+——————+<br>| Id | User | Host      | db   | Command | Time | State    | Info             |<br>+—-+——+———–+——+———+——+———-+——————+<br>|  3 | root | localhost | NULL | Sleep   |  714 |          | NULL             |<br>|  4 | root | localhost | NULL | Query   |    0 | starting | show processlist |<br>+—-+——+———–+——+———+——+———-+——————+<br>2 rows in set (0.00 sec)</p>
+</blockquote>
+<p>3.提供专用链接线程</p>
+<blockquote>
+<p><strong><font color="#00FA9A">2 sql层</font></strong></p>
+</blockquote>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>接受上层命令</span><br><span class="line"><span class="number">2.</span>进行语法检测</span><br><span class="line"><span class="number">3.</span>检查语义（sql类型）和权限</span><br><span class="line">    sql类型：</span><br><span class="line">    DDL ： 数据定义语言</span><br><span class="line">    DCL ： 数据控制语言</span><br><span class="line">    DML ： 数据操作语言</span><br><span class="line">    DQL ： 数据查询语言</span><br><span class="line"><span class="number">4.</span>专用解析器解析sql，会将sql语句解析成多种执行计划(全盘还是索引)</span><br><span class="line"><span class="number">5.</span>优化器：会帮我们选择一个代价最低的执行的计划（cpu，io，mem）</span><br><span class="line"><span class="number">6.</span>执行器：按照优化器的选择，执行sql语句，得出获取数据的方法</span><br><span class="line"><span class="number">7.</span>查询缓存：默认是关闭的，有<span class="number">2</span>个问题：数据更新/md5匹配</span><br><span class="line"><span class="number">8.</span>一般会使用（京东）redis产品，来替代查询缓存  淘宝用的tair</span><br><span class="line"><span class="number">9.</span>记录日志：查询日志  二进制日志（******）</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong><font color="#00FA9A">3 存储引擎层：事务，锁</font></strong></p>
+</blockquote>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">按照sql层结论，找出相应数据，结构化成表的形式 <span class="comment">(16进制连接连接层)</span></span><br></pre></td></tr></table></figure>
+<h5 id="2-5-mysql逻辑结构"><a href="#2-5-mysql逻辑结构" class="headerlink" title="2.5 mysql逻辑结构"></a>2.5 mysql逻辑结构</h5><figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">库（schema）:存储表的地方（其实就是目录），库名和属性</span><br><span class="line">表（<span class="keyword">table</span>）：二维表</span><br><span class="line">元数据：</span><br><span class="line">    表名</span><br><span class="line">    表的属性：大小，权限，字符集，存储引擎等</span><br><span class="line">    列：列名字，列属性：（数据类型，约束，其他定义）</span><br><span class="line">数据行：		</span><br><span class="line">	记录：数据行</span><br></pre></td></tr></table></figure>
+<p><strong><font color="#DC143C">注意：sql语句优化的核心：sql语句执行过程是否最优，干预优化器的选择，<br>少使用全表扫描</font></strong></p>
+<hr>
+<h4 id="3-sql语句（sql92-sql99标准）"><a href="#3-sql语句（sql92-sql99标准）" class="headerlink" title="3. sql语句（sql92/sql99标准）"></a>3. sql语句（sql92/sql99标准）</h4><h5 id="3-1-sql种类"><a href="#3-1-sql种类" class="headerlink" title="3.1 sql种类"></a>3.1 sql种类</h5><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">DDL</span> ： 数据定义语言</span><br><span class="line"></span><br><span class="line">DCL ： 数据控制语言</span><br><span class="line">DML ： 数据操作语言</span><br><span class="line">DQL ： 数据查询语言</span><br></pre></td></tr></table></figure>
+<h5 id="3-2-sql语句的操作对象"><a href="#3-2-sql语句的操作对象" class="headerlink" title="3.2 sql语句的操作对象"></a>3.2 sql语句的操作对象</h5><figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">库（schema）：</span><br><span class="line">表（<span class="keyword">table</span>）：</span><br></pre></td></tr></table></figure>
+<h5 id="3-3-DDL语句作用"><a href="#3-3-DDL语句作用" class="headerlink" title="3.3 DDL语句作用"></a>3.3 DDL语句作用</h5><blockquote>
+<p>1.库</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">库</span><br><span class="line">create database</span><br><span class="line">drop database</span><br><span class="line">alter database</span><br></pre></td></tr></table></figure>
+<p><strong><font color="#DC143C">sql语句规范第一条：</font></strong></p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sql语句规范第一条：</span><br><span class="line"><span class="number">1.</span>关键字大写，字面量小写</span><br><span class="line"><span class="number">2.</span>库名字，只能是小写，不能是数字开头，不能是预留关键字</span><br><span class="line"><span class="number">3.</span>库名和业务名有关，例如：his_user;</span><br><span class="line"><span class="number">4.</span>必须加字符集，生产环境和测试环境应该一致</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>2.表</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">create table</span><br><span class="line">drop table</span><br><span class="line">alter table</span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line">CREATE TABLE t1 （</span><br><span class="line">id INT NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT &apos;用户id号&apos;,</span><br><span class="line">name VARCHAR(20) NOT NULL  COMMENT &apos;用户姓名&apos;,</span><br><span class="line">sex  ENUM(&apos;f&apos;,&apos;m&apos;,&apos;u&apos;) NOT NULL DEFAULT &apos;u&apos; COMMENT &apos;用户性别&apos;,</span><br><span class="line">telnum CHAR(11) NOT NULL UNIQUE  COMMENT &apos;手机号&apos;,</span><br><span class="line">tmdate DATETIEM NOT NULL DEFAULT NOW() COMMENT &apos;数据录入时间&apos;,</span><br><span class="line">) ENGINE INNODB CHARSET utf8mb4;</span><br></pre></td></tr></table></figure>
+<p><strong><font color="#DC143C">sql语句规范第二条：</font></strong></p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">sql语句规范第二条：</span><br><span class="line"><span class="number">1.</span>关键字大写，字面量小写</span><br><span class="line"><span class="number">2.</span>表名必须小写，不能数字开头，不能是预留的关键字</span><br><span class="line"><span class="number">3.</span>表名必须和业务有关</span><br><span class="line"><span class="number">4.</span>必须加存储引擎</span><br><span class="line"><span class="number">5.</span>使用合适的数据类型</span><br><span class="line"><span class="number">6.</span>必须要有主键</span><br><span class="line"><span class="number">7.</span>尽量非空选项</span><br><span class="line"><span class="number">8.</span>字段唯一性</span><br><span class="line"><span class="number">9.</span>必须加注释</span><br><span class="line"><span class="number">10.</span>尽量避免外键</span><br><span class="line"><span class="number">11.</span>建立合理的索引</span><br></pre></td></tr></table></figure>
+<h5 id="3-4-DCL语句作用"><a href="#3-4-DCL语句作用" class="headerlink" title="3.4 DCL语句作用"></a>3.4 DCL语句作用</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">grant</span>  授权</span><br><span class="line"><span class="keyword">revoke</span> 回收</span><br><span class="line"><span class="keyword">lock</span>   用的少</span><br></pre></td></tr></table></figure>
+<h5 id="3-5-DML语句作用"><a href="#3-5-DML语句作用" class="headerlink" title="3.5 DML语句作用"></a>3.5 DML语句作用</h5><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span>：插入数据</span><br><span class="line"><span class="keyword">update</span></span><br><span class="line"><span class="keyword">delete</span></span><br></pre></td></tr></table></figure>
+<p><strong><font color="#DC143C">sql语句规范第三条：</font></strong></p>
+<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sql语句规范第三条：</span><br><span class="line">1.<span class="keyword">insert</span>语句按批量插入数据</span><br><span class="line"><span class="number">2.</span><span class="keyword">update</span>必须加<span class="keyword">where</span>条件</span><br><span class="line"><span class="number">3.</span><span class="keyword">delete</span>尽量替换成<span class="keyword">update</span>，加个状态列</span><br><span class="line"><span class="number">4.</span>清空全表，不要使用<span class="keyword">delete</span>推荐使用<span class="keyword">truncate</span></span><br></pre></td></tr></table></figure>
+<h5 id="3-6-DQL语句的作用"><a href="#3-6-DQL语句的作用" class="headerlink" title="3.6 DQL语句的作用"></a>3.6 DQL语句的作用</h5><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">select</span></span><br><span class="line"><span class="keyword">show</span></span><br></pre></td></tr></table></figure>
+<p><strong><font color="#DC143C">sql语句规范第四条：</font></strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sql语句规范第四条：</span><br><span class="line">1.避免使用<span class="keyword">select</span> * <span class="keyword">from</span> t1;</span><br><span class="line">2.select语句尽量加<span class="keyword">where</span> 条件，例如<span class="keyword">select</span> *  <span class="keyword">from</span> t1 <span class="keyword">where</span> <span class="keyword">name</span> = <span class="string">'zzz'</span>;</span><br><span class="line">3.select 语句对于范围的查询，例如：<span class="keyword">select</span> * <span class="keyword">from</span> t1 <span class="keyword">where</span> <span class="keyword">id</span> &gt;<span class="number">200</span>;</span><br><span class="line">	可以使用limit，或者区间查询</span><br><span class="line">4.select 的<span class="keyword">where</span>条件，不要使用&lt;&gt; <span class="keyword">like</span> <span class="string">'%name'</span> <span class="keyword">not</span> <span class="keyword">in</span> <span class="keyword">not</span> exist</span><br><span class="line"><span class="number">5.</span>表连接不要出现<span class="number">3</span>表以上的表连接，避免子查询</span><br><span class="line"><span class="number">6.</span><span class="keyword">where</span>条件中不要出现函数操作</span><br></pre></td></tr></table></figure>
+<h1 id="三-忘记密码处理"><a href="#三-忘记密码处理" class="headerlink" title="三.忘记密码处理"></a>三.忘记密码处理</h1><h2 id="6-忘记密码处理"><a href="#6-忘记密码处理" class="headerlink" title="6.忘记密码处理"></a>6.忘记密码处理</h2><h3 id="1-设置本地的密码"><a href="#1-设置本地的密码" class="headerlink" title="1.设置本地的密码"></a>1.设置本地的密码</h3><blockquote>
+<p>mysqladmin -uroot -p password 123</p>
+</blockquote>
+<h3 id="2-登陆就需要密码"><a href="#2-登陆就需要密码" class="headerlink" title="2.登陆就需要密码"></a>2.登陆就需要密码</h3><blockquote>
+<p>mysql -uroot -p123</p>
+<h6 id="手动输入安全些"><a href="#手动输入安全些" class="headerlink" title="手动输入安全些"></a>手动输入安全些</h6><p>mysql -uroot -p</p>
+</blockquote>
+<blockquote>
+<p>select user,authentication_string,host from mysql.user;</p>
+</blockquote>
+<p>+—————+——————————————-+———–+<br>| user          | authentication_string                     | host      |<br>+—————+——————————————-+———–+<br>| root          | <em>23AE809DDACAF96AF0FD78ED04B6A265E05AA257 | localhost |<br>| mysql.session | </em>THISISNOTAVALIDPASSWORDTHATCANBEUSEDHERE | localhost |<br>| mysql.sys     | <em>THISISNOTAVALIDPASSWORDTHATCANBEUSEDHERE | localhost |<br>| root          | </em>23AE809DDACAF96AF0FD78ED04B6A265E05AA257 | 10.0.0.%  |<br>| bbs           | *23AE809DDACAF96AF0FD78ED04B6A265E05AA257 | 10.0.0.%  |<br>+—————+——————————————-+———–+<br>5 rows in set (0.00 sec)</p>
+<p> *23AE809DDACAF96AF0FD78ED04B6A265E05AA257代表123密码</p>
+<h3 id="3-停数据库"><a href="#3-停数据库" class="headerlink" title="3.停数据库"></a>3.停数据库</h3><p>/etc/init.d/mysqld stop</p>
+<h3 id="4-启动数据库为无密码验证模式"><a href="#4-启动数据库为无密码验证模式" class="headerlink" title="4.启动数据库为无密码验证模式"></a>4.启动数据库为无密码验证模式</h3><h6 id="关闭授权和tcp的ip"><a href="#关闭授权和tcp的ip" class="headerlink" title="关闭授权和tcp的ip"></a>关闭授权和tcp的ip</h6><blockquote>
+<p>mysqld_safe –skip-grant-tables –skip-networking  &amp;</p>
+</blockquote>
+<h6 id="所有不能执行修改密码已经关闭了授权"><a href="#所有不能执行修改密码已经关闭了授权" class="headerlink" title="所有不能执行修改密码已经关闭了授权"></a>所有不能执行修改密码已经关闭了授权</h6><blockquote>
+<p>grant all on <em>.</em> to root@’localhost’ identified by ‘456’;</p>
+</blockquote>
+<h6 id="只能改"><a href="#只能改" class="headerlink" title="只能改"></a>只能改</h6><blockquote>
+<p>update mysql.user set authentication_string=PASSWORD(‘456’) where user=’root’ and host=’localhost’;</p>
+</blockquote>
+<p>mysql&gt; select user ,authentication_string, host from mysql.user;<br>+—————+——————————————-+———–+<br>| user          | authentication_string                     | host      |<br>+—————+——————————————-+———–+<br>| root          | <em>531E182E2F72080AB0740FE2F2D689DBE0146E04 | localhost |<br>| mysql.session | </em>THISISNOTAVALIDPASSWORDTHATCANBEUSEDHERE | localhost |<br>| mysql.sys     | <em>THISISNOTAVALIDPASSWORDTHATCANBEUSEDHERE | localhost |<br>| root          | </em>23AE809DDACAF96AF0FD78ED04B6A265E05AA257 | 10.0.0.%  |<br>| bbs           | *23AE809DDACAF96AF0FD78ED04B6A265E05AA257 | 10.0.0.%  |<br>+—————+——————————————-+———–+<br>5 rows in set (0.00 sec)</p>
+<blockquote>
+<p>/etc/init.d/mysqld restart</p>
+</blockquote>
+<h4 id="测试-1"><a href="#测试-1" class="headerlink" title="测试"></a>测试</h4><blockquote>
+<p>[root@standby ~]# mysql -uroot -p123<br>[root@standby ~]# mysql -uroot -p456</p>
+</blockquote>
+<h1 id="4-mysql数据类型和字符集"><a href="#4-mysql数据类型和字符集" class="headerlink" title="4.mysql数据类型和字符集"></a>4.mysql数据类型和字符集</h1><h5 id="4-1-数据类型"><a href="#4-1-数据类型" class="headerlink" title="4.1 数据类型"></a>4.1 数据类型</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>整型：	</span><br><span class="line">	int 最多存<span class="number">10</span>数字</span><br><span class="line">    <span class="number">-2</span>^<span class="number">31</span> ~ <span class="number">2</span>^<span class="number">31</span> <span class="number">-1</span>  </span><br><span class="line">    <span class="number">2</span>^<span class="number">32</span> <span class="number">10</span>位数  <span class="number">11</span></span><br><span class="line"><span class="number">2.</span>浮点型</span><br><span class="line">	float 一般用decimal</span><br><span class="line">	</span><br><span class="line"><span class="number">3.</span>字符串类型</span><br><span class="line">    char      定长：存效率较高，对于变化较多字段，空间浪费较多</span><br><span class="line">    varchar   变长： 存储时判断长度，会有额外开销，空间按需分配</span><br><span class="line">    enum      枚举类型  能用枚举尽量用枚举类型 性能高</span><br><span class="line"></span><br><span class="line"><span class="number">4.</span>时间类型：</span><br><span class="line">    datatime</span><br><span class="line">    timestamp</span><br><span class="line">    data  年月日</span><br><span class="line">    time  十分秒</span><br></pre></td></tr></table></figure>
+<p><strong><font color="#DC143C">sql语句规范第五条：</font></strong></p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sql语句规范第五条</span><br><span class="line"><span class="number">1.</span>少于<span class="number">10</span>位的数字  int 相较于varchar占空间少的多</span><br><span class="line"><span class="number">2.</span>大于<span class="number">10</span>位数字，一般用char</span><br><span class="line"><span class="number">3.</span>char和varchar选择时，字符长度一定不变，使用char；可变的尽量使用varchar</span><br><span class="line">在可变长度的存储时，将来使用不同的数据类型可能会影响索引树的高度</span><br><span class="line"><span class="number">4.</span>选择合适的数据类型</span><br><span class="line"><span class="number">5.</span>选择合适长度</span><br></pre></td></tr></table></figure>
+<hr>
+<p># </p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/gongzhonghao.jpg" alt="李江洋 wechat" style="width: 200px; max-width: 100%;">
+  <div>python分享公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="李江洋 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="李江洋 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mysql/" rel="tag"># mysql</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/31/redis缓存技术/" rel="next" title="redis缓存技术">
+                <i class="fa fa-chevron-left"></i> redis缓存技术
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/31/jQuery选择器/" rel="prev" title="jQuery选择器">
+                jQuery选择器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="李江洋">
+            
+              <p class="site-author-name" itemprop="name">李江洋</p>
+              <p class="site-description motion-element" itemprop="description">记录学习的技能和遇到的问题</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">179</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lvdXJuYW1l" title="GitHub &rarr; https://github.com/yourname"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="bWFpbHRvOjEzMjgwNDQzOTJAcXEuY29t" title="E-Mail &rarr; mailto:1328044392@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL2V4YW1wbGUuY29t" title="http://example.com">Title</span>
+                  </li>
+                
+              </ul>
+            </div>
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库管理"><span class="nav-number">1.</span> <span class="nav-text">数据库管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一-MySQL"><span class="nav-number">1.0.1.</span> <span class="nav-text">一.MySQL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-版本介绍和选择"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">1.版本介绍和选择</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#排名"><span class="nav-number">1.0.1.1.1.</span> <span class="nav-text">排名</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-版本"><span class="nav-number">1.0.1.1.2.</span> <span class="nav-text">1.1 版本</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-主流版本"><span class="nav-number">1.0.1.1.3.</span> <span class="nav-text">1.2 主流版本</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-MySQL的体系结构"><span class="nav-number">1.0.1.2.</span> <span class="nav-text">2. MySQL的体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-MySQL是典型的-c-s结构"><span class="nav-number">1.0.1.2.1.</span> <span class="nav-text">2.1 MySQL是典型的 c/s结构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-连接（linux）的2种方式"><span class="nav-number">1.0.1.2.2.</span> <span class="nav-text">2.2 连接（linux）的2种方式</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#mysql-uroot-poldboy123-S-tmp-mysql-sock"><span class="nav-number">1.0.1.2.2.1.</span> <span class="nav-text">mysql -uroot -poldboy123 -S /tmp/mysql.sock</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-MySQL实例"><span class="nav-number">1.0.1.2.3.</span> <span class="nav-text">2.3 MySQL实例</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-4-mysqld三层结构"><span class="nav-number">1.0.1.2.4.</span> <span class="nav-text">2.4 mysqld三层结构</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#测试"><span class="nav-number">1.0.1.2.4.1.</span> <span class="nav-text">测试</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-5-mysql逻辑结构"><span class="nav-number">1.0.1.2.5.</span> <span class="nav-text">2.5 mysql逻辑结构</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-sql语句（sql92-sql99标准）"><span class="nav-number">1.0.1.3.</span> <span class="nav-text">3. sql语句（sql92/sql99标准）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-sql种类"><span class="nav-number">1.0.1.3.1.</span> <span class="nav-text">3.1 sql种类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-sql语句的操作对象"><span class="nav-number">1.0.1.3.2.</span> <span class="nav-text">3.2 sql语句的操作对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-DDL语句作用"><span class="nav-number">1.0.1.3.3.</span> <span class="nav-text">3.3 DDL语句作用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-4-DCL语句作用"><span class="nav-number">1.0.1.3.4.</span> <span class="nav-text">3.4 DCL语句作用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-5-DML语句作用"><span class="nav-number">1.0.1.3.5.</span> <span class="nav-text">3.5 DML语句作用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-6-DQL语句的作用"><span class="nav-number">1.0.1.3.6.</span> <span class="nav-text">3.6 DQL语句的作用</span></a></li></ol></li></ol></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#三-忘记密码处理"><span class="nav-number">2.</span> <span class="nav-text">三.忘记密码处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-忘记密码处理"><span class="nav-number">2.1.</span> <span class="nav-text">6.忘记密码处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-设置本地的密码"><span class="nav-number">2.1.1.</span> <span class="nav-text">1.设置本地的密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-登陆就需要密码"><span class="nav-number">2.1.2.</span> <span class="nav-text">2.登陆就需要密码</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#手动输入安全些"><span class="nav-number">2.1.2.0.0.1.</span> <span class="nav-text">手动输入安全些</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-停数据库"><span class="nav-number">2.1.3.</span> <span class="nav-text">3.停数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-启动数据库为无密码验证模式"><span class="nav-number">2.1.4.</span> <span class="nav-text">4.启动数据库为无密码验证模式</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#关闭授权和tcp的ip"><span class="nav-number">2.1.4.0.0.1.</span> <span class="nav-text">关闭授权和tcp的ip</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#所有不能执行修改密码已经关闭了授权"><span class="nav-number">2.1.4.0.0.2.</span> <span class="nav-text">所有不能执行修改密码已经关闭了授权</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#只能改"><span class="nav-number">2.1.4.0.0.3.</span> <span class="nav-text">只能改</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试-1"><span class="nav-number">2.1.4.1.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-mysql数据类型和字符集"><span class="nav-number">3.</span> <span class="nav-text">4.mysql数据类型和字符集</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-1-数据类型"><span class="nav-number">3.0.0.0.1.</span> <span class="nav-text">4.1 数据类型</span></a></li></ol></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李江洋</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Pisces</span> v7.0.1</div>
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script id="ribbon" size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+  
+  <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ljyabc.github.io/2019/03/31/mysql数据库管理/";
+    this.page.identifier = "2019/03/31/mysql数据库管理/";
+    this.page.title = 'mysql数据库管理';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/exturl.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+   <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+</body>
+</html>

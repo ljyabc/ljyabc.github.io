@@ -1,0 +1,1648 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="三次握手四次挥手半连接池: 限制的是同一时刻的请求数,而非连接数 这是三次握手syn_sent是客户端发送请求时的状态listen是服务端一开始的接听状态syn_rcvd是服务端收到请求后的状态established是客户端建立连接后的状态(客户端到服务端这端的管道建立)eatablished是服务端建立连接后的状态(服务端到客户端这端的管道建立)seq = x 请求的时候附带的序列号(暗号)ac">
+<meta name="keywords" content="网络编程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络编程总">
+<meta property="og:url" content="https://ljyabc.github.io/2019/03/19/网络编程总/index.html">
+<meta property="og:site_name" content="择墅居:李江洋">
+<meta property="og:description" content="三次握手四次挥手半连接池: 限制的是同一时刻的请求数,而非连接数 这是三次握手syn_sent是客户端发送请求时的状态listen是服务端一开始的接听状态syn_rcvd是服务端收到请求后的状态established是客户端建立连接后的状态(客户端到服务端这端的管道建立)eatablished是服务端建立连接后的状态(服务端到客户端这端的管道建立)seq = x 请求的时候附带的序列号(暗号)ac">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/19/网络编程总/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/19/网络编程总/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk">
+<meta property="og:image" content="https://s1.51cto.com/images/blog/201903/01/f4874d0b27aed313fe12b7be8da96f06.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=">
+<meta property="og:image" content="https://s1.51cto.com/images/blog/201903/01/efe0fb20c07769ec17d1e1aad081f5c9.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=">
+<meta property="og:image" content="https://s1.51cto.com/images/blog/201903/01/dc8cd385645ec12035642ffd85fde1ff.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=">
+<meta property="og:image" content="https://s1.51cto.com/images/blog/201903/01/d65d7da0266304cf8a9f3c984a394f07.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=">
+<meta property="og:updated_time" content="2025-04-08T14:38:21.473Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="网络编程总">
+<meta name="twitter:description" content="三次握手四次挥手半连接池: 限制的是同一时刻的请求数,而非连接数 这是三次握手syn_sent是客户端发送请求时的状态listen是服务端一开始的接听状态syn_rcvd是服务端收到请求后的状态established是客户端建立连接后的状态(客户端到服务端这端的管道建立)eatablished是服务端建立连接后的状态(服务端到客户端这端的管道建立)seq = x 请求的时候附带的序列号(暗号)ac">
+<meta name="twitter:image" content="https://ljyabc.github.io/2019/03/19/网络编程总/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ljyabc.github.io/2019/03/19/网络编程总/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>网络编程总 | 择墅居:李江洋</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">择墅居:李江洋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">争做长沙别墅豪装第一品牌</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/book" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>book</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2019/03/19/网络编程总/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李江洋">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="择墅居:李江洋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">网络编程总
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-19 21:08:19" itemprop="dateCreated datePublished" datetime="2019-03-19T21:08:19+08:00">2019-03-19</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2025-04-08 22:38:21" itemprop="dateModified" datetime="2025-04-08T22:38:21+08:00">2025-04-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/理解/" itemprop="url" rel="index"><span itemprop="name">理解</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/03/19/网络编程总/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/19/网络编程总/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="三次握手四次挥手"><a href="#三次握手四次挥手" class="headerlink" title="三次握手四次挥手"></a>三次握手四次挥手</h2><p>半连接池: 限制的是同一时刻的请求数,而非连接数</p>
+<h4 id="这是三次握手"><a href="#这是三次握手" class="headerlink" title="这是三次握手"></a>这是三次握手</h4><p><img src="/2019/03/19/网络编程总/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="网络编程"><br>syn_sent是客户端发送请求时的状态<br>listen是服务端一开始的接听状态<br>syn_rcvd是服务端收到请求后的状态<br>established是客户端建立连接后的状态(客户端到服务端这端的管道建立)<br>eatablished是服务端建立连接后的状态(服务端到客户端这端的管道建立)<br>seq = x 请求的时候附带的序列号(暗号)<br>ack = x+1 是回复请求, 并把刚刚拿到的序列号+1</p>
+<h4 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h4><p><img src="/2019/03/19/网络编程总/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk" alt="网络编程"></p>
+<h2 id="C-S-B-S"><a href="#C-S-B-S" class="headerlink" title="C/S B/S"></a>C/S B/S</h2><p>client&lt;—基于网络通信—&gt;server<br>browser&lt;—基于网络通信—&gt;server<br>server端(服务端)必须满足的条件：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>、稳定运行（网络、硬件、操作系统、服务端应用软件），对外一直提供服务</span><br><span class="line"><span class="number">2</span>、服务端必须绑定一个固定的地址</span><br></pre></td></tr></table></figure>
+<h2 id="什么是互联网"><a href="#什么是互联网" class="headerlink" title="什么是互联网"></a>什么是互联网</h2><p>两大要素:</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>、底层的物理连接介质，是为通信铺好道路的</span><br><span class="line"><span class="number">2</span>、一套统一的通信标准---》互联网通信协议</span><br><span class="line"></span><br><span class="line">    互联网协议就是计算机界的英语</span><br></pre></td></tr></table></figure>
+<h1 id="自定义协议-后面将会有自定义报头解决tcp协议的粘包现象"><a href="#自定义协议-后面将会有自定义报头解决tcp协议的粘包现象" class="headerlink" title="自定义协议(后面将会有自定义报头解决tcp协议的粘包现象)"></a>自定义协议(后面将会有自定义报头解决tcp协议的粘包现象)</h1><p>任何一种通信协议都必须包含两部分:</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">1 </span>报头:必须是固定长度(如果不固定长度,会有粘包现象)</span><br><span class="line"><span class="symbol">2 </span>数据: 数据可以用字典的形式来传.比如 数据的名字,大小,内容,描述</span><br></pre></td></tr></table></figure>
+<h1 id="标识地址的方式"><a href="#标识地址的方式" class="headerlink" title="标识地址的方式"></a>标识地址的方式</h1><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ip+mac就能标识全世界范围内独一无二的一台计算机</span><br><span class="line">ip+mac+port就能标识全世界范围内独一无二的一个基于网络通信的应用软件</span><br><span class="line">url地址：标识全世界范围内独一无二的一个资源</span><br><span class="line"></span><br><span class="line">DHCP 默认端口是 67 </span><br><span class="line">DNS 默认端口  53</span><br></pre></td></tr></table></figure>
+<h1 id="为何建立连接要三次而断开连接却需要四次"><a href="#为何建立连接要三次而断开连接却需要四次" class="headerlink" title="为何建立连接要三次而断开连接却需要四次"></a>为何建立连接要三次而断开连接却需要四次</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">三次握手是为了建立连接,建立连接时并没有数据产生</span><br><span class="line">        四次挥手断开连接是因为客户端与服务端已经产生了数据交互,</span><br><span class="line">                     这时客户端发送请求只断开了客户端与服务端的连接,</span><br><span class="line">                     而服务端说不定还有别的数据没有传送完毕,所有一定要四次</span><br></pre></td></tr></table></figure>
+<h1 id="为何tcp协议是可靠协议-而udp协议是不可靠协议"><a href="#为何tcp协议是可靠协议-而udp协议是不可靠协议" class="headerlink" title="为何tcp协议是可靠协议,而udp协议是不可靠协议"></a>为何tcp协议是可靠协议,而udp协议是不可靠协议</h1><figure class="highlight ldif"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">tcp调用的操作系统,操作系统发出数据,接受到对方传来的确认信息时才会清空数据</span></span><br><span class="line"><span class="attribute">        优点</span>: 数据安全      缺点: 工作效率低</span><br><span class="line"><span class="attribute">udp是直接发送, 发完就删</span></span><br><span class="line"><span class="attribute">        优点</span>: 效率高        缺点: 数据不安全</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>为何tcp协议会有粘包问题?<br>因为tcp想优化效率,里面有个叫nagle算法.这个算法规定了tcp协议在传输数据的时候会将数据较小,传输间隔较短的多条数据合并成一条发送<br>而tcp是通过操作系统来发送数据的,操作系统想什么时候发就什么时候发,应用层管不到操作系统, tcp把数据交给操作系统是告诉了操作系统一件事,让操作系统把数据较小,传输间隔较短的多条数据合并成一条发送.就造成了粘包现象</p>
+<h1 id="模块补充-strcuct模块"><a href="#模块补充-strcuct模块" class="headerlink" title="模块补充:strcuct模块"></a>模块补充:strcuct模块</h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"> <span class="keyword">import</span> <span class="keyword">struct</span></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line">header_dic=&#123;</span><br><span class="line">        <span class="string">'filename'</span>:<span class="string">'a.txt'</span>,</span><br><span class="line">        <span class="string">'total_size'</span>:<span class="number">11112313123212222222222222222222222222222222222222222222222222222221111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111131222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222223</span>,</span><br><span class="line">        <span class="string">'hash'</span>:<span class="string">'asdf123123x123213x'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">header_json=json.dumps(header_dic)   #将字典序列化成字符串</span><br><span class="line"></span><br><span class="line">header_bytes=header_json.encode(<span class="string">'utf-8'</span>)  #转换成bytes</span><br><span class="line"></span><br><span class="line">obj=<span class="keyword">struct</span>.pack(<span class="string">'i'</span>,<span class="built_in">len</span>(header_bytes))   #用i模式固定长度(固定的长度为<span class="number">4</span></span><br><span class="line"><span class="built_in">print</span>(obj,<span class="built_in">len</span>(obj))</span><br><span class="line">res=<span class="keyword">struct</span>.unpack(<span class="string">'i'</span>,obj)  # 用i模式解开obj</span><br><span class="line"><span class="built_in">print</span>(res)</span><br><span class="line">输出结果如下:</span><br><span class="line"><span class="number">507</span></span><br><span class="line">b<span class="string">'\xfb\x01\x00\x00'</span> <span class="number">4</span></span><br><span class="line">(<span class="number">507</span>,)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><h1 id="模拟ssh远程执行命令"><a href="#模拟ssh远程执行命令" class="headerlink" title="模拟ssh远程执行命令"></a>模拟ssh远程执行命令</h1><h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line">phone = socket(AF_INET, SOCK_STREAM)</span><br><span class="line">phone.connect((<span class="string">'127.0.0.1'</span>, <span class="number">8080</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">cmd = input(<span class="string">"&gt;&gt;&gt;&gt;"</span>).strip()</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> cmd:</span><br><span class="line"><span class="keyword">continue</span></span><br><span class="line">phone.send(cmd.encode(<span class="string">'utf-8'</span>))</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+  <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">dahler_len = struct.unpack(<span class="string">'i'</span>, phone.recv(<span class="number">4</span>))[<span class="number">0</span>]  <span class="comment"># 先接收报头长度</span></span><br><span class="line">dahler_bytes = phone.recv(dahler_len)  <span class="comment"># 在接收bytes类型的字典</span></span><br><span class="line">dahler_str = dahler_bytes.decode(<span class="string">'utf-8'</span>)</span><br><span class="line">dahler_dic = json.loads(dahler_str)  <span class="comment"># 把bytes类型的字典转换成字典,通过字典拿到自己想要的</span></span><br><span class="line"></span><br><span class="line">total_size = dahler_dic[<span class="string">'total_size'</span>]  <span class="comment"># 接受的文件总大小</span></span><br><span class="line"></span><br><span class="line">recv_size = <span class="number">0</span>   <span class="comment"># 接收默认值 为0</span></span><br><span class="line">res = b<span class="string">''</span>  <span class="comment"># 拼接</span></span><br><span class="line"><span class="keyword">while</span> recv_size &lt; total_size:  <span class="comment"># 结束条件</span></span><br><span class="line">    <span class="keyword">data</span> = phone.recv(<span class="number">1024</span>)</span><br><span class="line">    res += <span class="keyword">data</span></span><br><span class="line">    recv_size += len(<span class="keyword">data</span>)</span><br><span class="line">print(res.decode(<span class="string">'gbk'</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line">phone = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  <span class="comment"># 建立服务器</span></span><br><span class="line">phone.getsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, <span class="number">1</span>)</span><br><span class="line">phone.bind((<span class="string">'127.0.0.1'</span>, <span class="number">8080</span>))  <span class="comment"># 绑定IP,port</span></span><br><span class="line"></span><br><span class="line">phone.listen(<span class="number">5</span>)  <span class="comment"># 监听状态</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    conn, client_addr = phone.accept()  <span class="comment"># 接发数据</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            data = conn.recv(<span class="number">1024</span>)  <span class="comment"># 读收到的文件 最大限制为1024字节</span></span><br><span class="line">            <span class="keyword">if</span> len(data) == <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            print(data)</span><br><span class="line">            boj = subprocess.Popen(</span><br><span class="line">                                    data.decode(<span class="string">'utf-8'</span>),</span><br><span class="line">                                    shell=<span class="literal">True</span>,</span><br><span class="line">                                    stdout=subprocess.PIPE,</span><br><span class="line">                                    stderr=subprocess.PIPE)</span><br><span class="line">            stdout_res = boj.stdout.read()</span><br><span class="line">            stderr_res = boj.stderr.read()</span><br><span class="line"></span><br><span class="line">            total_size = len(stderr_res)+len(stdout_res)</span><br><span class="line">            haderl_dic = &#123;</span><br><span class="line">                <span class="string">'file'</span>: <span class="string">'a.txt'</span>,</span><br><span class="line">                <span class="string">'total_size'</span>: total_size,</span><br><span class="line">                <span class="string">'hashlib'</span>: <span class="string">'adasd1dfad311r'</span></span><br><span class="line">                &#125;</span><br><span class="line">            haderl_str = json.dumps(haderl_dic)  <span class="comment"># 用json把字典转换成一个字典形式的字符串</span></span><br><span class="line">            haderl_bytes = haderl_str.encode(<span class="string">'utf-8'</span>)   <span class="comment"># 把字符串转换成二进制</span></span><br><span class="line"></span><br><span class="line">            conn.send(struct.pack(<span class="string">'i'</span>, len(haderl_str)))   <span class="comment"># 先发报头长度</span></span><br><span class="line">            conn.send(haderl_bytes)  <span class="comment"># 再发报头字典</span></span><br><span class="line">            conn.send(stderr_res)  <span class="comment"># 在发内容</span></span><br><span class="line">            conn.send(stdout_res)</span><br><span class="line">        <span class="keyword">except</span> ConnectionResetError <span class="keyword">as</span> e:</span><br><span class="line">            print(e)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">    conn.close()</span><br></pre></td></tr></table></figure>
+<h1 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h1><ul>
+<li><p>1、什么是进程<br>进程指的就是一个正在运行的程序，或者说是程序的运行过程，即进程是一个抽象的概念<br>进程是起源于操作系统的，是操作系统最核心的概念，操作系统所有其他的概念都是围绕进程展开的<br>其中就有了多道技术的来由<br>用进程就是为了实现并发</p>
+</li>
+<li><p>操作系统（现代操作系统）：<br>操作系统是位于计算机硬件于软件之间的控制程序<br>作用：<br>1、将硬件的复杂操作封装成简单的接口，给用户或者应用程序使用<br>2、将多个应用程序对硬件的竞争变的有序</p>
+</li>
+<li><p>进程<br>一个正在运行的程序，或者说是一个程序的运行过程</p>
+</li>
+<li><p>串行、并发、并行<br>串行：一个任务完完整运行完毕，才执行下一个<br>并发：多个任务看起来是同时运行的，单核就可以实现并发<br>并行：多个任务是真正意义上的同时运行，只有多核才能实现并行</p>
+</li>
+<li><p>多道技术<br>背景：想要再单核下实现并发（单核同一时刻只能执行一个任务(每起一个进程就会产生一把GIL全局解释器锁)）<br>并发实现的本质就：切换+保存状态<br>多道技术：<br>1、空间上的复用=》多个任务共用一个内存条，但占用内存是彼此隔离的，而且是物理层面隔离的<br>2、时间上的复用=》多个任务共用同一个cpu<br>切换：<br>1、遇到io切换<br>2、一个任务占用cpu时间过长，或者有另外一个优先级更高的任务抢走的cpu</p>
+<h2 id="开启进程的两种方式"><a href="#开启进程的两种方式" class="headerlink" title="开启进程的两种方式"></a>开启进程的两种方式</h2><h3 id="方式一"><a href="#方式一" class="headerlink" title="方式一:"></a>方式一:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Process</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">task</span><span class="params">(x)</span>:</span></span><br><span class="line">        print(<span class="string">'%s is running'</span> %x)</span><br><span class="line">        time.sleep(<span class="number">3</span>)</span><br><span class="line">        print(<span class="string">'%s is done'</span> %x)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">        <span class="comment"># Process(target=task,kwargs=&#123;'x':'子进程'&#125;)</span></span><br><span class="line">        p=Process(target=task,args=(<span class="string">'子进程'</span>,)) <span class="comment"># 如果args=(),括号内只有一个参数，一定记住加逗号</span></span><br><span class="line">        p.start() <span class="comment"># 只是在操作系统发送一个开启子进程的信号</span></span><br><span class="line">        print(<span class="string">'主'</span>)</span><br><span class="line">        <span class="comment"># 导入from multiprocessing import Process</span></span><br><span class="line">        <span class="comment"># 相当于在windows系统中调用了CreateProcess接口</span></span><br><span class="line">        <span class="comment"># CreateProcess既处理进程的创建，也负责把正确的程序装入新进程。</span></span><br><span class="line">        <span class="comment"># p.start() # 只是在操作系统发送一个开启子进程的信号</span></span><br></pre></td></tr></table></figure>
+<h3 id="方式二"><a href="#方式二" class="headerlink" title="方式二:"></a>方式二:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Process</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Myprocess</span><span class="params">(Process)</span>:</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,x)</span>:</span></span><br><span class="line">                super().__init__()</span><br><span class="line">                self.name=x</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">                print(<span class="string">'%s is running'</span> %self.name)</span><br><span class="line">                time.sleep(<span class="number">3</span>)</span><br><span class="line">                print(<span class="string">'%s is done'</span> %self.name)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">        p=Myprocess(<span class="string">'子进程1'</span>)</span><br><span class="line">        p.start()  <span class="comment">#p.run()</span></span><br><span class="line">        print(<span class="string">'主'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="进程间的内存空间是彼此隔离的"><a href="#进程间的内存空间是彼此隔离的" class="headerlink" title="进程间的内存空间是彼此隔离的"></a>进程间的内存空间是彼此隔离的</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Process</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">x = <span class="number">100</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">task</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">global</span> x</span><br><span class="line">    x = <span class="number">0</span></span><br><span class="line">    print(<span class="string">'done'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    p = Process(target=task)</span><br><span class="line">    p.start()</span><br><span class="line">    time.sleep(<span class="number">500</span>)  <span class="comment"># 让父进程在原地等待，等了500s后，才执行下一行代码</span></span><br><span class="line">    print(x)</span><br></pre></td></tr></table></figure>
+<h3 id="进程的方法与属性"><a href="#进程的方法与属性" class="headerlink" title="进程的方法与属性:"></a>进程的方法与属性:</h3></li>
+<li><p>join:<br>让父进程在原地等待，等到子进程运行完毕后(会触发wait功能,将子进程回收掉)，才执行下一行代码</p>
+</li>
+<li><p>terminate:<br>终止进程,应用程序给操作系统发送信号,让操作系统把这个子程序干掉 ,至于多久能干死,在于操作系统什么时候执行这个指令</p>
+</li>
+<li><p>is_alive:<br>查看子进程是否存在,存在返回True,否则返回False</p>
+</li>
+<li><p>os.getpid:<br>导入os模块,查看自己的门牌号</p>
+</li>
+<li><p>os.getppid:<br>导入os模块,查看父的门牌号</p>
+</li>
+<li><p>current_process().name:<br>导入from multiprocessing import Process,current_process<br>查看子进程的名字<br>主进程等子进程是因为主进程要给子进程收尸<br>进程必须等待其内部所有线程都运行完毕才结束</p>
+<h3 id="孤儿进程"><a href="#孤儿进程" class="headerlink" title="孤儿进程:"></a>孤儿进程:</h3><p>在父进程被干掉的情况下会编程孤儿进程,无害,会被孤儿院((linux的孤儿院)init)回收</p>
+<h3 id="僵尸进程-父进程没死-子进程死了-这时候的子进程就是僵尸进程"><a href="#僵尸进程-父进程没死-子进程死了-这时候的子进程就是僵尸进程" class="headerlink" title="僵尸进程:父进程没死,子进程死了,这时候的子进程就是僵尸进程"></a>僵尸进程:父进程没死,子进程死了,这时候的子进程就是僵尸进程</h3><p>正常情况下无害(会调用wait()方法进行回收操作), 父进程无限循环,且不被回收的情况下会无限制的生成子进程从而占用大量的操作系统资源<br>当操作系统被大量僵尸进程占满内存后,操作系统就无法在启动其他的程序</p>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例:"></a>实例:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Process,current_process</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">task</span><span class="params">()</span>:</span></span><br><span class="line">        print(<span class="string">'子进程[%s]运行。。。。'</span> %current_process().name)</span><br><span class="line">        time.sleep(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">        p1=Process(target=task,name=<span class="string">'子进程1'</span>)</span><br><span class="line">        p1.start()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># print(p1.is_alive())</span></span><br><span class="line">        <span class="comment"># p1.join()</span></span><br><span class="line">        <span class="comment"># print(p1.is_alive())</span></span><br><span class="line"></span><br><span class="line">        p1.terminate()  <span class="comment"># 终止进程,应用程序给操作系统发送信号,让操作系统把这个子程序干掉</span></span><br><span class="line">                                        <span class="comment"># 至于多久能干死,在于操作系统什么时候执行这个指令</span></span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line">        print(p1.is_alive())  <span class="comment"># 查看子进程是否存在,有返回值. True则存在,False则不存在</span></span><br><span class="line">        print(<span class="string">'主'</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="守护进程"><a href="#守护进程" class="headerlink" title="守护进程"></a>守护进程</h2></li>
+<li><p>1、守护进程<br>守护进程其实就是一个“子进程”<br>守护进程会伴随主进程的代码运行完毕后而死掉<br>进程：<br>当父进程需要将一个任务并发出去执行，需要将该任务放到一个子进程里<br>守护：<br>当该子进程内的代码在父进程代码运行完毕后就没有存在的意义了，就应该<br>将该子进程设置为守护进程，会在父进程代码结束后死掉<br>实例:<br>from multiprocessing import Process<br>import time,os</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">task</span><span class="params">(name)</span>:</span></span><br><span class="line">        print(<span class="string">'%s is running'</span> %name)</span><br><span class="line">        time.sleep(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">        p1=Process(target=task,args=(<span class="string">'守护进程'</span>,))</span><br><span class="line">        p2=Process(target=task,args=(<span class="string">'正常的子进程'</span>,))</span><br><span class="line"></span><br><span class="line">        p1.daemon = <span class="literal">True</span> <span class="comment"># 一定要放到p.start()之前</span></span><br><span class="line">        p1.start()</span><br><span class="line">        p2.start()</span><br><span class="line"></span><br><span class="line">        print(<span class="string">'主'</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="互斥锁"><a href="#互斥锁" class="headerlink" title="互斥锁"></a>互斥锁</h2><ul>
+<li><p>互斥锁：可以将要执行任务的部分代码（只涉及到修改共享数据的代码）变成串行</p>
+<h3 id="实例-1"><a href="#实例-1" class="headerlink" title="实例"></a>实例</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">from multiprocessing import Process,<span class="keyword">Lock</span>    <span class="comment">#  Lock 互斥锁模块</span></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">json</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> <span class="built_in">time</span></span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="keyword">check</span>():</span><br><span class="line">        time.sleep(<span class="number">1</span>) <span class="comment"># 模拟网路延迟</span></span><br><span class="line">        <span class="keyword">with</span> <span class="keyword">open</span>(<span class="string">'db.txt'</span>,<span class="string">'rt'</span>,<span class="keyword">encoding</span>=<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</span><br><span class="line">                dic=json.load(f)</span><br><span class="line">        print(<span class="string">'%s 查看到剩余票数 [%s]'</span> %(os.getpid(),dic[<span class="string">'count'</span>]))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="keyword">get</span>():</span><br><span class="line">        <span class="keyword">with</span> <span class="keyword">open</span>(<span class="string">'db.txt'</span>,<span class="string">'rt'</span>,<span class="keyword">encoding</span>=<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</span><br><span class="line">                dic=json.load(f)</span><br><span class="line">        time.sleep(<span class="number">2</span>)</span><br><span class="line">        <span class="keyword">if</span> dic[<span class="string">'count'</span>] &gt; <span class="number">0</span>:</span><br><span class="line">                <span class="comment"># 有票</span></span><br><span class="line">                dic[<span class="string">'count'</span>]-=<span class="number">1</span></span><br><span class="line">                time.sleep(random.randint(<span class="number">1</span>,<span class="number">3</span>))</span><br><span class="line">                <span class="keyword">with</span> <span class="keyword">open</span>(<span class="string">'db.txt'</span>,<span class="string">'wt'</span>,<span class="keyword">encoding</span>=<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</span><br><span class="line">                        json.dump(dic,f)</span><br><span class="line">                print(<span class="string">'%s 购票成功'</span> %os.getpid())</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">                print(<span class="string">'%s 没有余票'</span> %os.getpid())</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> task(<span class="keyword">mutex</span>):</span><br><span class="line">        <span class="comment"># 查票</span></span><br><span class="line">        <span class="keyword">check</span>()</span><br><span class="line"></span><br><span class="line">        <span class="comment">#购票</span></span><br><span class="line">        mutex.acquire() <span class="comment"># 互斥锁不能连续的acquire，必须是release以后才能重新acquire</span></span><br><span class="line">        <span class="keyword">get</span>()</span><br><span class="line">        mutex.release()  <span class="comment"># 关闭互斥锁</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># with mutex:   # 开启与关闭互斥锁一种简单的写法</span></span><br><span class="line">        <span class="comment">#     get()</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">        <span class="keyword">mutex</span>=<span class="keyword">Lock</span>()</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span>  <span class="keyword">range</span>(<span class="number">10</span>):</span><br><span class="line">                p=Process(target=task,args=(<span class="keyword">mutex</span>,))</span><br><span class="line">                p.start()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="IPC机制-进程间通信，有两种实现方式"><a href="#IPC机制-进程间通信，有两种实现方式" class="headerlink" title="IPC机制:进程间通信，有两种实现方式"></a>IPC机制:进程间通信，有两种实现方式</h2><p>1、pipe：管道(前面已经说过)<br>2、queue：pipe+锁</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing import Queue</span><br><span class="line"></span><br><span class="line"><span class="attribute">q</span>=Queue(3) #先进先出</span><br><span class="line"></span><br><span class="line"><span class="comment">#注意：</span></span><br><span class="line"><span class="comment">#1、队列占用的是内存空间,默认是与内存同一大小</span></span><br><span class="line"><span class="comment">#2、不应该往队列中放大数据，应该只存放数据量较小的消息</span></span><br><span class="line"></span><br><span class="line">q.put(<span class="string">'first'</span>)</span><br><span class="line">q.put(&#123;<span class="string">'k'</span>:<span class="string">'sencond'</span>&#125;)</span><br><span class="line">q.put([<span class="string">'third'</span>,])</span><br><span class="line"><span class="comment"># q.put(4)  # 如果前面的没有被取走,会一直等待,直到前面有一个数据被取走才会把这个数据放进去</span></span><br><span class="line"></span><br><span class="line"><span class="builtin-name">print</span>(q.<span class="builtin-name">get</span>())</span><br><span class="line"><span class="builtin-name">print</span>(q.<span class="builtin-name">get</span>())</span><br><span class="line"><span class="builtin-name">print</span>(q.<span class="builtin-name">get</span>())</span><br><span class="line"><span class="builtin-name">print</span>(q.<span class="builtin-name">get</span>())   # 取, 如果队列中没有就会一直等待,直到有数据进入队列中,才会取走</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>了解点</p>
+<h1 id="q-Queue-3-先进先出"><a href="#q-Queue-3-先进先出" class="headerlink" title="q=Queue(3) #先进先出"></a>q=Queue(3) #先进先出</h1><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"># q.put(<span class="string">'first'</span>,block=<span class="literal">True</span>,timeout=<span class="number">3</span>)</span><br><span class="line"># q.put(&#123;<span class="string">'k'</span>:<span class="string">'sencond'</span>&#125;,block=<span class="literal">True</span>,timeout=<span class="number">3</span>)</span><br><span class="line"># q.put([<span class="string">'third'</span>,],block=<span class="literal">True</span>,timeout=<span class="number">3</span>)</span><br><span class="line"># print(<span class="string">'===&gt;'</span>)</span><br><span class="line"># # q.put(<span class="number">4</span>,block=<span class="literal">True</span>,timeout=<span class="number">3</span>)</span><br><span class="line">#</span><br><span class="line">#</span><br><span class="line"># print(q.get(block=<span class="literal">True</span>,timeout=<span class="number">3</span>))</span><br><span class="line"># print(q.get(block=<span class="literal">True</span>,timeout=<span class="number">3</span>))</span><br><span class="line"># print(q.get(block=<span class="literal">True</span>,timeout=<span class="number">3</span>))</span><br><span class="line"># print(q.get(block=<span class="literal">True</span>,timeout=<span class="number">3</span>))</span><br><span class="line"></span><br><span class="line"># q=Queue(<span class="number">3</span>) #先进先出</span><br><span class="line"># q.put(<span class="string">'first'</span>,block=<span class="literal">False</span>,)</span><br><span class="line"># q.put(&#123;<span class="string">'k'</span>:<span class="string">'sencond'</span>&#125;,block=<span class="literal">False</span>,)</span><br><span class="line"># q.put([<span class="string">'third'</span>,],block=<span class="literal">False</span>,)</span><br><span class="line"># print(<span class="string">'===&gt;'</span>)</span><br><span class="line"># # q.put(<span class="number">4</span>,block=<span class="literal">False</span>,) # 队列满了直接抛出异常，不会阻塞</span><br><span class="line">#</span><br><span class="line"># print(q.get(block=<span class="literal">False</span>))</span><br><span class="line"># print(q.get(block=<span class="literal">False</span>))</span><br><span class="line"># print(q.get(block=<span class="literal">False</span>))</span><br><span class="line"># print(<span class="string">'get over'</span>)</span><br><span class="line"># print(q.get(block=<span class="literal">False</span>))</span><br><span class="line">#</span><br><span class="line"></span><br><span class="line">q=Queue(<span class="number">3</span>) #先进先出</span><br><span class="line"></span><br><span class="line">q.put_nowait(<span class="string">'first'</span>) #q.put(<span class="string">'first'</span>,block=<span class="literal">False</span>,)</span><br><span class="line">q.put_nowait(<span class="number">2</span>)</span><br><span class="line">q.put_nowait(<span class="number">3</span>)</span><br><span class="line"># q.put_nowait(<span class="number">4</span>)  # 队列满了不会等待,直接抛出异常</span><br><span class="line"></span><br><span class="line">print(q.get_nowait())</span><br><span class="line">print(q.get_nowait())</span><br><span class="line">print(q.get_nowait())</span><br><span class="line">print(q.get_nowait())  # 队列里没有数据了不会等待,直接抛出异常</span><br></pre></td></tr></table></figure>
+<h2 id="生产者与消费者模型"><a href="#生产者与消费者模型" class="headerlink" title="生产者与消费者模型"></a>生产者与消费者模型</h2></li>
+<li><p>1 什么是生产者消费者模型<br>生产者:比喻的是程序中负责产生数据的任务<br>消费者:比喻的是程序中负责处理数据的任务</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">生产者-&gt;共享的介质(队列)&lt;-消费者</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2 为何用<br>实现了生产者与消费者的解耦和,生产者可以不停地生产,消费者也可以不停地消费<br>从而平衡了生产者的生产能力与消费者消费能力,提升了程序整体运行的效率</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">什么时候用?</span><br><span class="line">        当我们的程序中存在明显的两类任务,一类负责产生数据,另外一类负责处理数据</span><br><span class="line">        此时就应该考虑使用生产者消费者模型来提升程序的效率</span><br></pre></td></tr></table></figure>
+<p>实例:</p>
+<p>from multiprocessing import Queue,Process<br>import time<br>import os<br>import random</p>
+<p>def producer(q):<br>for i in range(10):<br>res=’包子%s’ %i<br>time.sleep(random.randint(1,3))</p>
+<h1 id="往队列里丢"><a href="#往队列里丢" class="headerlink" title="往队列里丢"></a>往队列里丢</h1><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">        q.<span class="keyword">put</span>(<span class="keyword">res</span>)</span><br><span class="line">        <span class="keyword">print</span>(<span class="string">'\033[45m%s 生产了 %s[0m'</span> %(os.<span class="built_in">getpid</span>(),<span class="keyword">res</span>))</span><br><span class="line">q.<span class="keyword">put</span>(None)</span><br></pre></td></tr></table></figure>
+<p>def consumer(q):<br>while True:<br>#从队列里取走<br>res=q.get()<br>if res is None:break<br>time.sleep(random.randint(1,3))<br>print(‘\033[46m%s 吃了 %s[0m’ %(os.getpid(),res))</p>
+<p>if <strong>name</strong> == ‘<strong>main</strong>‘:<br>q=Queue()</p>
+</li>
+</ul>
+<ul>
+<li><p>2、为何要有GIL<br>因为Cpython解释器自带垃圾回收机制不是线程安全的,也就是说如果没有GIL的情况下,在给一个值<br>赋值的情况下如果被垃圾回收机制回收了,那就会出现错误</p>
+</li>
+<li><p>3 有两种并发解决方案：<br>多进程：计算密集型<br>多线程：IO密集型(因为我们以后用的都是基于网络通信的套接字,而基于网络通信就存在大量IO,于是我们用的最多的都是多线程的方式)</p>
+</li>
+<li><p>IO密集型实例:<br>from multiprocessing import Process<br>from threading import Thread<br>import os,time<br>def work1():<br>time.sleep(5)</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">def work2():</span><br><span class="line">        time.sleep(5)</span><br><span class="line"></span><br><span class="line">def work3():</span><br><span class="line">        time.sleep(5)</span><br><span class="line"></span><br><span class="line">def work4():</span><br><span class="line">        time.sleep(5)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">        l=[]</span><br><span class="line">        # <span class="builtin-name">print</span>(os.cpu_count()) #本机为4核</span><br><span class="line">        <span class="attribute">start</span>=time.time()</span><br><span class="line">        #<span class="attribute">p1</span>=Process(target=work1) # 多进程</span><br><span class="line">        #<span class="attribute">p2</span>=Process(target=work2)</span><br><span class="line">        #<span class="attribute">p3</span>=Process(target=work3)</span><br><span class="line">        #<span class="attribute">p4</span>=Process(target=work4)</span><br><span class="line"></span><br><span class="line">        <span class="attribute">p1</span>=Thread(target=work1) # 多线程</span><br><span class="line">        <span class="attribute">p2</span>=Thread(target=work2)</span><br><span class="line">        <span class="attribute">p3</span>=Thread(target=work3)</span><br><span class="line">        <span class="attribute">p4</span>=Thread(target=work4)</span><br><span class="line"></span><br><span class="line">        p1.start()</span><br><span class="line">        p2.start()</span><br><span class="line">        p3.start()</span><br><span class="line">        p4.start()</span><br><span class="line">        p1.join()</span><br><span class="line">        p2.join()</span><br><span class="line">        p3.join()</span><br><span class="line">        p4.join()</span><br><span class="line">        <span class="attribute">stop</span>=time.time()</span><br><span class="line">        <span class="builtin-name">print</span>(<span class="string">'run time is %s'</span> %(stop-start)) #<span class="builtin-name">run</span> time is 5.162574291229248</span><br><span class="line">        #                                     <span class="builtin-name">run</span> time is 5.002141714096069</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>计算密集型实例:<br>from multiprocessing import Process<br>from threading import Thread<br>import os,time<br>def work1():<br>res=0<br>for i in range(100000000):<br>res*=i</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">def work2():</span><br><span class="line">        <span class="attribute">res</span>=0</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(100000000):</span><br><span class="line">                res*=i</span><br><span class="line">  </span><br><span class="line">def work3():</span><br><span class="line">        <span class="attribute">res</span>=0</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(100000000):</span><br><span class="line">                res*=i</span><br><span class="line">  </span><br><span class="line">def work4():</span><br><span class="line">        <span class="attribute">res</span>=0</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(100000000):</span><br><span class="line">                res*=i</span><br><span class="line">  </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">        l=[]</span><br><span class="line">        # <span class="builtin-name">print</span>(os.cpu_count()) #本机为4核</span><br><span class="line">        <span class="attribute">start</span>=time.time()</span><br><span class="line">        # <span class="attribute">p1</span>=Process(target=work1) # 开启多进程</span><br><span class="line">        # <span class="attribute">p2</span>=Process(target=work2)</span><br><span class="line">        # <span class="attribute">p3</span>=Process(target=work3)</span><br><span class="line">        # <span class="attribute">p4</span>=Process(target=work4)</span><br><span class="line">  </span><br><span class="line">        <span class="attribute">p1</span>=Thread(target=work1) # 开启多线程</span><br><span class="line">        <span class="attribute">p2</span>=Thread(target=work2)</span><br><span class="line">        <span class="attribute">p3</span>=Thread(target=work3)</span><br><span class="line">        <span class="attribute">p4</span>=Thread(target=work4)</span><br><span class="line">  </span><br><span class="line">        p1.start()</span><br><span class="line">        p2.start()</span><br><span class="line">        p3.start()</span><br><span class="line">        p4.start()</span><br><span class="line">        p1.join()</span><br><span class="line">        p2.join()</span><br><span class="line">        p3.join()</span><br><span class="line">        p4.join()</span><br><span class="line">        <span class="attribute">stop</span>=time.time()</span><br><span class="line">        <span class="builtin-name">print</span>(<span class="string">'run time is %s'</span> %(stop-start)) #6.484470367431641(多线程的运行时间)</span><br><span class="line">        # <span class="builtin-name">run</span> time is 17.391708850860596  # 多进程的运行时间</span><br></pre></td></tr></table></figure>
+<h1 id="定时器-多久时间后运行"><a href="#定时器-多久时间后运行" class="headerlink" title="定时器: 多久时间后运行"></a>定时器: 多久时间后运行</h1><p>实例如下:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> threading <span class="keyword">import</span> Timer,current_thread</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">task</span><span class="params">(x)</span>:</span></span><br><span class="line">        print(<span class="string">'%s run....'</span> %x)</span><br><span class="line">        print(current_thread().name)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">        t=Timer(<span class="number">3</span>,task,args=(<span class="number">10</span>,))  <span class="comment"># 第一个参数指定的是多久以后执行,第二个参数是执行的函数</span></span><br><span class="line">        <span class="comment"># 第三个是函数需要传参的参数(括号里必须是元组)</span></span><br><span class="line">        t.start()</span><br><span class="line">        print(<span class="string">'主'</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="线程queque-import-queue"><a href="#线程queque-import-queue" class="headerlink" title="线程queque:import queue"></a>线程queque:import queue</h1></li>
+<li><p>队列:先进先出<br>q=queue.Queue(3)<br>q.put(1)<br>q.put(2)<br>q.put(3)</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">print</span>(q.<span class="builtin-name">get</span>())</span><br><span class="line"><span class="builtin-name">print</span>(q.<span class="builtin-name">get</span>())</span><br><span class="line"><span class="builtin-name">print</span>(q.<span class="builtin-name">get</span>())</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>堆栈：先进后出<br>q=queue.LifoQueue()<br>q.put(1)<br>q.put(2)<br>q.put(3)<br>print(q.get())<br>print(q.get())<br>print(q.get())</p>
+</li>
+<li><p>优先级队列：优先级高先出来,数字越小，优先级越高<br>q=queue.PriorityQueue()<br>q.put((3,’data1’))<br>q.put((-10,’data2’))<br>q.put((11,’data3’))</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">print</span>(q.<span class="builtin-name">get</span>())</span><br><span class="line"><span class="builtin-name">print</span>(q.<span class="builtin-name">get</span>())</span><br><span class="line"><span class="builtin-name">print</span>(q.<span class="builtin-name">get</span>())</span><br><span class="line">输出结果如下:</span><br><span class="line">(-10, <span class="string">'data2'</span>)</span><br><span class="line">(3, <span class="string">'data1'</span>)</span><br><span class="line">(11, <span class="string">'data3'</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="进程池与线程池"><a href="#进程池与线程池" class="headerlink" title="进程池与线程池"></a>进程池与线程池</h1><p>池的功能是限制启动的进程数或线程数，<br>什么时候应该限制？？？<br>当并发的任务数远远超过了计算机的承受能力时，即无法一次性开启过多的进程数或线程数时<br>就应该用池的概念将开启的进程数或线程数限制在计算机可承受的范围内</p>
+<h2 id="同步-提交完任务后-用’串行’的方式运行-就在原地等待，直到任务运行完毕后拿到任务的返回值，再继续运行下一行代码"><a href="#同步-提交完任务后-用’串行’的方式运行-就在原地等待，直到任务运行完毕后拿到任务的返回值，再继续运行下一行代码" class="headerlink" title="同步:提交完任务后(用’串行’的方式运行)就在原地等待，直到任务运行完毕后拿到任务的返回值，再继续运行下一行代码"></a>同步:提交完任务后(用’串行’的方式运行)就在原地等待，直到任务运行完毕后拿到任务的返回值，再继续运行下一行代码</h2><p>实例如下:<br>from concurrent.futures import ProcessPoolExecutor,ThreadPoolExecutor<br>import os<br>import time<br>import random</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">def task(n):</span><br><span class="line">        <span class="builtin-name">print</span>(<span class="string">'%s run...'</span> %os.getpid())</span><br><span class="line">        time.sleep(10)</span><br><span class="line">        return n*<span class="number">*2</span></span><br><span class="line"></span><br><span class="line">def parse(res):</span><br><span class="line">        <span class="builtin-name">print</span>(<span class="string">'...'</span>)</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">        <span class="attribute">pool</span>=ProcessPoolExecutor(4)</span><br><span class="line">        # pool.submit(task,1)</span><br><span class="line">        # pool.submit(task,2)</span><br><span class="line">        # pool.submit(task,3)</span><br><span class="line">        # pool.submit(task,4)</span><br><span class="line"></span><br><span class="line">        l=[]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(1,5):</span><br><span class="line">                <span class="attribute">future</span>=pool.submit(task,i)</span><br><span class="line">                l.append(future)</span><br><span class="line">                # <span class="builtin-name">print</span>(future)</span><br><span class="line">                # <span class="builtin-name">print</span>(future.result())</span><br><span class="line"></span><br><span class="line">        pool.shutdown(<span class="attribute">wait</span>=<span class="literal">True</span>) #shutdown关闭进程池的入口</span><br><span class="line">        <span class="keyword">for</span> future <span class="keyword">in</span> l:</span><br><span class="line">                # <span class="builtin-name">print</span>(future.result())</span><br><span class="line">                parse(future.result())</span><br><span class="line"></span><br><span class="line">        <span class="builtin-name">print</span>(<span class="string">'主'</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="异步-提交完任务（绑定一个回调函数）后根本就不在原地等待，直接运行下一行代码，等到任务有返回值后会自动触发回调函数"><a href="#异步-提交完任务（绑定一个回调函数）后根本就不在原地等待，直接运行下一行代码，等到任务有返回值后会自动触发回调函数" class="headerlink" title="异步:提交完任务（绑定一个回调函数）后根本就不在原地等待，直接运行下一行代码，等到任务有返回值后会自动触发回调函数"></a>异步:提交完任务（绑定一个回调函数）后根本就不在原地等待，直接运行下一行代码，等到任务有返回值后会自动触发回调函数</h2></li>
+<li><p>用多进程实现异步:<br>from concurrent.futures import ProcessPoolExecutor,ThreadPoolExecutor<br>import os,time,random</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">def task(n):</span><br><span class="line">        <span class="builtin-name">print</span>(<span class="string">'%s run...'</span> %os.getpid())</span><br><span class="line">        time.sleep(5)</span><br><span class="line">        return n*<span class="number">*2</span></span><br><span class="line"></span><br><span class="line">def parse(future):</span><br><span class="line">        time.sleep(1)</span><br><span class="line">        <span class="attribute">res</span>=future.result()</span><br><span class="line">        <span class="builtin-name">print</span>(<span class="string">'%s 处理了 %s'</span> %(os.getpid(),res))</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">        <span class="attribute">pool</span>=ProcessPoolExecutor(4)</span><br><span class="line"></span><br><span class="line">        <span class="attribute">start</span>=time.time()</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(1,5):</span><br><span class="line">                <span class="attribute">future</span>=pool.submit(task,i)</span><br><span class="line">                future.add_done_callback(parse) # parse会在futrue有返回值时立刻触发，</span><br><span class="line">                # 并且将future当作参数传给parse,</span><br><span class="line">                # 由主进程来回调函数,运行时间为  9.163417339324951</span><br><span class="line">        pool.shutdown(<span class="attribute">wait</span>=<span class="literal">True</span>)</span><br><span class="line">        <span class="attribute">stop</span>=time.time()</span><br><span class="line">        <span class="builtin-name">print</span>(<span class="string">'主'</span>,os.getpid(),(stop - start))</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用多线程实现异步:<br>from concurrent.futures import ProcessPoolExecutor,ThreadPoolExecutor<br>from threading import current_thread<br>import os<br>import time<br>import random</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">def task(n):</span><br><span class="line">        <span class="builtin-name">print</span>(<span class="string">'%s run...'</span> %current_thread().name)</span><br><span class="line">        time.sleep(5)</span><br><span class="line">        return n*<span class="number">*2</span></span><br><span class="line"></span><br><span class="line">def parse(future):</span><br><span class="line">        time.sleep(1)</span><br><span class="line">        <span class="attribute">res</span>=future.result()</span><br><span class="line">        <span class="builtin-name">print</span>(<span class="string">'%s 处理了 %s'</span> %(current_thread().name,res))</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">        <span class="attribute">pool</span>=ThreadPoolExecutor(4)</span><br><span class="line">        <span class="attribute">start</span>=time.time()</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(1,5):</span><br><span class="line">                <span class="attribute">future</span>=pool.submit(task,i)</span><br><span class="line">                future.add_done_callback(parse) # parse会在futrue有返回值时立刻触发，</span><br><span class="line">                # 并且将future当作参数传给parse</span><br><span class="line">        pool.shutdown(<span class="attribute">wait</span>=<span class="literal">True</span>)  # 哪个线程有时间了哪个线程就取回调函数,运行时间为 6.003463268280029</span><br><span class="line">        <span class="attribute">stop</span>=time.time()</span><br><span class="line">        <span class="builtin-name">print</span>(<span class="string">'主'</span>,current_thread().name,(stop - start))</span><br></pre></td></tr></table></figure>
+<h1 id="协程-只有遇到io才切换到其他任务的协程才能提升单线程的执行效率"><a href="#协程-只有遇到io才切换到其他任务的协程才能提升单线程的执行效率" class="headerlink" title="协程:只有遇到io才切换到其他任务的协程才能提升单线程的执行效率"></a>协程:只有遇到io才切换到其他任务的协程才能提升单线程的执行效率</h1></li>
+<li><p>1、协程只有遇到io才切换到其他任务的协程才能提升<br>单线程实现并发<br>在应用程序里控制多个任务的切换+保存状态(协程只有在IO在单线程下切换到另外一个任务才能提升效率)<br>优点：<br>应用程序级别切换的速度要远远高于操作系统的切换<br>缺点：<br>多个任务一旦有一个阻塞没有切，整个线程都阻塞在原地<br>该线程内的其他的任务都不能执行了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">一旦引入协程，就需要检测单线程下所有的IO行为,</span><br><span class="line">实现遇到IO就切换,少一个都不行，因为一旦一个任务阻塞了，整个线程就阻塞了，</span><br><span class="line">其他的任务即便是可以计算，但是也无法运行了</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2、协程序的目的：<br>想要在单线程下实现并发<br>并发指的是多个任务看起来是同时运行的<br>并发=切换+保存状态<br>实例: 协程 服务端: pip3 install gevent<br>from gevent import spawn,monkey;monkey.patch_all() # 相当于给下面的代码都打上标记,就都能识别<br>from socket import *<br>from threading import Thread</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">def talk(conn):</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">                try:</span><br><span class="line">                        <span class="attribute">data</span>=conn.recv(1024)</span><br><span class="line">                        <span class="keyword">if</span> len(data) == 0:break</span><br><span class="line">                        conn.send(data.upper())</span><br><span class="line">                except ConnectionResetError:</span><br><span class="line">                        break</span><br><span class="line">        conn.close()</span><br><span class="line"></span><br><span class="line">def server(ip,port,<span class="attribute">backlog</span>=5):</span><br><span class="line">       <span class="built_in"> server </span>= socket(AF_INET, SOCK_STREAM)</span><br><span class="line">        server.bind((ip, port))</span><br><span class="line">        server.listen(backlog)</span><br><span class="line"></span><br><span class="line">        <span class="builtin-name">print</span>(<span class="string">'starting...'</span>)</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">                conn, addr = server.accept()</span><br><span class="line">                spawn(talk, conn,)  # 起一个协程,只要这个协程不死掉,进程也不会结束</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">        <span class="attribute">g</span>=spawn(server,'127.0.0.1',8080) # 起一个进程</span><br><span class="line">        g.join()  # 只要这个协程不死掉,进程也不会结束</span><br></pre></td></tr></table></figure>
+<p>客户端:<br>from threading import Thread,current_thread<br>from socket import *<br>import os</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">def task():</span><br><span class="line">        <span class="attribute">client</span>=socket(AF_INET,SOCK_STREAM)</span><br><span class="line">        client.connect((<span class="string">'127.0.0.1'</span>,8080))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">                <span class="attribute">msg</span>=<span class="string">'%s say hello'</span> %current_thread().name</span><br><span class="line">                client.send(msg.encode(<span class="string">'utf-8'</span>))</span><br><span class="line">                <span class="attribute">data</span>=client.recv(1024)</span><br><span class="line">                <span class="builtin-name">print</span>(data.decode(<span class="string">'utf-8'</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(500):</span><br><span class="line">                <span class="attribute">t</span>=Thread(target=task)</span><br><span class="line">                t.start()</span><br></pre></td></tr></table></figure>
+<h1 id="IO模型"><a href="#IO模型" class="headerlink" title="IO模型"></a>IO模型</h1><p><img src="https://s1.51cto.com/images/blog/201903/01/f4874d0b27aed313fe12b7be8da96f06.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="网络编程"><br>网络IO：<br>recvfrom：<br>wait data：<br>conn.recv(1024)等待客户端产生数据——》客户端OS–》网络–》服务端操作系统缓存<br>copy data：由本地操作系统缓存中的数据拷贝到应用程序的内存中</p>
+<p>send：<br>也要经历copy data这个过程,从应用程序拷贝到本地操作系统中,在由操作系统<br>调用网卡基于网络传输给服务端的网卡,传输到服务端的操作系统,对方的操作系统在<br>从本地操作系统缓存中拷贝数据到应用程序的内存中</p>
+<h1 id="阻塞IO模型-网络IO就是阻塞IO"><a href="#阻塞IO模型-网络IO就是阻塞IO" class="headerlink" title="阻塞IO模型: 网络IO就是阻塞IO"></a>阻塞IO模型: 网络IO就是阻塞IO</h1><h1 id="非阻塞IO模型"><a href="#非阻塞IO模型" class="headerlink" title="非阻塞IO模型:"></a>非阻塞IO模型:</h1><p>用户进程不断的主动询问操作系统数据准备好了没有<br><img src="https://s1.51cto.com/images/blog/201903/01/efe0fb20c07769ec17d1e1aad081f5c9.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="网络编程"><br>服务端:<br>from socket import *<br>import time</p>
+<h1 id="缺陷在于如果这个列表里有1亿个连接-那么就会让客户明显的感觉到等待"><a href="#缺陷在于如果这个列表里有1亿个连接-那么就会让客户明显的感觉到等待" class="headerlink" title="缺陷在于如果这个列表里有1亿个连接,那么就会让客户明显的感觉到等待"></a>缺陷在于如果这个列表里有1亿个连接,那么就会让客户明显的感觉到等待</h1><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 对CPU无效的占有率够高</span></span><br><span class="line">server = socket(AF_INET, SOCK_STREAM)  # 绑定协议(tcp)</span><br><span class="line">server.bind((<span class="string">'127.0.0.1'</span>,8080)) # 绑定IP 和 port</span><br><span class="line">server.listen(5)  # 半连接池: 限制的是请求数而非连接数</span><br><span class="line">server.setblocking(<span class="literal">False</span>)  # 让操作系统给一个回复信息</span><br><span class="line"></span><br><span class="line">conn_l=[]</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        try:</span><br><span class="line">                <span class="builtin-name">print</span>(<span class="string">'总连接数[%s]'</span> % len(conn_l))</span><br><span class="line">                conn,<span class="attribute">addr</span>=server.accept()</span><br><span class="line">                conn_l.append(conn) # 把每个建立的连接放到列表里面</span><br><span class="line">        except BlockingIOError:   # 如果没有数据产生就会报错,所有我们需要用捕捉异常让它不因为报错而停止运行</span><br><span class="line">                del_l=[]</span><br><span class="line">                <span class="keyword">for</span> conn <span class="keyword">in</span> conn_l:   # 从conn_l列表里遍历出来通讯</span><br><span class="line">                        try:</span><br><span class="line">                                <span class="attribute">data</span>=conn.recv(1024)</span><br><span class="line">                                <span class="keyword">if</span> len(data) == 0:</span><br><span class="line">                                        del_l.append(conn)   # 把遍历出来断了连接的连接加入到del_l列表里面</span><br><span class="line">                                        continue</span><br><span class="line">                                conn.send(data.upper())</span><br><span class="line">                        except BlockingIOError:  # 需要捕捉异常</span><br><span class="line">                                pass</span><br><span class="line">                        except ConnectionResetError: # 把遍历出来断了连接的连接加入到del_l列表里面</span><br><span class="line">                             del_l.append(conn)</span><br><span class="line"></span><br><span class="line">                <span class="keyword">for</span> conn <span class="keyword">in</span> del_l:  # 遍历del_l列表,把断开的连接一个一个的删除掉</span><br><span class="line">                        conn_l.<span class="builtin-name">remove</span>(conn)</span><br></pre></td></tr></table></figure>
+<p>客户端:<br>from socket import *<br>import os</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">client</span>=socket(AF_INET,SOCK_STREAM)</span><br><span class="line">client.connect((<span class="string">'127.0.0.1'</span>,8080))</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="attribute">msg</span>=<span class="string">'%s say hello'</span> %os.getpid()</span><br><span class="line">        client.send(msg.encode(<span class="string">'utf-8'</span>))</span><br><span class="line">        <span class="attribute">data</span>=client.recv(1024)</span><br><span class="line">        <span class="builtin-name">print</span>(data.decode(<span class="string">'utf-8'</span>))</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="多路复用IO模型"><a href="#多路复用IO模型" class="headerlink" title="多路复用IO模型"></a>多路复用IO模型</h1><p>当用户进程调用了select，那么整个进程会被block，而同时，操作系统会“监视”所有select负责的socket，当任何一个socket中的数据准备好了，select就会返回。这个时候用户进程再调用read操作，将数据从操作系统拷贝到用户进程。<br><img src="https://s1.51cto.com/images/blog/201903/01/dc8cd385645ec12035642ffd85fde1ff.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="网络编程"><br>服务端:</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> socket import *</span><br><span class="line">import select</span><br><span class="line"></span><br><span class="line">server = socket(AF_INET, SOCK_STREAM)</span><br><span class="line">server.bind((<span class="string">'127.0.0.1'</span>,8080))</span><br><span class="line">server.listen(5)</span><br><span class="line">server.setblocking(<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">data_dic=&#123;&#125;</span><br><span class="line">read_list=[server,]</span><br><span class="line">write_list=[]</span><br><span class="line"><span class="builtin-name">print</span>(<span class="string">'start....'</span>)</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        rl,wl,<span class="attribute">xl</span>=select.select(read_list,write_list,[]) #read_list=[server,conn1,conn2,conn3,conn4]</span><br><span class="line">        # <span class="builtin-name">print</span>(<span class="string">'read_list:%s rl:%s wl:%s '</span> %(len(read_list),len(rl),len(wl))) #rl=[conn1,conn2]</span><br><span class="line">        # select的第四个参数指定的是时间,这个时间指的是在这个时间内如果没有消息过来一样也会执行下一行代码</span><br><span class="line">        # 但是这样的运行毫无意义.</span><br><span class="line">        # select给操作系统发送一个请求, 操作系统去遍历所有连接</span><br><span class="line">        # 如果有select就会拿到, 然后运行下一行代码, 如果没有就会原地阻塞</span><br><span class="line">        <span class="keyword">for</span> sk <span class="keyword">in</span> rl:</span><br><span class="line">                <span class="keyword">if</span> sk == server:</span><br><span class="line">                        conn,<span class="attribute">addr</span>=sk.accept()  # 建立一个连接</span><br><span class="line">                        read_list.append(conn)  # 放到列表里面</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                        # sk.recv(1024)</span><br><span class="line">                        # <span class="builtin-name">print</span>(sk)</span><br><span class="line">                        <span class="attribute">data</span>=sk.recv(1024)  # 有消息的列表,读消息</span><br><span class="line">                        write_list.append(sk)  # 把消息放到要读的空列表里面.</span><br><span class="line">                        # 因为如果文件过大就会让用户感觉到明显的等待,因为内存空间只有那么大,超过内存空间的大小就会一点点的读</span><br><span class="line">                        data_dic[sk]=data  # 用k:vlua的形式把消息存起来</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> sk <span class="keyword">in</span> wl:</span><br><span class="line">                sk.send(data_dic[sk].upper())  # 循环消息列表,通过k拿到消息返回给客户端</span><br><span class="line">                data_dic.pop(sk)  # 删除字典里的k</span><br><span class="line">                write_list.<span class="builtin-name">remove</span>(sk)  # 删除列表里的消息.因为这个消息已经读过了</span><br></pre></td></tr></table></figure>
+<p>客户端:</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> socket import *</span><br><span class="line">import os</span><br><span class="line"></span><br><span class="line"><span class="attribute">client</span>=socket(AF_INET,SOCK_STREAM)</span><br><span class="line">client.connect((<span class="string">'127.0.0.1'</span>,8080))</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="attribute">msg</span>=<span class="string">'%s say hello'</span> %os.getpid()</span><br><span class="line">        client.send(msg.encode(<span class="string">'utf-8'</span>))</span><br><span class="line">        <span class="attribute">data</span>=client.recv(1024)</span><br><span class="line">        <span class="builtin-name">print</span>(data.decode(<span class="string">'utf-8'</span>))</span><br></pre></td></tr></table></figure>
+<h1 id="异步IO"><a href="#异步IO" class="headerlink" title="异步IO"></a>异步IO</h1><p>用户进程发起read操作之后，立刻就可以开始去做其它的事。而另一方面，从操作系统的角度，当它受到一个asynchronous read之后，首先它会立刻返回，所以不会对用户进程产生任何block。然后，操作系统会等待数据准备完成，然后将数据拷贝到用户内存，当这一切都完成之后，操作系统会给用户进程发送一个signal，告诉它read操作完成了<br><img src="https://s1.51cto.com/images/blog/201903/01/d65d7da0266304cf8a9f3c984a394f07.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="网络编程"></p>
+<p>IO分两阶段：</p>
+<p>1.数据准备阶段<br>2.内核空间复制回用户进程缓冲区阶段</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/gongzhonghao.jpg" alt="李江洋 wechat" style="width: 200px; max-width: 100%;">
+  <div>python分享公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="李江洋 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="李江洋 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/网络编程/" rel="tag"># 网络编程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/19/数据库笔记2/" rel="next" title="数据库笔记2">
+                <i class="fa fa-chevron-left"></i> 数据库笔记2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/19/pycharm使用秘籍/" rel="prev" title="pycharm使用秘籍">
+                pycharm使用秘籍 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="李江洋">
+            
+              <p class="site-author-name" itemprop="name">李江洋</p>
+              <p class="site-description motion-element" itemprop="description">记录学习的技能和遇到的问题</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">179</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lvdXJuYW1l" title="GitHub &rarr; https://github.com/yourname"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="bWFpbHRvOjEzMjgwNDQzOTJAcXEuY29t" title="E-Mail &rarr; mailto:1328044392@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL2V4YW1wbGUuY29t" title="http://example.com">Title</span>
+                  </li>
+                
+              </ul>
+            </div>
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#三次握手四次挥手"><span class="nav-number">1.</span> <span class="nav-text">三次握手四次挥手</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#这是三次握手"><span class="nav-number">1.0.1.</span> <span class="nav-text">这是三次握手</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四次挥手"><span class="nav-number">1.0.2.</span> <span class="nav-text">四次挥手</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#C-S-B-S"><span class="nav-number">2.</span> <span class="nav-text">C/S B/S</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是互联网"><span class="nav-number">3.</span> <span class="nav-text">什么是互联网</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义协议-后面将会有自定义报头解决tcp协议的粘包现象"><span class="nav-number"></span> <span class="nav-text">自定义协议(后面将会有自定义报头解决tcp协议的粘包现象)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#标识地址的方式"><span class="nav-number"></span> <span class="nav-text">标识地址的方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为何建立连接要三次而断开连接却需要四次"><span class="nav-number"></span> <span class="nav-text">为何建立连接要三次而断开连接却需要四次</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为何tcp协议是可靠协议-而udp协议是不可靠协议"><span class="nav-number"></span> <span class="nav-text">为何tcp协议是可靠协议,而udp协议是不可靠协议</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模块补充-strcuct模块"><span class="nav-number"></span> <span class="nav-text">模块补充:strcuct模块</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模拟ssh远程执行命令"><span class="nav-number"></span> <span class="nav-text">模拟ssh远程执行命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端"><span class="nav-number">1.</span> <span class="nav-text">客户端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务端"><span class="nav-number">2.</span> <span class="nav-text">服务端</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#进程"><span class="nav-number"></span> <span class="nav-text">进程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#开启进程的两种方式"><span class="nav-number">1.</span> <span class="nav-text">开启进程的两种方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方式一"><span class="nav-number">1.1.</span> <span class="nav-text">方式一:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方式二"><span class="nav-number">1.2.</span> <span class="nav-text">方式二:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程间的内存空间是彼此隔离的"><span class="nav-number">1.3.</span> <span class="nav-text">进程间的内存空间是彼此隔离的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程的方法与属性"><span class="nav-number">1.4.</span> <span class="nav-text">进程的方法与属性:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#孤儿进程"><span class="nav-number">1.5.</span> <span class="nav-text">孤儿进程:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#僵尸进程-父进程没死-子进程死了-这时候的子进程就是僵尸进程"><span class="nav-number">1.6.</span> <span class="nav-text">僵尸进程:父进程没死,子进程死了,这时候的子进程就是僵尸进程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例"><span class="nav-number">1.7.</span> <span class="nav-text">实例:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#守护进程"><span class="nav-number">2.</span> <span class="nav-text">守护进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#互斥锁"><span class="nav-number">3.</span> <span class="nav-text">互斥锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实例-1"><span class="nav-number">3.1.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IPC机制-进程间通信，有两种实现方式"><span class="nav-number">4.</span> <span class="nav-text">IPC机制:进程间通信，有两种实现方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#q-Queue-3-先进先出"><span class="nav-number"></span> <span class="nav-text">q=Queue(3) #先进先出</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#生产者与消费者模型"><span class="nav-number">1.</span> <span class="nav-text">生产者与消费者模型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#往队列里丢"><span class="nav-number"></span> <span class="nav-text">往队列里丢</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定时器-多久时间后运行"><span class="nav-number"></span> <span class="nav-text">定时器: 多久时间后运行</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线程queque-import-queue"><span class="nav-number"></span> <span class="nav-text">线程queque:import queue</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#进程池与线程池"><span class="nav-number"></span> <span class="nav-text">进程池与线程池</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#同步-提交完任务后-用’串行’的方式运行-就在原地等待，直到任务运行完毕后拿到任务的返回值，再继续运行下一行代码"><span class="nav-number">1.</span> <span class="nav-text">同步:提交完任务后(用’串行’的方式运行)就在原地等待，直到任务运行完毕后拿到任务的返回值，再继续运行下一行代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步-提交完任务（绑定一个回调函数）后根本就不在原地等待，直接运行下一行代码，等到任务有返回值后会自动触发回调函数"><span class="nav-number">2.</span> <span class="nav-text">异步:提交完任务（绑定一个回调函数）后根本就不在原地等待，直接运行下一行代码，等到任务有返回值后会自动触发回调函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#协程-只有遇到io才切换到其他任务的协程才能提升单线程的执行效率"><span class="nav-number"></span> <span class="nav-text">协程:只有遇到io才切换到其他任务的协程才能提升单线程的执行效率</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IO模型"><span class="nav-number"></span> <span class="nav-text">IO模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#阻塞IO模型-网络IO就是阻塞IO"><span class="nav-number"></span> <span class="nav-text">阻塞IO模型: 网络IO就是阻塞IO</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#非阻塞IO模型"><span class="nav-number"></span> <span class="nav-text">非阻塞IO模型:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#缺陷在于如果这个列表里有1亿个连接-那么就会让客户明显的感觉到等待"><span class="nav-number"></span> <span class="nav-text">缺陷在于如果这个列表里有1亿个连接,那么就会让客户明显的感觉到等待</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多路复用IO模型"><span class="nav-number"></span> <span class="nav-text">多路复用IO模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#异步IO"><span class="nav-number"></span> <span class="nav-text">异步IO</span></a></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李江洋</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Pisces</span> v7.0.1</div>
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script id="ribbon" size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+  
+  <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ljyabc.github.io/2019/03/19/网络编程总/";
+    this.page.identifier = "2019/03/19/网络编程总/";
+    this.page.title = '网络编程总';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/exturl.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+   <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+</body>
+</html>

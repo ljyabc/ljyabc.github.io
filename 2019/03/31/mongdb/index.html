@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="三. Mongodb核心技术1. 逻辑结构   Mongodb 逻辑结构 MySQL逻辑结构     库(database) 库   集合（collection） 表   文档（document） 数据行    2. 安装部署2.1 系统准备12345（1）redhat或cnetos6.2以上系统（2）系统开发包完整（3）ip地址和hosts文件解析正常（4）iptables防火墙&amp;amp;SEl">
+<meta name="keywords" content="mongodb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mongodb">
+<meta property="og:url" content="https://ljyabc.github.io/2019/03/31/mongdb/index.html">
+<meta property="og:site_name" content="择墅居:李江洋">
+<meta property="og:description" content="三. Mongodb核心技术1. 逻辑结构   Mongodb 逻辑结构 MySQL逻辑结构     库(database) 库   集合（collection） 表   文档（document） 数据行    2. 安装部署2.1 系统准备12345（1）redhat或cnetos6.2以上系统（2）系统开发包完整（3）ip地址和hosts文件解析正常（4）iptables防火墙&amp;amp;SEl">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2025-04-08T14:37:42.331Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mongodb">
+<meta name="twitter:description" content="三. Mongodb核心技术1. 逻辑结构   Mongodb 逻辑结构 MySQL逻辑结构     库(database) 库   集合（collection） 表   文档（document） 数据行    2. 安装部署2.1 系统准备12345（1）redhat或cnetos6.2以上系统（2）系统开发包完整（3）ip地址和hosts文件解析正常（4）iptables防火墙&amp;amp;SEl">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ljyabc.github.io/2019/03/31/mongdb/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>mongodb | 择墅居:李江洋</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">择墅居:李江洋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">争做长沙别墅豪装第一品牌</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/book" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>book</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2019/03/31/mongdb/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李江洋">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="择墅居:李江洋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">mongodb
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-31 13:30:10" itemprop="dateCreated datePublished" datetime="2019-03-31T13:30:10+08:00">2019-03-31</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2025-04-08 22:37:42" itemprop="dateModified" datetime="2025-04-08T22:37:42+08:00">2025-04-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/整理/" itemprop="url" rel="index"><span itemprop="name">整理</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/03/31/mongdb/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/31/mongdb/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="三-Mongodb核心技术"><a href="#三-Mongodb核心技术" class="headerlink" title="三. Mongodb核心技术"></a>三. Mongodb核心技术</h1><h4 id="1-逻辑结构"><a href="#1-逻辑结构" class="headerlink" title="1. 逻辑结构"></a>1. 逻辑结构</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">Mongodb 逻辑结构</th>
+<th style="text-align:center">MySQL逻辑结构</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">库(database)</td>
+<td style="text-align:center">库</td>
+</tr>
+<tr>
+<td style="text-align:center">集合（collection）</td>
+<td style="text-align:center">表</td>
+</tr>
+<tr>
+<td style="text-align:center">文档（document）</td>
+<td style="text-align:center">数据行</td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-安装部署"><a href="#2-安装部署" class="headerlink" title="2. 安装部署"></a>2. 安装部署</h4><h5 id="2-1-系统准备"><a href="#2-1-系统准备" class="headerlink" title="2.1 系统准备"></a>2.1 系统准备</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">（<span class="number">1</span>）redhat或cnetos6<span class="number">.2</span>以上系统</span><br><span class="line">（<span class="number">2</span>）系统开发包完整</span><br><span class="line">（<span class="number">3</span>）ip地址和hosts文件解析正常</span><br><span class="line">（<span class="number">4</span>）iptables防火墙&amp;SElinux关闭</span><br><span class="line">（<span class="number">5</span>）关闭大页内存机制</span><br></pre></td></tr></table></figure>
+<h5 id="2-2-关闭大页内存机制"><a href="#2-2-关闭大页内存机制" class="headerlink" title="2.2 关闭大页内存机制"></a>2.2 关闭大页内存机制</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">1.root用户下</span><br><span class="line">在vi /etc/rc.local最后添加如下代码</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">cat &gt;&gt;/etc/rc.local &lt;&lt;EOF</span><br><span class="line">if test -f /sys/kernel/mm/transparent_hugepage/enabled; then</span><br><span class="line">  echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled</span><br><span class="line">fi</span><br><span class="line">if test -f /sys/kernel/mm/transparent_hugepage/defrag; then</span><br><span class="line">   echo never &gt; /sys/kernel/mm/transparent_hugepage/defrag</span><br><span class="line">fi</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">2.生效取消大页内存</span><br><span class="line">[root@standby opt]# echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled</span><br><span class="line"></span><br><span class="line">[root@standby opt]# echo never &gt; /sys/kernel/mm/transparent_hugepage/defrag</span><br></pre></td></tr></table></figure>
+<h5 id="2-3-MongoDB安装"><a href="#2-3-MongoDB安装" class="headerlink" title="2.3 MongoDB安装"></a>2.3 MongoDB安装</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>创建所需的用户和组：wan1314520</span><br><span class="line">groupadd -g <span class="number">800</span> mongod</span><br><span class="line">useradd -u <span class="number">801</span> -g mongod mongod</span><br><span class="line">passwd mongod</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>创建MongoDB所需的目录结构</span><br><span class="line">mkdir -p /mongodb/bin</span><br><span class="line">mkdir -p /mongodb/conf</span><br><span class="line">mkdir -p /mongodb/log</span><br><span class="line">mkdir -p /mongodb/data</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span>上传并解压软件到指定位置</span><br><span class="line">上传到：</span><br><span class="line">cd   /opt/</span><br><span class="line">解压：</span><br><span class="line">tar xf mongodb-linux-x86_64-rhel70<span class="number">-3.4</span><span class="number">.16</span>.tgz</span><br><span class="line"></span><br><span class="line">拷贝目录下bin程序到/mongodb/bin</span><br><span class="line">cp -a /opt/mongodb-linux-x86_64-rhel70<span class="number">-3.4</span><span class="number">.16</span>/bin/* /mongodb/bin</span><br><span class="line"></span><br><span class="line"><span class="number">4.</span>设置目录结构权限</span><br><span class="line">chown -R mongod:mongod /mongodb</span><br><span class="line"></span><br><span class="line"><span class="number">5.</span>设置用户环境变量</span><br><span class="line">su - mongod             <span class="comment">#切换到mongod用户</span></span><br><span class="line"></span><br><span class="line">cat &gt;&gt; .bash_profile &lt;&lt; EOF         <span class="comment">#加入环境变量</span></span><br><span class="line">export PATH=/mongodb/bin:$PATH</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">source .bash_profile                <span class="comment">#生效配置</span></span><br><span class="line"></span><br><span class="line"><span class="number">6.</span>启动MongoDB</span><br><span class="line">mongod --dbpath=/mongodb/data --logpath=/mongodb/log/mongodb.log --port=<span class="number">27017</span> --logappend --fork</span><br><span class="line"></span><br><span class="line"><span class="number">7.</span>登录MongoDB</span><br><span class="line">mongo</span><br><span class="line"></span><br><span class="line"><span class="number">8.</span>使用配置文件</span><br><span class="line">vim /mongodb/conf/mongodb.conf</span><br><span class="line"></span><br><span class="line">logpath=/mongodb/log/mongodb.log</span><br><span class="line">dbpath=/mongodb/data </span><br><span class="line">port=<span class="number">27017</span></span><br><span class="line">logappend=true</span><br><span class="line">fork=true</span><br><span class="line"></span><br><span class="line">+++++++++++++++++++</span><br><span class="line">关闭mongodb</span><br><span class="line">mongod -f /mongodb/conf/mongodb.conf --shutdown</span><br><span class="line">使用配置文件启动mongodb</span><br><span class="line">mongod -f /mongodb/conf/mongodb.conf</span><br><span class="line"></span><br><span class="line"><span class="number">9.</span>MongoDB的关闭方式</span><br><span class="line">mongod -f mongodb.conf  --shutdown</span><br></pre></td></tr></table></figure>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">注：连接之后会有warning，需要修改(使用root用户)</span><br><span class="line">vim <span class="meta-keyword">/etc/</span>security/limits.conf </span><br><span class="line"><span class="meta">#*       -       nofile       65535 </span></span><br><span class="line"></span><br><span class="line">reboot重启生效</span><br></pre></td></tr></table></figure>
+<h5 id="2-4-YAML模式：非常经典的专门用作配置文件的格式"><a href="#2-4-YAML模式：非常经典的专门用作配置文件的格式" class="headerlink" title="2.4 YAML模式：非常经典的专门用作配置文件的格式"></a>2.4 YAML模式：非常经典的专门用作配置文件的格式</h5><blockquote>
+<p><strong>1. 一定不能出现有tab空格，不然解析不了</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>2. 配置的介绍</strong></p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">--系统日志有关  </span><br><span class="line">systemLog:</span><br><span class="line">   destination: file        </span><br><span class="line">   path: <span class="string">"/mongodb/log/mongodb.log"</span>    --日志位置</span><br><span class="line">   logAppend: true					   --日志以追加模式记录</span><br><span class="line"></span><br><span class="line">--数据存储有关   </span><br><span class="line">storage:</span><br><span class="line">   journal:</span><br><span class="line">      enabled: true</span><br><span class="line">   dbPath: <span class="string">"/mongodb/data"</span>            --数据路径的位置</span><br><span class="line">   </span><br><span class="line"> -- 进程控制  </span><br><span class="line">processManagement:</span><br><span class="line">   fork: true                         --后台守护进程</span><br><span class="line">   pidFilePath: &lt;string&gt;			  --pid文件的位置，一般不用配置，可以去掉这行，自动生成到data中</span><br><span class="line">   </span><br><span class="line">   </span><br><span class="line">--网络配置有关   </span><br><span class="line">net:			</span><br><span class="line">   bindIp: &lt;ip&gt;                       -- 监听地址，如果不配置这行是监听在<span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></span><br><span class="line">   port: &lt;port&gt;						  -- 端口号,默认不配置端口号，是<span class="number">27017</span></span><br><span class="line">   </span><br><span class="line">-- 安全验证有关配置      <span class="comment">#一定有用户的才能打开</span></span><br><span class="line">security:</span><br><span class="line">  authorization: enabled              --是否打开用户名密码验证</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>3. 复制集相关配置</strong></p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">replication:</span><br><span class="line"> oplogSizeMB: &lt;NUM&gt;</span><br><span class="line"> replSetName: <span class="string">"&lt;REPSETNAME&gt;"</span></span><br><span class="line"> secondaryIndexPrefetch: <span class="string">"all"</span></span><br><span class="line">sharding:</span><br><span class="line">   clusterRole: &lt;string&gt;</span><br><span class="line">   archiveMovedChunks: &lt;boolean&gt;</span><br><span class="line">   </span><br><span class="line">   </span><br><span class="line">---<span class="keyword">for</span> mongos only</span><br><span class="line">replication:</span><br><span class="line">   localPingThresholdMs: &lt;int&gt;</span><br><span class="line"></span><br><span class="line">sharding:</span><br><span class="line">   configDB: &lt;string&gt;</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>4. YAML例子</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">cat &gt;&gt; /mongodb/conf/mongo.conf &lt;&lt; EOF</span><br><span class="line">systemLog:</span><br><span class="line">   destination: file</span><br><span class="line">   path: &quot;/mongodb/log/mongodb.log&quot;</span><br><span class="line">   logAppend: true</span><br><span class="line">storage:</span><br><span class="line">   journal:</span><br><span class="line">      enabled: true</span><br><span class="line">   dbPath: &quot;/mongodb/data/&quot;</span><br><span class="line">processManagement:</span><br><span class="line">   fork: true</span><br><span class="line">net:</span><br><span class="line">   port: 27017</span><br><span class="line">EOF</span><br><span class="line">   </span><br><span class="line">   </span><br><span class="line">mongod -f /mongodb/conf/mongo.conf --shutdown</span><br><span class="line">mongod -f /mongodb/conf/mongo.conf</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="3-MongoDB常用的基本操作"><a href="#3-MongoDB常用的基本操作" class="headerlink" title="3. MongoDB常用的基本操作"></a>3. MongoDB常用的基本操作</h4><h5 id="3-1-mongodb-默认存在的库"><a href="#3-1-mongodb-默认存在的库" class="headerlink" title="3.1 mongodb 默认存在的库"></a>3.1 mongodb 默认存在的库</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>登录后默认使用的库</span><br><span class="line">test:</span><br><span class="line">	登录时默认存在的库</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>管理mongodb有关的系统库</span><br><span class="line">admin库:</span><br><span class="line">	系统预留库,mongodb系统管理库</span><br><span class="line">local库:</span><br><span class="line">	本地预留库,存储关键日志</span><br></pre></td></tr></table></figure>
+<h5 id="3-2-命令分类"><a href="#3-2-命令分类" class="headerlink" title="3.2 命令分类"></a>3.2 命令分类</h5><h6 id="3-2-1-逻辑对象"><a href="#3-2-1-逻辑对象" class="headerlink" title="3.2.1 逻辑对象"></a>3.2.1 逻辑对象</h6><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">库(database)</span><br><span class="line"><span class="keyword">show</span>  <span class="keyword">databases</span> </span><br><span class="line"><span class="keyword">show</span>  dbs</span><br><span class="line"><span class="keyword">use</span>   oldguo</span><br><span class="line">db</span><br><span class="line"></span><br><span class="line">表(collection集合)</span><br><span class="line"><span class="keyword">show</span> <span class="keyword">tables</span></span><br><span class="line"><span class="keyword">show</span> collections</span><br><span class="line"></span><br><span class="line">数据行(<span class="keyword">document</span>)</span><br></pre></td></tr></table></figure>
+<h5 id="3-3-db-命令"><a href="#3-3-db-命令" class="headerlink" title="3.3 db.命令"></a>3.3 db.命令</h5><h6 id="3-3-1-DB级别命令"><a href="#3-3-1-DB级别命令" class="headerlink" title="3.3.1 DB级别命令"></a>3.3.1 DB级别命令</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">DB级别命令</span><br><span class="line">db.[TAB]  类似于linux中的tab功能</span><br><span class="line">db.help() db级别的命令使用帮助</span><br><span class="line"></span><br><span class="line">collection级别操作</span><br><span class="line">db.Collection_name.xxx</span><br><span class="line"></span><br><span class="line">document级别操作:</span><br><span class="line">db.t1.insert()</span><br></pre></td></tr></table></figure>
+<h5 id="3-4-复制集有关-replication-set"><a href="#3-4-复制集有关-replication-set" class="headerlink" title="3.4 复制集有关(replication set)"></a>3.4 复制集有关(replication set)</h5><figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rs.</span><br></pre></td></tr></table></figure>
+<h5 id="3-5-分片集群-sharding-cluster"><a href="#3-5-分片集群-sharding-cluster" class="headerlink" title="3.5 分片集群(sharding cluster)"></a>3.5 分片集群(sharding cluster)</h5><figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh.</span><br></pre></td></tr></table></figure>
+<h5 id="3-6-常用操作"><a href="#3-6-常用操作" class="headerlink" title="3.6 常用操作"></a>3.6 常用操作</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">--查看当前db版本</span><br><span class="line">test&gt; db.version()</span><br><span class="line"></span><br><span class="line">--显示当前数据库</span><br><span class="line"></span><br><span class="line">test&gt; db</span><br><span class="line">test</span><br><span class="line">或</span><br><span class="line">&gt; db.getName()</span><br><span class="line">test</span><br><span class="line"></span><br><span class="line">--查询所有数据库</span><br><span class="line">test&gt; show dbs</span><br><span class="line"></span><br><span class="line">– 切换数据库</span><br><span class="line">&gt; use local</span><br><span class="line">switched to db local</span><br><span class="line"></span><br><span class="line">- 查看所有的collection</span><br><span class="line">show  tables;</span><br><span class="line"></span><br><span class="line">– 显示当前数据库状态</span><br><span class="line">test&gt; use local</span><br><span class="line">switched to db local</span><br><span class="line"></span><br><span class="line">local&gt; db.stats()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">– 查看当前数据库的连接机器地址</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&gt; db.getMongo()</span><br><span class="line">connection to 127.0.0.1</span><br><span class="line">指定数据库进行连接</span><br><span class="line">默认连接本机test数据库</span><br></pre></td></tr></table></figure>
+<h5 id="3-7-库的操作"><a href="#3-7-库的操作" class="headerlink" title="3.7 库的操作"></a>3.7 库的操作</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">– 创建数据库：</span><br><span class="line">当use的时候，系统就会自动创建一个数据库。</span><br><span class="line">如果use之后没有创建任何集合。</span><br><span class="line">系统就会删除这个数据库。</span><br><span class="line"></span><br><span class="line">– 删除数据库</span><br><span class="line">如果没有选择任何数据库，会删除默认的test数据库</span><br><span class="line">//删除test数据库</span><br><span class="line"></span><br><span class="line">test&gt; show dbs</span><br><span class="line">local 0.000GB</span><br><span class="line">test 0.000GB</span><br><span class="line"></span><br><span class="line">test&gt; use test</span><br><span class="line">switched to db test</span><br><span class="line">test&gt; db.dropDatabase()</span><br><span class="line">&#123; &quot;dropped&quot; : &quot;test&quot;, &quot;ok&quot; : 1 &#125;</span><br></pre></td></tr></table></figure>
+<h5 id="3-8-集合的操作"><a href="#3-8-集合的操作" class="headerlink" title="3.8 集合的操作"></a>3.8 集合的操作</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">方法1</span><br><span class="line">admin&gt; use app</span><br><span class="line">switched to db app</span><br><span class="line">app&gt; db.createCollection(&apos;a&apos;)</span><br><span class="line">&#123; &quot;ok&quot; : 1 &#125;</span><br><span class="line">app&gt; db.createCollection(&apos;b&apos;)</span><br><span class="line">&#123; &quot;ok&quot; : 1 &#125;</span><br><span class="line">&gt; show collections //查看当前数据下的所有集合</span><br><span class="line">a b 或</span><br><span class="line">&gt; db.getCollectionNames()</span><br><span class="line">[ &quot;a&quot;, &quot;b&quot; ]</span><br><span class="line"></span><br><span class="line">方法2：当插入一个文档的时候，一个集合就会自动创建。</span><br><span class="line"></span><br><span class="line"> use oldguo</span><br><span class="line"> db.test.insert(&#123;name:&quot;zhangsan&quot;&#125;)</span><br><span class="line"> db.stu.insert(&#123;id:101,name:&quot;zhangsan&quot;,age:20,gender:&quot;m&quot;&#125;)</span><br><span class="line"> show tables;</span><br><span class="line"> db.stu.insert(&#123;id:102,name:&quot;lisi&quot;&#125;)</span><br><span class="line"> db.stu.insert(&#123;a:&quot;b&quot;,c:&quot;d&quot;&#125;)</span><br><span class="line"> db.stu.insert(&#123;a:1,c:2&#125;)</span><br><span class="line"> </span><br><span class="line">查询数据:</span><br><span class="line">&gt; db.stu.find(&#123;&#125;).pretty()</span><br><span class="line">db.stu.find(&#123;id:101&#125;).pretty();</span><br><span class="line">&#123;</span><br><span class="line">	&quot;_id&quot; : ObjectId(&quot;5b470168cfdebc16a5a82a97&quot;),</span><br><span class="line">	&quot;id&quot; : 101,</span><br><span class="line">	&quot;name&quot; : &quot;zhangsan&quot;,</span><br><span class="line">	&quot;age&quot; : 20,</span><br><span class="line">	&quot;gender&quot; : &quot;m&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">删除数据：</span><br><span class="line">&gt; show tables;</span><br><span class="line">stu</span><br><span class="line">test</span><br><span class="line">&gt; db.test.drop()</span><br><span class="line">true</span><br><span class="line">&gt; show tables;</span><br><span class="line">stu</span><br><span class="line"></span><br><span class="line">重命名集合</span><br><span class="line">//把log改名为log1</span><br><span class="line">app&gt; db.log.renameCollection(&quot;log1&quot;)</span><br><span class="line">&#123; &quot;ok&quot; : 1 &#125;</span><br><span class="line">app&gt; show collections</span><br><span class="line">a b c</span><br><span class="line">log1</span><br><span class="line">app</span><br><span class="line"></span><br><span class="line">批量插入数据</span><br><span class="line">for(i=0;i&lt;10000;i++)&#123;db.log.insert(&#123;&quot;uid&quot;:i,&quot;name&quot;:&quot;mongodb&quot;,&quot;age&quot;:6,&quot;date&quot;:new</span><br><span class="line">Date()&#125;)&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="4-Mongodb数据查询语句"><a href="#4-Mongodb数据查询语句" class="headerlink" title="4. Mongodb数据查询语句"></a>4. Mongodb数据查询语句</h4><h5 id="4-1-查询集合中的记录数"><a href="#4-1-查询集合中的记录数" class="headerlink" title="4.1 查询集合中的记录数"></a>4.1 查询集合中的记录数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">app&gt; db.log.find() //查询所有记录</span><br><span class="line"></span><br><span class="line">注：默认每页显示20条记录，当显示不下的的情况下，可以用it迭代命令查询下一页数据。</span><br><span class="line">设置每页显示数据的大小：</span><br><span class="line"></span><br><span class="line">&gt; DBQuery.shellBatchSize=50; //每页显示50条记录</span><br><span class="line"></span><br><span class="line">app&gt; db.log.findOne() //查看第1条记录</span><br><span class="line">app&gt; db.log.count() //查询总的记录数</span><br></pre></td></tr></table></figure>
+<h5 id="4-2-删除集合中的记录数"><a href="#4-2-删除集合中的记录数" class="headerlink" title="4.2 删除集合中的记录数"></a>4.2 删除集合中的记录数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">app&gt; db.log.remove(&#123;&#125;) //删除集合中所有记录</span><br><span class="line">&gt; db.log.distinct(&quot;name&quot;) //查询去掉当前集合中某列的重复数据</span><br></pre></td></tr></table></figure>
+<h5 id="4-3-查看集合存储信息"><a href="#4-3-查看集合存储信息" class="headerlink" title="4.3 查看集合存储信息"></a>4.3 查看集合存储信息</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">app&gt; db.log.stats()</span><br><span class="line">app&gt; db.log.dataSize() //集合中数据的原始大小</span><br><span class="line">app&gt; db.log.totalIndexSize() //集合中索引数据的原始大小</span><br><span class="line">app&gt; db.log.totalSize() //集合中索引+数据压缩存储之后的大小</span><br><span class="line">app&gt; db.log.storageSize() //集合中数据压缩存储的大小</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="5-用户管理"><a href="#5-用户管理" class="headerlink" title="5.  用户管理"></a>5.  用户管理</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">验证库，建立用户时<span class="keyword">use</span>到的库，在使用用户时，要加上验证库才能登陆。</span><br><span class="line">对于管理员用户,必须在<span class="keyword">admin</span>下创建.</span><br></pre></td></tr></table></figure>
+<h5 id="5-1-基本语法"><a href="#5-1-基本语法" class="headerlink" title="5.1 基本语法"></a>5.1 基本语法</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">use admin </span><br><span class="line">&#123;</span><br><span class="line">    user: &quot;&lt;name&gt;&quot;,</span><br><span class="line">    pwd: &quot;&lt;cleartext password&gt;&quot;,</span><br><span class="line">    roles: [</span><br><span class="line">       &#123; role: &quot;&lt;role&gt;&quot;,</span><br><span class="line">     db: &quot;&lt;database&gt;&quot; &#125; | &quot;&lt;role&gt;&quot;,</span><br><span class="line">    ...</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="5-2-基本语法说明"><a href="#5-2-基本语法说明" class="headerlink" title="5.2 基本语法说明"></a>5.2 基本语法说明</h5><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">基本语法说明：</span></span><br><span class="line"></span><br><span class="line"><span class="string">user:用户名</span></span><br><span class="line"><span class="string">pwd:密码</span></span><br><span class="line"><span class="attr">roles:</span></span><br><span class="line">    <span class="string">role:角色名</span></span><br><span class="line">    <span class="string">db:作用对象</span></span><br><span class="line">	</span><br><span class="line"><span class="string">role：root,</span> <span class="string">readWrite,read</span>   </span><br><span class="line"></span><br><span class="line"><span class="string">验证数据库：</span></span><br><span class="line"></span><br><span class="line"><span class="string">mongo</span> <span class="string">-u</span> <span class="string">oldguo</span> <span class="string">-p</span> <span class="number">123</span> <span class="number">10.0</span><span class="number">.0</span><span class="number">.200</span><span class="string">/oldguo</span></span><br><span class="line"><span class="string">总结：</span></span><br><span class="line"><span class="number">1</span><span class="string">、在创建普通用户时，一般事先use</span> <span class="string">到想要设置权限的库下；或者所有普通用户使用同一个验证库，比如test</span></span><br><span class="line"><span class="number">2</span><span class="string">、root角色的创建，要在admin下进行创建</span></span><br><span class="line"><span class="number">3</span><span class="string">、创建用户时你use到的库，在将来登录时候，使用以下方式登录,否则是登录不了的</span></span><br></pre></td></tr></table></figure>
+<h5 id="5-3-验证数据库"><a href="#5-3-验证数据库" class="headerlink" title="5.3 验证数据库"></a>5.3 验证数据库</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mongo -u oldguo -p 123 10.0.0.200/oldguo</span><br><span class="line"></span><br><span class="line">总结：</span><br><span class="line">1、在创建普通用户时，一般事先use 到想要设置权限的库下；或者所有普通用户使用同一个验证库，比如test</span><br><span class="line">2、root角色的创建，要在admin下进行创建</span><br><span class="line">3、创建用户时你use到的库，在将来登录时候，使用以下方式登录,否则是登录不了的</span><br></pre></td></tr></table></figure>
+<h5 id="5-4-用户管理的例子：创建超级管理员"><a href="#5-4-用户管理的例子：创建超级管理员" class="headerlink" title="5.4 用户管理的例子：创建超级管理员"></a>5.4 用户管理的例子：创建超级管理员</h5><h6 id="5-4-1-创建超级管理员：管理所有的数据库（必须use-admin-再去创建）"><a href="#5-4-1-创建超级管理员：管理所有的数据库（必须use-admin-再去创建）" class="headerlink" title="5.4.1 创建超级管理员：管理所有的数据库（必须use admin 再去创建）"></a>5.4.1 创建超级管理员：管理所有的数据库（必须use admin 再去创建）</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">use admin</span><br><span class="line"></span><br><span class="line">db.createUser(</span><br><span class="line">&#123;</span><br><span class="line">    user: &quot;root&quot;,</span><br><span class="line">    pwd: &quot;root123&quot;,</span><br><span class="line">    roles: [ &#123; role: &quot;root&quot;, db: &quot;admin&quot; &#125; ]</span><br><span class="line">&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h6 id="5-4-2-验证用户"><a href="#5-4-2-验证用户" class="headerlink" title="5.4.2 验证用户"></a>5.4.2 验证用户</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.auth(&apos;root&apos;,&apos;root123&apos;)</span><br></pre></td></tr></table></figure>
+<h6 id="5-4-3-配置文件中，加入以下配置（开启密码认证）"><a href="#5-4-3-配置文件中，加入以下配置（开启密码认证）" class="headerlink" title="5.4.3 配置文件中，加入以下配置（开启密码认证）"></a>5.4.3 配置文件中，加入以下配置（开启密码认证）</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">security:</span><br><span class="line">  authorization: enabled</span><br></pre></td></tr></table></figure>
+<h6 id="5-4-4-重启MongoDB"><a href="#5-4-4-重启MongoDB" class="headerlink" title="5.4.4 重启MongoDB"></a>5.4.4 重启MongoDB</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mongod -f /mongodb/conf/mongo.conf --shutdown </span><br><span class="line">mongod -f /mongodb/conf/mongo.conf</span><br></pre></td></tr></table></figure>
+<h6 id="5-4-5-登录验证"><a href="#5-4-5-登录验证" class="headerlink" title="5.4.5 登录验证"></a>5.4.5 登录验证</h6><blockquote>
+<p><strong>1.方式一</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[mongod@zcg conf]$ mongo -uroot -proot123 admin</span><br><span class="line"></span><br><span class="line">[mongod@zcg conf]$ mongo -uroot -proot123 10.0.0.100/admin</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>2.方式二</strong></p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mongo</span><br><span class="line"><span class="keyword">use</span> <span class="keyword">admin</span></span><br><span class="line">db.auth(<span class="string">'root'</span>,<span class="string">'root123'</span>)</span><br><span class="line"></span><br><span class="line">查看用户:</span><br><span class="line"><span class="keyword">use</span> <span class="keyword">admin</span></span><br><span class="line">db.system.users.find().pretty()</span><br></pre></td></tr></table></figure>
+<h5 id="5-5-用户管理的例子：创建库管理用户"><a href="#5-5-用户管理的例子：创建库管理用户" class="headerlink" title="5.5 用户管理的例子：创建库管理用户"></a>5.5 用户管理的例子：创建库管理用户</h5><h6 id="5-5-1-首先root用户登录"><a href="#5-5-1-首先root用户登录" class="headerlink" title="5.5.1 首先root用户登录"></a>5.5.1 首先root用户登录</h6><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">mongo</span> -uroot -proot123  admin</span><br></pre></td></tr></table></figure>
+<h6 id="5-5-2-创建库"><a href="#5-5-2-创建库" class="headerlink" title="5.5.2 创建库"></a>5.5.2 创建库</h6><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="keyword">app</span></span><br></pre></td></tr></table></figure>
+<h6 id="5-5-3-创建库管理用户"><a href="#5-5-3-创建库管理用户" class="headerlink" title="5.5.3 创建库管理用户"></a>5.5.3 创建库管理用户</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">db.createUser(</span><br><span class="line">&#123;</span><br><span class="line">user: &quot;admin&quot;,</span><br><span class="line">pwd: &quot;admin&quot;,</span><br><span class="line">roles: [ &#123; role: &quot;dbAdmin&quot;, db: &quot;app&quot; &#125; ]</span><br><span class="line">&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h6 id="5-5-4-验证"><a href="#5-5-4-验证" class="headerlink" title="5.5.4 验证"></a>5.5.4 验证</h6><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">db</span><span class="selector-class">.auth</span>(<span class="string">'admin'</span>,<span class="string">'admin'</span>)</span><br></pre></td></tr></table></figure>
+<h6 id="5-5-5-登录测试"><a href="#5-5-5-登录测试" class="headerlink" title="5.5.5 登录测试"></a>5.5.5 登录测试</h6><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongo -uadmin -padmin <span class="number">10.0</span><span class="number">.0</span><span class="number">.100</span>/app</span><br></pre></td></tr></table></figure>
+<h5 id="5-6-创建对app数据库，读、写权限的用户app01"><a href="#5-6-创建对app数据库，读、写权限的用户app01" class="headerlink" title="5.6 创建对app数据库，读、写权限的用户app01"></a>5.6 创建对app数据库，读、写权限的用户app01</h5><h6 id="5-6-1-超级管理员登录"><a href="#5-6-1-超级管理员登录" class="headerlink" title="5.6.1 超级管理员登录"></a>5.6.1 超级管理员登录</h6><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">mongo</span> -uroot -proot123 admin</span><br></pre></td></tr></table></figure>
+<h6 id="5-6-2-选择一个验证库"><a href="#5-6-2-选择一个验证库" class="headerlink" title="5.6.2 选择一个验证库"></a>5.6.2 选择一个验证库</h6><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="keyword">app</span></span><br></pre></td></tr></table></figure>
+<h6 id="5-6-3-创建用户"><a href="#5-6-3-创建用户" class="headerlink" title="5.6.3 创建用户"></a>5.6.3 创建用户</h6><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">db</span><span class="selector-class">.createUser</span>(</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="attribute">user</span>: <span class="string">"app01"</span>,</span><br><span class="line">		<span class="attribute">pwd</span>: <span class="string">"app01"</span>,</span><br><span class="line">		<span class="attribute">roles</span>: [ &#123; <span class="attribute">role</span>: <span class="string">"readWrite"</span> , <span class="attribute">db</span>: <span class="string">"app"</span> &#125; ]</span><br><span class="line">	&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h6 id="5-6-4-登录"><a href="#5-6-4-登录" class="headerlink" title="5.6.4 登录"></a>5.6.4 登录</h6><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongo  -uapp01 -papp01 app</span><br></pre></td></tr></table></figure>
+<h5 id="5-7-创建app数据库读写权限的用户并对test数据库具有读权限"><a href="#5-7-创建app数据库读写权限的用户并对test数据库具有读权限" class="headerlink" title="5.7 创建app数据库读写权限的用户并对test数据库具有读权限"></a>5.7 创建app数据库读写权限的用户并对test数据库具有读权限</h5><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">mongo</span> <span class="selector-tag">-uroot</span> <span class="selector-tag">-proot123</span> <span class="selector-tag">10</span><span class="selector-class">.0</span><span class="selector-class">.0</span><span class="selector-class">.200</span>/<span class="selector-tag">admin</span></span><br><span class="line"><span class="selector-tag">use</span> <span class="selector-tag">app</span></span><br><span class="line"><span class="selector-tag">db</span><span class="selector-class">.createUser</span>(</span><br><span class="line">&#123;</span><br><span class="line"><span class="attribute">user</span>: <span class="string">"app03"</span>,</span><br><span class="line"><span class="attribute">pwd</span>: <span class="string">"app03"</span>,</span><br><span class="line"><span class="attribute">roles</span>: [ &#123; <span class="attribute">role</span>: <span class="string">"readWrite"</span>, <span class="attribute">db</span>: <span class="string">"app"</span> &#125;,</span><br><span class="line">&#123; <span class="attribute">role</span>: <span class="string">"read"</span>, <span class="attribute">db</span>: <span class="string">"test"</span> &#125;</span><br><span class="line">]</span><br><span class="line">&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h5 id="5-8-查询MongoDB中的用户信息"><a href="#5-8-查询MongoDB中的用户信息" class="headerlink" title="5.8 查询MongoDB中的用户信息"></a>5.8 查询MongoDB中的用户信息</h5><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mongo -uroot -proot123 <span class="number">10.0</span><span class="number">.0</span><span class="number">.200</span>/admin</span><br><span class="line">db.system.users.find().pretty()</span><br></pre></td></tr></table></figure>
+<h5 id="5-9-删除用户（root身份登录，use到验证库）"><a href="#5-9-删除用户（root身份登录，use到验证库）" class="headerlink" title="5.9 删除用户（root身份登录，use到验证库）"></a>5.9 删除用户（root身份登录，use到验证库）</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># mongo -uroot -proot123 10.0.0.200/admin</span><br><span class="line">use app</span><br><span class="line">db.dropUser(&quot;app01&quot;)</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="6-mongodb复制集RS"><a href="#6-mongodb复制集RS" class="headerlink" title="6. mongodb复制集RS"></a>6. mongodb复制集RS</h4><h5 id="6-1-基本原理"><a href="#6-1-基本原理" class="headerlink" title="6.1 基本原理"></a>6.1 基本原理</h5><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">基本构成是<span class="number">1</span>主<span class="number">2</span>从的结构，自带互相监控投票机制（Raft（MongoDB）  Paxos（mysql MGR 用的是变种））</span><br><span class="line">如果发生主库宕机，复制集内部会进行投票选举，选择一个新的主库替代原有主库对外提供服务。同时复制集会自动通知</span><br><span class="line">客户端程序，主库已经发生切换了。应用就会连接到新的主库。</span><br></pre></td></tr></table></figure>
+<h5 id="6-2-Replcation-Set配置过程详解"><a href="#6-2-Replcation-Set配置过程详解" class="headerlink" title="6.2 Replcation Set配置过程详解"></a>6.2 Replcation Set配置过程详解</h5><h6 id="6-2-1-规划"><a href="#6-2-1-规划" class="headerlink" title="6.2.1 规划"></a>6.2.1 规划</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">1.三个以上的mongodb节点（或多实例）</span><br><span class="line">多实例</span><br><span class="line">（1）多个端口：28017、28018、28019、28020</span><br><span class="line">（2）多套目录：</span><br><span class="line">mkdir -p /mongodb/28017/conf /mongodb/28017/data /mongodb/28017/log</span><br><span class="line">mkdir -p /mongodb/28018/conf /mongodb/28018/data /mongodb/28018/log</span><br><span class="line">mkdir -p /mongodb/28019/conf /mongodb/28019/data /mongodb/28019/log</span><br><span class="line">mkdir -p /mongodb/28020/conf /mongodb/28020/data /mongodb/28020/log</span><br><span class="line"></span><br><span class="line">(3) 多套配置文件</span><br><span class="line">配置文件内容:</span><br><span class="line">cat &gt;&gt;/mongodb/28017/conf/mongod.conf &lt;&lt; EOF</span><br><span class="line">systemLog:</span><br><span class="line">  destination: file</span><br><span class="line">  path: /mongodb/28017/log/mongodb.log</span><br><span class="line">  logAppend: true</span><br><span class="line">storage:</span><br><span class="line">  journal:</span><br><span class="line">    enabled: true</span><br><span class="line">  dbPath: /mongodb/28017/data</span><br><span class="line">  directoryPerDB: true</span><br><span class="line">  #engine: wiredTiger</span><br><span class="line">  wiredTiger:</span><br><span class="line">    engineConfig:</span><br><span class="line">      cacheSizeGB: 1</span><br><span class="line">      directoryForIndexes: true</span><br><span class="line">    collectionConfig:</span><br><span class="line">      blockCompressor: zlib</span><br><span class="line">    indexConfig:</span><br><span class="line">      prefixCompression: true</span><br><span class="line">processManagement:</span><br><span class="line">  fork: true</span><br><span class="line">net:</span><br><span class="line">  port: 28017</span><br><span class="line">replication:</span><br><span class="line">  oplogSizeMB: 2048</span><br><span class="line">  replSetName: my_repl</span><br><span class="line">EOF		</span><br><span class="line"></span><br><span class="line">cp  /mongodb/28017/conf/mongod.conf  /mongodb/28018/conf/</span><br><span class="line">cp  /mongodb/28017/conf/mongod.conf  /mongodb/28019/conf/</span><br><span class="line">cp  /mongodb/28017/conf/mongod.conf  /mongodb/28020/conf/</span><br><span class="line"></span><br><span class="line">sed &apos;s#28017#28018#g&apos; /mongodb/28018/conf/mongod.conf -i</span><br><span class="line">sed &apos;s#28017#28019#g&apos; /mongodb/28019/conf/mongod.conf -i</span><br><span class="line">sed &apos;s#28017#28020#g&apos; /mongodb/28020/conf/mongod.conf -i</span><br><span class="line"></span><br><span class="line">(5)启动多个实例备用</span><br><span class="line">mongod -f /mongodb/28017/conf/mongod.conf</span><br><span class="line">mongod -f /mongodb/28018/conf/mongod.conf</span><br><span class="line">mongod -f /mongodb/28019/conf/mongod.conf</span><br><span class="line">mongod -f /mongodb/28020/conf/mongod.conf</span><br><span class="line"></span><br><span class="line">(6) 查看开启状态</span><br><span class="line">netstat -lnp|grep 280</span><br></pre></td></tr></table></figure>
+<h6 id="6-2-2-配置复制集：一主两从（从库在默认情况下，只是实现了高可用，并没有实现高性能）"><a href="#6-2-2-配置复制集：一主两从（从库在默认情况下，只是实现了高可用，并没有实现高性能）" class="headerlink" title="6.2.2 配置复制集：一主两从（从库在默认情况下，只是实现了高可用，并没有实现高性能）"></a>6.2.2 配置复制集：一主两从（从库在默认情况下，只是实现了高可用，并没有实现高性能）</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">1.随便登录其中一个节点</span><br><span class="line">mongo --port 28017 admin</span><br><span class="line"></span><br><span class="line">2.配置复制集</span><br><span class="line">config = &#123;_id: &apos;my_repl&apos;, members: [</span><br><span class="line">                          &#123;_id: 0, host: &apos;10.0.0.100:28017&apos;&#125;,</span><br><span class="line">                          &#123;_id: 1, host: &apos;10.0.0.100:28018&apos;&#125;,</span><br><span class="line">                          &#123;_id: 2, host: &apos;10.0.0.100:28019&apos;&#125;]</span><br><span class="line">          &#125;</span><br><span class="line">3.生效配置文件   		  </span><br><span class="line">rs.initiate(config) </span><br><span class="line"></span><br><span class="line">4.查询复制集状态</span><br><span class="line">rs.status()</span><br></pre></td></tr></table></figure>
+<h6 id="6-2-2-一主一从一个仲裁者"><a href="#6-2-2-一主一从一个仲裁者" class="headerlink" title="6.2.2 一主一从一个仲裁者"></a>6.2.2 一主一从一个仲裁者</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mongo -port 28017 admin</span><br><span class="line"></span><br><span class="line">config = &#123;_id: &apos;my_repl&apos;, members: [</span><br><span class="line">                          &#123;_id: 0, host: &apos;10.0.0.100:28017&apos;&#125;,</span><br><span class="line">                          &#123;_id: 1, host: &apos;10.0.0.100:28018&apos;&#125;,</span><br><span class="line">                          &#123;_id: 2, host: &apos;10.0.0.100:28019&apos;,&quot;arbiterOnly&quot;:true&#125;]</span><br><span class="line">          &#125;</span><br><span class="line">                   </span><br><span class="line">rs.initiate(config)</span><br></pre></td></tr></table></figure>
+<h6 id="6-2-3-删除一个节点"><a href="#6-2-3-删除一个节点" class="headerlink" title="6.2.3 删除一个节点"></a>6.2.3 删除一个节点</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">rs.remove(&quot;ip:port&quot;); // 删除一个节点</span><br><span class="line"></span><br><span class="line">例子：</span><br><span class="line">my_repl:PRIMARY&gt; rs.remove(&quot;10.0.0.100:28019&quot;);</span><br><span class="line">&#123; &quot;ok&quot; : 1 &#125;</span><br><span class="line">my_repl:PRIMARY&gt; rs.isMaster()</span><br></pre></td></tr></table></figure>
+<h6 id="6-2-4-新增一个节点"><a href="#6-2-4-新增一个节点" class="headerlink" title="6.2.4 新增一个节点"></a>6.2.4 新增一个节点</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">rs.add(&quot;ip:port&quot;); // 新增从节点</span><br><span class="line"></span><br><span class="line">例子：</span><br><span class="line">my_repl:PRIMARY&gt; rs.add(&quot;10.0.0.100:28019&quot;)</span><br><span class="line">&#123; &quot;ok&quot; : 1 &#125;</span><br><span class="line">my_repl:PRIMARY&gt; rs.isMaster()</span><br></pre></td></tr></table></figure>
+<p><strong><font color="#DC143C">注意</font></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">添加特殊节点时，</span><br><span class="line">1&gt;可以在搭建过程中设置特殊节点</span><br><span class="line">2&gt;可以通过修改配置的方式将普通从节点设置为特殊节点 </span><br><span class="line">/*找到需要改为延迟性同步的数组号*/;</span><br></pre></td></tr></table></figure>
+<h5 id="6-3-配置特殊节点"><a href="#6-3-配置特殊节点" class="headerlink" title="6.3 配置特殊节点"></a>6.3 配置特殊节点</h5><h6 id="6-3-1-特殊节点"><a href="#6-3-1-特殊节点" class="headerlink" title="6.3.1 特殊节点"></a>6.3.1 特殊节点</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>投票使用的</span><br><span class="line">arbiter节点：主要负责选主过程中的投票，但是不存储任何数据，也不提供任何服务</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>数据恢复使用的</span><br><span class="line">hidden节点：隐藏节点，不参与选主，也不对外提供服务。   <span class="comment">#主要用来备份</span></span><br><span class="line"></span><br><span class="line"><span class="number">3.</span>处理删库使用的</span><br><span class="line">delay节点：延时节点，数据落后于主库一段时间，因为数据是延时的，也不应该提供服务或参与选主，所以通常会配合hidden（隐藏） --<span class="comment">#处理逻辑故障  删库</span></span><br></pre></td></tr></table></figure>
+<p><strong><font color="#DC143C">注意: 一般情况下会将delay+hidden一起配置使用</font></strong></p>
+<h6 id="6-3-2-配置延时节点（一般延时节点也配置成hidden）"><a href="#6-3-2-配置延时节点（一般延时节点也配置成hidden）" class="headerlink" title="6.3.2 配置延时节点（一般延时节点也配置成hidden）"></a>6.3.2 配置延时节点（一般延时节点也配置成hidden）</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">cfg=rs.conf() </span><br><span class="line">cfg.members[0].priority=0</span><br><span class="line">cfg.members[0].hidden=true</span><br><span class="line">cfg.members[0].slaveDelay=120</span><br><span class="line">rs.reconfig(cfg)    </span><br><span class="line">----------------------</span><br><span class="line">cfg=rs.conf() </span><br><span class="line">cfg.members[3].priority=0</span><br><span class="line">cfg.members[3].hidden=true</span><br><span class="line">cfg.members[3].slaveDelay=120</span><br><span class="line">rs.reconfig(cfg)    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---------------------------</span><br><span class="line">取消以上配置</span><br><span class="line">cfg=rs.conf() </span><br><span class="line">cfg.members[3].priority=1</span><br><span class="line">cfg.members[3].hidden=false</span><br><span class="line">cfg.members[3].slaveDelay=0</span><br><span class="line">rs.reconfig(cfg)    </span><br><span class="line">--------------------------------</span><br><span class="line"></span><br><span class="line">配置成功后，通过以下命令查询配置后的属性</span><br><span class="line">rs.conf();</span><br></pre></td></tr></table></figure>
+<h6 id="6-3-3-副本集其他操作命令"><a href="#6-3-3-副本集其他操作命令" class="headerlink" title="6.3.3 副本集其他操作命令"></a>6.3.3 副本集其他操作命令</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">--查看副本集的配置信息</span><br><span class="line">admin&gt; rs.config()</span><br><span class="line">或者</span><br><span class="line">admin&gt; rs.conf()</span><br><span class="line"></span><br><span class="line">--查看副本集各成员的状态</span><br><span class="line">admin&gt; rs.status()</span><br><span class="line">++++++++++++++++++++++++++++++++++++++++++++++++</span><br><span class="line">--副本集角色切换（不要人为随便操作）</span><br><span class="line">admin&gt; rs.stepDown()</span><br><span class="line">注：</span><br><span class="line">admin&gt; rs.freeze(300) //锁定从，使其不会转变成主库</span><br><span class="line">freeze()和stepDown单位都是秒。</span><br><span class="line">+++++++++++++++++++++++++++++++++++++++++++++</span><br><span class="line">--设置副本节点可读：在副本节点执行</span><br><span class="line">admin&gt; rs.slaveOk()</span><br><span class="line"></span><br><span class="line">eg：</span><br><span class="line">admin&gt; use app</span><br><span class="line">switched to db app</span><br><span class="line">app&gt; db.createCollection(&apos;a&apos;)</span><br><span class="line">&#123; &quot;ok&quot; : 0, &quot;errmsg&quot; : &quot;not master&quot;, &quot;code&quot; : 10107 &#125;</span><br><span class="line"></span><br><span class="line">--查看副本节点（监控主从延时）</span><br><span class="line">admin&gt; rs.printSlaveReplicationInfo()</span><br><span class="line">source: 192.168.1.22:27017</span><br><span class="line">	syncedTo: Thu May 26 2016 10:28:56 GMT+0800 (CST)</span><br><span class="line">	0 secs (0 hrs) behind the primary</span><br></pre></td></tr></table></figure>
+<p><strong><font color="#DC143C">注意: OPlog日志（备份恢复章节）</font></strong></p>
+<hr>
+<h4 id="7-MongoDB-Sharding-Cluster-分片集群"><a href="#7-MongoDB-Sharding-Cluster-分片集群" class="headerlink" title="7. MongoDB Sharding Cluster 分片集群"></a>7. MongoDB Sharding Cluster 分片集群</h4><h5 id="7-1-规划"><a href="#7-1-规划" class="headerlink" title="7.1 规划"></a>7.1 规划</h5><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">10</span>个实例：<span class="number">38017</span><span class="number">-38026</span></span><br></pre></td></tr></table></figure>
+<h6 id="7-1-1-configserver"><a href="#7-1-1-configserver" class="headerlink" title="7.1.1 configserver"></a>7.1.1 configserver</h6><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span>台构成的复制集（<span class="number">1</span>主两从，不支持arbiter）<span class="number">38018</span><span class="number">-38020</span>（复制集名字configsvr）</span><br></pre></td></tr></table></figure>
+<h6 id="7-1-2-shard节点"><a href="#7-1-2-shard节点" class="headerlink" title="7.1.2 shard节点"></a>7.1.2 shard节点</h6><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">shard1：<span class="number">38021</span><span class="number">-23</span>    （<span class="number">1</span>主两从，其中一个节点为arbiter，复制集名字shard1）</span><br><span class="line">shard2：<span class="number">38024</span><span class="number">-26</span>    （<span class="number">1</span>主两从，其中一个节点为arbiter，复制集名字shard2）</span><br></pre></td></tr></table></figure>
+<hr>
+<h5 id="7-2-分片集群配置过程"><a href="#7-2-分片集群配置过程" class="headerlink" title="7.2 分片集群配置过程"></a>7.2 分片集群配置过程</h5><h6 id="7-2-1-shard复制集配置"><a href="#7-2-1-shard复制集配置" class="headerlink" title="7.2.1 shard复制集配置"></a>7.2.1 shard复制集配置</h6><blockquote>
+<p><strong>1.目录创建</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /mongodb/38021/conf  /mongodb/38021/log  /mongodb/38021/data</span><br><span class="line">mkdir -p /mongodb/38022/conf  /mongodb/38022/log  /mongodb/38022/data</span><br><span class="line">mkdir -p /mongodb/38023/conf  /mongodb/38023/log  /mongodb/38023/data</span><br><span class="line">mkdir -p /mongodb/38024/conf  /mongodb/38024/log  /mongodb/38024/data</span><br><span class="line">mkdir -p /mongodb/38025/conf  /mongodb/38025/log  /mongodb/38025/data</span><br><span class="line">mkdir -p /mongodb/38026/conf  /mongodb/38026/log  /mongodb/38026/data</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>2.修改配置文件</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">1.shard1</span><br><span class="line"></span><br><span class="line">cat &gt;&gt; /mongodb/38021/conf/mongodb.conf &lt;&lt;EOF</span><br><span class="line">systemLog:</span><br><span class="line">  destination: file</span><br><span class="line">  path: /mongodb/38021/log/mongodb.log   </span><br><span class="line">  logAppend: true</span><br><span class="line">storage:</span><br><span class="line">  journal:</span><br><span class="line">    enabled: true</span><br><span class="line">  dbPath: /mongodb/38021/data</span><br><span class="line">  directoryPerDB: true</span><br><span class="line">  #engine: wiredTiger</span><br><span class="line">  wiredTiger:</span><br><span class="line">    engineConfig:</span><br><span class="line">      cacheSizeGB: 1</span><br><span class="line">      directoryForIndexes: true</span><br><span class="line">    collectionConfig:</span><br><span class="line">      blockCompressor: zlib</span><br><span class="line">    indexConfig:</span><br><span class="line">      prefixCompression: true</span><br><span class="line">net:</span><br><span class="line">  port: 38021</span><br><span class="line">replication:</span><br><span class="line">  oplogSizeMB: 2048</span><br><span class="line">  replSetName: sh1</span><br><span class="line">sharding:</span><br><span class="line">  clusterRole: shardsvr</span><br><span class="line">processManagement: </span><br><span class="line">  fork: true</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">cp  /mongodb/38021/conf/mongodb.conf  /mongodb/38022/conf/</span><br><span class="line">cp  /mongodb/38021/conf/mongodb.conf  /mongodb/38023/conf/</span><br><span class="line"></span><br><span class="line">sed &apos;s#38021#38022#g&apos; /mongodb/38022/conf/mongodb.conf -i</span><br><span class="line">sed &apos;s#38021#38023#g&apos; /mongodb/38023/conf/mongodb.conf -i</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2.</span>shard2</span><br><span class="line"></span><br><span class="line">cat &gt;&gt; /mongodb/<span class="number">38024</span>/conf/mongodb.conf &lt;&lt; EOF</span><br><span class="line">systemLog:</span><br><span class="line">  destination: file</span><br><span class="line">  path: /mongodb/<span class="number">38024</span>/log/mongodb.log   </span><br><span class="line">  logAppend: true</span><br><span class="line">storage:</span><br><span class="line">  journal:</span><br><span class="line">    enabled: true</span><br><span class="line">  dbPath: /mongodb/<span class="number">38024</span>/data</span><br><span class="line">  directoryPerDB: true</span><br><span class="line">  wiredTiger:</span><br><span class="line">    engineConfig:</span><br><span class="line">      cacheSizeGB: <span class="number">1</span></span><br><span class="line">      directoryForIndexes: true</span><br><span class="line">    collectionConfig:</span><br><span class="line">      blockCompressor: zlib</span><br><span class="line">    indexConfig:</span><br><span class="line">      prefixCompression: true</span><br><span class="line">net:</span><br><span class="line">  port: <span class="number">38024</span></span><br><span class="line">replication:</span><br><span class="line">  oplogSizeMB: <span class="number">2048</span></span><br><span class="line">  replSetName: sh2</span><br><span class="line">sharding:</span><br><span class="line">  clusterRole: shardsvr</span><br><span class="line">processManagement: </span><br><span class="line">  fork: true</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">cp  /mongodb/<span class="number">38024</span>/conf/mongodb.conf  /mongodb/<span class="number">38025</span>/conf/</span><br><span class="line">cp  /mongodb/<span class="number">38024</span>/conf/mongodb.conf  /mongodb/<span class="number">38026</span>/conf/</span><br><span class="line">sed <span class="string">'s#38024#38025#g'</span> /mongodb/<span class="number">38025</span>/conf/mongodb.conf -i</span><br><span class="line">sed <span class="string">'s#38024#38026#g'</span> /mongodb/<span class="number">38026</span>/conf/mongodb.conf -i</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>3.启动所有的节点，并搭建复制集</strong></p>
+</blockquote>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mongod -f  <span class="regexp">/mongodb/</span><span class="number">38021</span><span class="regexp">/conf/m</span>ongodb.conf </span><br><span class="line">mongod -f  <span class="regexp">/mongodb/</span><span class="number">38022</span><span class="regexp">/conf/m</span>ongodb.conf </span><br><span class="line">mongod -f  <span class="regexp">/mongodb/</span><span class="number">38023</span><span class="regexp">/conf/m</span>ongodb.conf </span><br><span class="line">mongod -f  <span class="regexp">/mongodb/</span><span class="number">38024</span><span class="regexp">/conf/m</span>ongodb.conf </span><br><span class="line">mongod -f  <span class="regexp">/mongodb/</span><span class="number">38025</span><span class="regexp">/conf/m</span>ongodb.conf </span><br><span class="line">mongod -f  <span class="regexp">/mongodb/</span><span class="number">38026</span><span class="regexp">/conf/m</span>ongodb.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mongo --port 38021</span><br><span class="line"></span><br><span class="line">use  admin</span><br><span class="line">config = &#123;_id: &apos;sh1&apos;, members: [</span><br><span class="line">                          &#123;_id: 0, host: &apos;10.0.0.100:38021&apos;&#125;,</span><br><span class="line">                          &#123;_id: 1, host: &apos;10.0.0.100:38022&apos;&#125;,</span><br><span class="line">                          &#123;_id: 2, host: &apos;10.0.0.100:38023&apos;,&quot;arbiterOnly&quot;:true&#125;]</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">rs.initiate(config)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mongo --port <span class="number">38024</span> </span><br><span class="line">use admin</span><br><span class="line">config = &#123;_id: <span class="string">'sh2'</span>, members: [</span><br><span class="line">                          &#123;_id: <span class="number">0</span>, host: <span class="string">'10.0.0.100:38024'</span>&#125;,</span><br><span class="line">                          &#123;_id: <span class="number">1</span>, host: <span class="string">'10.0.0.100:38025'</span>&#125;,</span><br><span class="line">                          &#123;_id: <span class="number">2</span>, host: <span class="string">'10.0.0.100:38026'</span>,<span class="string">"arbiterOnly"</span>:true&#125;]</span><br><span class="line">           &#125;</span><br><span class="line">  </span><br><span class="line">rs.initiate(config)</span><br></pre></td></tr></table></figure>
+<hr>
+<h5 id="7-3-config节点配置"><a href="#7-3-config节点配置" class="headerlink" title="7.3 config节点配置"></a>7.3 config节点配置</h5><h6 id="7-3-1-目录创建"><a href="#7-3-1-目录创建" class="headerlink" title="7.3.1 目录创建"></a>7.3.1 目录创建</h6><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p <span class="regexp">/mongodb/</span><span class="number">38018</span><span class="regexp">/conf  /</span>mongodb<span class="regexp">/38018/</span>log  <span class="regexp">/mongodb/</span><span class="number">38018</span>/data</span><br><span class="line">mkdir -p <span class="regexp">/mongodb/</span><span class="number">38019</span><span class="regexp">/conf  /</span>mongodb<span class="regexp">/38019/</span>log  <span class="regexp">/mongodb/</span><span class="number">38019</span>/data</span><br><span class="line">mkdir -p <span class="regexp">/mongodb/</span><span class="number">38020</span><span class="regexp">/conf  /</span>mongodb<span class="regexp">/38020/</span>log  <span class="regexp">/mongodb/</span><span class="number">38020</span>/data</span><br></pre></td></tr></table></figure>
+<h6 id="7-3-2-修改配置文件"><a href="#7-3-2-修改配置文件" class="headerlink" title="7.3.2 修改配置文件"></a>7.3.2 修改配置文件</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">cat &gt;&gt; /mongodb/38018/conf/mongodb.conf &lt;&lt; EOF</span><br><span class="line">systemLog:</span><br><span class="line">  destination: file</span><br><span class="line">  path: /mongodb/38018/log/mongodb.conf</span><br><span class="line">  logAppend: true</span><br><span class="line">storage:</span><br><span class="line">  journal:</span><br><span class="line">    enabled: true</span><br><span class="line">  dbPath: /mongodb/38018/data</span><br><span class="line">  directoryPerDB: true</span><br><span class="line">  #engine: wiredTiger</span><br><span class="line">  wiredTiger:</span><br><span class="line">    engineConfig:</span><br><span class="line">      cacheSizeGB: 1</span><br><span class="line">      directoryForIndexes: true</span><br><span class="line">    collectionConfig:</span><br><span class="line">      blockCompressor: zlib</span><br><span class="line">    indexConfig:</span><br><span class="line">      prefixCompression: true</span><br><span class="line">net:</span><br><span class="line">  port: 38018</span><br><span class="line">replication:</span><br><span class="line">  oplogSizeMB: 2048</span><br><span class="line">  replSetName: configReplSet</span><br><span class="line">sharding:</span><br><span class="line">  clusterRole: configsvr</span><br><span class="line">processManagement: </span><br><span class="line">  fork: true</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">cp /mongodb/38018/conf/mongodb.conf /mongodb/38019/conf/</span><br><span class="line">cp /mongodb/38018/conf/mongodb.conf /mongodb/38020/conf/</span><br><span class="line">sed &apos;s#38018#38019#g&apos; /mongodb/38019/conf/mongodb.conf -i</span><br><span class="line">sed &apos;s#38018#38020#g&apos; /mongodb/38020/conf/mongodb.conf -i</span><br></pre></td></tr></table></figure>
+<h6 id="7-3-3-启动节点，并配置复制集"><a href="#7-3-3-启动节点，并配置复制集" class="headerlink" title="7.3.3 启动节点，并配置复制集"></a>7.3.3 启动节点，并配置复制集</h6><blockquote>
+<p><strong>1.启动节点</strong></p>
+</blockquote>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mongod -f <span class="regexp">/mongodb/</span><span class="number">38018</span><span class="regexp">/conf/m</span>ongodb.conf </span><br><span class="line">mongod -f <span class="regexp">/mongodb/</span><span class="number">38019</span><span class="regexp">/conf/m</span>ongodb.conf </span><br><span class="line">mongod -f <span class="regexp">/mongodb/</span><span class="number">38020</span><span class="regexp">/conf/m</span>ongodb.conf</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>2.配置复制集</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mongo --port 38018</span><br><span class="line">use  admin</span><br><span class="line"></span><br><span class="line">config = &#123;_id: &apos;configReplSet&apos;, members: [</span><br><span class="line">                          &#123;_id: 0, host: &apos;10.0.0.100:38018&apos;&#125;,</span><br><span class="line">                          &#123;_id: 1, host: &apos;10.0.0.100:38019&apos;&#125;,</span><br><span class="line">                          &#123;_id: 2, host: &apos;10.0.0.100:38020&apos;&#125;]</span><br><span class="line">           &#125;</span><br><span class="line">rs.initiate(config)</span><br></pre></td></tr></table></figure>
+<p><strong><font color="#DC143C">注意: </font></strong></p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">注：configserver 可以是一个节点，官方建议复制集。configserver不能有arbiter。</span><br><span class="line">新版本中，要求必须是复制集。</span><br><span class="line">注：mongodb <span class="number">3.4</span>之后，虽然要求<span class="built_in">config</span> server为replica <span class="built_in">set</span>，但是不支持arbiter</span><br></pre></td></tr></table></figure>
+<hr>
+<h5 id="7-4-mongos节点配置"><a href="#7-4-mongos节点配置" class="headerlink" title="7.4 mongos节点配置"></a>7.4 mongos节点配置</h5><h6 id="7-4-1-创建目录"><a href="#7-4-1-创建目录" class="headerlink" title="7.4.1 创建目录"></a>7.4.1 创建目录</h6><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p <span class="regexp">/mongodb/</span><span class="number">38017</span><span class="regexp">/conf  /m</span>ongodb<span class="regexp">/38017/</span>log</span><br></pre></td></tr></table></figure>
+<h6 id="7-4-2-配置文件"><a href="#7-4-2-配置文件" class="headerlink" title="7.4.2 配置文件"></a>7.4.2 配置文件</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">cat &gt;&gt; /mongodb/38017/conf/mongos.conf &lt;&lt;EOF</span><br><span class="line">systemLog:</span><br><span class="line">  destination: file</span><br><span class="line">  path: /mongodb/38017/log/mongos.log</span><br><span class="line">  logAppend: true</span><br><span class="line">net:</span><br><span class="line">  port: 38017</span><br><span class="line">sharding:</span><br><span class="line">  configDB: configReplSet/10.0.0.100:38018,10.0.0.100:38019,10.0.0.100:38020</span><br><span class="line">processManagement: </span><br><span class="line">  fork: true</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+<h6 id="7-4-2-启动mongos"><a href="#7-4-2-启动mongos" class="headerlink" title="7.4.2 启动mongos"></a>7.4.2 启动mongos</h6><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongos -f <span class="regexp">/mongodb/</span><span class="number">38017</span><span class="regexp">/conf/m</span>ongos.conf</span><br></pre></td></tr></table></figure>
+<h5 id="7-5-range-分片配置及测试"><a href="#7-5-range-分片配置及测试" class="headerlink" title="7.5 range 分片配置及测试"></a>7.5 range 分片配置及测试</h5><h6 id="7-5-1-激活数据库分片功能"><a href="#7-5-1-激活数据库分片功能" class="headerlink" title="7.5.1 激活数据库分片功能"></a>7.5.1 激活数据库分片功能</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mongo --port 38017 admin</span><br><span class="line"></span><br><span class="line">admin&gt;  ( &#123; enablesharding : &quot;数据库名称&quot; &#125; )</span><br><span class="line"></span><br><span class="line">eg：</span><br><span class="line">admin&gt; db.runCommand( &#123; enablesharding : &quot;test&quot; &#125; )</span><br></pre></td></tr></table></figure>
+<h6 id="7-5-2-指定分片建对集合分片"><a href="#7-5-2-指定分片建对集合分片" class="headerlink" title="7.5.2 指定分片建对集合分片"></a>7.5.2 指定分片建对集合分片</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">eg：范围片键</span><br><span class="line">--创建索引</span><br><span class="line">use test</span><br><span class="line">&gt; db.vast.ensureIndex( &#123; id: 1 &#125; )</span><br><span class="line"></span><br><span class="line">--开启分片</span><br><span class="line">use admin</span><br><span class="line">&gt; db.runCommand( &#123; shardcollection : &quot;test.vast&quot;,key : &#123;id: 1&#125; &#125; )</span><br></pre></td></tr></table></figure>
+<h6 id="7-5-3-集合分片验证"><a href="#7-5-3-集合分片验证" class="headerlink" title="7.5.3 集合分片验证"></a>7.5.3 集合分片验证</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">admin&gt; use test</span><br><span class="line"></span><br><span class="line">test&gt; <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;<span class="number">500000</span>;i++)&#123; db.vast.insert(&#123;<span class="string">"id"</span>:i,<span class="string">"name"</span>:<span class="string">"shenzheng"</span>,<span class="string">"age"</span>:<span class="number">70</span>,<span class="string">"date"</span>:new Date()&#125;); &#125;</span><br><span class="line"></span><br><span class="line">test&gt; db.vast.stats()</span><br></pre></td></tr></table></figure>
+<h6 id="7-5-4-分片结果测试-连接到分片的主节点"><a href="#7-5-4-分片结果测试-连接到分片的主节点" class="headerlink" title="7.5.4 分片结果测试(连接到分片的主节点)"></a>7.5.4 分片结果测试(连接到分片的主节点)</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">shard1:</span><br><span class="line">mongo --port <span class="number">38021</span></span><br><span class="line">db.vast.count();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">shard2:</span><br><span class="line">mongo --port <span class="number">38024</span></span><br><span class="line">db.vast.count();</span><br></pre></td></tr></table></figure>
+<h5 id="7-6-Hash分片例子"><a href="#7-6-Hash分片例子" class="headerlink" title="7.6 Hash分片例子"></a>7.6 Hash分片例子</h5><h6 id="7-6-1-对于oldguo开启分片功能"><a href="#7-6-1-对于oldguo开启分片功能" class="headerlink" title="7.6.1 对于oldguo开启分片功能"></a>7.6.1 对于oldguo开启分片功能</h6><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">mongo</span> <span class="selector-tag">--port</span> 38017 <span class="selector-tag">admin</span></span><br><span class="line"><span class="selector-tag">use</span> <span class="selector-tag">admin</span></span><br><span class="line"><span class="selector-tag">admin</span>&gt; <span class="selector-tag">db</span><span class="selector-class">.runCommand</span>( &#123; <span class="attribute">enablesharding </span>: <span class="string">"oldguo"</span> &#125; )</span><br></pre></td></tr></table></figure>
+<h6 id="7-6-2-对于oldguo库下的vast表建立hash索引"><a href="#7-6-2-对于oldguo库下的vast表建立hash索引" class="headerlink" title="7.6.2 对于oldguo库下的vast表建立hash索引"></a>7.6.2 对于oldguo库下的vast表建立hash索引</h6><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">use</span> <span class="selector-tag">oldguo</span></span><br><span class="line"><span class="selector-tag">oldguo</span>&gt; <span class="selector-tag">db</span><span class="selector-class">.vast</span><span class="selector-class">.ensureIndex</span>( &#123; <span class="attribute">id</span>: <span class="string">"hashed"</span> &#125; )</span><br></pre></td></tr></table></figure>
+<h6 id="7-6-3-开启分片"><a href="#7-6-3-开启分片" class="headerlink" title="7.6.3 开启分片"></a>7.6.3 开启分片</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">use admin</span><br><span class="line">admin &gt; sh.shardCollection( &quot;oldguo.vast&quot;, &#123; id: &quot;hashed&quot; &#125; )</span><br></pre></td></tr></table></figure>
+<h6 id="7-6-4-录入10w行数据测试"><a href="#7-6-4-录入10w行数据测试" class="headerlink" title="7.6.4 录入10w行数据测试"></a>7.6.4 录入10w行数据测试</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">use oldguo</span><br><span class="line">for(i=1;i&lt;=100000;i++)&#123; db.vast.insert(&#123;&quot;id&quot;:i,&quot;name&quot;:&quot;shenzheng&quot;,&quot;age&quot;:70,&quot;date&quot;:new Date()&#125;); &#125;</span><br></pre></td></tr></table></figure>
+<h6 id="7-6-5-hash分片结果测试"><a href="#7-6-5-hash分片结果测试" class="headerlink" title="7.6.5 hash分片结果测试"></a>7.6.5 hash分片结果测试</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mongo --port 38021</span><br><span class="line">use oldguo</span><br><span class="line">db.vast.count();</span><br><span class="line"></span><br><span class="line">mongo --port 38024</span><br><span class="line">use oldguo</span><br><span class="line">db.vast.count();</span><br></pre></td></tr></table></figure>
+<h5 id="7-7-判断是否是shard集群"><a href="#7-7-判断是否是shard集群" class="headerlink" title="7.7 判断是否是shard集群"></a>7.7 判断是否是shard集群</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">admin</span>&gt; <span class="selector-tag">db</span><span class="selector-class">.runCommand</span>(&#123; <span class="attribute">isdbgrid </span>: <span class="number">1</span>&#125;)</span><br></pre></td></tr></table></figure>
+<h5 id="7-8-列出所有分片信息"><a href="#7-8-列出所有分片信息" class="headerlink" title="7.8 列出所有分片信息"></a>7.8 列出所有分片信息</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">admin</span>&gt; <span class="selector-tag">db</span><span class="selector-class">.runCommand</span>(&#123; <span class="attribute">listshards </span>: <span class="number">1</span>&#125;)</span><br></pre></td></tr></table></figure>
+<h5 id="7-9-列出开启分片的数据库"><a href="#7-9-列出开启分片的数据库" class="headerlink" title="7.9 列出开启分片的数据库"></a>7.9 列出开启分片的数据库</h5><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">admin&gt; use <span class="built_in">config</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">config</span>&gt; db.databases.<span class="built_in">find</span>( &#123; <span class="string">"partitioned"</span>: <span class="literal">true</span> &#125; )</span><br><span class="line">或者：</span><br><span class="line"><span class="built_in">config</span>&gt; db.databases.<span class="built_in">find</span>() <span class="comment">//列出所有数据库分片情况</span></span><br></pre></td></tr></table></figure>
+<h5 id="8-0-查看分片的片键"><a href="#8-0-查看分片的片键" class="headerlink" title="8.0 查看分片的片键"></a>8.0 查看分片的片键</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">config&gt; db.collections.find().pretty()</span><br><span class="line">&#123;</span><br><span class="line">	&quot;_id&quot; : &quot;test.vast&quot;,</span><br><span class="line">	&quot;lastmodEpoch&quot; : ObjectId(&quot;58a599f19c898bbfb818b63c&quot;),</span><br><span class="line">	&quot;lastmod&quot; : ISODate(&quot;1970-02-19T17:02:47.296Z&quot;),</span><br><span class="line">	&quot;dropped&quot; : false,</span><br><span class="line">	&quot;key&quot; : &#123;</span><br><span class="line">		&quot;id&quot; : 1</span><br><span class="line">	&#125;,</span><br><span class="line">	&quot;unique&quot; : false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="8-1-查看分片的详细信息"><a href="#8-1-查看分片的详细信息" class="headerlink" title="8.1 查看分片的详细信息"></a>8.1 查看分片的详细信息</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">admin</span>&gt; <span class="selector-tag">db</span><span class="selector-class">.printShardingStatus</span>()</span><br><span class="line">或</span><br><span class="line"><span class="selector-tag">admin</span>&gt; <span class="selector-tag">sh</span><span class="selector-class">.status</span>()</span><br></pre></td></tr></table></figure>
+<h5 id="8-2-删除分片节点（谨慎）"><a href="#8-2-删除分片节点（谨慎）" class="headerlink" title="8.2 删除分片节点（谨慎）"></a>8.2 删除分片节点（谨慎）</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">（1）确认<span class="selector-tag">blance</span>是否在工作</span><br><span class="line"><span class="selector-tag">sh</span><span class="selector-class">.getBalancerState</span>()</span><br><span class="line"></span><br><span class="line">（2）删除<span class="selector-tag">shard2</span>节点(谨慎)</span><br><span class="line"><span class="selector-tag">mongos</span>&gt; <span class="selector-tag">db</span><span class="selector-class">.runCommand</span>( &#123; <span class="attribute">removeShard</span>: <span class="string">"shard2"</span> &#125; )</span><br><span class="line"></span><br><span class="line">注意：删除操作一定会立即触发<span class="selector-tag">blancer</span>。</span><br></pre></td></tr></table></figure>
+<h5 id="8-3-balancer操作"><a href="#8-3-balancer操作" class="headerlink" title="8.3 balancer操作"></a>8.3 balancer操作</h5><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">介绍：</span><br><span class="line">mongos的一个重要功能，自动巡查所有<span class="keyword">shard节点上的chunk的情况，自动做chunk迁移。</span></span><br><span class="line"><span class="keyword">什么时候工作？</span></span><br><span class="line"><span class="keyword">1、自动运行，会检测系统不繁忙的时候做迁移</span></span><br><span class="line"><span class="keyword">2、在做节点删除的时候，立即开始迁移工作</span></span><br><span class="line"><span class="keyword">3、balancer只能在预设定的时间窗口内运行</span></span><br><span class="line"><span class="keyword"></span></span><br><span class="line"><span class="keyword">有需要时可以关闭和开启blancer（备份的时候）</span></span><br><span class="line"><span class="keyword">mongos&gt; </span><span class="keyword">sh.stopBalancer()</span></span><br><span class="line"><span class="keyword">mongos&gt; </span><span class="keyword">sh.startBalancer()</span></span><br></pre></td></tr></table></figure>
+<h5 id="8-4-自定义-自动平衡进行的时间段"><a href="#8-4-自定义-自动平衡进行的时间段" class="headerlink" title="8.4 自定义 自动平衡进行的时间段"></a>8.4 自定义 自动平衡进行的时间段</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">https://docs.mongodb.com/manual/tutorial/manage-sharded-cluster-balancer/#schedule-the-balancing-window</span><br><span class="line">// connect to mongos</span><br><span class="line"></span><br><span class="line">use config</span><br><span class="line">sh.setBalancerState( true )</span><br><span class="line"></span><br><span class="line">db.settings.update(&#123; _id : &quot;balancer&quot; &#125;, &#123; $set : &#123; activeWindow : &#123; start : &quot;3:00&quot;, stop : &quot;5:00&quot; &#125; &#125; &#125;, true )</span><br><span class="line"></span><br><span class="line">sh.getBalancerWindow()</span><br><span class="line">sh.status()</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">关于集合的<span class="selector-tag">balance</span>（了解下）</span><br><span class="line"></span><br><span class="line">关闭某个集合的<span class="selector-tag">balance</span></span><br><span class="line"><span class="selector-tag">sh</span><span class="selector-class">.disableBalancing</span>("<span class="selector-tag">students</span><span class="selector-class">.grades</span>")</span><br><span class="line">打开某个集合的<span class="selector-tag">balance</span></span><br><span class="line"><span class="selector-tag">sh</span><span class="selector-class">.enableBalancing</span>("<span class="selector-tag">students</span><span class="selector-class">.grades</span>")</span><br><span class="line">确定某个集合的<span class="selector-tag">balance</span>是开启或者关闭</span><br><span class="line"><span class="selector-tag">db</span><span class="selector-class">.getSiblingDB</span>("<span class="selector-tag">config</span>")<span class="selector-class">.collections</span><span class="selector-class">.findOne</span>(&#123;<span class="attribute">_id </span>: <span class="string">"students.grades"</span>&#125;)<span class="selector-class">.noBalance</span>;</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="8-备份恢复"><a href="#8-备份恢复" class="headerlink" title="8. 备份恢复"></a>8. 备份恢复</h4><h5 id="8-1-备份恢复工具介绍"><a href="#8-1-备份恢复工具介绍" class="headerlink" title="8.1 备份恢复工具介绍"></a>8.1 备份恢复工具介绍</h5><figure class="highlight elm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">（<span class="number">1</span>）**   mongoex<span class="keyword">port</span>/mongoimport</span><br><span class="line">（<span class="number">2</span>）***** mongodump/mongorestore</span><br></pre></td></tr></table></figure>
+<h5 id="8-2-备份工具区别在哪里"><a href="#8-2-备份工具区别在哪里" class="headerlink" title="8.2 备份工具区别在哪里"></a>8.2 备份工具区别在哪里</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2.1</span>.	mongoexport/mongoimport  导入/导出的是JSON格式或者CSV格式，</span><br><span class="line">		mongodump/mongorestore导入/导出的是BSON格式。</span><br><span class="line">		</span><br><span class="line"><span class="number">2.2</span>.	JSON可读性强但体积较大，BSON则是二进制文件，体积小但对人类几乎没有可读性。</span><br><span class="line"></span><br><span class="line"><span class="number">2.3</span>.	在一些mongodb版本之间，BSON格式可能会随版本不同而有所不同，所以不同版本之间用mongodump/mongorestore可能不会成功，</span><br><span class="line">		具体要看版本之间的兼容性。当无法使用BSON进行跨版本的数据迁移的时候，</span><br><span class="line">		使用JSON格式即mongoexport/mongoimport是一个可选项。</span><br><span class="line">		跨版本的mongodump/mongorestore个人并不推荐，实在要做请先检查文档看两个版本是否兼容（大部分时候是的）。</span><br><span class="line"></span><br><span class="line"><span class="number">2.4</span>.	JSON虽然具有较好的跨版本通用性，但其只保留了数据部分，不保留索引，账户等其他基础信息。使用时应该注意。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">mongoexport/mongoimport:json csv </span><br><span class="line">1、异构平台迁移  mysql  &lt;---&gt; mongodb</span><br><span class="line">2、同平台，跨大版本：mongodb 2  ----&gt; mongodb 3</span><br></pre></td></tr></table></figure>
+<h5 id="8-3-导出工具mongoexport"><a href="#8-3-导出工具mongoexport" class="headerlink" title="8.3 导出工具mongoexport"></a>8.3 导出工具mongoexport</h5><figure class="highlight elm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Mongodb</span>中的mongoex<span class="keyword">port</span>工具可以把一个collection导出成JSON格式或CSV格式的文件。</span><br><span class="line">可以通过参数指定导出的数据项，也可以根据指定的条件导出数据。</span><br><span class="line">（<span class="number">1</span>）版本差异较大</span><br><span class="line">（<span class="number">2</span>）异构平台数据迁移</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="title">mongoexport</span>具体用法如下所示：</span><br><span class="line"></span><br><span class="line">$ mongoex<span class="keyword">port</span> <span class="comment">--help  </span></span><br><span class="line">参数说明：</span><br><span class="line">-h:指明数据库宿主机的<span class="type">IP</span></span><br><span class="line"></span><br><span class="line">-u:指明数据库的用户名</span><br><span class="line"></span><br><span class="line">-p:指明数据库的密码</span><br><span class="line"></span><br><span class="line">-d:指明数据库的名字</span><br><span class="line"></span><br><span class="line">-c:指明collection的名字</span><br><span class="line"></span><br><span class="line">-f:指明要导出那些列</span><br><span class="line"></span><br><span class="line">-o:指明到要导出的文件名</span><br><span class="line"></span><br><span class="line">-q:指明导出数据的过滤条件</span><br><span class="line"></span><br><span class="line"><span class="comment">--authenticationDatabase admin</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="number">1.</span>单表备份至json格式</span><br><span class="line"><span class="title">mongoexport</span> -uroot -proot123 <span class="comment">--port 27017 --authenticationDatabase admin -d oldguo -c log -o /mongodb/log.json</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">注：备份文件的名字可以自定义，默认导出了<span class="type">JSON</span>格式的数据。</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> 单表备份至csv格式</span><br><span class="line">如果我们需要导出<span class="type">CSV</span>格式的数据，则需要使用<span class="comment">----type=csv参数：</span></span><br><span class="line"></span><br><span class="line"> mongoex<span class="keyword">port</span> -uroot -proot123 <span class="comment">--port 27017 --authenticationDatabase admin -d oldguo -c log --type=csv -f uid,name,age,date  -o /mongodb/log.csv</span></span><br><span class="line"></span><br><span class="line">二、导入工具mongo<span class="keyword">import</span></span><br><span class="line"><span class="type">Mongodb</span>中的mongo<span class="keyword">import</span>工具可以把一个特定格式文件中的内容导入到指定的collection中。该工具可以导入JSON格式数据，也可以导入CSV格式数据。具体使用如下所示：</span><br><span class="line">$ mongo<span class="keyword">import</span> <span class="comment">--help</span></span><br><span class="line">参数说明：</span><br><span class="line">-h:指明数据库宿主机的<span class="type">IP</span></span><br><span class="line"></span><br><span class="line">-u:指明数据库的用户名</span><br><span class="line"></span><br><span class="line">-p:指明数据库的密码</span><br><span class="line"></span><br><span class="line">-d:指明数据库的名字</span><br><span class="line"></span><br><span class="line">-c:指明collection的名字</span><br><span class="line"></span><br><span class="line">-f:指明要导入那些列</span><br><span class="line"></span><br><span class="line">-j, <span class="comment">--numInsertionWorkers=&lt;number&gt;  number of insert operations to run concurrently                                                  (defaults to 1)</span></span><br><span class="line">//并行</span><br></pre></td></tr></table></figure>
+<h5 id="8-4-数据恢复"><a href="#8-4-数据恢复" class="headerlink" title="8.4 数据恢复"></a>8.4 数据恢复</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1.恢复json格式表数据到log</span><br><span class="line">mongoimport -uroot -proot123 --port 27017 --authenticationDatabase admin -d oldguo -c log1 /mongodb/log.json</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2.恢复csv格式的文件到log2</span><br><span class="line">上面演示的是导入JSON格式的文件中的内容，如果要导入CSV格式文件中的内容，则需要通过--type参数指定导入格式，具体如下所示：</span><br><span class="line">错误的恢复</span><br></pre></td></tr></table></figure>
+<h5 id="8-5-注意"><a href="#8-5-注意" class="headerlink" title="8.5 注意"></a>8.5 注意</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">注意：</span><br><span class="line">（<span class="number">1</span>）csv格式的文件头行，有列名字</span><br><span class="line">mongoimport   -uroot -proot123 --port <span class="number">27017</span> --authenticationDatabase admin   -d oldguo -c log2 --type=csv --headerline --file  /mongodb/log.csv</span><br><span class="line"></span><br><span class="line">（<span class="number">2</span>）csv格式的文件头行，没有列名字</span><br><span class="line">mongoimport   -uroot -proot123 --port <span class="number">27017</span> --authenticationDatabase admin   -d oldguo -c log3 --type=csv -f id,name,age,date --file  /mongodb/log1.csv</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">--headerline:指明第一行是列名，不需要导入。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">补：导入CSV文件P_T_HISTXN_20160616.csv（csv文件中没有列明，fields指定列明）</span><br><span class="line">$ tail <span class="number">-5</span> P_T_HISTXN_20160616.csv</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="9-异构平台迁移案例"><a href="#9-异构平台迁移案例" class="headerlink" title="9. 异构平台迁移案例"></a>9. 异构平台迁移案例</h4><h5 id="9-1-mysql-—–-gt-mongodb"><a href="#9-1-mysql-—–-gt-mongodb" class="headerlink" title="9.1 mysql   —–&gt; mongodb"></a>9.1 mysql   —–&gt; mongodb</h5><h6 id="9-1-1-mysql开启安全路径"><a href="#9-1-1-mysql开启安全路径" class="headerlink" title="9.1.1 mysql开启安全路径"></a>9.1.1 mysql开启安全路径</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/my.cnf   ---&gt;添加以下配置</span><br><span class="line">secure-file-priv=/tmp</span><br><span class="line"></span><br><span class="line">--重启数据库生效</span><br><span class="line">/etc/init.d/mysqld restart</span><br></pre></td></tr></table></figure>
+<h6 id="9-1-2-导出mysql的city表数据"><a href="#9-1-2-导出mysql的city表数据" class="headerlink" title="9.1.2 导出mysql的city表数据"></a>9.1.2 导出mysql的city表数据</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">source /root/world.sql</span><br><span class="line"></span><br><span class="line">select * from world.city into outfile &apos;/tmp/city1.csv&apos; fields terminated by &apos;,&apos;;</span><br></pre></td></tr></table></figure>
+<h6 id="9-1-2-处理备份文件-表的字段：mysql不会导出字段"><a href="#9-1-2-处理备份文件-表的字段：mysql不会导出字段" class="headerlink" title="9.1.2 处理备份文件(表的字段：mysql不会导出字段)"></a>9.1.2 处理备份文件(表的字段：mysql不会导出字段)</h6><figure class="highlight ceylon"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">password,last<span class="number">_</span>login,<span class="keyword">is</span><span class="number">_</span>superuser,username,first<span class="number">_n</span>ame,last<span class="number">_n</span>ame,email,<span class="keyword">is</span><span class="number">_</span>staff,<span class="keyword">is</span><span class="number">_</span>active,date<span class="number">_</span>joined,id,phone,avatar,blog<span class="number">_</span>id</span><br></pre></td></tr></table></figure>
+<h6 id="9-1-3-vim-tmp-city-csv-—-gt-添加第一行列名信息"><a href="#9-1-3-vim-tmp-city-csv-—-gt-添加第一行列名信息" class="headerlink" title="9.1.3 vim /tmp/city.csv   —-&gt; 添加第一行列名信息"></a>9.1.3 vim /tmp/city.csv   —-&gt; 添加第一行列名信息</h6><figure class="highlight ceylon"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">password,last<span class="number">_</span>login,<span class="keyword">is</span><span class="number">_</span>superuser,username,first<span class="number">_n</span>ame,last<span class="number">_n</span>ame,email,<span class="keyword">is</span><span class="number">_</span>staff,<span class="keyword">is</span><span class="number">_</span>active,date<span class="number">_</span>joined,id,phone,avatar,blog<span class="number">_</span>id</span><br></pre></td></tr></table></figure>
+<h6 id="9-1-4-在mongodb中导入备份"><a href="#9-1-4-在mongodb中导入备份" class="headerlink" title="9.1.4 在mongodb中导入备份"></a>9.1.4 在mongodb中导入备份</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongoimport -uroot -proot123 --port 27017 --authenticationDatabase admin -d world  -c city --type=csv -f ID,Name,CountryCode,District,Population --file  /tmp/city1.csv</span><br></pre></td></tr></table></figure>
+<h6 id="9-1-5-查看"><a href="#9-1-5-查看" class="headerlink" title="9.1.5 查看"></a>9.1.5 查看</h6><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">use</span> <span class="selector-tag">world</span></span><br><span class="line"><span class="selector-tag">db</span><span class="selector-class">.city</span><span class="selector-class">.find</span>(&#123;<span class="attribute">CountryCode</span>:<span class="string">"CHN"</span>&#125;)</span><br></pre></td></tr></table></figure>
+<hr>
+<h5 id="9-2-mysql导出csv"><a href="#9-2-mysql导出csv" class="headerlink" title="9.2 mysql导出csv"></a>9.2 mysql导出csv</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">select * from test_info   </span><br><span class="line">into outfile &apos;/tmp/test.csv&apos;   </span><br><span class="line">fields terminated by &apos;,&apos;　　　 ------字段间以,号分隔</span><br><span class="line">optionally enclosed by &apos;&quot;&apos;　　 ------字段用&quot;号括起</span><br><span class="line">escaped by &apos;&quot;&apos;   　　　　　　  ------字段中使用的转义符为&quot;</span><br><span class="line">lines terminated by &apos;\r\n&apos;;　　------行以\r\n结束</span><br></pre></td></tr></table></figure>
+<h5 id="9-3-mysql导入csv"><a href="#9-3-mysql导入csv" class="headerlink" title="9.3 mysql导入csv"></a>9.3 mysql导入csv</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">load data infile &apos;/tmp/test.csv&apos;   </span><br><span class="line"></span><br><span class="line">into table test_info    </span><br><span class="line"></span><br><span class="line">fields terminated by &apos;,&apos;  </span><br><span class="line"></span><br><span class="line">optionally enclosed by &apos;&quot;&apos; </span><br><span class="line"></span><br><span class="line">escaped by &apos;&quot;&apos;   </span><br><span class="line"></span><br><span class="line">lines terminated by &apos;\r\n&apos;;</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="10-python连接使用MongoDB"><a href="#10-python连接使用MongoDB" class="headerlink" title="10. python连接使用MongoDB"></a>10. python连接使用MongoDB</h4><h5 id="10-1-单机链接"><a href="#10-1-单机链接" class="headerlink" title="10.1 单机链接"></a>10.1 单机链接</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client = MongoClient(<span class="string">'mongodb://localhost:27017/'</span>)</span><br></pre></td></tr></table></figure>
+<h5 id="10-2-replication-set-链接"><a href="#10-2-replication-set-链接" class="headerlink" title="10.2 replication set 链接"></a>10.2 replication set 链接</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pymongo <span class="keyword">import</span> MongoReplicaSetClient</span><br><span class="line">conn = MongoReplicaSetClient(<span class="string">"10.0.0.100:28017,10.0.0.100:28018,10.0.0.100:28019"</span>, replicaset=<span class="string">'my_repl'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> (conn)</span><br><span class="line"><span class="keyword">print</span> (conn.primary)</span><br><span class="line"><span class="keyword">print</span> (conn.seeds)</span><br><span class="line"><span class="keyword">print</span> (conn.secondaries)</span><br><span class="line"><span class="keyword">print</span> (conn.read_preference)</span><br><span class="line"><span class="keyword">print</span> (conn.server_info())</span><br></pre></td></tr></table></figure>
+<h5 id="10-3-分片集群连接"><a href="#10-3-分片集群连接" class="headerlink" title="10.3 分片集群连接"></a>10.3 分片集群连接</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">conn = pymongo.Connection(<span class="string">'192.168.1.1'</span>, <span class="number">27017</span>) </span><br><span class="line">db = conn[<span class="string">'test'</span>] <span class="comment">#假定名为test的db已经存在 </span></span><br><span class="line">db_admin = conn[<span class="string">'admin'</span>] <span class="comment">#command的执行必须通过名为admin的db才能进行 </span></span><br><span class="line">col_data = db[<span class="string">"data"</span>] </span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">50</span>): </span><br><span class="line"></span><br><span class="line">col_data.insert(&#123;<span class="string">'_id'</span>:i, <span class="string">'value'</span>:(i*<span class="number">200</span>)&#125;) </span><br><span class="line"><span class="comment">#插入测试数据，必须在分片之前保证shard key的存在，本例中为_id </span></span><br><span class="line">db_admin.command(<span class="string">'enablesharding'</span>, <span class="string">'test'</span>) </span><br><span class="line"><span class="comment">#确认目标db的sharding功能开启(这行代码一个数据库只执行一次有效，如果已经#设置，则会抛出异常)</span></span><br><span class="line"></span><br><span class="line">db_admin.command(<span class="string">'shardcollection'</span>, <span class="string">'test.data'</span>, key = &#123;<span class="string">'_id'</span>:<span class="number">1</span>&#125;) </span><br><span class="line"><span class="comment">#指定目标collection和对应的shard key（这行一个表执行一次，如果出现多表，表名不同的情况下，应该每张表都执行一次）</span></span><br><span class="line"></span><br><span class="line">conn.close() </span><br><span class="line"></span><br><span class="line">如何查看已经分片成功：</span><br><span class="line">在linux中进入mongo命令界面，</span><br><span class="line">use test</span><br><span class="line">db.test.data.stats()</span><br><span class="line"></span><br><span class="line">会打印出分片信息。</span><br><span class="line"></span><br><span class="line">并且shard key可以指定多个，同建立复合索引类似：</span><br><span class="line">db_admin.command(<span class="string">'shardcollection'</span>, <span class="string">'test.data'</span>, key = &#123;<span class="string">'_id'</span>:<span class="number">1</span>, <span class="string">'a'</span>:<span class="number">1</span>, <span class="string">'b'</span>:<span class="number">1</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/gongzhonghao.jpg" alt="李江洋 wechat" style="width: 200px; max-width: 100%;">
+  <div>python分享公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="李江洋 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="李江洋 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mongodb/" rel="tag"># mongodb</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/30/Javascript/" rel="next" title="Javascript">
+                <i class="fa fa-chevron-left"></i> Javascript
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/31/DOM/" rel="prev" title="DOM">
+                DOM <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="李江洋">
+            
+              <p class="site-author-name" itemprop="name">李江洋</p>
+              <p class="site-description motion-element" itemprop="description">记录学习的技能和遇到的问题</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">179</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lvdXJuYW1l" title="GitHub &rarr; https://github.com/yourname"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="bWFpbHRvOjEzMjgwNDQzOTJAcXEuY29t" title="E-Mail &rarr; mailto:1328044392@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL2V4YW1wbGUuY29t" title="http://example.com">Title</span>
+                  </li>
+                
+              </ul>
+            </div>
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#三-Mongodb核心技术"><span class="nav-number">1.</span> <span class="nav-text">三. Mongodb核心技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-逻辑结构"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">1. 逻辑结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-安装部署"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">2. 安装部署</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-系统准备"><span class="nav-number">1.0.0.2.1.</span> <span class="nav-text">2.1 系统准备</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-关闭大页内存机制"><span class="nav-number">1.0.0.2.2.</span> <span class="nav-text">2.2 关闭大页内存机制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-MongoDB安装"><span class="nav-number">1.0.0.2.3.</span> <span class="nav-text">2.3 MongoDB安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-4-YAML模式：非常经典的专门用作配置文件的格式"><span class="nav-number">1.0.0.2.4.</span> <span class="nav-text">2.4 YAML模式：非常经典的专门用作配置文件的格式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-MongoDB常用的基本操作"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">3. MongoDB常用的基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-mongodb-默认存在的库"><span class="nav-number">1.0.0.3.1.</span> <span class="nav-text">3.1 mongodb 默认存在的库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-命令分类"><span class="nav-number">1.0.0.3.2.</span> <span class="nav-text">3.2 命令分类</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#3-2-1-逻辑对象"><span class="nav-number">1.0.0.3.2.1.</span> <span class="nav-text">3.2.1 逻辑对象</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-db-命令"><span class="nav-number">1.0.0.3.3.</span> <span class="nav-text">3.3 db.命令</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#3-3-1-DB级别命令"><span class="nav-number">1.0.0.3.3.1.</span> <span class="nav-text">3.3.1 DB级别命令</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-4-复制集有关-replication-set"><span class="nav-number">1.0.0.3.4.</span> <span class="nav-text">3.4 复制集有关(replication set)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-5-分片集群-sharding-cluster"><span class="nav-number">1.0.0.3.5.</span> <span class="nav-text">3.5 分片集群(sharding cluster)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-6-常用操作"><span class="nav-number">1.0.0.3.6.</span> <span class="nav-text">3.6 常用操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-7-库的操作"><span class="nav-number">1.0.0.3.7.</span> <span class="nav-text">3.7 库的操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-8-集合的操作"><span class="nav-number">1.0.0.3.8.</span> <span class="nav-text">3.8 集合的操作</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Mongodb数据查询语句"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">4. Mongodb数据查询语句</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-1-查询集合中的记录数"><span class="nav-number">1.0.0.4.1.</span> <span class="nav-text">4.1 查询集合中的记录数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-删除集合中的记录数"><span class="nav-number">1.0.0.4.2.</span> <span class="nav-text">4.2 删除集合中的记录数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-3-查看集合存储信息"><span class="nav-number">1.0.0.4.3.</span> <span class="nav-text">4.3 查看集合存储信息</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-用户管理"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">5.  用户管理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#5-1-基本语法"><span class="nav-number">1.0.0.5.1.</span> <span class="nav-text">5.1 基本语法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-2-基本语法说明"><span class="nav-number">1.0.0.5.2.</span> <span class="nav-text">5.2 基本语法说明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-3-验证数据库"><span class="nav-number">1.0.0.5.3.</span> <span class="nav-text">5.3 验证数据库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-4-用户管理的例子：创建超级管理员"><span class="nav-number">1.0.0.5.4.</span> <span class="nav-text">5.4 用户管理的例子：创建超级管理员</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#5-4-1-创建超级管理员：管理所有的数据库（必须use-admin-再去创建）"><span class="nav-number">1.0.0.5.4.1.</span> <span class="nav-text">5.4.1 创建超级管理员：管理所有的数据库（必须use admin 再去创建）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-4-2-验证用户"><span class="nav-number">1.0.0.5.4.2.</span> <span class="nav-text">5.4.2 验证用户</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-4-3-配置文件中，加入以下配置（开启密码认证）"><span class="nav-number">1.0.0.5.4.3.</span> <span class="nav-text">5.4.3 配置文件中，加入以下配置（开启密码认证）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-4-4-重启MongoDB"><span class="nav-number">1.0.0.5.4.4.</span> <span class="nav-text">5.4.4 重启MongoDB</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-4-5-登录验证"><span class="nav-number">1.0.0.5.4.5.</span> <span class="nav-text">5.4.5 登录验证</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-5-用户管理的例子：创建库管理用户"><span class="nav-number">1.0.0.5.5.</span> <span class="nav-text">5.5 用户管理的例子：创建库管理用户</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#5-5-1-首先root用户登录"><span class="nav-number">1.0.0.5.5.1.</span> <span class="nav-text">5.5.1 首先root用户登录</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-5-2-创建库"><span class="nav-number">1.0.0.5.5.2.</span> <span class="nav-text">5.5.2 创建库</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-5-3-创建库管理用户"><span class="nav-number">1.0.0.5.5.3.</span> <span class="nav-text">5.5.3 创建库管理用户</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-5-4-验证"><span class="nav-number">1.0.0.5.5.4.</span> <span class="nav-text">5.5.4 验证</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-5-5-登录测试"><span class="nav-number">1.0.0.5.5.5.</span> <span class="nav-text">5.5.5 登录测试</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-6-创建对app数据库，读、写权限的用户app01"><span class="nav-number">1.0.0.5.6.</span> <span class="nav-text">5.6 创建对app数据库，读、写权限的用户app01</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#5-6-1-超级管理员登录"><span class="nav-number">1.0.0.5.6.1.</span> <span class="nav-text">5.6.1 超级管理员登录</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-6-2-选择一个验证库"><span class="nav-number">1.0.0.5.6.2.</span> <span class="nav-text">5.6.2 选择一个验证库</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-6-3-创建用户"><span class="nav-number">1.0.0.5.6.3.</span> <span class="nav-text">5.6.3 创建用户</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-6-4-登录"><span class="nav-number">1.0.0.5.6.4.</span> <span class="nav-text">5.6.4 登录</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-7-创建app数据库读写权限的用户并对test数据库具有读权限"><span class="nav-number">1.0.0.5.7.</span> <span class="nav-text">5.7 创建app数据库读写权限的用户并对test数据库具有读权限</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-8-查询MongoDB中的用户信息"><span class="nav-number">1.0.0.5.8.</span> <span class="nav-text">5.8 查询MongoDB中的用户信息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-9-删除用户（root身份登录，use到验证库）"><span class="nav-number">1.0.0.5.9.</span> <span class="nav-text">5.9 删除用户（root身份登录，use到验证库）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-mongodb复制集RS"><span class="nav-number">1.0.0.6.</span> <span class="nav-text">6. mongodb复制集RS</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#6-1-基本原理"><span class="nav-number">1.0.0.6.1.</span> <span class="nav-text">6.1 基本原理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-2-Replcation-Set配置过程详解"><span class="nav-number">1.0.0.6.2.</span> <span class="nav-text">6.2 Replcation Set配置过程详解</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#6-2-1-规划"><span class="nav-number">1.0.0.6.2.1.</span> <span class="nav-text">6.2.1 规划</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#6-2-2-配置复制集：一主两从（从库在默认情况下，只是实现了高可用，并没有实现高性能）"><span class="nav-number">1.0.0.6.2.2.</span> <span class="nav-text">6.2.2 配置复制集：一主两从（从库在默认情况下，只是实现了高可用，并没有实现高性能）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#6-2-2-一主一从一个仲裁者"><span class="nav-number">1.0.0.6.2.3.</span> <span class="nav-text">6.2.2 一主一从一个仲裁者</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#6-2-3-删除一个节点"><span class="nav-number">1.0.0.6.2.4.</span> <span class="nav-text">6.2.3 删除一个节点</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#6-2-4-新增一个节点"><span class="nav-number">1.0.0.6.2.5.</span> <span class="nav-text">6.2.4 新增一个节点</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-3-配置特殊节点"><span class="nav-number">1.0.0.6.3.</span> <span class="nav-text">6.3 配置特殊节点</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#6-3-1-特殊节点"><span class="nav-number">1.0.0.6.3.1.</span> <span class="nav-text">6.3.1 特殊节点</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#6-3-2-配置延时节点（一般延时节点也配置成hidden）"><span class="nav-number">1.0.0.6.3.2.</span> <span class="nav-text">6.3.2 配置延时节点（一般延时节点也配置成hidden）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#6-3-3-副本集其他操作命令"><span class="nav-number">1.0.0.6.3.3.</span> <span class="nav-text">6.3.3 副本集其他操作命令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-MongoDB-Sharding-Cluster-分片集群"><span class="nav-number">1.0.0.7.</span> <span class="nav-text">7. MongoDB Sharding Cluster 分片集群</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#7-1-规划"><span class="nav-number">1.0.0.7.1.</span> <span class="nav-text">7.1 规划</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#7-1-1-configserver"><span class="nav-number">1.0.0.7.1.1.</span> <span class="nav-text">7.1.1 configserver</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7-1-2-shard节点"><span class="nav-number">1.0.0.7.1.2.</span> <span class="nav-text">7.1.2 shard节点</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-2-分片集群配置过程"><span class="nav-number">1.0.0.7.2.</span> <span class="nav-text">7.2 分片集群配置过程</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#7-2-1-shard复制集配置"><span class="nav-number">1.0.0.7.2.1.</span> <span class="nav-text">7.2.1 shard复制集配置</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-3-config节点配置"><span class="nav-number">1.0.0.7.3.</span> <span class="nav-text">7.3 config节点配置</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#7-3-1-目录创建"><span class="nav-number">1.0.0.7.3.1.</span> <span class="nav-text">7.3.1 目录创建</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7-3-2-修改配置文件"><span class="nav-number">1.0.0.7.3.2.</span> <span class="nav-text">7.3.2 修改配置文件</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7-3-3-启动节点，并配置复制集"><span class="nav-number">1.0.0.7.3.3.</span> <span class="nav-text">7.3.3 启动节点，并配置复制集</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-4-mongos节点配置"><span class="nav-number">1.0.0.7.4.</span> <span class="nav-text">7.4 mongos节点配置</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#7-4-1-创建目录"><span class="nav-number">1.0.0.7.4.1.</span> <span class="nav-text">7.4.1 创建目录</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7-4-2-配置文件"><span class="nav-number">1.0.0.7.4.2.</span> <span class="nav-text">7.4.2 配置文件</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7-4-2-启动mongos"><span class="nav-number">1.0.0.7.4.3.</span> <span class="nav-text">7.4.2 启动mongos</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-5-range-分片配置及测试"><span class="nav-number">1.0.0.7.5.</span> <span class="nav-text">7.5 range 分片配置及测试</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#7-5-1-激活数据库分片功能"><span class="nav-number">1.0.0.7.5.1.</span> <span class="nav-text">7.5.1 激活数据库分片功能</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7-5-2-指定分片建对集合分片"><span class="nav-number">1.0.0.7.5.2.</span> <span class="nav-text">7.5.2 指定分片建对集合分片</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7-5-3-集合分片验证"><span class="nav-number">1.0.0.7.5.3.</span> <span class="nav-text">7.5.3 集合分片验证</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7-5-4-分片结果测试-连接到分片的主节点"><span class="nav-number">1.0.0.7.5.4.</span> <span class="nav-text">7.5.4 分片结果测试(连接到分片的主节点)</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-6-Hash分片例子"><span class="nav-number">1.0.0.7.6.</span> <span class="nav-text">7.6 Hash分片例子</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#7-6-1-对于oldguo开启分片功能"><span class="nav-number">1.0.0.7.6.1.</span> <span class="nav-text">7.6.1 对于oldguo开启分片功能</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7-6-2-对于oldguo库下的vast表建立hash索引"><span class="nav-number">1.0.0.7.6.2.</span> <span class="nav-text">7.6.2 对于oldguo库下的vast表建立hash索引</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7-6-3-开启分片"><span class="nav-number">1.0.0.7.6.3.</span> <span class="nav-text">7.6.3 开启分片</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7-6-4-录入10w行数据测试"><span class="nav-number">1.0.0.7.6.4.</span> <span class="nav-text">7.6.4 录入10w行数据测试</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7-6-5-hash分片结果测试"><span class="nav-number">1.0.0.7.6.5.</span> <span class="nav-text">7.6.5 hash分片结果测试</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-7-判断是否是shard集群"><span class="nav-number">1.0.0.7.7.</span> <span class="nav-text">7.7 判断是否是shard集群</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-8-列出所有分片信息"><span class="nav-number">1.0.0.7.8.</span> <span class="nav-text">7.8 列出所有分片信息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-9-列出开启分片的数据库"><span class="nav-number">1.0.0.7.9.</span> <span class="nav-text">7.9 列出开启分片的数据库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-0-查看分片的片键"><span class="nav-number">1.0.0.7.10.</span> <span class="nav-text">8.0 查看分片的片键</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-1-查看分片的详细信息"><span class="nav-number">1.0.0.7.11.</span> <span class="nav-text">8.1 查看分片的详细信息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-2-删除分片节点（谨慎）"><span class="nav-number">1.0.0.7.12.</span> <span class="nav-text">8.2 删除分片节点（谨慎）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-3-balancer操作"><span class="nav-number">1.0.0.7.13.</span> <span class="nav-text">8.3 balancer操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-4-自定义-自动平衡进行的时间段"><span class="nav-number">1.0.0.7.14.</span> <span class="nav-text">8.4 自定义 自动平衡进行的时间段</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-备份恢复"><span class="nav-number">1.0.0.8.</span> <span class="nav-text">8. 备份恢复</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#8-1-备份恢复工具介绍"><span class="nav-number">1.0.0.8.1.</span> <span class="nav-text">8.1 备份恢复工具介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-2-备份工具区别在哪里"><span class="nav-number">1.0.0.8.2.</span> <span class="nav-text">8.2 备份工具区别在哪里</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-3-导出工具mongoexport"><span class="nav-number">1.0.0.8.3.</span> <span class="nav-text">8.3 导出工具mongoexport</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-4-数据恢复"><span class="nav-number">1.0.0.8.4.</span> <span class="nav-text">8.4 数据恢复</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-5-注意"><span class="nav-number">1.0.0.8.5.</span> <span class="nav-text">8.5 注意</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-异构平台迁移案例"><span class="nav-number">1.0.0.9.</span> <span class="nav-text">9. 异构平台迁移案例</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#9-1-mysql-—–-gt-mongodb"><span class="nav-number">1.0.0.9.1.</span> <span class="nav-text">9.1 mysql   —–&gt; mongodb</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#9-1-1-mysql开启安全路径"><span class="nav-number">1.0.0.9.1.1.</span> <span class="nav-text">9.1.1 mysql开启安全路径</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#9-1-2-导出mysql的city表数据"><span class="nav-number">1.0.0.9.1.2.</span> <span class="nav-text">9.1.2 导出mysql的city表数据</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#9-1-2-处理备份文件-表的字段：mysql不会导出字段"><span class="nav-number">1.0.0.9.1.3.</span> <span class="nav-text">9.1.2 处理备份文件(表的字段：mysql不会导出字段)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#9-1-3-vim-tmp-city-csv-—-gt-添加第一行列名信息"><span class="nav-number">1.0.0.9.1.4.</span> <span class="nav-text">9.1.3 vim /tmp/city.csv   —-&gt; 添加第一行列名信息</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#9-1-4-在mongodb中导入备份"><span class="nav-number">1.0.0.9.1.5.</span> <span class="nav-text">9.1.4 在mongodb中导入备份</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#9-1-5-查看"><span class="nav-number">1.0.0.9.1.6.</span> <span class="nav-text">9.1.5 查看</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9-2-mysql导出csv"><span class="nav-number">1.0.0.9.2.</span> <span class="nav-text">9.2 mysql导出csv</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9-3-mysql导入csv"><span class="nav-number">1.0.0.9.3.</span> <span class="nav-text">9.3 mysql导入csv</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-python连接使用MongoDB"><span class="nav-number">1.0.0.10.</span> <span class="nav-text">10. python连接使用MongoDB</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#10-1-单机链接"><span class="nav-number">1.0.0.10.1.</span> <span class="nav-text">10.1 单机链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#10-2-replication-set-链接"><span class="nav-number">1.0.0.10.2.</span> <span class="nav-text">10.2 replication set 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#10-3-分片集群连接"><span class="nav-number">1.0.0.10.3.</span> <span class="nav-text">10.3 分片集群连接</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李江洋</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Pisces</span> v7.0.1</div>
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script id="ribbon" size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+  
+  <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ljyabc.github.io/2019/03/31/mongdb/";
+    this.page.identifier = "2019/03/31/mongdb/";
+    this.page.title = 'mongodb';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/exturl.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+   <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+</body>
+</html>

@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="4             日志  公网和私网               光标   检查文件 复制重复文件 cp-a  7vim模式 ls-v看到隐藏的文件  vim安装 挂载    目录   ip网卡      补全功能 网络的管理服务关闭 配置网卡">
+<meta property="og:type" content="article">
+<meta property="og:title" content="虚拟机">
+<meta property="og:url" content="https://ljyabc.github.io/2019/03/20/虚拟机/index.html">
+<meta property="og:site_name" content="择墅居:李江洋">
+<meta property="og:description" content="4             日志  公网和私网               光标   检查文件 复制重复文件 cp-a  7vim模式 ls-v看到隐藏的文件  vim安装 挂载    目录   ip网卡      补全功能 网络的管理服务关闭 配置网卡">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553060910549.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553060967593.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553061024217.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/C:/Users/aaa/AppData/Local/Temp/1553061071083.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553061167407.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553061191701.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553061298832.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553061357339.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553061437049.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553061550330.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553061774639.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553061865339.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553062158644.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553062182492.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553062856902.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553062887947.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553063004976.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553063041236.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553063103946.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553063148459.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553063221868.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553063238377.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553063270599.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553063286578.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553063320037.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553063478308.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553063609572.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553063796821.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553063967960.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553064314178.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553064583703.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553064604176.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553064740839.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553064828413.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553064850446.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553065371457.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553065571055.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553065756332.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553065837191.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553065895150.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553065937120.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553066054774.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553066529088.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553066567055.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553066649624.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553066777094.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553084599204.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553084728253.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553084802359.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553084999193.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553085031916.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553085104256.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553085156388.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553085373155.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553085509411.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553085602748.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553085637145.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553085685030.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553085800322.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553085959820.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553086063448.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553086631600.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553086700931.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553087322059.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553087432696.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553094690495.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553095066076.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553095736505.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553096317229.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553098703876.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553099072726.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553099142284.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553099834465.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553100390560.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553100347027.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553100704323.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553101341006.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553101537453.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553101577415.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553101851253.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553102207059.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553102232148.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553102324850.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553102812450.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553102850830.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553103404971.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553103496478.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553103547844.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553103610132.png">
+<meta property="og:updated_time" content="2025-04-08T14:38:21.815Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="虚拟机">
+<meta name="twitter:description" content="4             日志  公网和私网               光标   检查文件 复制重复文件 cp-a  7vim模式 ls-v看到隐藏的文件  vim安装 挂载    目录   ip网卡      补全功能 网络的管理服务关闭 配置网卡">
+<meta name="twitter:image" content="https://ljyabc.github.io/2019/03/20/虚拟机/E:/blog-git/ljy/source/_posts/虚拟机/1553060910549.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ljyabc.github.io/2019/03/20/虚拟机/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>虚拟机 | 择墅居:李江洋</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">择墅居:李江洋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">争做长沙别墅豪装第一品牌</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/book" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>book</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2019/03/20/虚拟机/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李江洋">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="择墅居:李江洋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">虚拟机
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-20 13:47:56" itemprop="dateCreated datePublished" datetime="2019-03-20T13:47:56+08:00">2019-03-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2025-04-08 22:38:21" itemprop="dateModified" datetime="2025-04-08T22:38:21+08:00">2025-04-08</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/03/20/虚拟机/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/20/虚拟机/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553060910549.png" alt="1553060910549"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553060967593.png" alt="1553060967593"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553061024217.png" alt="1553061024217"></p>
+<p><img src="/2019/03/20/虚拟机/C:/Users\aaa\AppData\Local\Temp\1553061071083.png" alt="1553061071083"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553061167407.png" alt="1553061167407"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553061191701.png" alt="1553061191701"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553061298832.png" alt="1553061298832"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553061357339.png" alt="1553061357339"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553061437049.png" alt="1553061437049"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553061550330.png" alt="1553061550330"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553061774639.png" alt="1553061722849"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553061865339.png" alt="1553061865339"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553062158644.png" alt="1553062158644"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553062182492.png" alt="1553062182492"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553062856902.png" alt="1553062856902"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553062887947.png" alt="1553062887947"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553063004976.png" alt="1553063004976"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553063041236.png" alt="1553063041236"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553063103946.png" alt="1553063103946"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553063148459.png" alt="1553063148459"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553063221868.png" alt="1553063221868"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553063238377.png" alt="1553063238377"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553063270599.png" alt="1553063270599"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553063286578.png" alt="1553063286578"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553063320037.png" alt="1553063320037"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553063478308.png" alt="1553063478308"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553063609572.png" alt="1553063609572"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553063796821.png" alt="1553063796821"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553063967960.png" alt="1553063967960"></p>
+<h2 id="4"><a href="#4" class="headerlink" title="4"></a>4</h2><p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553064314178.png" alt="1553064314178"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553064583703.png" alt="155306458703"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553064604176.png" alt="1553064604176"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553064740839.png" alt="1553064740839"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553064828413.png" alt="1553064828413"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553064850446.png" alt="1553064850446"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553065371457.png" alt="1553065371457"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553065571055.png" alt="1553065571055"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553065756332.png" alt="1553065756332"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553065837191.png" alt="1553065837191"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553065895150.png" alt="1553065895150"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553065937120.png" alt="1553065937120"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553066054774.png" alt="1553066054774"></p>
+<h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2><p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553066529088.png" alt="1553066529088"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553066567055.png" alt="1553066567055"></p>
+<h2 id="公网和私网"><a href="#公网和私网" class="headerlink" title="公网和私网"></a>公网和私网</h2><p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553066649624.png" alt="1553066649624"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553066777094.png" alt="1553066777094"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553084599204.png" alt="1553084599204"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553084728253.png" alt="1553084728253"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553084802359.png" alt="1553084802359"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553084999193.png" alt="1553084999193"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553085031916.png" alt="155308503916"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553085104256.png" alt="1553085104256"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553085156388.png" alt="1553085156388"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553085373155.png" alt="1553085373155"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553085509411.png" alt="1553085509411"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553085602748.png" alt="1553085602748"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553085637145.png" alt="1553085637145"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553085685030.png" alt="1553085685030"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553085800322.png" alt="1553085800322"></p>
+<h2 id="光标"><a href="#光标" class="headerlink" title="光标"></a>光标</h2><p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553085959820.png" alt="1553085959820"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553086063448.png" alt="1553086063448"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553086631600.png" alt="1553086631600"></p>
+<h2 id="检查文件"><a href="#检查文件" class="headerlink" title="检查文件"></a>检查文件</h2><p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553086700931.png" alt="1553086700931"></p>
+<h2 id="复制重复文件"><a href="#复制重复文件" class="headerlink" title="复制重复文件"></a>复制重复文件</h2><p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553087322059.png" alt="1553087322059"></p>
+<h2 id="cp-a"><a href="#cp-a" class="headerlink" title="cp-a"></a>cp-a</h2><p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553087432696.png" alt="1553087432696"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553094690495.png" alt="1553094690495"></p>
+<h2 id="7"><a href="#7" class="headerlink" title="7"></a>7</h2><h3 id="vim模式"><a href="#vim模式" class="headerlink" title="vim模式"></a>vim模式</h3><p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553095066076.png" alt="1553095066076"></p>
+<h3 id="ls-v"><a href="#ls-v" class="headerlink" title="ls-v"></a>ls-v</h3><p>看到隐藏的文件</p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553095736505.png" alt="1553095736505"></p>
+<h2 id="vim安装"><a href="#vim安装" class="headerlink" title="vim安装"></a>vim安装</h2><p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553096317229.png" alt="1553096317229"></p>
+<h2 id="挂载"><a href="#挂载" class="headerlink" title="挂载"></a>挂载</h2><p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553098703876.png" alt="1553098703876"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553099072726.png" alt="1553099072726"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553099142284.png" alt="1553099142284"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553099834465.png" alt="1553099834465"></p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553100390560.png" alt="155310090560"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553100347027.png" alt="1553100347027"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553100704323.png" alt="1553100704323"></p>
+<h2 id="ip网卡"><a href="#ip网卡" class="headerlink" title="ip网卡"></a>ip网卡</h2><p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553101341006.png" alt="553101310034"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553101537453.png" alt="1553101537453"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553101577415.png" alt="1553101577415"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553101851253.png" alt="1553101851253"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553102207059.png" alt="1553102207059"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553102232148.png" alt="155310232148"></p>
+<h2 id="补全功能"><a href="#补全功能" class="headerlink" title="补全功能"></a>补全功能</h2><p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553102324850.png" alt="1553102324850"></p>
+<h2 id="网络的管理服务关闭"><a href="#网络的管理服务关闭" class="headerlink" title="网络的管理服务关闭"></a>网络的管理服务关闭</h2><p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553102812450.png" alt="1553102812450"></p>
+<h2 id="配置网卡"><a href="#配置网卡" class="headerlink" title="配置网卡"></a>配置网卡</h2><p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553102850830.png" alt="1553102850830"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553103404971.png" alt="1553103404971"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553103496478.png" alt="1553103496478"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553103547844.png" alt="1553103547844"></p>
+<p><img src="/2019/03/20/虚拟机/E:/blog-git\ljy\source\_posts\虚拟机\1553103610132.png" alt="1553103610132"></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/gongzhonghao.jpg" alt="李江洋 wechat" style="width: 200px; max-width: 100%;">
+  <div>python分享公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="李江洋 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="李江洋 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/19/并发编程的理论/" rel="next" title="并发编程的理论">
+                <i class="fa fa-chevron-left"></i> 并发编程的理论
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/27/前端代码1/" rel="prev" title="前端代码1">
+                前端代码1 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="李江洋">
+            
+              <p class="site-author-name" itemprop="name">李江洋</p>
+              <p class="site-description motion-element" itemprop="description">记录学习的技能和遇到的问题</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">179</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lvdXJuYW1l" title="GitHub &rarr; https://github.com/yourname"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="bWFpbHRvOjEzMjgwNDQzOTJAcXEuY29t" title="E-Mail &rarr; mailto:1328044392@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL2V4YW1wbGUuY29t" title="http://example.com">Title</span>
+                  </li>
+                
+              </ul>
+            </div>
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#4"><span class="nav-number">1.</span> <span class="nav-text">4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日志"><span class="nav-number">2.</span> <span class="nav-text">日志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#公网和私网"><span class="nav-number">3.</span> <span class="nav-text">公网和私网</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#光标"><span class="nav-number">4.</span> <span class="nav-text">光标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检查文件"><span class="nav-number">5.</span> <span class="nav-text">检查文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复制重复文件"><span class="nav-number">6.</span> <span class="nav-text">复制重复文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cp-a"><span class="nav-number">7.</span> <span class="nav-text">cp-a</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7"><span class="nav-number">8.</span> <span class="nav-text">7</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vim模式"><span class="nav-number">8.1.</span> <span class="nav-text">vim模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ls-v"><span class="nav-number">8.2.</span> <span class="nav-text">ls-v</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vim安装"><span class="nav-number">9.</span> <span class="nav-text">vim安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#挂载"><span class="nav-number">10.</span> <span class="nav-text">挂载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目录"><span class="nav-number">11.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ip网卡"><span class="nav-number">12.</span> <span class="nav-text">ip网卡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#补全功能"><span class="nav-number">13.</span> <span class="nav-text">补全功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络的管理服务关闭"><span class="nav-number">14.</span> <span class="nav-text">网络的管理服务关闭</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置网卡"><span class="nav-number">15.</span> <span class="nav-text">配置网卡</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李江洋</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Pisces</span> v7.0.1</div>
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script id="ribbon" size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+  
+  <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ljyabc.github.io/2019/03/20/虚拟机/";
+    this.page.identifier = "2019/03/20/虚拟机/";
+    this.page.title = '虚拟机';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/exturl.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+   <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+</body>
+</html>

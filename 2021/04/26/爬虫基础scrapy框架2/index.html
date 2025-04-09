@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="scrapy shell1234567891011121314# Scrapy shell[s] Available Scrapy objects:[s]   scrapy     scrapy module (contains scrapy.Request, scrapy.Selector, etc)  #scrapy  模块[s]   crawler    &amp;lt;scrapy.crawler">
+<meta name="keywords" content="python之scrapy框架">
+<meta property="og:type" content="article">
+<meta property="og:title" content="爬虫基础scrapy框架2">
+<meta property="og:url" content="https://ljyabc.github.io/2021/04/26/爬虫基础scrapy框架2/index.html">
+<meta property="og:site_name" content="择墅居:李江洋">
+<meta property="og:description" content="scrapy shell1234567891011121314# Scrapy shell[s] Available Scrapy objects:[s]   scrapy     scrapy module (contains scrapy.Request, scrapy.Selector, etc)  #scrapy  模块[s]   crawler    &amp;lt;scrapy.crawler">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2025-04-08T14:38:15.464Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="爬虫基础scrapy框架2">
+<meta name="twitter:description" content="scrapy shell1234567891011121314# Scrapy shell[s] Available Scrapy objects:[s]   scrapy     scrapy module (contains scrapy.Request, scrapy.Selector, etc)  #scrapy  模块[s]   crawler    &amp;lt;scrapy.crawler">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ljyabc.github.io/2021/04/26/爬虫基础scrapy框架2/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>爬虫基础scrapy框架2 | 择墅居:李江洋</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">择墅居:李江洋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">争做长沙别墅豪装第一品牌</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/book" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>book</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2021/04/26/爬虫基础scrapy框架2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李江洋">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="择墅居:李江洋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">爬虫基础scrapy框架2
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-04-26 15:29:53" itemprop="dateCreated datePublished" datetime="2021-04-26T15:29:53+08:00">2021-04-26</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2025-04-08 22:38:15" itemprop="dateModified" datetime="2025-04-08T22:38:15+08:00">2025-04-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/框架/" itemprop="url" rel="index"><span itemprop="name">框架</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2021/04/26/爬虫基础scrapy框架2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/04/26/爬虫基础scrapy框架2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="scrapy-shell"><a href="#scrapy-shell" class="headerlink" title="scrapy shell"></a>scrapy shell</h1><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># Scrapy shell</span></span><br><span class="line">[<span class="meta">s</span>] Available Scrapy objects:</span><br><span class="line">[<span class="meta">s</span>]   <span class="function">scrapy     scrapy <span class="title">module</span> (<span class="params">contains scrapy.Request, scrapy.Selector, etc</span>)  #scrapy  模块</span></span><br><span class="line"><span class="function">[s]   crawler    &lt;scrapy.crawler.Crawler <span class="keyword">object</span> at 0x000002624C415F98&gt;  #爬虫对象</span></span><br><span class="line"><span class="function">[s]   item</span>       &#123;&#125;                                                    <span class="meta">#item对象</span></span><br><span class="line">[<span class="meta">s</span>]   request    &lt;GET https:<span class="comment">//movie.douban.com/top250&gt;                 # 请求对象</span></span><br><span class="line">[<span class="meta">s</span>]   response   &lt;<span class="number">200</span> https:<span class="comment">//movie.douban.com/top250&gt;                  #响应对象</span></span><br><span class="line">[<span class="meta">s</span>]   settings   &lt;scrapy.settings.Settings <span class="keyword">object</span> at <span class="number">0x000002624C415EB8</span>&gt;  <span class="meta">#配置文件</span></span><br><span class="line">[<span class="meta">s</span>]   spider     &lt;DefaultSpider <span class="string">'default'</span> at <span class="number">0x2624c8ed3c8</span>&gt;               <span class="meta">#spider文件</span></span><br><span class="line">[<span class="meta">s</span>] Useful shortcuts:</span><br><span class="line">[<span class="meta">s</span>]   fetch(url[, redirect=True]) <span class="function">Fetch URL and update local <span class="title">objects</span> (<span class="params"><span class="keyword">by</span> <span class="keyword">default</span>, redirects are followed</span>)  #通过url  获取response</span></span><br><span class="line"><span class="function">[s]   <span class="title">fetch</span>(<span class="params">req</span>)                  Fetch a scrapy.Request and update local objects  #通过请求对象  获取response</span></span><br><span class="line"><span class="function">[s]   <span class="title">shelp</span>(<span class="params"></span>)           Shell <span class="title">help</span> (<span class="params">print <span class="keyword">this</span> help</span>)    #列出命令</span></span><br><span class="line"><span class="function">[s]   <span class="title">view</span>(<span class="params">response</span>)    View response <span class="keyword">in</span> a browser     #response  界面    本地浏览器环境下使用</span></span><br></pre></td></tr></table></figure>
+<h1 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">html_str=<span class="string">"""</span></span><br><span class="line"><span class="string">&lt;div class="info"&gt;</span></span><br><span class="line"><span class="string">                    &lt;div class="hd"&gt;</span></span><br><span class="line"><span class="string">                        &lt;a href="https://movie.douban.com/subject/1292052/" class=""&gt;</span></span><br><span class="line"><span class="string">                            &lt;span class="title"&gt;肖申克的救赎&lt;/span&gt;</span></span><br><span class="line"><span class="string">                            &lt;span class="title"&gt;&amp;nbsp;/&amp;nbsp;The Shawshank Redemption&lt;/span&gt;</span></span><br><span class="line"><span class="string">                            &lt;span class="other"&gt;&amp;nbsp;/&amp;nbsp;月黑高飞(港)  /  刺激1995(台)&lt;/span&gt;</span></span><br><span class="line"><span class="string">                        &lt;/a&gt;</span></span><br><span class="line"><span class="string">                            &lt;span class="playable"&gt;[可播放]&lt;/span&gt;</span></span><br><span class="line"><span class="string">                    &lt;/div&gt;</span></span><br><span class="line"><span class="string">                    &lt;div class="bd"&gt;</span></span><br><span class="line"><span class="string">                        &lt;p class=""&gt;</span></span><br><span class="line"><span class="string">                            导演: 弗兰克·德拉邦特 Frank Darabont&amp;nbsp;&amp;nbsp;&amp;nbsp;主演: 蒂姆·罗宾斯 Tim Robbins /...&lt;br&gt;</span></span><br><span class="line"><span class="string">                            1994&amp;nbsp;/&amp;nbsp;美国&amp;nbsp;/&amp;nbsp;犯罪 剧情</span></span><br><span class="line"><span class="string">                        &lt;/p&gt;</span></span><br><span class="line"><span class="string">                        &lt;div class="star"&gt;</span></span><br><span class="line"><span class="string">                                &lt;span class="rating5-t"&gt;&lt;/span&gt;</span></span><br><span class="line"><span class="string">                                &lt;span class="rating_num" property="v:average"&gt;9.7&lt;/span&gt;</span></span><br><span class="line"><span class="string">                                &lt;span property="v:best" content="10.0"&gt;&lt;/span&gt;</span></span><br><span class="line"><span class="string">                                &lt;span&gt;1980500人评价&lt;/span&gt;</span></span><br><span class="line"><span class="string">                        &lt;/div&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">                            &lt;p class="quote"&gt;</span></span><br><span class="line"><span class="string">                                &lt;span class="inq"&gt;希望让人自由。&lt;/span&gt;</span></span><br><span class="line"><span class="string">                            &lt;/p&gt;</span></span><br><span class="line"><span class="string">                    &lt;/div&gt;</span></span><br><span class="line"><span class="string">                &lt;/div&gt;</span></span><br><span class="line"><span class="string">            &lt;/div&gt;</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="keyword">from</span>  scrapy.selector  <span class="keyword">import</span>  Selector</span><br><span class="line"><span class="comment">#1.通过text 参数来构造对象</span></span><br><span class="line">selc_text=Selector(text=html_str)</span><br><span class="line"></span><br><span class="line"><span class="comment"># print(selc_text.xpath('//div[@class="info"]//div/a/span/text()').extract()[0])</span></span><br><span class="line"><span class="comment"># print(selc_text.xpath('./body/div[@class="info"]//div/a/span/text()').extract()[0])</span></span><br><span class="line"><span class="comment"># print(selc_text.xpath('//div[@class="info"]//div/a/span/text()').extract_first())</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#2.通过 response  构造selector对象</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span>  scrapy.http <span class="keyword">import</span>   HtmlResponse</span><br><span class="line">response=HtmlResponse(url=<span class="string">"http://www.example.com"</span>,body=html_str.encode())</span><br><span class="line">Selector(response=response)</span><br><span class="line"><span class="comment"># print(response.selector.xpath('//div[@class="info"]//div/a/span/text()').extract()[0])</span></span><br><span class="line"><span class="comment"># print(response.xpath('//div[@class="info"]//div/a/span/text()').extract()[0])</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#3.嵌套表达式  selector  可以任意使用 css   xpath  re</span></span><br><span class="line"><span class="comment"># print(response.css("a").xpath('./span[1]/text()').extract()[0])</span></span><br><span class="line">print(response.css(<span class="string">"a"</span>).xpath(<span class="string">'./span[1]/text()'</span>).re(<span class="string">"的.."</span>)[<span class="number">0</span>])</span><br><span class="line">print(response.css(<span class="string">"a"</span>).xpath(<span class="string">'./span[1]/text()'</span>).re_first(<span class="string">"的.."</span>))</span><br></pre></td></tr></table></figure>
+<h1 id="Scrapy框架-二"><a href="#Scrapy框架-二" class="headerlink" title="Scrapy框架(二)"></a>Scrapy框架(二)</h1><h2 id="次级页面抓取及数据传递拼接（豆瓣电影）"><a href="#次级页面抓取及数据传递拼接（豆瓣电影）" class="headerlink" title="次级页面抓取及数据传递拼接（豆瓣电影）"></a>次级页面抓取及数据传递拼接（豆瓣电影）</h2><p><strong>1.详情页抓取</strong>（次级页面）的主要方法是<strong>get_detail</strong> 方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span>  <span class="title">get_detail</span><span class="params">(self,response)</span>:</span></span><br><span class="line">	<span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p><strong>2.参数的传递拼接</strong> 的关键参数是 <strong>meta</strong>参数</p>
+<h4 id="spider文件"><a href="#spider文件" class="headerlink" title="spider文件"></a>spider文件</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> ..items  <span class="keyword">import</span>  DbItem   <span class="comment">#是一个安全的字典</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Db250Spider</span><span class="params">(scrapy.Spider)</span>:</span><span class="comment">#继承基础类</span></span><br><span class="line">    name = <span class="string">'db250'</span>  <span class="comment">#爬虫文件名字  必须存在且唯一</span></span><br><span class="line">    <span class="comment"># allowed_domains = ['movie.douban.com'] #允许的域名   可以不存在 不存在  任何域名都可以</span></span><br><span class="line">    start_urls = [<span class="string">'https://movie.douban.com/top250'</span>]<span class="comment">#初始url  必须要存在</span></span><br><span class="line">    page_num=<span class="number">0</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span><span class="comment">#解析函数  处理响应数据</span></span><br><span class="line">        node_list=response.xpath(<span class="string">'//div[@class="info"]'</span>)</span><br><span class="line">        <span class="keyword">for</span> node  <span class="keyword">in</span>  node_list:</span><br><span class="line">            <span class="comment">#电影名字</span></span><br><span class="line">            film_name=node.xpath(<span class="string">"./div/a/span/text()"</span>).extract()[<span class="number">0</span>]</span><br><span class="line">            <span class="comment">#导演信息</span></span><br><span class="line">            director_name=node.xpath(<span class="string">"./div/p/text()"</span>).extract()[<span class="number">0</span>].strip()</span><br><span class="line">            <span class="comment">#评分</span></span><br><span class="line">            score=node.xpath(<span class="string">'./div/div/span[@property="v:average"]/text()'</span>).extract()[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">            <span class="comment">#使用管道存储</span></span><br><span class="line">            item_pipe=DbItem() <span class="comment">#创建Dbitem对象  当成字典来使用</span></span><br><span class="line">            item_pipe[<span class="string">'film_name'</span>]=film_name</span><br><span class="line">            item_pipe[<span class="string">'director_name'</span>]=director_name</span><br><span class="line">            item_pipe[<span class="string">'score'</span>]=score</span><br><span class="line">            <span class="comment"># yield item_pipe</span></span><br><span class="line">            <span class="comment"># print("电影信息",dict(item_pipe))</span></span><br><span class="line">            <span class="comment"># 电影简介</span></span><br><span class="line">            detail_url = node.xpath(<span class="string">'./div/a/@href'</span>).extract()[<span class="number">0</span>]</span><br><span class="line">            <span class="keyword">yield</span> scrapy.Request(detail_url,callback=self.get_detail,meta=&#123;<span class="string">"info"</span>:item_pipe&#125;)</span><br><span class="line"></span><br><span class="line">        <span class="comment">#发送新一页的请求</span></span><br><span class="line">        <span class="comment">#构造url</span></span><br><span class="line">        self.page_num += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> self.page_num==<span class="number">4</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        page_url=<span class="string">"https://movie.douban.com/top250?start=&#123;&#125;&amp;filter="</span>.format(self.page_num*<span class="number">25</span>)</span><br><span class="line">        <span class="keyword">yield</span> scrapy.Request(page_url)</span><br><span class="line">    <span class="function"><span class="keyword">def</span>  <span class="title">get_detail</span><span class="params">(self,response)</span>:</span></span><br><span class="line">        item=DbItem()</span><br><span class="line">        <span class="comment">#解析详情页的response</span></span><br><span class="line">        <span class="comment">#1.meta 会跟随response 一块返回  2.通过response.meta接收 3.通过update  添加到新的item对象中</span></span><br><span class="line">        info = response.meta[<span class="string">"info"</span>]</span><br><span class="line">        item.update(info)</span><br><span class="line">        <span class="comment">#简介内容</span></span><br><span class="line">        description=response.xpath(<span class="string">'//div[@id="link-report"]//span[@property="v:summary"]/text()'</span>).extract()[<span class="number">0</span>].strip()</span><br><span class="line">        <span class="comment"># print('description',description)</span></span><br><span class="line"></span><br><span class="line">        item[<span class="string">"description"</span>]=description</span><br><span class="line">        <span class="comment">#通过管道保存</span></span><br><span class="line">        <span class="keyword">yield</span>  item</span><br><span class="line"></span><br><span class="line"><span class="comment">#目标数据  电影信息+ 获取电影简介数据  次级页面的网页源代码里</span></span><br><span class="line"><span class="comment">#请求流程   访问一级页面  提取电影信息+次级页面的url    访问次级页面url 从次级的数据中提取电影简介</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#存储的问题   数据没有次序  需要使用  meta传参 保证 同一电影的信息在一起</span></span><br></pre></td></tr></table></figure>
+<h4 id="items文件"><a href="#items文件" class="headerlink" title="items文件"></a>items文件</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DbItem</span><span class="params">(scrapy.Item)</span>:</span></span><br><span class="line">    <span class="comment"># define the fields for your item here like:</span></span><br><span class="line">    <span class="comment"># name = scrapy.Field()</span></span><br><span class="line">    film_name=scrapy.Field()</span><br><span class="line">    director_name=scrapy.Field()</span><br><span class="line">    score=scrapy.Field()</span><br><span class="line">    description=scrapy.Field()</span><br></pre></td></tr></table></figure>
+<h4 id="pipelines-文件"><a href="#pipelines-文件" class="headerlink" title="pipelines 文件"></a>pipelines 文件</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DbPipeline</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span>  <span class="title">open_spider</span><span class="params">(self,spider)</span>:</span></span><br><span class="line">        <span class="comment">#爬虫文件开启,此方法执行</span></span><br><span class="line">        self.f=open(<span class="string">"film_pipe.txt"</span>,<span class="string">"w"</span>,encoding=<span class="string">"utf-8"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_item</span><span class="params">(self, item, spider)</span>:</span></span><br><span class="line">        json_data=json.dumps(dict(item),ensure_ascii=<span class="literal">False</span>)+<span class="string">"\n"</span></span><br><span class="line">        self.f.write(json_data)</span><br><span class="line">        <span class="keyword">return</span> item</span><br><span class="line">    <span class="function"><span class="keyword">def</span>  <span class="title">close_spider</span><span class="params">(self,spider)</span>:</span></span><br><span class="line">        <span class="comment"># 爬虫文件关闭,此方法执行</span></span><br><span class="line">        self.f.close() <span class="comment">#关闭文件</span></span><br></pre></td></tr></table></figure>
+<h4 id="settings-文件"><a href="#settings-文件" class="headerlink" title="settings 文件"></a>settings 文件</h4><p>此处删除了大部分注释</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Scrapy settings for db project</span></span><br><span class="line"></span><br><span class="line">BOT_NAME = <span class="string">'db'</span></span><br><span class="line"></span><br><span class="line">SPIDER_MODULES = [<span class="string">'db.spiders'</span>]</span><br><span class="line">NEWSPIDER_MODULE = <span class="string">'db.spiders'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Crawl responsibly by identifying yourself (and your website) on the user-agent</span></span><br><span class="line"><span class="comment">#USER_AGENT = 'db (+http://www.yourdomain.com)'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Obey robots.txt rules</span></span><br><span class="line">ROBOTSTXT_OBEY = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Override the default request headers:</span></span><br><span class="line">DEFAULT_REQUEST_HEADERS = &#123;</span><br><span class="line">  <span class="string">'Accept'</span>: <span class="string">'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'</span>,</span><br><span class="line">  <span class="string">'Accept-Language'</span>: <span class="string">'en'</span>,</span><br><span class="line">    <span class="string">"User-Agent"</span>: <span class="string">"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Configure item pipelines</span></span><br><span class="line"><span class="comment"># See https://docs.scrapy.org/en/latest/topics/item-pipeline.html</span></span><br><span class="line">ITEM_PIPELINES = &#123;</span><br><span class="line">   <span class="string">'db.pipelines.DbPipeline'</span>: <span class="number">300</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Scrapy-shell"><a href="#Scrapy-shell" class="headerlink" title="Scrapy   shell"></a>Scrapy   shell</h2><p>scrapy shell的作用是用于调试，</p>
+<p>在项目 目录下输入scrapy shell    <span class="exturl" data-url="aHR0cHM6Ly9tb3ZpZS5kb3ViYW4uY29tL3RvcDI1MA==" title="https://movie.douban.com/top250">https://movie.douban.com/top250<i class="fa fa-external-link"></i></span> 得到下列信息：</p>
+<p>scrapy  shell 会自动加载settings里的配置，即robots协议，请求头等都可以加载，从而发起请求可以得到正确的响应信息。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[s] Available Scrapy objects:</span><br><span class="line">[s]   scrapy     scrapy module (contains scrapy.Request, scrapy.Selector, etc)  <span class="comment">#scrapy  模块</span></span><br><span class="line">[s]   crawler    &lt;scrapy.crawler.Crawler object at <span class="number">0x000002624C415F98</span>&gt;  <span class="comment">#爬虫对象</span></span><br><span class="line">[s]   item       &#123;&#125;                                                    <span class="comment">#item对象</span></span><br><span class="line">[s]   request    &lt;GET https://movie.douban.com/top250&gt;                 <span class="comment"># 请求对象</span></span><br><span class="line">[s]   response   &lt;<span class="number">200</span> https://movie.douban.com/top250&gt;                  <span class="comment">#响应对象</span></span><br><span class="line">[s]   settings   &lt;scrapy.settings.Settings object at <span class="number">0x000002624C415EB8</span>&gt;  <span class="comment">#配置文件</span></span><br><span class="line">[s]   spider     &lt;DefaultSpider <span class="string">'default'</span> at <span class="number">0x2624c8ed3c8</span>&gt;               <span class="comment">#spider文件</span></span><br><span class="line">[s] Useful shortcuts:</span><br><span class="line">[s]   fetch(url[, redirect=<span class="literal">True</span>]) Fetch URL <span class="keyword">and</span> update local objects (by default, redirects are followed)  <span class="comment">#通过url  获取response</span></span><br><span class="line">[s]   fetch(req)                  Fetch a scrapy.Request <span class="keyword">and</span> update local objects  <span class="comment">#通过请求对象  获取response</span></span><br><span class="line">[s]   shelp()           Shell help (<span class="keyword">print</span> this help)    <span class="comment">#列出命令</span></span><br><span class="line">[s]   view(response)    View response <span class="keyword">in</span> a browser     <span class="comment">#response  界面    本地浏览器环境下使用</span></span><br></pre></td></tr></table></figure>
+<p>Scrapy shell 本质上就是个普通的python shell<br>只不过提供了一些需要使用的对象，快捷方法便于我们调试。</p>
+<ul>
+<li><strong>快捷方法：</strong><br>shelp()<br>fetch(url[,redirect=True])<br>fetch(request)<br>view(response)</li>
+<li><strong>scrapy 对象：</strong><br>crawler<br>spider<br>request<br>response<br>setting</li>
+</ul>
+<h2 id="Scrapy-选择器"><a href="#Scrapy-选择器" class="headerlink" title="Scrapy  选择器"></a>Scrapy  选择器</h2><ul>
+<li><p>Scrapy提供基于lxml库的解析机制，它们被称为选择器。<br>因为，它们“选择”由XPath或CSS表达式指定的HTML文档的某部分。<br>Scarpy选择器的API非常小，且非常简单。</p>
+</li>
+<li><p>选择器提供2个方法来提取标签</p>
+<p>xpath()   基于xpath的语法规则<br>css()  基于css选择器的语法规则<br><strong>快捷方式</strong><br>response.xpath()<br>response.css()<br>它们返回的选择器列表<br><strong>提取文本：</strong><br>selector.extract()  返回文本列表<br>selector.extract_first() 返回第一个selector的文本，没有返回None</p>
+</li>
+<li><p>嵌套选择器</p>
+<p>有时候我们获取标签需要多次调用选择方法（.xpath()或.css()）<br>response.css(‘img’).xpath(‘@src’)</p>
+<p>Selector还有一个.re()方法使用正则表达式提取数据的方法。<br>它返回字符串。<br>它一般使用在xpath()，css()方法之后，用来过滤文本数据。<br>re_first()用来返回第一个匹配的字符串。</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">html_str=<span class="string">"""</span></span><br><span class="line"><span class="string">&lt;div class="info"&gt;</span></span><br><span class="line"><span class="string">                    &lt;div class="hd"&gt;</span></span><br><span class="line"><span class="string">                        &lt;a href="https://movie.douban.com/subject/1292052/" class=""&gt;</span></span><br><span class="line"><span class="string">                            &lt;span class="title"&gt;肖申克的救赎&lt;/span&gt;</span></span><br><span class="line"><span class="string">                            &lt;span class="title"&gt;&amp;nbsp;/&amp;nbsp;The Shawshank Redemption&lt;/span&gt;</span></span><br><span class="line"><span class="string">                            &lt;span class="other"&gt;&amp;nbsp;/&amp;nbsp;月黑高飞(港)  /  刺激1995(台)&lt;/span&gt;</span></span><br><span class="line"><span class="string">                        &lt;/a&gt;</span></span><br><span class="line"><span class="string">                            &lt;span class="playable"&gt;[可播放]&lt;/span&gt;</span></span><br><span class="line"><span class="string">                    &lt;/div&gt;</span></span><br><span class="line"><span class="string">                    &lt;div class="bd"&gt;</span></span><br><span class="line"><span class="string">                        &lt;p class=""&gt;</span></span><br><span class="line"><span class="string">                            导演: 弗兰克·德拉邦特 Frank Darabont&amp;nbsp;&amp;nbsp;&amp;nbsp;主演: 蒂姆·罗宾斯 Tim Robbins /...&lt;br&gt;</span></span><br><span class="line"><span class="string">                            1994&amp;nbsp;/&amp;nbsp;美国&amp;nbsp;/&amp;nbsp;犯罪 剧情</span></span><br><span class="line"><span class="string">                        &lt;/p&gt;</span></span><br><span class="line"><span class="string">                        &lt;div class="star"&gt;</span></span><br><span class="line"><span class="string">                                &lt;span class="rating5-t"&gt;&lt;/span&gt;</span></span><br><span class="line"><span class="string">                                &lt;span class="rating_num" property="v:average"&gt;9.7&lt;/span&gt;</span></span><br><span class="line"><span class="string">                                &lt;span property="v:best" content="10.0"&gt;&lt;/span&gt;</span></span><br><span class="line"><span class="string">                                &lt;span&gt;1980500人评价&lt;/span&gt;</span></span><br><span class="line"><span class="string">                        &lt;/div&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">                            &lt;p class="quote"&gt;</span></span><br><span class="line"><span class="string">                                &lt;span class="inq"&gt;希望让人自由。&lt;/span&gt;</span></span><br><span class="line"><span class="string">                            &lt;/p&gt;</span></span><br><span class="line"><span class="string">                    &lt;/div&gt;</span></span><br><span class="line"><span class="string">                &lt;/div&gt;</span></span><br><span class="line"><span class="string">            &lt;/div&gt;</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="keyword">from</span>  scrapy.selector  <span class="keyword">import</span>  Selector</span><br><span class="line"><span class="comment">#1.通过text 参数来构造对象</span></span><br><span class="line">selc_text=Selector(text=html_str)</span><br><span class="line"></span><br><span class="line"><span class="comment"># print(selc_text.xpath('//div[@class="info"]//div/a/span/text()').extract()[0])</span></span><br><span class="line"><span class="comment"># print(selc_text.xpath('./body/div[@class="info"]//div/a/span/text()').extract()[0])</span></span><br><span class="line"><span class="comment"># print(selc_text.xpath('//div[@class="info"]//div/a/span/text()').extract_first())</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#2.通过 response  构造selector对象</span></span><br><span class="line"><span class="keyword">from</span>  scrapy.http <span class="keyword">import</span>   HtmlResponse</span><br><span class="line">response=HtmlResponse(url=<span class="string">"http://www.example.com"</span>,body=html_str.encode())</span><br><span class="line">Selector(response=response)</span><br><span class="line"><span class="comment"># print(response.selector.xpath('//div[@class="info"]//div/a/span/text()').extract()[0])</span></span><br><span class="line"><span class="comment"># print(response.xpath('//div[@class="info"]//div/a/span/text()').extract()[0])</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#3.嵌套表达式  selector  可以任意使用 css   xpath  re</span></span><br><span class="line"><span class="comment"># print(response.css("a").xpath('./span[1]/text()').extract()[0])</span></span><br><span class="line">print(response.css(<span class="string">"a"</span>).xpath(<span class="string">'./span[1]/text()'</span>).re(<span class="string">"的.."</span>)[<span class="number">0</span>])</span><br><span class="line">print(response.css(<span class="string">"a"</span>).xpath(<span class="string">'./span[1]/text()'</span>).re_first(<span class="string">"的.."</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="scrapy-Spider"><a href="#scrapy-Spider" class="headerlink" title="scrapy.Spider"></a>scrapy.Spider</h2><ul>
+<li><p><strong>spider 的名称</strong>   <strong>name</strong></p>
+<p>一个字符串，用于定义此蜘蛛的名称。蜘蛛名称是Scrapy如何定位（并实例化）蜘蛛，因此它必须是唯一的。这是最重要的蜘蛛属性，它是必需的。</p>
+</li>
+<li><p><strong>起始urls</strong></p>
+<p>蜘蛛将开始爬取的URL列表。因此，下载的第一页将是此处列出的页面。后续Request将从起始URL中包含的数据连续生成。</p>
+</li>
+<li><p><strong>自定义设置</strong></p>
+<p>运行此蜘蛛时将覆盖项目范围的设置。必须将其定义为类属性，因为在实例化之前更新了设置。</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Spider</span><span class="params">(object_ref)</span>:</span></span><br><span class="line">    <span class="string">"""Base class for scrapy spiders. All spiders must inherit from this</span></span><br><span class="line"><span class="string">    class.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"></span><br><span class="line">    name = <span class="literal">None</span></span><br><span class="line">    custom_settings = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name=None, **kwargs)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> name <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            self.name = name</span><br><span class="line">        <span class="keyword">elif</span> <span class="keyword">not</span> getattr(self, <span class="string">'name'</span>, <span class="literal">None</span>):</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">"%s must have a name"</span> % type(self).__name__)</span><br><span class="line">        self.__dict__.update(kwargs)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> hasattr(self, <span class="string">'start_urls'</span>):</span><br><span class="line">            self.start_urls = []</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>logger</strong>  </li>
+</ul>
+<p>使用Spider创建的Python日志器。您可以使用它来发送日志消息。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@property</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">logger</span><span class="params">(self)</span>:</span></span><br><span class="line">    logger = logging.getLogger(self.name)</span><br><span class="line">    <span class="keyword">return</span> logging.LoggerAdapter(logger, &#123;<span class="string">'spider'</span>: self&#125;)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">log</span><span class="params">(self, message, level=logging.DEBUG, **kw)</span>:</span></span><br><span class="line">    <span class="string">"""Log the given message at the given log level</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    This helper wraps a log call to the logger within the spider, but you</span></span><br><span class="line"><span class="string">    can use it directly (e.g. Spider.logger.info('msg')) or use any other</span></span><br><span class="line"><span class="string">    Python logger too.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    self.logger.log(level, message, **kw)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><strong>from_crawler</strong>   </p>
+<p>这是Scrapy用于创建spider的类方法。一般不用覆盖。</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@classmethod</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">from_crawler</span><span class="params">(cls, crawler, *args, **kwargs)</span>:</span></span><br><span class="line">    spider = cls(*args, **kwargs)</span><br><span class="line">    spider._set_crawler(crawler)</span><br><span class="line">    <span class="keyword">return</span> spider</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_set_crawler</span><span class="params">(self, crawler)</span>:</span></span><br><span class="line">    self.crawler = crawler</span><br><span class="line">    self.settings = crawler.settings</span><br><span class="line">    crawler.signals.connect(self.close, signals.spider_closed)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><strong>start_requests()</strong>  开始请求</p>
+<p>此方法必须返回一个iterable，其中包含第一个要爬网的请求。它只会被调用一次</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">start_requests</span><span class="params">(self)</span>:</span></span><br><span class="line">    cls = self.__class__</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> self.start_urls <span class="keyword">and</span> hasattr(self, <span class="string">'start_url'</span>):</span><br><span class="line">        <span class="keyword">raise</span> AttributeError(</span><br><span class="line">            <span class="string">"Crawling could not start: 'start_urls' not found "</span></span><br><span class="line">            <span class="string">"or empty (but found 'start_url' attribute instead, "</span></span><br><span class="line">            <span class="string">"did you miss an 's'?)"</span>)</span><br><span class="line">    <span class="keyword">if</span> method_is_overridden(cls, Spider, <span class="string">'make_requests_from_url'</span>):</span><br><span class="line">        warnings.warn(</span><br><span class="line">            <span class="string">"Spider.make_requests_from_url method is deprecated; it "</span></span><br><span class="line">            <span class="string">"won't be called in future Scrapy releases. Please "</span></span><br><span class="line">            <span class="string">"override Spider.start_requests method instead (see %s.%s)."</span> % (</span><br><span class="line">                cls.__module__, cls.__name__</span><br><span class="line">            ),</span><br><span class="line">        )</span><br><span class="line">        <span class="keyword">for</span> url <span class="keyword">in</span> self.start_urls:</span><br><span class="line">            <span class="keyword">yield</span> self.make_requests_from_url(url)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">for</span> url <span class="keyword">in</span> self.start_urls:</span><br><span class="line">            <span class="keyword">yield</span> Request(url, dont_filter=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><strong>parse</strong>  默认回调函数方法</p>
+<p>这是Scrapy在其请求未指定回调时处理下载的响应时使用的默认回调</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line">    <span class="keyword">raise</span> NotImplementedError(<span class="string">'&#123;&#125;.parse callback is not defined'</span>.format(self.__class__.__name__))</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><strong>close</strong>  关闭spider</p>
+<p>spider关闭时调用</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/gongzhonghao.jpg" alt="李江洋 wechat" style="width: 200px; max-width: 100%;">
+  <div>python分享公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="李江洋 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="李江洋 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python之scrapy框架/" rel="tag"># python之scrapy框架</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/04/24/爬虫基础scrapy框架1/" rel="next" title="爬虫基础scrapy框架1">
+                <i class="fa fa-chevron-left"></i> 爬虫基础scrapy框架1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/04/26/爬虫基础scrapy框架3/" rel="prev" title="爬虫基础scrapy框架3">
+                爬虫基础scrapy框架3 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="李江洋">
+            
+              <p class="site-author-name" itemprop="name">李江洋</p>
+              <p class="site-description motion-element" itemprop="description">记录学习的技能和遇到的问题</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">179</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lvdXJuYW1l" title="GitHub &rarr; https://github.com/yourname"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="bWFpbHRvOjEzMjgwNDQzOTJAcXEuY29t" title="E-Mail &rarr; mailto:1328044392@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL2V4YW1wbGUuY29t" title="http://example.com">Title</span>
+                  </li>
+                
+              </ul>
+            </div>
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#scrapy-shell"><span class="nav-number">1.</span> <span class="nav-text">scrapy shell</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#选择器"><span class="nav-number">2.</span> <span class="nav-text">选择器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Scrapy框架-二"><span class="nav-number">3.</span> <span class="nav-text">Scrapy框架(二)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#次级页面抓取及数据传递拼接（豆瓣电影）"><span class="nav-number">3.1.</span> <span class="nav-text">次级页面抓取及数据传递拼接（豆瓣电影）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#spider文件"><span class="nav-number">3.1.0.1.</span> <span class="nav-text">spider文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#items文件"><span class="nav-number">3.1.0.2.</span> <span class="nav-text">items文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pipelines-文件"><span class="nav-number">3.1.0.3.</span> <span class="nav-text">pipelines 文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#settings-文件"><span class="nav-number">3.1.0.4.</span> <span class="nav-text">settings 文件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scrapy-shell"><span class="nav-number">3.2.</span> <span class="nav-text">Scrapy   shell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scrapy-选择器"><span class="nav-number">3.3.</span> <span class="nav-text">Scrapy  选择器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#scrapy-Spider"><span class="nav-number">3.4.</span> <span class="nav-text">scrapy.Spider</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李江洋</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Pisces</span> v7.0.1</div>
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script id="ribbon" size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+  
+  <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ljyabc.github.io/2021/04/26/爬虫基础scrapy框架2/";
+    this.page.identifier = "2021/04/26/爬虫基础scrapy框架2/";
+    this.page.title = '爬虫基础scrapy框架2';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/exturl.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+   <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+</body>
+</html>

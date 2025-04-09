@@ -1,0 +1,1588 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="vue样式,事件,表单vue选项卡  12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html lang=&quot;en">
+<meta name="keywords" content="前端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue样式,事件,表单">
+<meta property="og:url" content="https://ljyabc.github.io/2019/04/01/vue样式-事件-表单/index.html">
+<meta property="og:site_name" content="择墅居:李江洋">
+<meta property="og:description" content="vue样式,事件,表单vue选项卡  12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html lang=&quot;en">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ljyabc.github.io/2019/04/01/vue样式-事件-表单/1554114409827.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/04/01/vue样式-事件-表单/1554113713161.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/04/01/vue样式-事件-表单/1554114464616.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/04/01/vue样式-事件-表单/1554114487254.png">
+<meta property="og:updated_time" content="2025-04-08T14:37:57.682Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue样式,事件,表单">
+<meta name="twitter:description" content="vue样式,事件,表单vue选项卡  12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html lang=&quot;en">
+<meta name="twitter:image" content="https://ljyabc.github.io/2019/04/01/vue样式-事件-表单/1554114409827.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ljyabc.github.io/2019/04/01/vue样式-事件-表单/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>vue样式,事件,表单 | 择墅居:李江洋</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">择墅居:李江洋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">争做长沙别墅豪装第一品牌</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/book" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>book</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2019/04/01/vue样式-事件-表单/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李江洋">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="择墅居:李江洋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">vue样式,事件,表单
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-01 17:58:33" itemprop="dateCreated datePublished" datetime="2019-04-01T17:58:33+08:00">2019-04-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2025-04-08 22:37:57" itemprop="dateModified" datetime="2025-04-08T22:37:57+08:00">2025-04-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/理解/" itemprop="url" rel="index"><span itemprop="name">理解</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/04/01/vue样式-事件-表单/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/04/01/vue样式-事件-表单/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="vue样式-事件-表单"><a href="#vue样式-事件-表单" class="headerlink" title="vue样式,事件,表单"></a>vue样式,事件,表单</h1><h2 id="vue选项卡"><a href="#vue选项卡" class="headerlink" title="vue选项卡"></a>vue选项卡</h2><p><img src="/2019/04/01/vue样式-事件-表单/1554114409827.png" alt="1554114409827"></p>
+<p><img src="/2019/04/01/vue样式-事件-表单/1554113713161.png" alt="1554113713161"></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>选项卡 tabs<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"../dist/css/bootstrap.css"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">		<span class="selector-id">#app</span> &#123;</span></span><br><span class="line"><span class="css">			<span class="selector-tag">margin</span><span class="selector-pseudo">:100px</span> <span class="selector-tag">auto</span> 0<span class="selector-tag">px</span>;</span></span><br><span class="line"><span class="css">			<span class="selector-tag">width</span><span class="selector-pseudo">:800px</span>;</span></span><br><span class="line">		&#125;</span><br><span class="line"><span class="css">		<span class="selector-class">.panel</span> &#123;</span></span><br><span class="line"><span class="css">			<span class="selector-tag">border-top</span><span class="selector-pseudo">:none</span>;</span></span><br><span class="line">		&#125;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"row"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-12"</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"nav nav-tabs"</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">li</span> <span class="attr">:class</span>=<span class="string">"&#123;active: tab == 0&#125;"</span> @<span class="attr">click</span>=<span class="string">"tab = 0"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>未付款订单<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">li</span> <span class="attr">:class</span>=<span class="string">"&#123;active: tab == 1&#125;"</span> @<span class="attr">click</span>=<span class="string">"tab = 1"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>未发货订单<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">li</span> <span class="attr">:class</span>=<span class="string">"&#123;active: tab == 2&#125;"</span> @<span class="attr">click</span>=<span class="string">"tab = 2"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>未收货订单<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">li</span> <span class="attr">:class</span>=<span class="string">"&#123;active: tab == 3&#125;"</span> @<span class="attr">click</span>=<span class="string">"tab = 3"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>未评价订单<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">li</span> <span class="attr">:class</span>=<span class="string">"&#123;active: tab == 4&#125;"</span> @<span class="attr">click</span>=<span class="string">"tab = 4"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>所有订单<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"></span><br><span class="line">				<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"panel panel-default"</span> <span class="attr">v-show</span>=<span class="string">"tab === 0"</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"panel-body"</span>&gt;</span></span><br><span class="line">						这是未付款的订单</span><br><span class="line">					<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">				<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"panel panel-default"</span> <span class="attr">v-show</span>=<span class="string">"tab === 1"</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"panel-body"</span>&gt;</span></span><br><span class="line">						这是未发货的订单</span><br><span class="line">					<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">				<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"panel panel-default"</span> <span class="attr">v-show</span>=<span class="string">"tab === 2"</span>&gt;</span> </span><br><span class="line">					<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"panel-body"</span>&gt;</span></span><br><span class="line">						这是未收货的订单</span><br><span class="line">					<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">				<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"panel panel-default"</span> <span class="attr">v-show</span>=<span class="string">"tab === 3"</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"panel-body"</span>&gt;</span></span><br><span class="line">						这是未评价的订单</span><br><span class="line">					<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">				<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"panel panel-default"</span> <span class="attr">v-show</span>=<span class="string">"tab === 4"</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"panel-body"</span>&gt;</span></span><br><span class="line">						这是所有的订单</span><br><span class="line">					<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"../dist/js/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">		<span class="keyword">let</span> vm = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">			el:<span class="string">'#app'</span>,</span></span><br><span class="line">			data: &#123;</span><br><span class="line">				tab: 0</span><br><span class="line">			&#125;,</span><br><span class="line"></span><br><span class="line">		&#125;)</span><br><span class="line">	<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="2"><a href="#2" class="headerlink" title="2"></a>2</h3><p><img src="/2019/04/01/vue样式-事件-表单/1554114464616.png" alt="1554114464616"></p>
+<p><img src="/2019/04/01/vue样式-事件-表单/1554114487254.png" alt="1554114487254"></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">	&lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">	&lt;title&gt;选项卡 tabs&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">	&lt;!--21.导入css,导入图片--&gt;</span></span><br><span class="line"><span class="regexp">	&lt;link rel="stylesheet" href="../</span>dist/css/bootstrap.css<span class="string">"&gt;</span></span><br><span class="line"><span class="string">	&lt;style&gt;</span></span><br><span class="line"><span class="string">		#app &#123;</span></span><br><span class="line"><span class="string">			margin:100px auto 0px;</span></span><br><span class="line"><span class="string">			width:800px;</span></span><br><span class="line"><span class="string">		&#125;</span></span><br><span class="line"><span class="string">		.panel &#123;</span></span><br><span class="line"><span class="string">			border-top:none;</span></span><br><span class="line"><span class="string">		&#125;</span></span><br><span class="line"><span class="string">	&lt;/style&gt;</span></span><br><span class="line"><span class="string">&lt;/head&gt;</span></span><br><span class="line"><span class="string">&lt;body&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">	&lt;div id="</span>app<span class="string">"&gt;</span></span><br><span class="line"><span class="string">		&lt;div class="</span>row<span class="string">"&gt;</span></span><br><span class="line"><span class="string">			&lt;div class="</span>col-md<span class="number">-12</span><span class="string">"&gt;</span></span><br><span class="line"><span class="string">				&lt;!--22.导航条样式--&gt;</span></span><br><span class="line"><span class="string">				&lt;ul class="</span>nav nav-tabs<span class="string">"&gt;</span></span><br><span class="line"><span class="string">					&lt;li :class="</span>&#123;<span class="attr">active</span>: isTab(<span class="number">0</span>)&#125;<span class="string">" @click="</span>setTab(<span class="number">0</span>)<span class="string">"&gt;&lt;a href="</span>javascript:<span class="keyword">void</span>(<span class="number">0</span>)<span class="string">"&gt;未付款订单&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="string">					&lt;li :class="</span>&#123;<span class="attr">active</span>: isTab(<span class="number">1</span>)&#125;<span class="string">" @click="</span>setTab(<span class="number">1</span>)<span class="string">"&gt;&lt;a href="</span>javascript:<span class="keyword">void</span>(<span class="number">0</span>)<span class="string">"&gt;未发货订单&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="string">					&lt;li :class="</span>&#123;<span class="attr">active</span>: isTab(<span class="number">2</span>)&#125;<span class="string">" @click="</span>setTab(<span class="number">2</span>)<span class="string">"&gt;&lt;a href="</span>javascript:<span class="keyword">void</span>(<span class="number">0</span>)<span class="string">"&gt;未收货订单&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="string">					&lt;li :class="</span>&#123;<span class="attr">active</span>: isTab(<span class="number">3</span>)&#125;<span class="string">" @click="</span>setTab(<span class="number">3</span>)<span class="string">"&gt;&lt;a href="</span>javascript:<span class="keyword">void</span>(<span class="number">0</span>)<span class="string">"&gt;未评价订单&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="string">					&lt;li :class="</span>&#123;<span class="attr">active</span>: isTab(<span class="number">4</span>)&#125;<span class="string">" @click="</span>setTab(<span class="number">4</span>)<span class="string">"&gt;&lt;a href="</span>javascript:<span class="keyword">void</span>(<span class="number">0</span>)<span class="string">"&gt;所有订单&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="string">				&lt;/ul&gt;</span></span><br><span class="line"><span class="string">                &lt;!--23.设置面板panel panel-default颜色--&gt;</span></span><br><span class="line"><span class="string">				&lt;div class="</span>panel panel-<span class="keyword">default</span><span class="string">" v-show="</span>isTab(<span class="number">0</span>)<span class="string">"&gt;</span></span><br><span class="line"><span class="string">					&lt;div class="</span>panel-body<span class="string">"&gt;</span></span><br><span class="line"><span class="string">						这是未付款的订单</span></span><br><span class="line"><span class="string">					&lt;/div&gt;</span></span><br><span class="line"><span class="string">				&lt;/div&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">				&lt;div class="</span>panel panel-<span class="keyword">default</span><span class="string">" v-show="</span>isTab(<span class="number">1</span>)<span class="string">"&gt;</span></span><br><span class="line"><span class="string">                    &lt;!--24.设置面板内容--&gt;</span></span><br><span class="line"><span class="string">					&lt;div class="</span>panel-body<span class="string">"&gt;</span></span><br><span class="line"><span class="string">						这是未发货的订单</span></span><br><span class="line"><span class="string">					&lt;/div&gt;</span></span><br><span class="line"><span class="string">				&lt;/div&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">				&lt;div class="</span>panel panel-<span class="keyword">default</span><span class="string">" v-show="</span>isTab(<span class="number">2</span>)<span class="string">"&gt; </span></span><br><span class="line"><span class="string">					&lt;div class="</span>panel-body<span class="string">"&gt;</span></span><br><span class="line"><span class="string">						这是未收货的订单</span></span><br><span class="line"><span class="string">					&lt;/div&gt;</span></span><br><span class="line"><span class="string">				&lt;/div&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">				&lt;div class="</span>panel panel-<span class="keyword">default</span><span class="string">" v-show="</span>isTab(<span class="number">3</span>)<span class="string">"&gt;</span></span><br><span class="line"><span class="string">					&lt;div class="</span>panel-body<span class="string">"&gt;</span></span><br><span class="line"><span class="string">						这是未评价的订单</span></span><br><span class="line"><span class="string">					&lt;/div&gt;</span></span><br><span class="line"><span class="string">				&lt;/div&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">				&lt;div class="</span>panel panel-<span class="keyword">default</span><span class="string">" v-show="</span>isTab(<span class="number">4</span>)<span class="string">"&gt;</span></span><br><span class="line"><span class="string">					&lt;div class="</span>panel-body<span class="string">"&gt;</span></span><br><span class="line"><span class="string">						这是所有的订单</span></span><br><span class="line"><span class="string">					&lt;/div&gt;</span></span><br><span class="line"><span class="string">				&lt;/div&gt;</span></span><br><span class="line"><span class="string">			&lt;/div&gt;</span></span><br><span class="line"><span class="string">		&lt;/div&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">	&lt;/div&gt;</span></span><br><span class="line"><span class="string">	</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">	&lt;script src="</span>../dist/js/vue.js<span class="string">"&gt;&lt;/script&gt;</span></span><br><span class="line"><span class="string">	&lt;script&gt;</span></span><br><span class="line"><span class="string">		let vm = new Vue(&#123;</span></span><br><span class="line"><span class="string">			el:'#app',</span></span><br><span class="line"><span class="string">			// 25.定义初始变量值</span></span><br><span class="line"><span class="string">			data: &#123;</span></span><br><span class="line"><span class="string">				tab: 0</span></span><br><span class="line"><span class="string">			&#125;,</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">			methods: &#123;</span></span><br><span class="line"><span class="string">			    // 26.设置click触发的索引</span></span><br><span class="line"><span class="string">				setTab(index) &#123;</span></span><br><span class="line"><span class="string">					this.tab = index;</span></span><br><span class="line"><span class="string">				&#125;,</span></span><br><span class="line"><span class="string">				// 27.返回bool值===设置click触发的索引,打开下拉</span></span><br><span class="line"><span class="string">				isTab(index) &#123;</span></span><br><span class="line"><span class="string">					return this.tab === index;</span></span><br><span class="line"><span class="string">				&#125;</span></span><br><span class="line"><span class="string">			&#125;</span></span><br><span class="line"><span class="string">		&#125;)</span></span><br><span class="line"><span class="string">	&lt;/script&gt;</span></span><br><span class="line"><span class="string">&lt;/body&gt;</span></span><br><span class="line"><span class="string">&lt;/html&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-样式"><a href="#3-样式" class="headerlink" title="3 样式"></a>3 样式</h2><h3 id="3-1-绑定HTML-Class"><a href="#3-1-绑定HTML-Class" class="headerlink" title="3.1 绑定HTML Class"></a>3.1 绑定HTML Class</h3><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;p <span class="keyword">class</span>=<span class="string">"item"</span> :<span class="keyword">class</span>=<span class="string">"cname"</span>&gt;</span><br><span class="line">cname:<span class="string">'current'</span>,</span><br></pre></td></tr></table></figure>
+<h4 id="对象语法"><a href="#对象语法" class="headerlink" title="对象语法"></a>对象语法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div v-bind:class=&quot;&#123; active: isActive &#125;&quot;&gt;&lt;/div&gt;  对象</span><br><span class="line">&lt;div class=&quot;static&quot;</span><br><span class="line">     v-bind:class=&quot;&#123; active: isActive, &apos;text-danger&apos;: hasError &#125;&quot;&gt;  key对应的值可以为true/false 可以写多个</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div v-bind:class=&quot;classObject&quot;&gt;&lt;/div&gt;  可以写变量，用vue传对象</span><br></pre></td></tr></table></figure>
+<h4 id="数组语法"><a href="#数组语法" class="headerlink" title="数组语法"></a>数组语法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div v-bind:class=&quot;[activeClass, errorClass]&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">data</span>: &#123;</span><br><span class="line"><span class="attribute">classList</span>: [<span class="string">'link'</span>, <span class="string">'item'</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-绑定内联样式"><a href="#3-2-绑定内联样式" class="headerlink" title="3.2 绑定内联样式"></a>3.2 绑定内联样式</h3><h4 id="对象语法-1"><a href="#对象语法-1" class="headerlink" title="对象语法"></a>对象语法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div v-bind:style=&quot;&#123; color: activeColor, fontSize: fontSize + &apos;px&apos; &#125;&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;div v-bind:style=&quot;styleObject&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;p :style=&quot;&#123;color:&apos;purple&apos;, background:&apos;pink&apos;&#125;&quot;&gt;Lorem ipsum dolor sit amet.&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="数组语法-1"><a href="#数组语法-1" class="headerlink" title="数组语法"></a>数组语法</h4><p>数组语法可以将多个样式对象应用到同一个元素上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;div v-bind:style=&quot;[baseStyles, overridingStyles]&quot;&gt;&lt;/div&gt;  数组的值为对象类型</span><br><span class="line">&lt;p :style=&quot;[styleObj, &#123;borderWidth:&apos;10px&apos;&#125;]&quot;&gt;Lorem ipsum dolor sit amet.&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="数据驱动"><a href="#数据驱动" class="headerlink" title="数据驱动"></a>数据驱动</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">				styleValue: <span class="string">'color:red;background:green'</span>,</span><br><span class="line">				styleObj: &#123;<span class="attr">color</span>:<span class="string">'pink'</span>,<span class="attr">background</span>:<span class="string">'#ccc'</span>&#125;</span><br><span class="line">			&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="自动添加前缀"><a href="#自动添加前缀" class="headerlink" title="自动添加前缀"></a>自动添加前缀</h4><p>当 <code>v-bind:style</code> 使用需要添加浏览器引擎前缀的 CSS 属性时，如 transform，Vue.js 会自动侦测并添加相应的前缀。</p>
+<h2 id="4-事件"><a href="#4-事件" class="headerlink" title="4. 事件"></a>4. 事件</h2><h3 id="本身是就是调用函数无参不用加括号methods可以执行的方法"><a href="#本身是就是调用函数无参不用加括号methods可以执行的方法" class="headerlink" title="本身是就是调用函数无参不用加括号methods可以执行的方法"></a>本身是就是调用函数无参不用加括号methods可以执行的方法</h3><h5 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h5><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">p</span> @事件名=<span class="string">"方法"</span>&gt;</span><br><span class="line">&lt;<span class="selector-tag">p</span> v-on:事件名=<span class="string">"方法"</span>&gt;</span><br><span class="line"><span class="comment">// 方法加括号的问题</span></span><br><span class="line">&lt;<span class="selector-tag">p</span> @事件名=<span class="string">"方法(1,2,3,4,$event)"</span>&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="事件修饰符"><a href="#事件修饰符" class="headerlink" title="事件修饰符"></a>事件修饰符</h5><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">.stop  阻止事件冒泡</span></span><br><span class="line"><span class="title">.prevent  阻止默认动作</span></span><br><span class="line"><span class="title">.capture  捕获阶段，触发事件</span></span><br><span class="line"><span class="title">.once  只绑定一次</span></span><br><span class="line"><span class="title">.self  只有本身才触发</span></span><br><span class="line"><span class="title">.passive  优化移动端的scroll事件</span></span><br></pre></td></tr></table></figure>
+<h5 id="键盘修饰符"><a href="#键盘修饰符" class="headerlink" title="键盘修饰符"></a>键盘修饰符</h5><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">.enter</span></span><br><span class="line"><span class="title">.space</span></span><br><span class="line"><span class="title">.tab</span></span><br><span class="line"><span class="title">.up</span></span><br><span class="line"><span class="title">.left</span></span><br><span class="line"><span class="title">.right</span></span><br><span class="line"><span class="title">.down</span></span><br><span class="line"><span class="title">.delete</span></span><br><span class="line">.数字(ascii)</span><br></pre></td></tr></table></figure>
+<h5 id="系统按键修饰符"><a href="#系统按键修饰符" class="headerlink" title="系统按键修饰符"></a>系统按键修饰符</h5><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">.ctrl</span></span><br><span class="line"><span class="string">.alt</span></span><br><span class="line"><span class="string">.shift</span></span><br><span class="line"><span class="string">.meta</span></span><br><span class="line"><span class="string">//</span> &lt;input @keyup.ctrl.enter&gt; 按住ctrl再按回车</span><br></pre></td></tr></table></figure>
+<h3 id="4-1-事件绑定"><a href="#4-1-事件绑定" class="headerlink" title="4.1 事件绑定"></a>4.1 事件绑定</h3><h4 id="监听事件"><a href="#监听事件" class="headerlink" title="监听事件"></a>监听事件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;example-1&quot;&gt;</span><br><span class="line">  &lt;button v-on:click=&quot;counter += 1&quot;&gt;Add 1&lt;/button&gt;</span><br><span class="line">  &lt;p&gt;The button above has been clicked &#123;&#123; counter &#125;&#125; times.&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="事件处理方法"><a href="#事件处理方法" class="headerlink" title="事件处理方法"></a>事件处理方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;example-2&quot;&gt;</span><br><span class="line">  &lt;!-- `greet` 是在下面定义的方法名 --&gt;</span><br><span class="line">  &lt;button v-on:click=&quot;greet&quot;&gt;Greet&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="内联调用方法"><a href="#内联调用方法" class="headerlink" title="内联调用方法"></a>内联调用方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;example-3&quot;&gt;</span><br><span class="line">  &lt;button v-on:click=&quot;say(&apos;hi&apos;)&quot;&gt;Say hi&lt;/button&gt;</span><br><span class="line">  &lt;button v-on:click=&quot;say(&apos;what&apos;)&quot;&gt;Say what&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>有时也需要在内联语句处理器中访问原始的 DOM 事件。可以用特殊变量 $event 把它传入方法</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@mousemove</span>=<span class="string">"onMoveFn(<span class="subst">$event</span>, 100)"</span></span><br><span class="line">methods: &#123;</span><br><span class="line">			    <span class="comment">// 54.设置一个默认参数</span></span><br><span class="line">				addCounter(<span class="built_in">num</span>=<span class="number">1</span>) &#123;</span><br><span class="line">					<span class="keyword">this</span>.counter += <span class="built_in">num</span>;</span><br><span class="line">				&#125;,</span><br><span class="line"></span><br><span class="line">				onMoveFn(ev, <span class="built_in">num</span>) &#123;</span><br><span class="line">					console.log(ev.target)</span><br><span class="line">					<span class="comment">//ev 是获取的event 对象</span></span><br><span class="line">					console.log(ev.pageX, ev.pageY)</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;button v-on:click=&quot;warn(&apos;Form cannot be submitted yet.&apos;, $event)&quot;&gt;</span><br><span class="line">  Submit</span><br><span class="line">&lt;/button&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="4-2-事件修饰符"><a href="#4-2-事件修饰符" class="headerlink" title="4.2 事件修饰符"></a>4.2 事件修饰符</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.stop</span>  阻止事件冒泡</span><br><span class="line"><span class="selector-class">.prevent</span>  阻止默认动作   </span><br><span class="line"><span class="selector-class">.capture</span>   捕获阶段触发事件</span><br><span class="line"><span class="selector-class">.once</span>      只绑定一次</span><br><span class="line"><span class="selector-class">.self</span>      只有本身才触发</span><br><span class="line"><span class="selector-class">.passive</span>   优化移动端的scroll事件</span><br><span class="line"></span><br><span class="line">&lt;<span class="selector-tag">p</span> @click.stop=<span class="string">""</span>&gt;</span><br><span class="line">&lt;<span class="selector-tag">p</span> @click<span class="selector-class">.stop</span>.prevent=<span class="string">""</span>&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 阻止单击事件继续传播 阻止事件冒泡--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-on:click.stop</span>=<span class="string">"doThis"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 提交事件不再重载页面 阻止默认事件--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">v-on:submit.prevent</span>=<span class="string">"onSubmit"</span>&gt;</span><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 修饰符可以串联 阻止默认事件和事件冒泡 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-on:click.stop.prevent</span>=<span class="string">"doThat"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 只有修饰符 阻止事件的提交 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">v-on:submit.prevent</span>&gt;</span><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 添加事件监听器时使用事件捕获模式 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 即元素自身触发的事件先在此处处理，然后才交由内部元素进行处理 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-on:click.capture</span>=<span class="string">"doThis"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 只当在 event.target 是当前元素自身时触发处理函数 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 即事件不是从内部元素触发的 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-on:click.self</span>=<span class="string">"doThat"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 点击事件将只会触发一次 2.1.4新增--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-on:click.once</span>=<span class="string">"doThis"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 滚动事件的默认行为 (即滚动行为) 将会立即触发 2.3.0新增--&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 而不会等待 `onScroll` 完成  --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 这其中包含 `event.preventDefault()` 的情况 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!--.passive 修饰符尤其能够提升移动端的性能。--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-on:scroll.passive</span>=<span class="string">"onScroll"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="4-3-按键修饰符"><a href="#4-3-按键修饰符" class="headerlink" title="4.3 按键修饰符"></a>4.3 按键修饰符</h3><h4 id="数字"><a href="#数字" class="headerlink" title="数字"></a>数字</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 只有在 `keyCode` 是 13 时调用 `vm.submit()` --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-on:keyup.13</span>=<span class="string">"submit"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--65的按键对应的a的asill吗--&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">class</span>=<span class="string">"form-control"</span> @<span class="attr">keyup.65</span>=<span class="string">"onkeyupFn"</span>&gt;</span></span><br><span class="line">				<span class="comment">&lt;!--回车--&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">class</span>=<span class="string">"form-control"</span> @<span class="attr">keyup.enter</span>=<span class="string">"onkeyupFn"</span>&gt;</span></span><br><span class="line">				<span class="comment">&lt;!--ctrl+a--&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">class</span>=<span class="string">"form-control"</span> @<span class="attr">keyup.ctrl.65</span>=<span class="string">"onkeyupFn"</span>&gt;</span></span><br><span class="line">				</span><br><span class="line">				</span><br><span class="line">				</span><br><span class="line">				methods: &#123;</span><br><span class="line">				boxFn()&#123;</span><br><span class="line">					console.log('box');</span><br><span class="line">				&#125;,</span><br><span class="line">				// 62.自动传人event</span><br><span class="line">				innerFn()&#123;</span><br><span class="line">					console.log('inner');</span><br><span class="line">					//event.stopPropagation();</span><br><span class="line">				&#125;,</span><br><span class="line">				// 63.asil吗</span><br><span class="line">				onkeyupFn(event) &#123;</span><br><span class="line">					console.log('按了 '+event.keyCode+' 按键')</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="按键别名"><a href="#按键别名" class="headerlink" title="按键别名"></a>按键别名</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 回车键 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-on:keyup.enter</span>=<span class="string">"submit"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>.enter  </li>
+<li>.tab</li>
+<li>.delete (捕获“删除”和“退格”键)</li>
+<li>.esc</li>
+<li>.space</li>
+<li>.up</li>
+<li>.down</li>
+<li>.left</li>
+<li>.right</li>
+</ul>
+<p>可以通过全局 config.keyCodes 对象自定义按键修饰符别名：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 可以使用 `v-on:keyup.f1`</span></span><br><span class="line">Vue<span class="selector-class">.config</span><span class="selector-class">.keyCodes</span><span class="selector-class">.f1</span> = <span class="number">112</span></span><br></pre></td></tr></table></figure>
+<h3 id="4-4-系统修饰键"><a href="#4-4-系统修饰键" class="headerlink" title="4.4 系统修饰键"></a>4.4 系统修饰键</h3><p>可以用如下修饰符来实现仅在按下相应按键时才触发鼠标或键盘事件的监听器。</p>
+<ul>
+<li>.ctrl</li>
+<li>.alt</li>
+<li>.shift</li>
+<li>.meta</li>
+</ul>
+<blockquote>
+<p>注意：在 Mac 系统键盘上，meta 对应 command 键 (⌘)。在 Windows 系统键盘 meta 对应 Windows 徽标键 (⊞)。在 Sun 操作系统键盘上，meta 对应实心宝石键 (◆)。在其他特定键盘上，尤其在 MIT 和 Lisp 机器的键盘、以及其后继产品，比如 Knight 键盘、space-cadet 键盘，meta 被标记为“META”。在 Symbolics 键盘上，meta 被标记为“META”或者“Meta”。</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Alt + C --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> @<span class="attr">keyup.alt.67</span>=<span class="string">"clear"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- Ctrl + Click --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> @<span class="attr">click.ctrl</span>=<span class="string">"doSomething"</span>&gt;</span>Do something<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="表单输入绑定"><a href="#表单输入绑定" class="headerlink" title="表单输入绑定*"></a>表单输入绑定*</h2><p>你可以用 <code>v-model</code> 指令在表单 <code>&lt;input&gt;</code> 及 <code>&lt;textarea&gt;</code> 元素上创建双向数据绑定。它会根据控件类型自动选取正确的方法来更新元素。</p>
+<p><code>v-model</code> 会忽略所有表单元素的 value、checked、selected 特性的初始值而总是将 Vue 实例的数据作为数据来源。你应该通过 JavaScript 在组件的 data 选项中声明初始值。</p>
+<h3 id="5-1-基础用法"><a href="#5-1-基础用法" class="headerlink" title="5.1 基础用法"></a>5.1 基础用法</h3><h4 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;input v-model=&quot;message&quot; placeholder=&quot;edit me&quot;&gt;</span><br><span class="line">&lt;textarea v-model=&quot;message&quot; placeholder=&quot;add multiple lines&quot;&gt;&lt;/textarea&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="复选框"><a href="#复选框" class="headerlink" title="复选框"></a>复选框</h4><p>单个复选框，绑定到布尔值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;input</span><br><span class="line">  type=&quot;checkbox&quot; </span><br><span class="line">  v-model=&quot;toggle&quot;  // 他会变成yes和no</span><br><span class="line">  true-value=&quot;yes&quot;</span><br><span class="line">  false-value=&quot;no&quot;</span><br><span class="line">&gt;</span><br><span class="line">用布尔值，可以指定 yes 和 no</span><br></pre></td></tr></table></figure>
+<h4 id="多个复选框"><a href="#多个复选框" class="headerlink" title="多个复选框"></a>多个复选框</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=<span class="string">"checkbox"</span> value=<span class="string">"lanball"</span> v-model=<span class="string">"loveList"</span>&gt;篮球</span><br><span class="line">		&lt;input type=<span class="string">"checkbox"</span> value=<span class="string">"zuball"</span> v-model=<span class="string">"loveList"</span>&gt;足球</span><br><span class="line">		&lt;input type=<span class="string">"checkbox"</span> value=<span class="string">"bangball"</span> v-model=<span class="string">"loveList"</span>&gt;棒球</span><br><span class="line">		&lt;input type=<span class="string">"checkbox"</span> value=<span class="string">"paiball"</span> v-model=<span class="string">"loveList"</span>&gt;排球</span><br></pre></td></tr></table></figure>
+<h4 id="多个复选框，绑定到同一个数组"><a href="#多个复选框，绑定到同一个数组" class="headerlink" title="多个复选框，绑定到同一个数组"></a>多个复选框，绑定到同一个数组</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&apos;example&apos;&gt;</span><br><span class="line">  &lt;input type=&quot;checkbox&quot; id=&quot;jack&quot; value=&quot;Jack&quot; v-model=&quot;checkedNames&quot;&gt;</span><br><span class="line">  &lt;label for=&quot;jack&quot;&gt;Jack&lt;/label&gt;</span><br><span class="line">  &lt;input type=&quot;checkbox&quot; id=&quot;john&quot; value=&quot;John&quot; v-model=&quot;checkedNames&quot;&gt;</span><br><span class="line">  &lt;label for=&quot;john&quot;&gt;John&lt;/label&gt;</span><br><span class="line">  &lt;input type=&quot;checkbox&quot; id=&quot;mike&quot; value=&quot;Mike&quot; v-model=&quot;checkedNames&quot;&gt;</span><br><span class="line">  &lt;label for=&quot;mike&quot;&gt;Mike&lt;/label&gt;</span><br><span class="line">  &lt;br&gt;</span><br><span class="line">  &lt;span&gt;Checked names: &#123;&#123; checkedNames &#125;&#125;&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="单选按钮"><a href="#单选按钮" class="headerlink" title="单选按钮"></a>单选按钮</h4><p>绑定value对应的字符串</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;example&quot;&gt;</span><br><span class="line">  &lt;input type=&quot;radio&quot; id=&quot;one&quot; value=&quot;One&quot; v-model=&quot;picked&quot;&gt;</span><br><span class="line">  &lt;label for=&quot;one&quot;&gt;One&lt;/label&gt;</span><br><span class="line">  &lt;br&gt;</span><br><span class="line">  &lt;span&gt;Picked: &#123;&#123; picked &#125;&#125;&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"> v-model  value值</span><br></pre></td></tr></table></figure>
+<h4 id="选择框"><a href="#选择框" class="headerlink" title="选择框"></a>选择框</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;example&quot;&gt;</span><br><span class="line">  &lt;select v-model=&quot;selected&quot; multiple style=&quot;width: 50px;&quot;&gt;</span><br><span class="line">    &lt;option value=&apos;A&apos;&gt;A&lt;/option&gt;</span><br><span class="line">    &lt;option value=&apos;B&apos;&gt;B&lt;/option&gt;</span><br><span class="line">    &lt;option value=&apos;C&apos;&gt;C&lt;/option&gt;</span><br><span class="line">  &lt;/select&gt;</span><br><span class="line">  &lt;br&gt;</span><br><span class="line">  &lt;span&gt;Selected: &#123;&#123; selected &#125;&#125;&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">数组可以写一个默认值，</span><br></pre></td></tr></table></figure>
+<h3 id="5-2-修饰符"><a href="#5-2-修饰符" class="headerlink" title="5.2 修饰符"></a>5.2 修饰符</h3><h4 id="lazy"><a href="#lazy" class="headerlink" title=".lazy"></a>.lazy</h4><p>在默认情况下，v-model 在每次 input 事件触发后将输入框的值与数据进行同步</p>
+<p>添加 lazy 修饰符，从而转变为使用 change 事件进行同步</p>
+<p>失去焦点</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 在“change”时而非“input”时更新 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model.lazy</span>=<span class="string">"msg"</span> &gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="number"><a href="#number" class="headerlink" title=".number"></a>.number</h4><p>如果想自动将用户的输入值转为数值类型，可以给 v-model 添加 number 修饰符</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input v-model.<span class="attribute">number</span>=<span class="string">"age"</span> <span class="attribute">type</span>=<span class="string">"number"</span>&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="trim"><a href="#trim" class="headerlink" title=".trim"></a>.trim</h4><p>自动过滤用户输入的首尾空白字符，可以给 v-model 添加 trim 修饰符</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input v-model.<span class="attribute">trim</span>=<span class="string">"msg"</span>&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="表单数据"><a href="#表单数据" class="headerlink" title="表单数据"></a>表单数据</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">	&lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">	&lt;title&gt;表单&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">	&lt;link rel="stylesheet" href="../</span>dist/css/bootstrap.css<span class="string">"&gt;</span></span><br><span class="line"><span class="string">	&lt;style&gt;</span></span><br><span class="line"><span class="string">	</span></span><br><span class="line"><span class="string">	&lt;/style&gt;</span></span><br><span class="line"><span class="string">&lt;/head&gt;</span></span><br><span class="line"><span class="string">&lt;body&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">	&lt;div id="</span>app<span class="string">"&gt;</span></span><br><span class="line"><span class="string">		&lt;div class="</span>container<span class="string">"&gt;</span></span><br><span class="line"><span class="string">			&lt;div class="</span>page-header<span class="string">"&gt;</span></span><br><span class="line"><span class="string">				&lt;h1&gt;表单提交&lt;/h1&gt;</span></span><br><span class="line"><span class="string">			&lt;/div&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">			&lt;div class="</span>row<span class="string">"&gt;</span></span><br><span class="line"><span class="string">				&lt;div class="</span>col-md<span class="number">-12</span><span class="string">"&gt;</span></span><br><span class="line"><span class="string">					&lt;form @submit.prevent="</span><span class="string">"&gt;</span></span><br><span class="line"><span class="string">						&lt;div class="</span>form-group<span class="string">"&gt;</span></span><br><span class="line"><span class="string">							&lt;!--81.label绑定一下id--&gt;</span></span><br><span class="line"><span class="string">							&lt;label for="</span>a<span class="string">"&gt;用户名&lt;/label&gt;</span></span><br><span class="line"><span class="string">							&lt;!--82.数据双向--&gt;</span></span><br><span class="line"><span class="string">							&lt;input id="</span>a<span class="string">" type="</span>text<span class="string">" class="</span>form-control<span class="string">" v-model="</span>loginData.username<span class="string">" placeholder="</span>请输入用户名<span class="string">"&gt;</span></span><br><span class="line"><span class="string">						&lt;/div&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">						&lt;div class="</span>form-group<span class="string">"&gt;</span></span><br><span class="line">							&lt;label for="#"&gt;密码&lt;/label&gt;</span><br><span class="line">							&lt;input type=<span class="string">"password"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-control"</span> v-model=<span class="string">"loginData.pwd"</span>&gt;</span><br><span class="line">						&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">						&lt;div class="checkbox"&gt;</span></span><br><span class="line"><span class="regexp">							&lt;label for="#"&gt;</span></span><br><span class="line"><span class="regexp">								&lt;input type="checkbox" v-model="loginData.remember"&gt; 记住密码</span></span><br><span class="line"><span class="regexp">							&lt;/</span>label&gt;</span><br><span class="line">						&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">						&lt;button class="btn btn-success btn-block" @click="login()"&gt;登 录&lt;/</span>button&gt;</span><br><span class="line">					&lt;<span class="regexp">/form&gt;</span></span><br><span class="line"><span class="regexp">				&lt;/</span>div&gt;</span><br><span class="line">			&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">		&lt;/</span>div&gt;</span><br><span class="line">	&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">	</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">	&lt;script src="../</span>dist/js/vue.js<span class="string">"&gt;&lt;/script&gt;</span></span><br><span class="line"><span class="string">	&lt;script&gt;</span></span><br><span class="line"><span class="string">		let vm = new Vue(&#123;</span></span><br><span class="line"><span class="string">			el:'#app',</span></span><br><span class="line"><span class="string">			data: &#123;</span></span><br><span class="line"><span class="string">				loginData: &#123;</span></span><br><span class="line"><span class="string">					username:'',</span></span><br><span class="line"><span class="string">					pwd:'',</span></span><br><span class="line"><span class="string">					remember: true</span></span><br><span class="line"><span class="string">				&#125;</span></span><br><span class="line"><span class="string">			&#125;,</span></span><br><span class="line"><span class="string">			methods: &#123;</span></span><br><span class="line"><span class="string">				login() &#123;</span></span><br><span class="line"><span class="string">					//获取所哟表单的值</span></span><br><span class="line"><span class="string">					console.log(this.loginData)</span></span><br><span class="line"><span class="string">				&#125;</span></span><br><span class="line"><span class="string">			&#125;</span></span><br><span class="line"><span class="string">		&#125;)</span></span><br><span class="line"><span class="string">	&lt;/script&gt;</span></span><br><span class="line"><span class="string">&lt;/body&gt;</span></span><br><span class="line"><span class="string">&lt;/html&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="tolist"><a href="#tolist" class="headerlink" title="tolist"></a>tolist</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">	&lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">	&lt;title&gt;todoList&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">	&lt;style&gt;</span></span><br><span class="line"><span class="regexp">		#app &#123;</span></span><br><span class="line"><span class="regexp">			margin:100px auto 0;</span></span><br><span class="line"><span class="regexp">			width:600px;</span></span><br><span class="line"><span class="regexp">		&#125;</span></span><br><span class="line"><span class="regexp">		.input-box &#123;</span></span><br><span class="line"><span class="regexp">			font-size:0;</span></span><br><span class="line"><span class="regexp">		&#125;</span></span><br><span class="line"><span class="regexp">		.input-box input &#123;</span></span><br><span class="line"><span class="regexp">			box-sizing: border-box;</span></span><br><span class="line"><span class="regexp">			width:500px;</span></span><br><span class="line"><span class="regexp">			font-size:16px;</span></span><br><span class="line"><span class="regexp">			border:1px solid #ccc;</span></span><br><span class="line"><span class="regexp">			padding:10px;</span></span><br><span class="line"><span class="regexp">			line-height: 18px;</span></span><br><span class="line"><span class="regexp">		&#125;</span></span><br><span class="line"><span class="regexp">		.input-box button &#123;</span></span><br><span class="line"><span class="regexp">			width:100px;</span></span><br><span class="line"><span class="regexp">			padding:10px;</span></span><br><span class="line"><span class="regexp">			font-size:16px;</span></span><br><span class="line"><span class="regexp">			border:1px solid #ccc;</span></span><br><span class="line"><span class="regexp">			background: #f5f5f5;</span></span><br><span class="line"><span class="regexp">			cursor: pointer;</span></span><br><span class="line"><span class="regexp">			line-height: 18px;</span></span><br><span class="line"><span class="regexp">			border-left:none;</span></span><br><span class="line"><span class="regexp">		&#125;</span></span><br><span class="line"><span class="regexp">		ul &#123;</span></span><br><span class="line"><span class="regexp">			list-style: none;</span></span><br><span class="line"><span class="regexp">			margin:0;</span></span><br><span class="line"><span class="regexp">			padding:0;</span></span><br><span class="line"><span class="regexp">		&#125;</span></span><br><span class="line"><span class="regexp">		.todo-list &#123;</span></span><br><span class="line"><span class="regexp">			margin-top:20px;</span></span><br><span class="line"><span class="regexp">		&#125;</span></span><br><span class="line"><span class="regexp">		.todo-list li&#123;</span></span><br><span class="line"><span class="regexp">			border:1px solid #ccc;</span></span><br><span class="line"><span class="regexp">			padding:10px;</span></span><br><span class="line"><span class="regexp">			margin-bottom:10px;</span></span><br><span class="line"><span class="regexp">			font-size:0;</span></span><br><span class="line"><span class="regexp">		&#125;</span></span><br><span class="line"><span class="regexp">		.todo-list i &#123;</span></span><br><span class="line"><span class="regexp">			margin-right:20px;</span></span><br><span class="line"><span class="regexp">			display: inline-block;</span></span><br><span class="line"><span class="regexp">			width:16px;</span></span><br><span class="line"><span class="regexp">			height:16px;</span></span><br><span class="line"><span class="regexp">			border:1px solid #ccc;</span></span><br><span class="line"><span class="regexp">			cursor: pointer;</span></span><br><span class="line"><span class="regexp">			vertical-align: bottom;</span></span><br><span class="line"><span class="regexp">		&#125;</span></span><br><span class="line"><span class="regexp">		.todo-list p &#123;</span></span><br><span class="line"><span class="regexp">			width:500px;</span></span><br><span class="line"><span class="regexp">			display: inline-block;</span></span><br><span class="line"><span class="regexp">			font-size:16px;</span></span><br><span class="line"><span class="regexp">			margin:0;</span></span><br><span class="line"><span class="regexp">		&#125;</span></span><br><span class="line"><span class="regexp">		.todo-list span &#123;</span></span><br><span class="line"><span class="regexp">			width:50px;</span></span><br><span class="line"><span class="regexp">			cursor: pointer;</span></span><br><span class="line"><span class="regexp">			color:red;</span></span><br><span class="line"><span class="regexp">			font-size:16px;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">		&#125;</span></span><br><span class="line"><span class="regexp">		.done-list &#123;</span></span><br><span class="line"><span class="regexp">			margin-top:20px;</span></span><br><span class="line"><span class="regexp">		&#125;</span></span><br><span class="line"><span class="regexp">		.done-list li&#123;</span></span><br><span class="line"><span class="regexp">			border:1px solid #ccc;</span></span><br><span class="line"><span class="regexp">			padding:10px;</span></span><br><span class="line"><span class="regexp">			margin-bottom:10px;</span></span><br><span class="line"><span class="regexp">			background: #999;</span></span><br><span class="line"><span class="regexp">			color:#ccc;</span></span><br><span class="line"><span class="regexp">			cursor: not-allowed;</span></span><br><span class="line"><span class="regexp">			text-decoration: line-through;</span></span><br><span class="line"><span class="regexp">		&#125;</span></span><br><span class="line"><span class="regexp">	&lt;/</span>style&gt;</span><br><span class="line">&lt;<span class="regexp">/head&gt;</span></span><br><span class="line"><span class="regexp">&lt;body&gt;</span></span><br><span class="line"><span class="regexp">	&lt;div id="app"&gt;</span></span><br><span class="line"><span class="regexp">		&lt;div class="input-box"&gt;</span></span><br><span class="line"><span class="regexp">			&lt;!--91.trim去空格--&gt;</span></span><br><span class="line"><span class="regexp">			&lt;input type="text" v-model.trim="newTodo" placeholder="请输入代办事项"&gt;</span></span><br><span class="line"><span class="regexp">			&lt;button @click="addTodo"&gt;添 加&lt;/</span>button&gt;</span><br><span class="line">		&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">		&lt;div class="todo-list"&gt;</span></span><br><span class="line"><span class="regexp">			&lt;ul&gt;</span></span><br><span class="line"><span class="regexp">				&lt;li v-for="(todo,index) in todoList" :key="index"&gt;</span></span><br><span class="line"><span class="regexp">					&lt;!--将i设置样式--&gt;</span></span><br><span class="line"><span class="regexp">					&lt;i @click="addDone(index)"&gt;&lt;/i</span>&gt;</span><br><span class="line">					&lt;p&gt;&#123;&#123; todo &#125;&#125;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">					&lt;span @click="deleteTodo(index)"&gt;&amp;times;&lt;/</span>span&gt;</span><br><span class="line">				&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">			&lt;/u</span>l&gt;</span><br><span class="line">		&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">		&lt;h3&gt;已完成&lt;/</span>h3&gt;</span><br><span class="line">		&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"done-list"</span>&gt;</span><br><span class="line">			&lt;ul&gt;</span><br><span class="line">				&lt;li v-<span class="keyword">for</span>=<span class="string">"done in doneList"</span> :key=<span class="string">"done"</span>&gt;&#123;&#123; done &#125;&#125;&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">			&lt;/u</span>l&gt;</span><br><span class="line">		&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">	&lt;/</span>div&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	&lt;script src=<span class="string">"../dist/js/vue.js"</span>&gt;&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">	&lt;script&gt;</span></span><br><span class="line"><span class="regexp">		new Vue(&#123;</span></span><br><span class="line"><span class="regexp">			el:"#app",</span></span><br><span class="line"><span class="regexp">			data: &#123;</span></span><br><span class="line"><span class="regexp">				todoList: ['今天代码敲三遍', '晚上和小莉莉去喝酒'],</span></span><br><span class="line"><span class="regexp">				doneList: [],</span></span><br><span class="line"><span class="regexp">				newTodo:''</span></span><br><span class="line"><span class="regexp">			&#125;,</span></span><br><span class="line"><span class="regexp">			methods: &#123;</span></span><br><span class="line"><span class="regexp">				addTodo() &#123;</span></span><br><span class="line"><span class="regexp">					/</span><span class="regexp">/如果输入框是空的，不执行</span></span><br><span class="line"><span class="regexp">					if (this.newTodo.length === 0) &#123;</span></span><br><span class="line"><span class="regexp">						return;</span></span><br><span class="line"><span class="regexp">					&#125;</span></span><br><span class="line"><span class="regexp">					/</span><span class="regexp">/添加内容到 代办事项</span></span><br><span class="line"><span class="regexp">					this.todoList.push(this.newTodo)</span></span><br><span class="line"><span class="regexp">					/</span><span class="regexp">/清空输入框</span></span><br><span class="line"><span class="regexp">					this.newTodo = '';</span></span><br><span class="line"><span class="regexp">				&#125;,</span></span><br><span class="line"><span class="regexp">				deleteTodo(index) &#123;</span></span><br><span class="line"><span class="regexp">					this.todoList.splice(index, 1)</span></span><br><span class="line"><span class="regexp">				&#125;,</span></span><br><span class="line"><span class="regexp">				addDone(index) &#123;</span></span><br><span class="line"><span class="regexp">					/</span><span class="regexp">/把内容添加到 doneList</span></span><br><span class="line"><span class="regexp">					this.doneList.push(this.todoList[index])</span></span><br><span class="line"><span class="regexp">					/</span><span class="regexp">/从todoList删掉</span></span><br><span class="line"><span class="regexp">					this.deleteTodo(index);</span></span><br><span class="line"><span class="regexp">				&#125;</span></span><br><span class="line"><span class="regexp">			&#125;</span></span><br><span class="line"><span class="regexp">		&#125;)</span></span><br><span class="line"><span class="regexp">	&lt;/</span>script&gt;</span><br><span class="line">&lt;<span class="regexp">/body&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>html&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/gongzhonghao.jpg" alt="李江洋 wechat" style="width: 200px; max-width: 100%;">
+  <div>python分享公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="李江洋 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="李江洋 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag"># 前端</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/01/vue/" rel="next" title="vue实例,视图">
+                <i class="fa fa-chevron-left"></i> vue实例,视图
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/01/vue组件/" rel="prev" title="vue组件">
+                vue组件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="李江洋">
+            
+              <p class="site-author-name" itemprop="name">李江洋</p>
+              <p class="site-description motion-element" itemprop="description">记录学习的技能和遇到的问题</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">179</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lvdXJuYW1l" title="GitHub &rarr; https://github.com/yourname"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="bWFpbHRvOjEzMjgwNDQzOTJAcXEuY29t" title="E-Mail &rarr; mailto:1328044392@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL2V4YW1wbGUuY29t" title="http://example.com">Title</span>
+                  </li>
+                
+              </ul>
+            </div>
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vue样式-事件-表单"><span class="nav-number">1.</span> <span class="nav-text">vue样式,事件,表单</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#vue选项卡"><span class="nav-number">1.1.</span> <span class="nav-text">vue选项卡</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2"><span class="nav-number">1.1.1.</span> <span class="nav-text">2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-样式"><span class="nav-number">1.2.</span> <span class="nav-text">3 样式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-绑定HTML-Class"><span class="nav-number">1.2.1.</span> <span class="nav-text">3.1 绑定HTML Class</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#对象语法"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">对象语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数组语法"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">数组语法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-绑定内联样式"><span class="nav-number">1.2.2.</span> <span class="nav-text">3.2 绑定内联样式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#对象语法-1"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">对象语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数组语法-1"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">数组语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据驱动"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">数据驱动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自动添加前缀"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">自动添加前缀</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-事件"><span class="nav-number">1.3.</span> <span class="nav-text">4. 事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#本身是就是调用函数无参不用加括号methods可以执行的方法"><span class="nav-number">1.3.1.</span> <span class="nav-text">本身是就是调用函数无参不用加括号methods可以执行的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#事件"><span class="nav-number">1.3.1.0.1.</span> <span class="nav-text">事件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#事件修饰符"><span class="nav-number">1.3.1.0.2.</span> <span class="nav-text">事件修饰符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#键盘修饰符"><span class="nav-number">1.3.1.0.3.</span> <span class="nav-text">键盘修饰符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#系统按键修饰符"><span class="nav-number">1.3.1.0.4.</span> <span class="nav-text">系统按键修饰符</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-事件绑定"><span class="nav-number">1.3.2.</span> <span class="nav-text">4.1 事件绑定</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#监听事件"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">监听事件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事件处理方法"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">事件处理方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内联调用方法"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">内联调用方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-事件修饰符"><span class="nav-number">1.3.3.</span> <span class="nav-text">4.2 事件修饰符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-按键修饰符"><span class="nav-number">1.3.4.</span> <span class="nav-text">4.3 按键修饰符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数字"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">数字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#按键别名"><span class="nav-number">1.3.4.2.</span> <span class="nav-text">按键别名</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-系统修饰键"><span class="nav-number">1.3.5.</span> <span class="nav-text">4.4 系统修饰键</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单输入绑定"><span class="nav-number">1.4.</span> <span class="nav-text">表单输入绑定*</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-基础用法"><span class="nav-number">1.4.1.</span> <span class="nav-text">5.1 基础用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#文本"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">文本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复选框"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">复选框</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多个复选框"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">多个复选框</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多个复选框，绑定到同一个数组"><span class="nav-number">1.4.1.4.</span> <span class="nav-text">多个复选框，绑定到同一个数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单选按钮"><span class="nav-number">1.4.1.5.</span> <span class="nav-text">单选按钮</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#选择框"><span class="nav-number">1.4.1.6.</span> <span class="nav-text">选择框</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-修饰符"><span class="nav-number">1.4.2.</span> <span class="nav-text">5.2 修饰符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lazy"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">.lazy</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#number"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">.number</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#trim"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">.trim</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单数据"><span class="nav-number">1.5.</span> <span class="nav-text">表单数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tolist"><span class="nav-number">1.6.</span> <span class="nav-text">tolist</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李江洋</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Pisces</span> v7.0.1</div>
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script id="ribbon" size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+  
+  <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ljyabc.github.io/2019/04/01/vue样式-事件-表单/";
+    this.page.identifier = "2019/04/01/vue样式-事件-表单/";
+    this.page.title = 'vue样式,事件,表单';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/exturl.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+   <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+</body>
+</html>

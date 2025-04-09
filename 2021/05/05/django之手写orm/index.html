@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="手写orm介绍123456789101112131415161718192021222324252627282930313233343536373839404142434445461 ORM即Object Relational Mapping，全称对象关系映射。# 思考一下# 对象关系映射 ，# 1.就是程序的类对应的我的mysql的表# 2.类里面的数据属性对应的mysql字段 # 3.那么我只">
+<meta name="keywords" content="lnhdjango基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="django之手写orm">
+<meta property="og:url" content="https://ljyabc.github.io/2021/05/05/django之手写orm/index.html">
+<meta property="og:site_name" content="择墅居:李江洋">
+<meta property="og:description" content="手写orm介绍123456789101112131415161718192021222324252627282930313233343536373839404142434445461 ORM即Object Relational Mapping，全称对象关系映射。# 思考一下# 对象关系映射 ，# 1.就是程序的类对应的我的mysql的表# 2.类里面的数据属性对应的mysql字段 # 3.那么我只">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2025-04-08T14:37:31.868Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="django之手写orm">
+<meta name="twitter:description" content="手写orm介绍123456789101112131415161718192021222324252627282930313233343536373839404142434445461 ORM即Object Relational Mapping，全称对象关系映射。# 思考一下# 对象关系映射 ，# 1.就是程序的类对应的我的mysql的表# 2.类里面的数据属性对应的mysql字段 # 3.那么我只">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ljyabc.github.io/2021/05/05/django之手写orm/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>django之手写orm | 择墅居:李江洋</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">择墅居:李江洋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">争做长沙别墅豪装第一品牌</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/book" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>book</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2021/05/05/django之手写orm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李江洋">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="择墅居:李江洋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">django之手写orm
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-05-05 14:36:47" itemprop="dateCreated datePublished" datetime="2021-05-05T14:36:47+08:00">2021-05-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2025-04-08 22:37:31" itemprop="dateModified" datetime="2025-04-08T22:37:31+08:00">2025-04-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/理解/" itemprop="url" rel="index"><span itemprop="name">理解</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2021/05/05/django之手写orm/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/05/05/django之手写orm/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="手写orm"><a href="#手写orm" class="headerlink" title="手写orm"></a>手写orm</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> <span class="string">ORM即Object</span> <span class="string">Relational</span> <span class="string">Mapping，全称对象关系映射。</span></span><br><span class="line"><span class="comment"># 思考一下</span></span><br><span class="line"><span class="comment"># 对象关系映射 ，</span></span><br><span class="line"><span class="comment"># 1.就是程序的类对应的我的mysql的表</span></span><br><span class="line"><span class="comment"># 2.类里面的数据属性对应的mysql字段 </span></span><br><span class="line"><span class="comment"># 3.那么我只需要写这些python语法就可以把数据查出来，爽死</span></span><br><span class="line"><span class="comment"># 4.其实就是把我们的sql语句翻译成sql,拿到数据库里面去执行，执行完以后再翻译回来</span></span><br><span class="line"><span class="comment"># 5。返回回来是一个字典的格式的数据，再回到程序，它就变成了类对应的对象，所以说查出来的数据是一个个的对象。</span></span><br><span class="line"><span class="comment"># 6.那么这样就爽了。我们拿到的是一个个对象，那么对象点什么就是什么的字段信息，</span></span><br><span class="line"><span class="string">比如对象.name</span> <span class="string">就是name字段像这样</span></span><br><span class="line">	<span class="string">优点:</span> </span><br><span class="line">		<span class="number">1</span> <span class="string">不用写sql,不会sql的人也可以写程序,爽死</span></span><br><span class="line">		<span class="number">2</span> <span class="string">开发效率高</span></span><br><span class="line">	<span class="number">2</span> <span class="string">缺点:</span></span><br><span class="line">		<span class="number">1</span> <span class="string">可能sql的效率低</span></span><br><span class="line"><span class="number">1</span> <span class="string">ORM即Object</span> <span class="string">Relational</span> <span class="string">Mapping，全称对象关系映射。</span></span><br><span class="line">	<span class="string">优点:</span> </span><br><span class="line">		<span class="number">1</span> <span class="string">不用写sql,不会sql的人也可以写程序</span></span><br><span class="line">		<span class="number">2</span> <span class="string">开发效率高</span></span><br><span class="line">	<span class="number">2</span> <span class="string">缺点:</span></span><br><span class="line">		<span class="number">1</span> <span class="string">可能sql的效率低</span></span><br><span class="line">	<span class="number">3</span> <span class="string">如何使用:</span></span><br><span class="line">		<span class="string">如果连接mysql:在setting里配置:</span></span><br><span class="line">		    <span class="attr">'default':</span> <span class="string">&#123;</span></span><br><span class="line">				<span class="attr">'ENGINE':</span> <span class="string">'django.db.backends.mysql'</span><span class="string">,</span></span><br><span class="line">				<span class="attr">'HOST':</span> <span class="string">'127.0.0.1'</span><span class="string">,</span></span><br><span class="line">				<span class="attr">'PORT':</span> <span class="number">3306</span><span class="string">,</span></span><br><span class="line">				<span class="attr">'USER':</span> <span class="string">'root'</span><span class="string">,</span></span><br><span class="line">				<span class="attr">'PASSWORD':</span> <span class="string">'admin'</span><span class="string">,</span></span><br><span class="line">				<span class="attr">'NAME':</span> <span class="string">'lqz'</span><span class="string">,</span></span><br><span class="line">			<span class="string">&#125;</span></span><br><span class="line">		<span class="string">在app下的__init__.py里写:</span></span><br><span class="line">		<span class="string">import</span> <span class="string">pymysql</span></span><br><span class="line">		<span class="string">pymysql.install_as_MySQLdb()</span></span><br><span class="line">	</span><br><span class="line">	<span class="attr">4 django-orm:</span></span><br><span class="line">		<span class="number">1</span> <span class="string">不能创建数据库(需要手动创建数据库)</span></span><br><span class="line">		<span class="number">2</span> <span class="string">可以创建数据表</span></span><br><span class="line">		<span class="number">3</span> <span class="string">可以创建字段</span></span><br><span class="line">		</span><br><span class="line">	<span class="number">5</span> <span class="string">数据库迁移</span></span><br><span class="line">		<span class="number">1</span> <span class="string">python3</span> <span class="string">manage.py</span> <span class="string">makemigrations</span>   <span class="string">----记录一下数据库的变化</span></span><br><span class="line">		<span class="number">2</span> <span class="string">python3</span> <span class="string">manage.py</span> <span class="string">migrate</span>          <span class="string">----将变化同步到数据库中</span></span><br><span class="line">	<span class="number">6</span> <span class="string">增加字段</span></span><br><span class="line">		<span class="string">注意:后来增加的字段,需要有默认值</span></span><br><span class="line">		<span class="string">phone=models.CharField(max_length=64,default='120')</span></span><br></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><h3 id="1-先定义一个类"><a href="#1-先定义一个类" class="headerlink" title="1.先定义一个类"></a>1.先定义一个类</h3><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>可以用类的属性来表示表名</span><br><span class="line"><span class="number">2.</span>是否有主键</span><br><span class="line"><span class="number">3.</span>字段<span class="built_in">id</span>，<span class="built_in">name</span>，content，user_id，</span><br><span class="line">它们的对应的字段的名字，比如<span class="built_in">id</span>字段对应的名字是<span class="built_in">id</span>，主键是True,默认值是<span class="number">0</span></span><br><span class="line">那么这里又有三个映射关系，怎么办？</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Notic</span><span class="params">()</span>：</span></span><br><span class="line">	table_name= 表名</span><br><span class="line">	id = IntegerField(名字是id，字段的类型，主键是<span class="literal">True</span>,默认值是<span class="number">0</span>)  <span class="comment"># id字段的类型和主键需要约束</span></span><br><span class="line">	name = StringField(名字是name，字段的类型，主键是<span class="literal">False</span>,默认值是<span class="literal">None</span>)</span><br><span class="line">    content= StringField(名字是content，字段的类型，主键是<span class="literal">False</span>,默认值是<span class="literal">None</span>)</span><br><span class="line">    user_id = IntegerField(名字是user_id，字段的类型，主键是<span class="literal">False</span>,默认值是<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="2-讲字段对应的属性写成类"><a href="#2-讲字段对应的属性写成类" class="headerlink" title="2.讲字段对应的属性写成类"></a>2.讲字段对应的属性写成类</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4.</span>回答第<span class="number">3</span>个步骤的问题，把字段的对应的名字是id，字段的类型，主键是True,默认值是<span class="number">0</span>定义到类里面，然后Notic对应的属性值进行调用就好了，发现字段的类型都不一样，所以我们要利用一个继承</span><br><span class="line">减少一下代码的冗余</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Field</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, column_type, primary_key, default)</span>:</span></span><br><span class="line">        self.name = name  <span class="comment"># 列名</span></span><br><span class="line">        self.column_type = column_type  <span class="comment"># 数据类型</span></span><br><span class="line">        self.primary_key = primary_key  <span class="comment"># 是否为主键</span></span><br><span class="line">        self.default = default  <span class="comment"># 默认值</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StringField</span><span class="params">(Field)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name=None, ddl=<span class="string">'varchar(100)'</span>, primary_key=False, default=None)</span>:</span></span><br><span class="line">        super().__init__(name, ddl, primary_key, default)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">IntegerField</span><span class="params">(Field)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name=None, primary_key=False, default=<span class="number">0</span>)</span>:</span></span><br><span class="line">        super().__init__(name, <span class="string">'int'</span>, primary_key, default)</span><br></pre></td></tr></table></figure>
+<h4 id="然后Notic对应的属性值进行调用就好了"><a href="#然后Notic对应的属性值进行调用就好了" class="headerlink" title="然后Notic对应的属性值进行调用就好了"></a>然后Notic对应的属性值进行调用就好了</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Notic</span><span class="params">()</span>：</span></span><br><span class="line">	table_name= 'notice'</span><br><span class="line">	id = IntegerField(<span class="string">'id'</span>,primary_key=<span class="literal">True</span>)  <span class="comment"># id字段的类型和主键需要约束</span></span><br><span class="line">	name = StringField(<span class="string">'name'</span>)</span><br><span class="line">    content= StringField(<span class="string">'content'</span>)</span><br><span class="line">    user_id = IntegerField(<span class="string">'user_id'</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="我们测试一下创建出来的类"><a href="#我们测试一下创建出来的类" class="headerlink" title="我们测试一下创建出来的类"></a>我们测试一下创建出来的类</h4><h5 id="加一个metaclass-ModelMetaclass"><a href="#加一个metaclass-ModelMetaclass" class="headerlink" title="加一个metaclass=ModelMetaclass"></a>加一个metaclass=ModelMetaclass</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Notic</span><span class="params">(metaclass=ModelMetaclass)</span>:</span></span><br><span class="line">    table_name = <span class="string">'notice'</span></span><br><span class="line">    id = IntegerField(<span class="string">'id'</span>,primary_key=<span class="literal">True</span>)</span><br><span class="line">    name = StringField(<span class="string">'name'</span>)</span><br><span class="line">    content= StringField(<span class="string">'content'</span>)</span><br><span class="line">    user_id = IntegerField(<span class="string">'user_id'</span>)</span><br></pre></td></tr></table></figure>
+<h5 id="类属性attrs结果，id字段对应的对象IntegerField"><a href="#类属性attrs结果，id字段对应的对象IntegerField" class="headerlink" title="类属性attrs结果，id字段对应的对象IntegerField"></a>类属性attrs结果，id字段对应的对象IntegerField</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">first_class=&#123;<span class="string">'__module__'</span>: <span class="string">'__main__'</span>, <span class="string">'__qualname__'</span>: <span class="string">'Notic'</span>,</span><br><span class="line"><span class="string">'table_name'</span>: <span class="string">'notice'</span>, </span><br><span class="line"><span class="string">'id'</span>: <span class="string">'&lt;__main__.IntegerField object at 0x00000222C5234B00&gt;'</span>,</span><br><span class="line"><span class="string">'name'</span>: <span class="string">'&lt;__main__.StringField object at 0x00000222C5234AC8&gt;'</span>, </span><br><span class="line"><span class="string">'content'</span>: <span class="string">'&lt;__main__.StringField object at 0x00000222C5234A90&gt;'</span>, </span><br><span class="line"><span class="string">'user_id'</span>: <span class="string">'&lt;__main__.IntegerField object at 0x00000222C5234A58&gt;'</span>&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-思考一下这样好不好"><a href="#3-思考一下这样好不好" class="headerlink" title="3.思考一下这样好不好"></a>3.思考一下这样好不好</h3><p>一个id字段对应它的属性</p>
+<h3 id="4-所以我们把Notic它的属性放到一个字典里面，在生成它的时候进行new重置"><a href="#4-所以我们把Notic它的属性放到一个字典里面，在生成它的时候进行new重置" class="headerlink" title="4.所以我们把Notic它的属性放到一个字典里面，在生成它的时候进行new重置"></a>4.所以我们把Notic它的属性放到一个字典里面，在生成它的时候进行new重置</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ModelMetaclass</span><span class="params">(type)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new__</span><span class="params">(cls, name, bases, attrs)</span>:</span></span><br><span class="line">        print(<span class="string">'+++++'</span>)</span><br><span class="line">        print(attrs)</span><br><span class="line">        <span class="keyword">if</span> name == <span class="string">"Model"</span>:</span><br><span class="line">            <span class="keyword">return</span> type.__new__(cls, name, bases, attrs)</span><br><span class="line">        table_name = attrs.get(<span class="string">'table_name'</span>, <span class="literal">None</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> table_name:</span><br><span class="line">            <span class="keyword">raise</span> TypeError(<span class="string">'没有表名'</span>)</span><br><span class="line">        primary_key = <span class="literal">None</span>  <span class="comment"># 查找primary_key字段</span></span><br><span class="line">        <span class="comment"># 保存列类型的对象</span></span><br><span class="line">        mappings = dict()</span><br><span class="line">        <span class="keyword">for</span> k, v <span class="keyword">in</span> attrs.items():</span><br><span class="line">            <span class="comment"># 是列名的就保存下来</span></span><br><span class="line">            <span class="keyword">if</span> isinstance(v, Field):</span><br><span class="line">                mappings[k] = v</span><br><span class="line">                <span class="keyword">if</span> v.primary_key:</span><br><span class="line">                    <span class="comment"># 找到主键:</span></span><br><span class="line">                    <span class="keyword">if</span> primary_key:</span><br><span class="line">                        <span class="keyword">raise</span> TypeError(<span class="string">'主键重复: %s'</span> % k)</span><br><span class="line">                    primary_key = k</span><br><span class="line">        print(mappings)</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> mappings.keys():</span><br><span class="line">            attrs.pop(k)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> primary_key:</span><br><span class="line">            <span class="keyword">raise</span> TypeError(<span class="string">'没有主键'</span>)</span><br><span class="line">        print(<span class="string">'----'</span>)</span><br><span class="line">        print(attrs)</span><br><span class="line">        <span class="comment"># 给cls增加一些字段：</span></span><br><span class="line">        attrs[<span class="string">'mapping'</span>] = mappings</span><br><span class="line">        attrs[<span class="string">'primary_key'</span>] = primary_key</span><br><span class="line">        attrs[<span class="string">'table_name'</span>] = table_name</span><br><span class="line">        print(attrs)</span><br><span class="line">        <span class="keyword">return</span> type.__new__(cls, name, bases, attrs)</span><br></pre></td></tr></table></figure>
+<h4 id="结果attrs把字段的属性放到字典mapping里面"><a href="#结果attrs把字段的属性放到字典mapping里面" class="headerlink" title="结果attrs把字段的属性放到字典mapping里面"></a>结果attrs把字段的属性放到字典mapping里面</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">new__class=&#123;<span class="string">'__module__'</span>: <span class="string">'__main__'</span>,</span><br><span class="line"><span class="string">'__qualname__'</span>: <span class="string">'Notic'</span>,</span><br><span class="line"><span class="string">'table_name'</span>: <span class="string">'notice'</span>,</span><br><span class="line"><span class="string">'mapping'</span>: &#123;<span class="string">'id'</span>: <span class="string">'&lt;__main__.IntegerField object at 0x00000220331F3400&gt;'</span>,</span><br><span class="line"><span class="string">'name'</span>: <span class="string">'&lt;__main__.IntegerField object at 0x00000220331F3400&gt;'</span>,</span><br><span class="line"><span class="string">'content'</span>: <span class="string">'&lt;__main__.StringField object at 0x00000220331ECEF0&gt;'</span>,</span><br><span class="line"><span class="string">'user_id'</span>: <span class="string">'&lt;__main__.IntegerField object at 0x00000220331ECE80&gt;'</span>&#125;,</span><br><span class="line"><span class="string">'primary_key'</span>: <span class="string">'id'</span>&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="5-实例化的时候会生成对象，最好还是一个字典，所以用继承"><a href="#5-实例化的时候会生成对象，最好还是一个字典，所以用继承" class="headerlink" title="5.实例化的时候会生成对象，最好还是一个字典，所以用继承"></a>5.实例化的时候会生成对象，最好还是一个字典，所以用继承</h3><h4 id="比如"><a href="#比如" class="headerlink" title="比如"></a>比如</h4><p>Notic(id=’22’,name=1233222,content=’11ddsad11’,user_id=9)</p>
+<h4 id="先继承Model"><a href="#先继承Model" class="headerlink" title="先继承Model"></a>先继承Model</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Notic</span><span class="params">(Model)</span>:</span></span><br><span class="line">    table_name = <span class="string">'notice'</span></span><br><span class="line">    id = IntegerField(<span class="string">'id'</span>,primary_key=<span class="literal">True</span>)</span><br><span class="line">    name = StringField(<span class="string">'name'</span>)</span><br><span class="line">    content= StringField(<span class="string">'content'</span>)</span><br><span class="line">    user_id = IntegerField(<span class="string">'user_id'</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="再Model继承dict，控制Model和Notic类的创建"><a href="#再Model继承dict，控制Model和Notic类的创建" class="headerlink" title="再Model继承dict，控制Model和Notic类的创建"></a>再Model继承dict，控制Model和Notic类的创建</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Model</span><span class="params">(dict, metaclass=ModelMetaclass)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, **kw)</span>:</span></span><br><span class="line">        super(Model, self).__init__(**kw)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getattr__</span><span class="params">(self, key)</span>:</span>  <span class="comment"># .访问属性触发</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="keyword">return</span> self[key]</span><br><span class="line">        <span class="keyword">except</span> KeyError:</span><br><span class="line">            <span class="keyword">raise</span> AttributeError(<span class="string">'没有属性：%s'</span> % key)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__setattr__</span><span class="params">(self, key, value)</span>:</span></span><br><span class="line">        self[key] = value</span><br></pre></td></tr></table></figure>
+<h3 id="6-连接数据库"><a href="#6-连接数据库" class="headerlink" title="6.连接数据库"></a>6.连接数据库</h3><h4 id="这个时候就要用到pymysql"><a href="#这个时候就要用到pymysql" class="headerlink" title="这个时候就要用到pymysql"></a>这个时候就要用到pymysql</h4><h5 id="写一个连接池fuckorm-pool-py，导入db-pool"><a href="#写一个连接池fuckorm-pool-py，导入db-pool" class="headerlink" title="写一个连接池fuckorm_pool.py，导入db_pool"></a>写一个连接池fuckorm_pool.py，导入db_pool</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pymysql</span><br><span class="line"><span class="keyword">from</span> ormpool <span class="keyword">import</span> db_pool</span><br><span class="line"><span class="keyword">from</span> threading <span class="keyword">import</span> current_thread</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MysqlPool</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.conn = db_pool.POOL.connection()</span><br><span class="line">        <span class="comment"># print(db_pool.POOL)</span></span><br><span class="line">        <span class="comment"># print(current_thread().getName(), '拿到连接', self.conn)</span></span><br><span class="line">        <span class="comment"># print(current_thread().getName(), '池子里目前有', db_pool.POOL._idle_cache, '\r\n')</span></span><br><span class="line">        self.cursor = self.conn.cursor(cursor=pymysql.cursors.DictCursor)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">close_db</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.cursor.close()</span><br><span class="line">        self.conn.close()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">select</span><span class="params">(self, sql, args=None)</span>:</span></span><br><span class="line">        <span class="comment"># 执行查询的sql语句</span></span><br><span class="line">        self.cursor.execute(sql, args)</span><br><span class="line">        rs = self.cursor.fetchall()</span><br><span class="line">        <span class="keyword">return</span> rs</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">execute</span><span class="params">(self, sql, args)</span>:</span></span><br><span class="line">		<span class="comment"># 执行插入和修改的sql语句</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="comment"># 执行sql语句</span></span><br><span class="line">            self.cursor.execute(sql, args)</span><br><span class="line">            affected = self.cursor.rowcount</span><br><span class="line">            <span class="comment"># self.conn.commit()</span></span><br><span class="line">        <span class="keyword">except</span> BaseException <span class="keyword">as</span> e:</span><br><span class="line">            print(e)</span><br><span class="line">        <span class="keyword">finally</span>:</span><br><span class="line">            self.close_db()</span><br><span class="line">        <span class="keyword">return</span> affected</span><br></pre></td></tr></table></figure>
+<h5 id="db-pool-py导入setting-py"><a href="#db-pool-py导入setting-py" class="headerlink" title="db_pool.py导入setting.py"></a>db_pool.py导入setting.py</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pymysql</span><br><span class="line"><span class="keyword">import</span> setting</span><br><span class="line"><span class="keyword">from</span> DBUtils.PooledDB <span class="keyword">import</span> PooledDB</span><br><span class="line"></span><br><span class="line">POOL = PooledDB(</span><br><span class="line">    creator=pymysql,  <span class="comment"># 使用链接数据库的模块</span></span><br><span class="line">    maxconnections=<span class="number">6</span>,  <span class="comment"># 连接池允许的最大连接数，0和None表示不限制连接数</span></span><br><span class="line">    mincached=<span class="number">6</span>,  <span class="comment"># 初始化时，链接池中至少创建的空闲的链接，0表示不创建</span></span><br><span class="line">    maxcached=<span class="number">5</span>,  <span class="comment"># 链接池中最多闲置的链接，0和None不限制</span></span><br><span class="line">    maxshared=<span class="number">3</span>,</span><br><span class="line">    <span class="comment"># 链接池中最多共享的链接数量，0和None表示全部共享。PS: 无用，因为pymysql和MySQLdb等模块的 threadsafety都为1，所有值无论设置为多少，_maxcached永远为0，所以永远是所有链接都共享。</span></span><br><span class="line">    blocking=<span class="literal">True</span>,  <span class="comment"># 连接池中如果没有可用连接后，是否阻塞等待。True，等待；False，不等待然后报错</span></span><br><span class="line">    maxusage=<span class="literal">None</span>,  <span class="comment"># 一个链接最多被重复使用的次数，None表示无限制</span></span><br><span class="line">    setsession=[],  <span class="comment"># 开始会话前执行的命令列表。</span></span><br><span class="line">    ping=<span class="number">0</span>,</span><br><span class="line">    <span class="comment"># ping MySQL服务端，检查是否服务可用。</span></span><br><span class="line">    host=setting.host,</span><br><span class="line">    port=setting.port,</span><br><span class="line">    user=setting.user,</span><br><span class="line">    password=setting.password,</span><br><span class="line">    database=setting.database,</span><br><span class="line">    charset=setting.charset,</span><br><span class="line">    autocommit=setting.autocommit</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h5 id="setting-py"><a href="#setting-py" class="headerlink" title="setting.py"></a>setting.py</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">host = <span class="string">'127.0.0.1'</span></span><br><span class="line">port = <span class="number">3306</span></span><br><span class="line">user = <span class="string">'root'</span></span><br><span class="line">password = <span class="string">''</span></span><br><span class="line">database = <span class="string">'orm'</span></span><br><span class="line">charset = <span class="string">'utf8'</span></span><br><span class="line">autocommit = <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+<h3 id="7-要实现Notic-select-one-id-1-查询id-1的字典怎么办？"><a href="#7-要实现Notic-select-one-id-1-查询id-1的字典怎么办？" class="headerlink" title="7.要实现Notic.select_one(id=1)查询id=1的字典怎么办？"></a>7.要实现Notic.select_one(id=1)查询id=1的字典怎么办？</h3><p>还有查询所有select_all，利用绑定类的方法classmethod</p>
+<p>update方法，save方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Model</span><span class="params">(dict, metaclass=ModelMetaclass)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, **kw)</span>:</span></span><br><span class="line">        super(Model, self).__init__(**kw)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getattr__</span><span class="params">(self, key)</span>:</span>  <span class="comment"># .访问属性触发</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="keyword">return</span> self[key]</span><br><span class="line">        <span class="keyword">except</span> KeyError:</span><br><span class="line">            <span class="keyword">raise</span> AttributeError(<span class="string">'没有属性：%s'</span> % key)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__setattr__</span><span class="params">(self, key, value)</span>:</span></span><br><span class="line">        self[key] = value</span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">select_all</span><span class="params">(cls, **kwargs)</span>:</span></span><br><span class="line">        ms = mysql_pool.MysqlPool()</span><br><span class="line">        <span class="keyword">if</span> kwargs:  <span class="comment"># 当有参数传入的时候</span></span><br><span class="line">            key = list(kwargs.keys())[<span class="number">0</span>]</span><br><span class="line">            value = kwargs[key]</span><br><span class="line">            sql = <span class="string">"select * from %s where %s=?"</span> % (cls.table_name, key)</span><br><span class="line">            sql = sql.replace(<span class="string">'?'</span>, <span class="string">'%s'</span>)</span><br><span class="line">            re = ms.select(sql, value)</span><br><span class="line">        <span class="keyword">else</span>:  <span class="comment"># 当无参传入的时候查询所有</span></span><br><span class="line">            sql = <span class="string">"select * from %s"</span> % cls.table_name</span><br><span class="line">            re = ms.select(sql)</span><br><span class="line">        <span class="keyword">if</span> re:</span><br><span class="line">            <span class="comment"># 实例化添加属性，并生成对象，放入一个列表里面</span></span><br><span class="line">            lis_obj=[cls(**r) <span class="keyword">for</span> r <span class="keyword">in</span> re]</span><br><span class="line">            <span class="keyword">return</span> lis_obj</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">select_one</span><span class="params">(cls, **kwargs)</span>:</span></span><br><span class="line">        <span class="comment"># 此处只支持单一条件查询</span></span><br><span class="line">        key = list(kwargs.keys())[<span class="number">0</span>]</span><br><span class="line">        value = kwargs[key]</span><br><span class="line">        <span class="comment"># 建立pymysql连接</span></span><br><span class="line">        ms = mysql_pool.MysqlPool()</span><br><span class="line">        <span class="comment"># 拼凑出select语句</span></span><br><span class="line">        sql = <span class="string">"select * from %s where %s=?"</span> % (cls.table_name, key)</span><br><span class="line">        sql = sql.replace(<span class="string">'?'</span>, <span class="string">'%s'</span>)</span><br><span class="line">        print(sql)</span><br><span class="line">        re = ms.select(sql, value)</span><br><span class="line">        <span class="keyword">if</span> re:</span><br><span class="line">            <span class="comment"># 实例化添加属性，并生成对象</span></span><br><span class="line">            <span class="keyword">return</span> cls(**re[<span class="number">0</span>])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">save</span><span class="params">(self)</span>:</span></span><br><span class="line">        ms = mysql_pool.MysqlPool()</span><br><span class="line">        fields = []</span><br><span class="line">        params = []</span><br><span class="line">        args = []</span><br><span class="line">        <span class="keyword">for</span> k, v <span class="keyword">in</span> self.mapping.items():</span><br><span class="line">             <span class="comment"># 因为这里有mapping对象</span></span><br><span class="line">            <span class="string">"""</span></span><br><span class="line"><span class="string">'mapping': &#123;'id': '&lt;__main__.IntegerField object at 0x00000220331F3400&gt;',</span></span><br><span class="line"><span class="string">            'name': '&lt;__main__.IntegerField object at 0x00000220331F3400&gt;',</span></span><br><span class="line"><span class="string">            'content': '&lt;__main__.StringField object at 0x00000220331ECEF0&gt;',</span></span><br><span class="line"><span class="string">            'user_id': '&lt;__main__.IntegerField object at 0x00000220331ECE80&gt;'&#125;,	</span></span><br><span class="line"><span class="string">            """</span></span><br><span class="line">            fields.append(v.name)</span><br><span class="line">            params.append(<span class="string">'?'</span>)</span><br><span class="line">            print(k)</span><br><span class="line">            print(<span class="string">'--------'</span>)</span><br><span class="line">            print(v.default)</span><br><span class="line">            <span class="comment">#拿到该实例化的对象的属性id,name,content,user_id</span></span><br><span class="line">            args.append(getattr(self, k, v.default))</span><br><span class="line">        print(args)</span><br><span class="line">        <span class="comment"># 然后进行拼接sql语句</span></span><br><span class="line">        sql = <span class="string">"insert into %s (%s) values (%s)"</span> % (self.table_name, <span class="string">','</span>.join(fields), <span class="string">','</span>.join(params))</span><br><span class="line">        <span class="comment"># insert into notice (id,name,content,user_id) values (?,?,?,?)</span></span><br><span class="line">        sql = sql.replace(<span class="string">'?'</span>, <span class="string">'%s'</span>)</span><br><span class="line">		<span class="comment"># insert into notice (id,name,content,user_id) values (%s,%s,%s,%s)</span></span><br><span class="line">        ms.execute(sql, args)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update</span><span class="params">(self)</span>:</span></span><br><span class="line">        ms = mysql_pool.MysqlPool()</span><br><span class="line">        fields = []</span><br><span class="line">        args = []</span><br><span class="line">        pr = <span class="literal">None</span></span><br><span class="line">        <span class="keyword">for</span> k, v <span class="keyword">in</span> self.mapping.items():</span><br><span class="line">            <span class="keyword">if</span> v.primary_key:</span><br><span class="line">                <span class="comment"># </span></span><br><span class="line">                pr = getattr(self, k, <span class="literal">None</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                fields.append(v.name + <span class="string">'=?'</span>)</span><br><span class="line">                args.append(getattr(self, k, v.default))</span><br><span class="line">        sql = <span class="string">"update %s set %s where %s = %s"</span> % (</span><br><span class="line">            self.table_name, <span class="string">', '</span>.join(fields), self.primary_key, pr)</span><br><span class="line">        sql = sql.replace(<span class="string">'?'</span>, <span class="string">'%s'</span>)</span><br><span class="line">        print(sql)</span><br><span class="line">        ms.execute(sql, args)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/gongzhonghao.jpg" alt="李江洋 wechat" style="width: 200px; max-width: 100%;">
+  <div>python分享公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="李江洋 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="李江洋 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/lnhdjango基础/" rel="tag"># lnhdjango基础</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/05/05/django之session/" rel="next" title="django之session">
+                <i class="fa fa-chevron-left"></i> django之session
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/05/05/BBS继续/" rel="prev" title="BBS继续">
+                BBS继续 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="李江洋">
+            
+              <p class="site-author-name" itemprop="name">李江洋</p>
+              <p class="site-description motion-element" itemprop="description">记录学习的技能和遇到的问题</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">179</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lvdXJuYW1l" title="GitHub &rarr; https://github.com/yourname"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="bWFpbHRvOjEzMjgwNDQzOTJAcXEuY29t" title="E-Mail &rarr; mailto:1328044392@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL2V4YW1wbGUuY29t" title="http://example.com">Title</span>
+                  </li>
+                
+              </ul>
+            </div>
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#手写orm"><span class="nav-number">1.</span> <span class="nav-text">手写orm</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">1.2.</span> <span class="nav-text">思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-先定义一个类"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.先定义一个类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-讲字段对应的属性写成类"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.讲字段对应的属性写成类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#然后Notic对应的属性值进行调用就好了"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">然后Notic对应的属性值进行调用就好了</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#我们测试一下创建出来的类"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">我们测试一下创建出来的类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#加一个metaclass-ModelMetaclass"><span class="nav-number">1.2.2.2.1.</span> <span class="nav-text">加一个metaclass=ModelMetaclass</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#类属性attrs结果，id字段对应的对象IntegerField"><span class="nav-number">1.2.2.2.2.</span> <span class="nav-text">类属性attrs结果，id字段对应的对象IntegerField</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-思考一下这样好不好"><span class="nav-number">1.2.3.</span> <span class="nav-text">3.思考一下这样好不好</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-所以我们把Notic它的属性放到一个字典里面，在生成它的时候进行new重置"><span class="nav-number">1.2.4.</span> <span class="nav-text">4.所以我们把Notic它的属性放到一个字典里面，在生成它的时候进行new重置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#结果attrs把字段的属性放到字典mapping里面"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">结果attrs把字段的属性放到字典mapping里面</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-实例化的时候会生成对象，最好还是一个字典，所以用继承"><span class="nav-number">1.2.5.</span> <span class="nav-text">5.实例化的时候会生成对象，最好还是一个字典，所以用继承</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#比如"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">比如</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#先继承Model"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">先继承Model</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#再Model继承dict，控制Model和Notic类的创建"><span class="nav-number">1.2.5.3.</span> <span class="nav-text">再Model继承dict，控制Model和Notic类的创建</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-连接数据库"><span class="nav-number">1.2.6.</span> <span class="nav-text">6.连接数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#这个时候就要用到pymysql"><span class="nav-number">1.2.6.1.</span> <span class="nav-text">这个时候就要用到pymysql</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#写一个连接池fuckorm-pool-py，导入db-pool"><span class="nav-number">1.2.6.1.1.</span> <span class="nav-text">写一个连接池fuckorm_pool.py，导入db_pool</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#db-pool-py导入setting-py"><span class="nav-number">1.2.6.1.2.</span> <span class="nav-text">db_pool.py导入setting.py</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#setting-py"><span class="nav-number">1.2.6.1.3.</span> <span class="nav-text">setting.py</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-要实现Notic-select-one-id-1-查询id-1的字典怎么办？"><span class="nav-number">1.2.7.</span> <span class="nav-text">7.要实现Notic.select_one(id=1)查询id=1的字典怎么办？</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李江洋</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Pisces</span> v7.0.1</div>
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script id="ribbon" size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+  
+  <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ljyabc.github.io/2021/05/05/django之手写orm/";
+    this.page.identifier = "2021/05/05/django之手写orm/";
+    this.page.title = 'django之手写orm';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/exturl.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+   <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+</body>
+</html>

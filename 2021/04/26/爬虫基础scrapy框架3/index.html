@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Scrapy框架(三)CrawlSpider 创建CrawlSpider 的爬虫文件  列表，列举所有的模板   命令： -t 使用模板 名字 域名 scrapy genspider -t crawl zongheng  xxx.com  Rule 功能：Rule用来定义CrawlSpider的爬取规则 参数： 12(self, link_extractor=None, callback=None">
+<meta property="og:type" content="article">
+<meta property="og:title" content="爬虫基础scrapy框架3">
+<meta property="og:url" content="https://ljyabc.github.io/2021/04/26/爬虫基础scrapy框架3/index.html">
+<meta property="og:site_name" content="择墅居:李江洋">
+<meta property="og:description" content="Scrapy框架(三)CrawlSpider 创建CrawlSpider 的爬虫文件  列表，列举所有的模板   命令： -t 使用模板 名字 域名 scrapy genspider -t crawl zongheng  xxx.com  Rule 功能：Rule用来定义CrawlSpider的爬取规则 参数： 12(self, link_extractor=None, callback=None">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ljyabc.github.io/2021/04/26/爬虫基础scrapy框架3/1619425009752.png">
+<meta property="og:image" content="https://ljyabc.github.io/2021/04/26/爬虫基础scrapy框架3/D:/Windows%2010%20Documents/Desktop/爬虫基础课改PPT+教案/爬虫基础教案/scrapy框架图片/纵横小说框架1.png">
+<meta property="og:image" content="https://ljyabc.github.io/2021/04/26/爬虫基础scrapy框架3/G:/%E4%BC%81%E4%B8%9Aqq/3002821514/FileRecv/%E7%88%AC%E8%99%AB%E5%9F%BA%E7%A1%80%E6%95%99%E6%A1%88-%E6%96%97%E7%AC%A0/%E7%88%AC%E8%99%AB%E5%9F%BA%E7%A1%80%E6%95%99%E6%A1%88-%E6%96%97%E7%AC%A0/7.Scrapy%E6%A1%86%E6%9E%B6(%E4%B8%89">
+<meta property="og:image" content="https://ljyabc.github.io/2021/04/26/爬虫基础scrapy框架3/G:/%E4%BC%81%E4%B8%9Aqq/3002821514/FileRecv/%E7%88%AC%E8%99%AB%E5%9F%BA%E7%A1%80%E6%95%99%E6%A1%88-%E6%96%97%E7%AC%A0/%E7%88%AC%E8%99%AB%E5%9F%BA%E7%A1%80%E6%95%99%E6%A1%88-%E6%96%97%E7%AC%A0/7.Scrapy%E6%A1%86%E6%9E%B6(%E4%B8%89">
+<meta property="og:image" content="https://ljyabc.github.io/2021/04/26/爬虫基础scrapy框架3/G:/%E4%BC%81%E4%B8%9Aqq/3002821514/FileRecv/%E7%88%AC%E8%99%AB%E5%9F%BA%E7%A1%80%E6%95%99%E6%A1%88-%E6%96%97%E7%AC%A0/%E7%88%AC%E8%99%AB%E5%9F%BA%E7%A1%80%E6%95%99%E6%A1%88-%E6%96%97%E7%AC%A0/7.Scrapy%E6%A1%86%E6%9E%B6(%E4%B8%89">
+<meta property="og:image" content="https://ljyabc.github.io/2021/04/26/爬虫基础scrapy框架3/D:/Windows%2010%20Documents/Desktop/爬虫基础课改PPT+教案/爬虫基础教案/scrapy框架图片/页面总体结构.png">
+<meta property="og:image" content="https://ljyabc.github.io/2021/04/26/爬虫基础scrapy框架3/G:/%E4%BC%81%E4%B8%9Aqq/3002821514/FileRecv/%E7%88%AC%E8%99%AB%E5%9F%BA%E7%A1%80%E6%95%99%E6%A1%88-%E6%96%97%E7%AC%A0/%E7%88%AC%E8%99%AB%E5%9F%BA%E7%A1%80%E6%95%99%E6%A1%88-%E6%96%97%E7%AC%A0/7.Scrapy%E6%A1%86%E6%9E%B6(%E4%B8%89">
+<meta property="og:image" content="https://ljyabc.github.io/2021/04/26/爬虫基础scrapy框架3/G:/%E4%BC%81%E4%B8%9Aqq/3002821514/FileRecv/%E7%88%AC%E8%99%AB%E5%9F%BA%E7%A1%80%E6%95%99%E6%A1%88-%E6%96%97%E7%AC%A0/%E7%88%AC%E8%99%AB%E5%9F%BA%E7%A1%80%E6%95%99%E6%A1%88-%E6%96%97%E7%AC%A0/7.Scrapy%E6%A1%86%E6%9E%B6(%E4%B8%89">
+<meta property="og:image" content="https://ljyabc.github.io/2021/04/26/爬虫基础scrapy框架3/G:/%E4%BC%81%E4%B8%9Aqq/3002821514/FileRecv/%E7%88%AC%E8%99%AB%E5%9F%BA%E7%A1%80%E6%95%99%E6%A1%88-%E6%96%97%E7%AC%A0/%E7%88%AC%E8%99%AB%E5%9F%BA%E7%A1%80%E6%95%99%E6%A1%88-%E6%96%97%E7%AC%A0/7.Scrapy%E6%A1%86%E6%9E%B6(%E4%B8%89">
+<meta property="og:updated_time" content="2025-04-08T14:38:15.905Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="爬虫基础scrapy框架3">
+<meta name="twitter:description" content="Scrapy框架(三)CrawlSpider 创建CrawlSpider 的爬虫文件  列表，列举所有的模板   命令： -t 使用模板 名字 域名 scrapy genspider -t crawl zongheng  xxx.com  Rule 功能：Rule用来定义CrawlSpider的爬取规则 参数： 12(self, link_extractor=None, callback=None">
+<meta name="twitter:image" content="https://ljyabc.github.io/2021/04/26/爬虫基础scrapy框架3/1619425009752.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ljyabc.github.io/2021/04/26/爬虫基础scrapy框架3/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>爬虫基础scrapy框架3 | 择墅居:李江洋</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">择墅居:李江洋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">争做长沙别墅豪装第一品牌</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/book" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>book</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2021/04/26/爬虫基础scrapy框架3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李江洋">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="择墅居:李江洋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">爬虫基础scrapy框架3
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-04-26 15:55:32" itemprop="dateCreated datePublished" datetime="2021-04-26T15:55:32+08:00">2021-04-26</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2025-04-08 22:38:15" itemprop="dateModified" datetime="2025-04-08T22:38:15+08:00">2025-04-08</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2021/04/26/爬虫基础scrapy框架3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/04/26/爬虫基础scrapy框架3/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Scrapy框架-三"><a href="#Scrapy框架-三" class="headerlink" title="Scrapy框架(三)"></a>Scrapy框架(三)</h1><h2 id="CrawlSpider"><a href="#CrawlSpider" class="headerlink" title="CrawlSpider"></a>CrawlSpider</h2><ul>
+<li><p><strong>创建CrawlSpider 的爬虫文件</strong></p>
+</li>
+<li><p>列表，列举所有的模板</p>
+</li>
+<li><p><img src="/2021/04/26/爬虫基础scrapy框架3/1619425009752.png" alt="1619425009752"></p>
+<p>命令： -t 使用模板 名字 域名</p>
+<p><code>scrapy genspider -t crawl zongheng  xxx.com</code></p>
+</li>
+<li><p><strong>Rule</strong></p>
+<p><strong>功能</strong>：Rule用来定义CrawlSpider的爬取规则</p>
+<p><strong>参数</strong>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(self, link_extractor=<span class="literal">None</span>, callback=<span class="literal">None</span>, cb_kwargs=<span class="literal">None</span>, follow=<span class="literal">None</span>,</span><br><span class="line">                 process_links=<span class="literal">None</span>, process_request=<span class="literal">None</span>, errback=<span class="literal">None</span>):</span><br></pre></td></tr></table></figure>
+<p><strong>link_extracto</strong>r：  Link Extractor对象，它定义如何从每个已爬网页面中提取链接。<br><strong>callback</strong> ：回调函数  处理link_extractor形成的response<br><strong>cb_kwargs</strong> ： cb:callback   回调函数的参数，是一个包含要传递给回调函数的关键字参数的dict<br><strong>follow</strong> ：它指定是否应该从使用此规则提取的每个响应中跟踪链接。</p>
+<p>两个值：True  False；follow=True   link_extractor形成的response  会交给rule;False  则不会;<br><strong>process_links</strong> ： 用于过滤链接的回调函数 ， 处理link_extractor提取到的链接<br><strong>process_request</strong> ： 用于过滤请求的回调函数</p>
+<p><strong>errback:</strong>处理异常的函数</p>
+</li>
+<li><p><strong>LinkExractor</strong></p>
+</li>
+</ul>
+<p>LinkExractor也是scrapy框架定义的一个类<br>它唯一的目的是从web页面中提取最终将被跟踪的额连接。</p>
+<p>我们也可定义我们自己的链接提取器，只需要提供一个名为extract_links的方法，它接收Response对象<br>并返回scrapy.link.Link对象列表。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, allow=<span class="params">()</span>, deny=<span class="params">()</span>, allow_domains=<span class="params">()</span>, deny_domains=<span class="params">()</span>, restrict_xpaths=<span class="params">()</span>,tags=<span class="params">(<span class="string">'a'</span>, <span class="string">'area'</span>)</span>, attrs=<span class="params">(<span class="string">'href'</span>,)</span>, canonicalize=False,unique=True, process_value=None, deny_extensions=None, restrict_css=<span class="params">()</span>, strip=True, restrict_text=None)</span>:</span></span><br></pre></td></tr></table></figure>
+<p><strong>allow</strong>(允许): 正则表达式,或其列表   匹配url   为空   则匹配所有url</p>
+<p><strong>deny</strong>(不允许):正则表达式,或其列表   排除url   为空   则不排除url</p>
+<p><strong>allow_domains</strong>(允许的域名):str,或其列表</p>
+<p><strong>deny_domains</strong>(不允许的域名);str,或其列表<br><strong>restrict_xpaths</strong>(通过xpath 限制匹配区域): xpath表达式  或列表<br><strong>restrict_css</strong>(通过css 限制匹配区域): css表达式<br><strong>restrict_text</strong>(通过text 限制匹配区域): 正则表达式<br><strong>tags</strong>=(‘a’, ‘area’):允许的标签<br><strong>attrs</strong>=(‘href’,):允许的属性<br><strong>canonicalize</strong>:规范化每个提取的url<br><strong>unique</strong>(唯一):将匹配到的重复链接过滤<br><strong>process_value</strong>:接收 从标签提取的每个值     函数<br><strong>deny_extensions</strong> ：不允许拓展    提取链接的时候,忽略一些扩展名.jpg  .xxx</p>
+<h2 id="案例实战-爬取纵横小说"><a href="#案例实战-爬取纵横小说" class="headerlink" title="案例实战-爬取纵横小说"></a>案例实战-爬取纵横小说</h2><h3 id="1-需求分析"><a href="#1-需求分析" class="headerlink" title="1.需求分析"></a>1.需求分析</h3><h4 id="页面分析"><a href="#页面分析" class="headerlink" title="页面分析"></a>页面分析</h4><ul>
+<li><img src="/2021/04/26/爬虫基础scrapy框架3/D:/Windows 10 Documents\Desktop\爬虫基础课改PPT+教案\爬虫基础教案\scrapy框架图片\纵横小说框架1.png" alt="纵横小说框架1"></li>
+</ul>
+<ul>
+<li><strong>二级页面  小说详情</strong></li>
+</ul>
+<p><img src="/2021/04/26/爬虫基础scrapy框架3/G:/%E4%BC%81%E4%B8%9Aqq/3002821514/FileRecv/%E7%88%AC%E8%99%AB%E5%9F%BA%E7%A1%80%E6%95%99%E6%A1%88-%E6%96%97%E7%AC%A0/%E7%88%AC%E8%99%AB%E5%9F%BA%E7%A1%80%E6%95%99%E6%A1%88-%E6%96%97%E7%AC%A0/7.Scrapy%E6%A1%86%E6%9E%B6(%E4%B8%89" alt="纵横小说需求2">.assets/%E7%BA%B5%E6%A8%AA%E5%B0%8F%E8%AF%B4%E9%9C%80%E6%B1%822-1596131710359.png)</p>
+<ul>
+<li><strong>三级页面  章节目录</strong></li>
+</ul>
+<p><img src="/2021/04/26/爬虫基础scrapy框架3/G:/%E4%BC%81%E4%B8%9Aqq/3002821514/FileRecv/%E7%88%AC%E8%99%AB%E5%9F%BA%E7%A1%80%E6%95%99%E6%A1%88-%E6%96%97%E7%AC%A0/%E7%88%AC%E8%99%AB%E5%9F%BA%E7%A1%80%E6%95%99%E6%A1%88-%E6%96%97%E7%AC%A0/7.Scrapy%E6%A1%86%E6%9E%B6(%E4%B8%89" alt="纵横小说需求3">.assets/%E7%BA%B5%E6%A8%AA%E5%B0%8F%E8%AF%B4%E9%9C%80%E6%B1%823-1596131717680.png)</p>
+<ul>
+<li><strong>四级页面  章节内容</strong></li>
+</ul>
+<p><img src="/2021/04/26/爬虫基础scrapy框架3/G:/%E4%BC%81%E4%B8%9Aqq/3002821514/FileRecv/%E7%88%AC%E8%99%AB%E5%9F%BA%E7%A1%80%E6%95%99%E6%A1%88-%E6%96%97%E7%AC%A0/%E7%88%AC%E8%99%AB%E5%9F%BA%E7%A1%80%E6%95%99%E6%A1%88-%E6%96%97%E7%AC%A0/7.Scrapy%E6%A1%86%E6%9E%B6(%E4%B8%89" alt="纵横小说需求4">.assets/%E7%BA%B5%E6%A8%AA%E5%B0%8F%E8%AF%B4%E9%9C%80%E6%B1%824-1596131724684.png)</p>
+<h4 id="页面总体结构"><a href="#页面总体结构" class="headerlink" title="页面总体结构"></a>页面总体结构</h4><p><img src="/2021/04/26/爬虫基础scrapy框架3/D:/Windows 10 Documents\Desktop\爬虫基础课改PPT+教案\爬虫基础教案\scrapy框架图片\页面总体结构.png" alt="页面总体结构"></p>
+<h4 id="需求字段"><a href="#需求字段" class="headerlink" title="需求字段"></a>需求字段</h4><ul>
+<li>小说信息</li>
+</ul>
+<p><img src="/2021/04/26/爬虫基础scrapy框架3/G:/%E4%BC%81%E4%B8%9Aqq/3002821514/FileRecv/%E7%88%AC%E8%99%AB%E5%9F%BA%E7%A1%80%E6%95%99%E6%A1%88-%E6%96%97%E7%AC%A0/%E7%88%AC%E8%99%AB%E5%9F%BA%E7%A1%80%E6%95%99%E6%A1%88-%E6%96%97%E7%AC%A0/7.Scrapy%E6%A1%86%E6%9E%B6(%E4%B8%89" alt="小说信息数据库字段">.assets/%E5%B0%8F%E8%AF%B4%E4%BF%A1%E6%81%AF%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%97%E6%AE%B5-1596131734576.png)</p>
+<ul>
+<li>章节信息</li>
+</ul>
+<p><img src="/2021/04/26/爬虫基础scrapy框架3/G:/%E4%BC%81%E4%B8%9Aqq/3002821514/FileRecv/%E7%88%AC%E8%99%AB%E5%9F%BA%E7%A1%80%E6%95%99%E6%A1%88-%E6%96%97%E7%AC%A0/%E7%88%AC%E8%99%AB%E5%9F%BA%E7%A1%80%E6%95%99%E6%A1%88-%E6%96%97%E7%AC%A0/7.Scrapy%E6%A1%86%E6%9E%B6(%E4%B8%89" alt="章节信息数据库字段">.assets/%E7%AB%A0%E8%8A%82%E4%BF%A1%E6%81%AF%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%97%E6%AE%B5-1596131742420.png)</p>
+<h3 id="2-代码实现"><a href="#2-代码实现" class="headerlink" title="2.代码实现"></a>2.代码实现</h3><h4 id="爬取逻辑"><a href="#爬取逻辑" class="headerlink" title="爬取逻辑"></a>爬取逻辑</h4><p><img src="/2021/04/26/爬虫基础scrapy框架3/G:/%E4%BC%81%E4%B8%9Aqq/3002821514/FileRecv/%E7%88%AC%E8%99%AB%E5%9F%BA%E7%A1%80%E6%95%99%E6%A1%88-%E6%96%97%E7%AC%A0/%E7%88%AC%E8%99%AB%E5%9F%BA%E7%A1%80%E6%95%99%E6%A1%88-%E6%96%97%E7%AC%A0/7.Scrapy%E6%A1%86%E6%9E%B6(%E4%B8%89" alt="crawlspider流程">.assets/crawlspider%E6%B5%81%E7%A8%8B-1596131751356.png)</p>
+<h4 id="spider文件"><a href="#spider文件" class="headerlink" title="spider文件"></a><strong>spider文件</strong></h4><p>根据目标数据–要存储的数据，在rules中定义Rule规则，按需配置callback函数，解析response获得想要的数据。</p>
+<ul>
+<li>parse_book函数获取小说信息</li>
+<li>parse_catalog函数获取章节信息</li>
+<li>get_content函数获取章节内容</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"><span class="keyword">from</span> scrapy.linkextractors <span class="keyword">import</span> LinkExtractor</span><br><span class="line"><span class="keyword">from</span> scrapy.spiders <span class="keyword">import</span> CrawlSpider, Rule</span><br><span class="line"><span class="keyword">from</span> ..items <span class="keyword">import</span>   NovelItem,ChapterItem,ContentItem</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ZhSpider</span><span class="params">(CrawlSpider)</span>:</span></span><br><span class="line">    name = <span class="string">'zh'</span></span><br><span class="line">    allowed_domains = [<span class="string">'book.zongheng.com'</span>]</span><br><span class="line">    start_urls = [<span class="string">'http://book.zongheng.com/store/c0/c0/b0/u1/p1/v0/s1/t0/u0/i1/ALL.html'</span>]<span class="comment">#起始的url</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#定义爬取规则  1.提取url(LinkExtractor对象)   2.形成请求    3.响应的处理规则</span></span><br><span class="line">    rules = (</span><br><span class="line">        Rule(LinkExtractor(allow=<span class="string">r'http://book.zongheng.com/book/\d+.html'</span>,restrict_xpaths=<span class="string">'//div[@class="bookname"]'</span>),</span><br><span class="line">             callback=<span class="string">'parse_book'</span>, follow=<span class="literal">True</span>,process_links=<span class="string">"process_booklink"</span>),</span><br><span class="line">        Rule(LinkExtractor(allow=<span class="string">r'http://book.zongheng.com/showchapter/\d+.html'</span>), callback=<span class="string">'parse_catalog'</span>, follow=<span class="literal">True</span>,),</span><br><span class="line">        Rule(LinkExtractor(allow=<span class="string">r'http://book.zongheng.com/chapter/\d+/\d+.html'</span>,restrict_xpaths=<span class="string">'//ul[@class="chapter-list clearfix"]'</span>),</span><br><span class="line">             callback=<span class="string">'get_content'</span>, follow=<span class="literal">False</span>,process_links=<span class="string">"process_chpter"</span>),</span><br><span class="line">    )</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_booklink</span><span class="params">(self,links)</span>:</span></span><br><span class="line">        <span class="comment">#处理 LinkExtractor  提取到的url</span></span><br><span class="line">        <span class="keyword">for</span>  index,link  <span class="keyword">in</span>  enumerate(links):</span><br><span class="line">            <span class="keyword">if</span> index==<span class="number">0</span>:</span><br><span class="line">                print(index,link.url)</span><br><span class="line">                <span class="keyword">yield</span> link</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            </span><br><span class="line">    <span class="function"><span class="keyword">def</span>  <span class="title">process_chpter</span><span class="params">(self,links)</span>:</span></span><br><span class="line">        <span class="keyword">for</span>  index,link  <span class="keyword">in</span>  enumerate(links):</span><br><span class="line">            <span class="keyword">if</span> index&lt;=<span class="number">20</span>:             </span><br><span class="line">                <span class="keyword">yield</span> link</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse_book</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        category = response.xpath(<span class="string">'//div[@class="book-label"]/a/text()'</span>).extract()[<span class="number">1</span>]</span><br><span class="line">        book_name = response.xpath(<span class="string">'//div[@class="book-name"]/text()'</span>).extract()[<span class="number">0</span>].strip()</span><br><span class="line">        author = response.xpath(<span class="string">'//div[@class="au-name"]/a/text()'</span>).extract()[<span class="number">0</span>]</span><br><span class="line">        status = response.xpath(<span class="string">'//div[@class="book-label"]/a/text()'</span>).extract()[<span class="number">0</span>]</span><br><span class="line">        book_nums = response.xpath(<span class="string">'//div[@class="nums"]/span/i/text()'</span>).extract()[<span class="number">0</span>]</span><br><span class="line">        description = <span class="string">''</span>.join(response.xpath(<span class="string">'//div[@class="book-dec Jbook-dec hide"]/p/text()'</span>).re(<span class="string">"\S+"</span>))</span><br><span class="line">        c_time = datetime.datetime.now()</span><br><span class="line">        book_url = response.url</span><br><span class="line">        catalog_url = response.css(<span class="string">"a"</span>).re(<span class="string">'http://book.zongheng.com/showchapter/\d+.html'</span>)[<span class="number">0</span>]</span><br><span class="line">    </span><br><span class="line">        item = NovelItem()</span><br><span class="line">        item[<span class="string">"category"</span>] = category</span><br><span class="line">        item[<span class="string">"book_name"</span>] = book_name</span><br><span class="line">        item[<span class="string">"author"</span>] = author</span><br><span class="line">        item[<span class="string">"status"</span>] = status</span><br><span class="line">        item[<span class="string">"book_nums"</span>] = book_nums</span><br><span class="line">        item[<span class="string">"description"</span>] = description</span><br><span class="line">        item[<span class="string">"c_time"</span>] = c_time</span><br><span class="line">        item[<span class="string">"book_url"</span>] = book_url</span><br><span class="line">        item[<span class="string">"catalog_url"</span>] = catalog_url</span><br><span class="line">        <span class="keyword">yield</span> item</span><br><span class="line">              </span><br><span class="line">    <span class="function"><span class="keyword">def</span>  <span class="title">parse_catalog</span><span class="params">(self,response)</span>:</span></span><br><span class="line">        a_tags = response.xpath(<span class="string">'//ul[@class="chapter-list clearfix"]/li/a'</span>)</span><br><span class="line">        chapter_list = []</span><br><span class="line">        catalog_url = response.url</span><br><span class="line">        <span class="keyword">for</span> a <span class="keyword">in</span> a_tags:</span><br><span class="line">            print(<span class="string">"解析catalog_url"</span>)</span><br><span class="line">            title = a.xpath(<span class="string">"./text()"</span>).extract()[<span class="number">0</span>]</span><br><span class="line">            chapter_url = a.xpath(<span class="string">"./@href"</span>).extract()[<span class="number">0</span>]</span><br><span class="line">            chapter_list.append((title, chapter_url, catalog_url))</span><br><span class="line">        item = ChapterItem()</span><br><span class="line">        item[<span class="string">"chapter_list"</span>] = chapter_list</span><br><span class="line">        <span class="keyword">yield</span> item</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span>  <span class="title">get_content</span><span class="params">(self,response)</span>:</span></span><br><span class="line">        chapter_url = response.url</span><br><span class="line">        content = <span class="string">''</span>.join(response.xpath(<span class="string">'//div[@class="content"]/p/text()'</span>).extract())</span><br><span class="line">        c_time = datetime.datetime.now()</span><br><span class="line">        <span class="comment"># 向管道传递数据</span></span><br><span class="line">        item = ContentItem()</span><br><span class="line">        item[<span class="string">"chapter_url"</span>] = chapter_url</span><br><span class="line">        item[<span class="string">"content"</span>] = content</span><br><span class="line">        <span class="keyword">yield</span> item</span><br></pre></td></tr></table></figure>
+<h4 id="items文件"><a href="#items文件" class="headerlink" title="items文件"></a>items文件</h4><p>items文件里的字段，是根据目标数据的需求，</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ZonghengItem</span><span class="params">(scrapy.Item)</span>:</span></span><br><span class="line">    <span class="comment"># define the fields for your item here like:</span></span><br><span class="line">    <span class="comment"># name = scrapy.Field()</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NovelItem</span><span class="params">(scrapy.Item)</span>:</span></span><br><span class="line">    <span class="comment"># define the fields for your item here like:</span></span><br><span class="line">    <span class="comment"># name = scrapy.Field()</span></span><br><span class="line">    category = scrapy.Field()</span><br><span class="line">    book_name = scrapy.Field()</span><br><span class="line">    author = scrapy.Field()</span><br><span class="line">    status = scrapy.Field()</span><br><span class="line">    book_nums = scrapy.Field()</span><br><span class="line">    description = scrapy.Field()</span><br><span class="line">    c_time = scrapy.Field()</span><br><span class="line">    book_url = scrapy.Field()</span><br><span class="line">    catalog_url = scrapy.Field()</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChapterItem</span><span class="params">(scrapy.Item)</span>:</span></span><br><span class="line">    <span class="comment"># define the fields for your item here like:</span></span><br><span class="line">    <span class="comment"># name = scrapy.Field()</span></span><br><span class="line">    chapter_list = scrapy.Field()</span><br><span class="line">    catalog_url = scrapy.Field()</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ContentItem</span><span class="params">(scrapy.Item)</span>:</span></span><br><span class="line">    <span class="comment"># define the fields for your item here like:</span></span><br><span class="line">    <span class="comment"># name = scrapy.Field()</span></span><br><span class="line">    content = scrapy.Field()</span><br><span class="line">    chapter_url = scrapy.Field()</span><br></pre></td></tr></table></figure>
+<h4 id="pipelines文件"><a href="#pipelines文件" class="headerlink" title="pipelines文件"></a>pipelines文件</h4><p>此处是将数据写入数据库，</p>
+<ol>
+<li>先写入小说信息</li>
+<li>写入章节信息，除了章节内容之外的部分</li>
+<li>根据章节url，写入章节内容</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> pymysql</span><br><span class="line"><span class="keyword">from</span>  zongheng.items <span class="keyword">import</span> NovelItem,ChapterItem,ContentItem</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">from</span>  scrapy.exceptions <span class="keyword">import</span> DropItem</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ZonghengPipeline</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="comment">#连接数据库</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">open_spider</span><span class="params">(self,spider)</span>:</span></span><br><span class="line">        data_config = spider.settings[<span class="string">"DATABASE_CONFIG"</span>]</span><br><span class="line">        print(<span class="string">"数据库内容"</span>,data_config)</span><br><span class="line">        <span class="keyword">if</span> data_config[<span class="string">"type"</span>] == <span class="string">"mysql"</span>:</span><br><span class="line">            self.conn = pymysql.connect(**data_config[<span class="string">"config"</span>])</span><br><span class="line">            self.cursor = self.conn.cursor()</span><br><span class="line">            spider.conn = self.conn</span><br><span class="line">            spider.cursor = self.cursor</span><br><span class="line">    <span class="comment">#数据存储</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_item</span><span class="params">(self, item, spider)</span>:</span></span><br><span class="line">        <span class="comment">#1.小说信息存储</span></span><br><span class="line">        <span class="keyword">if</span> isinstance(item,NovelItem):</span><br><span class="line">            sql=<span class="string">"select id from  novel  where  book_name=%s  and author=%s"</span></span><br><span class="line">            self.cursor.execute(sql,(item[<span class="string">"book_name"</span>],item[<span class="string">"author"</span>]))</span><br><span class="line">            <span class="keyword">if</span>  <span class="keyword">not</span> self.cursor.fetchone():</span><br><span class="line">                <span class="comment">#写入小说数据</span></span><br><span class="line">                sql=<span class="string">"insert  into  novel(category,book_name,author,status,book_nums,description,c_time,book_url,catalog_url)"</span> \</span><br><span class="line">                    <span class="string">"values (%s,%s,%s,%s,%s,%s,%s,%s,%s)"</span></span><br><span class="line">                self.cursor.execute(sql,(</span><br><span class="line">                    item[<span class="string">"category"</span>],</span><br><span class="line">                    item[<span class="string">"book_name"</span>],</span><br><span class="line">                    item[<span class="string">"author"</span>],</span><br><span class="line">                    item[<span class="string">"status"</span>],</span><br><span class="line">                    item[<span class="string">"book_nums"</span>],</span><br><span class="line">                    item[<span class="string">"description"</span>],</span><br><span class="line">                    item[<span class="string">"c_time"</span>],</span><br><span class="line">                    item[<span class="string">"book_url"</span>],</span><br><span class="line">                    item[<span class="string">"catalog_url"</span>],</span><br><span class="line">                ))</span><br><span class="line">                self.conn.commit()</span><br><span class="line">            <span class="keyword">return</span> item</span><br><span class="line">        <span class="comment">#2.章节信息存储</span></span><br><span class="line">        <span class="keyword">elif</span> isinstance(item,ChapterItem):</span><br><span class="line"></span><br><span class="line">            <span class="comment">#写入  目录信息</span></span><br><span class="line">            sql = <span class="string">"insert into  chapter(title,ordernum,c_time,chapter_url,catalog_url)  values(%s,%s,%s,%s,%s)"</span></span><br><span class="line">            data_list=[]</span><br><span class="line">            <span class="keyword">for</span>  index,chapter  <span class="keyword">in</span>  enumerate(item[<span class="string">"chapter_list"</span>]):</span><br><span class="line">                c_time = datetime.datetime.now()</span><br><span class="line">                ordernum=index+<span class="number">1</span></span><br><span class="line">                title,chapter_url,catalog_url=chapter</span><br><span class="line">                data_list.append((title,ordernum,c_time,chapter_url,catalog_url))</span><br><span class="line">            self.cursor.executemany(sql,data_list)</span><br><span class="line">            self.conn.commit()</span><br><span class="line">            <span class="keyword">return</span> item</span><br><span class="line">        <span class="comment">#3.章节内容存储</span></span><br><span class="line">        <span class="keyword">elif</span> isinstance(item, ContentItem):</span><br><span class="line">            sql=<span class="string">"update chapter set  content=%s where chapter_url=%s"</span></span><br><span class="line">            content=item[<span class="string">"content"</span>]</span><br><span class="line">            chapter_url=item[<span class="string">"chapter_url"</span>]</span><br><span class="line">            self.cursor.execute(sql,(content,chapter_url))</span><br><span class="line">            self.conn.commit()</span><br><span class="line">            <span class="keyword">return</span> item</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span>  DropItem</span><br><span class="line">    <span class="comment">#关闭数据库</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">close_spider</span><span class="params">(self,spider)</span>:</span></span><br><span class="line">        data_config=spider.settings[<span class="string">"DATABASE_CONFIG"</span>]<span class="comment">#settings里设置数据库</span></span><br><span class="line">        <span class="keyword">if</span> data_config[<span class="string">"type"</span>]==<span class="string">"mysql"</span>:</span><br><span class="line">            self.cursor.close()</span><br><span class="line">            self.conn.close()</span><br></pre></td></tr></table></figure>
+<h4 id="settings文件"><a href="#settings文件" class="headerlink" title="settings文件"></a>settings文件</h4><ul>
+<li>设置robots协议，添加全局请求头，开启管道</li>
+<li>开启下载延迟</li>
+<li>配置数据库</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line">BOT_NAME = <span class="string">'zongheng'</span></span><br><span class="line"></span><br><span class="line">SPIDER_MODULES = [<span class="string">'zongheng.spiders'</span>]</span><br><span class="line">NEWSPIDER_MODULE = <span class="string">'zongheng.spiders'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Obey robots.txt rules</span></span><br><span class="line">ROBOTSTXT_OBEY = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Configure maximum concurrent requests performed by Scrapy (default: 16)</span></span><br><span class="line"><span class="comment">#CONCURRENT_REQUESTS = 32</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Configure a delay for requests for the same website (default: 0)</span></span><br><span class="line"><span class="comment"># See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay</span></span><br><span class="line"><span class="comment"># See also autothrottle settings and docs</span></span><br><span class="line">DOWNLOAD_DELAY = <span class="number">1</span></span><br><span class="line"><span class="comment"># The download delay setting will honor only one of:</span></span><br><span class="line"><span class="comment">#CONCURRENT_REQUESTS_PER_DOMAIN = 16</span></span><br><span class="line"><span class="comment">#CONCURRENT_REQUESTS_PER_IP = 16</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Override the default request headers:</span></span><br><span class="line">DEFAULT_REQUEST_HEADERS = &#123;</span><br><span class="line">  <span class="string">'Accept'</span>: <span class="string">'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'</span>,</span><br><span class="line">  <span class="string">'Accept-Language'</span>: <span class="string">'en'</span>,</span><br><span class="line">   <span class="string">"User-Agent"</span>: <span class="string">"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Configure item pipelines</span></span><br><span class="line"><span class="comment"># See https://docs.scrapy.org/en/latest/topics/item-pipeline.html</span></span><br><span class="line">ITEM_PIPELINES = &#123;</span><br><span class="line">   <span class="string">'zongheng.pipelines.ZonghengPipeline'</span>: <span class="number">300</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DATABASE_CONFIG=&#123;</span><br><span class="line">    <span class="string">"type"</span>:<span class="string">"mysql"</span>,</span><br><span class="line">    <span class="string">"config"</span>:&#123;</span><br><span class="line">        <span class="string">"host"</span>:<span class="string">"localhost"</span>,</span><br><span class="line">        <span class="string">"port"</span>:<span class="number">3306</span>,</span><br><span class="line">        <span class="string">"user"</span>:<span class="string">"root"</span>,</span><br><span class="line">        <span class="string">"password"</span>:<span class="string">"123789"</span>,</span><br><span class="line">        <span class="string">"db"</span>:<span class="string">"zhnovel"</span>,</span><br><span class="line">        <span class="string">"charset"</span>:<span class="string">"utf8"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">LOG_FORMAT=<span class="string">'%(asctime)s  [%(name)s] %(levelname)s: %(message)s'</span></span><br><span class="line">LOG_DATEFORMAT=<span class="string">'%Y'</span></span><br></pre></td></tr></table></figure>
+<h2 id="CrawlerSpider去重"><a href="#CrawlerSpider去重" class="headerlink" title="CrawlerSpider去重"></a>CrawlerSpider去重</h2><p>这里对链接做了条件判定,通过集合seen去重</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_requests_to_follow</span><span class="params">(self, response)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> isinstance(response, HtmlResponse):</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    seen = set()</span><br><span class="line">    <span class="keyword">for</span> rule_index, rule <span class="keyword">in</span> enumerate(self._rules):</span><br><span class="line">        links = [lnk <span class="keyword">for</span> lnk <span class="keyword">in</span> rule.link_extractor.extract_links(response)</span><br><span class="line">                 <span class="keyword">if</span> lnk <span class="keyword">not</span> <span class="keyword">in</span> seen]</span><br><span class="line">        <span class="keyword">for</span> link <span class="keyword">in</span> rule.process_links(links):</span><br><span class="line">            seen.add(link)</span><br><span class="line">            request = self._build_request(rule_index, link)</span><br><span class="line">            <span class="keyword">yield</span> rule._process_request(request, response)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/gongzhonghao.jpg" alt="李江洋 wechat" style="width: 200px; max-width: 100%;">
+  <div>python分享公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="李江洋 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="李江洋 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/04/26/爬虫基础scrapy框架2/" rel="next" title="爬虫基础scrapy框架2">
+                <i class="fa fa-chevron-left"></i> 爬虫基础scrapy框架2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/04/30/django图书管理系统/" rel="prev" title="django图书管理系统">
+                django图书管理系统 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="李江洋">
+            
+              <p class="site-author-name" itemprop="name">李江洋</p>
+              <p class="site-description motion-element" itemprop="description">记录学习的技能和遇到的问题</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">179</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lvdXJuYW1l" title="GitHub &rarr; https://github.com/yourname"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="bWFpbHRvOjEzMjgwNDQzOTJAcXEuY29t" title="E-Mail &rarr; mailto:1328044392@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL2V4YW1wbGUuY29t" title="http://example.com">Title</span>
+                  </li>
+                
+              </ul>
+            </div>
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Scrapy框架-三"><span class="nav-number">1.</span> <span class="nav-text">Scrapy框架(三)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CrawlSpider"><span class="nav-number">1.1.</span> <span class="nav-text">CrawlSpider</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#案例实战-爬取纵横小说"><span class="nav-number">1.2.</span> <span class="nav-text">案例实战-爬取纵横小说</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-需求分析"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.需求分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#页面分析"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">页面分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#页面总体结构"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">页面总体结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#需求字段"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">需求字段</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-代码实现"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.代码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#爬取逻辑"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">爬取逻辑</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#spider文件"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">spider文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#items文件"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">items文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pipelines文件"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">pipelines文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#settings文件"><span class="nav-number">1.2.2.5.</span> <span class="nav-text">settings文件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CrawlerSpider去重"><span class="nav-number">1.3.</span> <span class="nav-text">CrawlerSpider去重</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李江洋</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Pisces</span> v7.0.1</div>
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script id="ribbon" size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+  
+  <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ljyabc.github.io/2021/04/26/爬虫基础scrapy框架3/";
+    this.page.identifier = "2021/04/26/爬虫基础scrapy框架3/";
+    this.page.title = '爬虫基础scrapy框架3';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/exturl.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+   <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+</body>
+</html>

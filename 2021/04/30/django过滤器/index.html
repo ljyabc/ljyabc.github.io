@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="模板层之过滤器1模版语法之数据类型过滤1**语法：** &amp;#123;&amp;#123;obj|filter__name:param&amp;#125;&amp;#125;  变量名字|过滤器名称：变量 default 如果一个变量是false或者为空，使用给定的默认值。否则，使用变量的值。例如：  1&amp;#123;&amp;#123; value|default:&quot;nothing&quot; &amp;#125;&amp;#125; length返回值的">
+<meta name="keywords" content="lnhdjango基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="django过滤器">
+<meta property="og:url" content="https://ljyabc.github.io/2021/04/30/django过滤器/index.html">
+<meta property="og:site_name" content="择墅居:李江洋">
+<meta property="og:description" content="模板层之过滤器1模版语法之数据类型过滤1**语法：** &amp;#123;&amp;#123;obj|filter__name:param&amp;#125;&amp;#125;  变量名字|过滤器名称：变量 default 如果一个变量是false或者为空，使用给定的默认值。否则，使用变量的值。例如：  1&amp;#123;&amp;#123; value|default:&quot;nothing&quot; &amp;#125;&amp;#125; length返回值的">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2025-04-08T14:37:24.279Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="django过滤器">
+<meta name="twitter:description" content="模板层之过滤器1模版语法之数据类型过滤1**语法：** &amp;#123;&amp;#123;obj|filter__name:param&amp;#125;&amp;#125;  变量名字|过滤器名称：变量 default 如果一个变量是false或者为空，使用给定的默认值。否则，使用变量的值。例如：  1&amp;#123;&amp;#123; value|default:&quot;nothing&quot; &amp;#125;&amp;#125; length返回值的">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ljyabc.github.io/2021/04/30/django过滤器/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>django过滤器 | 择墅居:李江洋</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">择墅居:李江洋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">争做长沙别墅豪装第一品牌</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/book" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>book</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2021/04/30/django过滤器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李江洋">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="择墅居:李江洋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">django过滤器
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-04-30 15:01:03" itemprop="dateCreated datePublished" datetime="2021-04-30T15:01:03+08:00">2021-04-30</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2025-04-08 22:37:24" itemprop="dateModified" datetime="2025-04-08T22:37:24+08:00">2025-04-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/理解/" itemprop="url" rel="index"><span itemprop="name">理解</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2021/04/30/django过滤器/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/04/30/django过滤器/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="模板层之过滤器"><a href="#模板层之过滤器" class="headerlink" title="模板层之过滤器"></a>模板层之过滤器</h1><h2 id="1模版语法之数据类型过滤"><a href="#1模版语法之数据类型过滤" class="headerlink" title="1模版语法之数据类型过滤"></a>1模版语法之数据类型过滤</h2><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">**语法：** </span><span class="template-variable">&#123;&#123;obj|filter__name:param&#125;&#125;</span><span class="xml">  变量名字|过滤器名称：变量</span></span><br></pre></td></tr></table></figure>
+<h3 id="default"><a href="#default" class="headerlink" title="default"></a>default</h3><p> 如果一个变量是false或者为空，使用给定的默认值。否则，使用变量的值。例如： </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; value|default:"nothing" &#125;&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="length"><a href="#length" class="headerlink" title="length"></a>length</h3><p>返回值的长度。它对字符串和列表都起作用。例如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`&#123;&#123; value|length &#125;&#125;`</span><br></pre></td></tr></table></figure>
+<figure class="highlight ceylon"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果 <span class="keyword">value</span> 是 [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>]，那么输出是 <span class="number">4</span>。</span><br></pre></td></tr></table></figure>
+<h3 id="filesizeformat"><a href="#filesizeformat" class="headerlink" title="filesizeformat"></a>filesizeformat</h3><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">将值格式化为一个 “人类可读的” 文件尺寸 （例如 `'<span class="number">13</span> KB'`, `'<span class="number">4.1</span> MB'`, `'<span class="number">102</span> bytes'`, 等等）。例如：</span><br></pre></td></tr></table></figure>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">`</span><span class="template-variable">&#123;&#123; value|<span class="name">filesizeformat</span> &#125;&#125;</span><span class="xml">`</span></span><br></pre></td></tr></table></figure>
+<p>如果 <code>value</code> 是 123456789，输出将会是 <code>117.7 MB</code>。</p>
+<h3 id="date"><a href="#date" class="headerlink" title="date"></a>date</h3><p>如果 value=datetime.datetime.now()</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`&#123;&#123; value|date:``<span class="string">"Y-m-d"</span>` `&#125;&#125;　　`</span><br></pre></td></tr></table></figure>
+<h3 id="slice"><a href="#slice" class="headerlink" title="slice"></a>slice</h3><p>如果 value=”hello world”</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`&#123;&#123; value|``slice``:``"2:-1"` `&#125;&#125;`</span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">truncatechars[<span class="string"> </span>](<span class="link">http://python.usyiyi.cn/documents/django_182/ref/templates/builtins.html#truncatechars</span>)</span><br><span class="line"></span><br><span class="line">如果字符串字符多于指定的字符数量，那么会被截断。截断的字符串将以可翻译的省略号序列（“...”）结尾。</span><br><span class="line"></span><br><span class="line"><span class="strong">**参数：**</span>要截断的字符数</span><br><span class="line"></span><br><span class="line">例如：</span><br><span class="line"></span><br><span class="line"><span class="code">`&#123;&#123; value|truncatechars:`</span><span class="code">`9`</span> <span class="code">`&#125;&#125;`</span></span><br></pre></td></tr></table></figure>
+<h3 id="safe"><a href="#safe" class="headerlink" title="safe"></a>safe</h3><p>Django的模板中会对HTML标签和JS等语法标签进行自动转义，原因显而易见，这样是为了安全。但是有的时候我们可能不希望这些HTML元素被转义，比如我们做一个内容管理系统，后台添加的文章中是经过修饰的，这些修饰可能是通过一个类似于FCKeditor编辑加注了HTML修饰符的文本，如果自动转义的话显示的就是保护HTML标签的源文件。为了在Django中关闭HTML的自动转义有两种方式，如果是一个单独的变量我们可以通过过滤器“|safe”的方式告诉Django这段代码是安全的不必转义。比如：</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`value``=``<span class="string">"`"&gt;点击"</span>`</span><br></pre></td></tr></table></figure>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">`</span><span class="template-variable">&#123;&#123; value|<span class="name">safe</span>&#125;&#125;</span><span class="xml">`</span></span><br></pre></td></tr></table></figure>
+<h2 id="其它过滤器了解）"><a href="#其它过滤器了解）" class="headerlink" title="其它过滤器了解）"></a>其它过滤器了解）</h2><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">|<span class="string"> 过滤器             </span>|<span class="string"> 描述                                                     </span>|<span class="string"> 示例                                                         </span>|</span><br><span class="line">|<span class="string"> ------------------ </span>|<span class="string"> -------------------------------------------------------- </span>|<span class="string"> ------------------------------------------------------------ </span>|</span><br><span class="line">|<span class="string"> upper              </span>|<span class="string"> 以大写方式输出                                           </span>|<span class="string"> &#123;&#123; user.name \</span>|<span class="string"> upper &#125;&#125;                                     </span>|</span><br><span class="line">|<span class="string"> add                </span>|<span class="string"> 给value加上一个数值                                      </span>|<span class="string"> &#123;&#123; user.age \</span>|<span class="string"> add:”5” &#125;&#125;                                    </span>|</span><br><span class="line">|<span class="string"> addslashes         </span>|<span class="string"> 单引号加上转义号                                         </span>|<span class="string">                                                              </span>|</span><br><span class="line">|<span class="string"> capfirst           </span>|<span class="string"> 第一个字母大写                                           </span>|<span class="string"> &#123;&#123; ‘good’\</span>|<span class="string"> capfirst &#125;&#125; 返回”Good”                           </span>|</span><br><span class="line">|<span class="string"> center             </span>|<span class="string"> 输出指定长度的字符串，把变量居中                         </span>|<span class="string"> &#123;&#123; “abcd”\</span>|<span class="string"> center:”50” &#125;&#125;                                   </span>|</span><br><span class="line">|<span class="string"> cut                </span>|<span class="string"> 删除指定字符串                                           </span>|<span class="string"> &#123;&#123; “You are not a Englishman” \</span>|<span class="string"> cut:”not” &#125;&#125;                </span>|</span><br><span class="line">|<span class="string"> date               </span>|<span class="string"> 格式化日期                                               </span>|<span class="string">                                                              </span>|</span><br><span class="line">|<span class="string"> default            </span>|<span class="string"> 如果值不存在，则使用默认值代替                           </span>|<span class="string"> &#123;&#123; value \</span>|<span class="string"> default:”(N/A)” &#125;&#125;                               </span>|</span><br><span class="line">|<span class="string"> default_if_none    </span>|<span class="string"> 如果值为None, 则使用默认值代替                           </span>|<span class="string">                                                              </span>|</span><br><span class="line">|<span class="string"> dictsort           </span>|<span class="string"> 按某字段排序，变量必须是一个dictionary                   </span>|<span class="string"> &#123;% for moment in moments \</span>|<span class="string"> dictsort:”id” %&#125;                 </span>|</span><br><span class="line">|<span class="string"> dictsortreversed   </span>|<span class="string"> 按某字段倒序排序，变量必须是dictionary                   </span>|<span class="string">                                                              </span>|</span><br><span class="line">|<span class="string"> divisibleby        </span>|<span class="string"> 判断是否可以被数字整除                                   </span>|<span class="string"> `&#123;&#123; 224 </span>|<span class="string"> divisibleby:2 &#125;&#125;  返回 True`                       </span>|</span><br><span class="line">|<span class="string"> escape             </span>|<span class="string"> 按HTML转义，比如将”&lt;”转换为”&amp;lt”                         </span>|<span class="string">                                                              </span>|</span><br><span class="line">|<span class="string"> filesizeformat     </span>|<span class="string"> 增加数字的可读性，转换结果为13KB,89MB,3Bytes等           </span>|<span class="string"> `&#123;&#123; 1024 </span>|<span class="string"> filesizeformat &#125;&#125; 返回 1.0KB`                     </span>|</span><br><span class="line">|<span class="string"> first              </span>|<span class="string"> 返回列表的第1个元素，变量必须是一个列表                  </span>|<span class="string">                                                              </span>|</span><br><span class="line">|<span class="string"> floatformat        </span>|<span class="string"> 转换为指定精度的小数，默认保留1位小数                    </span>|<span class="string"> &#123;&#123; 3.1415926 \</span>|<span class="string"> floatformat:3 &#125;&#125; 返回 3.142 四舍五入         </span>|</span><br><span class="line">|<span class="string"> get_digit          </span>|<span class="string"> 从个位数开始截取指定位置的数字                           </span>|<span class="string"> &#123;&#123; 123456 \</span>|<span class="string"> get_digit:’1’&#125;&#125;                                 </span>|</span><br><span class="line">|<span class="string"> join               </span>|<span class="string"> 用指定分隔符连接列表                                     </span>|<span class="string"> &#123;&#123; [‘abc’,’45’] \</span>|<span class="string"> join:’*’ &#125;&#125; 返回 abc*45                   </span>|</span><br><span class="line">|<span class="string"> length             </span>|<span class="string"> 返回列表中元素的个数或字符串长度                         </span>|<span class="string">                                                              </span>|</span><br><span class="line">|<span class="string"> length_is          </span>|<span class="string"> 检查列表，字符串长度是否符合指定的值                     </span>|<span class="string"> &#123;&#123; ‘hello’\</span>|<span class="string"> length_is:’3’ &#125;&#125;                                </span>|</span><br><span class="line">|<span class="string"> linebreaks         </span>|<span class="string"> 用&lt;p&gt;或&lt;br&gt;标签包裹变量                                  </span>|<span class="string"> &#123;&#123; “Hi\n\nDavid”\</span>|<span class="string">linebreaks &#125;&#125; 返回&lt;p&gt;Hi&lt;/p&gt;&lt;p&gt;David&lt;/p&gt;    </span>|</span><br><span class="line">|<span class="string"> linebreaksbr       </span>|<span class="string"> 用&lt;br/&gt;标签代替换行符                                    </span>|<span class="string">                                                              </span>|</span><br><span class="line">|<span class="string"> linenumbers        </span>|<span class="string"> 为变量中的每一行加上行号                                 </span>|<span class="string">                                                              </span>|</span><br><span class="line">|<span class="string"> ljust              </span>|<span class="string"> 输出指定长度的字符串，变量左对齐                         </span>|<span class="string"> &#123;&#123;‘ab’\</span>|<span class="string">ljust:5&#125;&#125;返回 ‘ab  ’                                 </span>|</span><br><span class="line">|<span class="string"> lower              </span>|<span class="string"> 字符串变小写                                             </span>|<span class="string">                                                              </span>|</span><br><span class="line">|<span class="string"> make_list          </span>|<span class="string"> 将字符串转换为列表                                       </span>|<span class="string">                                                              </span>|</span><br><span class="line">|<span class="string"> pluralize          </span>|<span class="string"> 根据数字确定是否输出英文复数符号                         </span>|<span class="string">                                                              </span>|</span><br><span class="line">|<span class="string"> random             </span>|<span class="string"> 返回列表的随机一项                                       </span>|<span class="string">                                                              </span>|</span><br><span class="line">|<span class="string"> removetags         </span>|<span class="string"> 删除字符串中指定的HTML标记                               </span>|<span class="string"> &#123;&#123;value \</span>|<span class="string"> removetags: “h1 h2”&#125;&#125;                             </span>|</span><br><span class="line">|<span class="string"> rjust              </span>|<span class="string"> 输出指定长度的字符串，变量右对齐                         </span>|<span class="string">                                                              </span>|</span><br><span class="line">|<span class="string"> slice              </span>|<span class="string"> 切片操作， 返回列表                                      </span>|<span class="string"> &#123;&#123;[3,9,1] \</span>|<span class="string"> slice:’:2’&#125;&#125; 返回 [3,9] `&#123;&#123; 'asdikfjhihgie' </span>|<span class="string"> slice:':5' &#125;&#125; 返回 ‘asdik’` </span>|</span><br><span class="line">|<span class="string"> slugify            </span>|<span class="string"> 在字符串中留下减号和下划线，其它符号删除，空格用减号替换 </span>|<span class="string"> `&#123;&#123; '5-2=3and5 2=3' </span>|<span class="string"> slugify &#125;&#125; 返回 5-23and5-23`           </span>|</span><br><span class="line">|<span class="string"> stringformat       </span>|<span class="string"> 字符串格式化，语法同python                               </span>|<span class="string">                                                              </span>|</span><br><span class="line">|<span class="string"> time               </span>|<span class="string"> 返回日期的时间部分                                       </span>|<span class="string">                                                              </span>|</span><br><span class="line">|<span class="string"> timesince          </span>|<span class="string"> 以“到现在为止过了多长时间”显示时间变量                   </span>|<span class="string"> 结果可能为 45days, 3 hours                                   </span>|</span><br><span class="line">|<span class="string"> timeuntil          </span>|<span class="string"> 以“从现在开始到时间变量”还有多长时间显示时间变量         </span>|<span class="string">                                                              </span>|</span><br><span class="line">|<span class="string"> title              </span>|<span class="string"> 每个单词首字母大写                                       </span>|<span class="string">                                                              </span>|</span><br><span class="line">|<span class="string"> truncatewords      </span>|<span class="string"> 将字符串转换为省略表达方式                               </span>|<span class="string"> `&#123;&#123; 'This is a pen' </span>|<span class="string"> truncatewords:2 &#125;&#125;返回``This is ...`   </span>|</span><br><span class="line">|<span class="string"> truncatewords_html </span>|<span class="string"> 同上，但保留其中的HTML标签                               </span>|<span class="string"> `&#123;&#123; 'This is a pen' </span>|<span class="string"> truncatewords:2 &#125;&#125;返回``This is ...`   </span>|</span><br><span class="line">|<span class="string"> urlencode          </span>|<span class="string"> 将字符串中的特殊字符转换为url兼容表达方式                </span>|<span class="string"> &#123;&#123; ‘http://www.aaa.com/foo?a=b&amp;b=c’ \</span>|<span class="string"> urlencode&#125;&#125;           </span>|</span><br><span class="line">|<span class="string"> urlize             </span>|<span class="string"> 将变量字符串中的url由纯文本变为链接                      </span>|<span class="string">                                                              </span>|</span><br><span class="line">|<span class="string"> wordcount          </span>|<span class="string"> 返回变量字符串中的单词数                                 </span>|<span class="string">                                                              </span>|</span><br><span class="line">|<span class="string"> yesno              </span>|<span class="string"> 将布尔变量转换为字符串yes, no 或maybe                    </span>|<span class="string"> `&#123;&#123; True </span>|<span class="string"> yesno &#125;&#125;&#123;&#123; False </span>|<span class="string"> yesno &#125;&#125;&#123;&#123; None </span>|<span class="string"> yesno &#125;&#125; ``返回 ``yes``no ``maybe` </span>|</span><br></pre></td></tr></table></figure>
+<h2 id="locals-可以接受所有的模板变量"><a href="#locals-可以接受所有的模板变量" class="headerlink" title="locals()可以接受所有的模板变量"></a>locals()可以接受所有的模板变量</h2><h3 id="模板之数据类型过滤器"><a href="#模板之数据类型过滤器" class="headerlink" title="模板之数据类型过滤器"></a>模板之数据类型过滤器</h3><h4 id="views-py层之数据类型过滤"><a href="#views-py层之数据类型过滤" class="headerlink" title="views.py层之数据类型过滤"></a>views.py层之数据类型过滤</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">moban</span><span class="params">(request)</span>:</span></span><br><span class="line">	name = <span class="string">'shouyue'</span></span><br><span class="line">    age = <span class="number">18</span></span><br><span class="line">    ll = [<span class="number">1</span>,<span class="number">2</span>,<span class="string">'shouyue'</span>]</span><br><span class="line">    tu = (<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line">    dic = &#123;<span class="string">'name'</span>:<span class="string">'shouyue'</span>,<span class="string">'age'</span>:<span class="number">18</span>,<span class="string">'ll'</span>:[<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>]&#125;</span><br><span class="line">    <span class="keyword">return</span> render(request,<span class="string">'moban.html'</span>,locals())</span><br></pre></td></tr></table></figure>
+<h4 id="template层之数据类型过滤"><a href="#template层之数据类型过滤" class="headerlink" title="template层之数据类型过滤"></a>template层之数据类型过滤</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>统计字符串的长度:&#123;&#123; name|length &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>统计字符串相加:&#123;&#123; name|add:'dsb' &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>数字相加add:&#123;&#123; age|add:'11' &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>利用过滤器判断列表没有值的时候执行默认值:&#123;&#123; ll2|default:'没有值' &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">&#123;#前闭后开区间#&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>python列表切片类似的过滤器之slice:&#123;&#123; ll|slice:'2:-1' &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">&#123;#支持步长#&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>python字符串取值类似过滤器之slice-字符串:&#123;&#123; name|slice:'0:3:3' &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">&#123;#三个起步#&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="模板之文件过滤器"><a href="#模板之文件过滤器" class="headerlink" title="模板之文件过滤器"></a>模板之文件过滤器</h3><h4 id="views-py层之文件过滤"><a href="#views-py层之文件过滤" class="headerlink" title="views.py层之文件过滤"></a>views.py层之文件过滤</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">moban</span><span class="params">(request)</span>:</span></span><br><span class="line">	file_size=<span class="number">1024</span></span><br><span class="line">    <span class="keyword">return</span> render(request,<span class="string">'moban.html'</span>,locals())</span><br></pre></td></tr></table></figure>
+<h4 id="template层之文件过滤"><a href="#template层之文件过滤" class="headerlink" title="template层之文件过滤"></a>template层之文件过滤</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>过滤器之truncatechars:&#123;&#123; 'dafddfafgadfgaasdgadgfadaf'|truncatechars:5 &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>过滤器之truncatewords:&#123;&#123; '我 dfaf ga dfgaas 你 dgf adaf'|truncatewords:5 &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="模板之HTML标签和JS等语法标签进行自动转义过滤器safe"><a href="#模板之HTML标签和JS等语法标签进行自动转义过滤器safe" class="headerlink" title="模板之HTML标签和JS等语法标签进行自动转义过滤器safe"></a>模板之HTML标签和JS等语法标签进行自动转义过滤器safe</h3><h4 id="1-HTML标签自动转义过滤"><a href="#1-HTML标签自动转义过滤" class="headerlink" title="1.HTML标签自动转义过滤"></a>1.HTML标签自动转义过滤</h4><h5 id="views-py层之safeHTML标签自动转义过滤"><a href="#views-py层之safeHTML标签自动转义过滤" class="headerlink" title="views.py层之safeHTML标签自动转义过滤"></a>views.py层之safeHTML标签自动转义过滤</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">moban</span><span class="params">(request)</span>:</span></span><br><span class="line">	h1=<span class="string">'&lt;h1&gt;你好&lt;/h1&gt;'</span></span><br><span class="line">    <span class="keyword">return</span> render(request,<span class="string">'moban.html'</span>,locals())</span><br></pre></td></tr></table></figure>
+<h5 id="template层之safeHTML标签自动转义过滤"><a href="#template层之safeHTML标签自动转义过滤" class="headerlink" title="template层之safeHTML标签自动转义过滤"></a>template层之safeHTML标签自动转义过滤</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>过滤器之不用safe:&#123;&#123; h1 &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>过滤器之用safe:&#123;&#123; h1|safe &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-css选择器自动转义过滤"><a href="#2-css选择器自动转义过滤" class="headerlink" title="2.css选择器自动转义过滤"></a>2.css选择器自动转义过滤</h4><h5 id="views-py层之safecss选择器自动转义过滤"><a href="#views-py层之safecss选择器自动转义过滤" class="headerlink" title="views.py层之safecss选择器自动转义过滤"></a>views.py层之safecss选择器自动转义过滤</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">moban</span><span class="params">(request)</span>:</span></span><br><span class="line">	css1 = <span class="string">'''</span></span><br><span class="line"><span class="string">        &lt;style&gt;</span></span><br><span class="line"><span class="string">        p &#123;</span></span><br><span class="line"><span class="string">            color:red</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">    &lt;/style&gt;</span></span><br><span class="line"><span class="string">        '''</span></span><br><span class="line">    <span class="keyword">return</span> render(request,<span class="string">'moban.html'</span>,locals())</span><br></pre></td></tr></table></figure>
+<h5 id="template层之safecss选择器自动转义过滤"><a href="#template层之safecss选择器自动转义过滤" class="headerlink" title="template层之safecss选择器自动转义过滤"></a>template层之safecss选择器自动转义过滤</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>css之不用safe:&#123;&#123; css1 &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>css之用safe:&#123;&#123; css1|safe &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="3-JS等语法标签自动转义过滤"><a href="#3-JS等语法标签自动转义过滤" class="headerlink" title="3.JS等语法标签自动转义过滤"></a>3.JS等语法标签自动转义过滤</h4><h5 id="views-py层之safeJS自动转义过滤"><a href="#views-py层之safeJS自动转义过滤" class="headerlink" title="views.py层之safeJS自动转义过滤"></a>views.py层之safeJS自动转义过滤</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">moban</span><span class="params">(request)</span>:</span></span><br><span class="line">	script=<span class="string">'&lt;script&gt;alert(111)&lt;/script&gt;'</span></span><br><span class="line">    <span class="keyword">return</span> render(request,<span class="string">'moban.html'</span>,locals())</span><br></pre></td></tr></table></figure>
+<h5 id="template层之safeJS自动转义过滤"><a href="#template层之safeJS自动转义过滤" class="headerlink" title="template层之safeJS自动转义过滤"></a>template层之safeJS自动转义过滤</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>过滤器之不用safe:&#123;&#123; script &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">会产生弹窗，就会形成攻击</span><br><span class="line">&#123;#<span class="tag">&lt;<span class="name">p</span>&gt;</span>过滤器之用safe:&#123;&#123; script|safe &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span>#&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/gongzhonghao.jpg" alt="李江洋 wechat" style="width: 200px; max-width: 100%;">
+  <div>python分享公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="李江洋 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="李江洋 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/lnhdjango基础/" rel="tag"># lnhdjango基础</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/04/30/django模板层/" rel="next" title="django模板层">
+                <i class="fa fa-chevron-left"></i> django模板层
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/04/30/django标签/" rel="prev" title="django标签">
+                django标签 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="李江洋">
+            
+              <p class="site-author-name" itemprop="name">李江洋</p>
+              <p class="site-description motion-element" itemprop="description">记录学习的技能和遇到的问题</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">179</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lvdXJuYW1l" title="GitHub &rarr; https://github.com/yourname"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="bWFpbHRvOjEzMjgwNDQzOTJAcXEuY29t" title="E-Mail &rarr; mailto:1328044392@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL2V4YW1wbGUuY29t" title="http://example.com">Title</span>
+                  </li>
+                
+              </ul>
+            </div>
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#模板层之过滤器"><span class="nav-number">1.</span> <span class="nav-text">模板层之过滤器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1模版语法之数据类型过滤"><span class="nav-number">1.1.</span> <span class="nav-text">1模版语法之数据类型过滤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#default"><span class="nav-number">1.1.1.</span> <span class="nav-text">default</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#length"><span class="nav-number">1.1.2.</span> <span class="nav-text">length</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#filesizeformat"><span class="nav-number">1.1.3.</span> <span class="nav-text">filesizeformat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#date"><span class="nav-number">1.1.4.</span> <span class="nav-text">date</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#slice"><span class="nav-number">1.1.5.</span> <span class="nav-text">slice</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#safe"><span class="nav-number">1.1.6.</span> <span class="nav-text">safe</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其它过滤器了解）"><span class="nav-number">1.2.</span> <span class="nav-text">其它过滤器了解）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#locals-可以接受所有的模板变量"><span class="nav-number">1.3.</span> <span class="nav-text">locals()可以接受所有的模板变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模板之数据类型过滤器"><span class="nav-number">1.3.1.</span> <span class="nav-text">模板之数据类型过滤器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#views-py层之数据类型过滤"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">views.py层之数据类型过滤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#template层之数据类型过滤"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">template层之数据类型过滤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模板之文件过滤器"><span class="nav-number">1.3.2.</span> <span class="nav-text">模板之文件过滤器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#views-py层之文件过滤"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">views.py层之文件过滤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#template层之文件过滤"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">template层之文件过滤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模板之HTML标签和JS等语法标签进行自动转义过滤器safe"><span class="nav-number">1.3.3.</span> <span class="nav-text">模板之HTML标签和JS等语法标签进行自动转义过滤器safe</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-HTML标签自动转义过滤"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">1.HTML标签自动转义过滤</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#views-py层之safeHTML标签自动转义过滤"><span class="nav-number">1.3.3.1.1.</span> <span class="nav-text">views.py层之safeHTML标签自动转义过滤</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#template层之safeHTML标签自动转义过滤"><span class="nav-number">1.3.3.1.2.</span> <span class="nav-text">template层之safeHTML标签自动转义过滤</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-css选择器自动转义过滤"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">2.css选择器自动转义过滤</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#views-py层之safecss选择器自动转义过滤"><span class="nav-number">1.3.3.2.1.</span> <span class="nav-text">views.py层之safecss选择器自动转义过滤</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#template层之safecss选择器自动转义过滤"><span class="nav-number">1.3.3.2.2.</span> <span class="nav-text">template层之safecss选择器自动转义过滤</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-JS等语法标签自动转义过滤"><span class="nav-number">1.3.3.3.</span> <span class="nav-text">3.JS等语法标签自动转义过滤</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#views-py层之safeJS自动转义过滤"><span class="nav-number">1.3.3.3.1.</span> <span class="nav-text">views.py层之safeJS自动转义过滤</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#template层之safeJS自动转义过滤"><span class="nav-number">1.3.3.3.2.</span> <span class="nav-text">template层之safeJS自动转义过滤</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李江洋</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Pisces</span> v7.0.1</div>
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script id="ribbon" size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+  
+  <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ljyabc.github.io/2021/04/30/django过滤器/";
+    this.page.identifier = "2021/04/30/django过滤器/";
+    this.page.title = 'django过滤器';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/exturl.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+   <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+</body>
+</html>

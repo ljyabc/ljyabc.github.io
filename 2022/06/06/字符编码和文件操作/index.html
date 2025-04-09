@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="day7字符编码和文件操作补充python推导式列表生成式12345678910111213# 列表生成式# L = []# for i in range(1,10):#     L.append(i)# print(L)# L1 = [i for i in range(1,10)]# print(L1)# L1 = [i * 3 for i in range(1,10)]# print(L1)#">
+<meta name="keywords" content="江洋python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="字符编码和文件操作">
+<meta property="og:url" content="https://ljyabc.github.io/2022/06/06/字符编码和文件操作/index.html">
+<meta property="og:site_name" content="择墅居:李江洋">
+<meta property="og:description" content="day7字符编码和文件操作补充python推导式列表生成式12345678910111213# 列表生成式# L = []# for i in range(1,10):#     L.append(i)# print(L)# L1 = [i for i in range(1,10)]# print(L1)# L1 = [i * 3 for i in range(1,10)]# print(L1)#">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2025-04-09T01:40:23.916Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="字符编码和文件操作">
+<meta name="twitter:description" content="day7字符编码和文件操作补充python推导式列表生成式12345678910111213# 列表生成式# L = []# for i in range(1,10):#     L.append(i)# print(L)# L1 = [i for i in range(1,10)]# print(L1)# L1 = [i * 3 for i in range(1,10)]# print(L1)#">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ljyabc.github.io/2022/06/06/字符编码和文件操作/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>字符编码和文件操作 | 择墅居:李江洋</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">择墅居:李江洋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">争做长沙别墅豪装第一品牌</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/book" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>book</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2022/06/06/字符编码和文件操作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李江洋">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="择墅居:李江洋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">字符编码和文件操作
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2022-06-06 14:16:00" itemprop="dateCreated datePublished" datetime="2022-06-06T14:16:00+08:00">2022-06-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2025-04-09 09:40:23" itemprop="dateModified" datetime="2025-04-09T09:40:23+08:00">2025-04-09</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/理解/" itemprop="url" rel="index"><span itemprop="name">理解</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2022/06/06/字符编码和文件操作/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/06/06/字符编码和文件操作/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="day7字符编码和文件操作"><a href="#day7字符编码和文件操作" class="headerlink" title="day7字符编码和文件操作"></a>day7字符编码和文件操作</h1><h2 id="补充python推导式"><a href="#补充python推导式" class="headerlink" title="补充python推导式"></a>补充python推导式</h2><h4 id="列表生成式"><a href="#列表生成式" class="headerlink" title="列表生成式"></a>列表生成式</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 列表生成式</span></span><br><span class="line"><span class="comment"># L = []</span></span><br><span class="line"><span class="comment"># for i in range(1,10):</span></span><br><span class="line"><span class="comment">#     L.append(i)</span></span><br><span class="line"><span class="comment"># print(L)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># L1 = [i for i in range(1,10)]</span></span><br><span class="line"><span class="comment"># print(L1)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># L1 = [i * 3 for i in range(1,10)]</span></span><br><span class="line"><span class="comment"># print(L1)</span></span><br><span class="line"><span class="comment"># L1 = [i * 3 for i in range(1,10)if i % 2 == 0]</span></span><br><span class="line"><span class="comment"># print(L1)</span></span><br></pre></td></tr></table></figure>
+<h5 id="列表生成式排序"><a href="#列表生成式排序" class="headerlink" title="列表生成式排序"></a>列表生成式排序</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ts_file = [<span class="string">'2.ts'</span>,<span class="string">'3.ts'</span>,<span class="string">'1.ts'</span>,<span class="string">'4.ts'</span>]</span><br><span class="line"><span class="comment"># print(ts_file)</span></span><br><span class="line"></span><br><span class="line">s1=[str(j)+<span class="string">'.ts'</span> <span class="keyword">for</span> j <span class="keyword">in</span> sorted([int(i.replace(<span class="string">'.ts'</span>,<span class="string">''</span>)) <span class="keyword">for</span> i <span class="keyword">in</span> ts_file])]</span><br><span class="line">print(s1)</span><br></pre></td></tr></table></figure>
+<h4 id="字典生成式"><a href="#字典生成式" class="headerlink" title="字典生成式"></a>字典生成式</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 字典生成式</span></span><br><span class="line"></span><br><span class="line">dict1=&#123;k+<span class="string">'aaa'</span>:v <span class="keyword">for</span> k,v <span class="keyword">in</span> &#123;<span class="string">'name'</span>:<span class="string">'大海'</span>,<span class="string">'age'</span>:<span class="number">18</span>&#125;.items() <span class="keyword">if</span> k == <span class="string">'age'</span>&#125;</span><br><span class="line">print(dict1)</span><br></pre></td></tr></table></figure>
+<h4 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">salaries= &#123;</span><br><span class="line">    <span class="string">'xialuo'</span>:<span class="number">3000000</span>,</span><br><span class="line">    <span class="string">'xishi'</span>:<span class="number">30000</span>,</span><br><span class="line">    <span class="string">'dahai'</span>:<span class="number">3000</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 我们要比较的是薪资 求薪资最高的那个人名：即比较的是value，但取结果是key</span></span><br><span class="line"><span class="comment"># # 默认比较key值 ,返回是也是key</span></span><br><span class="line"><span class="comment"># print(max(salaries))</span></span><br><span class="line"><span class="comment"># 这个函数需要获得字典的value，这样才会比较value</span></span><br><span class="line"><span class="comment"># def func(n):</span></span><br><span class="line"><span class="comment">#     return salaries[n]</span></span><br><span class="line"><span class="comment"># # 比较func的返回值  也就是salaries的value值， 但是还是返回key  max的返回值是key</span></span><br><span class="line"><span class="comment"># print(max(salaries,key=func))</span></span><br><span class="line"></span><br><span class="line">print(max(salaries,key=<span class="keyword">lambda</span> n:salaries[n]))</span><br></pre></td></tr></table></figure>
+<h3 id="规律实质上参数是指的是for循环默认变量的key值"><a href="#规律实质上参数是指的是for循环默认变量的key值" class="headerlink" title="规律实质上参数是指的是for循环默认变量的key值"></a>规律实质上参数是指的是for循环默认变量的key值</h3><h4 id="1-按照dk1进行排序"><a href="#1-按照dk1进行排序" class="headerlink" title="1.按照dk1进行排序"></a>1.按照dk1进行排序</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">s = [&#123;<span class="string">'name'</span>: <span class="string">'ζSeteor≯'</span>, <span class="string">'mobile'</span>: <span class="string">'13225390913'</span>, <span class="string">'dkl'</span>: <span class="number">79</span>, <span class="string">'wcl'</span>: <span class="string">'0.0%'</span>&#125;, &#123;<span class="string">'name'</span>: <span class="string">'。'</span>, <span class="string">'mobile'</span>: <span class="string">'17607941223'</span>, <span class="string">'dkl'</span>: <span class="number">50</span>, <span class="string">'wcl'</span>: <span class="string">'97.6%'</span>&#125;, &#123;<span class="string">'name'</span>: <span class="string">'末来过去'</span>, <span class="string">'mobile'</span>: <span class="string">'18816713686'</span>, <span class="string">'dkl'</span>: <span class="number">100</span>, <span class="string">'wcl'</span>: <span class="string">'0.0%'</span>&#125;]</span><br><span class="line"></span><br><span class="line"><span class="comment"># for e in s:</span></span><br><span class="line"><span class="comment">#     print(e)</span></span><br><span class="line"></span><br><span class="line">li=sorted(s,key=<span class="keyword">lambda</span> e:e[<span class="string">'dkl'</span>],reverse=<span class="literal">True</span>)</span><br><span class="line">print(li)</span><br></pre></td></tr></table></figure>
+<h2 id="1-字符编码"><a href="#1-字符编码" class="headerlink" title="1.字符编码"></a>1.字符编码</h2><h3 id="1-1什么是字符编码"><a href="#1-1什么是字符编码" class="headerlink" title="1.1什么是字符编码?"></a>1.1什么是字符编码?</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">计算机要想工作必须通电,即用‘电’驱使计算机干活,也就是说‘电’的特性决定了计算机的特性。</span></span><br><span class="line"><span class="string">电的特性即高低电平(人类从逻辑上将二进制数1对应高电平,二进制数0对应低电平)</span></span><br><span class="line"><span class="string">    简单来说就是一个灯泡亮一个灯泡不亮表示</span></span><br><span class="line"><span class="string">        0代表灯泡不亮 (低电平)</span></span><br><span class="line"><span class="string">        1代表灯泡亮  （高电平）</span></span><br><span class="line"><span class="string">        那么2个灯泡可以表示的信息就有   00 01 10 11 4种 2的二次方</span></span><br><span class="line"><span class="string">        那么3个灯泡可以表示的信息就有   000 001  100 010  110 101 011 111 8种  二的三次方</span></span><br><span class="line"><span class="string">    结论：计算机只认识数字(二进制0101) 其他的数字10进制是通过二进制转换过来的</span></span><br><span class="line"><span class="string">         很明显，我们平时在使用计算机时，用的都是人类能读懂的字符</span></span><br><span class="line"><span class="string">        （用高级语言python编程的结果也无非是在文件内写了一堆字符）</span></span><br><span class="line"><span class="string">        如何能让计算机读懂人类的字符？</span></span><br><span class="line"><span class="string">        必须经过一个过程：</span></span><br><span class="line"><span class="string">        字符--------（翻译过程）-------&gt;数字</span></span><br><span class="line"><span class="string">        这个过程实际就是一个字符如何对应一个特定数字的标准，这个标准称之为字符编码</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-2-字符编码的发展史与分类？"><a href="#1-2-字符编码的发展史与分类？" class="headerlink" title="1.2.字符编码的发展史与分类？"></a>1.2.字符编码的发展史与分类？</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">计算机由美国人发明。</span></span><br><span class="line"><span class="string">            英文编码</span></span><br><span class="line"><span class="string">            ASCII   ascii用1个字节（8位二进制）代表一个二进制字符   01010100</span></span><br><span class="line"><span class="string">            8bit= 1Bytes</span></span><br><span class="line"><span class="string">            1024Bytes=1KB</span></span><br><span class="line"><span class="string">            1024KB=1MB</span></span><br><span class="line"><span class="string">            1024MB=1GB</span></span><br><span class="line"><span class="string">            1024GB=1TB</span></span><br><span class="line"><span class="string">            1024TB=1PB</span></span><br><span class="line"><span class="string">            最早的字符编码为ASCII，只规定了英文字母数字和一些特殊字符与数字的对应关系。</span></span><br><span class="line"><span class="string">            一个字节  01010100</span></span><br><span class="line"><span class="string">            所以，ASCII码最多只能表示 256 个符号。即：2**8 = 256，</span></span><br><span class="line"><span class="string">            当然我们编程语言都用英文(python,java)没问题，ASCII够用，但是在处理数据时，</span></span><br><span class="line"><span class="string">                    不同的国家有不同的语言，日本人会在自己的程序中加入日文，中国人会加入中文。</span></span><br><span class="line"><span class="string">                    比如print('中文') python3自动设置好的  之前python2需要设置</span></span><br><span class="line"><span class="string">                    ASCII无法表示中文</span></span><br><span class="line"><span class="string">                        而要表示中文，单拿一个字节表表示一个汉子，是不可能的</span></span><br><span class="line"><span class="string">                        中国文化博大精深</span></span><br><span class="line"><span class="string">                        是不可能表达完的(连小学生都认识两千多个汉字)，</span></span><br><span class="line"><span class="string">                        多个字节去表示</span></span><br><span class="line"><span class="string">                        位数越多，代表的变化就多，这样，就可以尽可能多的表达出不同的汉字</span></span><br><span class="line"><span class="string">            gb2312</span></span><br><span class="line"><span class="string">               所以中国人规定了自己的标准gb2312编码，</span></span><br><span class="line"><span class="string">                规定了包含中文在内的字符－&gt;数字的对应关系。</span></span><br><span class="line"><span class="string">            GBK的诞生   3个字节  01010100 01010100 01010100  2**24</span></span><br><span class="line"><span class="string">                GB 2312的出现，基本满足了汉字的计算机处理需要，</span></span><br><span class="line"><span class="string">                但对于人名、古汉语等方面出现的罕用字，GB 2312不能处理，</span></span><br><span class="line"><span class="string">                这导致了后来GBK汉字字符集的出现。</span></span><br><span class="line"><span class="string">            Shift_JIS</span></span><br><span class="line"><span class="string">                日本人规定了自己的Shift_JIS编码</span></span><br><span class="line"><span class="string">            Euc-kr</span></span><br><span class="line"><span class="string">                韩国人规定了自己的Euc-kr编码</span></span><br><span class="line"><span class="string">                （另外，韩国人说，</span></span><br><span class="line"><span class="string">                要求世界统一用韩国编码，但世界人民没有搭理他们）</span></span><br><span class="line"><span class="string">                原因 ：政治</span></span><br><span class="line"><span class="string">            unicode的诞生 它是在内存里面的</span></span><br><span class="line"><span class="string">                unicode常用2个字节（16位二进制）代表一个字符，生僻字需要用4个字节（32位二进制）</span></span><br><span class="line"><span class="string">                这时候问题出现了，精通18国语言的 某某大海 谦虚的用8国语言写了一篇文档，</span></span><br><span class="line"><span class="string">                那么这一篇文档，按照哪国的标准，都会出现乱码（因为此刻的各种标准都只是</span></span><br><span class="line"><span class="string">                规定了自己国家的文字在内的字符跟数字的对应关系，如果单纯采用一种国家的编码格式，</span></span><br><span class="line"><span class="string">                那么其余国家语言的文字在解析时就会出现乱码）</span></span><br><span class="line"><span class="string">                所以迫切需要一个世界的标准（能包含全世界的语言）</span></span><br><span class="line"><span class="string">                于是unicode应运而生（韩国人表示不服，然后没有什么卵用）</span></span><br><span class="line"><span class="string">                    字母x，用unicode表示二进制0000 0000 0111 1000，所以unicode兼容ascii，也兼容万国</span></span><br><span class="line"><span class="string">                    这时候乱码问题消失了，所有的文档我们都使用但是新问题出现了，如果我们的文档通篇都是英文，</span></span><br><span class="line"><span class="string">                    你用unicode会比ascii耗费多一倍的空间，在存储和传输上十分的低效</span></span><br><span class="line"><span class="string">            UTF-8的诞生  它是在硬盘里面的</span></span><br><span class="line"><span class="string">                本着节约的精神 又出现了把Unicode编码转化为“可变长编码”的UTF-8编码。</span></span><br><span class="line"><span class="string">                UTF-8编码把一个Unicode字符根据不同的数字大小编码成1-6个字节，常用的英文字母被编码成1个字节，</span></span><br><span class="line"><span class="string">                    汉字通常是3个字节，只有很生僻的字符才会被编码成4-6个字节。</span></span><br><span class="line"><span class="string">                    字符     ASCII           Unicode                        UTF-8</span></span><br><span class="line"><span class="string">                    A      01000001         00000000 01000001                 01000001</span></span><br><span class="line"><span class="string">                    中      没有         11100100 01001110 00101101      11100100 10111000 10101101</span></span><br><span class="line"><span class="string">                    简单来说英文字母 UTF-8 使用的和 ASCII 对应关系 一样</span></span><br><span class="line"><span class="string">                                而中文 UTF-8 使用 Unicode 对应关系 一样</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-3-unicode和UTF-8的关系"><a href="#1-3-unicode和UTF-8的关系" class="headerlink" title="1.3.unicode和UTF-8的关系"></a>1.3.unicode和UTF-8的关系</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">                1、在存入磁盘时，需要将unicode转成一种更为精准的格式，</span></span><br><span class="line"><span class="string">                utf-8:全称Unicode Transformation Format，将数据量控制到最精简</span></span><br><span class="line"><span class="string">                2、在读入内存时，需要将utf-8转成unicode</span></span><br><span class="line"><span class="string">                所以我们需要明确：内存中用unicode是为了兼容万国软件，</span></span><br><span class="line"><span class="string">                即便是硬盘中有各国编码编写的软件，unicode也有相对应的映射关系，</span></span><br><span class="line"><span class="string">                但在现在的开发中，程序员普遍使用utf-8编码了，</span></span><br><span class="line"><span class="string">                估计在将来的某一天等所有老的软件都淘汰掉了情况下，</span></span><br><span class="line"><span class="string">                就可以变成：内存unicode&lt;-&gt;硬盘utf-8的形式了。</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-文件操作"><a href="#2-文件操作" class="headerlink" title="2.文件操作"></a>2.文件操作</h2><h3 id="2-1-文件操作基本概念"><a href="#2-1-文件操作基本概念" class="headerlink" title="2.1.文件操作基本概念"></a>2.1.文件操作基本概念</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># @Author : 大海</span></span><br><span class="line"><span class="comment"># @File : 2.文件操作.py</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">1 什么是文件</span></span><br><span class="line"><span class="string">    文件是操作系统为用户/应用程序提供的一种操作硬盘的抽象单位</span></span><br><span class="line"><span class="string">2 为何要用文件</span></span><br><span class="line"><span class="string">    用户/应用程序对文件的读写操作会由操作系统转换成具体的硬盘操作</span></span><br><span class="line"><span class="string">    所以用户/应用程序可以通过简单的读\写文件来间接地控制复杂的硬盘的存取操作</span></span><br><span class="line"><span class="string">    实现将内存中的数据永久保存到硬盘中</span></span><br><span class="line"><span class="string">    内存</span></span><br><span class="line"><span class="string">        user=input('&gt;&gt;&gt;&gt;: ') #user="大海"</span></span><br><span class="line"><span class="string">3 如何用文件</span></span><br><span class="line"><span class="string">    文件操作的基本步骤:</span></span><br><span class="line"><span class="string">        f=open(...) #打开文件,拿到一个文件对象f,f就相当于一个遥控器,可以向操作系统发送指令</span></span><br><span class="line"><span class="string">        f.read() # 读写文件,向操作系统发送读写文件指令</span></span><br><span class="line"><span class="string">        f.close() # 关闭文件,回收操作系统的资源</span></span><br><span class="line"><span class="string">    上下文管理:</span></span><br><span class="line"><span class="string">        with open(...) as f:</span></span><br><span class="line"><span class="string">            pass</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-2-绝对路径读取"><a href="#2-2-绝对路径读取" class="headerlink" title="2.2.绝对路径读取"></a>2.2.绝对路径读取</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">f = open(<span class="string">r'D:\python代码A8\day7字符编码和文件操作\a.txt'</span>,encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">f1=f.read()</span><br><span class="line">print(f1)</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-相对路径读取"><a href="#2-3-相对路径读取" class="headerlink" title="2.3.相对路径读取"></a>2.3.相对路径读取</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 当前路径 .</span></span><br><span class="line">f = open(<span class="string">'./a.txt'</span>,encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">f1=f.read()</span><br><span class="line">print(f1)</span><br><span class="line">f.close()</span><br><span class="line"><span class="comment"># # 当前路径省略./    最常用</span></span><br><span class="line">f = open(<span class="string">'a.txt'</span>,encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">f1=f.read()</span><br><span class="line">print(f1)</span><br><span class="line">f.close()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 上一级</span></span><br><span class="line">f = open(<span class="string">'../day7字符编码和文件操作/a.txt'</span>,encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">f1=f.read()</span><br><span class="line">print(f1)</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+<h3 id="2-4-上下文管理"><a href="#2-4-上下文管理" class="headerlink" title="2.4.上下文管理"></a>2.4.上下文管理</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 上下文管理:</span></span><br><span class="line"><span class="keyword">with</span> open(...) <span class="keyword">as</span> f:</span><br><span class="line">	<span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'a.txt'</span>,encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</span><br><span class="line">	print(f.read())</span><br></pre></td></tr></table></figure>
+<h2 id="3-文件操作的常用模式"><a href="#3-文件操作的常用模式" class="headerlink" title="3.文件操作的常用模式"></a>3.文件操作的常用模式</h2><h3 id="3-1-文件操作的常用模式的分类"><a href="#3-1-文件操作的常用模式的分类" class="headerlink" title="3.1.文件操作的常用模式的分类"></a>3.1.文件操作的常用模式的分类</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># @Author : 大海</span></span><br><span class="line"><span class="comment"># @File : 3.文件操作的常用模式.py</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">一 文件的打开模式</span></span><br><span class="line"><span class="string">    r: 只读模式(默认的)</span></span><br><span class="line"><span class="string">    w: 只写模式</span></span><br><span class="line"><span class="string">    a: 只追加写模式</span></span><br><span class="line"><span class="string">二 控制读写文件单位的方式(必须与r\w\a连用)</span></span><br><span class="line"><span class="string">    t : 文本模式(默认的),一定要指定encoding参数</span></span><br><span class="line"><span class="string">        优点: 操作系统会将硬盘中二进制数字解码成unicode然后返回</span></span><br><span class="line"><span class="string">        强调: 只针对文本文件有效</span></span><br><span class="line"><span class="string">    b: 二进制模式,一定不能指定encoding参数</span></span><br><span class="line"><span class="string">        优点: 不用指定字符编码，视频，图片文件</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-2-rt-只读模式-默认的"><a href="#3-2-rt-只读模式-默认的" class="headerlink" title="3.2. rt:只读模式(默认的)"></a>3.2. rt:只读模式(默认的)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#一 rt: 只读模式(默认的)</span></span><br><span class="line"><span class="comment"># 1 当文件不存时,会报错</span></span><br><span class="line"><span class="comment"># 2 当文件存在时,文件指针指向文件的开头</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'a.txt'</span>,mode=<span class="string">'rt'</span>,encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    <span class="comment"># res1 =f.read()</span></span><br><span class="line">    <span class="comment"># print('1&gt;&gt;&gt;',res1)</span></span><br><span class="line">    <span class="comment"># # 第一次读完了</span></span><br><span class="line">    <span class="comment"># res2 = f.read()</span></span><br><span class="line">    <span class="comment"># print('2&gt;&gt;&gt;', res2)</span></span><br><span class="line">    <span class="comment"># # 判断rt模式可读</span></span><br><span class="line">    <span class="comment"># print(f.readable())</span></span><br><span class="line">    <span class="comment"># # 判断rt模式不可写</span></span><br><span class="line">    <span class="comment"># print(f.writable())</span></span><br><span class="line">    <span class="comment"># read 文件太大不好</span></span><br><span class="line">    <span class="comment"># print(f.readline(),end='')</span></span><br><span class="line">    <span class="comment"># # 文件里面有换行符 print自带换行符\n</span></span><br><span class="line">    <span class="comment"># print(f.readline())</span></span><br><span class="line">    <span class="comment"># 一行行遍历</span></span><br><span class="line">    <span class="comment"># for line in f:</span></span><br><span class="line">    <span class="comment">#     print(line,end='')</span></span><br><span class="line">    <span class="comment"># 文件每一行数据添加到列表里面去</span></span><br><span class="line">    <span class="comment"># L = []</span></span><br><span class="line">    <span class="comment"># for line in f:</span></span><br><span class="line">    <span class="comment">#     L.append(line)</span></span><br><span class="line">    <span class="comment"># print(L)</span></span><br><span class="line">    <span class="comment"># 一行代码搞定</span></span><br><span class="line">    print(f.readlines())</span><br></pre></td></tr></table></figure>
+<h3 id="3-3-wt-只写模式"><a href="#3-3-wt-只写模式" class="headerlink" title="3.3. wt: 只写模式"></a>3.3. wt: 只写模式</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1 当文件不存时,新建一个空文档(无则创建)</span></span><br><span class="line"><span class="comment"># with open('b.txt',mode='wt',encoding='utf-8')as f:</span></span><br><span class="line"><span class="comment">#     pass</span></span><br><span class="line"><span class="comment"># 2 当文件存在时,清空文件内容，文件指针跑到文件的开头（有则清空）</span></span><br><span class="line"><span class="comment"># with open('b.txt',mode='wt',encoding='utf-8')as f:</span></span><br><span class="line">    <span class="comment"># pass</span></span><br><span class="line">    <span class="comment"># 不能读</span></span><br><span class="line">    <span class="comment"># print(f.readable())</span></span><br><span class="line">    <span class="comment"># # 可以写</span></span><br><span class="line">    <span class="comment"># print(f.writable())</span></span><br><span class="line">    <span class="comment"># f.write('大\n')</span></span><br><span class="line">    <span class="comment"># f.write('大\n')</span></span><br><span class="line">    <span class="comment"># f.write('大\n')</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 一次性写多行</span></span><br><span class="line">    <span class="comment"># f.write('111\n222\n333\n')</span></span><br><span class="line">    <span class="comment"># 把列表内容一行行写入</span></span><br><span class="line">    <span class="comment"># info = ['xiaohai\n', 'xiaohai\n', 'xiaohai\n']</span></span><br><span class="line">    <span class="comment"># # for line in info:</span></span><br><span class="line">    <span class="comment"># #     f.write(line)</span></span><br><span class="line">    <span class="comment"># # 一行代码搞定</span></span><br><span class="line">    <span class="comment"># # writelines(列表)</span></span><br><span class="line">    <span class="comment"># f.writelines(info)</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-3-at-只追加写模式"><a href="#3-3-at-只追加写模式" class="headerlink" title="3.3. at: 只追加写模式"></a>3.3. at: 只追加写模式</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">at: 只追加写模式</span><br><span class="line"><span class="comment"># 1 当文件不存时,新建一个空文档，文件指针跑到文件的末尾(开头就是末尾)</span></span><br><span class="line"><span class="comment"># with open('c.txt',mode='at',encoding='utf-8')as f:</span></span><br><span class="line"><span class="comment">#     pass</span></span><br><span class="line"><span class="comment"># 2 当文件存在时,文件指针跑到文件的末尾</span></span><br><span class="line"><span class="comment"># with open('c.txt',mode='at',encoding='utf-8')as f:</span></span><br><span class="line"><span class="comment"># # # # # 不能读</span></span><br><span class="line"><span class="comment"># #     print(f.readable())</span></span><br><span class="line"><span class="comment"># # # #     # 能写</span></span><br><span class="line"><span class="comment"># #     print(f.writable())</span></span><br><span class="line"><span class="comment">#     f.write('da\n')</span></span><br><span class="line"><span class="comment">#     f.write('da\n')</span></span><br><span class="line"><span class="comment">#     f.write('da\n')</span></span><br><span class="line"><span class="comment"># with open('c.txt',mode='at',encoding='utf-8')as f:</span></span><br><span class="line"><span class="comment"># # # # # 不能读</span></span><br><span class="line"><span class="comment"># #     print(f.readable())</span></span><br><span class="line"><span class="comment"># # # #     # 能写</span></span><br><span class="line"><span class="comment"># #     print(f.writable())</span></span><br><span class="line"><span class="comment">#     f.write('da\n')</span></span><br><span class="line"><span class="comment">#     f.write('da\n')</span></span><br><span class="line"><span class="comment">#     f.write('da\n')</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-4-w模式和a模式的区别"><a href="#3-4-w模式和a模式的区别" class="headerlink" title="3.4.w模式和a模式的区别"></a>3.4.w模式和a模式的区别</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># w模式</span></span><br><span class="line"><span class="comment"># 在文件打开不关闭的情况下，连续的写入，</span></span><br><span class="line"><span class="comment"># 下一次写入一定是基于上一次写入指针的位置而继续的</span></span><br><span class="line"><span class="comment"># a模式关闭了下次打开是在文件末尾写，所以不会覆盖之前的内容</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-5-t-模式局限性"><a href="#3-5-t-模式局限性" class="headerlink" title="3.5. t 模式局限性"></a>3.5. t 模式局限性</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 只能对文本文件操作 </span></span><br><span class="line"><span class="comment"># 二进制文件 图片 视频不行</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-6-b模式对图片或者视频操作"><a href="#3-6-b模式对图片或者视频操作" class="headerlink" title="3.6. b模式对图片或者视频操作"></a>3.6. b模式对图片或者视频操作</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 读  rb</span></span><br><span class="line"><span class="comment"># with open('1.png',mode='rb')as f:</span></span><br><span class="line"><span class="comment">#     data = f.read()</span></span><br><span class="line"><span class="comment">#     # print(data)</span></span><br><span class="line"><span class="comment">#     print(type(data))</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># # 写  wb</span></span><br><span class="line"><span class="comment"># with open('2.png',mode='wb')as f:</span></span><br><span class="line"><span class="comment">#     f.write(data)</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-7-用b模式-也可以对文本文件操作，但是要解码和编码"><a href="#3-7-用b模式-也可以对文本文件操作，但是要解码和编码" class="headerlink" title="3.7 用b模式,也可以对文本文件操作，但是要解码和编码"></a>3.7 用b模式,也可以对文本文件操作，但是要解码和编码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># decode   二进制解码成字符</span></span><br><span class="line"><span class="comment"># encode   字符编码成二进制</span></span><br><span class="line"><span class="comment">#解码   读的时候转换成字符</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'b模式.txt'</span>,mode=<span class="string">'rb'</span>)<span class="keyword">as</span> f:</span><br><span class="line"><span class="comment">#     data = f.read()</span></span><br><span class="line"><span class="comment">#     # print(data)</span></span><br><span class="line"><span class="comment">#     # decode   二进制解码成字符</span></span><br><span class="line"><span class="comment">#     print(data.decode('utf-8'))</span></span><br><span class="line"><span class="comment">#编码  写的时候把字符转换成二进制写入</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'wb模式.txt'</span>,mode=<span class="string">'wb'</span>)<span class="keyword">as</span> f:</span><br><span class="line">    f.write(<span class="string">'大海\n'</span>.encode(<span class="string">'utf-8'</span>))</span><br><span class="line">    f.write(<span class="string">'大海\n'</span>.encode(<span class="string">'utf-8'</span>))</span><br><span class="line">    f.write(<span class="string">'大海\n'</span>.encode(<span class="string">'utf-8'</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="4-可读可写模式（了解）"><a href="#4-可读可写模式（了解）" class="headerlink" title="4.可读可写模式（了解）"></a>4.可读可写模式（了解）</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># @Author : 大海</span></span><br><span class="line"><span class="comment"># @File : 4.可读可写模式.py</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 可读可写:（了解）</span></span><br><span class="line"><span class="comment"># r+t</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># w+t</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># a+t</span></span><br><span class="line"><span class="comment">#  r + t</span></span><br><span class="line"><span class="comment"># 1 当文件不存时,会报错</span></span><br><span class="line"><span class="comment"># 2 当文件存在时,文件指针指向文件的开头</span></span><br><span class="line"><span class="comment"># 3 多了个末尾写</span></span><br><span class="line"><span class="comment"># with open('可读可写r+t模式.txt',mode='r+t',encoding='utf-8')as f:</span></span><br><span class="line"><span class="comment">#     # print(f.readable())</span></span><br><span class="line"><span class="comment">#     # print(f.writable())</span></span><br><span class="line"><span class="comment">#     msg = f.readline()</span></span><br><span class="line"><span class="comment">#     print(msg)</span></span><br><span class="line"><span class="comment">#     f.write('aaaaaaaaaaaaaaaaaa')</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># w+t</span></span><br><span class="line"><span class="comment"># 1 当文件不存时,新建一个空文档(无则创建)</span></span><br><span class="line"><span class="comment"># 2 当文件存在时,清空文件内容，文件指针跑到文件的开头（有则清空）</span></span><br><span class="line"><span class="comment"># 3 可以读</span></span><br><span class="line"><span class="comment"># with open('可读可写w+t模式.txt',mode='w+t',encoding='utf-8')as f:</span></span><br><span class="line"><span class="comment">#     # print(f.readable())</span></span><br><span class="line"><span class="comment">#     # print(f.writable())</span></span><br><span class="line"><span class="comment">#     f.write('aaaaaaaaaaaaa\n')</span></span><br><span class="line"><span class="comment">#     f.write('bbbbbbbbbbbbb\n')</span></span><br><span class="line"><span class="comment">#     # 根据指针读</span></span><br><span class="line"><span class="comment">#     #     #     #     # 指针移动seek（移动的字节数,开头开始 设置0）</span></span><br><span class="line"><span class="comment">#     #     #     #     #     # 从开头开始移动0</span></span><br><span class="line"><span class="comment">#     # 读不到</span></span><br><span class="line"><span class="comment">#     print(f.readline())</span></span><br><span class="line"><span class="comment">#     f.seek(0,0)</span></span><br><span class="line"><span class="comment">#     print(f.readline())</span></span><br><span class="line"><span class="comment">#     #     还是在末尾写</span></span><br><span class="line"><span class="comment">#     f.write('cccccccccccc\n')</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># a+t# 第二次打开时候也是在末尾写</span></span><br><span class="line"><span class="comment"># with open('可读可写a+t模式.txt',mode='a+t',encoding='utf-8')as f:</span></span><br><span class="line"><span class="comment">#     # print(f.readable())</span></span><br><span class="line"><span class="comment">#     # print(f.writable())</span></span><br><span class="line"><span class="comment">#     f.write('aaaaaaaaaaaa\n')</span></span><br><span class="line"><span class="comment">#     f.write('bbbbbbbbbbbb\n')</span></span><br><span class="line"><span class="comment">#     # 根据指针读</span></span><br><span class="line"><span class="comment">#     #     #     #     #     # 指针移动seek（移动的字节数,开头开始 设置0）</span></span><br><span class="line"><span class="comment">#     #     #     #     #     #     # 从开头开始移动0</span></span><br><span class="line"><span class="comment">#     #     # 读不到</span></span><br><span class="line"><span class="comment">#     print(f.readline())</span></span><br><span class="line"><span class="comment">#     f.seek(0,0)</span></span><br><span class="line"><span class="comment">#     print(f.readline())</span></span><br><span class="line"><span class="comment">#     #     #     还是在末尾写</span></span><br><span class="line"><span class="comment">#     f.write('cccccccccccc\n')</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 图片和视频用不上</span></span><br><span class="line"><span class="comment"># r+b w+b a+b 规律和 r+t  w+t   a+t</span></span><br><span class="line"><span class="comment"># 乱掉 文件打不开</span></span><br></pre></td></tr></table></figure>
+<h2 id="5-文件指针"><a href="#5-文件指针" class="headerlink" title="5.文件指针"></a>5.文件指针</h2><h3 id="5-1-read-n-n-的含义"><a href="#5-1-read-n-n-的含义" class="headerlink" title="5.1. read(n)  n 的含义"></a>5.1. read(n)  n 的含义</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># @Author : 大海</span></span><br><span class="line"><span class="comment"># @File : 5.文件指针.py</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 文件内指针移动,只有t模式下的read(n),n代表的字符的个数</span></span><br><span class="line"><span class="comment"># b模式文件内指针的移动都是以字节为单位</span></span><br><span class="line"><span class="comment"># t模式  read(n)字符的个数</span></span><br><span class="line"><span class="comment"># with open('指针移动.txt',mode='rt',encoding='utf-8')as f:</span></span><br><span class="line"><span class="comment">#     print(f.read(1))</span></span><br><span class="line"><span class="comment">#     print(f.read(1))</span></span><br><span class="line"><span class="comment">#     print(f.read(1))</span></span><br><span class="line"><span class="comment">#     print(f.read(1))</span></span><br><span class="line"><span class="comment">#     print(f.read(1))</span></span><br><span class="line"><span class="comment"># b模式  read(n)# b模式文件内指针的移动都是以字节为单位</span></span><br><span class="line"><span class="comment"># with open('指针移动.txt',mode='rb')as f:</span></span><br><span class="line"><span class="comment">#     # print(type(f.read(1)))</span></span><br><span class="line"><span class="comment">#     print(f.read(1).decode('utf-8'))</span></span><br><span class="line"><span class="comment">#     print(f.read(1).decode('utf-8'))</span></span><br><span class="line"><span class="comment">#     # 三分之一个汉字</span></span><br><span class="line"><span class="comment">#     print(f.read(3).decode('utf-8'))</span></span><br><span class="line"><span class="comment">#     print(f.read(3).decode('utf-8'))</span></span><br><span class="line"><span class="comment">#     print(f.read(3).decode('utf-8'))</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-2-f-seek-指针操作"><a href="#5-2-f-seek-指针操作" class="headerlink" title="5.2. f.seek.指针操作"></a>5.2. f.seek.指针操作</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment">#  *****</span></span><br><span class="line"><span class="comment"># f.seek(offset,whence)有两个参数:</span></span><br><span class="line"><span class="comment"># offset: 代表控制指针移动的  有方向</span></span><br><span class="line"><span class="comment"># whence: 代表参照什么位置进行移动字节数</span></span><br><span class="line"><span class="comment">#        whence = 0: 参照文件开头(默认的),特殊,可以在t和b模式下使用</span></span><br><span class="line"><span class="comment">#        whence = 1: 参照当前所在的位置,必须在b模式下用</span></span><br><span class="line"><span class="comment">#        whence = 2: 参照文件末尾,必须在b模式下用</span></span><br><span class="line"><span class="comment"># t模式 移动的字节数算 读的按照字符算</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># with open('seek.txt',mode='rt',encoding='utf-8')as f:</span></span><br><span class="line"><span class="comment">#     f.seek(2,0)</span></span><br><span class="line"><span class="comment">#     print(f.read(1))</span></span><br><span class="line"><span class="comment"># b模式 移动的字节数 读的也是字节数</span></span><br><span class="line"><span class="comment"># with open('seek.txt',mode='rb')as f:</span></span><br><span class="line"><span class="comment">#     f.seek(2,0)</span></span><br><span class="line"><span class="comment">#     print(f.read(3).decode('utf-8'))</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#        whence = 1: 参照当前所在的位置,必须在b模式下用</span></span><br><span class="line"><span class="comment"># with open('seek.txt',mode='rb')as f:</span></span><br><span class="line"><span class="comment">#     msg = f.read(5)</span></span><br><span class="line"><span class="comment">#     print(msg.decode('utf-8'))</span></span><br><span class="line"><span class="comment">#     # 查看到当前指针的位置</span></span><br><span class="line"><span class="comment">#     # print(f.tell())</span></span><br><span class="line"><span class="comment">#     # 当前指针的位置 还移动了3个字节</span></span><br><span class="line"><span class="comment">#     f.seek(3,1)</span></span><br><span class="line"><span class="comment">#     print(f.read(3).decode('utf-8'))</span></span><br><span class="line"><span class="comment">#        whence = 2: 参照文件末尾,必须在b模式下用</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'seek.txt'</span>,mode=<span class="string">'rb'</span>)<span class="keyword">as</span> f:</span><br><span class="line">    f.seek(<span class="number">0</span>,<span class="number">2</span>)</span><br><span class="line">    print(f.tell())</span><br><span class="line">    f.seek(<span class="number">-3</span>,<span class="number">2</span>)</span><br><span class="line">    print(f.read(<span class="number">3</span>).decode(<span class="string">'utf-8'</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="6-文件的修改方式"><a href="#6-文件的修改方式" class="headerlink" title="6.文件的修改方式"></a>6.文件的修改方式</h2><h3 id="6-1-修改文件的方式一"><a href="#6-1-修改文件的方式一" class="headerlink" title="6.1.修改文件的方式一"></a>6.1.修改文件的方式一</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># @Author : 大海</span></span><br><span class="line"><span class="comment"># @File : 6.文件的修改方式.py</span></span><br><span class="line"><span class="comment"># 修改文件的方式一:</span></span><br><span class="line"><span class="comment"># 1 将文件内容由硬盘全部读入内存</span></span><br><span class="line"><span class="comment"># 2 在内存中完成修改</span></span><br><span class="line"><span class="comment"># 3 将内存中修改后的结果覆盖写回硬盘</span></span><br><span class="line"><span class="comment"># with open('文件修改.txt',mode='rt',encoding='utf-8')as f:</span></span><br><span class="line"><span class="comment">#     all_data=f.read()</span></span><br><span class="line"><span class="comment">#     print(all_data)</span></span><br><span class="line"><span class="comment"># with open('文件修改.txt',mode='wt',encoding='utf-8')as f:</span></span><br><span class="line"><span class="comment">#     f.write(all_data.replace('红黄蓝','大海'))</span></span><br></pre></td></tr></table></figure>
+<h3 id="6-2-修改文件的方式二"><a href="#6-2-修改文件的方式二" class="headerlink" title="6.2.修改文件的方式二:"></a>6.2.修改文件的方式二:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改文件的方式二:</span></span><br><span class="line"><span class="comment"># 1 以读的方式打开源文件,以写的方式打开一个临时文件</span></span><br><span class="line"><span class="comment"># 2 从源文件中每读一样内容修改完毕后写入临时文件,直到源文件读取完毕</span></span><br><span class="line"><span class="comment"># 3 删掉源文件,将临时文件重命名为源文件名</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'文件修改二.txt'</span>,mode=<span class="string">'rt'</span>,encoding=<span class="string">'utf-8'</span>)<span class="keyword">as</span> read_f,open(<span class="string">'临时文件.txt'</span>,mode=<span class="string">'wt'</span>,encoding=<span class="string">'utf-8'</span>)<span class="keyword">as</span> write_f:</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> read_f:</span><br><span class="line">        write_f.write(line.replace(<span class="string">'大海大帅比'</span>,<span class="string">'夏洛大帅比'</span>))</span><br><span class="line"><span class="comment"># 文件修改二删除</span></span><br><span class="line">os.remove(<span class="string">'文件修改二.txt'</span>)</span><br><span class="line"><span class="comment"># 临时文件.txt 改成 文件修改二</span></span><br><span class="line">os.rename(<span class="string">'临时文件.txt'</span>,<span class="string">'文件修改二.txt'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方式一:</span></span><br><span class="line"><span class="comment"># 优点: 在文件修改的过程中硬盘上始终一份数据</span></span><br><span class="line"><span class="comment"># 缺点: 占用内存过多,不适用于大文件</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 方式二:</span></span><br><span class="line"><span class="comment"># 优点: 同一时刻在内存中只存在源文件的一行内容,不会过多地占用内存</span></span><br><span class="line"><span class="comment"># 缺点: 在文件修改的过程中会出现源文件与临时文件共存,硬盘上同一时刻会有两份数据,即在修改的过程中会过多的占用硬盘,</span></span><br></pre></td></tr></table></figure>
+<h2 id="7-如何避免乱码"><a href="#7-如何避免乱码" class="headerlink" title="7.如何避免乱码"></a>7.如何避免乱码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># @Author : 大海</span></span><br><span class="line"><span class="comment"># @File : 7.如何避免乱码.py</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 天生我才必有用</span></span><br><span class="line"><span class="comment"># 日语</span></span><br><span class="line"><span class="comment"># with open('test.txt',mode='wt',encoding='shift_jis')as f1:</span></span><br><span class="line"><span class="comment">#     f1.write('うまれつき生まれつきわたくし私こそかならず必ずやく役にたつ立つ')</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># with open('test.txt',mode='rt',encoding='shift_jis')as f1:</span></span><br><span class="line"><span class="comment">#     a= f1.read()</span></span><br><span class="line"><span class="comment">#     print(a)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ！！！总结非常重要的两点！！！</span></span><br><span class="line"><span class="comment">#1、保证不乱码的核心法则就是，字符按照什么标准而编码的，</span></span><br><span class="line"><span class="comment"># 就要按照什么标准解码，此处的标准指的就是字符编码</span></span><br><span class="line"><span class="comment">#2、在内存中写的所有字符，一视同仁，都是unicode编码，比如我们打开编辑器，</span></span><br><span class="line"><span class="comment"># 输入一个“你”，我们并不能说“你”就是一个汉字，此时它仅仅只是一个符号，</span></span><br><span class="line"><span class="comment"># 该符号可能很多国家都在使用，根据我们使用的输入法不同这个字的样式可能也不太一样。</span></span><br><span class="line"><span class="comment"># 只有在我们往硬盘保存或者基于网络传输时，</span></span><br><span class="line"><span class="comment"># 才能确定”你“到底是一个汉字，还是一个日本字，这就是unicode转换成其他编码格式的过程了</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/gongzhonghao.jpg" alt="李江洋 wechat" style="width: 200px; max-width: 100%;">
+  <div>python分享公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="李江洋 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="李江洋 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/江洋python/" rel="tag"># 江洋python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/06/01/变量/" rel="next" title="变量">
+                <i class="fa fa-chevron-left"></i> 变量
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/10/23/day3-大海老师之控制流程/" rel="prev" title="3.控制流程">
+                3.控制流程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="李江洋">
+            
+              <p class="site-author-name" itemprop="name">李江洋</p>
+              <p class="site-description motion-element" itemprop="description">记录学习的技能和遇到的问题</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">179</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lvdXJuYW1l" title="GitHub &rarr; https://github.com/yourname"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="bWFpbHRvOjEzMjgwNDQzOTJAcXEuY29t" title="E-Mail &rarr; mailto:1328044392@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL2V4YW1wbGUuY29t" title="http://example.com">Title</span>
+                  </li>
+                
+              </ul>
+            </div>
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#day7字符编码和文件操作"><span class="nav-number">1.</span> <span class="nav-text">day7字符编码和文件操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#补充python推导式"><span class="nav-number">1.1.</span> <span class="nav-text">补充python推导式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#列表生成式"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">列表生成式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#列表生成式排序"><span class="nav-number">1.1.0.1.1.</span> <span class="nav-text">列表生成式排序</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字典生成式"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">字典生成式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lambda表达式"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">lambda表达式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#规律实质上参数是指的是for循环默认变量的key值"><span class="nav-number">1.1.1.</span> <span class="nav-text">规律实质上参数是指的是for循环默认变量的key值</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-按照dk1进行排序"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">1.按照dk1进行排序</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-字符编码"><span class="nav-number">1.2.</span> <span class="nav-text">1.字符编码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1什么是字符编码"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.1什么是字符编码?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-字符编码的发展史与分类？"><span class="nav-number">1.2.2.</span> <span class="nav-text">1.2.字符编码的发展史与分类？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-unicode和UTF-8的关系"><span class="nav-number">1.2.3.</span> <span class="nav-text">1.3.unicode和UTF-8的关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-文件操作"><span class="nav-number">1.3.</span> <span class="nav-text">2.文件操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-文件操作基本概念"><span class="nav-number">1.3.1.</span> <span class="nav-text">2.1.文件操作基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-绝对路径读取"><span class="nav-number">1.3.2.</span> <span class="nav-text">2.2.绝对路径读取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-相对路径读取"><span class="nav-number">1.3.3.</span> <span class="nav-text">2.3.相对路径读取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-上下文管理"><span class="nav-number">1.3.4.</span> <span class="nav-text">2.4.上下文管理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-文件操作的常用模式"><span class="nav-number">1.4.</span> <span class="nav-text">3.文件操作的常用模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-文件操作的常用模式的分类"><span class="nav-number">1.4.1.</span> <span class="nav-text">3.1.文件操作的常用模式的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-rt-只读模式-默认的"><span class="nav-number">1.4.2.</span> <span class="nav-text">3.2. rt:只读模式(默认的)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-wt-只写模式"><span class="nav-number">1.4.3.</span> <span class="nav-text">3.3. wt: 只写模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-at-只追加写模式"><span class="nav-number">1.4.4.</span> <span class="nav-text">3.3. at: 只追加写模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-w模式和a模式的区别"><span class="nav-number">1.4.5.</span> <span class="nav-text">3.4.w模式和a模式的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-t-模式局限性"><span class="nav-number">1.4.6.</span> <span class="nav-text">3.5. t 模式局限性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6-b模式对图片或者视频操作"><span class="nav-number">1.4.7.</span> <span class="nav-text">3.6. b模式对图片或者视频操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-7-用b模式-也可以对文本文件操作，但是要解码和编码"><span class="nav-number">1.4.8.</span> <span class="nav-text">3.7 用b模式,也可以对文本文件操作，但是要解码和编码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-可读可写模式（了解）"><span class="nav-number">1.5.</span> <span class="nav-text">4.可读可写模式（了解）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-文件指针"><span class="nav-number">1.6.</span> <span class="nav-text">5.文件指针</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-read-n-n-的含义"><span class="nav-number">1.6.1.</span> <span class="nav-text">5.1. read(n)  n 的含义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-f-seek-指针操作"><span class="nav-number">1.6.2.</span> <span class="nav-text">5.2. f.seek.指针操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-文件的修改方式"><span class="nav-number">1.7.</span> <span class="nav-text">6.文件的修改方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-修改文件的方式一"><span class="nav-number">1.7.1.</span> <span class="nav-text">6.1.修改文件的方式一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-修改文件的方式二"><span class="nav-number">1.7.2.</span> <span class="nav-text">6.2.修改文件的方式二:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-如何避免乱码"><span class="nav-number">1.8.</span> <span class="nav-text">7.如何避免乱码</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李江洋</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Pisces</span> v7.0.1</div>
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script id="ribbon" size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+  
+  <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ljyabc.github.io/2022/06/06/字符编码和文件操作/";
+    this.page.identifier = "2022/06/06/字符编码和文件操作/";
+    this.page.title = '字符编码和文件操作';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/exturl.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+   <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+</body>
+</html>

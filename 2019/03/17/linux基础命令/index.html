@@ -1,0 +1,1681 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="linux基础命令1、显示日期的指令： date  2、显示日历的指令：cal    3、简单好用的计算器：bc  怎么10/100会变成0呢？这是因为bc预设仅输出整数，如果要输出小数点下位数，那么就必须要执行 scale=number ，那个number就是小数点位数，例如：    4、重要的几个热键[Tab],[ctrl]-c, [ctrl]-d[Tab]按键—具有『命令补全』不『档案补齐』">
+<meta name="keywords" content="linux&amp;git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux基础命令">
+<meta property="og:url" content="https://ljyabc.github.io/2019/03/17/linux基础命令/index.html">
+<meta property="og:site_name" content="择墅居:李江洋">
+<meta property="og:description" content="linux基础命令1、显示日期的指令： date  2、显示日历的指令：cal    3、简单好用的计算器：bc  怎么10/100会变成0呢？这是因为bc预设仅输出整数，如果要输出小数点下位数，那么就必须要执行 scale=number ，那个number就是小数点位数，例如：    4、重要的几个热键[Tab],[ctrl]-c, [ctrl]-d[Tab]按键—具有『命令补全』不『档案补齐』">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363935954_6311.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363935980_1369.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363935990_8670.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363935996_9522.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936042_6658.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936054_8908.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936069_2896.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936109_3235.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936120_9820.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936132_1780.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936145_2758.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936158_4694.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936183_6281.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936198_8642.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936213_8090.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936248_2355.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936259_4661.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936285_4549.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936297_1247.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936306_6088.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936321_4240.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936335_4740.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936353_8065.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936364_8540.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936378_2040.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936391_3459.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936405_1275.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936421_3936.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936434_7475.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936447_1389.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936473_8128.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936488_3487.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936513_9642.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936523_3283.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936534_8970.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936546_1932.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936558_1163.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936571_2352.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936582_4520.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936609_6282.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936621_3423.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936634_1541.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936651_6458.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936671_4557.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936684_7797.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936710_9067.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936728_2729.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936748_3301.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936798_8160.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936808_2619.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936819_8586.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936832_1025.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936847_2396.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936857_7179.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936868_1680.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936877_4715.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936886_3351.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936897_2939.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936910_4210.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936923_3379.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936932_2949.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936946_1973.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363936956_5666.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363937757_9288.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363937773_3082.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363937784_2757.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363937793_4694.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363937802_1953.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363937816_9269.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363937900_4463.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363937990_3354.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363938001_5653.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363938031_1319.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363938044_9852.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363938052_3223.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363938061_6833.png">
+<meta property="og:updated_time" content="2025-04-08T14:37:40.626Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux基础命令">
+<meta name="twitter:description" content="linux基础命令1、显示日期的指令： date  2、显示日历的指令：cal    3、简单好用的计算器：bc  怎么10/100会变成0呢？这是因为bc预设仅输出整数，如果要输出小数点下位数，那么就必须要执行 scale=number ，那个number就是小数点位数，例如：    4、重要的几个热键[Tab],[ctrl]-c, [ctrl]-d[Tab]按键—具有『命令补全』不『档案补齐』">
+<meta name="twitter:image" content="https://ljyabc.github.io/2019/03/17/linux基础命令/1363935954_6311.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ljyabc.github.io/2019/03/17/linux基础命令/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>linux基础命令 | 择墅居:李江洋</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">择墅居:李江洋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">争做长沙别墅豪装第一品牌</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/book" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>book</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2019/03/17/linux基础命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李江洋">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="择墅居:李江洋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">linux基础命令
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-17 14:37:07" itemprop="dateCreated datePublished" datetime="2019-03-17T14:37:07+08:00">2019-03-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2025-04-08 22:37:40" itemprop="dateModified" datetime="2025-04-08T22:37:40+08:00">2025-04-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/记忆/" itemprop="url" rel="index"><span itemprop="name">记忆</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/03/17/linux基础命令/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/17/linux基础命令/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="linux基础命令"><a href="#linux基础命令" class="headerlink" title="linux基础命令"></a>linux基础命令</h1><h2 id="1、显示日期的指令：-date"><a href="#1、显示日期的指令：-date" class="headerlink" title="1、显示日期的指令： date"></a>1、显示日期的指令： date</h2><p><img src="/2019/03/17/linux基础命令/1363935954_6311.png" alt="img"> </p>
+<h2 id="2、显示日历的指令：cal"><a href="#2、显示日历的指令：cal" class="headerlink" title="2、显示日历的指令：cal"></a>2、显示日历的指令：cal</h2><p><img src="/2019/03/17/linux基础命令/1363935980_1369.png" alt="img"> </p>
+<p><img src="/2019/03/17/linux基础命令/1363935990_8670.png" alt="img"></p>
+<p><img src="/2019/03/17/linux基础命令/1363935996_9522.png" alt="img"></p>
+<h2 id="3、简单好用的计算器：bc"><a href="#3、简单好用的计算器：bc" class="headerlink" title="3、简单好用的计算器：bc"></a>3、简单好用的计算器：bc</h2><p><img src="/2019/03/17/linux基础命令/1363936042_6658.png" alt="img"></p>
+<p><img src="/2019/03/17/linux基础命令/1363936054_8908.png" alt="ig"></p>
+<p>怎么10/100会变成0呢？这是因为bc预设仅输出整数，如果要输出小数点下位数，那么就必须要执行 scale=number ，那个number就是小数点位数，例如： </p>
+<p><img src="/2019/03/17/linux基础命令/1363936069_2896.png" alt="img"> </p>
+<h2 id="4、重要的几个热键-Tab-ctrl-c-ctrl-d"><a href="#4、重要的几个热键-Tab-ctrl-c-ctrl-d" class="headerlink" title="4、重要的几个热键[Tab],[ctrl]-c, [ctrl]-d"></a>4、重要的几个热键[Tab],[ctrl]-c, [ctrl]-d</h2><p>[Tab]按键—具有『命令补全』不『档案补齐』的功能</p>
+<p>[Ctrl]-c按键—让当前的程序『停掉』</p>
+<p>[Ctrl]-d按键—通常代表着：『键盘输入结束(End Of File, EOF 戒 End OfInput)』的意思；另外，他也可以用来取代exit</p>
+<h2 id="5、man"><a href="#5、man" class="headerlink" title="5、man"></a>5、man</h2><p>退出用q，</p>
+<p>man -f man</p>
+<p><img src="/2019/03/17/linux基础命令/1363936109_3235.png" alt="img"> </p>
+<h2 id="6、数据同步写入磁盘：-sync"><a href="#6、数据同步写入磁盘：-sync" class="headerlink" title="6、数据同步写入磁盘： sync"></a>6、数据同步写入磁盘： sync</h2><p>输入sync，那举在内存中尚未被更新的数据，就会被写入硬盘中；所以，这个挃令在系统关机戒重新启劢乀前， 径重要喔！最好多执行几次！</p>
+<p> <img src="/2019/03/17/linux基础命令/1363936120_9820.png" alt="img"> </p>
+<h2 id="7、惯用的关机指令：shutdown"><a href="#7、惯用的关机指令：shutdown" class="headerlink" title="7、惯用的关机指令：shutdown"></a>7、惯用的关机指令：shutdown</h2><p><img src="/2019/03/17/linux基础命令/1363936132_1780.png" alt="img"> </p>
+<p>此外，需要注意的是，时间参数请务必加入指令中，否则shutdown会自动跳到 run-level 1 (就是单人维护的登入情况)，这样就伤脑筋了！底下提供几个时间参数的例子吧：</p>
+<p> <img src="/2019/03/17/linux基础命令/1363936145_2758.png" alt="img"> </p>
+<h4 id="重启，关机：-reboot-halt-poweroff"><a href="#重启，关机：-reboot-halt-poweroff" class="headerlink" title="重启，关机： reboot, halt,poweroff"></a>重启，关机： reboot, halt,poweroff</h4><p><img src="/2019/03/17/linux基础命令/1363936158_4694.png" alt="img"> </p>
+<h2 id="8、切换执行等级：-init"><a href="#8、切换执行等级：-init" class="headerlink" title="8、切换执行等级： init"></a>8、切换执行等级： init</h2><p>Linux共有七种执行等级：</p>
+<p>–run level 0 :关机</p>
+<p>–run level 3 :纯文本模式</p>
+<p>–run level 5 :含有图形接口模式</p>
+<p>–run level 6 :重新启动</p>
+<p>使用init这个指令来切换各模式：</p>
+<p>如果你想要关机的话，除了上述的shutdown -h now以及poweroff之外，你也可以使用如下的指令来关机： </p>
+<p><img src="/2019/03/17/linux基础命令/1363936183_6281.png" alt="img"> </p>
+<h2 id="9、改变文件的所属群组：chgrp"><a href="#9、改变文件的所属群组：chgrp" class="headerlink" title="9、改变文件的所属群组：chgrp"></a>9、改变文件的所属群组：chgrp</h2><p><img src="/2019/03/17/linux基础命令/1363936198_8642.png" alt="img"> </p>
+<h2 id="10、改变文件拥有者：chown"><a href="#10、改变文件拥有者：chown" class="headerlink" title="10、改变文件拥有者：chown"></a>10、改变文件拥有者：chown</h2><p>他还可以顸便直接修改群组的名称</p>
+<p><img src="/2019/03/17/linux基础命令/1363936213_8090.png" alt="img"> </p>
+<h2 id="11、改变文件的权限：chmod"><a href="#11、改变文件的权限：chmod" class="headerlink" title="11、改变文件的权限：chmod"></a>11、改变文件的权限：chmod</h2><p>–数字类型改变档案权限：</p>
+<p><img src="/2019/03/17/linux基础命令/1363936248_2355.png" alt="img"> </p>
+<p>–符号类型改变档案权限：</p>
+<p><img src="/2019/03/17/linux基础命令/1363936259_4661.png" alt="img"></p>
+<h2 id="12、查看版本信息等"><a href="#12、查看版本信息等" class="headerlink" title="12、查看版本信息等"></a>12、查看版本信息等</h2><p><img src="/2019/03/17/linux基础命令/1363936285_4549.png" alt="img"></p>
+<h2 id="13、变换目录：cd"><a href="#13、变换目录：cd" class="headerlink" title="13、变换目录：cd"></a>13、变换目录：cd</h2><p><img src="/2019/03/17/linux基础命令/1363936297_1247.png" alt="img"></p>
+<h2 id="14、显示当前所在目录：pwd"><a href="#14、显示当前所在目录：pwd" class="headerlink" title="14、显示当前所在目录：pwd"></a>14、显示当前所在目录：pwd</h2><p><img src="/2019/03/17/linux基础命令/1363936306_6088.png" alt="img"></p>
+<h2 id="15、建立新目录：mkdir"><a href="#15、建立新目录：mkdir" class="headerlink" title="15、建立新目录：mkdir"></a>15、建立新目录：mkdir</h2><p><img src="/2019/03/17/linux基础命令/1363936321_4240.png" alt="img"></p>
+<p><img src="/2019/03/17/linux基础命令/1363936335_4740.png" alt="ig"></p>
+<p>不建议常用-p这个选项，因为担心如果你打错字，那么目录名称就回变得乱七八糟的</p>
+<h2 id="16、删除『空』的目录：rmdir"><a href="#16、删除『空』的目录：rmdir" class="headerlink" title="16、删除『空』的目录：rmdir"></a>16、删除『空』的目录：rmdir</h2><p><img src="/2019/03/17/linux基础命令/1363936353_8065.png" alt="img"></p>
+<h2 id="17、档案与目录的显示：ls"><a href="#17、档案与目录的显示：ls" class="headerlink" title="17、档案与目录的显示：ls"></a>17、档案与目录的显示：ls</h2><p><img src="/2019/03/17/linux基础命令/1363936364_8540.png" alt="img"></p>
+<p><img src="/2019/03/17/linux基础命令/1363936378_2040.png" alt="img"></p>
+<h2 id="18、复制档案或目录：cp"><a href="#18、复制档案或目录：cp" class="headerlink" title="18、复制档案或目录：cp"></a>18、复制档案或目录：cp</h2><p><img src="/2019/03/17/linux基础命令/1363936391_3459.png" alt="img"></p>
+<p><img src="/2019/03/17/linux基础命令/1363936405_1275.png" alt="img"></p>
+<p><img src="/2019/03/17/linux基础命令/1363936421_3936.png" alt="img"></p>
+<p><img src="/2019/03/17/linux基础命令/1363936434_7475.png" alt="img"></p>
+<p><img src="/2019/03/17/linux基础命令/1363936447_1389.png" alt="img"></p>
+<p><img src="/2019/03/17/linux基础命令/1363936473_8128.png" alt="img"></p>
+<p><img src="/2019/03/17/linux基础命令/1363936488_3487.png" alt="img"></p>
+<h2 id="19、移除档案或目录：rm"><a href="#19、移除档案或目录：rm" class="headerlink" title="19、移除档案或目录：rm"></a>19、移除档案或目录：rm</h2><p><img src="/2019/03/17/linux基础命令/1363936513_9642.png" alt="img"></p>
+<p><img src="/2019/03/17/linux基础命令/1363936523_3283.png" alt="img"></p>
+<p><img src="/2019/03/17/linux基础命令/1363936534_8970.png" alt="img"></p>
+<h2 id="20、移动档案与目录，或更名：mv"><a href="#20、移动档案与目录，或更名：mv" class="headerlink" title="20、移动档案与目录，或更名：mv"></a>20、移动档案与目录，或更名：mv</h2><p><img src="/2019/03/17/linux基础命令/1363936546_1932.png" alt="img"></p>
+<p><img src="/2019/03/17/linux基础命令/1363936558_1163.png" alt="img"></p>
+<h2 id="21、取得路径的文件名与目录名：basename，dirname"><a href="#21、取得路径的文件名与目录名：basename，dirname" class="headerlink" title="21、取得路径的文件名与目录名：basename，dirname"></a>21、取得路径的文件名与目录名：basename，dirname</h2><p><img src="/2019/03/17/linux基础命令/1363936571_2352.png" alt="img"></p>
+<p><img src="/2019/03/17/linux基础命令/1363936582_4520.png" alt="img"></p>
+<h2 id="22、由第一行开始显示档案内容：cat"><a href="#22、由第一行开始显示档案内容：cat" class="headerlink" title="22、由第一行开始显示档案内容：cat"></a>22、由第一行开始显示档案内容：cat</h2><p><img src="/2019/03/17/linux基础命令/1363936609_6282.png" alt="img"></p>
+<p><img src="/2019/03/17/linux基础命令/1363936621_3423.png" alt="img"></p>
+<h2 id="23、从最后一行开始显示：tac（可以看出-tac-是-cat-的倒着写）"><a href="#23、从最后一行开始显示：tac（可以看出-tac-是-cat-的倒着写）" class="headerlink" title="23、从最后一行开始显示：tac（可以看出 tac 是 cat 的倒着写）"></a>23、从最后一行开始显示：tac（可以看出 tac 是 cat 的倒着写）</h2><p><img src="/2019/03/17/linux基础命令/1363936634_1541.png" alt="img"></p>
+<h2 id="24、显示的时候，顺道输出行号：nl"><a href="#24、显示的时候，顺道输出行号：nl" class="headerlink" title="24、显示的时候，顺道输出行号：nl"></a>24、显示的时候，顺道输出行号：nl</h2><p><img src="/2019/03/17/linux基础命令/1363936651_6458.png" alt="img"></p>
+<p><img src="/2019/03/17/linux基础命令/1363936671_4557.png" alt="img"></p>
+<p><img src="/2019/03/17/linux基础命令/1363936684_7797.png" alt="img"></p>
+<h2 id="25、一页一页的显示档案内容：more"><a href="#25、一页一页的显示档案内容：more" class="headerlink" title="25、一页一页的显示档案内容：more"></a>25、一页一页的显示档案内容：more</h2><p><img src="/2019/03/17/linux基础命令/1363936710_9067.png" alt="img"></p>
+<h2 id="26、与-more-类似，但是比-more-更好的是，他可以往前翻页：less"><a href="#26、与-more-类似，但是比-more-更好的是，他可以往前翻页：less" class="headerlink" title="26、与 more 类似，但是比 more 更好的是，他可以往前翻页：less"></a>26、与 more 类似，但是比 more 更好的是，他可以往前翻页：less</h2><p><img src="/2019/03/17/linux基础命令/1363936728_2729.png" alt="img"></p>
+<h2 id="27、只看头几行：head"><a href="#27、只看头几行：head" class="headerlink" title="27、只看头几行：head"></a>27、只看头几行：head</h2><p><img src="/2019/03/17/linux基础命令/1363936748_3301.png" alt="img"></p>
+<h2 id="28、只看尾几行：tail"><a href="#28、只看尾几行：tail" class="headerlink" title="28、只看尾几行：tail"></a>28、只看尾几行：tail</h2><p><img src="/2019/03/17/linux基础命令/1363936798_8160.png" alt="ig"></p>
+<h2 id="29、以二进制的放置读取档案内容：od"><a href="#29、以二进制的放置读取档案内容：od" class="headerlink" title="29、以二进制的放置读取档案内容：od"></a>29、以二进制的放置读取档案内容：od</h2><p><img src="/2019/03/17/linux基础命令/1363936808_2619.png" alt="img"></p>
+<p><img src="/2019/03/17/linux基础命令/1363936819_8586.png" alt="mg"></p>
+<h2 id="30、修改档案时间或新建档案：touch"><a href="#30、修改档案时间或新建档案：touch" class="headerlink" title="30、修改档案时间或新建档案：touch"></a>30、修改档案时间或新建档案：touch</h2><p><img src="/2019/03/17/linux基础命令/1363936832_1025.png" alt="ig"></p>
+<p><img src="/2019/03/17/linux基础命令/1363936847_2396.png" alt="ig"></p>
+<p><img src="/2019/03/17/linux基础命令/1363936857_7179.png" alt="img"></p>
+<h2 id="31、档案预设权限：umask"><a href="#31、档案预设权限：umask" class="headerlink" title="31、档案预设权限：umask"></a>31、档案预设权限：umask</h2><p><img src="/2019/03/17/linux基础命令/1363936868_1680.png" alt="img"></p>
+<h2 id="32、配置文件档案隐藏属性：chattr"><a href="#32、配置文件档案隐藏属性：chattr" class="headerlink" title="32、配置文件档案隐藏属性：chattr"></a>32、配置文件档案隐藏属性：chattr</h2><p><img src="/2019/03/17/linux基础命令/1363936877_4715.png" alt="img"></p>
+<p><img src="/2019/03/17/linux基础命令/1363936886_3351.png" alt="img"></p>
+<p><img src="/2019/03/17/linux基础命令/1363936897_2939.png" alt="img"></p>
+<h2 id="33、显示档案隐藏属性：lsattr"><a href="#33、显示档案隐藏属性：lsattr" class="headerlink" title="33、显示档案隐藏属性：lsattr"></a>33、显示档案隐藏属性：lsattr</h2><p><img src="/2019/03/17/linux基础命令/1363936910_4210.png" alt="img"></p>
+<h2 id="34、观察文件类型：file"><a href="#34、观察文件类型：file" class="headerlink" title="34、观察文件类型：file"></a>34、观察文件类型：file</h2><p><img src="/2019/03/17/linux基础命令/1363936923_3379.png" alt="img"></p>
+<h2 id="35、寻找【执行挡】：which"><a href="#35、寻找【执行挡】：which" class="headerlink" title="35、寻找【执行挡】：which"></a>35、寻找【执行挡】：which</h2><p><img src="/2019/03/17/linux基础命令/1363936932_2949.png" alt="img"></p>
+<p><img src="/2019/03/17/linux基础命令/1363936946_1973.png" alt="img"></p>
+<h2 id="36、寻找特定档案：whereis"><a href="#36、寻找特定档案：whereis" class="headerlink" title="36、寻找特定档案：whereis"></a>36、寻找特定档案：whereis</h2><p><img src="/2019/03/17/linux基础命令/1363936956_5666.png" alt="img"></p>
+<h2 id="37、寻找特定档案：locate"><a href="#37、寻找特定档案：locate" class="headerlink" title="37、寻找特定档案：locate"></a>37、寻找特定档案：locate</h2><p><img src="/2019/03/17/linux基础命令/1363937757_9288.png" alt="img"></p>
+<h2 id="38、寻找特定档案：find"><a href="#38、寻找特定档案：find" class="headerlink" title="38、寻找特定档案：find"></a>38、寻找特定档案：find</h2><p><img src="/2019/03/17/linux基础命令/1363937773_3082.png" alt="img">![img](h</p>
+<p><img src="/2019/03/17/linux基础命令/1363937784_2757.png" alt="img"> </p>
+<h2 id="39、压缩文件和读取压缩文件：gzip，zcat"><a href="#39、压缩文件和读取压缩文件：gzip，zcat" class="headerlink" title="39、压缩文件和读取压缩文件：gzip，zcat"></a>39、压缩文件和读取压缩文件：gzip，zcat</h2><p><img src="/2019/03/17/linux基础命令/1363937793_4694.png" alt="img"></p>
+<p><img src="/2019/03/17/linux基础命令/1363937802_1953.png" alt="img"></p>
+<h2 id="40、压缩文件和读取压缩文件：bzip2，bzcat"><a href="#40、压缩文件和读取压缩文件：bzip2，bzcat" class="headerlink" title="40、压缩文件和读取压缩文件：bzip2，bzcat"></a>40、压缩文件和读取压缩文件：bzip2，bzcat</h2><p><img src="/2019/03/17/linux基础命令/1363937816_9269.png" alt="img"></p>
+<p><img src="/2019/03/17/linux基础命令/1363937900_4463.png" alt="img"></p>
+<h2 id="41、压缩文件和读取压缩文件：tar"><a href="#41、压缩文件和读取压缩文件：tar" class="headerlink" title="41、压缩文件和读取压缩文件：tar"></a>41、压缩文件和读取压缩文件：tar</h2><p><img src="/2019/03/17/linux基础命令/1363937990_3354.png" alt="img"></p>
+<p><img src="/2019/03/17/linux基础命令/1363938001_5653.png" alt="img"></p>
+<p><img src="/2019/03/17/linux基础命令/1363938031_1319.png" alt="img"></p>
+<p><img src="/2019/03/17/linux基础命令/1363938044_9852.png" alt="img"></p>
+<p><img src="/2019/03/17/linux基础命令/1363938052_3223.png" alt="img"></p>
+<p><img src="/2019/03/17/linux基础命令/1363938061_6833.png" alt="img"></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/gongzhonghao.jpg" alt="李江洋 wechat" style="width: 200px; max-width: 100%;">
+  <div>python分享公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="李江洋 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="李江洋 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux-git/" rel="tag"># linux&git</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/17/pycharm激活相关/" rel="next" title="pycharm激活相关">
+                <i class="fa fa-chevron-left"></i> pycharm激活相关
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/17/vim常用快捷键/" rel="prev" title="vim常用快捷键">
+                vim常用快捷键 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="李江洋">
+            
+              <p class="site-author-name" itemprop="name">李江洋</p>
+              <p class="site-description motion-element" itemprop="description">记录学习的技能和遇到的问题</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">179</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lvdXJuYW1l" title="GitHub &rarr; https://github.com/yourname"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="bWFpbHRvOjEzMjgwNDQzOTJAcXEuY29t" title="E-Mail &rarr; mailto:1328044392@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL2V4YW1wbGUuY29t" title="http://example.com">Title</span>
+                  </li>
+                
+              </ul>
+            </div>
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#linux基础命令"><span class="nav-number">1.</span> <span class="nav-text">linux基础命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、显示日期的指令：-date"><span class="nav-number">1.1.</span> <span class="nav-text">1、显示日期的指令： date</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、显示日历的指令：cal"><span class="nav-number">1.2.</span> <span class="nav-text">2、显示日历的指令：cal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、简单好用的计算器：bc"><span class="nav-number">1.3.</span> <span class="nav-text">3、简单好用的计算器：bc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、重要的几个热键-Tab-ctrl-c-ctrl-d"><span class="nav-number">1.4.</span> <span class="nav-text">4、重要的几个热键[Tab],[ctrl]-c, [ctrl]-d</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、man"><span class="nav-number">1.5.</span> <span class="nav-text">5、man</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、数据同步写入磁盘：-sync"><span class="nav-number">1.6.</span> <span class="nav-text">6、数据同步写入磁盘： sync</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7、惯用的关机指令：shutdown"><span class="nav-number">1.7.</span> <span class="nav-text">7、惯用的关机指令：shutdown</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#重启，关机：-reboot-halt-poweroff"><span class="nav-number">1.7.0.1.</span> <span class="nav-text">重启，关机： reboot, halt,poweroff</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8、切换执行等级：-init"><span class="nav-number">1.8.</span> <span class="nav-text">8、切换执行等级： init</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9、改变文件的所属群组：chgrp"><span class="nav-number">1.9.</span> <span class="nav-text">9、改变文件的所属群组：chgrp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10、改变文件拥有者：chown"><span class="nav-number">1.10.</span> <span class="nav-text">10、改变文件拥有者：chown</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11、改变文件的权限：chmod"><span class="nav-number">1.11.</span> <span class="nav-text">11、改变文件的权限：chmod</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12、查看版本信息等"><span class="nav-number">1.12.</span> <span class="nav-text">12、查看版本信息等</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13、变换目录：cd"><span class="nav-number">1.13.</span> <span class="nav-text">13、变换目录：cd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14、显示当前所在目录：pwd"><span class="nav-number">1.14.</span> <span class="nav-text">14、显示当前所在目录：pwd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15、建立新目录：mkdir"><span class="nav-number">1.15.</span> <span class="nav-text">15、建立新目录：mkdir</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16、删除『空』的目录：rmdir"><span class="nav-number">1.16.</span> <span class="nav-text">16、删除『空』的目录：rmdir</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17、档案与目录的显示：ls"><span class="nav-number">1.17.</span> <span class="nav-text">17、档案与目录的显示：ls</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#18、复制档案或目录：cp"><span class="nav-number">1.18.</span> <span class="nav-text">18、复制档案或目录：cp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#19、移除档案或目录：rm"><span class="nav-number">1.19.</span> <span class="nav-text">19、移除档案或目录：rm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20、移动档案与目录，或更名：mv"><span class="nav-number">1.20.</span> <span class="nav-text">20、移动档案与目录，或更名：mv</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#21、取得路径的文件名与目录名：basename，dirname"><span class="nav-number">1.21.</span> <span class="nav-text">21、取得路径的文件名与目录名：basename，dirname</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22、由第一行开始显示档案内容：cat"><span class="nav-number">1.22.</span> <span class="nav-text">22、由第一行开始显示档案内容：cat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#23、从最后一行开始显示：tac（可以看出-tac-是-cat-的倒着写）"><span class="nav-number">1.23.</span> <span class="nav-text">23、从最后一行开始显示：tac（可以看出 tac 是 cat 的倒着写）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#24、显示的时候，顺道输出行号：nl"><span class="nav-number">1.24.</span> <span class="nav-text">24、显示的时候，顺道输出行号：nl</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#25、一页一页的显示档案内容：more"><span class="nav-number">1.25.</span> <span class="nav-text">25、一页一页的显示档案内容：more</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#26、与-more-类似，但是比-more-更好的是，他可以往前翻页：less"><span class="nav-number">1.26.</span> <span class="nav-text">26、与 more 类似，但是比 more 更好的是，他可以往前翻页：less</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#27、只看头几行：head"><span class="nav-number">1.27.</span> <span class="nav-text">27、只看头几行：head</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#28、只看尾几行：tail"><span class="nav-number">1.28.</span> <span class="nav-text">28、只看尾几行：tail</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#29、以二进制的放置读取档案内容：od"><span class="nav-number">1.29.</span> <span class="nav-text">29、以二进制的放置读取档案内容：od</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#30、修改档案时间或新建档案：touch"><span class="nav-number">1.30.</span> <span class="nav-text">30、修改档案时间或新建档案：touch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#31、档案预设权限：umask"><span class="nav-number">1.31.</span> <span class="nav-text">31、档案预设权限：umask</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#32、配置文件档案隐藏属性：chattr"><span class="nav-number">1.32.</span> <span class="nav-text">32、配置文件档案隐藏属性：chattr</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#33、显示档案隐藏属性：lsattr"><span class="nav-number">1.33.</span> <span class="nav-text">33、显示档案隐藏属性：lsattr</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#34、观察文件类型：file"><span class="nav-number">1.34.</span> <span class="nav-text">34、观察文件类型：file</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#35、寻找【执行挡】：which"><span class="nav-number">1.35.</span> <span class="nav-text">35、寻找【执行挡】：which</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#36、寻找特定档案：whereis"><span class="nav-number">1.36.</span> <span class="nav-text">36、寻找特定档案：whereis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#37、寻找特定档案：locate"><span class="nav-number">1.37.</span> <span class="nav-text">37、寻找特定档案：locate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#38、寻找特定档案：find"><span class="nav-number">1.38.</span> <span class="nav-text">38、寻找特定档案：find</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#39、压缩文件和读取压缩文件：gzip，zcat"><span class="nav-number">1.39.</span> <span class="nav-text">39、压缩文件和读取压缩文件：gzip，zcat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#40、压缩文件和读取压缩文件：bzip2，bzcat"><span class="nav-number">1.40.</span> <span class="nav-text">40、压缩文件和读取压缩文件：bzip2，bzcat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#41、压缩文件和读取压缩文件：tar"><span class="nav-number">1.41.</span> <span class="nav-text">41、压缩文件和读取压缩文件：tar</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李江洋</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Pisces</span> v7.0.1</div>
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script id="ribbon" size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+  
+  <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ljyabc.github.io/2019/03/17/linux基础命令/";
+    this.page.identifier = "2019/03/17/linux基础命令/";
+    this.page.title = 'linux基础命令';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/exturl.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+   <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+</body>
+</html>

@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="文档对象模型 DOM1 DOM概述1.1 什么是DOM 文档对象模型 Document Object Model 文档对象模型 是表示和操作 HTML和XML文档内容的基础API 文档对象模型，是W3C组织推荐的处理可扩展标志语言的标准编程接口  1.2 DOM分类 核心 DOM - 针对任何结构化文档的标准模型 XML DOM - 针对 XML 文档的标准模型 HTML DOM - 针对 HTM">
+<meta name="keywords" content="前端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DOM">
+<meta property="og:url" content="https://ljyabc.github.io/2019/03/31/DOM/index.html">
+<meta property="og:site_name" content="择墅居:李江洋">
+<meta property="og:description" content="文档对象模型 DOM1 DOM概述1.1 什么是DOM 文档对象模型 Document Object Model 文档对象模型 是表示和操作 HTML和XML文档内容的基础API 文档对象模型，是W3C组织推荐的处理可扩展标志语言的标准编程接口  1.2 DOM分类 核心 DOM - 针对任何结构化文档的标准模型 XML DOM - 针对 XML 文档的标准模型 HTML DOM - 针对 HTM">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://unclealan.cn/docs/front-end/front-end/images/dom.gif">
+<meta property="og:updated_time" content="2025-04-08T14:37:34.204Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DOM">
+<meta name="twitter:description" content="文档对象模型 DOM1 DOM概述1.1 什么是DOM 文档对象模型 Document Object Model 文档对象模型 是表示和操作 HTML和XML文档内容的基础API 文档对象模型，是W3C组织推荐的处理可扩展标志语言的标准编程接口  1.2 DOM分类 核心 DOM - 针对任何结构化文档的标准模型 XML DOM - 针对 XML 文档的标准模型 HTML DOM - 针对 HTM">
+<meta name="twitter:image" content="http://unclealan.cn/docs/front-end/front-end/images/dom.gif">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ljyabc.github.io/2019/03/31/DOM/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>DOM | 择墅居:李江洋</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">择墅居:李江洋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">争做长沙别墅豪装第一品牌</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/book" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>book</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2019/03/31/DOM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李江洋">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="择墅居:李江洋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">DOM
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-31 15:02:12" itemprop="dateCreated datePublished" datetime="2019-03-31T15:02:12+08:00">2019-03-31</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2025-04-08 22:37:34" itemprop="dateModified" datetime="2025-04-08T22:37:34+08:00">2025-04-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/理解/" itemprop="url" rel="index"><span itemprop="name">理解</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/03/31/DOM/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/31/DOM/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="文档对象模型-DOM"><a href="#文档对象模型-DOM" class="headerlink" title="文档对象模型 DOM"></a>文档对象模型 DOM</h1><h2 id="1-DOM概述"><a href="#1-DOM概述" class="headerlink" title="1 DOM概述"></a>1 DOM概述</h2><h3 id="1-1-什么是DOM"><a href="#1-1-什么是DOM" class="headerlink" title="1.1 什么是DOM"></a>1.1 什么是DOM</h3><ul>
+<li>文档对象模型 Document Object Model</li>
+<li>文档对象模型 是表示和操作 HTML和XML文档内容的基础API</li>
+<li>文档对象模型，是W3C组织推荐的处理可扩展标志语言的标准编程接口</li>
+</ul>
+<h3 id="1-2-DOM分类"><a href="#1-2-DOM分类" class="headerlink" title="1.2 DOM分类"></a>1.2 DOM分类</h3><ul>
+<li>核心 DOM - 针对任何结构化文档的标准模型</li>
+<li>XML DOM - 针对 XML 文档的标准模型</li>
+<li>HTML DOM - 针对 HTML 文档的标准模型</li>
+</ul>
+<h3 id="1-3-DOM分级"><a href="#1-3-DOM分级" class="headerlink" title="1.3 DOM分级"></a>1.3 DOM分级</h3><ul>
+<li><p>1级dom</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>级DOM在<span class="number">1998</span>年<span class="number">10</span>月份成为W3C的提议，由DOM核心与DOM HTML两个模块组成。DOM核心能映射以XML为基础的文档结构，允许获取和操作文档的任意部分。DOM HTML通过添加HTML专用的对象与函数对DOM核心进行了扩展。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2级dom</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">通过对原有DOM的扩展，<span class="number">2</span>级DOM通过对象接口增加了对鼠标和用户界面事件、范围、遍历（重复执行DOM文档）和层叠样式表（CSS）的支持。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>3级dom</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span>级DOM通过引入统一方式载入和保存文档和文档验证方法对DOM进行进一步扩展，DOM3包含一个名为“DOM载入与保存”的新模块，DOM核心扩展后可支持XML1.<span class="number">0</span>的所有内容，包括<span class="keyword">XML</span> <span class="title">Infoset</span>、 <span class="keyword">XPath</span>、和<span class="keyword">XML</span> <span class="title">Base</span>。</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="1-4-DOM树"><a href="#1-4-DOM树" class="headerlink" title="1.4 DOM树"></a>1.4 DOM树</h3><p><img src="http://unclealan.cn/docs/front-end/front-end/images/dom.gif" alt="img"></p>
+<h2 id="2-节点"><a href="#2-节点" class="headerlink" title="2 节点"></a>2 节点</h2><h3 id="2-1-什么是节点"><a href="#2-1-什么是节点" class="headerlink" title="2.1 什么是节点"></a>2.1 什么是节点</h3><p>文档中的每一个部分都是节点,包括document 元素 属性 文本…</p>
+<h3 id="2-2-节点的分类"><a href="#2-2-节点的分类" class="headerlink" title="2.2 节点的分类"></a>2.2 节点的分类</h3><ul>
+<li>Document<br>Element 元素 Attr 属性</li>
+<li>Text 文本</li>
+<li>Comment 注释</li>
+</ul>
+<h3 id="2-3-节点属性"><a href="#2-3-节点属性" class="headerlink" title="2.3 节点属性"></a>2.3 节点属性</h3><ul>
+<li><p>nodeName 节点名字</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">document :</span>  <span class="comment">#document</span></span><br><span class="line"><span class="attr">element :</span> <span class="string">标签名</span></span><br><span class="line"><span class="attr">attr :</span> <span class="string">属性名</span></span><br><span class="line"><span class="attr">text :</span> <span class="comment">#text</span></span><br><span class="line"><span class="attr">comment :</span> <span class="comment">#comment</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>nodeValue 节点值</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">document : <span class="keyword"><span class="keyword">null</span></span></span><br><span class="line">element : <span class="keyword"><span class="keyword">null</span></span></span><br><span class="line">attr : 属性值</span><br><span class="line">text : 文本内容</span><br><span class="line">comment : 注释内容</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>nodeType 节点类型</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">document :</span> <span class="number">9</span></span><br><span class="line"><span class="attr">element :</span> <span class="number">1</span></span><br><span class="line"><span class="attr">attr :</span> <span class="number">2</span></span><br><span class="line"><span class="attr">text :</span> <span class="number">3</span></span><br><span class="line"><span class="attr">coment :</span> <span class="number">8</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="3-获取元素对象"><a href="#3-获取元素对象" class="headerlink" title="3 获取元素对象"></a>3 获取元素对象</h2><ul>
+<li><p>通过ID获取元素</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">document.getElementById()</span><br><span class="line"><span class="built_in">id</span>属性可自动成为被脚本访问的全局变量</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过name值获取元素</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">document.getElementsByName()</span><br><span class="line">    IE9+和标准浏览器认为 所有的元素都有name</span><br><span class="line">    IE9- 认为只有个别元素有name</span><br><span class="line">        表单和表单控件</span><br><span class="line">        img iframe  embed object <span class="built_in">..</span><span class="built_in">..</span></span><br><span class="line"></span><br><span class="line">docuemnt会为某些元素创建以元素name为名字的属性</span><br><span class="line">    &lt;form&gt;</span><br><span class="line">    &lt;img&gt;</span><br><span class="line">    <span class="built_in">..</span><span class="built_in">..</span><span class="built_in">..</span>.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过标签名获取元素</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">document</span><span class="selector-class">.getElementsByTagName</span>()</span><br><span class="line"><span class="selector-tag">element</span><span class="selector-class">.getElementsByTagName</span>()</span><br><span class="line"><span class="selector-tag">document</span><span class="selector-class">.images</span>    所有<span class="selector-tag">img</span>的引用</span><br><span class="line"><span class="selector-tag">document</span><span class="selector-class">.forms</span>    所有表单的引用</span><br><span class="line"><span class="selector-tag">document</span><span class="selector-class">.links</span>    所有超链接的引用</span><br><span class="line"><span class="selector-tag">docuent</span><span class="selector-class">.anchors</span>    所有锚点的引用</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过类名选取元素(IE9+)</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">document</span><span class="selector-class">.getElementsByClassName</span>()</span><br><span class="line"><span class="selector-tag">element</span><span class="selector-class">.getElementsByClassName</span>()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过CSS选择器选取元素</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.<span class="built_in">querySelectorAll</span>()</span><br><span class="line"><span class="built_in">document</span>.<span class="built_in">querySelector</span>()</span><br><span class="line">element.<span class="built_in">querySelectorAll</span>()</span><br><span class="line">element.<span class="built_in">querySelector</span>()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取所有的元素</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.<span class="keyword">all</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="4-文档结构和遍历文档"><a href="#4-文档结构和遍历文档" class="headerlink" title="4 文档结构和遍历文档"></a>4 文档结构和遍历文档</h2><h3 id="4-1-节点关系"><a href="#4-1-节点关系" class="headerlink" title="4.1 节点关系"></a>4.1 节点关系</h3><ul>
+<li>父节点 父元素</li>
+<li>子节点 子元素</li>
+<li>同辈节点 同辈元素</li>
+<li>祖先节点 祖先元素</li>
+<li>后代节点 后代元素</li>
+</ul>
+<h3 id="4-2-作为节点树的文档"><a href="#4-2-作为节点树的文档" class="headerlink" title="4.2 作为节点树的文档"></a>4.2 作为节点树的文档</h3><ul>
+<li>parentNode 父节点</li>
+<li>childNodes 所有子节点的集合</li>
+<li>firstChild 第一个子节点</li>
+<li>lastChild 最后一个子节点</li>
+<li>nextSibling 下一个兄弟节点</li>
+<li>previousSibling 上一个兄弟节点</li>
+</ul>
+<h3 id="4-3-作为元素树的文档"><a href="#4-3-作为元素树的文档" class="headerlink" title="4.3 作为元素树的文档"></a>4.3 作为元素树的文档</h3><ul>
+<li>parentElement 父元素 大部分情况下 parentElement 等同于 parentNode</li>
+<li>children 所有子元素的集合</li>
+<li>firstElementChild IE9+ 第一个子元素</li>
+<li>lastElementChild IE9+ 最后一个子元素</li>
+<li>nextElementSibling IE9+ 下一个兄弟元素</li>
+<li>previousElementSibling IE9+ 上一个兄弟元素</li>
+<li>childElementCount IE9+ 子元素的数量</li>
+<li>ownerDocument 返回元素所属的文档对象</li>
+</ul>
+<h2 id="5-属性"><a href="#5-属性" class="headerlink" title="5 属性"></a>5 属性</h2><h3 id="5-1-HTML标签的属性和元素对象的属性"><a href="#5-1-HTML标签的属性和元素对象的属性" class="headerlink" title="5.1 HTML标签的属性和元素对象的属性"></a>5.1 HTML标签的属性和元素对象的属性</h3><p>HTMLElement对象映射了元素的HTML属性</p>
+<h3 id="5-2-获取和设置非标准的HTML属性"><a href="#5-2-获取和设置非标准的HTML属性" class="headerlink" title="5.2 获取和设置非标准的HTML属性"></a>5.2 获取和设置非标准的HTML属性</h3><ul>
+<li>getAttribute(attrname) 获取自定义或内置属性的值</li>
+<li>setAttribute(attrnane, value) 设置自定义或内置属性</li>
+<li>hasAttribute(attrname) 判断是否存在该属性</li>
+<li>removeAttribute() 移出自定义或内置的属性</li>
+</ul>
+<h3 id="5-3-作为Attr节点的"><a href="#5-3-作为Attr节点的" class="headerlink" title="5.3 作为Attr节点的"></a>5.3 作为Attr节点的</h3><ul>
+<li>arrtibutes 属性</li>
+<li>setAttributeNode()</li>
+<li>getAttributeNode()</li>
+<li>document.createAttribute() 创建属性节点</li>
+</ul>
+<h2 id="6-元素的内容"><a href="#6-元素的内容" class="headerlink" title="6 元素的内容"></a>6 元素的内容</h2><h3 id="6-1-作为HTML的元素内容"><a href="#6-1-作为HTML的元素内容" class="headerlink" title="6.1 作为HTML的元素内容"></a>6.1 作为HTML的元素内容</h3><ul>
+<li>innerHTML</li>
+<li>outerHTML</li>
+</ul>
+<h3 id="6-2-作为纯文本的元素内容"><a href="#6-2-作为纯文本的元素内容" class="headerlink" title="6.2 作为纯文本的元素内容"></a>6.2 作为纯文本的元素内容</h3><ul>
+<li>textContent IE9+</li>
+<li>innerText 会忽略多余空白</li>
+</ul>
+<h3 id="6-3-作为Text节点的元素内容"><a href="#6-3-作为Text节点的元素内容" class="headerlink" title="6.3 作为Text节点的元素内容"></a>6.3 作为Text节点的元素内容</h3><h4 id="文本节点的方法"><a href="#文本节点的方法" class="headerlink" title="文本节点的方法"></a>文本节点的方法</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">appendData</span><span class="params">()</span></span>    向文本节点追加内容</span><br><span class="line"><span class="function"><span class="title">deleteData</span><span class="params">()</span></span>    删除文本节点的一部分内容</span><br><span class="line"><span class="function"><span class="title">insertData</span><span class="params">()</span></span>    向文本节点中插入内容</span><br><span class="line"><span class="function"><span class="title">replaceData</span><span class="params">()</span></span>    替换内容</span><br><span class="line"><span class="function"><span class="title">substringData</span><span class="params">()</span></span>    截取内容</span><br></pre></td></tr></table></figure>
+<h4 id="创建文本节点"><a href="#创建文本节点" class="headerlink" title="创建文本节点"></a>创建文本节点</h4><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.createTextNode()</span><br></pre></td></tr></table></figure>
+<h2 id="7-创建、插入、删除-节点"><a href="#7-创建、插入、删除-节点" class="headerlink" title="7 创建、插入、删除 节点"></a>7 创建、插入、删除 节点</h2><h3 id="7-1-创建节点"><a href="#7-1-创建节点" class="headerlink" title="7.1 创建节点"></a>7.1 创建节点</h3><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.createElement()</span><br></pre></td></tr></table></figure>
+<h3 id="7-2-插入节点"><a href="#7-2-插入节点" class="headerlink" title="7.2 插入节点"></a>7.2 插入节点</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">appendChild</span><span class="params">()</span></span>    在元素的最后追加一个子元素</span><br><span class="line"><span class="function"><span class="title">insertBefore</span><span class="params">()</span></span>    在元素指定的位置插入一个子元素</span><br></pre></td></tr></table></figure>
+<h3 id="7-3-删除节点"><a href="#7-3-删除节点" class="headerlink" title="7.3 删除节点"></a>7.3 删除节点</h3><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">removeChild()</span></span><br></pre></td></tr></table></figure>
+<h3 id="7-4-替换节点"><a href="#7-4-替换节点" class="headerlink" title="7.4 替换节点"></a>7.4 替换节点</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">replaceChild</span><span class="params">(new_node, old_node)</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="7-5-克隆节点"><a href="#7-5-克隆节点" class="headerlink" title="7.5 克隆节点"></a>7.5 克隆节点</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">cloneNode()</span></span><br><span class="line">    <span class="string">参数</span></span><br><span class="line">    <span class="literal">true</span>    <span class="string">克隆元素以及所有的厚点节点</span></span><br><span class="line">    <span class="literal">false</span>    <span class="string">仅仅克隆节点本身</span></span><br></pre></td></tr></table></figure>
+<h3 id="7-6-DocumentFragment"><a href="#7-6-DocumentFragment" class="headerlink" title="7.6 DocumentFragment"></a>7.6 DocumentFragment</h3><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.createDocumentFragment()可以创建该对象</span><br><span class="line"></span><br><span class="line">DocumentFragment 接口表示文档的一部分（或一段）。更确切地说，它表示一个或多个邻接的 Document 节点和它们的所有子孙节点。</span><br><span class="line"></span><br><span class="line">DocumentFragment 节点不属于文档树，继承的 parentNode 属性总是 <span class="literal">null</span>。</span><br><span class="line"></span><br><span class="line">请求把一个 DocumentFragment 节点插入文档树时，插入的不是 DocumentFragment 自身，而是它的所有子孙节点。这使得 DocumentFragment 成了有用的占位符，暂时存放那些一次插入文档的节点</span><br></pre></td></tr></table></figure>
+<h2 id="8-元素的尺寸、位置、滚动"><a href="#8-元素的尺寸、位置、滚动" class="headerlink" title="8 元素的尺寸、位置、滚动"></a>8 元素的尺寸、位置、滚动</h2><h3 id="8-1-元素坐标"><a href="#8-1-元素坐标" class="headerlink" title="8.1 元素坐标"></a>8.1 元素坐标</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">offsetLeft    距离左边的距离, 相对规则同 css 的定位</span><br><span class="line">offsetTop    距离上边的距离, 相对规则同 css 的定位</span><br><span class="line">offsetParent    得到第一定位的祖先元素</span><br><span class="line">clientLeft    没卵用 就是边框宽</span><br><span class="line">clientTop    没卵用 就是边框宽</span><br><span class="line"><span class="function"><span class="title">getBoundingClientRect</span><span class="params">()</span></span>        返回对象 包含位置信息 大小信息</span><br></pre></td></tr></table></figure>
+<h3 id="8-2-判定某个元素在某点"><a href="#8-2-判定某个元素在某点" class="headerlink" title="8.2 判定某个元素在某点"></a>8.2 判定某个元素在某点</h3><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.elementFromPoint()</span><br></pre></td></tr></table></figure>
+<h3 id="8-3-查询元素的几何尺寸"><a href="#8-3-查询元素的几何尺寸" class="headerlink" title="8.3 查询元素的几何尺寸"></a>8.3 查询元素的几何尺寸</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">getBoundingClientRect</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="title">getClientRects</span><span class="params">()</span></span></span><br><span class="line">offsetWidth</span><br><span class="line">offsetHeight</span><br><span class="line">clientWidth</span><br><span class="line">clientHeight</span><br><span class="line">scrollWidth</span><br><span class="line">scrollHeight</span><br></pre></td></tr></table></figure>
+<h3 id="8-4-滚动"><a href="#8-4-滚动" class="headerlink" title="8.4 滚动"></a>8.4 滚动</h3><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">scrollLeft</span></span><br><span class="line"><span class="attribute">scrollTop</span></span><br></pre></td></tr></table></figure>
+<h2 id="9-Document对象"><a href="#9-Document对象" class="headerlink" title="9 Document对象"></a>9 Document对象</h2><p>每个载入浏览器的 HTML 文档都会成为 Document 对象。 Document 对象使我们可以从脚本中对 HTML 页面中的所有元素进行访问。</p>
+<h3 id="9-1-属性"><a href="#9-1-属性" class="headerlink" title="9.1 属性"></a>9.1 属性</h3><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">URL        获取当前页面的url 只读</span><br><span class="line">domain        获取域名</span><br><span class="line">referrer        获取上一个页面的地址 只读</span><br><span class="line">title        </span><br><span class="line"><span class="keyword">location</span>    <span class="title"></span></span><br><span class="line"><span class="title">lastModified</span>    </span><br><span class="line">cookie</span><br></pre></td></tr></table></figure>
+<h3 id="9-2-方法"><a href="#9-2-方法" class="headerlink" title="9.2 方法"></a>9.2 方法</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">write</span><span class="params">()</span></span>        </span><br><span class="line"><span class="function"><span class="title">writeln</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="10-HTML表单中的相关对象"><a href="#10-HTML表单中的相关对象" class="headerlink" title="10 HTML表单中的相关对象"></a>10 HTML表单中的相关对象</h2><h3 id="10-1-选取表单和表单元素"><a href="#10-1-选取表单和表单元素" class="headerlink" title="10.1 选取表单和表单元素"></a>10.1 选取表单和表单元素</h3><h3 id="10-2-表单和表单元素的属性"><a href="#10-2-表单和表单元素的属性" class="headerlink" title="10.2 表单和表单元素的属性"></a>10.2 表单和表单元素的属性</h3><h3 id="10-3-from对象"><a href="#10-3-from对象" class="headerlink" title="10.3 from对象"></a>10.3 from对象</h3><h4 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h4><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">elements</span>    所有表单控件组成的集合</span><br></pre></td></tr></table></figure>
+<h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">submit</span><span class="params">()</span></span>    让表单提交</span><br><span class="line"><span class="function"><span class="title">reset</span><span class="params">()</span></span>        让表单重置</span><br></pre></td></tr></table></figure>
+<h3 id="10-3-按钮-button-submit-reset-对象"><a href="#10-3-按钮-button-submit-reset-对象" class="headerlink" title="10.3 按钮(button submit reset)对象"></a>10.3 按钮(button submit reset)对象</h3><h4 id="方法-1"><a href="#方法-1" class="headerlink" title="方法"></a>方法</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">focus</span><span class="params">()</span></span>    获得焦点</span><br><span class="line"><span class="function"><span class="title">blur</span><span class="params">()</span></span>    使失去焦点</span><br><span class="line"><span class="function"><span class="title">click</span><span class="params">()</span></span>    使按钮比被单击</span><br></pre></td></tr></table></figure>
+<h3 id="10-4-单选复选"><a href="#10-4-单选复选" class="headerlink" title="10.4 单选复选"></a>10.4 单选复选</h3><h4 id="方法-2"><a href="#方法-2" class="headerlink" title="方法"></a>方法</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">focus</span><span class="params">()</span></span>    获得焦点</span><br><span class="line"><span class="function"><span class="title">blur</span><span class="params">()</span></span>    失去焦点</span><br><span class="line"><span class="function"><span class="title">click</span><span class="params">()</span></span>    被单击</span><br></pre></td></tr></table></figure>
+<h3 id="10-5-文本-input-textarea"><a href="#10-5-文本-input-textarea" class="headerlink" title="10.5 文本(input textarea)"></a>10.5 文本(input textarea)</h3><h4 id="方法-3"><a href="#方法-3" class="headerlink" title="方法"></a>方法</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">focus</span><span class="params">()</span></span>    获取焦点</span><br><span class="line"><span class="function"><span class="title">blur</span><span class="params">()</span></span>    失去焦点</span><br><span class="line"><span class="function"><span class="title">select</span><span class="params">()</span></span>    全部被选中</span><br></pre></td></tr></table></figure>
+<h3 id="10-6-select对象"><a href="#10-6-select对象" class="headerlink" title="10.6 select对象"></a>10.6 select对象</h3><h4 id="属性-1"><a href="#属性-1" class="headerlink" title="属性"></a>属性</h4><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute"><span class="nomarkup">options</span></span></span><br><span class="line"><span class="attribute">selectedIndex</span></span><br><span class="line"><span class="attribute">length</span>    选项的数量</span><br></pre></td></tr></table></figure>
+<h4 id="方法-4"><a href="#方法-4" class="headerlink" title="方法"></a>方法</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">add</span><span class="params">()</span></span>    添加选项</span><br><span class="line"><span class="function"><span class="title">remove</span><span class="params">()</span></span>    移出选项, 参数是option的索引</span><br><span class="line"><span class="function"><span class="title">focus</span><span class="params">()</span></span>    获取焦点</span><br><span class="line"><span class="function"><span class="title">blur</span><span class="params">()</span></span>    失去焦点</span><br></pre></td></tr></table></figure>
+<h2 id="11-Table中相关对象"><a href="#11-Table中相关对象" class="headerlink" title="11 Table中相关对象"></a>11 Table中相关对象</h2><h3 id="11-1-table对象"><a href="#11-1-table对象" class="headerlink" title="11.1 table对象"></a>11.1 table对象</h3><h4 id="属性-2"><a href="#属性-2" class="headerlink" title="属性"></a>属性</h4><figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cells    返回包含表格中所有单元格的一个数组。</span><br><span class="line"><span class="built_in">rows</span>     返回包含表格中所有行的一个数组。</span><br></pre></td></tr></table></figure>
+<h4 id="方法-5"><a href="#方法-5" class="headerlink" title="方法"></a>方法</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">createCaption</span><span class="params">()</span></span>    为表格创建一个 <span class="selector-tag">caption</span> 元素。</span><br><span class="line"><span class="function"><span class="title">deleteCaption</span><span class="params">()</span></span>    从表格删除 <span class="selector-tag">caption</span> 元素以及其内容。</span><br><span class="line"><span class="function"><span class="title">createTHead</span><span class="params">()</span></span>    在表格中创建一个空的 tHead 元素。</span><br><span class="line"><span class="function"><span class="title">deleteTHead</span><span class="params">()</span></span>    从表格删除 tHead 元素及其内容。</span><br><span class="line"><span class="function"><span class="title">createTFoot</span><span class="params">()</span></span>    在表格中创建一个空的 tFoot 元素。</span><br><span class="line"><span class="function"><span class="title">deleteTFoot</span><span class="params">()</span></span>    从表格删除 tFoot 元素及其内容。</span><br><span class="line"><span class="function"><span class="title">insertRow</span><span class="params">()</span></span>    在表格中插入一个新行。</span><br><span class="line"><span class="function"><span class="title">deleteRow</span><span class="params">()</span></span>    从表格删除一行。</span><br></pre></td></tr></table></figure>
+<h3 id="11-2-tr对象"><a href="#11-2-tr对象" class="headerlink" title="11.2 tr对象"></a>11.2 tr对象</h3><h4 id="属性-3"><a href="#属性-3" class="headerlink" title="属性"></a>属性</h4><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">cells</span>    返回包含行中所有单元格的一个数组。</span><br><span class="line">rowIndex    返回该行在表中的位置。</span><br></pre></td></tr></table></figure>
+<h4 id="方法-6"><a href="#方法-6" class="headerlink" title="方法"></a>方法</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">deleteCell</span><span class="params">()</span></span>    删除行中的指定的单元格。</span><br><span class="line"><span class="function"><span class="title">insertCell</span><span class="params">()</span></span>    在一行中的指定位置插入一个空的 &lt;td&gt; 元素。</span><br></pre></td></tr></table></figure>
+<h3 id="11-3-td对象、th对象"><a href="#11-3-td对象、th对象" class="headerlink" title="11.3 td对象、th对象"></a>11.3 td对象、th对象</h3><h4 id="属性-4"><a href="#属性-4" class="headerlink" title="属性"></a>属性</h4><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">cellIndex</span>    返回单元格在某行的单元格集合中的位置。</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/gongzhonghao.jpg" alt="李江洋 wechat" style="width: 200px; max-width: 100%;">
+  <div>python分享公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="李江洋 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="李江洋 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag"># 前端</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/31/mongdb/" rel="next" title="mongodb">
+                <i class="fa fa-chevron-left"></i> mongodb
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/31/数组面试题/" rel="prev" title="数组面试题">
+                数组面试题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="李江洋">
+            
+              <p class="site-author-name" itemprop="name">李江洋</p>
+              <p class="site-description motion-element" itemprop="description">记录学习的技能和遇到的问题</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">179</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lvdXJuYW1l" title="GitHub &rarr; https://github.com/yourname"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="bWFpbHRvOjEzMjgwNDQzOTJAcXEuY29t" title="E-Mail &rarr; mailto:1328044392@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL2V4YW1wbGUuY29t" title="http://example.com">Title</span>
+                  </li>
+                
+              </ul>
+            </div>
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#文档对象模型-DOM"><span class="nav-number">1.</span> <span class="nav-text">文档对象模型 DOM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-DOM概述"><span class="nav-number">1.1.</span> <span class="nav-text">1 DOM概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-什么是DOM"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 什么是DOM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-DOM分类"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 DOM分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-DOM分级"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 DOM分级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-DOM树"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.4 DOM树</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-节点"><span class="nav-number">1.2.</span> <span class="nav-text">2 节点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-什么是节点"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 什么是节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-节点的分类"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 节点的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-节点属性"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 节点属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-获取元素对象"><span class="nav-number">1.3.</span> <span class="nav-text">3 获取元素对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-文档结构和遍历文档"><span class="nav-number">1.4.</span> <span class="nav-text">4 文档结构和遍历文档</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-节点关系"><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1 节点关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-作为节点树的文档"><span class="nav-number">1.4.2.</span> <span class="nav-text">4.2 作为节点树的文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-作为元素树的文档"><span class="nav-number">1.4.3.</span> <span class="nav-text">4.3 作为元素树的文档</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-属性"><span class="nav-number">1.5.</span> <span class="nav-text">5 属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-HTML标签的属性和元素对象的属性"><span class="nav-number">1.5.1.</span> <span class="nav-text">5.1 HTML标签的属性和元素对象的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-获取和设置非标准的HTML属性"><span class="nav-number">1.5.2.</span> <span class="nav-text">5.2 获取和设置非标准的HTML属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-作为Attr节点的"><span class="nav-number">1.5.3.</span> <span class="nav-text">5.3 作为Attr节点的</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-元素的内容"><span class="nav-number">1.6.</span> <span class="nav-text">6 元素的内容</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-作为HTML的元素内容"><span class="nav-number">1.6.1.</span> <span class="nav-text">6.1 作为HTML的元素内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-作为纯文本的元素内容"><span class="nav-number">1.6.2.</span> <span class="nav-text">6.2 作为纯文本的元素内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-作为Text节点的元素内容"><span class="nav-number">1.6.3.</span> <span class="nav-text">6.3 作为Text节点的元素内容</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#文本节点的方法"><span class="nav-number">1.6.3.1.</span> <span class="nav-text">文本节点的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建文本节点"><span class="nav-number">1.6.3.2.</span> <span class="nav-text">创建文本节点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-创建、插入、删除-节点"><span class="nav-number">1.7.</span> <span class="nav-text">7 创建、插入、删除 节点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-创建节点"><span class="nav-number">1.7.1.</span> <span class="nav-text">7.1 创建节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-插入节点"><span class="nav-number">1.7.2.</span> <span class="nav-text">7.2 插入节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-3-删除节点"><span class="nav-number">1.7.3.</span> <span class="nav-text">7.3 删除节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-4-替换节点"><span class="nav-number">1.7.4.</span> <span class="nav-text">7.4 替换节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-5-克隆节点"><span class="nav-number">1.7.5.</span> <span class="nav-text">7.5 克隆节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-6-DocumentFragment"><span class="nav-number">1.7.6.</span> <span class="nav-text">7.6 DocumentFragment</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-元素的尺寸、位置、滚动"><span class="nav-number">1.8.</span> <span class="nav-text">8 元素的尺寸、位置、滚动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-元素坐标"><span class="nav-number">1.8.1.</span> <span class="nav-text">8.1 元素坐标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-判定某个元素在某点"><span class="nav-number">1.8.2.</span> <span class="nav-text">8.2 判定某个元素在某点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-查询元素的几何尺寸"><span class="nav-number">1.8.3.</span> <span class="nav-text">8.3 查询元素的几何尺寸</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-4-滚动"><span class="nav-number">1.8.4.</span> <span class="nav-text">8.4 滚动</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-Document对象"><span class="nav-number">1.9.</span> <span class="nav-text">9 Document对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#9-1-属性"><span class="nav-number">1.9.1.</span> <span class="nav-text">9.1 属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-2-方法"><span class="nav-number">1.9.2.</span> <span class="nav-text">9.2 方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-HTML表单中的相关对象"><span class="nav-number">1.10.</span> <span class="nav-text">10 HTML表单中的相关对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#10-1-选取表单和表单元素"><span class="nav-number">1.10.1.</span> <span class="nav-text">10.1 选取表单和表单元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-2-表单和表单元素的属性"><span class="nav-number">1.10.2.</span> <span class="nav-text">10.2 表单和表单元素的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-3-from对象"><span class="nav-number">1.10.3.</span> <span class="nav-text">10.3 from对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#属性"><span class="nav-number">1.10.3.1.</span> <span class="nav-text">属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法"><span class="nav-number">1.10.3.2.</span> <span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-3-按钮-button-submit-reset-对象"><span class="nav-number">1.10.4.</span> <span class="nav-text">10.3 按钮(button submit reset)对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方法-1"><span class="nav-number">1.10.4.1.</span> <span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-4-单选复选"><span class="nav-number">1.10.5.</span> <span class="nav-text">10.4 单选复选</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方法-2"><span class="nav-number">1.10.5.1.</span> <span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-文本-input-textarea"><span class="nav-number">1.10.6.</span> <span class="nav-text">10.5 文本(input textarea)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方法-3"><span class="nav-number">1.10.6.1.</span> <span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-6-select对象"><span class="nav-number">1.10.7.</span> <span class="nav-text">10.6 select对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#属性-1"><span class="nav-number">1.10.7.1.</span> <span class="nav-text">属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法-4"><span class="nav-number">1.10.7.2.</span> <span class="nav-text">方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-Table中相关对象"><span class="nav-number">1.11.</span> <span class="nav-text">11 Table中相关对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-1-table对象"><span class="nav-number">1.11.1.</span> <span class="nav-text">11.1 table对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#属性-2"><span class="nav-number">1.11.1.1.</span> <span class="nav-text">属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法-5"><span class="nav-number">1.11.1.2.</span> <span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-2-tr对象"><span class="nav-number">1.11.2.</span> <span class="nav-text">11.2 tr对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#属性-3"><span class="nav-number">1.11.2.1.</span> <span class="nav-text">属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法-6"><span class="nav-number">1.11.2.2.</span> <span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-3-td对象、th对象"><span class="nav-number">1.11.3.</span> <span class="nav-text">11.3 td对象、th对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#属性-4"><span class="nav-number">1.11.3.1.</span> <span class="nav-text">属性</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李江洋</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Pisces</span> v7.0.1</div>
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script id="ribbon" size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+  
+  <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ljyabc.github.io/2019/03/31/DOM/";
+    this.page.identifier = "2019/03/31/DOM/";
+    this.page.title = 'DOM';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/exturl.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+   <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+</body>
+</html>

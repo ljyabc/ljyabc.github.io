@@ -1,0 +1,1638 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="python常用模块datetime  	      	    12345678print(datetime.datetime.now())  # 现在的时间    print(datetime.datetime.fromtimestamp(1231233213))    print(datetime.datetime.now() + datetime.timedelta(days=3))  #">
+<meta name="keywords" content="python基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python常用模块">
+<meta property="og:url" content="https://ljyabc.github.io/2019/03/15/python常用模块/index.html">
+<meta property="og:site_name" content="择墅居:李江洋">
+<meta property="og:description" content="python常用模块datetime  	      	    12345678print(datetime.datetime.now())  # 现在的时间    print(datetime.datetime.fromtimestamp(1231233213))    print(datetime.datetime.now() + datetime.timedelta(days=3))  #">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2025-04-08T14:37:46.766Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python常用模块">
+<meta name="twitter:description" content="python常用模块datetime  	      	    12345678print(datetime.datetime.now())  # 现在的时间    print(datetime.datetime.fromtimestamp(1231233213))    print(datetime.datetime.now() + datetime.timedelta(days=3))  #">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ljyabc.github.io/2019/03/15/python常用模块/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>python常用模块 | 择墅居:李江洋</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">择墅居:李江洋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">争做长沙别墅豪装第一品牌</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/book" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>book</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2019/03/15/python常用模块/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李江洋">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="择墅居:李江洋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">python常用模块
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-15 15:44:25" itemprop="dateCreated datePublished" datetime="2019-03-15T15:44:25+08:00">2019-03-15</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2025-04-08 22:37:46" itemprop="dateModified" datetime="2025-04-08T22:37:46+08:00">2025-04-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/记忆/" itemprop="url" rel="index"><span itemprop="name">记忆</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/03/15/python常用模块/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/15/python常用模块/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="python常用模块"><a href="#python常用模块" class="headerlink" title="python常用模块"></a>python常用模块</h1><h2 id="datetime"><a href="#datetime" class="headerlink" title="datetime"></a>datetime</h2>
+
+	<div class="row">
+    <embed src="datetime.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">print(datetime.datetime.now())  <span class="comment"># 现在的时间</span></span><br><span class="line">    print(datetime.datetime.fromtimestamp(<span class="number">1231233213</span>))</span><br><span class="line"></span><br><span class="line">    print(datetime.datetime.now() + datetime.timedelta(days=<span class="number">3</span>))  <span class="comment"># 现在的时间加上未来的3天</span></span><br><span class="line">    print(datetime.datetime.now() + datetime.timedelta(days=<span class="number">-3</span>))  <span class="comment"># 现在的时间减去3天前</span></span><br><span class="line"></span><br><span class="line">    s=datetime.datetime.now()</span><br><span class="line">    print(s.replace(year=<span class="number">2020</span>))  <span class="comment"># 修改年份</span></span><br></pre></td></tr></table></figure>
+<h2 id="json与pickle"><a href="#json与pickle" class="headerlink" title="json与pickle"></a>json与pickle</h2>
+
+	<div class="row">
+    <embed src="json与pickle.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+<h2 id="os"><a href="#os" class="headerlink" title="os"></a>os</h2>
+
+	<div class="row">
+    <embed src="os.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+<p>start.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># start.py</span></span><br><span class="line"><span class="keyword">import</span> os, sys</span><br><span class="line"></span><br><span class="line">BASE_PATH = os.path.dirname(__file__)</span><br><span class="line">sys.path.append(BASE_PATH)</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> core <span class="keyword">import</span> src</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    src.run()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>os.remove(‘path/filename’) 删除文件</p>
+<p>os.rename(oldname, newname) 重命名文件</p>
+<p>os.walk() 生成目录树下的所有文件名</p>
+<p>os.chdir(‘dirname’) 改变目录</p>
+<p>os.mkdir/makedirs(‘dirname’)创建目录/多层目录</p>
+<p>os.rmdir/removedirs(‘dirname’) 删除目录/多层目录</p>
+<p>os.listdir(‘dirname’) 列出指定目录的文件</p>
+<p>os.getcwd() 取得当前工作目录</p>
+<p>os.chmod() 改变目录权限</p>
+<p>os.path.basename(‘path/filename’) 去掉目录路径，返回文件名</p>
+<p>os.path.dirname(‘path/filename’) 去掉文件名，返回目录路径</p>
+<p>os.path.join(path1[,path2[,…]]) 将分离的各部分组合成一个路径名</p>
+<p>os.path.split(‘path’) 返回( dirname(), basename())元组</p>
+<p>os.path.splitext() 返回 (filename, extension) 元组</p>
+<p>os.path.getatime\ctime\mtime 分别返回最近访问、创建、修改时间</p>
+<p>os.path.getsize() 返回文件大小</p>
+<p>os.path.exists() 是否存在</p>
+<p>os.path.isabs() 是否为绝对路径</p>
+<p>os.path.isdir() 是否为目录</p>
+<p>os.path.isfile() 是否为文件</p>
+</blockquote>
+<h2 id="sys"><a href="#sys" class="headerlink" title="sys"></a>sys</h2><p>常用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> sys.argv           命令行参数List，第一个元素是程序本身路径</span><br><span class="line"><span class="number">2</span> sys.exit(n)        退出程序，正常退出时exit(<span class="number">0</span>)</span><br><span class="line"><span class="number">3</span> sys.version        获取Python解释程序的版本信息</span><br><span class="line"><span class="number">4</span> sys.maxint         最大的Int值</span><br><span class="line"><span class="number">5</span> sys.path           返回模块的搜索路径，初始化时使用PYTHONPATH环境变量的值</span><br><span class="line"><span class="number">6</span> sys.platform       返回操作系统平台名称</span><br></pre></td></tr></table></figure>
+<p>sys.argv 命令行参数List，第一个元素是程序本身路径</p>
+<p>sys.modules.keys() 返回所有已经导入的模块列表</p>
+<p>sys.exc_info() 获取当前正在处理的异常类,exc_type、exc_value、exc_traceback当前处理的异常详细信息</p>
+<p>sys.exit(n) 退出程序，正常退出时exit(0)</p>
+<p>sys.hexversion 获取Python解释程序的版本值，16进制格式如：0x020403F0</p>
+<p>sys.version 获取Python解释程序的版本信息</p>
+<p>sys.maxint 最大的Int值</p>
+<p>sys.maxunicode 最大的Unicode值</p>
+<p>sys.modules 返回系统导入的模块字段，key是模块名，value是模块</p>
+<p>sys.path 返回模块的搜索路径，初始化时使用PYTHONPATH环境变量的值</p>
+<p>sys.platform 返回操作系统平台名称</p>
+<p>sys.stdout 标准输出</p>
+<p>sys.stdin 标准输入</p>
+<p>sys.stderr 错误输出</p>
+<p>sys.exc_clear() 用来清除当前线程所出现的当前的或最近的错误信息</p>
+<p>sys.exec_prefix 返回平台独立的python文件安装的位置</p>
+<p>sys.byteorder 本地字节规则的指示器，big-endian平台的值是’big’,little-endian平台的值是’little’</p>
+<p>sys.copyright 记录python版权相关的东西</p>
+<p>sys.api_version 解释器的C的API版本</p>
+<p>sys.stdin,sys.stdout,sys.stderr</p>
+<h2 id="os和sys区别"><a href="#os和sys区别" class="headerlink" title="os和sys区别"></a>os和sys区别</h2><p>os模块负责程序与操作系统的交互，提供了访问操作系统底层的接口;sys模块负责程序与python解释器的交互，提供了一系列的函数和变量，用于操控python的运行时环境。 </p>
+<h2 id="random"><a href="#random" class="headerlink" title="random"></a>random</h2>
+
+	<div class="row">
+    <embed src="random.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"> print(random.random())<span class="comment">#(0,1)----float    大于0且小于1之间的小数</span></span><br><span class="line"></span><br><span class="line"> print(random.randint(<span class="number">1</span>,<span class="number">3</span>))  <span class="comment">#[1,3]    大于等于1且小于等于3之间的整数</span></span><br><span class="line"></span><br><span class="line">print(random.randrange(<span class="number">1</span>,<span class="number">3</span>)) <span class="comment">#[1,3)    大于等于1且小于3之间的整数</span></span><br><span class="line"></span><br><span class="line"> print(random.choice([<span class="number">1</span>,<span class="string">'23'</span>,[<span class="number">4</span>,<span class="number">5</span>]]))<span class="comment">#1或者23或者[4,5]</span></span><br><span class="line"></span><br><span class="line"> print(random.sample([<span class="number">1</span>,<span class="string">'23'</span>,[<span class="number">4</span>,<span class="number">5</span>]],<span class="number">2</span>))<span class="comment">#列表元素任意2个组合</span></span><br><span class="line"></span><br><span class="line">print(random.uniform(<span class="number">1</span>,<span class="number">3</span>))<span class="comment">#大于1小于3的小数，如1.927109612082716 </span></span><br><span class="line"></span><br><span class="line">item=[<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">9</span>]</span><br><span class="line">random.shuffle(item) <span class="comment">#打乱item的顺序,相当于"洗牌"</span></span><br><span class="line">print(item)</span><br></pre></td></tr></table></figure>
+<h3 id="产生随机号码"><a href="#产生随机号码" class="headerlink" title="产生随机号码"></a>产生随机号码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">make_code</span><span class="params">(size=<span class="number">7</span>)</span>:</span></span><br><span class="line">    res = <span class="string">''</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(size):</span><br><span class="line">        <span class="comment"># 循环一次则得到一个随机字符（字母/数字）</span></span><br><span class="line">        s = chr(random.randint(<span class="number">65</span>, <span class="number">90</span>))</span><br><span class="line">        num = str(random.randint(<span class="number">0</span>, <span class="number">9</span>))</span><br><span class="line">        res += random.choice([s, num])</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">res=make_code()</span><br><span class="line">print(res)</span><br></pre></td></tr></table></figure>
+<h3 id="打印进度条"><a href="#打印进度条" class="headerlink" title="打印进度条"></a>打印进度条</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">make_progress</span><span class="params">(percent,width=<span class="number">50</span>)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> percent &gt; <span class="number">1</span>:</span><br><span class="line">        percent=<span class="number">1</span></span><br><span class="line">    show_str=(<span class="string">'[%%-%ds]'</span> % width) % (int(percent * width) * <span class="string">'#'</span>)</span><br><span class="line">    print(<span class="string">'\r%s %s%%'</span> %(show_str,int(percent * <span class="number">100</span>)),end=<span class="string">''</span>)</span><br><span class="line"></span><br><span class="line">total_size=<span class="number">1025</span></span><br><span class="line">recv_size=<span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> recv_size &lt; total_size:</span><br><span class="line">    time.sleep(<span class="number">0.1</span>) <span class="comment"># 模拟经过了0.5的网络延迟下载了1024个字节</span></span><br><span class="line">    recv_size+=<span class="number">1024</span></span><br><span class="line">    <span class="comment"># 调用打印进度条的功能去打印进度条</span></span><br><span class="line">    percent=recv_size / total_size</span><br><span class="line">    make_progress(percent)</span><br></pre></td></tr></table></figure>
+<h2 id="subprocess"><a href="#subprocess" class="headerlink" title="subprocess"></a>subprocess</h2>
+
+	<div class="row">
+    <embed src="subprocess.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+<h2 id="time"><a href="#time" class="headerlink" title="time"></a>time</h2>
+
+	<div class="row">
+    <embed src="time.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+<h2 id="时间分为三种格式"><a href="#时间分为三种格式" class="headerlink" title="时间分为三种格式"></a>时间分为三种格式</h2><h3 id="1、时间戳"><a href="#1、时间戳" class="headerlink" title="1、时间戳"></a>1、时间戳</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">start= time.time()</span><br><span class="line">time.sleep(<span class="number">3</span>)</span><br><span class="line">stop= time.time()</span><br><span class="line">print(stop - start)</span><br><span class="line">输出结果:</span><br><span class="line"><span class="number">3.000129222869873</span></span><br></pre></td></tr></table></figure>
+<h3 id="2、格式化的字符串形式"><a href="#2、格式化的字符串形式" class="headerlink" title="2、格式化的字符串形式"></a>2、格式化的字符串形式</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">print(time.strftime(<span class="string">'%Y-%m-%d %X'</span>))</span><br><span class="line">print(time.strftime(<span class="string">'%Y-%m-%d %H:%M:%S %p'</span>))</span><br><span class="line">输出结果:</span><br><span class="line"><span class="number">2018</span><span class="number">-07</span><span class="number">-30</span> <span class="number">18</span>:<span class="number">04</span>:<span class="number">27</span></span><br><span class="line"><span class="number">2018</span><span class="number">-07</span><span class="number">-30</span> <span class="number">18</span>:<span class="number">04</span>:<span class="number">27</span> PM</span><br></pre></td></tr></table></figure>
+<h3 id="3、-结构化的时间-时间对象"><a href="#3、-结构化的时间-时间对象" class="headerlink" title="3、 结构化的时间/时间对象"></a>3、 结构化的时间/时间对象</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">t1=time.localtime()</span><br><span class="line">print(t1)</span><br><span class="line">print(type(t1.tm_min))</span><br><span class="line">print(t1.tm_mday)</span><br><span class="line"></span><br><span class="line">t2=time.gmtime()</span><br><span class="line">print(t1)</span><br><span class="line">print(t2)</span><br></pre></td></tr></table></figure>
+<p>获取格式化字符串形式的时间麻烦<br>时间戳与格式化时间之间的转换麻烦<br>获取之前或者未来的时间麻烦.所以用到了 datetime模块</p>
+<h2 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h2><ul>
+<li><p>什么是hash<br>hash是一种算法，该算法接受传入的内容，经过运算得到一串hash值<br>如果把hash算法比喻为一座工厂<br>那传给hash算法的内容就是原材料<br>生成的hash值就是生产出的产品</p>
+</li>
+<li><p>为何要用hash算法<br>hash值/产品有三大特性：<br>1、只要传入的内容一样，得到的hash值必然一样<br>2、只要我们使用的hash算法固定，无论传入的内容有多大，<br>得到的hash值的长度是固定的<br>3、不可以用hash值逆推出原来的内容</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">基于<span class="number">1</span>和<span class="number">2</span>可以在下载文件时做文件一致性校验</span><br><span class="line">基于<span class="number">1</span>和<span class="number">3</span>可以对密码进行加密</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>怎么用<br>import hashlib<br>1、造出hash工厂<br>m=hashlib.sha512(‘你’.encode(‘utf-8’))</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span>、运送原材料</span><br><span class="line">m.update(<span class="string">'好啊美sadfsadf丽asdfsafdasdasdfsafsdafasdfasdfsadfsadfsadfsadfasdff的张铭言'</span>.encode(<span class="string">'utf-8'</span>))</span><br></pre></td></tr></table></figure>
+<p>3、产出hash值<br>print(m.hexdigest()) #2ff39b418bfc084c8f9a237d11b9da6d5c6c0fb6bebcde2ba43a433dc823966c</p>
+</li>
+</ul>
+
+
+	<div class="row">
+    <embed src="hash.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+<h3 id="hashlib-md5"><a href="#hashlib-md5" class="headerlink" title="hashlib.md5"></a>hashlib.md5</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"></span><br><span class="line">m=hashlib.md5()<span class="comment"># m=hashlib.sha256()</span></span><br><span class="line"></span><br><span class="line">m.update(<span class="string">'hello'</span>.encode(<span class="string">'utf8'</span>))</span><br><span class="line">print(m.hexdigest())  <span class="comment">#5d41402abc4b2a76b9719d911017c592</span></span><br><span class="line"></span><br><span class="line">m.update(<span class="string">'alvin'</span>.encode(<span class="string">'utf8'</span>))</span><br><span class="line"></span><br><span class="line">print(m.hexdigest())  <span class="comment">#92a7e713c30abbb0319fa07da2a5c4af</span></span><br><span class="line"></span><br><span class="line">m2=hashlib.md5()</span><br><span class="line">m2.update(<span class="string">'helloalvin'</span>.encode(<span class="string">'utf8'</span>))</span><br><span class="line">print(m2.hexdigest()) <span class="comment">#92a7e713c30abbb0319fa07da2a5c4af</span></span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">注意：把一段很长的数据update多次，与一次update这段长数据，得到的结果一样</span></span><br><span class="line"><span class="string">但是update多次为校验大文件提供了可能。</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+<h3 id="hashlib-sha256"><a href="#hashlib-sha256" class="headerlink" title="hashlib.sha256"></a>hashlib.sha256</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"> </span><br><span class="line"><span class="comment"># ######## 256 ########</span></span><br><span class="line"> </span><br><span class="line">hash = hashlib.sha256(<span class="string">'898oaFs09f'</span>.encode(<span class="string">'utf8'</span>))</span><br><span class="line">hash.update(<span class="string">'alvin'</span>.encode(<span class="string">'utf8'</span>))</span><br><span class="line"><span class="keyword">print</span> (hash.hexdigest())<span class="comment">#e79e68f070cdedcfe63eaf1a2e92c83b4cfb1b5c6bc452d214c1b7e77cdfd1c7</span></span><br></pre></td></tr></table></figure>
+<h3 id="模拟撞库破解密码"><a href="#模拟撞库破解密码" class="headerlink" title="模拟撞库破解密码"></a>模拟撞库破解密码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line">passwds=[</span><br><span class="line">    <span class="string">'alex3714'</span>,</span><br><span class="line">    <span class="string">'alex1313'</span>,</span><br><span class="line">    <span class="string">'alex94139413'</span>,</span><br><span class="line">    <span class="string">'alex123456'</span>,</span><br><span class="line">    <span class="string">'123456alex'</span>,</span><br><span class="line">    <span class="string">'a123lex'</span>,</span><br><span class="line">    ]</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">make_passwd_dic</span><span class="params">(passwds)</span>:</span></span><br><span class="line">    dic=&#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> passwd <span class="keyword">in</span> passwds:</span><br><span class="line">        m=hashlib.md5()</span><br><span class="line">        m.update(passwd.encode(<span class="string">'utf-8'</span>))</span><br><span class="line">        dic[passwd]=m.hexdigest()</span><br><span class="line">    <span class="keyword">return</span> dic</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">break_code</span><span class="params">(cryptograph,passwd_dic)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> k,v <span class="keyword">in</span> passwd_dic.items():</span><br><span class="line">        <span class="keyword">if</span> v == cryptograph:</span><br><span class="line">            print(<span class="string">'密码是===&gt;\033[46m%s\033[0m'</span> %k)</span><br><span class="line"></span><br><span class="line">cryptograph=<span class="string">'aee949757a2e698417463d47acac93df'</span></span><br><span class="line">break_code(cryptograph,make_passwd_dic(passwds))</span><br><span class="line"></span><br><span class="line">模拟撞库破解密码</span><br></pre></td></tr></table></figure>
+<h3 id="hmac-new"><a href="#hmac-new" class="headerlink" title="hmac.new"></a>hmac.new</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#要想保证hmac最终结果一致，必须保证：</span></span><br><span class="line"><span class="comment">#1:hmac.new括号内指定的初始key一样</span></span><br><span class="line"><span class="comment">#2:无论update多少次，校验的内容累加到一起是一样的内容</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> hmac</span><br><span class="line"></span><br><span class="line">h1=hmac.new(<span class="string">b'egon'</span>)</span><br><span class="line">h1.update(<span class="string">b'hello'</span>)</span><br><span class="line">h1.update(<span class="string">b'world'</span>)</span><br><span class="line">print(h1.hexdigest())</span><br><span class="line"></span><br><span class="line">h2=hmac.new(<span class="string">b'egon'</span>)</span><br><span class="line">h2.update(<span class="string">b'helloworld'</span>)</span><br><span class="line">print(h2.hexdigest())</span><br><span class="line"></span><br><span class="line">h3=hmac.new(<span class="string">b'egonhelloworld'</span>)</span><br><span class="line">print(h3.hexdigest())</span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">f1bf38d054691688f89dcd34ac3c27f2</span></span><br><span class="line"><span class="string">f1bf38d054691688f89dcd34ac3c27f2</span></span><br><span class="line"><span class="string">bcca84edd9eeb86f30539922b28f3981</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line">注意！注意！注意</span><br></pre></td></tr></table></figure>
+<h2 id="logger日志"><a href="#logger日志" class="headerlink" title="logger日志"></a>logger日志</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># setting.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">BASE_PATH = os.path.dirname(os.path.dirname(__file__))</span><br><span class="line">DB_PATH = os.path.join(BASE_PATH, <span class="string">'db'</span>)</span><br><span class="line">LOG_PATH = os.path.join(BASE_PATH, <span class="string">'log'</span>)</span><br><span class="line"></span><br><span class="line">logfile_name = <span class="string">'log.log'</span></span><br><span class="line"></span><br><span class="line">standard_format = <span class="string">'[%(asctime)s][%(threadName)s:%(thread)d][task_id:%(name)s][%(filename)s:%(lineno)d]'</span> \</span><br><span class="line">                  <span class="string">'[%(levelname)s][%(message)s]'</span></span><br><span class="line"></span><br><span class="line">simple_format = <span class="string">'[%(levelname)s][%(asctime)s][%(filename)s:%(lineno)d]%(message)s'</span></span><br><span class="line"></span><br><span class="line">id_simple_format = <span class="string">'[%(levelname)s][%(asctime)s] %(message)s'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(LOG_PATH):</span><br><span class="line">    os.mkdir(LOG_PATH)</span><br><span class="line"></span><br><span class="line">logfile_path = os.path.join(LOG_PATH, logfile_name)</span><br><span class="line"></span><br><span class="line">LOGGING_DIC = &#123;</span><br><span class="line">    <span class="string">'version'</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">'disable_existing_loggers'</span>: <span class="literal">False</span>,</span><br><span class="line">    <span class="string">'formatters'</span>: &#123;</span><br><span class="line">        <span class="string">'standard'</span>: &#123;</span><br><span class="line">            <span class="string">'format'</span>: standard_format</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">'simple'</span>: &#123;</span><br><span class="line">            <span class="string">'format'</span>: simple_format</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">'filters'</span>: &#123;&#125;,</span><br><span class="line">    <span class="string">'handlers'</span>: &#123;</span><br><span class="line">        <span class="string">'console'</span>: &#123;</span><br><span class="line">            <span class="string">'level'</span>: <span class="string">'DEBUG'</span>,</span><br><span class="line">            <span class="string">'class'</span>: <span class="string">'logging.StreamHandler'</span>,</span><br><span class="line">            <span class="string">'formatter'</span>: <span class="string">'simple'</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">'default'</span>: &#123;</span><br><span class="line">            <span class="string">'level'</span>: <span class="string">'DEBUG'</span>,</span><br><span class="line">            <span class="string">'class'</span>: <span class="string">'logging.handlers.RotatingFileHandler'</span>,</span><br><span class="line">            <span class="string">'formatter'</span>: <span class="string">'standard'</span>,</span><br><span class="line">            <span class="string">'filename'</span>: logfile_path,</span><br><span class="line">            <span class="string">'maxBytes'</span>: <span class="number">1024</span> * <span class="number">1024</span> * <span class="number">5</span>,</span><br><span class="line">            <span class="string">'backupCount'</span>: <span class="number">5</span>,</span><br><span class="line">            <span class="string">'encoding'</span>: <span class="string">'utf-8'</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">'loggers'</span>: &#123;</span><br><span class="line">        <span class="string">''</span>: &#123;</span><br><span class="line">            <span class="string">'handlers'</span>: [<span class="string">'default'</span>, <span class="string">'console'</span>],</span><br><span class="line">            <span class="string">'level'</span>: <span class="string">'DEBUG'</span>,</span><br><span class="line">            <span class="string">'propagate'</span>: <span class="literal">True</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bank_logger = common.get_logger(<span class="string">'bank'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="公共端函数"><a href="#公共端函数" class="headerlink" title="公共端函数"></a>公共端函数</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_logger</span><span class="params">(name)</span>:</span></span><br><span class="line">    logging.config.dictConfig(setting.LOGGING_DIC)</span><br><span class="line">    logger = logging.getLogger(name)</span><br><span class="line">    <span class="keyword">return</span> logger</span><br></pre></td></tr></table></figure>
+<h2 id="subprocess模块"><a href="#subprocess模块" class="headerlink" title="subprocess模块"></a>subprocess模块</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"></span><br><span class="line">obj=subprocess.Popen(</span><br><span class="line">    <span class="string">'tasklist'</span>,</span><br><span class="line">    shell=<span class="literal">True</span>,</span><br><span class="line">    stdout=subprocess.PIPE, <span class="comment"># 正确的管道</span></span><br><span class="line">    stderr=subprocess.PIPE  <span class="comment">#  错误的管道</span></span><br><span class="line"></span><br><span class="line">)</span><br><span class="line">print(obj)</span><br><span class="line">stdout_res = obj.stdout.read()  <span class="comment"># 得到正确管道中的数据</span></span><br><span class="line">print(stdout_res.decode(<span class="string">'gbk'</span>))</span><br><span class="line">print(stdout_res)</span><br><span class="line"></span><br><span class="line">stderr_res1=obj.stderr.read()  <span class="comment">#得到错误管道中的数据</span></span><br><span class="line">stderr_res2=obj.stderr.read()  <span class="comment"># 管道中的信息只能取一次</span></span><br><span class="line">stderr_res3=obj.stderr.read()</span><br><span class="line">print(stderr_res1.decode(<span class="string">'gbk'</span>))</span><br><span class="line">print(stderr_res1)</span><br><span class="line">print(stderr_res2)</span><br><span class="line">print(stderr_res3)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/gongzhonghao.jpg" alt="李江洋 wechat" style="width: 200px; max-width: 100%;">
+  <div>python分享公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="李江洋 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="李江洋 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python基础/" rel="tag"># python基础</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/15/python包/" rel="next" title="python包">
+                <i class="fa fa-chevron-left"></i> python包
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/15/python函数递归/" rel="prev" title="python函数递归">
+                python函数递归 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="李江洋">
+            
+              <p class="site-author-name" itemprop="name">李江洋</p>
+              <p class="site-description motion-element" itemprop="description">记录学习的技能和遇到的问题</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">179</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lvdXJuYW1l" title="GitHub &rarr; https://github.com/yourname"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="bWFpbHRvOjEzMjgwNDQzOTJAcXEuY29t" title="E-Mail &rarr; mailto:1328044392@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL2V4YW1wbGUuY29t" title="http://example.com">Title</span>
+                  </li>
+                
+              </ul>
+            </div>
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#python常用模块"><span class="nav-number">1.</span> <span class="nav-text">python常用模块</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#datetime"><span class="nav-number">1.1.</span> <span class="nav-text">datetime</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#json与pickle"><span class="nav-number">1.2.</span> <span class="nav-text">json与pickle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#os"><span class="nav-number">1.3.</span> <span class="nav-text">os</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sys"><span class="nav-number">1.4.</span> <span class="nav-text">sys</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#os和sys区别"><span class="nav-number">1.5.</span> <span class="nav-text">os和sys区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#random"><span class="nav-number">1.6.</span> <span class="nav-text">random</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#产生随机号码"><span class="nav-number">1.6.1.</span> <span class="nav-text">产生随机号码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打印进度条"><span class="nav-number">1.6.2.</span> <span class="nav-text">打印进度条</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#subprocess"><span class="nav-number">1.7.</span> <span class="nav-text">subprocess</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#time"><span class="nav-number">1.8.</span> <span class="nav-text">time</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#时间分为三种格式"><span class="nav-number">1.9.</span> <span class="nav-text">时间分为三种格式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、时间戳"><span class="nav-number">1.9.1.</span> <span class="nav-text">1、时间戳</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、格式化的字符串形式"><span class="nav-number">1.9.2.</span> <span class="nav-text">2、格式化的字符串形式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、-结构化的时间-时间对象"><span class="nav-number">1.9.3.</span> <span class="nav-text">3、 结构化的时间/时间对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hash"><span class="nav-number">1.10.</span> <span class="nav-text">hash</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hashlib-md5"><span class="nav-number">1.10.1.</span> <span class="nav-text">hashlib.md5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hashlib-sha256"><span class="nav-number">1.10.2.</span> <span class="nav-text">hashlib.sha256</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模拟撞库破解密码"><span class="nav-number">1.10.3.</span> <span class="nav-text">模拟撞库破解密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hmac-new"><span class="nav-number">1.10.4.</span> <span class="nav-text">hmac.new</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#logger日志"><span class="nav-number">1.11.</span> <span class="nav-text">logger日志</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#接口"><span class="nav-number">1.11.1.</span> <span class="nav-text">接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#公共端函数"><span class="nav-number">1.11.2.</span> <span class="nav-text">公共端函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#subprocess模块"><span class="nav-number">1.12.</span> <span class="nav-text">subprocess模块</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李江洋</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Pisces</span> v7.0.1</div>
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script id="ribbon" size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+  
+  <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ljyabc.github.io/2019/03/15/python常用模块/";
+    this.page.identifier = "2019/03/15/python常用模块/";
+    this.page.title = 'python常用模块';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/exturl.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+   <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+</body>
+</html>

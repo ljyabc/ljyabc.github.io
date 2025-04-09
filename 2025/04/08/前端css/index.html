@@ -1,0 +1,1865 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="http://unclealan.cn/docs/ fonts.googleapis.com csscss的三种引入方式行间式：写在标签内的style属性中 1&amp;lt;p style=&quot;color:red;&quot;&amp;lt;/p&amp;gt; 内联式：写在style标签内 12345&amp;lt;style&amp;gt;    p &amp;#123;        color:red    &amp;#125;&amp;lt;/style&amp;gt">
+<meta name="keywords" content="前端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端css">
+<meta property="og:url" content="https://ljyabc.github.io/2025/04/08/前端css/index.html">
+<meta property="og:site_name" content="择墅居:李江洋">
+<meta property="og:description" content="http://unclealan.cn/docs/ fonts.googleapis.com csscss的三种引入方式行间式：写在标签内的style属性中 1&amp;lt;p style=&quot;color:red;&quot;&amp;lt;/p&amp;gt; 内联式：写在style标签内 12345&amp;lt;style&amp;gt;    p &amp;#123;        color:red    &amp;#125;&amp;lt;/style&amp;gt">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ljyabc.github.io/2025/04/08/前端css/1553786517439.png">
+<meta property="og:image" content="https://ljyabc.github.io/2025/04/08/前端css/1553786595333.png">
+<meta property="og:updated_time" content="2025-04-08T14:38:16.271Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端css">
+<meta name="twitter:description" content="http://unclealan.cn/docs/ fonts.googleapis.com csscss的三种引入方式行间式：写在标签内的style属性中 1&amp;lt;p style=&quot;color:red;&quot;&amp;lt;/p&amp;gt; 内联式：写在style标签内 12345&amp;lt;style&amp;gt;    p &amp;#123;        color:red    &amp;#125;&amp;lt;/style&amp;gt">
+<meta name="twitter:image" content="https://ljyabc.github.io/2025/04/08/前端css/1553786517439.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ljyabc.github.io/2025/04/08/前端css/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>前端css | 择墅居:李江洋</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">择墅居:李江洋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">争做长沙别墅豪装第一品牌</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/book" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>book</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2025/04/08/前端css/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李江洋">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="择墅居:李江洋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">前端css
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2025-04-08 23:55:59 / 修改时间：22:38:16" itemprop="dateCreated datePublished" datetime="2025-04-08T23:55:59+08:00">2025-04-08</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/理解/" itemprop="url" rel="index"><span itemprop="name">理解</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2025/04/08/前端css/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2025/04/08/前端css/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><span class="exturl" data-url="aHR0cDovL3VuY2xlYWxhbi5jbi9kb2NzLw==" title="http://unclealan.cn/docs/">http://unclealan.cn/docs/<i class="fa fa-external-link"></i></span></p>
+<p>fonts.googleapis.com</p>
+<h1 id="css"><a href="#css" class="headerlink" title="css"></a>css</h1><h2 id="css的三种引入方式"><a href="#css的三种引入方式" class="headerlink" title="css的三种引入方式"></a>css的三种引入方式</h2><h3 id="行间式："><a href="#行间式：" class="headerlink" title="行间式："></a>行间式：</h3><p>写在标签内的style属性中</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p <span class="attribute">style</span>=<span class="string">"color:red;"</span>&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="内联式："><a href="#内联式：" class="headerlink" title="内联式："></a>内联式：</h3><p>写在style标签内</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">    p &#123;</span><br><span class="line"><span class="css">        <span class="selector-tag">color</span><span class="selector-pseudo">:red</span></span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="外联式："><a href="#外联式：" class="headerlink" title="外联式："></a>外联式：</h3><p>通过导入</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link <span class="attribute">rel</span>=<span class="string">"stylesheet"</span> <span class="attribute">type</span>=<span class="string">"text/css"</span> <span class="attribute">href</span>=<span class="string">"./style.css"</span>&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h4><p> 三种方式没有优先级<br> 三种方式协同布局<br>   不重复的属性一定为唯一位置的唯一值<br>   重复的属性采用覆盖赋值，保留最后位置的属性值<br>   行间式一定是逻辑上最后被解析的位置<br>   ！important 会影响优先级</p>
+<p> 常用属性</p>
+<h3 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h3><h4 id="fontfamily"><a href="#fontfamily" class="headerlink" title="fontfamily"></a>fontfamily</h4><p>​    字体家族     fontfamily:”Arial”,”Helvetica”,”宋体”,sansserif;  或者衬线字体serif</p>
+<h4 id="fontsize"><a href="#fontsize" class="headerlink" title="fontsize"></a>fontsize</h4><p>​    字体大小 10px 1.3em  都可以 </p>
+<h4 id="fontweight"><a href="#fontweight" class="headerlink" title="fontweight"></a>fontweight</h4><p> normal/bold   字体宽度     默认 以及加粗</p>
+<h4 id="fontstyle"><a href="#fontstyle" class="headerlink" title="fontstyle"></a>fontstyle</h4><p>​     normal/italic    字体风格   默认  斜体</p>
+<h4 id="fontvariant"><a href="#fontvariant" class="headerlink" title="fontvariant"></a>fontvariant</h4><p>   normal/smallcaps   字体变形    默认   小型大写字母</p>
+<h4 id="font-复合属性-宽风形大家-开放性大家"><a href="#font-复合属性-宽风形大家-开放性大家" class="headerlink" title="font: 复合属性,宽风形大家,开放性大家"></a>font: 复合属性,宽风形大家,开放性大家</h4><p>字体宽度. 字体风格.字体变形.字体大小.字体家族</p>
+<p>[weight | style | variant] size family</p>
+<p> 字体家族<br>    衬线字体：宋体，楷体，仿宋<br>   非衬线字体：微软雅黑，黑体，思源黑体</p>
+<h5 id="举列子"><a href="#举列子" class="headerlink" title="举列子"></a>举列子</h5><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">fontsize:</span> <span class="number">30</span>px<span class="comment">;</span></span><br><span class="line"><span class="symbol">fontweight:</span> bold<span class="comment">;</span></span><br><span class="line"><span class="symbol">fontstyle:</span> italic<span class="comment">;</span></span><br><span class="line"><span class="symbol">fontvariant:</span> smallcaps<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<h3 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h3><h4 id="color"><a href="#color" class="headerlink" title="color"></a>color</h4><p> 设置文字颜色</p>
+<h3 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h3><h4 id="letter-spacing"><a href="#letter-spacing" class="headerlink" title="letter-spacing"></a>letter-spacing</h4><p>​    字母间隔  值为长度，可以是负值</p>
+<h5 id="px"><a href="#px" class="headerlink" title="px"></a>px</h5><p> 像素</p>
+<h4 id="word-spacing"><a href="#word-spacing" class="headerlink" title="word-spacing"></a>word-spacing</h4><p>词的间距(通过空格识别)</p>
+<h5 id="px-1"><a href="#px-1" class="headerlink" title="px"></a>px</h5><p> 像素</p>
+<h4 id="text-decoration"><a href="#text-decoration" class="headerlink" title="text-decoration"></a>text-decoration</h4><p>  文字修饰</p>
+<h5 id="underline"><a href="#underline" class="headerlink" title="underline"></a>underline</h5><p>  下划线</p>
+<h5 id="overline"><a href="#overline" class="headerlink" title="overline"></a>overline</h5><p> 上划线</p>
+<h5 id="linethrough"><a href="#linethrough" class="headerlink" title="linethrough"></a>linethrough</h5><p> 删除线,主要是用来删除链接的下划线</p>
+<h5 id="none"><a href="#none" class="headerlink" title="none"></a>none</h5><p> (默认)=不写</p>
+<h4 id="text-align"><a href="#text-align" class="headerlink" title="text-align"></a>text-align</h4><p>​    横向排列 </p>
+<h5 id="left-right-center"><a href="#left-right-center" class="headerlink" title="left | right | center"></a>left | right | center</h5><p>左 | 右 | 中</p>
+<h4 id="verticalalign"><a href="#verticalalign" class="headerlink" title="verticalalign"></a>verticalalign</h4><p>​    垂直对其方式</p>
+<h5 id="middle："><a href="#middle：" class="headerlink" title="middle："></a>middle：</h5><p>将支持valign特性的对象的内容与对象中部对齐 </p>
+<h5 id="了解"><a href="#了解" class="headerlink" title="了解"></a>了解</h5><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">baseline： 将支持valign特性的对象的内容与基线对齐 </span><br><span class="line"><span class="selector-tag">sub</span>： 垂直对齐文本的下标 </span><br><span class="line">super： 垂直对齐文本的上标 </span><br><span class="line"><span class="attribute">top</span>： 将支持valign特性的对象的内容与对象顶端对齐 </span><br><span class="line">text-<span class="attribute">top</span>： 将支持valign特性的对象的文本与对象顶端对齐 </span><br><span class="line"></span><br><span class="line"><span class="attribute">bottom</span>： 将支持valign特性的对象的文本与对象底端对齐 </span><br><span class="line">text-<span class="attribute">bottom</span>： 将支持valign特性的对象的文本与对象顶端对齐 </span><br><span class="line">&lt;percentage&gt;： 用百分比指定由基线算起的偏移量。可以为负值。基线对于百分数来说就是0%。 </span><br><span class="line">&lt;length&gt;： 用长度值指定由基线算起的偏移量。可以为负值。基线对于数值来说为0。（CSS2）</span><br></pre></td></tr></table></figure>
+<h4 id="text-indent"><a href="#text-indent" class="headerlink" title="text-indent"></a>text-indent</h4><p> 文本缩进 </p>
+<h5 id="em-px"><a href="#em-px" class="headerlink" title="em, px"></a>em, px</h5><p>单位</p>
+<h4 id="line-height"><a href="#line-height" class="headerlink" title="line-height"></a>line-height</h4><p>##### </p>
+<p> 设置行间距离 不允许使用负</p>
+<h5 id="px-2"><a href="#px-2" class="headerlink" title="px"></a>px</h5><p>单位</p>
+<h5 id="作业垂直居中"><a href="#作业垂直居中" class="headerlink" title="作业垂直居中"></a>作业垂直居中</h5><p>行高等于元素的高</p>
+<h4 id="word-wrap"><a href="#word-wrap" class="headerlink" title="word-wrap"></a>word-wrap</h4><p> 允许长单词或URL地址换行到下一行</p>
+<h5 id="normal"><a href="#normal" class="headerlink" title="normal"></a>normal</h5><p>​     只在允许的断字点换行（浏览器保持默认处理）。</p>
+<h5 id="break-word"><a href="#break-word" class="headerlink" title="break-word"></a>break-word</h5><p>​    在长单词或 URL 地址内部进行换行。</p>
+<h4 id="white-space"><a href="#white-space" class="headerlink" title="white-space"></a>white-space</h4><h5 id="pre："><a href="#pre：" class="headerlink" title="pre："></a>pre：</h5><p>文本</p>
+<p>用等宽字体显示预先格式化的文本，不合并文字间的空白距离，当文字超出边界时不换行。可查阅pre对象</p>
+<h5 id="prewrap："><a href="#prewrap：" class="headerlink" title="prewrap："></a>prewrap：</h5><p>强制一行</p>
+<p>用等宽字体显示预先格式化的文本，不合并文字间的空白距离，当文字碰到边界时发生换行。</p>
+<h2 id="CSS-属性-尺寸-边框-背景"><a href="#CSS-属性-尺寸-边框-背景" class="headerlink" title="CSS 属性/尺寸/边框/背景"></a>CSS 属性/尺寸/边框/背景</h2><h3 id="尺寸-height-width"><a href="#尺寸-height-width" class="headerlink" title="尺寸 height  width"></a>尺寸 height  width</h3><p> height    高度<br> min-height    最小高度<br> max-height    最大高度<br> width        宽度</p>
+<h4 id="min-width"><a href="#min-width" class="headerlink" title="min-width"></a>min-width</h4><p>  最小宽度inline-block 有用</p>
+<h4 id="max-width"><a href="#max-width" class="headerlink" title="max-width"></a>max-width</h4><p>   最大宽度对块状有用</p>
+<h4 id="calc代数公式"><a href="#calc代数公式" class="headerlink" title="calc代数公式"></a>calc代数公式</h4><p>calc(80px * 3)</p>
+<h3 id="边框-border-实体有风格颜色"><a href="#边框-border-实体有风格颜色" class="headerlink" title="边框 border (实体有风格颜色)"></a>边框 border (实体有风格颜色)</h3><h4 id="border-style"><a href="#border-style" class="headerlink" title="border-style"></a>border-style</h4><p>边框风格   </p>
+<h5 id="dotted"><a href="#dotted" class="headerlink" title="dotted"></a>dotted</h5><p>   点线</p>
+<h5 id="dashed"><a href="#dashed" class="headerlink" title="dashed"></a>dashed</h5><p>  虚线</p>
+<h5 id="solid"><a href="#solid" class="headerlink" title="solid"></a>solid</h5><p>   实线</p>
+<h5 id="double"><a href="#double" class="headerlink" title="double"></a>double</h5><p> 双实线</p>
+<h5 id="groove"><a href="#groove" class="headerlink" title="groove"></a>groove</h5><p> 槽状线</p>
+<h5 id="ridge"><a href="#ridge" class="headerlink" title="ridge"></a>ridge</h5><p>​     脊线</p>
+<h5 id="inset"><a href="#inset" class="headerlink" title="inset"></a>inset</h5><p>​      内嵌效果</p>
+<h5 id="outset"><a href="#outset" class="headerlink" title="outset"></a>outset</h5><p>   外凸效果</p>
+<h4 id="border-width"><a href="#border-width" class="headerlink" title="border-width"></a>border-width</h4><p>  边框宽度   </p>
+<h4 id="border-color"><a href="#border-color" class="headerlink" title="border-color"></a>border-color</h4><p> 边框颜色</p>
+<h4 id="border-宽-样式-颜色"><a href="#border-宽-样式-颜色" class="headerlink" title="border 宽 样式 颜色"></a>border 宽 样式 颜色</h4><p>   复合属性   <code>border: 1px solid #ccc</code></p>
+<h4 id="border-left-color"><a href="#border-left-color" class="headerlink" title="border-left-color"></a>border-left-color</h4><p>边框-单独设置各边 </p>
+<h3 id="外边距-规律同内"><a href="#外边距-规律同内" class="headerlink" title="外边距(规律同内)"></a>外边距(规律同内)</h3><h4 id="margin"><a href="#margin" class="headerlink" title="margin"></a>margin</h4><ul>
+<li><p>margin-left    </p>
+</li>
+<li><p>margin-right    </p>
+</li>
+<li><p>margin-top    </p>
+</li>
+<li><p>margin-bottom</p>
+<h5 id="auto"><a href="#auto" class="headerlink" title="auto"></a>auto</h5><p>auto:左右auto,自适应(平方)剩余可布局空间</p>
+</li>
+</ul>
+<h3 id="内边距-非实体仅距离"><a href="#内边距-非实体仅距离" class="headerlink" title="内边距(非实体仅距离)"></a>内边距(非实体仅距离)</h3><h4 id="padding-left"><a href="#padding-left" class="headerlink" title="padding-left"></a>padding-left</h4><p>内边距-单独设置各边 </p>
+<p> padding-top</p>
+<p> padding-right</p>
+<p> padding-bottom</p>
+<h4 id="padding"><a href="#padding" class="headerlink" title="padding"></a>padding</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">padding</span>: 值;  上下左右</span><br><span class="line"><span class="selector-tag">padding</span>: 值1 值2；   上下 左右</span><br><span class="line"><span class="selector-tag">padding</span>: 值1 值2 值3;  上  左右  下</span><br><span class="line"><span class="selector-tag">padding</span>: 值2 值2 值3 值4；  上  右  下  左</span><br></pre></td></tr></table></figure>
+<h3 id="背景属性"><a href="#背景属性" class="headerlink" title="背景属性"></a>背景属性</h3><h4 id="background-color"><a href="#background-color" class="headerlink" title="background-color"></a>background-color</h4><p> 背景颜色  </p>
+<h5 id="transparent"><a href="#transparent" class="headerlink" title="transparent"></a><code>transparent</code></h5><p> 为透明</p>
+<h4 id="background-image"><a href="#background-image" class="headerlink" title="background-image"></a>background-image</h4><p>  背景图片 </p>
+<h5 id="url"><a href="#url" class="headerlink" title="url()"></a>url()</h5><p>  图片地址</p>
+<h4 id="background-repeat"><a href="#background-repeat" class="headerlink" title="background-repeat"></a>background-repeat</h4><p>  背景图片平铺  </p>
+<h5 id="repeat"><a href="#repeat" class="headerlink" title="repeat"></a>repeat</h5><p>平铺  </p>
+<h5 id="no-repeat"><a href="#no-repeat" class="headerlink" title="no-repeat"></a>no-repeat</h5><p>不平铺 </p>
+<h5 id="repeat-x"><a href="#repeat-x" class="headerlink" title="repeat-x"></a>repeat-x</h5><p> 水平平铺</p>
+<h5 id="repeat-y"><a href="#repeat-y" class="headerlink" title="repeat-y"></a>repeat-y</h5><p>垂直平铺</p>
+<h4 id="background-position"><a href="#background-position" class="headerlink" title="background-position"></a>background-position</h4><p> 背景图片位置  </p>
+<h5 id="left-top"><a href="#left-top" class="headerlink" title="left top"></a>left top</h5><p>10px 10px   左 上</p>
+<h5 id="center-center"><a href="#center-center" class="headerlink" title="center center"></a>center center</h5><p>中 中</p>
+<h4 id="background-attachment"><a href="#background-attachment" class="headerlink" title="background-attachment"></a>background-attachment</h4><p>  背景图片固定 </p>
+<h5 id="scroll-fixed"><a href="#scroll-fixed" class="headerlink" title="scroll / fixed"></a>scroll / fixed</h5><p> fixed超过固定宽度才看不到图片</p>
+<h4 id="background-复合属性"><a href="#background-复合属性" class="headerlink" title="background 复合属性"></a>background 复合属性</h4><h5 id="background-颜色图片平铺位置固定"><a href="#background-颜色图片平铺位置固定" class="headerlink" title="background:颜色图片平铺位置固定"></a>background:颜色图片平铺位置固定</h5><p> color image repeat postion attachment</p>
+<h2 id="CSS精灵图"><a href="#CSS精灵图" class="headerlink" title="CSS精灵图"></a>CSS精灵图</h2><h3 id="坐标方向"><a href="#坐标方向" class="headerlink" title="坐标方向"></a>坐标方向</h3><p><img src="/2025/04/08/前端css/1553786517439.png" alt="1553786517439"></p>
+<p><img src="/2025/04/08/前端css/1553786595333.png" alt="1553786595333"></p>
+<p>利用background-position,background-image,background-repeat配合</p>
+<p> 利用 background-position 设置背景图片的位置<br> 把很多小的图片 集成到一张大图上<br> 好处： 减少网络请求数量</p>
+<h2 id="鼠标光标设置-（CSS属性）"><a href="#鼠标光标设置-（CSS属性）" class="headerlink" title="鼠标光标设置 （CSS属性）"></a>鼠标光标设置 （CSS属性）</h2><h3 id="cursor-css属性"><a href="#cursor-css属性" class="headerlink" title="cursor css属性"></a>cursor css属性</h3><h4 id="text"><a href="#text" class="headerlink" title="text"></a>text</h4><p>  文字选择器</p>
+<h4 id="crosshair"><a href="#crosshair" class="headerlink" title="crosshair"></a>crosshair</h4><p>  十字架</p>
+<h4 id="wait"><a href="#wait" class="headerlink" title="wait"></a>wait</h4><p> 等待</p>
+<h4 id="help"><a href="#help" class="headerlink" title="help"></a>help</h4><p> 帮助</p>
+<h4 id="pointer"><a href="#pointer" class="headerlink" title="pointer"></a>pointer</h4><p>小手</p>
+<h2 id="布局属性"><a href="#布局属性" class="headerlink" title="布局属性"></a>布局属性</h2><h3 id="position"><a href="#position" class="headerlink" title="position"></a>position</h3><h4 id="static"><a href="#static" class="headerlink" title="static"></a>static</h4><p>：静态，未定位（默认值）</p>
+<h4 id="relative"><a href="#relative" class="headerlink" title="relative"></a>relative</h4><p>: 相对定位, 未脱离文档流</p>
+<h4 id="absolute"><a href="#absolute" class="headerlink" title="absolute:"></a>absolute:</h4><p> 绝对定位, 完全脱离文档流    </p>
+<h4 id="fixed"><a href="#fixed" class="headerlink" title="fixed:"></a>fixed:</h4><p> 固定定位, 完全脱离文档流</p>
+<h3 id="z-index"><a href="#z-index" class="headerlink" title="z-index"></a>z-index</h3><p>脱离文档流的标签,具有z-index属性,可以用来控制显示层次的优先级,值为任意正整数</p>
+<h3 id="display："><a href="#display：" class="headerlink" title="display："></a>display：</h3><h4 id="block"><a href="#block" class="headerlink" title="block"></a>block</h4><p>此元素将显示为块级元素，此元素前后会带有换行符。</p>
+<p>块:1.独行显示 2.支持宽高,宽默认适应父级,高默认由子级或内容撑开 3.设置宽高后,一定采用设置的宽高</p>
+<h4 id="inline"><a href="#inline" class="headerlink" title="inline"></a>inline</h4><p>默认。此元素会被显示为内联元素，元素前后没有换行符。</p>
+<p> 内联:1.同行显示 2.不支持宽高</p>
+<h4 id="inineblock"><a href="#inineblock" class="headerlink" title="inineblock"></a>inineblock</h4><p>行内块元素。（CSS2.1 新增的值） </p>
+<p>内联块:1.同行显示,之间有间距 2.支持宽高,宽高由内容撑开 3.设置宽高后,一定采用设置的宽高,但只设置其中一个,另一个会根据内容等比缩放</p>
+<h4 id="none-1"><a href="#none-1" class="headerlink" title="none"></a>none</h4><p>此元素不会被显示。</p>
+<h3 id="float"><a href="#float" class="headerlink" title="float"></a>float</h3><table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>left</td>
+<td>元素向左浮动。</td>
+</tr>
+<tr>
+<td>right</td>
+<td>元素向右浮动。</td>
+</tr>
+<tr>
+<td>none</td>
+<td>默认值。元素不浮动，并会显示在其在文本中出现的位置。</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>规定应该从父元素继承 float 属性的值。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="clear"><a href="#clear" class="headerlink" title="clear"></a>clear</h3><table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>left</td>
+<td>在左侧不允许浮动元素。</td>
+</tr>
+<tr>
+<td>right</td>
+<td>在右侧不允许浮动元素。</td>
+</tr>
+<tr>
+<td>both</td>
+<td>在左右两侧均不允许浮动元素。</td>
+</tr>
+<tr>
+<td>none</td>
+<td>默认值。允许浮动元素出现在两侧。</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>规定应该从父元素继承 clear 属性的值。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="visibility"><a href="#visibility" class="headerlink" title="visibility"></a>visibility</h3><h4 id="visible"><a href="#visible" class="headerlink" title="visible"></a>visible</h4><p>默认值。元素是可见的。</p>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hidden</td>
+<td>元素是不可见的。</td>
+</tr>
+<tr>
+<td>collapse</td>
+<td>当在表格元素中使用时，此值可删除一行或一列，但是它不会影响表格的布局。被行或列占据的空间会留给其他内容使用。如果此值被用在其他的元素上，会呈现为 “hidden”。</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>规定应该从父元素继承 visibility 属性的值。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="overflow"><a href="#overflow" class="headerlink" title="overflow"></a>overflow</h3><h4 id="hidden"><a href="#hidden" class="headerlink" title="hidden"></a>hidden</h4><p>内容会被修剪，并且其余内容是不可见的。</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>visible</td>
+<td>默认值。内容不会被修剪，会呈现在元素框之外。</td>
+</tr>
+<tr>
+<td>scroll</td>
+<td>内容会被修剪，但是浏览器会显示滚动条以便查看其余的内容。</td>
+</tr>
+<tr>
+<td>auto</td>
+<td>如果内容被修剪，则浏览器会显示滚动条以便查看其余的内容。消除子元素浮动对父元素的影响</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>规定应该从父元素继承 overflow 属性的值。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="overflow-x"><a href="#overflow-x" class="headerlink" title="overflow-x"></a>overflow-x</h3><p>水平方向</p>
+<h3 id="overflow-y"><a href="#overflow-y" class="headerlink" title="overflow-y"></a>overflow-y</h3><p>垂直方向</p>
+<p>标准文档流<br> 盒子和盒子位置  margin塌陷<br> 相关属性  display / overflow:auto/hidden/scroll  overflowx  overflowy     margin  visibility:visible/hidden</p>
+<h2 id="块级元素和内联元素"><a href="#块级元素和内联元素" class="headerlink" title="块级元素和内联元素"></a>块级元素和内联元素</h2><h3 id="常见的块级元素有"><a href="#常见的块级元素有" class="headerlink" title="常见的块级元素有"></a>常见的块级元素有</h3><p>div、form、table、p、pre、h1～h5、dl、ol、ul 等。</p>
+<h3 id="常见的内联元素有"><a href="#常见的内联元素有" class="headerlink" title="常见的内联元素有"></a>常见的内联元素有</h3><p>span、a、strong、em、label、input、select、textarea、img、br等</p>
+<h2 id="CSS长度单位"><a href="#CSS长度单位" class="headerlink" title="CSS长度单位"></a>CSS长度单位</h2><h3 id="px-3"><a href="#px-3" class="headerlink" title="px"></a>px</h3><p> 像素</p>
+<h3 id="em"><a href="#em" class="headerlink" title="em"></a>em</h3><p> 默认大小的倍数<br>百分比   默认大小参照</p>
+<h3 id="cm"><a href="#cm" class="headerlink" title="cm"></a>cm</h3><p>厘米</p>
+<h3 id="mm"><a href="#mm" class="headerlink" title="mm"></a>mm</h3><p>毫米</p>
+<h3 id="pt"><a href="#pt" class="headerlink" title="pt"></a>pt</h3><p>point，是一个标准的长度单位，1pt＝1/72英寸，用于印刷业，非常简单易用； </p>
+<h2 id="CSS-颜色单位"><a href="#CSS-颜色单位" class="headerlink" title="CSS 颜色单位"></a>CSS 颜色单位</h2><p>border,backgroundcolor</p>
+<h3 id="colorName："><a href="#colorName：" class="headerlink" title="colorName："></a>colorName：</h3><p> red/green/bue/purple/orange/yellow/pink/skyblue</p>
+<h3 id="rgb数字"><a href="#rgb数字" class="headerlink" title="rgb数字"></a>rgb数字</h3><p> rgb(34,45,23)  rgb(20%, 57%, 100%)</p>
+<h3 id="16进制"><a href="#16进制" class="headerlink" title="16进制"></a>16进制</h3><p>#abcdef   #f90   #ccc</p>
+<h2 id="基本选择器"><a href="#基本选择器" class="headerlink" title="基本选择器"></a>基本选择器</h2><h3 id="HTML元素选择器"><a href="#HTML元素选择器" class="headerlink" title="HTML元素选择器"></a>HTML元素选择器</h3><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">div</span> &#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="CLASS选择器"><a href="#CLASS选择器" class="headerlink" title="CLASS选择器"></a>CLASS选择器</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.className</span> &#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="ID选择器"><a href="#ID选择器" class="headerlink" title="ID选择器"></a>ID选择器</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#idName</span> &#123;</span><br><span class="line"></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="全局选择器"><a href="#全局选择器" class="headerlink" title="全局选择器"></a>全局选择器</h3><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">* </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="组合-后代元素"><a href="#组合-后代元素" class="headerlink" title="组合: 后代元素"></a>组合: 后代元素</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">选择器 选择器 &#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.nav</span> <span class="selector-tag">li</span> &#123;&#125;</span><br><span class="line"><span class="selector-id">#box</span> <span class="selector-tag">div</span> &#123;&#125;</span><br><span class="line"><span class="selector-tag">div</span> <span class="selector-class">.list</span> &#123;&#125;</span><br><span class="line"><span class="selector-class">.container</span> <span class="selector-tag">li</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="组合：子元素"><a href="#组合：子元素" class="headerlink" title="组合：子元素"></a>组合：子元素</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">选择器&gt;选择器 &#123;</span><br><span class="line"></span><br><span class="line"> &#125;</span><br><span class="line"> <span class="selector-class">.nav</span>&gt;<span class="selector-tag">li</span> &#123;&#125;</span><br><span class="line"> <span class="selector-id">#box</span>&gt;<span class="selector-tag">div</span> &#123;&#125;</span><br><span class="line"> <span class="selector-tag">div</span>&gt;<span class="selector-class">.list</span> &#123;&#125;</span><br><span class="line"> <span class="selector-class">.container</span>&gt;<span class="selector-tag">li</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="组合：群组选择器"><a href="#组合：群组选择器" class="headerlink" title="组合：群组选择器"></a>组合：群组选择器</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">选择器,选择器，选择器 &#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line"><span class="selector-tag">body</span>,<span class="selector-tag">ul</span>,<span class="selector-tag">li</span>,<span class="selector-tag">p</span>,<span class="selector-tag">figure</span>,<span class="selector-tag">table</span>,<span class="selector-class">.item</span>,<span class="selector-class">.listitem</span> &#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="组合：多选择器"><a href="#组合：多选择器" class="headerlink" title="组合：多选择器"></a>组合：多选择器</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span><span class="selector-class">.item</span> &#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.item</span><span class="selector-class">.listitem</span> &#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">div</span><span class="selector-id">#container</span> &#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>### </p>
+<h3 id="选择器优先级"><a href="#选择器优先级" class="headerlink" title="选择器优先级"></a>选择器优先级</h3><h4 id="important-gt-ID-gt-CLASS-gt-tagName-gt"><a href="#important-gt-ID-gt-CLASS-gt-tagName-gt" class="headerlink" title="!important&gt;ID &gt; CLASS &gt; tagName &gt; *"></a>!important&gt;ID &gt; CLASS &gt; tagName &gt; *</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">!<span class="selector-tag">important</span>&gt;<span class="selector-tag">ID</span> &gt; <span class="selector-tag">CLASS</span> &gt; <span class="selector-tag">tagName</span> &gt; *</span><br><span class="line">计算 选择符 中<span class="selector-tag">ID</span>的数量(=a)                    </span><br><span class="line">计算 选择符 中 类选择器 属性选择器 伪类选择器 的数量(=b)    </span><br><span class="line">计算选择符 中 标签选择器 伪对象选择器的数量 (=c)        </span><br><span class="line">忽略全局选择器                            </span><br><span class="line"><span class="selector-tag">a</span>的权重<span class="selector-tag">100</span>  <span class="selector-tag">b</span>的权重<span class="selector-tag">10</span>   <span class="selector-tag">c</span>的权重<span class="selector-tag">1</span>    相加</span><br><span class="line">组合选择器 数数</span><br></pre></td></tr></table></figure>
+<p>所谓CSS优先级，即是指CSS样式在浏览器中被解析的先后顺序。</p>
+<p>样式表中的特殊性描述了不同规则的相对权重，它的基本规则是：</p>
+<p>1 内联样式表的权值最高               style=””－－－－－－－－－－－－1000；</p>
+<p>2 统计选择符中的ID属性个数。       #id －－－－－－－－－－－－－－100</p>
+<p>3 统计选择符中的CLASS属性个数。 .class －－－－－－－－－－－－－10<br>4 统计选择符中的HTML标签名个数。 p －－－－－－－－－－－－－－1</p>
+<p>按这些规则将数字符串逐位相加，就得到最终的权重，然后在比较取舍时按照从左到右的顺序逐位比较。</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>、文内的样式优先级为<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>，所以始终高于外部定义。</span><br><span class="line">   </span><br><span class="line">　　<span class="number">2</span>、有!important声明的规则高于一切。</span><br><span class="line"></span><br><span class="line">　　<span class="number">3</span>、如果!important声明冲突，则比较优先权。</span><br><span class="line"></span><br><span class="line">　　<span class="number">4</span>、如果优先权一样，则按照在源码中出现的顺序决定，后来者居上。</span><br><span class="line"></span><br><span class="line">　　<span class="number">5</span>、由继承而得到的样式没有specificity的计算，它低于一切其它规则(比如全局选择符*定义的规则)。</span><br></pre></td></tr></table></figure>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tagName</span><br><span class="line"><span class="title">.className</span></span><br><span class="line">#idName</span><br><span class="line"><span class="strong">*</span></span><br><span class="line"><span class="strong">slector,selector,selector</span></span><br></pre></td></tr></table></figure>
+<h2 id="层级选择器"><a href="#层级选择器" class="headerlink" title="层级选择器"></a>层级选择器</h2><h3 id="selector1-selector2"><a href="#selector1-selector2" class="headerlink" title="selector1 selector2"></a>selector1 selector2</h3><p> 后代</p>
+<h3 id="selectoer1-gt-selectoer2"><a href="#selectoer1-gt-selectoer2" class="headerlink" title="selectoer1&gt;selectoer2"></a>selectoer1&gt;selectoer2</h3><p> 子元素没有后代</p>
+<h3 id="selector1-selector2-1"><a href="#selector1-selector2-1" class="headerlink" title="selector1+selector2"></a>selector1+selector2</h3><p>紧邻在后面的兄弟元素(一个)</p>
+<h3 id="selector1-selector"><a href="#selector1-selector" class="headerlink" title="selector1~selector"></a>selector1~selector</h3><p>后面所有兄弟元素</p>
+<h3 id="1-3-属性选择器"><a href="#1-3-属性选择器" class="headerlink" title="1.3 属性选择器"></a>1.3 属性选择器</h3><h4 id="selector-attr"><a href="#selector-attr" class="headerlink" title="selector[attr]"></a>selector[attr]</h4><p>​    包含指定的属性</p>
+<h4 id="selector-attr-value"><a href="#selector-attr-value" class="headerlink" title="selector[attr=value]"></a>selector[attr=value]</h4><p>​    指定属性的值</p>
+<h4 id="selector-attr-value-1"><a href="#selector-attr-value-1" class="headerlink" title="selector[attr^=value]"></a>selector[attr^=value]</h4><pre><code>属性值以value开头
+</code></pre><h4 id="selector-attr-value-2"><a href="#selector-attr-value-2" class="headerlink" title="selector[attr$=value]"></a>selector[attr$=value]</h4><p>​    属性值以value结束</p>
+<h4 id="selector-attr-value-3"><a href="#selector-attr-value-3" class="headerlink" title="selector[attr*=value]"></a>selector[attr*=value]</h4><p>​    属性值包含value</p>
+<h4 id="selector"><a href="#selector" class="headerlink" title="selector[][][]"></a>selector[][][]</h4><h5 id="多个属性选择器"><a href="#多个属性选择器" class="headerlink" title="多个属性选择器"></a>多个属性选择器</h5><p> 属性选择器优先级 同 class</p>
+<h2 id="伪类选择器"><a href="#伪类选择器" class="headerlink" title="伪类选择器"></a>伪类选择器</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*语法*/</span></span><br><span class="line"><span class="selector-tag">selector</span>:伪类 &#123;</span><br><span class="line">   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="常用"><a href="#常用" class="headerlink" title="常用"></a>常用</h3><h4 id="link"><a href="#link" class="headerlink" title=":link"></a>:link</h4><p>  未访问的超链接</p>
+<h4 id="visited"><a href="#visited" class="headerlink" title=":visited"></a>:visited</h4><p>  访问过的超链接</p>
+<h4 id="hover"><a href="#hover" class="headerlink" title=":hover"></a>:hover</h4><p>   鼠标悬停 任意元素</p>
+<h4 id="actived"><a href="#actived" class="headerlink" title=":actived"></a>:actived</h4><p> 激活状态的超链接</p>
+<h4 id="focus"><a href="#focus" class="headerlink" title=":focus"></a>:focus</h4><p>  获得焦点时和input连用</p>
+<h4 id="可以设置后代"><a href="#可以设置后代" class="headerlink" title="可以设置后代"></a>可以设置后代</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*鼠标悬停*/</span></span><br><span class="line">		<span class="selector-class">.list</span> <span class="selector-tag">li</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">			<span class="attribute">background</span>: pink;</span><br><span class="line">			<span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">			<span class="attribute">border</span>:<span class="number">1px</span> dashed <span class="number">#999</span>;</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="子元素选择器死脑子"><a href="#子元素选择器死脑子" class="headerlink" title="子元素选择器死脑子"></a>子元素选择器死脑子</h2><h3 id="E-first-child"><a href="#E-first-child" class="headerlink" title="E:first-child"></a>E:first-child</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">匹配父元素的第一个子元素E。</span><br></pre></td></tr></table></figure>
+<h3 id="E-last-child"><a href="#E-last-child" class="headerlink" title="E:last-child"></a>E:last-child</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">匹配父元素的最后一个子元素E。 死脑子最后一个不是E元素无效</span><br></pre></td></tr></table></figure>
+<h3 id="E-only-child"><a href="#E-only-child" class="headerlink" title="E:only-child"></a>E:only-child</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">匹配父元素仅有的一个子元素E。</span><br></pre></td></tr></table></figure>
+<h3 id="E-nth-child-数字n-奇数odd-偶数even"><a href="#E-nth-child-数字n-奇数odd-偶数even" class="headerlink" title="E:nth-child(数字n,奇数odd,偶数even)"></a>E:nth-child(数字n,奇数odd,偶数even)</h3><figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">匹配父元素的第<span class="built_in">n</span>个子元素E，假设该子元素不是E，则选择符无效。</span><br></pre></td></tr></table></figure>
+<h3 id="E-nth-last-child-n"><a href="#E-nth-last-child-n" class="headerlink" title="E:nth-last-child(n)"></a>E:nth-last-child(n)</h3><figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">匹配父元素的倒数第<span class="built_in">n</span>个子元素E，假设该子元素不是E，则选择符无效。</span><br></pre></td></tr></table></figure>
+<h3 id="E-nth-last-child-n-1"><a href="#E-nth-last-child-n-1" class="headerlink" title="E:nth-last-child(n)"></a>E:nth-last-child(n)</h3><figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">匹配父元素的倒数第<span class="built_in">n</span>个子元素E，假设该子元素不是E，则选择符无效。</span><br></pre></td></tr></table></figure>
+<h2 id="子元素选择器活脑子"><a href="#子元素选择器活脑子" class="headerlink" title="子元素选择器活脑子"></a>子元素选择器活脑子</h2><h3 id="E-first-of-type"><a href="#E-first-of-type" class="headerlink" title="E:first-of-type"></a>E:first-of-type</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">匹配同类型中的第一个同级兄弟元素E</span><br></pre></td></tr></table></figure>
+<h3 id="E-last-of-type"><a href="#E-last-of-type" class="headerlink" title="E:last-of-type"></a>E:last-of-type</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">匹配同类型中的最后一个同级兄弟元素E</span><br></pre></td></tr></table></figure>
+<h3 id="E-only-of-type"><a href="#E-only-of-type" class="headerlink" title="E:only-of-type"></a>E:only-of-type</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">匹配同类型中的唯一的一个同级兄弟元素E</span><br></pre></td></tr></table></figure>
+<h3 id="E-nth-of-type-n"><a href="#E-nth-of-type-n" class="headerlink" title="E:nth-of-type(n)"></a>E:nth-of-type(n)</h3><figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">匹配同类型中的第<span class="built_in">n</span>个同级兄弟元素E</span><br></pre></td></tr></table></figure>
+<h3 id="E-nth-last-of-type-n"><a href="#E-nth-last-of-type-n" class="headerlink" title="E:nth-last-of-type(n)"></a>E:nth-last-of-type(n)</h3><figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">匹配同类型中的倒数第<span class="built_in">n</span>个同级兄弟元素E</span><br></pre></td></tr></table></figure>
+<h3 id="E-empty"><a href="#E-empty" class="headerlink" title="E:empty"></a>E:empty</h3><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">匹配没有任何子元素（包括<span class="built_in">text</span>节点）的元素E</span><br></pre></td></tr></table></figure>
+<h2 id="否定伪类选择器"><a href="#否定伪类选择器" class="headerlink" title="否定伪类选择器"></a>否定伪类选择器</h2><h3 id="E-not-s"><a href="#E-not-s" class="headerlink" title="E:not(s)"></a>E:not(s)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">匹配不含有s选择符的元素E</span><br></pre></td></tr></table></figure>
+<h2 id="伪元素选择器"><a href="#伪元素选择器" class="headerlink" title="伪元素选择器"></a>伪元素选择器</h2><h3 id="E-first-letter-E-first-letter"><a href="#E-first-letter-E-first-letter" class="headerlink" title="E:first-letter/E::first-letter"></a>E:first-letter/E::first-letter</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">设置对象内的第一个字符的样式。</span><br></pre></td></tr></table></figure>
+<h3 id="E-first-line-E-first-line"><a href="#E-first-line-E-first-line" class="headerlink" title="E:first-line/E::first-line"></a>E:first-line/E::first-line</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">设置对象内的第一行的样式。</span><br></pre></td></tr></table></figure>
+<h3 id="E-before-E-before"><a href="#E-before-E-before" class="headerlink" title="E:before/E::before"></a>E:before/E::before</h3><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">设置在对象前（依据对象树的逻辑结构）发生的内容。用来和<span class="built_in">content</span>属性一起使用</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.message</span><span class="selector-pseudo">::before</span> &#123;</span><br><span class="line">			<span class="attribute">content</span>:<span class="string">'你好'</span>;</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="E-after-E-after"><a href="#E-after-E-after" class="headerlink" title="E:after/E::after"></a>E:after/E::after</h3><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">设置在对象后（依据对象树的逻辑结构）发生的内容。用来和<span class="built_in">content</span>属性一起使用</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.message</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">			<span class="attribute">content</span>:<span class="string">'大家好'</span>;</span><br><span class="line">			<span class="attribute">display</span>: block;</span><br><span class="line">			<span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">			<span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">			<span class="attribute">border</span>: <span class="number">1px</span> solid red;</span><br><span class="line">			<span class="attribute">margin</span>: <span class="number">10px</span>;</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="集体去浮动"><a href="#集体去浮动" class="headerlink" title="集体去浮动"></a>集体去浮动</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">			<span class="attribute">content</span>:<span class="string">''</span>;</span><br><span class="line">			<span class="attribute">display</span>: block;</span><br><span class="line">			<span class="attribute">clear</span>:both;</span><br><span class="line">		&#125;</span><br><span class="line">再将需要去浮动的加入改类名</span><br></pre></td></tr></table></figure>
+<h3 id="E-placeholder"><a href="#E-placeholder" class="headerlink" title="E::placeholder"></a>E::placeholder</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">设置对象文字占位符的样式。</span><br></pre></td></tr></table></figure>
+<h3 id="E-selection"><a href="#E-selection" class="headerlink" title="E::selection"></a>E::selection</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">设置对象被选择时的样式。</span><br></pre></td></tr></table></figure>
+<h1 id="CSS3"><a href="#CSS3" class="headerlink" title="CSS3"></a>CSS3</h1><h2 id="CSS3基础"><a href="#CSS3基础" class="headerlink" title="CSS3基础"></a>CSS3基础</h2><h3 id="浏览器私有前缀"><a href="#浏览器私有前缀" class="headerlink" title="浏览器私有前缀"></a>浏览器私有前缀</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">weibkit*    chrome/safari</span><br><span class="line">moz*		 firefox</span><br><span class="line">ms*		  ie</span><br><span class="line">o*		 opera</span><br></pre></td></tr></table></figure>
+<h3 id="CSS3-新增的颜色"><a href="#CSS3-新增的颜色" class="headerlink" title="CSS3 新增的颜色"></a>CSS3 新增的颜色</h3><h4 id="background-rgba-r-g-b-不透明度"><a href="#background-rgba-r-g-b-不透明度" class="headerlink" title="background:rgba(r,g,b,不透明度)"></a>background:rgba(r,g,b,不透明度)</h4><p>不透明度：0~1 小数， 数越大，越不透明</p>
+<h4 id="background-image-1"><a href="#background-image-1" class="headerlink" title="background-image:"></a>background-image:</h4><h5 id="linear-gradient渐变色"><a href="#linear-gradient渐变色" class="headerlink" title="linear-gradient渐变色"></a>linear-gradient渐变色</h5><p>不加to上下</p>
+<p> linear-gradient(right, red, yellow,green);</p>
+<p>加左右</p>
+<p> linear-gradient(to right, red, yellow,green);</p>
+<h3 id="CSS3新增长度单位"><a href="#CSS3新增长度单位" class="headerlink" title="CSS3新增长度单位"></a>CSS3新增长度单位</h3><p>px</p>
+<h3 id="em-1"><a href="#em-1" class="headerlink" title="em"></a>em</h3><p>​    默认字体大小的倍数</p>
+<h3 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h3><p>​    根元素字体大小的倍数,比如手机就需要</p>
+<h3 id="vw"><a href="#vw" class="headerlink" title="vw"></a>vw</h3><p>​     窗口宽度分成100份  50vw</p>
+<h3 id="vh"><a href="#vh" class="headerlink" title="vh"></a>vh</h3><p>​     窗口高度分成100份</p>
+<h2 id="CSS3新增属性"><a href="#CSS3新增属性" class="headerlink" title="CSS3新增属性"></a>CSS3新增属性</h2><p>重新设置 盒子模型的规则</p>
+<h3 id="boxsizing"><a href="#boxsizing" class="headerlink" title="boxsizing:"></a>boxsizing:</h3><h4 id="contentbox-默认"><a href="#contentbox-默认" class="headerlink" title="contentbox(默认) /"></a>contentbox(默认) /</h4><p>width/height内容的宽高</p>
+<h4 id="borderbox"><a href="#borderbox" class="headerlink" title="borderbox"></a>borderbox</h4><p> （width/height盒子的宽高,压缩内容）</p>
+<h3 id="outline"><a href="#outline" class="headerlink" title="outline:"></a>outline:</h3><p>外轮廓  在border的外面 不算盒子</p>
+<ul>
+<li><p>outline 给元素周围绘制一条轮廓线</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="string">' outline-width '</span>&gt; <span class="params">||</span> &lt;<span class="string">' outline-style '</span>&gt; <span class="params">||</span> &lt;<span class="string">' outline-color '</span>&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>outline-width 外廓线宽度</p>
+<blockquote>
+<p>： 用长度值来定义轮廓的厚度。不允许负值 medium： 定义默认宽度的轮廓。 thin： 定义比默认宽度细的轮廓。 thick： 定义比默认宽度粗的轮廓。</p>
+</blockquote>
+</li>
+<li><p>outline-style 外廓线风格</p>
+<blockquote>
+<p>none： 无轮廓。与任何指定的 &lt;’ outline-width ‘&gt; 值无关 dotted： 点状轮廓。 dashed： 虚线轮廓。 solid： 实线轮廓 double： 双线轮廓。两条单线与其间隔的和等于指定的 &lt;’ outline-width ‘&gt; 值 groove： 3D凹槽轮廓。 ridge： 3D凸槽轮廓。 inset： 3D凹边轮廓。 outset： 3D凸边轮廓。</p>
+</blockquote>
+</li>
+<li><p>outline-color 外廓线颜色</p>
+</li>
+<li><p>outline-offset 外廓线的偏移量</p>
+</li>
+</ul>
+<p>不透明度</p>
+<h3 id="opacity元素整体"><a href="#opacity元素整体" class="headerlink" title="opacity元素整体"></a>opacity元素整体</h3><p> 0~1 小数</p>
+<h3 id="边框圆角"><a href="#边框圆角" class="headerlink" title="边框圆角"></a>边框圆角</h3><h4 id="border-radius"><a href="#border-radius" class="headerlink" title="border-radius"></a>border-radius</h4><blockquote>
+<p>设置或检索对象使用圆角边框。提供2个参数，2个参数以“/”分隔，每个参数允许设置1~4个参数值，第1个参数表示水平半径，第2个参数表示垂直半径，如第2个参数省略，则默认等于第1个参数 水平半径：如果提供全部四个参数值，将按上左(top-left)、上右(top-right)、下右(bottom-right)、下左(bottom-left)的顺序作用于四个角。 如果只提供一个，将用于全部的于四个角。 如果提供两个，第一个用于上左(top-left)、下右(bottom-right)，第二个用于上右(top-right)、下左(bottom-left)。 如果提供三个，第一个用于上左(top-left)，第二个用于上右(top-right)、下左(bottom-left)，第三个用于下右(bottom-right)。</p>
+<p>垂直半径也遵循以上4点。</p>
+</blockquote>
+<ul>
+<li>border-top-left-radius 设置或检索对象的左上角圆角边框</li>
+<li>border-top-right-radius 设置或检索对象的右上角圆角边框</li>
+<li>border-bottom-right-radius 设置或检索对象的右下角圆角边框</li>
+<li>border-bottom-left-radius 设置或检索对象的左下角圆角边框</li>
+</ul>
+<h3 id="boxshadow阴影"><a href="#boxshadow阴影" class="headerlink" title="boxshadow阴影"></a>boxshadow阴影</h3><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">boxshadow:水平偏移 </span>垂直偏移<span class="comment">;   偏移可以负值</span></span><br><span class="line"><span class="keyword">boxshadow:水平偏移 </span>垂直偏移 颜色;</span><br><span class="line"><span class="keyword">boxshadow:水平偏移 </span>垂直偏移 模糊值 颜色<span class="comment">; /*最常见的*/</span></span><br><span class="line"><span class="keyword">boxshadow:水平偏移 </span>垂直偏移 模糊值 外延值 颜色;</span><br></pre></td></tr></table></figure>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><h4 id="backgroundsize"><a href="#backgroundsize" class="headerlink" title="backgroundsize"></a>backgroundsize</h4><h5 id="cover"><a href="#cover" class="headerlink" title="cover"></a>cover</h5><p>优先 铺满元素。 多余的图片裁掉 保证原图比例</p>
+<h5 id="contain"><a href="#contain" class="headerlink" title="contain"></a>contain</h5><p>优先 保证图片显示完整，可能元素不能铺满。 保证原图比例</p>
+<h5 id="400px-300px"><a href="#400px-300px" class="headerlink" title="400px 300px"></a>400px 300px</h5><p>指定背景大小</p>
+<h5 id="100-100"><a href="#100-100" class="headerlink" title="100% 100%"></a>100% 100%</h5><p>自定义</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">backgroundsize: cover / contain / <span class="number">400</span>px <span class="number">300</span>px / <span class="number">100</span>% <span class="number">100</span>%</span><br><span class="line"><span class="built_in">background</span>: <span class="built_in">color</span> <span class="built_in">image</span> postion/<span class="built_in">size</span> repeat attachment</span><br></pre></td></tr></table></figure>
+<h3 id="变换"><a href="#变换" class="headerlink" title="变换"></a>变换</h3><h4 id="transform"><a href="#transform" class="headerlink" title="transform"></a>transform</h4><h5 id="位移"><a href="#位移" class="headerlink" title="位移"></a>位移</h5><p>  translatex()<br>  translatey()<br>  translate(x, y)</p>
+<h5 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h5><p>  rotate()  角度 deg</p>
+<h5 id="扭曲"><a href="#扭曲" class="headerlink" title="扭曲"></a>扭曲</h5><p>  skewx()   角度deg<br>  skewy()<br>  skew(x, y)</p>
+<h4 id="transform-origin"><a href="#transform-origin" class="headerlink" title="transform-origin"></a>transform-origin</h4><p> 变换的原点。  对translate没有意义。  对rotate影响大</p>
+<h3 id="过渡效果"><a href="#过渡效果" class="headerlink" title="过渡效果"></a>过渡效果</h3><p>一般和:hover连用</p>
+<h4 id="哪些CSS属性可以过渡"><a href="#哪些CSS属性可以过渡" class="headerlink" title="哪些CSS属性可以过渡"></a>哪些CSS属性可以过渡</h4><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">长度 (padding <span class="keyword">margin </span>width height  left/top/right/<span class="keyword">bottom </span><span class="keyword">borderwidth </span> <span class="keyword">backgroundposition </span>...)</span><br><span class="line">颜色</span><br><span class="line">变换</span><br><span class="line">纯数字 (opacity、zindex)</span><br></pre></td></tr></table></figure>
+<h4 id="触发过渡"><a href="#触发过渡" class="headerlink" title="触发过渡"></a>触发过渡</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">伪类触发  <span class="selector-pseudo">:hover</span>  <span class="selector-pseudo">:focus</span>  ....</span><br><span class="line">媒体查询   <span class="keyword">@media</span></span><br><span class="line">JS</span><br></pre></td></tr></table></figure>
+<h4 id="相关属性"><a href="#相关属性" class="headerlink" title="相关属性"></a>相关属性</h4><h5 id="transition-property"><a href="#transition-property" class="headerlink" title="transition-property"></a>transition-property</h5><p> 指定要过渡的属性 用,隔开。默认是 all 可以是with</p>
+<h5 id="transition-duration"><a href="#transition-duration" class="headerlink" title="transition-duration"></a>transition-duration</h5><p> 过渡持续时间</p>
+<h5 id="transition-timingfunction"><a href="#transition-timingfunction" class="headerlink" title="transition-timingfunction"></a>transition-timingfunction</h5><p> 过渡线性效果 </p>
+<h6 id="默认-ease"><a href="#默认-ease" class="headerlink" title="默认 ease"></a>默认 ease</h6><p>先加速后减速</p>
+<h6 id="匀速-linear"><a href="#匀速-linear" class="headerlink" title="匀速 linear"></a>匀速 linear</h6><p>匀速</p>
+<h5 id="transition-delay"><a href="#transition-delay" class="headerlink" title="transition-delay"></a>transition-delay</h5><p>  过渡延迟</p>
+<h5 id="transition：复合"><a href="#transition：复合" class="headerlink" title="transition：复合"></a>transition：复合</h5><p>property timingfunction duration delay</p>
+<h3 id="3-8-CSS3动画"><a href="#3-8-CSS3动画" class="headerlink" title="3.8 CSS3动画"></a>3.8 CSS3动画</h3><h4 id="关键帧"><a href="#关键帧" class="headerlink" title="关键帧"></a>关键帧</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@keyframes</span> 动画名字 &#123;</span><br><span class="line">    0% &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    20% &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    40% &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    100% &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="相关CSS动画属性"><a href="#相关CSS动画属性" class="headerlink" title="相关CSS动画属性"></a>相关CSS动画属性</h4><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">animation</span>-name  指定动画的名字</span><br><span class="line"><span class="built_in">animation</span>-duration  动画的执行时间</span><br><span class="line"><span class="built_in">animation</span>-timing-function  执行效果速度  </span><br><span class="line"><span class="built_in">animation</span>-<span class="built_in">delay</span>   延迟</span><br><span class="line"><span class="built_in">animation</span>-iteration-count   循环 次数  infinite(无限)</span><br><span class="line"><span class="built_in">animation</span>-direction:  alternate （正向 反向 交替）\ <span class="built_in">reverse</span>（反向）和hover连用</span><br><span class="line"><span class="built_in">animation</span>-play-state: running / paused</span><br><span class="line"><span class="built_in">animation</span> 复合属性</span><br></pre></td></tr></table></figure>
+<h2 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h2><h3 id="1-CSS重置"><a href="#1-CSS重置" class="headerlink" title="1. CSS重置"></a>1. CSS重置</h3><p> reset.css</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">去掉所有元素的默认样式</span><br><span class="line">也可以保证浏览器效果相同</span><br></pre></td></tr></table></figure>
+<p> normalize.css</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">重新设计了所有元素的默认样式</span><br><span class="line">保证所有浏览器效果相同</span><br><span class="line"></span><br><span class="line">优点：</span><br><span class="line">添加了H5新元素的样式重置</span><br><span class="line">没有简单粗暴</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/gongzhonghao.jpg" alt="李江洋 wechat" style="width: 200px; max-width: 100%;">
+  <div>python分享公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="李江洋 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="李江洋 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag"># 前端</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2025/04/08/nginx高级/" rel="next" title="nginx高级">
+                <i class="fa fa-chevron-left"></i> nginx高级
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2025/04/08/面试/" rel="prev" title="面试">
+                面试 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="李江洋">
+            
+              <p class="site-author-name" itemprop="name">李江洋</p>
+              <p class="site-description motion-element" itemprop="description">记录学习的技能和遇到的问题</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">179</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lvdXJuYW1l" title="GitHub &rarr; https://github.com/yourname"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="bWFpbHRvOjEzMjgwNDQzOTJAcXEuY29t" title="E-Mail &rarr; mailto:1328044392@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL2V4YW1wbGUuY29t" title="http://example.com">Title</span>
+                  </li>
+                
+              </ul>
+            </div>
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#css"><span class="nav-number">1.</span> <span class="nav-text">css</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#css的三种引入方式"><span class="nav-number">1.1.</span> <span class="nav-text">css的三种引入方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#行间式："><span class="nav-number">1.1.1.</span> <span class="nav-text">行间式：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内联式："><span class="nav-number">1.1.2.</span> <span class="nav-text">内联式：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#外联式："><span class="nav-number">1.1.3.</span> <span class="nav-text">外联式：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#优先级"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">优先级</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字体"><span class="nav-number">1.1.4.</span> <span class="nav-text">字体</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#fontfamily"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">fontfamily</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fontsize"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">fontsize</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fontweight"><span class="nav-number">1.1.4.3.</span> <span class="nav-text">fontweight</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fontstyle"><span class="nav-number">1.1.4.4.</span> <span class="nav-text">fontstyle</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fontvariant"><span class="nav-number">1.1.4.5.</span> <span class="nav-text">fontvariant</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#font-复合属性-宽风形大家-开放性大家"><span class="nav-number">1.1.4.6.</span> <span class="nav-text">font: 复合属性,宽风形大家,开放性大家</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#举列子"><span class="nav-number">1.1.4.6.1.</span> <span class="nav-text">举列子</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#颜色"><span class="nav-number">1.1.5.</span> <span class="nav-text">颜色</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#color"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">color</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文本"><span class="nav-number">1.1.6.</span> <span class="nav-text">文本</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#letter-spacing"><span class="nav-number">1.1.6.1.</span> <span class="nav-text">letter-spacing</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#px"><span class="nav-number">1.1.6.1.1.</span> <span class="nav-text">px</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#word-spacing"><span class="nav-number">1.1.6.2.</span> <span class="nav-text">word-spacing</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#px-1"><span class="nav-number">1.1.6.2.1.</span> <span class="nav-text">px</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#text-decoration"><span class="nav-number">1.1.6.3.</span> <span class="nav-text">text-decoration</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#underline"><span class="nav-number">1.1.6.3.1.</span> <span class="nav-text">underline</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#overline"><span class="nav-number">1.1.6.3.2.</span> <span class="nav-text">overline</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#linethrough"><span class="nav-number">1.1.6.3.3.</span> <span class="nav-text">linethrough</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#none"><span class="nav-number">1.1.6.3.4.</span> <span class="nav-text">none</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#text-align"><span class="nav-number">1.1.6.4.</span> <span class="nav-text">text-align</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#left-right-center"><span class="nav-number">1.1.6.4.1.</span> <span class="nav-text">left | right | center</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#verticalalign"><span class="nav-number">1.1.6.5.</span> <span class="nav-text">verticalalign</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#middle："><span class="nav-number">1.1.6.5.1.</span> <span class="nav-text">middle：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#了解"><span class="nav-number">1.1.6.5.2.</span> <span class="nav-text">了解</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#text-indent"><span class="nav-number">1.1.6.6.</span> <span class="nav-text">text-indent</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#em-px"><span class="nav-number">1.1.6.6.1.</span> <span class="nav-text">em, px</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#line-height"><span class="nav-number">1.1.6.7.</span> <span class="nav-text">line-height</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#px-2"><span class="nav-number">1.1.6.7.1.</span> <span class="nav-text">px</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#作业垂直居中"><span class="nav-number">1.1.6.7.2.</span> <span class="nav-text">作业垂直居中</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#word-wrap"><span class="nav-number">1.1.6.8.</span> <span class="nav-text">word-wrap</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#normal"><span class="nav-number">1.1.6.8.1.</span> <span class="nav-text">normal</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#break-word"><span class="nav-number">1.1.6.8.2.</span> <span class="nav-text">break-word</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#white-space"><span class="nav-number">1.1.6.9.</span> <span class="nav-text">white-space</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#pre："><span class="nav-number">1.1.6.9.1.</span> <span class="nav-text">pre：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#prewrap："><span class="nav-number">1.1.6.9.2.</span> <span class="nav-text">prewrap：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-属性-尺寸-边框-背景"><span class="nav-number">1.2.</span> <span class="nav-text">CSS 属性/尺寸/边框/背景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#尺寸-height-width"><span class="nav-number">1.2.1.</span> <span class="nav-text">尺寸 height  width</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#min-width"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">min-width</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#max-width"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">max-width</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#calc代数公式"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">calc代数公式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#边框-border-实体有风格颜色"><span class="nav-number">1.2.2.</span> <span class="nav-text">边框 border (实体有风格颜色)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#border-style"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">border-style</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#dotted"><span class="nav-number">1.2.2.1.1.</span> <span class="nav-text">dotted</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#dashed"><span class="nav-number">1.2.2.1.2.</span> <span class="nav-text">dashed</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#solid"><span class="nav-number">1.2.2.1.3.</span> <span class="nav-text">solid</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#double"><span class="nav-number">1.2.2.1.4.</span> <span class="nav-text">double</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#groove"><span class="nav-number">1.2.2.1.5.</span> <span class="nav-text">groove</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ridge"><span class="nav-number">1.2.2.1.6.</span> <span class="nav-text">ridge</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#inset"><span class="nav-number">1.2.2.1.7.</span> <span class="nav-text">inset</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#outset"><span class="nav-number">1.2.2.1.8.</span> <span class="nav-text">outset</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#border-width"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">border-width</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#border-color"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">border-color</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#border-宽-样式-颜色"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">border 宽 样式 颜色</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#border-left-color"><span class="nav-number">1.2.2.5.</span> <span class="nav-text">border-left-color</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#外边距-规律同内"><span class="nav-number">1.2.3.</span> <span class="nav-text">外边距(规律同内)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#margin"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">margin</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#auto"><span class="nav-number">1.2.3.1.1.</span> <span class="nav-text">auto</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内边距-非实体仅距离"><span class="nav-number">1.2.4.</span> <span class="nav-text">内边距(非实体仅距离)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#padding-left"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">padding-left</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#padding"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">padding</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#背景属性"><span class="nav-number">1.2.5.</span> <span class="nav-text">背景属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#background-color"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">background-color</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#transparent"><span class="nav-number">1.2.5.1.1.</span> <span class="nav-text">transparent</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#background-image"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">background-image</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#url"><span class="nav-number">1.2.5.2.1.</span> <span class="nav-text">url()</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#background-repeat"><span class="nav-number">1.2.5.3.</span> <span class="nav-text">background-repeat</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#repeat"><span class="nav-number">1.2.5.3.1.</span> <span class="nav-text">repeat</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#no-repeat"><span class="nav-number">1.2.5.3.2.</span> <span class="nav-text">no-repeat</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#repeat-x"><span class="nav-number">1.2.5.3.3.</span> <span class="nav-text">repeat-x</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#repeat-y"><span class="nav-number">1.2.5.3.4.</span> <span class="nav-text">repeat-y</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#background-position"><span class="nav-number">1.2.5.4.</span> <span class="nav-text">background-position</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#left-top"><span class="nav-number">1.2.5.4.1.</span> <span class="nav-text">left top</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#center-center"><span class="nav-number">1.2.5.4.2.</span> <span class="nav-text">center center</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#background-attachment"><span class="nav-number">1.2.5.5.</span> <span class="nav-text">background-attachment</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#scroll-fixed"><span class="nav-number">1.2.5.5.1.</span> <span class="nav-text">scroll / fixed</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#background-复合属性"><span class="nav-number">1.2.5.6.</span> <span class="nav-text">background 复合属性</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#background-颜色图片平铺位置固定"><span class="nav-number">1.2.5.6.1.</span> <span class="nav-text">background:颜色图片平铺位置固定</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS精灵图"><span class="nav-number">1.3.</span> <span class="nav-text">CSS精灵图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#坐标方向"><span class="nav-number">1.3.1.</span> <span class="nav-text">坐标方向</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#鼠标光标设置-（CSS属性）"><span class="nav-number">1.4.</span> <span class="nav-text">鼠标光标设置 （CSS属性）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cursor-css属性"><span class="nav-number">1.4.1.</span> <span class="nav-text">cursor css属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#text"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">text</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#crosshair"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">crosshair</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#wait"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">wait</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#help"><span class="nav-number">1.4.1.4.</span> <span class="nav-text">help</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pointer"><span class="nav-number">1.4.1.5.</span> <span class="nav-text">pointer</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#布局属性"><span class="nav-number">1.5.</span> <span class="nav-text">布局属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#position"><span class="nav-number">1.5.1.</span> <span class="nav-text">position</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#static"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">static</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#relative"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">relative</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#absolute"><span class="nav-number">1.5.1.3.</span> <span class="nav-text">absolute:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fixed"><span class="nav-number">1.5.1.4.</span> <span class="nav-text">fixed:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#z-index"><span class="nav-number">1.5.2.</span> <span class="nav-text">z-index</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#display："><span class="nav-number">1.5.3.</span> <span class="nav-text">display：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#block"><span class="nav-number">1.5.3.1.</span> <span class="nav-text">block</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#inline"><span class="nav-number">1.5.3.2.</span> <span class="nav-text">inline</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#inineblock"><span class="nav-number">1.5.3.3.</span> <span class="nav-text">inineblock</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#none-1"><span class="nav-number">1.5.3.4.</span> <span class="nav-text">none</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#float"><span class="nav-number">1.5.4.</span> <span class="nav-text">float</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#clear"><span class="nav-number">1.5.5.</span> <span class="nav-text">clear</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#visibility"><span class="nav-number">1.5.6.</span> <span class="nav-text">visibility</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#visible"><span class="nav-number">1.5.6.1.</span> <span class="nav-text">visible</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他"><span class="nav-number">1.5.6.2.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#overflow"><span class="nav-number">1.5.7.</span> <span class="nav-text">overflow</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#hidden"><span class="nav-number">1.5.7.1.</span> <span class="nav-text">hidden</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#overflow-x"><span class="nav-number">1.5.8.</span> <span class="nav-text">overflow-x</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#overflow-y"><span class="nav-number">1.5.9.</span> <span class="nav-text">overflow-y</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#块级元素和内联元素"><span class="nav-number">1.6.</span> <span class="nav-text">块级元素和内联元素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见的块级元素有"><span class="nav-number">1.6.1.</span> <span class="nav-text">常见的块级元素有</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见的内联元素有"><span class="nav-number">1.6.2.</span> <span class="nav-text">常见的内联元素有</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS长度单位"><span class="nav-number">1.7.</span> <span class="nav-text">CSS长度单位</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#px-3"><span class="nav-number">1.7.1.</span> <span class="nav-text">px</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#em"><span class="nav-number">1.7.2.</span> <span class="nav-text">em</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cm"><span class="nav-number">1.7.3.</span> <span class="nav-text">cm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mm"><span class="nav-number">1.7.4.</span> <span class="nav-text">mm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pt"><span class="nav-number">1.7.5.</span> <span class="nav-text">pt</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-颜色单位"><span class="nav-number">1.8.</span> <span class="nav-text">CSS 颜色单位</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#colorName："><span class="nav-number">1.8.1.</span> <span class="nav-text">colorName：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rgb数字"><span class="nav-number">1.8.2.</span> <span class="nav-text">rgb数字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16进制"><span class="nav-number">1.8.3.</span> <span class="nav-text">16进制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本选择器"><span class="nav-number">1.9.</span> <span class="nav-text">基本选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML元素选择器"><span class="nav-number">1.9.1.</span> <span class="nav-text">HTML元素选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CLASS选择器"><span class="nav-number">1.9.2.</span> <span class="nav-text">CLASS选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ID选择器"><span class="nav-number">1.9.3.</span> <span class="nav-text">ID选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全局选择器"><span class="nav-number">1.9.4.</span> <span class="nav-text">全局选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组合-后代元素"><span class="nav-number">1.9.5.</span> <span class="nav-text">组合: 后代元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组合：子元素"><span class="nav-number">1.9.6.</span> <span class="nav-text">组合：子元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组合：群组选择器"><span class="nav-number">1.9.7.</span> <span class="nav-text">组合：群组选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组合：多选择器"><span class="nav-number">1.9.8.</span> <span class="nav-text">组合：多选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择器优先级"><span class="nav-number">1.9.9.</span> <span class="nav-text">选择器优先级</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#important-gt-ID-gt-CLASS-gt-tagName-gt"><span class="nav-number">1.9.9.1.</span> <span class="nav-text">!important&gt;ID &gt; CLASS &gt; tagName &gt; *</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.9.10.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#层级选择器"><span class="nav-number">1.10.</span> <span class="nav-text">层级选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#selector1-selector2"><span class="nav-number">1.10.1.</span> <span class="nav-text">selector1 selector2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#selectoer1-gt-selectoer2"><span class="nav-number">1.10.2.</span> <span class="nav-text">selectoer1&gt;selectoer2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#selector1-selector2-1"><span class="nav-number">1.10.3.</span> <span class="nav-text">selector1+selector2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#selector1-selector"><span class="nav-number">1.10.4.</span> <span class="nav-text">selector1~selector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-属性选择器"><span class="nav-number">1.10.5.</span> <span class="nav-text">1.3 属性选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#selector-attr"><span class="nav-number">1.10.5.1.</span> <span class="nav-text">selector[attr]</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#selector-attr-value"><span class="nav-number">1.10.5.2.</span> <span class="nav-text">selector[attr=value]</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#selector-attr-value-1"><span class="nav-number">1.10.5.3.</span> <span class="nav-text">selector[attr^=value]</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#selector-attr-value-2"><span class="nav-number">1.10.5.4.</span> <span class="nav-text">selector[attr$=value]</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#selector-attr-value-3"><span class="nav-number">1.10.5.5.</span> <span class="nav-text">selector[attr*=value]</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#selector"><span class="nav-number">1.10.5.6.</span> <span class="nav-text">selector[][][]</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#多个属性选择器"><span class="nav-number">1.10.5.6.1.</span> <span class="nav-text">多个属性选择器</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伪类选择器"><span class="nav-number">1.11.</span> <span class="nav-text">伪类选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用"><span class="nav-number">1.11.1.</span> <span class="nav-text">常用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#link"><span class="nav-number">1.11.1.1.</span> <span class="nav-text">:link</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#visited"><span class="nav-number">1.11.1.2.</span> <span class="nav-text">:visited</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hover"><span class="nav-number">1.11.1.3.</span> <span class="nav-text">:hover</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#actived"><span class="nav-number">1.11.1.4.</span> <span class="nav-text">:actived</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#focus"><span class="nav-number">1.11.1.5.</span> <span class="nav-text">:focus</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可以设置后代"><span class="nav-number">1.11.1.6.</span> <span class="nav-text">可以设置后代</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#子元素选择器死脑子"><span class="nav-number">1.12.</span> <span class="nav-text">子元素选择器死脑子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#E-first-child"><span class="nav-number">1.12.1.</span> <span class="nav-text">E:first-child</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#E-last-child"><span class="nav-number">1.12.2.</span> <span class="nav-text">E:last-child</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#E-only-child"><span class="nav-number">1.12.3.</span> <span class="nav-text">E:only-child</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#E-nth-child-数字n-奇数odd-偶数even"><span class="nav-number">1.12.4.</span> <span class="nav-text">E:nth-child(数字n,奇数odd,偶数even)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#E-nth-last-child-n"><span class="nav-number">1.12.5.</span> <span class="nav-text">E:nth-last-child(n)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#E-nth-last-child-n-1"><span class="nav-number">1.12.6.</span> <span class="nav-text">E:nth-last-child(n)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#子元素选择器活脑子"><span class="nav-number">1.13.</span> <span class="nav-text">子元素选择器活脑子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#E-first-of-type"><span class="nav-number">1.13.1.</span> <span class="nav-text">E:first-of-type</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#E-last-of-type"><span class="nav-number">1.13.2.</span> <span class="nav-text">E:last-of-type</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#E-only-of-type"><span class="nav-number">1.13.3.</span> <span class="nav-text">E:only-of-type</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#E-nth-of-type-n"><span class="nav-number">1.13.4.</span> <span class="nav-text">E:nth-of-type(n)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#E-nth-last-of-type-n"><span class="nav-number">1.13.5.</span> <span class="nav-text">E:nth-last-of-type(n)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#E-empty"><span class="nav-number">1.13.6.</span> <span class="nav-text">E:empty</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#否定伪类选择器"><span class="nav-number">1.14.</span> <span class="nav-text">否定伪类选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#E-not-s"><span class="nav-number">1.14.1.</span> <span class="nav-text">E:not(s)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伪元素选择器"><span class="nav-number">1.15.</span> <span class="nav-text">伪元素选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#E-first-letter-E-first-letter"><span class="nav-number">1.15.1.</span> <span class="nav-text">E:first-letter/E::first-letter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#E-first-line-E-first-line"><span class="nav-number">1.15.2.</span> <span class="nav-text">E:first-line/E::first-line</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#E-before-E-before"><span class="nav-number">1.15.3.</span> <span class="nav-text">E:before/E::before</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#E-after-E-after"><span class="nav-number">1.15.4.</span> <span class="nav-text">E:after/E::after</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#集体去浮动"><span class="nav-number">1.15.4.1.</span> <span class="nav-text">集体去浮动</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#E-placeholder"><span class="nav-number">1.15.5.</span> <span class="nav-text">E::placeholder</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#E-selection"><span class="nav-number">1.15.6.</span> <span class="nav-text">E::selection</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CSS3"><span class="nav-number">2.</span> <span class="nav-text">CSS3</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS3基础"><span class="nav-number">2.1.</span> <span class="nav-text">CSS3基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器私有前缀"><span class="nav-number">2.1.1.</span> <span class="nav-text">浏览器私有前缀</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS3-新增的颜色"><span class="nav-number">2.1.2.</span> <span class="nav-text">CSS3 新增的颜色</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#background-rgba-r-g-b-不透明度"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">background:rgba(r,g,b,不透明度)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#background-image-1"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">background-image:</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#linear-gradient渐变色"><span class="nav-number">2.1.2.2.1.</span> <span class="nav-text">linear-gradient渐变色</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS3新增长度单位"><span class="nav-number">2.1.3.</span> <span class="nav-text">CSS3新增长度单位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#em-1"><span class="nav-number">2.1.4.</span> <span class="nav-text">em</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rem"><span class="nav-number">2.1.5.</span> <span class="nav-text">rem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vw"><span class="nav-number">2.1.6.</span> <span class="nav-text">vw</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vh"><span class="nav-number">2.1.7.</span> <span class="nav-text">vh</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS3新增属性"><span class="nav-number">2.2.</span> <span class="nav-text">CSS3新增属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#boxsizing"><span class="nav-number">2.2.1.</span> <span class="nav-text">boxsizing:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#contentbox-默认"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">contentbox(默认) /</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#borderbox"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">borderbox</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#outline"><span class="nav-number">2.2.2.</span> <span class="nav-text">outline:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#opacity元素整体"><span class="nav-number">2.2.3.</span> <span class="nav-text">opacity元素整体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#边框圆角"><span class="nav-number">2.2.4.</span> <span class="nav-text">边框圆角</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#border-radius"><span class="nav-number">2.2.4.1.</span> <span class="nav-text">border-radius</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#boxshadow阴影"><span class="nav-number">2.2.5.</span> <span class="nav-text">boxshadow阴影</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#背景"><span class="nav-number">2.2.6.</span> <span class="nav-text">背景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#backgroundsize"><span class="nav-number">2.2.6.1.</span> <span class="nav-text">backgroundsize</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#cover"><span class="nav-number">2.2.6.1.1.</span> <span class="nav-text">cover</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#contain"><span class="nav-number">2.2.6.1.2.</span> <span class="nav-text">contain</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#400px-300px"><span class="nav-number">2.2.6.1.3.</span> <span class="nav-text">400px 300px</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#100-100"><span class="nav-number">2.2.6.1.4.</span> <span class="nav-text">100% 100%</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变换"><span class="nav-number">2.2.7.</span> <span class="nav-text">变换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#transform"><span class="nav-number">2.2.7.1.</span> <span class="nav-text">transform</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#位移"><span class="nav-number">2.2.7.1.1.</span> <span class="nav-text">位移</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#旋转"><span class="nav-number">2.2.7.1.2.</span> <span class="nav-text">旋转</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#扭曲"><span class="nav-number">2.2.7.1.3.</span> <span class="nav-text">扭曲</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#transform-origin"><span class="nav-number">2.2.7.2.</span> <span class="nav-text">transform-origin</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过渡效果"><span class="nav-number">2.2.8.</span> <span class="nav-text">过渡效果</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#哪些CSS属性可以过渡"><span class="nav-number">2.2.8.1.</span> <span class="nav-text">哪些CSS属性可以过渡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#触发过渡"><span class="nav-number">2.2.8.2.</span> <span class="nav-text">触发过渡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#相关属性"><span class="nav-number">2.2.8.3.</span> <span class="nav-text">相关属性</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#transition-property"><span class="nav-number">2.2.8.3.1.</span> <span class="nav-text">transition-property</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#transition-duration"><span class="nav-number">2.2.8.3.2.</span> <span class="nav-text">transition-duration</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#transition-timingfunction"><span class="nav-number">2.2.8.3.3.</span> <span class="nav-text">transition-timingfunction</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#默认-ease"><span class="nav-number">2.2.8.3.3.1.</span> <span class="nav-text">默认 ease</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#匀速-linear"><span class="nav-number">2.2.8.3.3.2.</span> <span class="nav-text">匀速 linear</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#transition-delay"><span class="nav-number">2.2.8.3.4.</span> <span class="nav-text">transition-delay</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#transition：复合"><span class="nav-number">2.2.8.3.5.</span> <span class="nav-text">transition：复合</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-8-CSS3动画"><span class="nav-number">2.2.9.</span> <span class="nav-text">3.8 CSS3动画</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关键帧"><span class="nav-number">2.2.9.1.</span> <span class="nav-text">关键帧</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#相关CSS动画属性"><span class="nav-number">2.2.9.2.</span> <span class="nav-text">相关CSS动画属性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#布局"><span class="nav-number">2.3.</span> <span class="nav-text">布局</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-CSS重置"><span class="nav-number">2.3.1.</span> <span class="nav-text">1. CSS重置</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李江洋</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Pisces</span> v7.0.1</div>
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script id="ribbon" size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+  
+  <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ljyabc.github.io/2025/04/08/前端css/";
+    this.page.identifier = "2025/04/08/前端css/";
+    this.page.title = '前端css';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/exturl.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+   <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+</body>
+</html>

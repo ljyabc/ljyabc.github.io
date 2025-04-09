@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="BBS1.-首页(显示文章)​        -文章详情        -点赞,点踩        -文章评论            -字评论            -评论的展示        -登录功能(图片验证码)        -注册功能(基于form验证,ajax)        -个人站点(不同人不同样式,文章过滤)        -后台管理:            -文章展示">
+<meta name="keywords" content="django项目">
+<meta property="og:type" content="article">
+<meta property="og:title" content="bbs">
+<meta property="og:url" content="https://ljyabc.github.io/2019/03/06/bbs/index.html">
+<meta property="og:site_name" content="择墅居:李江洋">
+<meta property="og:description" content="BBS1.-首页(显示文章)​        -文章详情        -点赞,点踩        -文章评论            -字评论            -评论的展示        -登录功能(图片验证码)        -注册功能(基于form验证,ajax)        -个人站点(不同人不同样式,文章过滤)        -后台管理:            -文章展示">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/06/bbs/1551767822204.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/06/bbs/1551781128049.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/06/bbs/1551759564330.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/06/bbs/1551801702361.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/06/bbs/1551801795395.png">
+<meta property="og:updated_time" content="2025-04-08T14:37:11.175Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="bbs">
+<meta name="twitter:description" content="BBS1.-首页(显示文章)​        -文章详情        -点赞,点踩        -文章评论            -字评论            -评论的展示        -登录功能(图片验证码)        -注册功能(基于form验证,ajax)        -个人站点(不同人不同样式,文章过滤)        -后台管理:            -文章展示">
+<meta name="twitter:image" content="https://ljyabc.github.io/2019/03/06/bbs/1551767822204.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ljyabc.github.io/2019/03/06/bbs/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>bbs | 择墅居:李江洋</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">择墅居:李江洋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">争做长沙别墅豪装第一品牌</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/book" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>book</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2019/03/06/bbs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李江洋">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="择墅居:李江洋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">bbs
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-06 08:34:50" itemprop="dateCreated datePublished" datetime="2019-03-06T08:34:50+08:00">2019-03-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2025-04-08 22:37:11" itemprop="dateModified" datetime="2025-04-08T22:37:11+08:00">2025-04-08</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/03/06/bbs/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/06/bbs/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="BBS"><a href="#BBS" class="headerlink" title="BBS"></a>BBS</h1><h2 id="1-首页-显示文章"><a href="#1-首页-显示文章" class="headerlink" title="1.-首页(显示文章)"></a>1.-首页(显示文章)</h2><p>​        -文章详情<br>        -点赞,点踩<br>        -文章评论<br>            -字评论<br>            -评论的展示<br>        -登录功能(图片验证码)<br>        -注册功能(基于form验证,ajax)<br>        -个人站点(不同人不同样式,文章过滤)<br>        -后台管理:<br>            -文章展示<br>        -新增文章<br>            -富文本编辑器</p>
+<h2 id="2-数据库设计"><a href="#2-数据库设计" class="headerlink" title="2.数据库设计:"></a>2.数据库设计:</h2><h3 id="User"><a href="#User" class="headerlink" title="User:"></a>User:</h3><figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">-nid</span></span><br><span class="line"><span class="deletion">-name</span></span><br><span class="line"><span class="deletion">-password</span></span><br><span class="line"><span class="deletion">-email</span></span><br><span class="line"><span class="deletion">-phone</span></span><br><span class="line"><span class="deletion">-avatar   用户头像</span></span><br><span class="line"><span class="deletion">-create_date    用户注册时间</span></span><br><span class="line"><span class="deletion">-blog</span></span><br></pre></td></tr></table></figure>
+<h3 id="Blog"><a href="#Blog" class="headerlink" title="Blog:"></a>Blog:</h3><figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">-nid</span></span><br><span class="line"><span class="deletion">-title</span></span><br><span class="line"><span class="deletion">-site_name(站点名称)</span></span><br><span class="line"><span class="deletion">-theme</span></span><br></pre></td></tr></table></figure>
+<h3 id="Category"><a href="#Category" class="headerlink" title="Category:"></a>Category:</h3><figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">-nid</span></span><br><span class="line"><span class="deletion">-title</span></span><br><span class="line"><span class="deletion">-blog   blog对category 一对多</span></span><br><span class="line"><span class="deletion">-article category对article 一对多(字段写到多的一方article)</span></span><br></pre></td></tr></table></figure>
+<h3 id="Tag-文章关键字"><a href="#Tag-文章关键字" class="headerlink" title="Tag:(文章关键字)"></a>Tag:(文章关键字)</h3><figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">-nid</span></span><br><span class="line"><span class="deletion">-title</span></span><br><span class="line"><span class="deletion">-blog blog对tag 一对多</span></span><br></pre></td></tr></table></figure>
+<h3 id="Article"><a href="#Article" class="headerlink" title="Article"></a>Article</h3><figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">-nid</span></span><br><span class="line"><span class="deletion">-title</span></span><br><span class="line"><span class="deletion">-desc(摘要)</span></span><br><span class="line"><span class="deletion">-create_time   auto_add_now:当该条记录创建时,自动添加当前时间</span></span><br><span class="line"><span class="deletion">-content   文章内容</span></span><br><span class="line"><span class="deletion">-category   category对article 一对多</span></span><br><span class="line"><span class="deletion">-tag Article对tag 多对多</span></span><br><span class="line"><span class="deletion">-blog blog对Article 一对多</span></span><br></pre></td></tr></table></figure>
+<h3 id="Commit"><a href="#Commit" class="headerlink" title="Commit:"></a>Commit:</h3><figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">-<span class="ruby">nid</span></span><br><span class="line"><span class="ruby">-user     哪个用户</span></span><br><span class="line"><span class="ruby">-article  对哪篇文章</span></span><br><span class="line"><span class="ruby">-content   评论了什么内容</span></span><br><span class="line"><span class="ruby">-commit_time  时间</span></span><br><span class="line"><span class="ruby">-parent_id -再加一个字段,标志,给那条评论,评论的(父评论的ID)</span></span><br><span class="line"><span class="ruby">如何实现根评论与子评论? (@某个人)</span></span><br><span class="line"><span class="ruby">-有同学分析,要再建一张表,跟commit是一对多的关系(不好)</span></span><br><span class="line"><span class="ruby">				</span></span><br><span class="line"><span class="ruby">   -如何用这一个表,表示出根评论和子评论?</span></span><br><span class="line"><span class="ruby">   -再加一个字段,标志,给那条评论,评论的</span></span><br></pre></td></tr></table></figure>
+<p><img src="/2019/03/06/bbs/1551767822204.png" alt="1551767822204"></p>
+<h1 id="BBS项目表关系图"><a href="#BBS项目表关系图" class="headerlink" title="BBS项目表关系图"></a>BBS项目表关系图</h1><p><img src="/2019/03/06/bbs/1551781128049.png" alt="155178112849"></p>
+<h1 id="BBS代码流程"><a href="#BBS代码流程" class="headerlink" title="BBS代码流程"></a>BBS代码流程</h1><h1 id="一-博客项目表字段编写-数据库迁移"><a href="#一-博客项目表字段编写-数据库迁移" class="headerlink" title="一. 博客项目表字段编写,数据库迁移"></a>一. 博客项目表字段编写,数据库迁移</h1><h2 id="1-创建BBS"><a href="#1-创建BBS" class="headerlink" title="1.创建BBS"></a>1.创建BBS<img src="/2019/03/06/bbs/1551759564330.png" alt="1551759564330"></h2><h2 id="2-连接mysql"><a href="#2-连接mysql" class="headerlink" title="2.连接mysql"></a>2.连接mysql</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">DATABASES = &#123;</span><br><span class="line">    <span class="comment"># 'default': &#123;</span></span><br><span class="line">    <span class="comment">#     'ENGINE': 'django.db.backends.sqlite3',</span></span><br><span class="line">    <span class="comment">#     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),</span></span><br><span class="line">    <span class="comment"># &#125;</span></span><br><span class="line">    <span class="string">'default'</span>: &#123;</span><br><span class="line">        <span class="string">'ENGINE'</span>: <span class="string">'django.db.backends.mysql'</span>,</span><br><span class="line">        <span class="string">'NAME'</span>: <span class="string">'bbs1'</span>,</span><br><span class="line">        <span class="string">'HOST'</span>: <span class="string">'127.0.0.1'</span>,</span><br><span class="line">        <span class="string">'PORT'</span>: <span class="number">3306</span>,</span><br><span class="line">        <span class="string">'USER'</span>: <span class="string">'root'</span>,</span><br><span class="line">        <span class="string">'PASSWORD'</span>: <span class="string">'123'</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-设置启动项目启动pymysql"><a href="#3-设置启动项目启动pymysql" class="headerlink" title="3.设置启动项目启动pymysql"></a>3.设置启动项目启动pymysql</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">注意BBS__init__.py和app的__init__.py不一样</span><br><span class="line"><span class="keyword">import</span> pymysql</span><br><span class="line">pymysql.install_as_MySQLdb()</span><br></pre></td></tr></table></figure>
+<h2 id="4-配置静态文件路径setting-py"><a href="#4-配置静态文件路径setting-py" class="headerlink" title="4.配置静态文件路径setting.py,"></a>4.配置静态文件路径setting.py,</h2><h3 id="后面一定要加逗号-创建start文件"><a href="#后面一定要加逗号-创建start文件" class="headerlink" title="后面一定要加逗号(创建start文件)"></a>后面一定要加逗号(创建start文件)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">STATICFILES_DIRS = (</span><br><span class="line">    os.path.join(BASE_DIR, <span class="string">'static'</span>),</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h2 id="五-models"><a href="#五-models" class="headerlink" title="五.models"></a>五.models</h2><h2 id="5-导入auth主键"><a href="#5-导入auth主键" class="headerlink" title="5.导入auth主键"></a>5.导入auth主键</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib.auth.models <span class="keyword">import</span> AbstractUser</span><br></pre></td></tr></table></figure>
+<h2 id="6-UserInfo这个表-继承AbstractUser"><a href="#6-UserInfo这个表-继承AbstractUser" class="headerlink" title="6.UserInfo这个表,继承AbstractUser,"></a>6.UserInfo这个表,继承AbstractUser,</h2><h3 id="因为要用auth组件-20-7-8"><a href="#因为要用auth组件-20-7-8" class="headerlink" title="因为要用auth组件(20,7,8)"></a>因为要用auth组件(20,7,8)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserInfo</span><span class="params">(AbstractUser)</span>:</span></span><br><span class="line">    nid = models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    <span class="number">20.</span>默认为空,unique=<span class="literal">True</span></span><br><span class="line">    <span class="comment"># username=models.CharField(max_length=32,unique=True)</span></span><br><span class="line">    <span class="comment"># 该字段可以为空,为该字段设置默认值,default='123455666'</span></span><br><span class="line">    <span class="comment"># blank=True  只是admin中表单提交的时候,做校验,如果设置成True,就是不校验了</span></span><br><span class="line">    phone = models.CharField(max_length=<span class="number">32</span>,null=<span class="literal">True</span>,blank=<span class="literal">True</span>)</span><br><span class="line">    <span class="comment"># upload_to需要传一个路径(avatar文件夹会自动创建)</span></span><br><span class="line">    <span class="number">7.</span>upload是上传的,default是默认的</span><br><span class="line">    avatar = models.FileField(upload_to=<span class="string">'avatar/'</span>, default=<span class="string">'/static/img/default.png'</span>)</span><br><span class="line">    <span class="number">8.</span>关联表一对一</span><br><span class="line">    <span class="comment"># 如果avatar用charfield,如何处理?</span></span><br><span class="line">    <span class="comment">#  一对一关联blog表,to_field如果不写,默认主键</span></span><br><span class="line">    <span class="comment"># blog_id字段存的数据是什么?blog表的---nid这个字段</span></span><br><span class="line">    blog = models.OneToOneField(to=<span class="string">'Blog'</span>, to_field=<span class="string">'nid'</span>,null=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="7-upload是上传的-default是默认的"><a href="#7-upload是上传的-default是默认的" class="headerlink" title="7.upload是上传的,default是默认的"></a>7.upload是上传的,default是默认的</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">avatar = models.FileField(upload_to=<span class="string">'avatar/'</span>, default=<span class="string">'/static/img/default.png'</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="9-创建站点表"><a href="#9-创建站点表" class="headerlink" title="9.创建站点表"></a>9.创建站点表</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Blog</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    nid = models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    title = models.CharField(max_length=<span class="number">64</span>)</span><br><span class="line">    <span class="number">10.</span>站点名字</span><br><span class="line">    site_name = models.CharField(max_length=<span class="number">32</span>)</span><br><span class="line">    <span class="number">11.</span>站点主题</span><br><span class="line">    theme = models.CharField(max_length=<span class="number">64</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="10-创建分类表"><a href="#10-创建分类表" class="headerlink" title="10.创建分类表"></a>10.创建分类表</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Category</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    nid = models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    title = models.CharField(max_length=<span class="number">64</span>)</span><br><span class="line">    <span class="comment"># ForeignKey跟OneToOneField的区别?</span></span><br><span class="line">    <span class="comment">#OneToOneField unique=True</span></span><br><span class="line">    blog = models.ForeignKey(to=<span class="string">'Blog'</span>, to_field=<span class="string">'nid'</span>, null=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="11-创建标签表"><a href="#11-创建标签表" class="headerlink" title="11.创建标签表"></a>11.创建标签表</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tag</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    nid = models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    title = models.CharField(max_length=<span class="number">64</span>)</span><br><span class="line">    blog = models.ForeignKey(to=<span class="string">'Blog'</span>, to_field=<span class="string">'nid'</span>, null=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="12-创建文章表-13"><a href="#12-创建文章表-13" class="headerlink" title="12.创建文章表(13)"></a>12.创建文章表(13)</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Article</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    nid = models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    <span class="comment"># verbose_name='文章标题'  修改admin中表单的文字显示</span></span><br><span class="line">    title = models.CharField(max_length=<span class="number">64</span>,verbose_name=<span class="string">'文章标题'</span>)</span><br><span class="line">    <span class="comment"># 摘要,简单描述</span></span><br><span class="line">    desc = models.CharField(max_length=<span class="number">255</span>)</span><br><span class="line">    <span class="comment"># 大文本TextField()</span></span><br><span class="line">    content = models.TextField()</span><br><span class="line">    <span class="comment"># 存时间类型,auto_now_add每插入一条数据,时间自动写入当前时间,</span></span><br><span class="line">    <span class="comment"># auto_now,这条数据修改的时候,会更新成当前时间</span></span><br><span class="line">    create_time = models.DateTimeField(auto_now_add=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 因为查询多,写入少,所以加这三个字段,以后不需要再连表查询了</span></span><br><span class="line">    commit_num=models.IntegerField(default=<span class="number">0</span>)</span><br><span class="line">    up_num=models.IntegerField(default=<span class="number">0</span>)</span><br><span class="line">    down_num=models.IntegerField(default=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    blog = models.ForeignKey(to=<span class="string">'Blog'</span>, to_field=<span class="string">'nid'</span>, null=<span class="literal">True</span>)</span><br><span class="line">    <span class="number">12.</span>一篇文章有多个分类</span><br><span class="line">    category = models.ForeignKey(to=<span class="string">'Category'</span>, to_field=<span class="string">'nid'</span>, null=<span class="literal">True</span>)</span><br><span class="line">    <span class="comment"># through_fields应该怎么写?</span></span><br><span class="line">    <span class="comment"># 中介模型,手动创建第三张表,through是通过哪个表跟Tag建立关系,through_fields为了查询用的</span></span><br><span class="line">    <span class="number">13.</span>文章标签多对多参数的关系:to=<span class="string">'Tag'</span>(关联那张表,)through=<span class="string">'ArticleTOTag'</span>(关联的第三张表),through_fields=(<span class="string">'article'</span>, <span class="string">'tag'</span>)第一个参数的当前表</span><br><span class="line">    tag = models.ManyToManyField(to=<span class="string">'Tag'</span>, through=<span class="string">'ArticleTOTag'</span>, through_fields=(<span class="string">'article'</span>, <span class="string">'tag'</span>))</span><br><span class="line">    <span class="comment"># 这样写,会自动创建第三张表</span></span><br><span class="line">    <span class="comment"># tag = models.ManyToManyField(to='Tag')</span></span><br></pre></td></tr></table></figure>
+<h2 id="14-和13联系手动创建第三张表"><a href="#14-和13联系手动创建第三张表" class="headerlink" title="14.和13联系手动创建第三张表"></a>14.和13联系手动创建第三张表</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ArticleTOTag</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    nid = models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    article = models.ForeignKey(to=<span class="string">'Article'</span>, to_field=<span class="string">'nid'</span>)</span><br><span class="line">    tag = models.ForeignKey(to=<span class="string">'Tag'</span>, to_field=<span class="string">'nid'</span>)</span><br><span class="line">    <span class="comment"># article和tag应不应该联合唯一?</span></span><br></pre></td></tr></table></figure>
+<h2 id="15-创建评论表-16-自关联"><a href="#15-创建评论表-16-自关联" class="headerlink" title="15.创建评论表(16.自关联)"></a>15.创建评论表(16.自关联)</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Commit</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    nid = models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    user = models.ForeignKey(to=<span class="string">'UserInfo'</span>, to_field=<span class="string">'nid'</span>)</span><br><span class="line">    article = models.ForeignKey(to=<span class="string">'Article'</span>, to_field=<span class="string">'nid'</span>)</span><br><span class="line">    content = models.CharField(max_length=<span class="number">255</span>)</span><br><span class="line">    create_time = models.DateTimeField(auto_now_add=<span class="literal">True</span>)</span><br><span class="line">    <span class="comment"># 这样写是可以的</span></span><br><span class="line">    <span class="comment"># parent_id=models.IntegerField()</span></span><br><span class="line">    <span class="number">16.</span>自关联</span><br><span class="line">    <span class="comment"># parent_id=models.ForeignKey(to='Commit',to_field='nid')</span></span><br><span class="line">    parent = models.ForeignKey(to=<span class="string">'self'</span>, to_field=<span class="string">'nid'</span>,null=<span class="literal">True</span>,blank=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="17-创建点赞表"><a href="#17-创建点赞表" class="headerlink" title="17.创建点赞表"></a>17.创建点赞表</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UpAndDown</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    nid = models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    <span class="number">18.</span>用户不对文章点多个赞,不写脏数据,一个赞对多个用户,一个赞对多个文章</span><br><span class="line">    user = models.ForeignKey(to=<span class="string">'UserInfo'</span>, to_field=<span class="string">'nid'</span>)</span><br><span class="line">    article = models.ForeignKey(to=<span class="string">'Article'</span>, to_field=<span class="string">'nid'</span>)</span><br><span class="line">    is_up = models.BooleanField()</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        <span class="number">19.</span>写这些,只是为了不写脏数据,联合唯一</span><br><span class="line">        unique_together = ((<span class="string">'user'</span>, <span class="string">'article'</span>),)</span><br></pre></td></tr></table></figure>
+<h2 id="21-数据库迁移在setting-py"><a href="#21-数据库迁移在setting-py" class="headerlink" title="21.数据库迁移在setting.py"></a>21.数据库迁移在setting.py</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AUTH_USER_MODEL = <span class="string">'blog.UserInfo'</span></span><br></pre></td></tr></table></figure>
+<h2 id="22-执行pycharm的Tools"><a href="#22-执行pycharm的Tools" class="headerlink" title="22.执行pycharm的Tools"></a>22.执行pycharm的Tools</h2><h1 id="2-生成图片验证码"><a href="#2-生成图片验证码" class="headerlink" title="2.生成图片验证码"></a>2.生成图片验证码</h1><h2 id="23-创建登陆页面"><a href="#23-创建登陆页面" class="headerlink" title="23.创建登陆页面"></a>23.创建登陆页面</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">在urls.py</span><br><span class="line"><span class="keyword">from</span> blog <span class="keyword">import</span> views</span><br><span class="line">url(<span class="string">r'^login/'</span>, views.login),</span><br><span class="line">在temlates文件夹</span><br><span class="line">templates/login.html</span><br></pre></td></tr></table></figure>
+<h2 id="23-引入bootstrap和jquery"><a href="#23-引入bootstrap和jquery" class="headerlink" title="23.引入bootstrap和jquery"></a>23.引入bootstrap和jquery</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"/static/bootstrap-3.3.7-dist/css/bootstrap.min.css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"/static/jquery-3.3.1.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="24-将栅格系统-将内容放入中见"><a href="#24-将栅格系统-将内容放入中见" class="headerlink" title="24.将栅格系统,将内容放入中见"></a>24.将栅格系统,将内容放入中见</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container-fluid"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"row"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-6 col-md-offset-3"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="25-使用bootstrap语法-26-27-28"><a href="#25-使用bootstrap语法-26-27-28" class="headerlink" title="25.使用bootstrap语法(26.27.28)"></a>25.使用bootstrap语法(26.27.28)</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>登录<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">            26.&#123;# label for="name"  如果指定某个id,这样点击这个label,焦点会到对应的控件上         #&#125;</span><br><span class="line">            <span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">                &#123;% csrf_token %&#125;</span><br><span class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"name"</span>&gt;</span>用户名<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"name"</span> <span class="attr">class</span>=<span class="string">"form-control"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"pwd"</span>&gt;</span>密码<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">id</span>=<span class="string">"pwd"</span> <span class="attr">class</span>=<span class="string">"form-control"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"valid_code"</span>&gt;</span>验证码<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                    27.预留出验证码一半的位置</span><br><span class="line">                    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"row"</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-6"</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"valid_code"</span> <span class="attr">class</span>=<span class="string">"form-control"</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                        28.添加一个本地的路由</span><br><span class="line">                        <span class="tag">&lt;<span class="name">img</span> <span class="attr">height</span>=<span class="string">"35"</span> <span class="attr">width</span>=<span class="string">"320"</span> <span class="attr">src</span>=<span class="string">"/get_valid_code/"</span> <span class="attr">alt</span>=<span class="string">""</span> <span class="attr">id</span>=<span class="string">"img_code"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span>	</span><br><span class="line"></span><br><span class="line">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"登录"</span> <span class="attr">class</span>=<span class="string">"btn btn-primary "</span> <span class="attr">id</span>=<span class="string">"btn"</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"error"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="添加一张本地图片"><a href="#添加一张本地图片" class="headerlink" title="添加一张本地图片"></a>添加一张本地图片</h2><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def get_valid_code(request):</span><br><span class="line">    # 第一种方式</span><br><span class="line">    # <span class="keyword">with</span> open(<span class="string">'static/img/lhf.jpg'</span>,<span class="string">'rb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    #     # 图片二进制</span><br><span class="line">    #     data=f.read()</span><br><span class="line">    # return HttpResponse(data)</span><br></pre></td></tr></table></figure>
+<h2 id="29-导入pillow模块PIL简写"><a href="#29-导入pillow模块PIL简写" class="headerlink" title="29.导入pillow模块PIL简写"></a>29.导入pillow模块PIL简写</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image, ImageDraw, ImageFont</span><br></pre></td></tr></table></figure>
+<h2 id="30-生成一张图片"><a href="#30-生成一张图片" class="headerlink" title="30.# 生成一张图片,"></a>30.# 生成一张图片,</h2><h3 id="第一个参数是模式-RGB"><a href="#第一个参数是模式-RGB" class="headerlink" title="第一个参数是模式:RGB,"></a>第一个参数是模式:RGB,</h3><h3 id="第二个参数是图片大小"><a href="#第二个参数是图片大小" class="headerlink" title="第二个参数是图片大小,"></a>第二个参数是图片大小,</h3><h3 id="第三个参数是图片颜色"><a href="#第三个参数是图片颜色" class="headerlink" title="第三个参数是图片颜色"></a>第三个参数是图片颜色</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># pip3 install Pillow</span></span><br><span class="line">    <span class="comment"># pillow 是一个图形处理的模块,功能很强强大</span></span><br><span class="line">    <span class="comment"># 生成一张图片,第一个参数是模式:RGB,第二个参数是图片大小,第三个参数是图片颜色</span></span><br><span class="line">    <span class="number">31.</span>调用一个函数,里面生成随机的颜色码</span><br><span class="line">    <span class="comment"># img = Image.new('RGB', (320, 35), color=get_random_color())</span></span><br><span class="line">    <span class="comment"># # 保存到本地</span></span><br><span class="line">    <span class="comment"># with open('valid_code.png', 'wb') as f:</span></span><br><span class="line">    <span class="comment">#     # 直接用img的save方法,第一个参数是空文件,第二个参数图片格式</span></span><br><span class="line">    <span class="comment">#     img.save(f, 'png')</span></span><br><span class="line">    <span class="comment"># # 打开文件,再返回</span></span><br><span class="line">    <span class="comment"># with open('valid_code.png', 'rb') as f:</span></span><br><span class="line">    <span class="comment">#     data = f.read()</span></span><br><span class="line">    <span class="comment"># return HttpResponse(data)</span></span><br></pre></td></tr></table></figure>
+<h2 id="32-创建31调用的函数"><a href="#32-创建31调用的函数" class="headerlink" title="32.创建31调用的函数"></a>32.创建31调用的函数</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_random_color</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        random.randint(<span class="number">0</span>, <span class="number">255</span>), random.randint(<span class="number">0</span>, <span class="number">255</span>), random.randint(<span class="number">0</span>, <span class="number">255</span>)</span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
+<h2 id="32-内存关联图片BytesIO模块"><a href="#32-内存关联图片BytesIO模块" class="headerlink" title="32.内存关联图片BytesIO模块"></a>32.内存关联图片BytesIO模块</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 第三种方式</span></span><br><span class="line">   <span class="comment"># 在内存中生成一个空文件(把它想象成 open('valid_code.png', 'wb') as f:)</span></span><br><span class="line">   <span class="comment"># 一个是在硬盘上,一个是在内存中</span></span><br><span class="line">   <span class="comment"># img = Image.new('RGB', (320, 35), color=get_random_color())</span></span><br><span class="line">   <span class="comment"># f = BytesIO()</span></span><br><span class="line">   <span class="comment"># # 把图片保存到f中</span></span><br><span class="line">   <span class="comment"># # 放到内存中,存取比较快,而且有自动清理</span></span><br><span class="line">   <span class="comment"># img.save(f, 'png')</span></span><br><span class="line">   <span class="comment">#</span></span><br><span class="line">   <span class="comment"># data = f.getvalue()</span></span><br><span class="line">   <span class="comment"># return HttpResponse(data)</span></span><br></pre></td></tr></table></figure>
+<h2 id="33-ForeignKey跟OneToOneField的区别"><a href="#33-ForeignKey跟OneToOneField的区别" class="headerlink" title="33.# ForeignKey跟OneToOneField的区别?"></a>33.# ForeignKey跟OneToOneField的区别?</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#OneToOneField unique=True,还有联合唯一</span></span><br></pre></td></tr></table></figure>
+<h2 id="34-存时间类型"><a href="#34-存时间类型" class="headerlink" title="34.# 存时间类型,"></a>34.# 存时间类型,</h2><h6 id="auto-now-add每插入一条数据-时间自动写入当前时间"><a href="#auto-now-add每插入一条数据-时间自动写入当前时间" class="headerlink" title="auto_now_add每插入一条数据,时间自动写入当前时间,"></a>auto_now_add每插入一条数据,时间自动写入当前时间,</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># auto_now,这条数据修改的时候,会更新成当前时间</span></span><br><span class="line">create_time = models.DateTimeField(auto_now_add=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="35-中介模型"><a href="#35-中介模型" class="headerlink" title="35.# 中介模型,"></a>35.# 中介模型,</h2><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">手动创建第三张表,</span><br><span class="line"></span><br><span class="line"><span class="keyword">through</span>是通过哪个表跟Tag建立关系,</span><br><span class="line"></span><br><span class="line">through_fields为了查询用的(<span class="number">36</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="36-article和tag应不应该联合唯一-一般不键-因为多对多"><a href="#36-article和tag应不应该联合唯一-一般不键-因为多对多" class="headerlink" title="36.# article和tag应不应该联合唯一?一般不键,因为多对多"></a>36.# article和tag应不应该联合唯一?一般不键,因为多对多</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">tag = models.ManyToManyField(to=<span class="string">'Tag'</span>, through=<span class="string">'ArticleTOTag'</span>, through_fields=(<span class="string">'article'</span>, <span class="string">'tag'</span>))</span><br><span class="line">    <span class="comment"># 这样写,会自动创建第三张表</span></span><br><span class="line">    <span class="comment"># tag = models.ManyToManyField(to='Tag')</span></span><br><span class="line"><span class="comment"># 手动创建第三张表</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ArticleTOTag</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    nid = models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    article = models.ForeignKey(to=<span class="string">'Article'</span>, to_field=<span class="string">'nid'</span>)</span><br><span class="line">    tag = models.ForeignKey(to=<span class="string">'Tag'</span>, to_field=<span class="string">'nid'</span>)</span><br><span class="line">    <span class="number">36.</span><span class="comment"># article和tag应不应该联合唯一?一般不键,因为多对多</span></span><br></pre></td></tr></table></figure>
+<h2 id="37-自关联-子评论"><a href="#37-自关联-子评论" class="headerlink" title="37.# 自关联(子评论)"></a>37.# 自关联(子评论)</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># parent_id=models.ForeignKey(to='Commit',to_field='nid')</span></span><br><span class="line">parent = models.ForeignKey(to=<span class="string">'self'</span>, to_field=<span class="string">'nid'</span>,null=<span class="literal">True</span>,blank=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="38-第四种方式-在图片上写文字"><a href="#38-第四种方式-在图片上写文字" class="headerlink" title="38.# 第四种方式,在图片上写文字"></a>38.# 第四种方式,在图片上写文字</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># img = Image.new('RGB', (320, 35), color=get_random_color())</span></span><br><span class="line"><span class="comment"># # 拿到画笔,把图片传入画笔</span></span><br><span class="line"><span class="comment"># img_draw=ImageDraw.Draw(img)</span></span><br><span class="line"><span class="comment"># # 生成一个字体对象,第一个参数是字体文件的路径,第二个参数是字体大小</span></span><br><span class="line"><span class="comment"># font=ImageFont.truetype('static/font/ss.TTF',size=25)</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># # 第一个参数,xy的坐标,第二个参数:要写的文字,第三个参数:写文字的颜色,第四个参数:字体</span></span><br><span class="line"><span class="comment"># # 不同的字体是不同的ttf文件</span></span><br><span class="line"><span class="comment"># img_draw.text((0,0),'python',get_random_color(),font=font)</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># f = BytesIO()</span></span><br><span class="line"><span class="comment"># # 把图片保存到f中</span></span><br><span class="line"><span class="comment"># # 放到内存中,存取比较快,而且有自动清理</span></span><br><span class="line"><span class="comment"># img.save(f, 'png')</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># data = f.getvalue()</span></span><br></pre></td></tr></table></figure>
+<h2 id="39-不同的字体是不同的ttf文件"><a href="#39-不同的字体是不同的ttf文件" class="headerlink" title="39.# 不同的字体是不同的ttf文件"></a>39.# 不同的字体是不同的ttf文件</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">random_code = <span class="string">''</span></span><br><span class="line"><span class="comment"># 弄一个循环,循环5次,每次随机写一个(数字,大写,小写字母)</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">    char_num = random.randint(<span class="number">0</span>, <span class="number">9</span>)</span><br><span class="line">    <span class="comment"># 生成一个97到122的数字,然后用chr转成字符</span></span><br><span class="line">    char_lower = chr(random.randint(<span class="number">97</span>, <span class="number">122</span>))</span><br><span class="line">    char_upper = chr(random.randint(<span class="number">65</span>, <span class="number">90</span>))</span><br><span class="line">    char_str = str(random.choice([char_num, char_lower, char_upper]))</span><br><span class="line">    img_draw.text((i * <span class="number">30</span> + <span class="number">20</span>, <span class="number">0</span>), char_str, get_random_color(), font=font)</span><br><span class="line"></span><br><span class="line">    random_code += char_str</span><br><span class="line"><span class="comment"># 把验证码保存到session中</span></span><br><span class="line">print(random_code)</span><br><span class="line">request.session[<span class="string">'valid_code'</span>] = random_code</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">1 生成一个随机字符串:ddddsfassda</span></span><br><span class="line"><span class="string">2 在session表中插入一条数据</span></span><br><span class="line"><span class="string">3 在cook中写入 :sessionid=ddddsfassda</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+<h2 id="40-画原画点"><a href="#40-画原画点" class="headerlink" title="40.画原画点"></a>40.画原画点</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># width = 320</span></span><br><span class="line"><span class="comment"># height = 35</span></span><br><span class="line"><span class="comment"># for i in range(10):</span></span><br><span class="line"><span class="comment">#     x1 = random.randint(0, width)</span></span><br><span class="line"><span class="comment">#     x2 = random.randint(0, width)</span></span><br><span class="line"><span class="comment">#     y1 = random.randint(0, height)</span></span><br><span class="line"><span class="comment">#     y2 = random.randint(0, height)</span></span><br><span class="line"><span class="comment">#     # 在图片上画线</span></span><br><span class="line"><span class="comment">#     img_draw.line((x1, y1, x2, y2), fill=get_random_color())</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># for i in range(100):</span></span><br><span class="line"><span class="comment">#     # 画点</span></span><br><span class="line"><span class="comment">#     img_draw.point([random.randint(0, width), random.randint(0, height)], fill=get_random_color())</span></span><br><span class="line"><span class="comment">#     x = random.randint(0, width)</span></span><br><span class="line"><span class="comment">#     y = random.randint(0, height)</span></span><br><span class="line"><span class="comment">#     # 画弧形</span></span><br><span class="line"><span class="comment">#     img_draw.arc((x, y, x + 4, y + 4), 0, 90, fill=get_random_color())</span></span><br></pre></td></tr></table></figure>
+<h2 id="41-验证码点击事件"><a href="#41-验证码点击事件" class="headerlink" title="41.验证码点击事件"></a>41.验证码点击事件</h2><p><img src="/2019/03/06/bbs/1551801702361.png" alt="1551801702361"></p>
+<p><img src="/2019/03/06/bbs/1551801795395.png" alt="1551801795395"></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">login.html文件中加入id="img_code"</span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">height</span>=<span class="string">"35"</span> <span class="attr">width</span>=<span class="string">"320"</span> <span class="attr">src</span>=<span class="string">"/get_valid_code/"</span> <span class="attr">alt</span>=<span class="string">""</span> <span class="attr">id</span>=<span class="string">"img_code"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    $(<span class="string">"#img_code"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="actionscript">        <span class="comment">//在路径后面加一个问号</span></span></span><br><span class="line"><span class="actionscript">        <span class="comment">//$("#img_code")[0].src+='?'0是清晰度最低的</span></span></span><br><span class="line"><span class="actionscript">        <span class="comment">// alert(11)</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="42-保存到随机session-打开2个网站其中一个是失效的"><a href="#42-保存到随机session-打开2个网站其中一个是失效的" class="headerlink" title="42.保存到随机session(打开2个网站其中一个是失效的)"></a>42.保存到随机session(打开2个网站其中一个是失效的)</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 不同的字体是不同的ttf文件</span></span><br><span class="line">    random_code = <span class="string">''</span></span><br><span class="line">    <span class="comment"># 弄一个循环,循环5次,每次随机写一个(数字,大写,小写字母)</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">        char_num = random.randint(<span class="number">0</span>, <span class="number">9</span>)</span><br><span class="line">        <span class="comment"># 生成一个97到122的数字,然后用chr转成字符</span></span><br><span class="line">        char_lower = chr(random.randint(<span class="number">97</span>, <span class="number">122</span>))</span><br><span class="line">        char_upper = chr(random.randint(<span class="number">65</span>, <span class="number">90</span>))</span><br><span class="line">        char_str = str(random.choice([char_num, char_lower, char_upper]))</span><br><span class="line">        img_draw.text((i * <span class="number">30</span> + <span class="number">20</span>, <span class="number">0</span>), char_str, get_random_color(), font=font)</span><br><span class="line"></span><br><span class="line">        random_code += char_str</span><br><span class="line">    <span class="comment"># 把验证码保存到session中</span></span><br><span class="line">    print(random_code)</span><br><span class="line">    request.session[<span class="string">'valid_code'</span>] = random_code</span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    1 生成一个随机字符串:ddddsfassda</span></span><br><span class="line"><span class="string">    2 在session表中插入一条数据</span></span><br><span class="line"><span class="string">    3 在cook中写入 :sessionid=ddddsfassda</span></span><br><span class="line"><span class="string">    '''</span></span><br></pre></td></tr></table></figure>
+<h2 id="43-登陆视图函数"><a href="#43-登陆视图函数" class="headerlink" title="43.登陆视图函数"></a>43.登陆视图函数</h2><p>ajax请求,不能再返回render页面,或者redirect,只能返回字符串</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib.auth.models <span class="keyword">import</span> AbstractUser</span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> auth</span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> JsonResponse</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        dic = &#123;<span class="string">'name'</span>: <span class="string">'lqz'</span>, <span class="string">'age'</span>: <span class="number">18</span>&#125;</span><br><span class="line">        <span class="keyword">return</span> render(request, <span class="string">'login.html'</span>, locals())</span><br><span class="line">    <span class="comment"># elif request.method=='POST':</span></span><br><span class="line">    <span class="number">44.</span><span class="comment"># 判断前台发的请求是不是ajax的请求</span></span><br><span class="line">    <span class="keyword">elif</span> request.is_ajax():</span><br><span class="line">        response = &#123;<span class="string">'user'</span>: <span class="literal">None</span>, <span class="string">'msg'</span>: <span class="literal">None</span>&#125;</span><br><span class="line">        name = request.POST.get(<span class="string">'name'</span>)</span><br><span class="line">        pwd = request.POST.get(<span class="string">'pwd'</span>)</span><br><span class="line">        valid_code = request.POST.get(<span class="string">'valid_code'</span>)</span><br><span class="line">        <span class="number">45.</span><span class="comment"># 判断传过来的验证码是否正确</span></span><br><span class="line">        <span class="comment"># 从session中取出来</span></span><br><span class="line">        <span class="keyword">if</span> valid_code.upper() == request.session.get(<span class="string">'valid_code'</span>).upper():</span><br><span class="line">            <span class="number">46.</span>导入auth模块</span><br><span class="line">            user = auth.authenticate(request, username=name, password=pwd)</span><br><span class="line">            <span class="keyword">if</span> user:</span><br><span class="line">                <span class="comment"># ajax请求,不能再返回render页面,或者redirect,只能返回字符串</span></span><br><span class="line">                <span class="comment"># 校验通过,一定要登录</span></span><br><span class="line">                auth.login(request, user)</span><br><span class="line">                response[<span class="string">'user'</span>] = name</span><br><span class="line">                response[<span class="string">'msg'</span>] = <span class="string">'登录成功'</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="comment"># 用户名密码错误</span></span><br><span class="line">                response[<span class="string">'msg'</span>] = <span class="string">'用户名密码错误'</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            response[<span class="string">'msg'</span>] = <span class="string">'验证码错误'</span></span><br><span class="line">    <span class="keyword">return</span> JsonResponse(response)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/gongzhonghao.jpg" alt="李江洋 wechat" style="width: 200px; max-width: 100%;">
+  <div>python分享公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="李江洋 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="李江洋 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/django项目/" rel="tag"># django项目</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/06/mysql笔记b/" rel="next" title="mysql笔记b">
+                <i class="fa fa-chevron-left"></i> mysql笔记b
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/06/bbs表达/" rel="prev" title="'bbs表达'">
+                'bbs表达' <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="李江洋">
+            
+              <p class="site-author-name" itemprop="name">李江洋</p>
+              <p class="site-description motion-element" itemprop="description">记录学习的技能和遇到的问题</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">179</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lvdXJuYW1l" title="GitHub &rarr; https://github.com/yourname"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="bWFpbHRvOjEzMjgwNDQzOTJAcXEuY29t" title="E-Mail &rarr; mailto:1328044392@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL2V4YW1wbGUuY29t" title="http://example.com">Title</span>
+                  </li>
+                
+              </ul>
+            </div>
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#BBS"><span class="nav-number">1.</span> <span class="nav-text">BBS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-首页-显示文章"><span class="nav-number">1.1.</span> <span class="nav-text">1.-首页(显示文章)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-数据库设计"><span class="nav-number">1.2.</span> <span class="nav-text">2.数据库设计:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#User"><span class="nav-number">1.2.1.</span> <span class="nav-text">User:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Blog"><span class="nav-number">1.2.2.</span> <span class="nav-text">Blog:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Category"><span class="nav-number">1.2.3.</span> <span class="nav-text">Category:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tag-文章关键字"><span class="nav-number">1.2.4.</span> <span class="nav-text">Tag:(文章关键字)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Article"><span class="nav-number">1.2.5.</span> <span class="nav-text">Article</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Commit"><span class="nav-number">1.2.6.</span> <span class="nav-text">Commit:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BBS项目表关系图"><span class="nav-number">2.</span> <span class="nav-text">BBS项目表关系图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BBS代码流程"><span class="nav-number">3.</span> <span class="nav-text">BBS代码流程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一-博客项目表字段编写-数据库迁移"><span class="nav-number">4.</span> <span class="nav-text">一. 博客项目表字段编写,数据库迁移</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-创建BBS"><span class="nav-number">4.1.</span> <span class="nav-text">1.创建BBS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-连接mysql"><span class="nav-number">4.2.</span> <span class="nav-text">2.连接mysql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-设置启动项目启动pymysql"><span class="nav-number">4.3.</span> <span class="nav-text">3.设置启动项目启动pymysql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-配置静态文件路径setting-py"><span class="nav-number">4.4.</span> <span class="nav-text">4.配置静态文件路径setting.py,</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#后面一定要加逗号-创建start文件"><span class="nav-number">4.4.1.</span> <span class="nav-text">后面一定要加逗号(创建start文件)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五-models"><span class="nav-number">4.5.</span> <span class="nav-text">五.models</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-导入auth主键"><span class="nav-number">4.6.</span> <span class="nav-text">5.导入auth主键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-UserInfo这个表-继承AbstractUser"><span class="nav-number">4.7.</span> <span class="nav-text">6.UserInfo这个表,继承AbstractUser,</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#因为要用auth组件-20-7-8"><span class="nav-number">4.7.1.</span> <span class="nav-text">因为要用auth组件(20,7,8)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-upload是上传的-default是默认的"><span class="nav-number">4.8.</span> <span class="nav-text">7.upload是上传的,default是默认的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-创建站点表"><span class="nav-number">4.9.</span> <span class="nav-text">9.创建站点表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-创建分类表"><span class="nav-number">4.10.</span> <span class="nav-text">10.创建分类表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-创建标签表"><span class="nav-number">4.11.</span> <span class="nav-text">11.创建标签表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-创建文章表-13"><span class="nav-number">4.12.</span> <span class="nav-text">12.创建文章表(13)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-和13联系手动创建第三张表"><span class="nav-number">4.13.</span> <span class="nav-text">14.和13联系手动创建第三张表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-创建评论表-16-自关联"><span class="nav-number">4.14.</span> <span class="nav-text">15.创建评论表(16.自关联)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-创建点赞表"><span class="nav-number">4.15.</span> <span class="nav-text">17.创建点赞表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#21-数据库迁移在setting-py"><span class="nav-number">4.16.</span> <span class="nav-text">21.数据库迁移在setting.py</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22-执行pycharm的Tools"><span class="nav-number">4.17.</span> <span class="nav-text">22.执行pycharm的Tools</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-生成图片验证码"><span class="nav-number">5.</span> <span class="nav-text">2.生成图片验证码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#23-创建登陆页面"><span class="nav-number">5.1.</span> <span class="nav-text">23.创建登陆页面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#23-引入bootstrap和jquery"><span class="nav-number">5.2.</span> <span class="nav-text">23.引入bootstrap和jquery</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#24-将栅格系统-将内容放入中见"><span class="nav-number">5.3.</span> <span class="nav-text">24.将栅格系统,将内容放入中见</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#25-使用bootstrap语法-26-27-28"><span class="nav-number">5.4.</span> <span class="nav-text">25.使用bootstrap语法(26.27.28)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加一张本地图片"><span class="nav-number">5.5.</span> <span class="nav-text">添加一张本地图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#29-导入pillow模块PIL简写"><span class="nav-number">5.6.</span> <span class="nav-text">29.导入pillow模块PIL简写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#30-生成一张图片"><span class="nav-number">5.7.</span> <span class="nav-text">30.# 生成一张图片,</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一个参数是模式-RGB"><span class="nav-number">5.7.1.</span> <span class="nav-text">第一个参数是模式:RGB,</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二个参数是图片大小"><span class="nav-number">5.7.2.</span> <span class="nav-text">第二个参数是图片大小,</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三个参数是图片颜色"><span class="nav-number">5.7.3.</span> <span class="nav-text">第三个参数是图片颜色</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#32-创建31调用的函数"><span class="nav-number">5.8.</span> <span class="nav-text">32.创建31调用的函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#32-内存关联图片BytesIO模块"><span class="nav-number">5.9.</span> <span class="nav-text">32.内存关联图片BytesIO模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#33-ForeignKey跟OneToOneField的区别"><span class="nav-number">5.10.</span> <span class="nav-text">33.# ForeignKey跟OneToOneField的区别?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#34-存时间类型"><span class="nav-number">5.11.</span> <span class="nav-text">34.# 存时间类型,</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#auto-now-add每插入一条数据-时间自动写入当前时间"><span class="nav-number">5.11.0.0.0.1.</span> <span class="nav-text">auto_now_add每插入一条数据,时间自动写入当前时间,</span></a></li></ol></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#35-中介模型"><span class="nav-number">5.12.</span> <span class="nav-text">35.# 中介模型,</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#36-article和tag应不应该联合唯一-一般不键-因为多对多"><span class="nav-number">5.13.</span> <span class="nav-text">36.# article和tag应不应该联合唯一?一般不键,因为多对多</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#37-自关联-子评论"><span class="nav-number">5.14.</span> <span class="nav-text">37.# 自关联(子评论)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#38-第四种方式-在图片上写文字"><span class="nav-number">5.15.</span> <span class="nav-text">38.# 第四种方式,在图片上写文字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#39-不同的字体是不同的ttf文件"><span class="nav-number">5.16.</span> <span class="nav-text">39.# 不同的字体是不同的ttf文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#40-画原画点"><span class="nav-number">5.17.</span> <span class="nav-text">40.画原画点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#41-验证码点击事件"><span class="nav-number">5.18.</span> <span class="nav-text">41.验证码点击事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#42-保存到随机session-打开2个网站其中一个是失效的"><span class="nav-number">5.19.</span> <span class="nav-text">42.保存到随机session(打开2个网站其中一个是失效的)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#43-登陆视图函数"><span class="nav-number">5.20.</span> <span class="nav-text">43.登陆视图函数</span></a></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李江洋</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Pisces</span> v7.0.1</div>
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script id="ribbon" size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+  
+  <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ljyabc.github.io/2019/03/06/bbs/";
+    this.page.identifier = "2019/03/06/bbs/";
+    this.page.title = 'bbs';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/exturl.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+   <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+</body>
+</html>

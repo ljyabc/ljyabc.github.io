@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="冒泡排序算法描述冒泡排序的基本思想就是：从无序序列头部开始，进行两两比较，根据大小交换位置，直到最后将最大的数据元素交换到了无序队列的队尾，从而成为有序序列的一部分；下一次继续这个过程，直到所有数据元素都排好序。  算法的核心在于每次通过两两比较交换位置，选出剩余无序序列里最大的数据元素放到队尾。  代码实现 比较相邻的元素，如果第一个比第二个大(升序)，就交换他们两个； 对每一对相邻元素做同样的">
+<meta name="keywords" content="算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python小项目">
+<meta property="og:url" content="https://ljyabc.github.io/2019/03/14/python小项目/index.html">
+<meta property="og:site_name" content="择墅居:李江洋">
+<meta property="og:description" content="冒泡排序算法描述冒泡排序的基本思想就是：从无序序列头部开始，进行两两比较，根据大小交换位置，直到最后将最大的数据元素交换到了无序队列的队尾，从而成为有序序列的一部分；下一次继续这个过程，直到所有数据元素都排好序。  算法的核心在于每次通过两两比较交换位置，选出剩余无序序列里最大的数据元素放到队尾。  代码实现 比较相邻的元素，如果第一个比第二个大(升序)，就交换他们两个； 对每一对相邻元素做同样的">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2025-04-08T14:37:52.229Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python小项目">
+<meta name="twitter:description" content="冒泡排序算法描述冒泡排序的基本思想就是：从无序序列头部开始，进行两两比较，根据大小交换位置，直到最后将最大的数据元素交换到了无序队列的队尾，从而成为有序序列的一部分；下一次继续这个过程，直到所有数据元素都排好序。  算法的核心在于每次通过两两比较交换位置，选出剩余无序序列里最大的数据元素放到队尾。  代码实现 比较相邻的元素，如果第一个比第二个大(升序)，就交换他们两个； 对每一对相邻元素做同样的">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ljyabc.github.io/2019/03/14/python小项目/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>python小项目 | 择墅居:李江洋</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">择墅居:李江洋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">争做长沙别墅豪装第一品牌</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/book" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>book</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2019/03/14/python小项目/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李江洋">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="择墅居:李江洋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">python小项目
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-14 20:07:25" itemprop="dateCreated datePublished" datetime="2019-03-14T20:07:25+08:00">2019-03-14</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2025-04-08 22:37:52" itemprop="dateModified" datetime="2025-04-08T22:37:52+08:00">2025-04-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/逻辑/" itemprop="url" rel="index"><span itemprop="name">逻辑</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/03/14/python小项目/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/14/python小项目/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><h3 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h3><p>冒泡排序的基本思想就是：从无序序列头部开始，进行两两比较，根据大小交换位置，直到最后将最大的数据元素交换到了无序队列的队尾，从而成为有序序列的一部分；下一次继续这个过程，直到所有数据元素都排好序。</p>
+<blockquote>
+<p>算法的核心在于每次通过两两比较交换位置，选出剩余无序序列里最大的数据元素放到队尾。</p>
+</blockquote>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><ul>
+<li>比较相邻的元素，如果第一个比第二个大(升序)，就交换他们两个；</li>
+<li>对每一对相邻元素做同样的工作，从开始第一对到结尾的最后一对；</li>
+<li>针对所有的元素重复以上的步骤，除了最后已经选出的元素；</li>
+<li>持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># _*_ coding:utf-8 _*_</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 冒泡排序</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bubble_sort</span><span class="params">(list)</span>:</span></span><br><span class="line"></span><br><span class="line">    n = len(list)</span><br><span class="line">    print(<span class="string">f"列表的总长度为：<span class="subst">&#123;n&#125;</span>"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n - <span class="number">1</span>):</span><br><span class="line"></span><br><span class="line">        print(<span class="string">'-'</span> * <span class="number">20</span>)</span><br><span class="line">        print(<span class="string">f"当前i为：<span class="subst">&#123;i&#125;</span>"</span>)</span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        print(<span class="string">'*'</span> * <span class="number">20</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>, n<span class="number">-1</span>-i):</span><br><span class="line"></span><br><span class="line">            print(<span class="string">f"当前j为：<span class="subst">&#123;j&#125;</span>"</span>)</span><br><span class="line">            print(list)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 让列表的前一位与后一位进行对比，如果前一位大于后一位，则交换两者的位置,当最大的以为移至队列尾部时停止比较</span></span><br><span class="line">            <span class="keyword">if</span> list[j] &gt; list[j+<span class="number">1</span>]:</span><br><span class="line"></span><br><span class="line">                list[j], list[j+<span class="number">1</span>] = list[j+<span class="number">1</span>], list[j]</span><br><span class="line">                count += <span class="number">1</span></span><br><span class="line">                print(<span class="string">f"当前count为：<span class="subst">&#123;count&#125;</span>"</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="number">0</span> == count:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    list = [<span class="number">56</span>, <span class="number">12</span>, <span class="number">1</span>, <span class="number">8</span>, <span class="number">254</span>, <span class="number">456</span>, <span class="number">10</span>, <span class="number">100</span>, <span class="number">34</span>, <span class="number">56</span>, <span class="number">7</span>, <span class="number">23</span>, <span class="number">234</span>, <span class="number">-57</span>]</span><br><span class="line">    print(<span class="string">f"原列表为：<span class="subst">&#123;list&#125;</span>"</span>)</span><br><span class="line">    bubble_sort(list)</span><br><span class="line">    print(<span class="string">'^'</span> * <span class="number">60</span>)</span><br><span class="line">    print(<span class="string">f"新列表为：<span class="subst">&#123;list&#125;</span>"</span>)</span><br></pre></td></tr></table></figure>
+<p>最终结果为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">新列表为：[<span class="number">-57</span>, <span class="number">1</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">10</span>, <span class="number">12</span>, <span class="number">23</span>, <span class="number">34</span>, <span class="number">56</span>, <span class="number">56</span>, <span class="number">100</span>, <span class="number">234</span>, <span class="number">254</span>, <span class="number">456</span>]</span><br></pre></td></tr></table></figure>
+<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><h3 id="算法描述-1"><a href="#算法描述-1" class="headerlink" title="算法描述"></a>算法描述</h3><p>插入排序的基本操作就是将一个数据插入到已经排好序的有序数据中，从而得到一个新的、个数加一的有序数据，算法适用于少量数据的排序，时间复杂度为O(n^2)。是稳定的排序方法。插入算法把要排序的数组分成两部分：第一部分包含了这个数组的所有元素，但将最后一个元素除外（让数组多一个空间才有插入的位置），而第二部分就只包含这一个元素（即待插入元素）。在第一部分排序完成后，再将这个最后元素插入到已排好序的第一部分中。</p>
+<h3 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># _*_ coding:utf-8 _*_</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 插入排序</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insert_sort</span><span class="params">(list)</span>:</span></span><br><span class="line"></span><br><span class="line">    n = len(list)</span><br><span class="line">    print(<span class="string">f"列表的总长度为：<span class="subst">&#123;n&#125;</span>"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n):</span><br><span class="line"></span><br><span class="line">        print(<span class="string">'-'</span> * <span class="number">40</span>)</span><br><span class="line">        print(<span class="string">f"当前i为：<span class="subst">&#123;i&#125;</span>"</span>)</span><br><span class="line">        key = list[i]</span><br><span class="line">        print(<span class="string">f"当前key为：<span class="subst">&#123;key&#125;</span>"</span>)</span><br><span class="line">        j = i - <span class="number">1</span></span><br><span class="line">        print(<span class="string">f"当前j为：<span class="subst">&#123;j&#125;</span>"</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> j &gt;= <span class="number">0</span>:</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> list[j] &gt; key:</span><br><span class="line">                print(<span class="string">f"因为list[j]:<span class="subst">&#123;list[j]&#125;</span>&gt;key:<span class="subst">&#123;key&#125;</span>,所以执行这一步"</span>)</span><br><span class="line">                print(<span class="string">f"list[<span class="subst">&#123;j+<span class="number">1</span>&#125;</span>]=<span class="subst">&#123;list[j+<span class="number">1</span>]&#125;</span>,list[<span class="subst">&#123;j&#125;</span>]=<span class="subst">&#123;list[j]&#125;</span>"</span>)</span><br><span class="line">                <span class="comment"># list[j + 1], list[j] = list[j], key</span></span><br><span class="line"></span><br><span class="line">                list[j+<span class="number">1</span>] = list[j]</span><br><span class="line">                list[j] = key</span><br><span class="line"></span><br><span class="line">                print(<span class="string">f"list[<span class="subst">&#123;j&#125;</span>]:<span class="subst">&#123;list[j]&#125;</span>,key:<span class="subst">&#123;key&#125;</span>"</span>)</span><br><span class="line"></span><br><span class="line">            j -= <span class="number">1</span></span><br><span class="line">            print(<span class="string">f"当前j为：<span class="subst">&#123;j&#125;</span>"</span>)</span><br><span class="line">            print(<span class="string">f"当前list为：<span class="subst">&#123;list&#125;</span>"</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># # return list</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    list = [<span class="number">56</span>, <span class="number">12</span>, <span class="number">1</span>, <span class="number">8</span>, <span class="number">254</span>, <span class="number">456</span>, <span class="number">10</span>, <span class="number">100</span>, <span class="number">34</span>, <span class="number">56</span>, <span class="number">7</span>, <span class="number">23</span>, <span class="number">234</span>, <span class="number">-57</span>]</span><br><span class="line">    print(<span class="string">f"原列表为：<span class="subst">&#123;list&#125;</span>"</span>)</span><br><span class="line">    insert_sort(list)</span><br><span class="line">    print(<span class="string">f"新列表为：<span class="subst">&#123;list&#125;</span>"</span>)</span><br></pre></td></tr></table></figure>
+<p>最终结果为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">新列表为：[<span class="number">-57</span>, <span class="number">1</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">10</span>, <span class="number">12</span>, <span class="number">23</span>, <span class="number">34</span>, <span class="number">56</span>, <span class="number">56</span>, <span class="number">100</span>, <span class="number">234</span>, <span class="number">254</span>, <span class="number">456</span>]</span><br></pre></td></tr></table></figure>
+<h2 id="计算x的n次方"><a href="#计算x的n次方" class="headerlink" title="计算x的n次方"></a>计算x的n次方</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">power</span><span class="params">(x, n)</span>:</span></span><br><span class="line">    s = <span class="number">1</span></span><br><span class="line">    print(<span class="string">f"初始x为：<span class="subst">&#123;x&#125;</span>"</span>)</span><br><span class="line">    print(<span class="string">f"初始n为：<span class="subst">&#123;n&#125;</span>"</span>)</span><br><span class="line">    print(<span class="string">'-'</span> * <span class="number">30</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> n &gt; <span class="number">0</span>:</span><br><span class="line">        n -= <span class="number">1</span></span><br><span class="line">        print(<span class="string">f"当前n为：<span class="subst">&#123;n&#125;</span>"</span>)</span><br><span class="line">        s = s * x</span><br><span class="line">        print(<span class="string">f"当前s为：<span class="subst">&#123;s&#125;</span>"</span>)</span><br><span class="line">        print(<span class="string">'- '</span> * <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> s</span><br></pre></td></tr></table></figure>
+<h2 id="计算axa-bxb-cxc"><a href="#计算axa-bxb-cxc" class="headerlink" title="计算axa+bxb+cxc+.."></a>计算axa+bxb+cxc+..</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">clac</span><span class="params">(*numbers)</span>:</span></span><br><span class="line"></span><br><span class="line">    sum = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> n <span class="keyword">in</span> numbers:</span><br><span class="line">        print(<span class="string">f"当前n为：<span class="subst">&#123;n&#125;</span>"</span>)</span><br><span class="line">        sum = sum + n * n</span><br><span class="line">        print(<span class="string">f"当前sum为：<span class="subst">&#123;sum&#125;</span>"</span>)</span><br><span class="line">        print(<span class="string">'-'</span> * <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">    print(sum)</span><br><span class="line">    <span class="keyword">return</span> sum</span><br></pre></td></tr></table></figure>
+<h2 id="计算阶乘n！"><a href="#计算阶乘n！" class="headerlink" title="计算阶乘n！"></a>计算阶乘n！</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方法一</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fac</span><span class="params">(num)</span>:</span></span><br><span class="line">    factorial = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> num &lt; <span class="number">0</span>:</span><br><span class="line">        print(<span class="string">"抱歉，负数没有阶乘"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">elif</span> num == <span class="number">0</span>:</span><br><span class="line">        print(<span class="string">"0的阶乘为1"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, num + <span class="number">1</span>):</span><br><span class="line">            print(<span class="string">f"当前i为：<span class="subst">&#123;i&#125;</span>"</span>)</span><br><span class="line">            print(<span class="string">f"乘法流程为factorial[<span class="subst">&#123;factorial&#125;</span>]* i[<span class="subst">&#123;i&#125;</span>]"</span>)</span><br><span class="line">            factorial = factorial * i</span><br><span class="line">            print(<span class="string">f"当前factorial为：<span class="subst">&#123;factorial&#125;</span>"</span>)</span><br><span class="line">            print(<span class="string">"- "</span> * <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">        print(<span class="string">f"<span class="subst">&#123;num&#125;</span>！的阶乘为<span class="subst">&#123;factorial&#125;</span>"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法二</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">factorial</span><span class="params">(n)</span>:</span></span><br><span class="line"></span><br><span class="line">    result = n</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n):</span><br><span class="line">        result *= i</span><br><span class="line"></span><br><span class="line">    print(result)</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法三</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fact</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    m = n * fact(n - <span class="number">1</span>)</span><br><span class="line">    print(m)</span><br><span class="line">    <span class="keyword">return</span> m</span><br></pre></td></tr></table></figure>
+<h2 id="列出当前目录下的所有文件和目录名"><a href="#列出当前目录下的所有文件和目录名" class="headerlink" title="列出当前目录下的所有文件和目录名"></a>列出当前目录下的所有文件和目录名</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_all_dir</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># for d in os.listdir('.'):</span></span><br><span class="line">    <span class="comment">#     print(d)</span></span><br><span class="line">    <span class="comment"># d for d in os.listdir('.')就等于for d in os.listdir('.')</span></span><br><span class="line">    a = [d <span class="keyword">for</span> d <span class="keyword">in</span> os.listdir(<span class="string">'.'</span>)]</span><br><span class="line">    print(a)</span><br></pre></td></tr></table></figure>
+<p>2中写法，其中一种写法注释了。</p>
+<h2 id="把一个list中所有的字符串变成小写"><a href="#把一个list中所有的字符串变成小写" class="headerlink" title="把一个list中所有的字符串变成小写"></a>把一个list中所有的字符串变成小写</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">word_lower</span><span class="params">(list)</span>:</span></span><br><span class="line">    <span class="comment"># for i in list:</span></span><br><span class="line">    <span class="comment">#     i.lower()</span></span><br><span class="line"></span><br><span class="line">    list = [i.lower() <span class="keyword">for</span> i <span class="keyword">in</span> list]</span><br><span class="line">    <span class="comment"># print(list)</span></span><br><span class="line">    <span class="comment"># print(f"新列表为：&#123;list&#125;")</span></span><br><span class="line">    <span class="keyword">return</span> list</span><br></pre></td></tr></table></figure>
+<h2 id="输出某个路径下的所有文件和文件夹的路径"><a href="#输出某个路径下的所有文件和文件夹的路径" class="headerlink" title="输出某个路径下的所有文件和文件夹的路径"></a>输出某个路径下的所有文件和文件夹的路径</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_dir</span><span class="params">()</span>:</span></span><br><span class="line">    filepath = input(<span class="string">"&gt;&gt;请输入一个路径："</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">if</span> filepath == <span class="string">""</span>:</span><br><span class="line">            print(<span class="string">"请输入正确的路径！"</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> os.listdir(filepath):</span><br><span class="line">                print(os.path.join(filepath, i))</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        print(<span class="string">"路径错误！请重新输入！"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="输出某个路径及其子目录下的所有文件路径"><a href="#输出某个路径及其子目录下的所有文件路径" class="headerlink" title="输出某个路径及其子目录下的所有文件路径"></a>输出某个路径及其子目录下的所有文件路径</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_dir</span><span class="params">()</span>:</span></span><br><span class="line">    filepath = input(<span class="string">"&gt;&gt;请输入一个路径："</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> os.listdir(filepath):</span><br><span class="line">        path = (os.path.join(filepath, i))</span><br><span class="line">        print(path)</span><br><span class="line">        <span class="keyword">if</span> os.path.isdir(path):</span><br><span class="line">            show_dir(path)</span><br></pre></td></tr></table></figure>
+<h2 id="输出某个路径及其子目录下所有以-html为后缀的文件"><a href="#输出某个路径及其子目录下所有以-html为后缀的文件" class="headerlink" title="输出某个路径及其子目录下所有以.html为后缀的文件"></a>输出某个路径及其子目录下所有以.html为后缀的文件</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_dir_html</span><span class="params">(filepath)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> os.listdir(filepath):</span><br><span class="line">        path = os.path.join(filepath, i)</span><br><span class="line">        <span class="keyword">if</span> os.path.isdir(path):</span><br><span class="line">            show_dir_html(path)</span><br><span class="line">        <span class="keyword">if</span> path.endswith(<span class="string">".xml"</span>):</span><br><span class="line">            print(path)</span><br></pre></td></tr></table></figure>
+<h2 id="把原字典的键值对颠倒并生产新的字典"><a href="#把原字典的键值对颠倒并生产新的字典" class="headerlink" title="把原字典的键值对颠倒并生产新的字典"></a>把原字典的键值对颠倒并生产新的字典</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_dict</span><span class="params">()</span>:</span></span><br><span class="line">    dict1 = &#123;</span><br><span class="line">        <span class="string">"A"</span>: <span class="string">"a"</span>,</span><br><span class="line">        <span class="string">"B"</span>: <span class="string">"b"</span>,</span><br><span class="line">        <span class="string">"C"</span>: <span class="string">"c"</span>,</span><br><span class="line">        <span class="string">"D"</span>: <span class="string">"d"</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    dict2 = &#123;y:x <span class="keyword">for</span> x, y <span class="keyword">in</span> dict1.items()&#125;</span><br><span class="line"></span><br><span class="line">    print(dict2)</span><br></pre></td></tr></table></figure>
+<h2 id="打印99乘法表"><a href="#打印99乘法表" class="headerlink" title="打印99乘法表"></a>打印99乘法表</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">chengfa</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">10</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, i + <span class="number">1</span>):</span><br><span class="line">            <span class="comment"># print(f"&#123;j&#125; x &#123;i&#125; = &#123;i*j&#125;", end=' ')</span></span><br><span class="line">            <span class="comment"># print('- ' * 20)</span></span><br><span class="line">            print(<span class="string">'%d x %d = %d \t'</span>%(i, j, i*j), end=<span class="string">''</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="替换列表中所有的3位3a"><a href="#替换列表中所有的3位3a" class="headerlink" title="替换列表中所有的3位3a"></a>替换列表中所有的3位3a</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">tihuan</span><span class="params">(list)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(list.count(<span class="number">3</span>)):</span><br><span class="line">        ele_index = list.index(<span class="number">3</span>)</span><br><span class="line">        list[ele_index] = <span class="string">"3a"</span></span><br><span class="line">        print(list)</span><br></pre></td></tr></table></figure>
+<h2 id="摇骰子小游戏"><a href="#摇骰子小游戏" class="headerlink" title="摇骰子小游戏"></a>摇骰子小游戏</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">random_num</span><span class="params">()</span>:</span></span><br><span class="line">    i = <span class="number">1</span></span><br><span class="line">    a = random.randint(<span class="number">0</span>, <span class="number">100</span>)</span><br><span class="line">    print(a)</span><br><span class="line">    b = int(input(<span class="string">"&gt;&gt;&gt;请输入0-100中的一个数字\n然后查看是否与电脑一样："</span>))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> a != b:</span><br><span class="line">        <span class="keyword">if</span> a &gt; b:</span><br><span class="line">            print(<span class="string">f"你输了，电脑赢了！中奖号为<span class="subst">&#123;a&#125;</span>"</span>)</span><br><span class="line">            b = int(input(<span class="string">"&gt;&gt;&gt;请再次输入输入数字:"</span>))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">f"你赢了，中奖号为<span class="subst">&#123;a&#125;</span>,你大于电脑输入的！"</span>)</span><br><span class="line">            b = int(input(<span class="string">"&gt;&gt;&gt;请再次输入输入数字:"</span>))</span><br><span class="line"></span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">"居然跟电脑输入的数字一样！"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="随机验证码"><a href="#随机验证码" class="headerlink" title="随机验证码"></a>随机验证码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">yanzhengmasuiji</span><span class="params">()</span>:</span></span><br><span class="line">    str1 = <span class="string">"0123456789"</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># string.ascii_letters包含所有字母（大写与小写）的字符串</span></span><br><span class="line">    str2 = string.ascii_letters</span><br><span class="line">    <span class="comment"># print(str2)</span></span><br><span class="line">    str3 = str1 + str2</span><br><span class="line">    print(str3)</span><br><span class="line"></span><br><span class="line">    ma1 = random.sample(str3, <span class="number">6</span>)</span><br><span class="line">    print(ma1)</span><br><span class="line">    ma1 = <span class="string">''</span>.join(ma1)</span><br><span class="line">    print(ma1)</span><br></pre></td></tr></table></figure>
+<h2 id="计算平方根"><a href="#计算平方根" class="headerlink" title="计算平方根"></a>计算平方根</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">num_genhao</span><span class="params">()</span>:</span></span><br><span class="line">    num = float(input(<span class="string">"&gt;"</span>))</span><br><span class="line">    num_sqrt = num ** <span class="number">0.5</span></span><br><span class="line"></span><br><span class="line">    print(num_sqrt)</span><br></pre></td></tr></table></figure>
+<h2 id="判断字符串是否只由数字组成"><a href="#判断字符串是否只由数字组成" class="headerlink" title="判断字符串是否只由数字组成"></a>判断字符串是否只由数字组成</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_numbers</span><span class="params">(s)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        float(s)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">except</span> ValueError:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">import</span> unicodedata2</span><br><span class="line">        unicodedata.numberic(s)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">except</span> (TypeError, ValueError):</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+<h2 id="判断奇偶"><a href="#判断奇偶" class="headerlink" title="判断奇偶"></a>判断奇偶</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">jiou</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># num = int(input("&gt;请输入一个数字："))</span></span><br><span class="line">    <span class="comment"># if (num % 2) == 0:</span></span><br><span class="line">    <span class="comment">#     print(f"&#123;num&#125;是偶数！")</span></span><br><span class="line">    <span class="comment"># else:</span></span><br><span class="line">    <span class="comment">#     print(f"&#123;num&#125;是奇数！")</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            num = int(input(<span class="string">"&gt;请输入一个数字："</span>))</span><br><span class="line">        <span class="keyword">except</span> ValueError:</span><br><span class="line">            print(<span class="string">"输入的不是整数！"</span>)</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        <span class="keyword">if</span> (num % <span class="number">2</span>) == <span class="number">0</span>:</span><br><span class="line">            print(<span class="string">f"<span class="subst">&#123;num&#125;</span>是偶数！"</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">f"<span class="subst">&#123;num&#125;</span>是奇数！"</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+<h2 id="判断闰年"><a href="#判断闰年" class="headerlink" title="判断闰年"></a>判断闰年</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方法一</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">runnian</span><span class="params">()</span>:</span></span><br><span class="line"></span><br><span class="line">    year = int(input(<span class="string">"请输入一个年份："</span>))</span><br><span class="line">    <span class="keyword">if</span> (year % <span class="number">4</span>) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">if</span> (year % <span class="number">100</span>) == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">if</span> (year % <span class="number">400</span>) == <span class="number">0</span>:</span><br><span class="line">                print(<span class="string">f"<span class="subst">&#123;year&#125;</span>是闰年"</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                print(<span class="string">f"<span class="subst">&#123;year&#125;</span>不是闰年"</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">f"<span class="subst">&#123;year&#125;</span>是闰年"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">f"<span class="subst">&#123;year&#125;</span>不是闰年"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法二</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">runnian2</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">import</span> calendar</span><br><span class="line"></span><br><span class="line">    year = int(input(<span class="string">"请输入一个年份："</span>))</span><br><span class="line">    check_year = calendar.isleap(year)</span><br><span class="line">    <span class="keyword">if</span> check_year == <span class="literal">True</span>:</span><br><span class="line">        print(<span class="string">f"<span class="subst">&#123;year&#125;</span>是闰年"</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">f"<span class="subst">&#123;year&#125;</span>不是闰年"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="获取最大值"><a href="#获取最大值" class="headerlink" title="获取最大值"></a>获取最大值</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">whos_number_is_big</span><span class="params">()</span>:</span></span><br><span class="line"></span><br><span class="line">    n = int(input(<span class="string">"请输入需要对比大小数字的个数："</span>))</span><br><span class="line"></span><br><span class="line">    print(<span class="string">"请输入需要对比的数字："</span>)</span><br><span class="line"></span><br><span class="line">    num = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n+<span class="number">1</span>):</span><br><span class="line">        temp = int(input(<span class="string">f'&gt;&gt;&gt;请输入第<span class="subst">&#123;i&#125;</span>个数字：'</span>))</span><br><span class="line">        num.append(temp)</span><br><span class="line"></span><br><span class="line">    print(<span class="string">"输入的数字为："</span>, num)</span><br><span class="line">    print(<span class="string">"最大值为:"</span>, max(num))</span><br></pre></td></tr></table></figure>
+<h2 id="斐波那契数列"><a href="#斐波那契数列" class="headerlink" title="斐波那契数列"></a>斐波那契数列</h2><p>斐波那契数列指的是这样一个数列：0，1，1，2，3，5，8，13；第1项为0，第2项为1，从第3项开始，每一项都等于前两项之和。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">feibonaqi</span><span class="params">()</span>:</span></span><br><span class="line">    n1 = <span class="number">0</span></span><br><span class="line">    n2 = <span class="number">1</span></span><br><span class="line">    nterms = int(input(<span class="string">"&gt;&gt;&gt;请输入一个数："</span>))</span><br><span class="line">    <span class="keyword">if</span> nterms &lt;=  <span class="number">0</span>:</span><br><span class="line">        print(<span class="string">"请输入一个大于1的正整数！"</span>)</span><br><span class="line">    <span class="keyword">elif</span> nterms == <span class="number">1</span>:</span><br><span class="line">        print(<span class="string">"请输入一个大于1的正整数！"</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">"斐波那契数列："</span>)</span><br><span class="line">        print(n1, end=<span class="string">","</span>)</span><br><span class="line"></span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> count &lt; nterms:</span><br><span class="line">            <span class="comment"># print(f"当前count为&#123;count&#125;")</span></span><br><span class="line">            nth = n1 + n2</span><br><span class="line">            print(n1 + n2, end=<span class="string">","</span>)</span><br><span class="line">            n1 = n2</span><br><span class="line">            n2 = nth</span><br><span class="line"></span><br><span class="line">            count += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h2 id="十进制转二进制，八进制，十六进制"><a href="#十进制转二进制，八进制，十六进制" class="headerlink" title="十进制转二进制，八进制，十六进制"></a>十进制转二进制，八进制，十六进制</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shijinzhi</span><span class="params">()</span>:</span></span><br><span class="line">    dec = int(input(<span class="string">"请输入数字："</span>))</span><br><span class="line"></span><br><span class="line">    print(<span class="string">"十进制数为："</span>, dec)</span><br><span class="line">    print(<span class="string">f"转化为二进制为：<span class="subst">&#123;bin(dec)&#125;</span>"</span>)</span><br><span class="line">    print(<span class="string">f"转化为八进制为：<span class="subst">&#123;oct(dec)&#125;</span>"</span>)</span><br><span class="line">    print(<span class="string">f"转化为十六进制为：<span class="subst">&#123;hex(dec)&#125;</span>"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="求两个数的最大公约数"><a href="#求两个数的最大公约数" class="headerlink" title="求两个数的最大公约数"></a>求两个数的最大公约数</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hcf</span><span class="params">(x,y)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> x &gt; y:</span><br><span class="line">        smaller = y</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        smaller = x</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, smaller + <span class="number">1</span>):</span><br><span class="line">        <span class="keyword">if</span> (x % i == <span class="number">0</span>) <span class="keyword">and</span> (y % i == <span class="number">0</span>):</span><br><span class="line">            hcf = i</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> hcf</span><br><span class="line"></span><br><span class="line">num1 = int(input(<span class="string">"输入第一个数字："</span>))</span><br><span class="line">num2 = int(input(<span class="string">"输入第二个数字："</span>))</span><br><span class="line"></span><br><span class="line">print(<span class="string">f"num1喝num2的最大公约数为：<span class="subst">&#123;hcf(num1, num2)&#125;</span>"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="求两个数的最小公倍数"><a href="#求两个数的最小公倍数" class="headerlink" title="求两个数的最小公倍数"></a>求两个数的最小公倍数</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">lcm</span><span class="params">(x,y)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> x &gt; y:</span><br><span class="line">        greater = y</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        greater = x</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">True</span>):</span><br><span class="line">        <span class="keyword">if</span>((greater % x == <span class="number">0</span>) <span class="keyword">and</span> (greater % y == <span class="number">0</span>)):</span><br><span class="line">            lcm = greater</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        greater += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> lcm</span><br><span class="line"></span><br><span class="line">num1 = int(input(<span class="string">"输入第一个数字："</span>))</span><br><span class="line">num2 = int(input(<span class="string">"输入第二个数字："</span>))</span><br><span class="line">print()</span><br><span class="line"></span><br><span class="line">print(<span class="string">f"num1喝num2的最最小公倍数为：<span class="subst">&#123;lcm(num1, num2)&#125;</span>"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="简单计算器"><a href="#简单计算器" class="headerlink" title="简单计算器"></a>简单计算器</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(x, y)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> x + y</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">subtract</span><span class="params">(x, y)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> x - y</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">muliply</span><span class="params">(x, y)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> x * y</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">divide</span><span class="params">(x, y)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> x / y</span><br><span class="line"></span><br><span class="line">print(<span class="string">"选择运算："</span>)</span><br><span class="line">print(<span class="string">"1.相加\n2.相减\n3.相乘\n4.相除"</span>)</span><br><span class="line"></span><br><span class="line">choice = input(<span class="string">"输入你的选择（1/2/3/4):"</span>)</span><br><span class="line"></span><br><span class="line">num1 = int(input(<span class="string">"输入第一个数字："</span>))</span><br><span class="line">num2 = int(input(<span class="string">"输入第二个数字："</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> choice == <span class="string">'1'</span>:</span><br><span class="line">    print(<span class="string">f"<span class="subst">&#123;num1&#125;</span>+<span class="subst">&#123;num2&#125;</span>=<span class="subst">&#123;add(num1,num2)&#125;</span>"</span>)</span><br><span class="line"><span class="keyword">elif</span> choice == <span class="string">'2'</span>:</span><br><span class="line">    print(<span class="string">f"<span class="subst">&#123;num1&#125;</span>-<span class="subst">&#123;num2&#125;</span>=<span class="subst">&#123;subtract(num1,num2)&#125;</span>"</span>)</span><br><span class="line"><span class="keyword">elif</span> choice == <span class="string">'3'</span>:</span><br><span class="line">    print(<span class="string">f"<span class="subst">&#123;num1&#125;</span>*<span class="subst">&#123;num2&#125;</span>=<span class="subst">&#123;muliply(num1, num2)&#125;</span>"</span>)</span><br><span class="line"><span class="keyword">elif</span> choice == <span class="string">'4'</span>:</span><br><span class="line">    <span class="keyword">if</span> num2 != <span class="number">0</span>:</span><br><span class="line">        print(<span class="string">f"<span class="subst">&#123;num1&#125;</span>/<span class="subst">&#123;num2&#125;</span>=<span class="subst">&#123;divide(num1,num2)&#125;</span>"</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">"分母不能为0"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"非法输入！"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="生成日历"><a href="#生成日历" class="headerlink" title="生成日历"></a>生成日历</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> calendar</span><br><span class="line"></span><br><span class="line">yy = int(input(<span class="string">"&gt;&gt;&gt;请输入年份："</span>))</span><br><span class="line">mm = int(input(<span class="string">"&gt;&gt;&gt;请输入月份："</span>))</span><br><span class="line"></span><br><span class="line">print(calendar.month(yy, mm))</span><br></pre></td></tr></table></figure>
+<h2 id="文件IO"><a href="#文件IO" class="headerlink" title="文件IO"></a>文件IO</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">file_io</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">"huixing.txt"</span>, <span class="string">"wt"</span>) <span class="keyword">as</span> out_file:</span><br><span class="line">        out_file.write(<span class="string">"该文本写入到文件中\n看到我了吧！"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">"huixing.txt"</span>, <span class="string">"rt"</span>) <span class="keyword">as</span> in_file:</span><br><span class="line">        text = in_file.read()</span><br><span class="line"></span><br><span class="line">    print(text)</span><br><span class="line"></span><br><span class="line">file_io()</span><br></pre></td></tr></table></figure>
+<h2 id="字符串判断"><a href="#字符串判断" class="headerlink" title="字符串判断"></a>字符串判断</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">str_test</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># str = "www.liuyude.com"</span></span><br><span class="line">    str = <span class="string">"Liuyude"</span></span><br><span class="line">    print(str.isalnum())  <span class="comment"># 判断所有字符都是数字或者字母</span></span><br><span class="line">    print(str.isalpha())  <span class="comment"># 判断所有字符都是字母</span></span><br><span class="line">    print(str.isdigit())  <span class="comment"># 判断所有字符都是数字</span></span><br><span class="line">    print(str.islower())  <span class="comment"># 判断所有字符都是小写</span></span><br><span class="line">    print(str.isupper())  <span class="comment"># 判断所有字符都是大写</span></span><br><span class="line">    print(str.istitle())  <span class="comment"># 判断所有单词都是首字母大写，像标题</span></span><br><span class="line">    print(str.isspace())  <span class="comment"># 判断所有字符都是空白字符</span></span><br><span class="line"></span><br><span class="line">    print(<span class="string">"-"</span> * <span class="number">40</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="字符串大小写转换"><a href="#字符串大小写转换" class="headerlink" title="字符串大小写转换"></a>字符串大小写转换</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">trans_str</span><span class="params">()</span>:</span></span><br><span class="line">    str = <span class="string">"https://liuyude.COM"</span></span><br><span class="line">    print(str.upper())  <span class="comment"># 把所有字符中的小写字母转换成大写字母</span></span><br><span class="line">    print(str.lower())  <span class="comment"># 把所有字符串中大写字母转换成小写字母</span></span><br><span class="line">    print(str.capitalize())  <span class="comment"># 把第一个字母转化为大写字母，其余小写</span></span><br><span class="line">    print(str.title())  <span class="comment"># 把每个单词的第一个字母转化为大写，其余小写</span></span><br></pre></td></tr></table></figure>
+<h2 id="计算每个月天数"><a href="#计算每个月天数" class="headerlink" title="计算每个月天数"></a>计算每个月天数</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_month_days</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">import</span> calendar</span><br><span class="line">    monthRange = calendar.monthcalendar(<span class="number">2019</span>, <span class="number">2</span>)</span><br><span class="line">    print(monthRange)</span><br></pre></td></tr></table></figure>
+<h2 id="获取昨天的日期"><a href="#获取昨天的日期" class="headerlink" title="获取昨天的日期"></a>获取昨天的日期</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_last_day</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">import</span> datetime</span><br><span class="line">    today = datetime.date.today()</span><br><span class="line">    oneday = datetime.timedelta(days=<span class="number">1</span>)</span><br><span class="line">    yesterday = today - oneday</span><br><span class="line">    print(yesterday)</span><br><span class="line">    <span class="keyword">return</span> yesterday</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dic = &#123;<span class="string">"k1"</span>:<span class="string">"vlvl"</span>,<span class="string">"k2"</span>:[<span class="number">11</span>,<span class="number">22</span>,<span class="number">33</span>,<span class="number">44</span>,<span class="number">55</span>]&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> key <span class="keyword">in</span> dic:</span><br><span class="line">    dic[key] = dic[key][:<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">print(dic)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/gongzhonghao.jpg" alt="李江洋 wechat" style="width: 200px; max-width: 100%;">
+  <div>python分享公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="李江洋 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="李江洋 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/Python数据库连接池DBUtils/" rel="next" title="Python数据库连接池DBUtils">
+                <i class="fa fa-chevron-left"></i> Python数据库连接池DBUtils
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/14/python数据类型/" rel="prev" title="python数据类型">
+                python数据类型 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="李江洋">
+            
+              <p class="site-author-name" itemprop="name">李江洋</p>
+              <p class="site-description motion-element" itemprop="description">记录学习的技能和遇到的问题</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">179</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lvdXJuYW1l" title="GitHub &rarr; https://github.com/yourname"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="bWFpbHRvOjEzMjgwNDQzOTJAcXEuY29t" title="E-Mail &rarr; mailto:1328044392@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL2V4YW1wbGUuY29t" title="http://example.com">Title</span>
+                  </li>
+                
+              </ul>
+            </div>
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#冒泡排序"><span class="nav-number">1.</span> <span class="nav-text">冒泡排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法描述"><span class="nav-number">1.1.</span> <span class="nav-text">算法描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">1.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入排序"><span class="nav-number">2.</span> <span class="nav-text">插入排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法描述-1"><span class="nav-number">2.1.</span> <span class="nav-text">算法描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现-1"><span class="nav-number">2.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算x的n次方"><span class="nav-number">3.</span> <span class="nav-text">计算x的n次方</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算axa-bxb-cxc"><span class="nav-number">4.</span> <span class="nav-text">计算axa+bxb+cxc+..</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算阶乘n！"><span class="nav-number">5.</span> <span class="nav-text">计算阶乘n！</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列出当前目录下的所有文件和目录名"><span class="nav-number">6.</span> <span class="nav-text">列出当前目录下的所有文件和目录名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#把一个list中所有的字符串变成小写"><span class="nav-number">7.</span> <span class="nav-text">把一个list中所有的字符串变成小写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出某个路径下的所有文件和文件夹的路径"><span class="nav-number">8.</span> <span class="nav-text">输出某个路径下的所有文件和文件夹的路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出某个路径及其子目录下的所有文件路径"><span class="nav-number">9.</span> <span class="nav-text">输出某个路径及其子目录下的所有文件路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出某个路径及其子目录下所有以-html为后缀的文件"><span class="nav-number">10.</span> <span class="nav-text">输出某个路径及其子目录下所有以.html为后缀的文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#把原字典的键值对颠倒并生产新的字典"><span class="nav-number">11.</span> <span class="nav-text">把原字典的键值对颠倒并生产新的字典</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#打印99乘法表"><span class="nav-number">12.</span> <span class="nav-text">打印99乘法表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#替换列表中所有的3位3a"><span class="nav-number">13.</span> <span class="nav-text">替换列表中所有的3位3a</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#摇骰子小游戏"><span class="nav-number">14.</span> <span class="nav-text">摇骰子小游戏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#随机验证码"><span class="nav-number">15.</span> <span class="nav-text">随机验证码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算平方根"><span class="nav-number">16.</span> <span class="nav-text">计算平方根</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断字符串是否只由数字组成"><span class="nav-number">17.</span> <span class="nav-text">判断字符串是否只由数字组成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断奇偶"><span class="nav-number">18.</span> <span class="nav-text">判断奇偶</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断闰年"><span class="nav-number">19.</span> <span class="nav-text">判断闰年</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取最大值"><span class="nav-number">20.</span> <span class="nav-text">获取最大值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#斐波那契数列"><span class="nav-number">21.</span> <span class="nav-text">斐波那契数列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十进制转二进制，八进制，十六进制"><span class="nav-number">22.</span> <span class="nav-text">十进制转二进制，八进制，十六进制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#求两个数的最大公约数"><span class="nav-number">23.</span> <span class="nav-text">求两个数的最大公约数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#求两个数的最小公倍数"><span class="nav-number">24.</span> <span class="nav-text">求两个数的最小公倍数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单计算器"><span class="nav-number">25.</span> <span class="nav-text">简单计算器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成日历"><span class="nav-number">26.</span> <span class="nav-text">生成日历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件IO"><span class="nav-number">27.</span> <span class="nav-text">文件IO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串判断"><span class="nav-number">28.</span> <span class="nav-text">字符串判断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串大小写转换"><span class="nav-number">29.</span> <span class="nav-text">字符串大小写转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算每个月天数"><span class="nav-number">30.</span> <span class="nav-text">计算每个月天数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取昨天的日期"><span class="nav-number">31.</span> <span class="nav-text">获取昨天的日期</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李江洋</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Pisces</span> v7.0.1</div>
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script id="ribbon" size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+  
+  <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ljyabc.github.io/2019/03/14/python小项目/";
+    this.page.identifier = "2019/03/14/python小项目/";
+    this.page.title = 'python小项目';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/exturl.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+   <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+</body>
+</html>

@@ -1,0 +1,2214 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="———-day1———-centos系统安装后的基本配置:CentOS的官方站 123&amp;gt; http://www.centos.org,&amp;gt; http://vault.centos.org/   &amp;gt;    阿里云站点 http://mirrors.aliyun.com  1.常用软件安装: 12&amp;gt; yum install -y bash-completion vim lrzsz">
+<meta name="keywords" content="linux&amp;git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux">
+<meta property="og:url" content="https://ljyabc.github.io/2019/03/04/linux/index.html">
+<meta property="og:site_name" content="择墅居:李江洋">
+<meta property="og:description" content="———-day1———-centos系统安装后的基本配置:CentOS的官方站 123&amp;gt; http://www.centos.org,&amp;gt; http://vault.centos.org/   &amp;gt;    阿里云站点 http://mirrors.aliyun.com  1.常用软件安装: 12&amp;gt; yum install -y bash-completion vim lrzsz">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://img-blog.csdn.net/20161028152622277">
+<meta property="og:image" content="https://img-blog.csdn.net/20161028153155941">
+<meta property="og:image" content="https://img-blog.csdn.net/20161028154909542">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/04/linux/Snipaste_2019-01-19_23-15-13.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/04/linux/Linux/Snipaste_2019-01-19_23-15-39.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/04/linux/Linux/Snipaste_2019-01-19_23-17-10.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/04/linux/Linux/Snipaste_2019-01-19_23-17-57.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/04/linux/Linux/Snipaste_2019-01-19_23-21-59.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/04/linux/Linux/Snipaste_2019-01-19_23-23-26.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/04/linux/Linux/Snipaste_2019-01-19_23-35-34.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/04/linux/Linux/Snipaste_2019-01-20_03-19-57.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/04/linux/Linux/Snipaste_2019-01-20_03-19-57.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/04/linux/Linux/Snipaste_2019-01-20_16-48-36.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/04/linux/Linux/Snipaste_2019-01-20_16-49-11.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/04/linux/Linux/Snipaste_2019-01-20_16-49-32.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/04/linux/Linux/Snipaste_2019-01-20_16-49-53.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/04/linux/Linux/Snipaste_2019-01-20_16-50-50.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/04/linux/Linux/Snipaste_2019-01-20_16-52-39.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/04/linux/Linux/Snipaste_2019-01-20_16-52-55.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/04/linux/Linux/Snipaste_2019-01-20_16-53-22.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/04/linux/Linux/Snipaste_2019-01-20_16-53-40.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/04/linux/Snipaste_2019-01-21_09-36-20.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/04/linux/E:/blog-git/ljy/source/_posts/linux/1551862491222.png">
+<meta property="og:updated_time" content="2025-04-08T14:37:39.844Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux">
+<meta name="twitter:description" content="———-day1———-centos系统安装后的基本配置:CentOS的官方站 123&amp;gt; http://www.centos.org,&amp;gt; http://vault.centos.org/   &amp;gt;    阿里云站点 http://mirrors.aliyun.com  1.常用软件安装: 12&amp;gt; yum install -y bash-completion vim lrzsz">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20161028152622277">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ljyabc.github.io/2019/03/04/linux/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>linux | 择墅居:李江洋</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">择墅居:李江洋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">争做长沙别墅豪装第一品牌</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/book" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>book</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2019/03/04/linux/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李江洋">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="择墅居:李江洋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">linux
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-04 21:38:00" itemprop="dateCreated datePublished" datetime="2019-03-04T21:38:00+08:00">2019-03-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2025-04-08 22:37:39" itemprop="dateModified" datetime="2025-04-08T22:37:39+08:00">2025-04-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/记忆/" itemprop="url" rel="index"><span itemprop="name">记忆</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/03/04/linux/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/04/linux/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="———-day1———"><a href="#———-day1———" class="headerlink" title="———-day1———-"></a>———-day1———-</h1><h1 id="centos系统安装后的基本配置"><a href="#centos系统安装后的基本配置" class="headerlink" title="centos系统安装后的基本配置:"></a>centos系统安装后的基本配置:</h1><h2 id="CentOS的官方站"><a href="#CentOS的官方站" class="headerlink" title="CentOS的官方站"></a>CentOS的官方站</h2><blockquote>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="string">http:</span><span class="comment">//www.centos.org,</span></span><br><span class="line">&gt; <span class="string">http:</span><span class="comment">//vault.centos.org/   </span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+</blockquote>
+<h3 id="阿里云站点"><a href="#阿里云站点" class="headerlink" title="阿里云站点"></a>阿里云站点</h3><blockquote>
+<p><span class="exturl" data-url="aHR0cDovL21pcnJvcnMuYWxpeXVuLmNvbQ==" title="http://mirrors.aliyun.com">http://mirrors.aliyun.com<i class="fa fa-external-link"></i></span></p>
+</blockquote>
+<h2 id="1-常用软件安装"><a href="#1-常用软件安装" class="headerlink" title="1.常用软件安装:"></a>1.常用软件安装:</h2><blockquote>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; yum install -y <span class="keyword">bash-completion </span>vim lrzsz wget expect net-tools nc nmap tree dos2unix htop iftop iotop unzip telnet <span class="built_in">sl</span> psmisc nethogs glances <span class="keyword">bc</span></span><br><span class="line"><span class="keyword">&gt;</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+</blockquote>
+<h2 id="2-主机名和网络"><a href="#2-主机名和网络" class="headerlink" title="2.主机名和网络"></a>2.主机名和网络</h2><blockquote>
+<p> hostnamectl set-hostname python3<br> echo “10.0.0.100 python3”&gt;&gt;/etc/hosts</p>
+</blockquote>
+<h2 id="3-关闭防火墙"><a href="#3-关闭防火墙" class="headerlink" title="3.关闭防火墙"></a>3.关闭防火墙</h2><h3 id="确定防火墙"><a href="#确定防火墙" class="headerlink" title="确定防火墙"></a>确定防火墙</h3><blockquote>
+<p>iptables -L<br>iptables -F</p>
+</blockquote>
+<h3 id="永久关闭"><a href="#永久关闭" class="headerlink" title="永久关闭"></a>永久关闭</h3><blockquote>
+<h6 id="systemctl-disable-firewalld"><a href="#systemctl-disable-firewalld" class="headerlink" title="systemctl disable firewalld"></a>systemctl disable firewalld</h6></blockquote>
+<h3 id="查询防火墙"><a href="#查询防火墙" class="headerlink" title="查询防火墙"></a>查询防火墙</h3><blockquote>
+<p>[root@python3 ~]# getenforce<br>Enforcing<br>[root@python3 ~]# setenforce 0<br>[root@python3 ~]# getenforce<br>[root@python3 ~]# vim /etc/selinux/config </p>
+</blockquote>
+<h3 id="三种防火墙状态"><a href="#三种防火墙状态" class="headerlink" title="三种防火墙状态"></a>三种防火墙状态</h3><blockquote>
+<p>enforcing - SELinux security policy is enforced.<br>permissive - SELinux prints warnings instead of enforcing.</p>
+<h6 id="disabled-No-SELinux-policy-is-loaded"><a href="#disabled-No-SELinux-policy-is-loaded" class="headerlink" title="disabled - No SELinux policy is loaded."></a>disabled - No SELinux policy is loaded.</h6></blockquote>
+<h1 id="2-Centos命令基本结构"><a href="#2-Centos命令基本结构" class="headerlink" title="2.Centos命令基本结构"></a>2.Centos命令基本结构</h1><h2 id="Linux命令"><a href="#Linux命令" class="headerlink" title="Linux命令"></a>Linux命令</h2><h3 id="命令的基本构成"><a href="#命令的基本构成" class="headerlink" title="命令的基本构成"></a>命令的基本构成</h3><h4 id="一般的套路"><a href="#一般的套路" class="headerlink" title="一般的套路"></a>一般的套路</h4><blockquote>
+<p>命令体    选项      参数(对象)<br>ls        -l        /var</p>
+</blockquote>
+<h4 id="参数-文件"><a href="#参数-文件" class="headerlink" title="参数:文件"></a>参数:文件</h4><p>文件类型:<br>d :目录<br>f :普通文件<br>l :链接<br>b :块设备,磁盘 光驱<br>c :字符设备<br>p :管道<br>s :套接字</p>
+<h4 id="命令提示符"><a href="#命令提示符" class="headerlink" title="命令提示符:"></a>命令提示符:</h4><p>[root@oldboy ~]#<br>[oldguo@oldboy ~]$</p>
+<h1 id="四-Centos常用快捷键"><a href="#四-Centos常用快捷键" class="headerlink" title="四.Centos常用快捷键"></a>四.Centos常用快捷键</h1><h2 id="常用快捷键-bash-shell支持的快捷键"><a href="#常用快捷键-bash-shell支持的快捷键" class="headerlink" title="常用快捷键(bash shell支持的快捷键)"></a>常用快捷键(bash shell支持的快捷键)</h2><p>rm -rf<br>ctrl + c  cancel 取消当前的操作<br>ctrl + l  (小写字母L)  clear（命令）<br>ctrl + d  退出当前用户<br>ctrl + r查找（会自动弹出历史命令）。 history|grep</p>
+<h3 id="TAB"><a href="#TAB" class="headerlink" title="[TAB]:"></a>[TAB]:</h3><p>​    1.命令补全<br>    2.参数补全<br>历史history</p>
+<h3 id="system-加tab键"><a href="#system-加tab键" class="headerlink" title="system 加tab键"></a>system 加tab键</h3><h5 id="了解一下ctrl"><a href="#了解一下ctrl" class="headerlink" title="了解一下ctrl+:"></a>了解一下ctrl+:</h5><h6 id="ctrl-a-把光标移动到行首"><a href="#ctrl-a-把光标移动到行首" class="headerlink" title="ctrl + a  把光标移动到行首"></a>ctrl + a  把光标移动到行首</h6><h6 id="ctrl-e-把光标移动到行尾"><a href="#ctrl-e-把光标移动到行尾" class="headerlink" title="ctrl + e  把光标移动到行尾"></a>ctrl + e  把光标移动到行尾</h6><p>ctrl+ u  把光标到行首的内容删除/剪切</p>
+<h6 id="ctrl-y-粘贴"><a href="#ctrl-y-粘贴" class="headerlink" title="ctrl + y  粘贴"></a>ctrl + y  粘贴</h6><p>delete    光标所在处从前往后删除内容<br>ctrl + k  把光标到行尾的内容删除/剪切<br>ctrl + →  向右移动一个单词<br>ctrl + ←  向左移动一个单词</p>
+<p>ctrl + s  锁屏<br>ctrl + q  解锁</p>
+<h5 id="tab键命令补全"><a href="#tab键命令补全" class="headerlink" title="tab键命令补全"></a>tab键命令补全</h5><h1 id="五-Linux命令帮助及关机重启命令"><a href="#五-Linux命令帮助及关机重启命令" class="headerlink" title="五.Linux命令帮助及关机重启命令"></a>五.Linux命令帮助及关机重启命令</h1><h2 id="1-获取帮助"><a href="#1-获取帮助" class="headerlink" title="1.获取帮助"></a>1.获取帮助</h2><p>–help<br>man 命令的需求<br>info更加详细</p>
+<h2 id="2-关机重启"><a href="#2-关机重启" class="headerlink" title="2.关机重启"></a>2.关机重启</h2><blockquote>
+<h6 id="reboot"><a href="#reboot" class="headerlink" title="reboot"></a>reboot</h6><h6 id="关机"><a href="#关机" class="headerlink" title="关机"></a>关机</h6><h6 id="poweroff"><a href="#poweroff" class="headerlink" title="poweroff"></a>poweroff</h6></blockquote>
+<h1 id="六-Linux-FHS文件系统层次化标准"><a href="#六-Linux-FHS文件系统层次化标准" class="headerlink" title="六.Linux FHS文件系统层次化标准"></a>六.Linux FHS文件系统层次化标准</h1><h2 id="linux命令分类"><a href="#linux命令分类" class="headerlink" title="linux命令分类"></a>linux命令分类</h2><h3 id="绿色的是二进制的可执行文件"><a href="#绿色的是二进制的可执行文件" class="headerlink" title="绿色的是二进制的可执行文件"></a>绿色的是二进制的可执行文件</h3><h3 id="1-针对不同文件的管理命令"><a href="#1-针对不同文件的管理命令" class="headerlink" title="1.针对不同文件的管理命令"></a>1.针对不同文件的管理命令</h3><h3 id="1-1-目录"><a href="#1-1-目录" class="headerlink" title="1.1 目录"></a>1.1 目录</h3><h3 id="FHS-文件系统层次化标准"><a href="#FHS-文件系统层次化标准" class="headerlink" title="FHS 文件系统层次化标准"></a>FHS 文件系统层次化标准</h3><p>ls /<br>ls /bin<br>ls /boot启动文件<br>ls /dev/<br>ls /etc 配置文件<br>ls /home 用户的家目录</p>
+<h3 id="1-2绝对路径-从”-“开始一个具体路径"><a href="#1-2绝对路径-从”-“开始一个具体路径" class="headerlink" title="1.2绝对路径:从”/“开始一个具体路径"></a>1.2绝对路径:从”/“开始一个具体路径</h3><h3 id="1-3相对路径-从当前目录开始的具体路径-pwd可以查看当前所在目录"><a href="#1-3相对路径-从当前目录开始的具体路径-pwd可以查看当前所在目录" class="headerlink" title="1.3相对路径:从当前目录开始的具体路径(pwd可以查看当前所在目录)"></a>1.3相对路径:从当前目录开始的具体路径(pwd可以查看当前所在目录)</h3><p>/3层/oldboy/教室3<br>/3层/oldboy/教室2</p>
+<h1 id="七-Linux目录基础管理"><a href="#七-Linux目录基础管理" class="headerlink" title="七.Linux目录基础管理"></a>七.Linux目录基础管理</h1><h2 id="1-1-1-创建目录"><a href="#1-1-1-创建目录" class="headerlink" title="1.1.1 创建目录:"></a>1.1.1 创建目录:</h2><h3 id="根下面创建一个目录"><a href="#根下面创建一个目录" class="headerlink" title="根下面创建一个目录"></a>根下面创建一个目录</h3><blockquote>
+<p>mkdir /oldboy</p>
+</blockquote>
+<h3 id="在当前所在目录创建目录"><a href="#在当前所在目录创建目录" class="headerlink" title="在当前所在目录创建目录"></a>在当前所在目录创建目录</h3><blockquote>
+<p>mkdir oldboy </p>
+</blockquote>
+<h3 id="一次性创建3层目录"><a href="#一次性创建3层目录" class="headerlink" title="一次性创建3层目录"></a>一次性创建3层目录</h3><blockquote>
+<p>mkdir -p /a/b/c</p>
+</blockquote>
+<h2 id="1-1-2-查询目录"><a href="#1-1-2-查询目录" class="headerlink" title="1.1.2 查询目录"></a>1.1.2 <u>查询目录</u></h2><h3 id="只能看一层"><a href="#只能看一层" class="headerlink" title="只能看一层"></a>只能看一层</h3><blockquote>
+<p>ls -ld /oldboy </p>
+</blockquote>
+<h3 id="直接看所有目录"><a href="#直接看所有目录" class="headerlink" title="直接看所有目录"></a>直接看所有目录</h3><blockquote>
+<p>tree /a </p>
+</blockquote>
+<h3 id="只看2层"><a href="#只看2层" class="headerlink" title="只看2层"></a>只看2层</h3><blockquote>
+<p>tree -L 2 /</p>
+</blockquote>
+<h2 id="1-1-3-删除目录-危险"><a href="#1-1-3-删除目录-危险" class="headerlink" title="1.1.3 删除目录(危险)"></a>1.1.3 删除目录(危险)</h2><blockquote>
+<p>rm -rf /oldboy  </p>
+</blockquote>
+<h3 id="通过文件句柄-有可能可以找回丢失数据-前提-不能重启-不能有大量数据写入"><a href="#通过文件句柄-有可能可以找回丢失数据-前提-不能重启-不能有大量数据写入" class="headerlink" title="通过文件句柄,有可能可以找回丢失数据(前提:不能重启,不能有大量数据写入)"></a>通过文件句柄,有可能可以找回丢失数据(前提:不能重启,不能有大量数据写入)</h3><h2 id="1-1-4-修改目录-剪切-复制"><a href="#1-1-4-修改目录-剪切-复制" class="headerlink" title="1.1.4 修改目录(剪切,复制)"></a>1.1.4 修改目录(剪切,复制)</h2><blockquote>
+<p>mv /root/oldboy/ /tmp</p>
+</blockquote>
+<h3 id="剪切重命名"><a href="#剪切重命名" class="headerlink" title="剪切重命名"></a>剪切重命名</h3><blockquote>
+<p>mv /root/oldguo/ /tmp/oldguo.bak</p>
+</blockquote>
+<h3 id="只是重命名"><a href="#只是重命名" class="headerlink" title="只是重命名"></a>只是重命名</h3><blockquote>
+<p>mv oldboy old</p>
+</blockquote>
+<blockquote>
+<p>cp -r /tmp/old /</p>
+</blockquote>
+<h3 id="把权限也复制"><a href="#把权限也复制" class="headerlink" title="把权限也复制"></a>把权限也复制</h3><blockquote>
+<p>cp -a </p>
+</blockquote>
+<h3 id="创建a1-10"><a href="#创建a1-10" class="headerlink" title="创建a1-10"></a>创建a1-10</h3><blockquote>
+<p>mkdir a{1..10}</p>
+</blockquote>
+<h2 id="1-1-5-切换目录"><a href="#1-1-5-切换目录" class="headerlink" title="1.1.5 切换目录"></a>1.1.5 切换目录</h2><blockquote>
+<p>cd /<br>cd /oldboy<br>cd  oldboy<br>cd .. </p>
+</blockquote>
+<h3 id="返回上一次的目录"><a href="#返回上一次的目录" class="headerlink" title="返回上一次的目录"></a>返回上一次的目录</h3><blockquote>
+<p>cd -<br>cd </p>
+</blockquote>
+<p>小技巧:</p>
+<h3 id="创建a1-10-1"><a href="#创建a1-10-1" class="headerlink" title="创建a1-10"></a>创建a1-10</h3><blockquote>
+<p>[root@python3 tmp]# mkdir a{1..10}<br>[root@python3 tmp]# mkdir dir{a..f}</p>
+</blockquote>
+<h3 id="所有"><a href="#所有" class="headerlink" title="所有"></a>所有</h3><blockquote>
+<p>[root@python3 tmp]# ls -ld dir<em><br>[root@python3 tmp]# rm -rf dir</em></p>
+</blockquote>
+<h1 id="八-目录与文件管理"><a href="#八-目录与文件管理" class="headerlink" title="八.目录与文件管理"></a>八.目录与文件管理</h1><h2 id="1-2-普通文件"><a href="#1-2-普通文件" class="headerlink" title="1.2 普通文件"></a>1.2 普通文件</h2><h3 id="1-2-0-种类"><a href="#1-2-0-种类" class="headerlink" title="1.2.0 种类"></a>1.2.0 种类</h3><p>ASCII TEXT:纯文本文件(操作最多的)<br>LSB Exe:二进制的可执行文件(命令,程序)<br>压缩文件:zip tar  gz  bz2   cpio  iso<br>二进制数据文件:<br>等.</p>
+<h2 id="1-2-1-文件创建"><a href="#1-2-1-文件创建" class="headerlink" title="1.2.1 文件创建"></a>1.2.1 文件创建</h2><blockquote>
+<h6 id="touch-a-txt-不能创建同名"><a href="#touch-a-txt-不能创建同名" class="headerlink" title="touch a.txt (不能创建同名)"></a>touch a.txt (不能创建同名)</h6></blockquote>
+<h2 id="1-2-2-文件删除"><a href="#1-2-2-文件删除" class="headerlink" title="1.2.2 文件删除"></a>1.2.2 文件删除</h2><blockquote>
+<h6 id="rm-rf-a-txt"><a href="#rm-rf-a-txt" class="headerlink" title="rm -rf a.txt"></a>rm -rf a.txt</h6></blockquote>
+<h2 id="1-2-3-文件查看"><a href="#1-2-3-文件查看" class="headerlink" title="1.2.3 文件查看"></a>1.2.3 文件查看</h2><blockquote>
+<h6 id="ls-l-a-txt-看文件属性"><a href="#ls-l-a-txt-看文件属性" class="headerlink" title="ls -l a.txt    看文件属性"></a>ls -l a.txt    看文件属性</h6></blockquote>
+<h3 id="1-小文件内容查看"><a href="#1-小文件内容查看" class="headerlink" title="(1)小文件内容查看"></a>(1)小文件内容查看</h3><blockquote>
+<h6 id="cat-etc-passwd"><a href="#cat-etc-passwd" class="headerlink" title="cat /etc/passwd"></a>cat /etc/passwd</h6><p>同时看2个内容<br>    cat /etc/passwd /etc/shadow<br>带序号显示<br>    cat -n /etc/passwd </p>
+</blockquote>
+<h3 id="2-分页显示大文件内容"><a href="#2-分页显示大文件内容" class="headerlink" title="(2)分页显示大文件内容"></a>(2)分页显示大文件内容</h3><blockquote>
+<p>​    more /var/log/secure<br>更好可以上下翻页<br>    less /var/log/secure </p>
+</blockquote>
+<h3 id="3-文件前多少行"><a href="#3-文件前多少行" class="headerlink" title="(3)文件前多少行"></a>(3)文件前多少行</h3><blockquote>
+<p>​    head /etc/passwd</p>
+<p>3行</p>
+<p>​    head -n3 /etc/passwd<br>    head -3 /etc/passwd</p>
+</blockquote>
+<h3 id="4-文件后多少行"><a href="#4-文件后多少行" class="headerlink" title="(4)文件后多少行"></a>(4)文件后多少行</h3><blockquote>
+<p>2行<br>tail -2 /etc/passwd</p>
+</blockquote>
+<h4 id="监控"><a href="#监控" class="headerlink" title="监控"></a>监控</h4><blockquote>
+<p>tail -f /var/log/secure</p>
+</blockquote>
+<h2 id="1-2-4-剪切-复制"><a href="#1-2-4-剪切-复制" class="headerlink" title="1.2.4 剪切 复制"></a>1.2.4 剪切 复制</h2><blockquote>
+<h6 id="mv-命令和目录的操作一样"><a href="#mv-命令和目录的操作一样" class="headerlink" title="mv 命令和目录的操作一样"></a>mv 命令和目录的操作一样</h6><h6 id="cp-命令和目录的区别不需要加-r-加上也不报错"><a href="#cp-命令和目录的区别不需要加-r-加上也不报错" class="headerlink" title="cp 命令和目录的区别不需要加-r (加上也不报错)"></a>cp 命令和目录的区别不需要加-r (加上也不报错)</h6></blockquote>
+<h2 id="1-2-5-内容修改"><a href="#1-2-5-内容修改" class="headerlink" title="1.2.5 内容修改"></a>1.2.5 内容修改</h2><h4 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h4><blockquote>
+<p>  覆盖重定向</p>
+<p>  echo “10.0.0.100 python3” &gt;/etc/hosts</p>
+<p>  cat /etc/passwd &gt;a.txt</p>
+<blockquote>
+<p> 追加重定向<br> cat /etc/passwd &gt;&gt;a.txt<br> 将内容追加<br> echo “10.0.0.100 python3” &gt;&gt;/etc/hosts</p>
+</blockquote>
+</blockquote>
+<p>666</p>
+<h4 id="cd-到当前目录"><a href="#cd-到当前目录" class="headerlink" title="cd 到当前目录"></a>cd 到当前目录</h4><blockquote>
+<p>cp /etc/psswd ./</p>
+</blockquote>
+<h4 id="vim-编辑器"><a href="#vim-编辑器" class="headerlink" title="vim 编辑器"></a>vim 编辑器</h4><p>命令模式:初始模式</p>
+<p>vim passwd<br>功能: </p>
+<h4 id="1-查看文件内容"><a href="#1-查看文件内容" class="headerlink" title="1.查看文件内容"></a>1.查看文件内容</h4><h5 id="上下左右光标移动"><a href="#上下左右光标移动" class="headerlink" title="上下左右光标移动"></a>上下左右光标移动</h5><p>​    page up  page down翻页<br>666<br>    G 光标到达最后一行<br>    1G 光标到达第一行(gg)<br>    10G 第10行<br>    ^ 光标到达行首<br>    $ 光标到达行尾</p>
+<h5 id="搜索关键字"><a href="#搜索关键字" class="headerlink" title="/ 搜索关键字"></a>/ 搜索关键字</h5><h5 id="yy-复制光标所在行"><a href="#yy-复制光标所在行" class="headerlink" title="yy 复制光标所在行"></a>yy 复制光标所在行</h5><p>​    Nyy 复制N行<br>    dd  删除/剪切<br>    Ndd 删除/剪切N行<br>    p  粘贴<br>    x(del) 删除光标所在字符</p>
+<h5 id="dG-删除光标到文本末尾"><a href="#dG-删除光标到文本末尾" class="headerlink" title="dG  删除光标到文本末尾"></a>dG  删除光标到文本末尾</h5><p>​    d$  从光标删除到行尾,包括贯标所在字符<br>    d^  从光标删除到行首,不包括光标所在字符</p>
+<h5 id="r-替换光标所在字符"><a href="#r-替换光标所在字符" class="headerlink" title="r   替换光标所在字符"></a>r   替换光标所在字符</h5><p>​    ZZ  保存退出<br>    u   撤销上次操作</p>
+<h1 id="九-VIM的编辑模式与末行模式"><a href="#九-VIM的编辑模式与末行模式" class="headerlink" title="九.VIM的编辑模式与末行模式"></a>九.VIM的编辑模式与末行模式</h1><h2 id="1-编辑模式"><a href="#1-编辑模式" class="headerlink" title="1.编辑模式:"></a>1.编辑模式:</h2><p>a :在光标之后录入数据<br>i :在光标之前录入数据<br>o :在光标下一行开启新行录入数据<br>A<br>I<br>O<br>ESC </p>
+<p>小技巧:每编辑完一行就ESC,退回到命令模式</p>
+<h2 id="2-末行模式"><a href="#2-末行模式" class="headerlink" title="2.末行模式"></a>2.末行模式</h2><h3 id="只是退出"><a href="#只是退出" class="headerlink" title="只是退出"></a>只是退出</h3><blockquote>
+<p>:q!</p>
+</blockquote>
+<h3 id="保存退出"><a href="#保存退出" class="headerlink" title="保存退出"></a>保存退出</h3><blockquote>
+<p>:wq!<br>:set nu<br>:set nonu</p>
+</blockquote>
+<h3 id="替换退出"><a href="#替换退出" class="headerlink" title="替换退出"></a>替换退出</h3><blockquote>
+<p>:%s/root/ROOT/g</p>
+</blockquote>
+<h4 id="链接-快捷方式"><a href="#链接-快捷方式" class="headerlink" title="链接(快捷方式)"></a>链接(快捷方式)</h4><blockquote>
+<p>ln -s passwd passwd.lnk</p>
+</blockquote>
+<blockquote>
+<p>ls<br>ls -l<br>ls -ld<br>ls -al<br>ls -ltr</p>
+</blockquote>
+<h1 id="十-磁盘-文件系统管理-raid技术"><a href="#十-磁盘-文件系统管理-raid技术" class="headerlink" title="十.磁盘.文件系统管理,raid技术"></a>十.磁盘.文件系统管理,raid技术</h1><h2 id="磁盘-和-文件系统"><a href="#磁盘-和-文件系统" class="headerlink" title="磁盘   和    文件系统"></a>磁盘   和    文件系统</h2><h2 id="2-1-企业级磁盘类型"><a href="#2-1-企业级磁盘类型" class="headerlink" title="2.1 企业级磁盘类型"></a>2.1 企业级磁盘类型</h2><p>SAS<br>容量  :900G<br>    主机版<br>    存储版<br>转速:15K<br>品牌:IBM HDS EMC<br>缓存:<br>接口速度:16Gb<br>SSD:<br>Sata3<br>PCI-E<br>Flash盘</p>
+<h2 id="2-2-文件系统"><a href="#2-2-文件系统" class="headerlink" title="2.2 文件系统"></a>2.2 文件系统</h2><h3 id="方便用户使用和管理磁盘硬件的-辅助系统-Filesystem"><a href="#方便用户使用和管理磁盘硬件的-辅助系统-Filesystem" class="headerlink" title="方便用户使用和管理磁盘硬件的,辅助系统(Filesystem)"></a>方便用户使用和管理磁盘硬件的,辅助系统(Filesystem)</h3><h3 id="Linux文件系统类型"><a href="#Linux文件系统类型" class="headerlink" title="Linux文件系统类型:"></a>Linux文件系统类型:</h3><p>​    ext2<br>    ext3<br>    ext4<br>    XFS<br>十</p>
+<h2 id="2-3-文件系统管理"><a href="#2-3-文件系统管理" class="headerlink" title="2.3 文件系统管理"></a>2.3 文件系统管理</h2><blockquote>
+<p>​<br>[root@python3 ~]# ls -l /dev/sd*<br>brw-rw—- 1 root disk 8,  0 Jan  3 15:28 /dev/sda<br>brw-rw—- 1 root disk 8,  1 Jan  3 15:28 /dev/sda1<br>brw-rw—- 1 root disk 8,  2 Jan  3 15:28 /dev/sda2<br>brw-rw—- 1 root disk 8, 16 Jan  3 15:28 /dev/sdb<br>[root@python3 ~]# fdisk -l</p>
+</blockquote>
+<h3 id="2-3-1-分区"><a href="#2-3-1-分区" class="headerlink" title="2.3.1 分区"></a>2.3.1 分区</h3><blockquote>
+<h6 id="fdisk-dev-sdb"><a href="#fdisk-dev-sdb" class="headerlink" title="fdisk   /dev/sdb"></a>fdisk   /dev/sdb</h6><p>​    m<br>    n<br>    p<br>    w </p>
+</blockquote>
+<h3 id="百度以下"><a href="#百度以下" class="headerlink" title="百度以下:"></a>百度以下:</h3><h5 id="1-首先我们要添加一块足够我们使用的硬盘（我这里添加一块20G-的硬盘）"><a href="#1-首先我们要添加一块足够我们使用的硬盘（我这里添加一块20G-的硬盘）" class="headerlink" title="1.首先我们要添加一块足够我们使用的硬盘（我这里添加一块20G 的硬盘）"></a>1.首先我们要添加一块足够我们使用的硬盘（我这里添加一块20G 的硬盘）</h5><p><img src="https://img-blog.csdn.net/20161028152622277" alt="img"> </p>
+<h5 id="2-打开我们的命令行模式，"><a href="#2-打开我们的命令行模式，" class="headerlink" title="2.打开我们的命令行模式，"></a>2.打开我们的命令行模式，</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fisk<span class="_">-l</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20161028153155941" alt="img"> </p>
+<h5 id="3-在新建逻辑卷之前，我们要先新建一个物理卷，以便我-们创建逻辑卷组的时候引用。"><a href="#3-在新建逻辑卷之前，我们要先新建一个物理卷，以便我-们创建逻辑卷组的时候引用。" class="headerlink" title="3.在新建逻辑卷之前，我们要先新建一个物理卷，以便我 们创建逻辑卷组的时候引用。"></a><strong>3.</strong>在新建逻辑卷之前，我们要先新建一个物理卷，以便我 们创建逻辑卷组的时候引用。</h5><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pvcreate <span class="regexp">/dev/</span>sdb</span><br></pre></td></tr></table></figure>
+<h5 id="4-创建完了以后我们要先查看我们系统中的逻辑卷组"><a href="#4-创建完了以后我们要先查看我们系统中的逻辑卷组" class="headerlink" title="4.创建完了以后我们要先查看我们系统中的逻辑卷组"></a>4.创建完了以后我们要先查看我们系统中的逻辑卷组</h5><h5 id><a href="#" class="headerlink" title=" "></a> </h5><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">vgdisplay</span></span><br></pre></td></tr></table></figure>
+<h5 id="-1"><a href="#-1" class="headerlink" title></a><img src="https://img-blog.csdn.net/20161028154909542" alt="img"></h5><p>（红框中的名字即我们后面要使用的卷组名）  </p>
+<p>##### </p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vgextend VolGroup <span class="regexp">/dev/</span>sdb</span><br></pre></td></tr></table></figure>
+<h5 id="5-下面我们就开始对根分区对应的逻辑卷进行扩展"><a href="#5-下面我们就开始对根分区对应的逻辑卷进行扩展" class="headerlink" title="5.下面我们就开始对根分区对应的逻辑卷进行扩展"></a><strong>5.</strong>下面我们就开始对根分区对应的逻辑卷进行扩展</h5><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df -h</span><br><span class="line">lvextend -L +<span class="number">19</span>G -n <span class="regexp">/dev/m</span>apper<span class="regexp">/VolGroup-lv_root</span></span><br></pre></td></tr></table></figure>
+<h5 id="6-扩展完成以后，是不会立刻生效的，我们需要输入"><a href="#6-扩展完成以后，是不会立刻生效的，我们需要输入" class="headerlink" title="6.扩展完成以后，是不会立刻生效的，我们需要输入"></a><strong>6.</strong>扩展完成以后，是不会立刻生效的，我们需要输入</h5><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">resize2fs <span class="meta-keyword">/dev/</span>mapper/VolGroup-lv_root</span><br><span class="line">df -h</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-2-格式化成文件系统-XFS"><a href="#2-3-2-格式化成文件系统-XFS" class="headerlink" title="2.3.2 格式化成文件系统(XFS)"></a>2.3.2 格式化成文件系统(XFS)</h3><blockquote>
+<h6 id="mkfs-xfs-dev-sdb1"><a href="#mkfs-xfs-dev-sdb1" class="headerlink" title="mkfs.xfs /dev/sdb1"></a>mkfs.xfs /dev/sdb1</h6><p>​    </p>
+</blockquote>
+<h3 id="2-3-3-挂载设备"><a href="#2-3-3-挂载设备" class="headerlink" title="2.3.3 挂载设备"></a>2.3.3 挂载设备</h3><blockquote>
+<h6 id="mkdir-data"><a href="#mkdir-data" class="headerlink" title="mkdir /data"></a>mkdir /data</h6><p>mount /dev/sdb1 /data    </p>
+</blockquote>
+<p>​    </p>
+<h3 id="2-3-4-查看挂载的磁盘使用情况"><a href="#2-3-4-查看挂载的磁盘使用情况" class="headerlink" title="2.3.4 查看挂载的磁盘使用情况"></a>2.3.4 查看挂载的磁盘使用情况</h3><blockquote>
+<h6 id="df-h"><a href="#df-h" class="headerlink" title="df -h"></a>df -h</h6></blockquote>
+<h3 id="2-3-5-自动挂载文件系统"><a href="#2-3-5-自动挂载文件系统" class="headerlink" title="2.3.5 自动挂载文件系统"></a>2.3.5 自动挂载文件系统</h3><blockquote>
+<h6 id="vim-etc-fstab"><a href="#vim-etc-fstab" class="headerlink" title="vim /etc/fstab"></a>vim /etc/fstab</h6><p>/dev/sdb1    /data    xfs    defaults    0 0 </p>
+</blockquote>
+<h4 id="使用UUID更加安全"><a href="#使用UUID更加安全" class="headerlink" title="使用UUID更加安全"></a>使用UUID更加安全</h4><p>UUID=9fb2ec36-6a60-4394-9bfa-369261844d56 /data xfs defaults 0 0</p>
+<h2 id="Raid"><a href="#Raid" class="headerlink" title="Raid"></a>Raid</h2><h4 id="功能特性"><a href="#功能特性" class="headerlink" title="功能特性:"></a>功能特性:</h4><p>​    1.将多块磁盘合并成一块磁盘,提供更大的存储空间<br>    2.可以提供更高的IO能力<br>    3.数据物理层面的高安全</p>
+<h4 id="Raid的工作级别"><a href="#Raid的工作级别" class="headerlink" title="Raid的工作级别    :"></a>Raid的工作级别    :</h4><p>raid0:条带化功能,性能极高,安全性和单盘一样<br>至少两块盘,理论上盘越多性能越高</p>
+<p>raid1:镜像功能,性能没有明显提升,安全性高.<br>    浪费一半空间</p>
+<p>raid10:镜像+条带化 ,至少四快盘,性能和安全兼顾<br>浪费一般空间    </p>
+<p>raid5:带有校验功能的条带化<br>存储数据时,根据数据计算校验值,存储到第三块盘.<br>写入性能较低<br>读数据性能较高<br>至少三快盘,只允许一块盘损坏,浪费1/n的磁盘空间</p>
+<p>适合于读多写少的场景    </p>
+<h1 id="十一-Linux用户和组管理"><a href="#十一-Linux用户和组管理" class="headerlink" title="十一.Linux用户和组管理"></a>十一.Linux用户和组管理</h1><h2 id="3-用户-组-权限"><a href="#3-用户-组-权限" class="headerlink" title="3.用户,组,权限"></a>3.用户,组,权限</h2><h3 id="3-1-用户的作用"><a href="#3-1-用户的作用" class="headerlink" title="3.1 用户的作用"></a>3.1 用户的作用</h3><p>​    登录系统<br>    管理系统对象</p>
+<h3 id="3-2-用户的定义"><a href="#3-2-用户的定义" class="headerlink" title="3.2 用户的定义"></a>3.2 用户的定义</h3><p>​    用户名(uid),密码,家目录(/home/oldboy),家目录下会有环境变量文件等.<br>    每个用户都必须有一个工作组,创建时没指定,自动创建一个同名的组</p>
+<h3 id="3-3-组"><a href="#3-3-组" class="headerlink" title="3.3 组"></a>3.3 组</h3><p>​    组名字,GID</p>
+<h3 id="3-4-用户和组的管理"><a href="#3-4-用户和组的管理" class="headerlink" title="3.4 用户和组的管理"></a>3.4 用户和组的管理</h3><h4 id="组的管理"><a href="#组的管理" class="headerlink" title="组的管理:"></a>组的管理:</h4><blockquote>
+<p>​    groupadd -g 1001 dev<br>                groupadd -g 1001 sa<br>    groupadd -g 1001 dba<br>tail -3 /etc/group<br>dev:?:1001:<br>dev:?:1001:<br>dba:?:1003:</p>
+<p>groupdel<br>groupmod -g 10086 dev</p>
+</blockquote>
+<h4 id="用户的管理"><a href="#用户的管理" class="headerlink" title="用户的管理:"></a>用户的管理:</h4><blockquote>
+<p>useradd -u 10011 -g dev oldguo<br>id oldguo</p>
+</blockquote>
+<h5 id="设置密码"><a href="#设置密码" class="headerlink" title="设置密码"></a>设置密码</h5><blockquote>
+<p>passwd oldguo</p>
+</blockquote>
+<h5 id="切换用户"><a href="#切换用户" class="headerlink" title="切换用户"></a>切换用户</h5><blockquote>
+<p>su - oldboy</p>
+</blockquote>
+<h5 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h5><blockquote>
+<p>userdel -r oldboy</p>
+</blockquote>
+<h5 id="修改id"><a href="#修改id" class="headerlink" title="修改id"></a>修改id</h5><blockquote>
+<p>usermod -u 3000 oldguo</p>
+</blockquote>
+<h1 id="十二用户-组-权限"><a href="#十二用户-组-权限" class="headerlink" title="十二用户,组,权限"></a>十二用户,组,权限</h1><h2 id="1权限"><a href="#1权限" class="headerlink" title="1权限:"></a>1权限:</h2><h2 id="权限是作用在文件上的属性"><a href="#权限是作用在文件上的属性" class="headerlink" title="权限是作用在文件上的属性."></a>权限是作用在文件上的属性.</h2><h2 id="普通权限的规划"><a href="#普通权限的规划" class="headerlink" title="普通权限的规划:"></a>普通权限的规划:</h2><p>​    r   4<br>    w   2<br>    x   1</p>
+<p>rw-     r–       r–               root         root             passwd</p>
+<pre><code>目录                                 文件
+</code></pre><p>r               ls                                  cat more    ,vim<br>w              目录下的修改                            vim   &gt;<br>x              目录下所有操作都依赖于x              可执行程序</p>
+<h3 id="rwxr-xr-x"><a href="#rwxr-xr-x" class="headerlink" title="rwxr-xr-x"></a>rwxr-xr-x</h3><blockquote>
+<p>chmod -R  755 /data<br>chwon -R oldguo:dev /data<br>chmod -R 755 /data<br>chown -R oldguo:dev /data</p>
+</blockquote>
+<h2 id="2程序管理666"><a href="#2程序管理666" class="headerlink" title="2程序管理666"></a>2程序管理666</h2><h3 id="查看所有进程"><a href="#查看所有进程" class="headerlink" title="查看所有进程"></a>查看所有进程</h3><blockquote>
+<p>ps -ef<br>ps -ef|grep mysql<br>kill 1234<br>kill -9 1234<br>pkill mysqld</p>
+</blockquote>
+<h2 id="3安装启动httpd"><a href="#3安装启动httpd" class="headerlink" title="3安装启动httpd"></a>3安装启动httpd</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">yum</span> install -y httpd</span><br><span class="line"></span><br><span class="line">[root<span class="variable">@python3</span> ~]<span class="comment"># systemctl start httpd</span></span><br><span class="line">[root<span class="variable">@python3</span> ~]<span class="comment"># systemctl restart httpd</span></span><br><span class="line">[root<span class="variable">@python3</span> ~]<span class="comment"># systemctl stop  httpd</span></span><br><span class="line">[root<span class="variable">@python3</span> ~]<span class="comment"># systemctl restart httpd</span></span><br></pre></td></tr></table></figure>
+<h2 id="4网络管理"><a href="#4网络管理" class="headerlink" title="4网络管理"></a>4网络管理</h2><blockquote>
+<p>ip a<br>ifconfig<br>ping </p>
+</blockquote>
+<h3 id="修改IP地址"><a href="#修改IP地址" class="headerlink" title="修改IP地址"></a>修改IP地址</h3><blockquote>
+<p>vim /etc/sysconfig/network-scripts/ifcfg-eth0 </p>
+</blockquote>
+<h3 id="重启网卡"><a href="#重启网卡" class="headerlink" title="重启网卡"></a>重启网卡</h3><blockquote>
+<p>systemctl restart network</p>
+</blockquote>
+<h1 id="—————day3————"><a href="#—————day3————" class="headerlink" title="—————day3————"></a>—————day3————</h1><h1 id="软件包管理"><a href="#软件包管理" class="headerlink" title="﻿软件包管理"></a>﻿软件包管理</h1><h2 id="一-经典互联网架构"><a href="#一-经典互联网架构" class="headerlink" title="一.经典互联网架构"></a>一.经典互联网架构</h2><h2 id="昨天补充"><a href="#昨天补充" class="headerlink" title="昨天补充:"></a>昨天补充:</h2><h2 id="查看已启动服务的端口"><a href="#查看已启动服务的端口" class="headerlink" title="查看已启动服务的端口"></a>查看已启动服务的端口</h2><blockquote>
+<h6 id="netstat-tulnp"><a href="#netstat-tulnp" class="headerlink" title="netstat -tulnp"></a>netstat -tulnp</h6><p>netstat -tulnp |grep 80<br>ss -tulnp|grep 80</p>
+</blockquote>
+<h2 id="Linux要能上网"><a href="#Linux要能上网" class="headerlink" title="Linux要能上网"></a>Linux要能上网</h2><h2 id="二-使用网络yum源安装软件"><a href="#二-使用网络yum源安装软件" class="headerlink" title="二.使用网络yum源安装软件"></a>二.使用网络yum源安装软件</h2><h2 id="1-掌握Linux软件包安装方法"><a href="#1-掌握Linux软件包安装方法" class="headerlink" title="1.掌握Linux软件包安装方法"></a>1.掌握Linux软件包安装方法</h2><h3 id="2-1-rpm包管理"><a href="#2-1-rpm包管理" class="headerlink" title="2.1 rpm包管理"></a>2.1 rpm包管理</h3><h4 id="2-1-1-光盘挂载"><a href="#2-1-1-光盘挂载" class="headerlink" title="2.1.1 光盘挂载"></a>2.1.1 光盘挂载</h4><blockquote>
+<p>cd /etc/yum.repos.d/<br> mount /dev/cdrom /mnt<br> cd  /mnt<br> ls</p>
+</blockquote>
+<h4 id="2-1-2-安装rpm包"><a href="#2-1-2-安装rpm包" class="headerlink" title="2.1.2 安装rpm包"></a>2.1.2 安装rpm包</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">rpm</span> <span class="selector-tag">-ivh</span> <span class="selector-tag">vsftpd-3</span><span class="selector-class">.0</span><span class="selector-class">.2-22</span><span class="selector-class">.el7</span><span class="selector-class">.x86_64</span><span class="selector-class">.rpm</span></span><br><span class="line">下面一个可以升级</span><br><span class="line"><span class="selector-tag">rpm</span> <span class="selector-tag">-Uvh</span> <span class="selector-tag">vsftpd-3</span><span class="selector-class">.0</span><span class="selector-class">.2-22</span><span class="selector-class">.el7</span><span class="selector-class">.x86_64</span><span class="selector-class">.rpm</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-13-卸载rpm"><a href="#2-13-卸载rpm" class="headerlink" title="2.13 卸载rpm"></a>2.13 卸载rpm</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">rpm</span> <span class="selector-tag">-e</span> <span class="selector-tag">vsftpd-3</span><span class="selector-class">.0</span><span class="selector-class">.2-22</span><span class="selector-class">.el7</span><span class="selector-class">.x86_64</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-1-4-rpm包的查询"><a href="#2-1-4-rpm包的查询" class="headerlink" title="2.1.4 rpm包的查询"></a>2.1.4 rpm包的查询</h4><p>[root@python3 ~]# rpm -q vsftpd<br>vsftpd-3.0.2-22.el7.x86_64<br>[root@python3 ~]# rpm -q vsftp<br>package vsftp is not installed</p>
+<h5 id="所有软件包查询"><a href="#所有软件包查询" class="headerlink" title="所有软件包查询"></a>所有软件包查询</h5><p>rpm -qa<br>[root@python3 ~]#<br>过滤<br>[root@python3 ~]# rpm -qa |grep vsf</p>
+<h5 id="which查看命令的路径"><a href="#which查看命令的路径" class="headerlink" title="which查看命令的路径"></a>which查看命令的路径</h5><p>[root@python3 ~]# which vim<br>/usr/bin/vim<br>[root@python3 ~]# rpm -qf /usr/bin/vim</p>
+<p>**2.1.5 额外补充</p>
+<h4 id="依赖关系"><a href="#依赖关系" class="headerlink" title="依赖关系"></a>依赖关系</h4><p>A   —-&gt;   B   —&gt; C</p>
+<p>A BC   B  DF   F AC</p>
+<p>rpm  -ivh  a b c d e f</p>
+<h3 id="2-2-yum-使用"><a href="#2-2-yum-使用" class="headerlink" title="2.2 yum 使用"></a>2.2 yum 使用</h3><h4 id="2-2-1-使用aliyun-yum站点源"><a href="#2-2-1-使用aliyun-yum站点源" class="headerlink" title="2.2.1 使用aliyun yum站点源"></a>2.2.1 使用aliyun yum站点源</h4><h5 id="Base源"><a href="#Base源" class="headerlink" title="Base源"></a>Base源</h5><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">cd</span> <span class="string">/etc/yum.repos.d/</span></span><br><span class="line">mkdir</span><br><span class="line">mv *<span class="string">.repo</span> <span class="string">/tmp</span></span><br></pre></td></tr></table></figure>
+<h4 id="在阿里云的光盘"><a href="#在阿里云的光盘" class="headerlink" title="在阿里云的光盘"></a>在阿里云的光盘</h4><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/repo/</span>Centos-<span class="number">7</span>.repo</span><br></pre></td></tr></table></figure>
+<h5 id="EPEL源"><a href="#EPEL源" class="headerlink" title="EPEL源"></a>EPEL源</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="keyword">install</span> -y epel-<span class="keyword">release</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-2-2-使用yum安装软件"><a href="#2-2-2-使用yum安装软件" class="headerlink" title="2.2.2 使用yum安装软件"></a>2.2.2 使用yum安装软件</h4><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="keyword">install</span> -y openssl openssl-devel</span><br></pre></td></tr></table></figure>
+<h2 id="三-本地yum源和局域网yum优化"><a href="#三-本地yum源和局域网yum优化" class="headerlink" title="三.本地yum源和局域网yum优化"></a>三.本地yum源和局域网yum优化</h2><h4 id="2-2-3-软件包查询及组安装"><a href="#2-2-3-软件包查询及组安装" class="headerlink" title="2.2.3 软件包查询及组安装"></a>2.2.3 软件包查询及组安装</h4><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="keyword">list</span> |<span class="keyword">grep</span> vsftpd</span><br><span class="line">yum grouplist</span><br><span class="line">yum groupinstall <span class="string">"Development Tools"</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-2-4-卸载软件包"><a href="#2-2-4-卸载软件包" class="headerlink" title="2.2.4 卸载软件包"></a>2.2.4 卸载软件包</h4><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="built_in">remove</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-2-5-优化yum源"><a href="#2-2-5-优化yum源" class="headerlink" title="2.2.5 优化yum源"></a>2.2.5 优化yum源</h4><h5 id="1-本地镜像yum源-光盘挂载到-mnt下"><a href="#1-本地镜像yum源-光盘挂载到-mnt下" class="headerlink" title="(1)本地镜像yum源(光盘挂载到/mnt下)"></a>(1)本地镜像yum源(光盘挂载到/mnt下)</h5><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[local]</span><br><span class="line"><span class="attribute">name</span>=localios</span><br><span class="line"><span class="attribute">baseurl</span>=file:///mnt</span><br><span class="line"><span class="attribute">gpgcheck</span>=0</span><br><span class="line">清除缓存</span><br><span class="line">yum clean all</span><br><span class="line">yum install -y vsftpd</span><br></pre></td></tr></table></figure>
+<h5 id="2-局域网yum源-ftp"><a href="#2-局域网yum源-ftp" class="headerlink" title="(2)局域网yum源(ftp)"></a>(2)局域网yum源(ftp)</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">1.安装ftp软件</span><br><span class="line">yum <span class="keyword">install</span> -y vsftpd</span><br><span class="line"><span class="number">2.</span>启动<span class="keyword">ftp</span>服务</span><br><span class="line">[root@python3 ~]<span class="comment"># systemctl start vsftpd</span></span><br><span class="line">开机自动启动</span><br><span class="line">[root@python3 ~]<span class="comment"># systemctl enable  vsftpd</span></span><br><span class="line"></span><br><span class="line"><span class="number">3.</span>创建站点目录,并将光盘软件拷贝其中</span><br><span class="line">[root@python3 ~]<span class="comment"># mkdir /var/ftp/pub/centos7</span></span><br><span class="line"></span><br><span class="line">[root@python3 ~]<span class="comment"># cp -a /mnt/*  /var/ftp/pub/centos7</span></span><br><span class="line"></span><br><span class="line"><span class="number">4.</span>生成<span class="keyword">ftp</span>站点的yum源配置文件</span><br><span class="line">[<span class="keyword">ftp</span>]</span><br><span class="line"><span class="keyword">name</span>=centos7</span><br><span class="line">baseurl=<span class="keyword">ftp</span>://<span class="number">10.0</span><span class="number">.0</span><span class="number">.100</span>/pub/centos7</span><br><span class="line">gpgcheck=<span class="number">0</span></span><br></pre></td></tr></table></figure>
+<h1 id="四-linux压缩包解压方式"><a href="#四-linux压缩包解压方式" class="headerlink" title="四.linux压缩包解压方式"></a>四.linux压缩包解压方式</h1><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="keyword">install </span>-y gcc</span><br><span class="line"><span class="number">5</span>.安装软件测试</span><br><span class="line"> yum <span class="keyword">install </span>openssl-devel <span class="keyword">bzip2-devel </span>expat-devel gdbm-devel readline-devel sqlite-devel gcc gcc-c++  openssl-devel zlib zlib-devel -y</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-源码包应用"><a href="#2-3-源码包应用" class="headerlink" title="2.3 源码包应用"></a>2.3 源码包应用</h3><h4 id="2-3-1-解压"><a href="#2-3-1-解压" class="headerlink" title="2.3.1 解压"></a>2.3.1 解压</h4><p>.zip<br>unzip  xxx.zip<br>.tar<br>.tar.gz<br>.tgz<br>.tar.bz2<br>.tar.xz<br>tar xf  xxx.tar<br>.iso<br>mount -o loop xxx.iso  /test<br>.cpio<br>cpio -idcmv &lt; xxx.cpio</p>
+<h4 id="2-3-2-源码包安装"><a href="#2-3-2-源码包安装" class="headerlink" title="2.3.2 源码包安装"></a>2.3.2 源码包安装</h4><h1 id="五-python源码包安装"><a href="#五-python源码包安装" class="headerlink" title="五.python源码包安装"></a>五.python源码包安装</h1><h5 id="1-python3-6源码包安装"><a href="#1-python3-6源码包安装" class="headerlink" title="(1)python3.6源码包安装"></a>(1)python3.6源码包安装</h5><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC9jZDRiYzE4Y2RiN2U=" title="https://www.jianshu.com/p/cd4bc18cdb7e">https://www.jianshu.com/p/cd4bc18cdb7e<i class="fa fa-external-link"></i></span></p>
+<p>wget <span class="exturl" data-url="aHR0cHM6Ly93d3cucHl0aG9uLm9yZy9mdHAvcHl0aG9uLzMuNi43L1B5dGhvbi0zLjYuNy50Z3o=" title="https://www.python.org/ftp/python/3.6.7/Python-3.6.7.tgz">https://www.python.org/ftp/python/3.6.7/Python-3.6.7.tgz<i class="fa fa-external-link"></i></span> </p>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">./configure       ------&gt; 定制功能</span><br><span class="line"> <span class="built_in">make</span></span><br><span class="line"> <span class="built_in">make</span> install </span><br><span class="line"> <span class="built_in">make</span> &amp; <span class="built_in">make</span> install</span><br></pre></td></tr></table></figure>
+<h5 id="mysql-源码包"><a href="#mysql-源码包" class="headerlink" title="mysql 源码包"></a>mysql 源码包</h5><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cmake</span><br><span class="line">	<span class="built_in">make</span> </span><br><span class="line">	<span class="built_in">make</span> install</span><br></pre></td></tr></table></figure>
+<h1 id="六-redis的安装及简易配置"><a href="#六-redis的安装及简易配置" class="headerlink" title="六.redis的安装及简易配置"></a>六.redis的安装及简易配置</h1><h5 id="2-redis-源码包安装"><a href="#2-redis-源码包安装" class="headerlink" title="(2) redis 源码包安装"></a>(2) redis 源码包安装</h5><p>tar xf 软件包</p>
+<p>exportch rz<br> PATH=/opt/python3.6.1/src:$PATH</p>
+<p>cd 到压缩包目录下</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">make</span></span><br></pre></td></tr></table></figure>
+<h5 id="修改环境变量"><a href="#修改环境变量" class="headerlink" title="修改环境变量"></a>修改环境变量</h5><blockquote>
+<p>vim /etc/profile<br>rpm -qf <code>which rz</code></p>
+</blockquote>
+<h5 id="添加以下一行"><a href="#添加以下一行" class="headerlink" title="添加以下一行:"></a>添加以下一行:</h5><blockquote>
+<h6 id="export-PATH-opt-redis-3-2-10-src-PATH"><a href="#export-PATH-opt-redis-3-2-10-src-PATH" class="headerlink" title="export PATH=/opt/redis-3.2.10/src:$PATH"></a>export PATH=/opt/redis-3.2.10/src:$PATH</h6></blockquote>
+<h5 id="生效配置"><a href="#生效配置" class="headerlink" title="生效配置"></a>生效配置</h5><blockquote>
+<p>source /etc/profile</p>
+</blockquote>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="keyword">install</span> net-tools</span><br></pre></td></tr></table></figure>
+<h5 id="启动redis"><a href="#启动redis" class="headerlink" title="启动redis"></a>启动redis</h5><blockquote>
+<h6 id="redis-server-amp"><a href="#redis-server-amp" class="headerlink" title="redis-server &amp;"></a>redis-server &amp;</h6></blockquote>
+<h2 id="3-让python链接redis"><a href="#3-让python链接redis" class="headerlink" title="(3) 让python链接redis"></a>(3) 让python链接redis</h2><blockquote>
+<p>unzip redis-py-master.zip<br>cd redis-py-master</p>
+</blockquote>
+<h5 id="手动安装python包"><a href="#手动安装python包" class="headerlink" title="手动安装python包"></a>手动安装python包</h5><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">python3</span> setup.<span class="keyword">py</span> install</span><br></pre></td></tr></table></figure>
+<h5 id="对redis的单实例进行连接操作"><a href="#对redis的单实例进行连接操作" class="headerlink" title="对redis的单实例进行连接操作"></a>对redis的单实例进行连接操作</h5><blockquote>
+<p>python3<br>import redis<br>r = redis.StrictRedis(host=’localhost’, port=6379)<br>r.set(‘name’, ‘oldguo’)</p>
+<p>r.get(‘name’)<br>‘oldguo’</p>
+</blockquote>
+<h1 id="七-mysql5-7二进制包简易安装"><a href="#七-mysql5-7二进制包简易安装" class="headerlink" title="七.mysql5.7二进制包简易安装"></a>七.mysql5.7二进制包简易安装</h1><h2 id="二进制包-mysql5-7-20"><a href="#二进制包-mysql5-7-20" class="headerlink" title="二进制包(mysql5.7.20)"></a>二进制包(mysql5.7.20)</h2><h5 id="3-1-解压及制作软连接"><a href="#3-1-解压及制作软连接" class="headerlink" title="3.1 解压及制作软连接"></a>3.1 解压及制作软连接</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">tar</span> <span class="selector-tag">xf</span> <span class="selector-tag">mysql-5</span><span class="selector-class">.7</span><span class="selector-class">.20-linux-glibc2</span><span class="selector-class">.12-x86_64</span><span class="selector-class">.tar</span><span class="selector-class">.gz</span></span><br><span class="line"><span class="selector-tag">ln</span> <span class="selector-tag">-s</span> <span class="selector-tag">mysql-5</span><span class="selector-class">.7</span><span class="selector-class">.20-linux-glibc2</span><span class="selector-class">.12-x86_64</span> <span class="selector-tag">mysql</span></span><br></pre></td></tr></table></figure>
+<h5 id="3-2-编辑环境变量"><a href="#3-2-编辑环境变量" class="headerlink" title="3.2 编辑环境变量"></a>3.2 编辑环境变量</h5><blockquote>
+<p>vim  /etc/profile<br>添加以下一行:</p>
+<h6 id="export-PATH-opt-mysql-bin-PATH"><a href="#export-PATH-opt-mysql-bin-PATH" class="headerlink" title="export PATH=/opt/mysql/bin:$PATH"></a>export PATH=/opt/mysql/bin:$PATH</h6></blockquote>
+<blockquote>
+<p>生效配置:</p>
+<h6 id="source-etc-profile"><a href="#source-etc-profile" class="headerlink" title="source /etc/profile"></a>source /etc/profile</h6></blockquote>
+<h5 id="3-3-卸载自带mariadb"><a href="#3-3-卸载自带mariadb" class="headerlink" title="3.3 卸载自带mariadb"></a>3.3 卸载自带mariadb</h5><blockquote>
+<p>yum remove mariadb-libs</p>
+</blockquote>
+<h5 id="3-4-生成配置文件-etc-my-cnf"><a href="#3-4-生成配置文件-etc-my-cnf" class="headerlink" title="3.4 生成配置文件(/etc/my.cnf)"></a>3.4 生成配置文件(/etc/my.cnf)</h5><blockquote>
+<p>vim /etc/my.cnf<br>[mysqld]<br>basedir=/opt/mysql<br>datadir=/opt/mysql/data<br>socket=/tmp/mysql.sock<br>user=mysql<br>log_error=/var/log/mysql.log<br>log_bin=/opt/mysql/data/mysql-bin<br>server_id=100<br>[mysql]<br>socket=/tmp/mysql.sock    </p>
+</blockquote>
+<p>1.安装MySQL官方的yum repository</p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="title">@localhost</span> ~]# wget -i -<span class="keyword">c</span> http://dev.mysql.com/get/mysql<span class="number">57</span>-community-<span class="keyword">release</span>-el<span class="number">7</span><span class="number">-10</span>.noarch.rpm</span><br></pre></td></tr></table></figure>
+<p>2.下载rpm包</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[root@localhost ~]</span># <span class="selector-tag">yum</span> <span class="selector-tag">-y</span> <span class="selector-tag">install</span> <span class="selector-tag">mysql57-community-release-el7-10</span><span class="selector-class">.noarch</span><span class="selector-class">.rpm</span></span><br></pre></td></tr></table></figure>
+<p>3.安装MySQL服务</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="symbol">@localhost</span> ~]<span class="meta"># yum -y install mysql-community-server</span></span><br></pre></td></tr></table></figure>
+<p>最后会出现个complete！</p>
+<p>4.启动MySQL服务</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="symbol">@localhost</span> ~]<span class="meta"># systemctl start  mysqld.service</span></span><br></pre></td></tr></table></figure>
+<h1 id="八-mysql安装及测试"><a href="#八-mysql安装及测试" class="headerlink" title="八.mysql安装及测试"></a>八.mysql安装及测试</h1><h5 id="3-5-创建用户和数据目录-并授权"><a href="#3-5-创建用户和数据目录-并授权" class="headerlink" title="3.5 创建用户和数据目录,并授权"></a>3.5 创建用户和数据目录,并授权</h5><blockquote>
+<p>useradd mysql<br>mkdir  /opt/mysql/data<br>chown -R mysql.mysql /opt/mysql</p>
+</blockquote>
+<h5 id="3-6-初始化数据"><a href="#3-6-初始化数据" class="headerlink" title="3.6 初始化数据"></a>3.6 初始化数据</h5><blockquote>
+<p>[root@python3 ~]# mysqld –initialize-insecure –basedir=/opt/mysql –datadir=/opt/mysql/data –user=mysql</p>
+<p>2019-01-04T03:58:03.128958Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use –explicit_defaults_for_timestamp server option (see documentation for more details).<br>2019-01-04T03:58:03.142436Z 0 [ERROR] Could not open file ‘/var/log/mysql.log’ for error logging: Permission denied<br>2019-01-04T03:58:03.142492Z 0 [ERROR] Aborting</p>
+</blockquote>
+<h5 id="报错解决"><a href="#报错解决" class="headerlink" title="报错解决:"></a>报错解决:</h5><blockquote>
+<p>touch /var/log/mysql.log<br>chown -R mysql.mysql /var/log/mysql.log</p>
+</blockquote>
+<h5 id="再次初始化"><a href="#再次初始化" class="headerlink" title="再次初始化:"></a>再次初始化:</h5><blockquote>
+<p>mysqld –initialize-insecure –basedir=/opt/mysql –datadir=/opt/mysql/data –user=mysql</p>
+</blockquote>
+<h6 id="3-7-启动mysql"><a href="#3-7-启动mysql" class="headerlink" title="3.7 启动mysql"></a>3.7 启动mysql</h6><blockquote>
+<h6 id="cd-opt-mysql-support-files"><a href="#cd-opt-mysql-support-files" class="headerlink" title="cd /opt/mysql/support-files"></a>cd /opt/mysql/support-files</h6><h6 id="mysql-server-start"><a href="#mysql-server-start" class="headerlink" title="./mysql.server start"></a>./mysql.server start</h6><h6 id="将文件拷贝"><a href="#将文件拷贝" class="headerlink" title="将文件拷贝"></a>将文件拷贝</h6><h6 id="cp-mysql-server-etc-init-d-mysqld"><a href="#cp-mysql-server-etc-init-d-mysqld" class="headerlink" title="cp mysql.server /etc/init.d/mysqld"></a>cp mysql.server /etc/init.d/mysqld</h6><h6 id="etc-init-d-mysqld-restart"><a href="#etc-init-d-mysqld-restart" class="headerlink" title="/etc/init.d/mysqld restart"></a>/etc/init.d/mysqld restart</h6></blockquote>
+<h6 id="扩展-使用systemctl-管理mysql"><a href="#扩展-使用systemctl-管理mysql" class="headerlink" title="扩展:使用systemctl 管理mysql"></a>扩展:使用systemctl 管理mysql</h6><h6 id="vim-etc-systemd-system-mysqld-service"><a href="#vim-etc-systemd-system-mysqld-service" class="headerlink" title="vim /etc/systemd/system/mysqld.service"></a>vim /etc/systemd/system/mysqld.service</h6><p>[Unit]<br>Description=MySQL Server<br>Documentation=man:mysqld(8)<br>Documentation=<span class="exturl" data-url="aHR0cDovL2Rldi5teXNxbC5jb20vZG9jL3JlZm1hbi9lbi91c2luZy1zeXN0ZW1kLmh0bWw=" title="http://dev.mysql.com/doc/refman/en/using-systemd.html">http://dev.mysql.com/doc/refman/en/using-systemd.html<i class="fa fa-external-link"></i></span><br>After=network.target<br>After=syslog.target</p>
+<p>[Install]<br>WantedBy=multi-user.target<br>[Service]<br>User=mysql<br>Group=mysql<br>ExecStart=/opt/mysql/bin/mysqld –defaults-file=/etc/my.cnf<br>LimitNOFILE = 5000</p>
+<blockquote>
+<p>systemctl restart mysqld</p>
+<p>netstat -tulnp |grep 3306</p>
+</blockquote>
+<h5 id="3-8-测试python3链接mysql"><a href="#3-8-测试python3链接mysql" class="headerlink" title="3.8 测试python3链接mysql"></a>3.8 测试python3链接mysql</h5><p>创建mysql链接用户</p>
+<h6 id="grant-all-on-to-root-’10-0-0-’-identified-by-‘123’"><a href="#grant-all-on-to-root-’10-0-0-’-identified-by-‘123’" class="headerlink" title="grant all on   .  to root@’10.0.0.%’ identified by ‘123’;"></a>grant all on  <em> . </em> to root@’10.0.0.%’ identified by ‘123’;</h6><p>create database bbs charset utf8;</p>
+<p>python代码测试:</p>
+<h6 id="安装pymysql"><a href="#安装pymysql" class="headerlink" title="安装pymysql"></a>安装pymysql</h6><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip3 <span class="keyword">install</span> <span class="comment">--upgrade pip</span></span><br><span class="line">pip3 <span class="keyword">install</span> pymysql</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>vim testmysql.py</p>
+<p>#!/usr/bin/python3<br>import pymysql<br>db = pymysql.connect(“10.0.0.100”,”root”,”123”,”bbs” )<br>cursor=db.cursor()<br>cursor.execute(“SELECT VERSION()”)<br>data = cursor.fetchone()<br>print (“Database version : %s “ % data)<br>db.close()</p>
+<p>需要建一个库</p>
+<p>create database bbs charset utf8;</p>
+</blockquote>
+<blockquote>
+<p>python3  testmysql.py </p>
+</blockquote>
+<h1 id="九-互联网经典架构介绍-nginx安装"><a href="#九-互联网经典架构介绍-nginx安装" class="headerlink" title="九.互联网经典架构介绍+nginx安装"></a>九.互联网经典架构介绍+nginx安装</h1><h4 id="4-经典互联网架构项目-LNMP"><a href="#4-经典互联网架构项目-LNMP" class="headerlink" title="4.经典互联网架构项目(LNMP)"></a>4.经典互联网架构项目(LNMP)</h4><p>LNMPT =  Linux  Nginx  MySQL  PHP<br>LNMPJ =  Linux  Nginx  MySQL  PHP </p>
+<p>LNMP架构环境部署</p>
+<h5 id="1-使用官方Nginx-yum源"><a href="#1-使用官方Nginx-yum源" class="headerlink" title="1) 使用官方Nginx yum源"></a>1) 使用官方Nginx yum源</h5><blockquote>
+<p>[root@nginx ~]# vim /etc/yum.repos.d/nginx.repo<br>[nginx]<br>name=nginx repo<br>baseurl=<span class="exturl" data-url="aHR0cDovL25naW54Lm9yZy9wYWNrYWdlcy9jZW50b3MvNy8kYmFzZWFyY2gv" title="http://nginx.org/packages/centos/7/$basearch/">http://nginx.org/packages/centos/7/$basearch/<i class="fa fa-external-link"></i></span><br>gpgcheck=0<br>enabled=1</p>
+</blockquote>
+<h6 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h6><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="symbol">@nginx</span> ~]<span class="meta"># yum install nginx -y</span></span><br></pre></td></tr></table></figure>
+<h5 id="2-启动Nginx，并将Nginx加入开机自启"><a href="#2-启动Nginx，并将Nginx加入开机自启" class="headerlink" title="2) 启动Nginx，并将Nginx加入开机自启"></a>2) 启动Nginx，并将Nginx加入开机自启</h5><h6 id="systemctl-start-nginx"><a href="#systemctl-start-nginx" class="headerlink" title="systemctl start nginx"></a>systemctl start nginx</h6><h6 id="systemctl-enable-nginx"><a href="#systemctl-enable-nginx" class="headerlink" title="systemctl enable nginx"></a>systemctl enable nginx</h6><h1 id="十-php安装"><a href="#十-php安装" class="headerlink" title="十.php安装"></a>十.php安装</h1><h5 id="3-使用第三方扩展源安装php7-1"><a href="#3-使用第三方扩展源安装php7-1" class="headerlink" title="3) 使用第三方扩展源安装php7.1"></a>3) 使用第三方扩展源安装php7.1</h5><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rpm -Uvh <span class="symbol">https:</span>/<span class="regexp">/dl.fedoraproject.org/pub</span><span class="regexp">/epel/epel</span>-release-latest-<span class="number">7</span>.noarch.rpm</span><br><span class="line">rpm -Uvh <span class="symbol">https:</span>/<span class="regexp">/mirror.webtatic.com/yum</span><span class="regexp">/el7/webtatic</span>-release.rpm</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>[root@nginx ~]# yum remove php-mysql-5.4 php php-fpm php-common<br>[root@nginx ~]#  vim  /etc/yum.repos.d/php.repo<br>[php]<br>name = php Repository<br>baseurl = <span class="exturl" data-url="aHR0cDovL3VzLWVhc3QucmVwby53ZWJ0YXRpYy5jb20veXVtL2VsNy94ODZfNjQv" title="http://us-east.repo.webtatic.com/yum/el7/x86_64/">http://us-east.repo.webtatic.com/yum/el7/x86_64/<i class="fa fa-external-link"></i></span><br>gpgcheck = 0</p>
+</blockquote>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="symbol">@nginx</span> ~]<span class="meta"># yum -y install php71w php71w-cli php71w-common php71w-devel php71w-embedded php71w-gd php71w-mcrypt php71w-mbstring php71w-pdo php71w-xml php71w-fpm php71w-mysqlnd php71w-opcache php71w-pecl-memcached php71w-pecl-redis php71w-pecl-mongodb</span></span><br></pre></td></tr></table></figure>
+<p>scp -r  ./* <span class="exturl" data-url="bWFpbHRvOnJvb3RAMTE4LjMxLjYzLjcy" title="mailto:root@118.31.63.72">root@118.31.63.72<i class="fa fa-external-link"></i></span>:/etc/nginx/</p>
+<h1 id="十一-django安装所需包"><a href="#十一-django安装所需包" class="headerlink" title="十一.django安装所需包"></a>十一.django安装所需包</h1><h2 id="1-依赖包"><a href="#1-依赖包" class="headerlink" title="1.依赖包"></a>1.依赖包</h2><blockquote>
+<p>yum install openssl-devel bzip2-devel expat-devel gdbm-devel readline-devel sqlite-devel gcc gcc-c++  openssl-devel zlib zlib-devel -y</p>
+</blockquote>
+<h2 id="2-安装Django框架和uwsgi"><a href="#2-安装Django框架和uwsgi" class="headerlink" title="2.安装Django框架和uwsgi"></a>2.安装Django框架和uwsgi</h2><p>随便在哪</p>
+<blockquote>
+<p>vim  re.txt<br>asn1crypto==0.24.0<br>beautifulsoup4==4.6.3<br>bs4==0.0.1<br>certifi==2018.4.16<br>cffi==1.11.5<br>chardet==3.0.4<br>Click==7.0<br>cryptography==2.3.1<br>Django==1.11.9<br>Flask==1.0.2<br>Flask-Cors==3.0.6<br>gevent==1.3.6<br>greenlet==0.4.15<br>idna==2.7<br>ItsDangerous==1.1.0<br>Jinja2==2.10<br>lxml==4.2.6<br>MarkupSafe==1.0<br>numpy==1.15.3<br>Pillow==5.3.0<br>pycparser==2.18<br>PyMySQL==0.9.2<br>pytz==2018.7<br>requests==2.19.1<br>selenium==3.141.0<br>six==1.11.0<br>urllib3==1.23<br>virtualenv==16.1.0<br>Werkzeug==0.14.1<br>wordcloud==1.5.0</p>
+<p>pip3 install -i <span class="exturl" data-url="aHR0cHM6Ly9weXBpLmRvdWJhbmlvLmNvbS9zaW1wbGUv" title="https://pypi.doubanio.com/simple/">https://pypi.doubanio.com/simple/<i class="fa fa-external-link"></i></span> -r re.txt</p>
+</blockquote>
+<h1 id="十二-安装并测试uwsgi"><a href="#十二-安装并测试uwsgi" class="headerlink" title="十二.安装并测试uwsgi"></a>十二.安装并测试uwsgi</h1><h2 id="3-测试uwsgi是否正常，新建-test-py文件，内容如下："><a href="#3-测试uwsgi是否正常，新建-test-py文件，内容如下：" class="headerlink" title="3.测试uwsgi是否正常，新建 test.py文件，内容如下："></a>3.测试uwsgi是否正常，新建 test.py文件，内容如下：</h2><blockquote>
+<p>[root@web01 ~]# vim test.py<br>def application(env, start_response):<br>    start_response(‘200 OK’, [(‘Content-Type’,’text/html’)])<br>    return [b”Hello Django”]</p>
+<p>mv  test.py /opt</p>
+<p>创建用户</p>
+<h6 id="useradd-test"><a href="#useradd-test" class="headerlink" title="useradd test"></a>useradd test</h6><p>切换用户</p>
+<h6 id="su-test"><a href="#su-test" class="headerlink" title="su - test"></a>su - test</h6></blockquote>
+<p>logout</p>
+<h2 id="4-安装uwsgi"><a href="#4-安装uwsgi" class="headerlink" title="4.安装uwsgi"></a>4.安装uwsgi</h2><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 <span class="keyword">install</span> uwsgi</span><br></pre></td></tr></table></figure>
+<p>#然后在终端运行： </p>
+<h6 id="uwsgi-–http-8001-–wsgi-file-test-py-amp"><a href="#uwsgi-–http-8001-–wsgi-file-test-py-amp" class="headerlink" title="uwsgi –http :8001 –wsgi-file test.py &amp;"></a>uwsgi –http :8001 –wsgi-file test.py &amp;</h6><h1 id="十三-django测试"><a href="#十三-django测试" class="headerlink" title="十三.django测试"></a>十三.django测试</h1><h2 id="5-测试django是否正常，运行："><a href="#5-测试django是否正常，运行：" class="headerlink" title="5.测试django是否正常，运行："></a>5.测试django是否正常，运行：</h2><blockquote>
+<p>[root@web01 ~]# django-admin.py startproject demosite<br>[root@web01 ~]# cd demosite</p>
+<h6 id="vim-settings-py"><a href="#vim-settings-py" class="headerlink" title="vim settings.py"></a>vim settings.py</h6><h6 id="把-改成-‘-’"><a href="#把-改成-‘-’" class="headerlink" title="把[] 改成[‘*’]"></a>把[] 改成[‘*’]</h6><p>[root@web01 demosite]# python3 manage.py runserver 0.0.0.0:8002<br>在浏览器内输入：<span class="exturl" data-url="aHR0cDovLzEyNy4wLjAuMTo4MDAy77yM5qOA5p+lZGphbmdv5piv5ZCm6L+Q6KGM5q2j5bi444CC" title="http://127.0.0.1:8002，检查django是否运行正常。">http://127.0.0.1:8002，检查django是否运行正常。<i class="fa fa-external-link"></i></span></p>
+</blockquote>
+<h2 id="6-配置uwsgi-做代练发送给uwsgi"><a href="#6-配置uwsgi-做代练发送给uwsgi" class="headerlink" title="6.配置uwsgi(做代练发送给uwsgi)"></a>6.配置uwsgi(做代练发送给uwsgi)</h2><blockquote>
+<p>[root@web01 demosite]# vim /root/项目目录/uwsgi.ini<br>[uwsgi]<br>socket = 127.0.0.1:9999<br>master = true<br>workers = 2<br>max-requests = 1000<br>buffer-size = 30000<br>pidfile = /run/uwsgi.pid<br>daemonize = /var/log/uwsgi.log</p>
+<p>uwsgi –ini /root/demosite/uwsgi.ini &amp;</p>
+</blockquote>
+<h2 id="7-配置Nginx"><a href="#7-配置Nginx" class="headerlink" title="7.配置Nginx"></a>7.配置Nginx</h2><blockquote>
+<p>[root@web01 demosite]# vim /etc/nginx/conf.d/py.conf<br>server {<br>    listen 80;<br>    server_name 47.101.169.43<br>    client_max_body_size 100M;</p>
+<p>location / {<br>    index index.html;<br>    include uwsgi_params;<br>    uwsgi_pass 172.19.56.44<br>    uwsgi_param UWSGI_SCRIPT demosite.wsgi;<br>    uwsgi_param UWSGI_CHDIR /root/demosite;<br>}}</p>
+</blockquote>
+<p>重启nginx</p>
+<blockquote>
+<p>systemctl restart nginx</p>
+</blockquote>
+<p>3) 配置php-fpm用户与Nginx的运行用户保持一致</p>
+<p>[root@nginx ~]# sed -i ‘/^user/c user = www’ /etc/php-fpm.d/<span class="exturl" data-url="aHR0cDovL3d3dy5jb25m" title="http://www.conf">www.conf<i class="fa fa-external-link"></i></span><br>[root@nginx ~]# sed -i ‘/^group/c group = www’ /etc/php-fpm.d/<span class="exturl" data-url="aHR0cDovL3d3dy5jb25m" title="http://www.conf">www.conf<i class="fa fa-external-link"></i></span><br>4) 启动php-fpm，并将其加入开机自启</p>
+<p>[root@nginx ~]# systemctl start php-fpm<br>[root@nginx ~]# systemctl enable php-fpm<br>5) 安装mysql数据库</p>
+<p>[root@nginx ~]# mysqladmin password ‘123’<br>[root@nginx ~]# mysql -uroot -p123<br>2.LNMP架构环境配置</p>
+<p>vim   /etc/nginx/conf.d/php.conf<br>server {<br>        server_name 10.0.0.12;<br>        listen 80;<br>        root /code/wordpress;<br>        index index.php index.html;</p>
+<pre><code>location ~ \.php$ {
+    root /code/bbs;
+    fastcgi_pass   127.0.0.1:9000;
+    fastcgi_index  index.php;
+    fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+    include        fastcgi_params;
+}
+</code></pre><p>}</p>
+<p>LNMuWSGI+redis</p>
+<h1 id="day4"><a href="#day4" class="headerlink" title="day4"></a>day4</h1><h1 id="一-bbs项目-MySQL处理过程"><a href="#一-bbs项目-MySQL处理过程" class="headerlink" title="一.bbs项目-MySQL处理过程"></a>一.bbs项目-MySQL处理过程</h1><h2 id="1-LNM-Python-Django-uwsgi-redis项目"><a href="#1-LNM-Python-Django-uwsgi-redis项目" class="headerlink" title="1.LNM+Python Django+uwsgi+redis项目"></a>1.LNM+Python Django+uwsgi+redis项目</h2><h3 id="1-数据库的处理"><a href="#1-数据库的处理" class="headerlink" title="1.数据库的处理"></a>1.数据库的处理</h3><blockquote>
+<p>1.1 上传bbs.sql<br>1.2 在mysql中创建bbs库,并导入数据库SQL脚本<br>mysql&gt; create database bbs charset utf8mb4;<br>mysql&gt; use bbs<br>mysql&gt; source /opt/bbs.sql<br>mysql&gt; drop database bbs;</p>
+</blockquote>
+<h3 id="2-查看项目settings-py配置文件-修改以下两处"><a href="#2-查看项目settings-py配置文件-修改以下两处" class="headerlink" title="2 查看项目settings.py配置文件,修改以下两处"></a>2 查看项目settings.py配置文件,修改以下两处</h3><blockquote>
+<p>ALLOWED_HOSTS = [‘*’]</p>
+<p>DATABASES = {<br>    ‘default’: {<br>        ‘ENGINE’: ‘django.db.backends.mysql’,<br>        ‘NAME’: ‘bbs’,<br>        ‘HOST’: “10.0.0.100”,<br>        ‘USER’: ‘root’,<br>        ‘PASSWORD’: ‘123’,<br>        ‘PORT’: 3306,<br>    }</p>
+</blockquote>
+<h3 id="3-MySQL用户的定义"><a href="#3-MySQL用户的定义" class="headerlink" title="3.MySQL用户的定义"></a>3.MySQL用户的定义</h3><h6 id="USERNAME-’白名单’"><a href="#USERNAME-’白名单’" class="headerlink" title="USERNAME@’白名单’"></a>USERNAME@’白名单’</h6><p>白名单: 主机域IP地址</p>
+<p>root@’localhost’<br>root@’10.0.0.110’<br>root@’10.0.0.%’<br>root@’10.0.0.0/255.255.240.0’<br>root@’10.0.0.5%’<br>root@’%’</p>
+<p>grant all     </p>
+<h3 id="4-grant-select-update-insert"><a href="#4-grant-select-update-insert" class="headerlink" title="4.grant select,update,insert"></a>4.grant select,update,insert</h3><p><img src="/2019/03/04/linux/Snipaste_2019-01-19_23-15-13.png" alt="Snipaste_2019-01-19_23-15-13"></p>
+<p><img src="/2019/03/04/linux/Linux/Snipaste_2019-01-19_23-15-39.png" alt="Snipaste_2019-01-19_23-15-39"></p>
+<h3 id="比较麻烦"><a href="#比较麻烦" class="headerlink" title="比较麻烦"></a>比较麻烦</h3><p><img src="/2019/03/04/linux/Linux/Snipaste_2019-01-19_23-17-10.png" alt="Snipaste_2019-01-19_23-17-10"></p>
+<p><img src="/2019/03/04/linux/Linux/Snipaste_2019-01-19_23-17-57.png" alt="Snipaste_2019-01-19_23-17-57"></p>
+<h6 id="加状态-state状态"><a href="#加状态-state状态" class="headerlink" title="加状态(state状态)"></a>加状态(state状态)</h6><p><img src="/2019/03/04/linux/Linux/Snipaste_2019-01-19_23-21-59.png" alt="Snipaste_2019-01-19_23-21-59"></p>
+<p><img src="/2019/03/04/linux/Linux/Snipaste_2019-01-19_23-23-26.png" alt="Snipaste_2019-01-19_23-23-26"></p>
+<p><img src="/2019/03/04/linux/Linux/Snipaste_2019-01-19_23-35-34.png" alt="Snipaste_2019-01-19_23-35-34"></p>
+<p><img src="/2019/03/04/linux/Linux/Snipaste_2019-01-20_03-19-57.png" alt="Snipaste_2019-01-20_03-19-57"></p>
+<blockquote>
+<p>DATABASES = {<br>    ‘default’: {<br>        ‘ENGINE’: ‘django.db.backends.mysql’,<br>        ‘NAME’: ‘bbs’,<br>        ‘HOST’: “10.0.0.100”,<br>        ‘USER’: ‘bbs’,<br>        ‘PASSWORD’: ‘123’,<br>        ‘PORT’: 3306,<br>    }<br>}</p>
+</blockquote>
+<h3 id="5-创建mysql用户"><a href="#5-创建mysql用户" class="headerlink" title="5.创建mysql用户:"></a>5.创建mysql用户:</h3><blockquote>
+<p>grant select,update,delete,insert on bbs.* to bbs@’172.19.56.44’ identified by ‘123’;</p>
+<p>测试</p>
+<p>mysql -ubbs -p123 -h10.0.0.100</p>
+</blockquote>
+<h1 id="二-bbs项目部署"><a href="#二-bbs项目部署" class="headerlink" title="二.bbs项目部署"></a>二.bbs项目部署</h1><h2 id="6-BBS项目部署"><a href="#6-BBS项目部署" class="headerlink" title="6.BBS项目部署"></a>6.BBS项目部署</h2><h4 id="6-1-配置Nginx"><a href="#6-1-配置Nginx" class="headerlink" title="6.1 配置Nginx"></a>6.1 配置Nginx</h4><blockquote>
+<p>[root@web01 BBS]# vim /etc/nginx/conf.d/py.conf<br>server {<br>listen 80;<br>server_name 118.31.63.72;<br>client_max_body_size 100M;</p>
+<p>location  /static {<br>alias /opt/BBS/static/;<br>}</p>
+<p>location /media {<br>alias /opt/BBS/media;<br>}</p>
+<p>location / {<br>index index.html;<br>include uwsgi_params;<br>uwsgi_pass 172.16.197.53;<br>uwsgi_param UWSGI_SCRIPT BBS.wsgi;<br>uwsgi_param UWSGI_CHDIR /opt/BBS;<br>}<br>}</p>
+</blockquote>
+<h4 id="2-2-配置uwsgi"><a href="#2-2-配置uwsgi" class="headerlink" title="2.2 配置uwsgi"></a>2.2 配置uwsgi</h4><h6 id="关闭所有已有的uwsgi进程"><a href="#关闭所有已有的uwsgi进程" class="headerlink" title="关闭所有已有的uwsgi进程"></a>关闭所有已有的uwsgi进程</h6><blockquote>
+<h6 id="kill-9-ps-ef-grep-uwsgi-awk-39-print-2-39"><a href="#kill-9-ps-ef-grep-uwsgi-awk-39-print-2-39" class="headerlink" title="kill -9 ps -ef |grep uwsgi|awk {&#39;print $2&#39;}`"></a>kill -9 <code>ps -ef |grep uwsgi|awk {&#39;print $2&#39;}`</code></h6><p>最后不要复制`号</p>
+</blockquote>
+<blockquote>
+<p>[root@web01 BBS]# vim  uwsgi.ini<br>[uwsgi]<br>socket = 127.0.0.1:9090<br>master = true<br>workers = 2<br>reload-mercy = 10<br>vacuum = true<br>max-requests = 1000<br>limit-as = 512<br>buffer-size = 30000</p>
+</blockquote>
+<h4 id="启动uwsgi"><a href="#启动uwsgi" class="headerlink" title="启动uwsgi"></a>启动uwsgi</h4><blockquote>
+<p>uwsgi –ini uwsgi.ini &amp;</p>
+</blockquote>
+<h4 id="重启nginx"><a href="#重启nginx" class="headerlink" title="重启nginx"></a>重启nginx</h4><blockquote>
+<p>systemctl restart nginx</p>
+</blockquote>
+<p>==================</p>
+<h1 id="三-自动化运维体系中Python项目介绍Python-在运维工作中的经典应用"><a href="#三-自动化运维体系中Python项目介绍Python-在运维工作中的经典应用" class="headerlink" title="三.自动化运维体系中Python项目介绍Python 在运维工作中的经典应用"></a>三.自动化运维体系中Python项目介绍Python 在运维工作中的经典应用</h1><h2 id="1-安装ansible"><a href="#1-安装ansible" class="headerlink" title="1.安装ansible"></a>1.安装ansible</h2><blockquote>
+<p>wget -O /etc/yum.repos.d/epel.repo <span class="exturl" data-url="aHR0cDovL21pcnJvcnMuYWxpeXVuLmNvbS9yZXBvL2VwZWwtNy5yZXBv" title="http://mirrors.aliyun.com/repo/epel-7.repo">http://mirrors.aliyun.com/repo/epel-7.repo<i class="fa fa-external-link"></i></span><br>curl -o /etc/yum.repos.d/CentOS-Base.repo <span class="exturl" data-url="aHR0cDovL21pcnJvcnMuYWxpeXVuLmNvbS9yZXBvL0NlbnRvcy03LnJlcG8=" title="http://mirrors.aliyun.com/repo/Centos-7.repo">http://mirrors.aliyun.com/repo/Centos-7.repo<i class="fa fa-external-link"></i></span><br>yum install ansible -y  </p>
+</blockquote>
+<h1 id="四-ansible安装和使用"><a href="#四-ansible安装和使用" class="headerlink" title="四.ansible安装和使用"></a>四.ansible安装和使用</h1><h2 id="2-启动ansible"><a href="#2-启动ansible" class="headerlink" title="2.启动ansible"></a>2.启动ansible</h2><h6 id="ansble按tab键"><a href="#ansble按tab键" class="headerlink" title="ansble按tab键"></a>ansble按tab键</h6><h2 id="3-克隆虚拟机"><a href="#3-克隆虚拟机" class="headerlink" title="3.克隆虚拟机"></a>3.克隆虚拟机</h2><blockquote>
+<p>hostnamectl set-hostname standby</p>
+<p>vim /etc/sysconfig/network-scripts/ifcfg-eth0<br>IPADDR=10.0.0.200<br>UUID行删掉</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI4MjM0MjEzL2FydGljbGUvZGV0YWlscy83MzMyMjg3NQ==" title="https://blog.csdn.net/qq_28234213/article/details/73322875">https://blog.csdn.net/qq_28234213/article/details/73322875<i class="fa fa-external-link"></i></span></p>
+<p>UUID=85152c24-8413-4f81-909c-5e095c6e90fc</p>
+<p>ifconfig eth0 192.168.1.5 netmask 255.255.255.0 </p>
+<p>vim /etc/hosts<br>10.0.0.200 standby<br>systemctl restart network</p>
+</blockquote>
+<h1 id="五-ansible自动化部署体验"><a href="#五-ansible自动化部署体验" class="headerlink" title="五.ansible自动化部署体验"></a>五.ansible自动化部署体验</h1><h2 id="Linux的-SSHD-22"><a href="#Linux的-SSHD-22" class="headerlink" title="Linux的 SSHD(22)"></a>Linux的 SSHD(22)</h2><h6 id="ssh-10-0-0-200"><a href="#ssh-10-0-0-200" class="headerlink" title="ssh 10.0.0.200"></a>ssh 10.0.0.200</h6><h6 id="想办法不使用密码"><a href="#想办法不使用密码" class="headerlink" title="想办法不使用密码"></a>想办法不使用密码</h6><h3 id="1-验证方式"><a href="#1-验证方式" class="headerlink" title="1.验证方式:"></a>1.验证方式:</h3><p>(1)用户+密码(PAM)<br>(2)秘钥验证(公钥:钥匙和私钥:锁)<br>    通过秘钥对实现,需要将公钥分发到各节点</p>
+<p>+++++++++++++++++++++++++++++++</p>
+<h3 id="2-管理被控端，管理机先生成秘钥，然后推送公钥"><a href="#2-管理被控端，管理机先生成秘钥，然后推送公钥" class="headerlink" title="2.管理被控端，管理机先生成秘钥，然后推送公钥"></a>2.管理被控端，管理机先生成秘钥，然后推送公钥</h3><blockquote>
+<p>ssh-keygen<br>ssh-copy-id -i ~/.ssh/id_rsa.pub <span class="exturl" data-url="bWFpbHRvOnJvb3RAMTAuMC4wLjIwMA==" title="mailto:root@10.0.0.200">root@10.0.0.200<i class="fa fa-external-link"></i></span></p>
+<p>多的用for</p>
+<p>[root@demo ~]# for i in {1..12};do ssh-copy-id -i ~/.ssh/id_rsa.pub <span class="exturl" data-url="bWFpbHRvOnJvb3RAMTAuMC4w" title="mailto:root@10.0.0">root@10.0.0<i class="fa fa-external-link"></i></span>.$i;done</p>
+</blockquote>
+<h3 id="3-配置被管理的主机清单"><a href="#3-配置被管理的主机清单" class="headerlink" title="3.配置被管理的主机清单"></a>3.配置被管理的主机清单</h3><blockquote>
+<p>[root@demo ~]# vim /etc/ansible/hosts<br>[web]<br>10.0.0.100<br>10.0.0.200</p>
+</blockquote>
+<h3 id="4-使用ansible的ad-hoc测试"><a href="#4-使用ansible的ad-hoc测试" class="headerlink" title="4.使用ansible的ad-hoc测试"></a>4.使用ansible的ad-hoc测试</h3><p>管理者自己的的密钥也要执行</p>
+<blockquote>
+<p>ssh-copy-id -i ~/.ssh/id_rsa.pub <span class="exturl" data-url="bWFpbHRvOnJvb3RAMTAuMC4wLjEwMA==" title="mailto:root@10.0.0.100">root@10.0.0.100<i class="fa fa-external-link"></i></span></p>
+</blockquote>
+<blockquote>
+<p>[root@demo ~]# ansible all -m ping</p>
+</blockquote>
+<p>10.0.0.12 | SUCCESS =&gt; {<br>    “changed”: false,<br>    “ping”: “pong”<br>}<br>10.0.0.11 | SUCCESS =&gt; {<br>    “changed”: false,<br>    “ping”: “pong”<br>}</p>
+<h3 id="5-测试命令"><a href="#5-测试命令" class="headerlink" title="5.测试命令"></a>5.测试命令</h3><p>ansible web -m ping</p>
+<h4 id="执行远程命令"><a href="#执行远程命令" class="headerlink" title="#执行远程命令"></a>#执行远程命令</h4><p>[root@demo ~]# ansible all -m shell -a “df -h”<br>10.0.0.12 | CHANGED | rc=0 &gt;&gt;<br>Filesystem      Size  Used Avail Use% Mounted on<br>/dev/sda3        98G  3.4G   95G   4% /<br>devtmpfs        477M     0  477M   0% /dev<br>tmpfs           488M     0  488M   0% /dev/shm<br>tmpfs           488M  7.7M  480M   2% /run<br>tmpfs           488M     0  488M   0% /sys/fs/cgroup<br>/dev/sda1       197M  102M   96M  52% /boot<br>tmpfs            98M     0   98M   0% /run/user/0</p>
+<p>10.0.0.11 | CHANGED | rc=0 &gt;&gt;<br>Filesystem      Size  Used Avail Use% Mounted on<br>/dev/sda3        98G  1.6G   97G   2% /<br>devtmpfs        981M     0  981M   0% /dev<br>tmpfs           992M  124K  992M   1% /dev/shm<br>tmpfs           992M  9.6M  982M   1% /run<br>tmpfs           992M     0  992M   0% /sys/fs/cgroup<br>/dev/sda1       197M  102M   96M  52% /boot<br>tmpfs           199M     0  199M   0% /run/user/0</p>
+<h3 id="6-ansible-playbook自动化安装nginx"><a href="#6-ansible-playbook自动化安装nginx" class="headerlink" title="6.ansible playbook自动化安装nginx"></a>6.ansible playbook自动化安装nginx</h3><blockquote>
+<p>[root@demo ~]# vim  playbook_nginx.yml </p>
+</blockquote>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">hosts:</span> <span class="string">web</span></span><br><span class="line">  <span class="attr">remote_user:</span> <span class="string">root</span></span><br><span class="line">  <span class="attr">vars:</span></span><br><span class="line">    <span class="attr">http_port:</span> <span class="number">80</span></span><br><span class="line">  <span class="attr">tasks:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Add</span> <span class="string">Nginx</span> <span class="string">Yum</span> <span class="string">Repository</span></span><br><span class="line">      <span class="attr">yum_repository:</span></span><br><span class="line">        <span class="attr">name:</span> <span class="string">nginx</span></span><br><span class="line">        <span class="attr">description:</span> <span class="string">Nginx</span> <span class="string">Repository</span></span><br><span class="line">        <span class="attr">baseurl:</span> <span class="string">http://nginx.org/packages/centos/7/$basearch/</span></span><br><span class="line">        <span class="attr">gpgcheck:</span> <span class="literal">no</span></span><br><span class="line"></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Install</span> <span class="string">Nginx</span> <span class="string">Server</span></span><br><span class="line">      <span class="attr">yum:</span> </span><br><span class="line">	    <span class="string">name=nginx</span> <span class="string">state=present</span></span><br><span class="line"></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Configure</span> <span class="string">Nginx</span> <span class="string">Server</span></span><br><span class="line">      <span class="attr">template:</span> <span class="string">src=./default.conf.template</span> <span class="string">dest=/etc/nginx/conf.d/default.conf</span></span><br><span class="line">      <span class="attr">notify:</span> <span class="string">Restart</span> <span class="string">Nginx</span> <span class="string">Server</span></span><br><span class="line"></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Start</span> <span class="string">Nginx</span> <span class="string">Server</span></span><br><span class="line">      <span class="attr">service:</span> <span class="string">name=nginx</span> <span class="string">state=started</span> <span class="string">enabled=yes</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">handlers:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Restart</span> <span class="string">Nginx</span> <span class="string">Server</span></span><br><span class="line">      <span class="attr">service:</span> <span class="string">name=nginx</span> <span class="string">state=restarted</span></span><br></pre></td></tr></table></figure>
+<h3 id="7-default-conf-template文件如下"><a href="#7-default-conf-template文件如下" class="headerlink" title="7.default.conf.template文件如下"></a>7.default.conf.template文件如下</h3><blockquote>
+<p>vim default.conf.template </p>
+</blockquote>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       &#123;&#123; http_port &#125;&#125;<span class="comment">;</span></span><br><span class="line">    server_name  localhost<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        root   /usr/share/nginx/html<span class="comment">;</span></span><br><span class="line">        index  index.html index.htm<span class="comment">;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="8-执行ansible-playbook"><a href="#8-执行ansible-playbook" class="headerlink" title="8.执行ansible-playbook"></a>8.执行ansible-playbook</h3><h4 id="检查语法"><a href="#检查语法" class="headerlink" title="检查语法"></a>检查语法</h4><blockquote>
+<p>[root@demo ~]#  ansible-playbook –syntax playbook_nginx.yml</p>
+</blockquote>
+<h6 id="必须打印playbook-playbook-nginx-yml"><a href="#必须打印playbook-playbook-nginx-yml" class="headerlink" title="必须打印playbook: playbook_nginx.yml"></a>必须打印playbook: playbook_nginx.yml</h6><h4 id="模拟执行"><a href="#模拟执行" class="headerlink" title="模拟执行"></a>模拟执行</h4><blockquote>
+<p>[root@demo ~]# ansible-playbook -C playbook_nginx.yml </p>
+</blockquote>
+<h4 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h4><blockquote>
+<p>[root@demo ~]# ansible-playbook playbook_nginx.yml       </p>
+</blockquote>
+<p>=============================================================</p>
+<p><img src="/2019/03/04/linux/Linux/Snipaste_2019-01-20_03-19-57.png" alt="Snipaste_2019-01-20_03-19-57"></p>
+<h1 id="六-docker基础环境准备"><a href="#六-docker基础环境准备" class="headerlink" title="六.docker基础环境准备"></a>六.docker基础环境准备</h1><h2 id="1-Docker容器技术"><a href="#1-Docker容器技术" class="headerlink" title="1.Docker容器技术"></a>1.Docker容器技术</h2><h3 id="1、环境准备类："><a href="#1、环境准备类：" class="headerlink" title="1、环境准备类："></a>1、环境准备类：</h3><blockquote>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; curl  http://mirrors.aliyun.<span class="keyword">com</span>/docker-<span class="keyword">ce</span>/linux/centos/docker-<span class="keyword">ce</span>.repo -<span class="keyword">o</span> /etc/yum.repos.d/docker-<span class="keyword">ce</span>.repo</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>cd /etc/yum.repos.d</p>
+<p>wget -O /etc/yum.repos.d/epel.repo <span class="exturl" data-url="aHR0cDovL21pcnJvcnMuYWxpeXVuLmNvbS9yZXBvL2VwZWwtNy5yZXBv" title="http://mirrors.aliyun.com/repo/epel-7.repo">http://mirrors.aliyun.com/repo/epel-7.repo<i class="fa fa-external-link"></i></span><br>curl -o /etc/yum.repos.d/CentOS-Base.repo <span class="exturl" data-url="aHR0cDovL21pcnJvcnMuYWxpeXVuLmNvbS9yZXBvL0NlbnRvcy03LnJlcG8=" title="http://mirrors.aliyun.com/repo/Centos-7.repo">http://mirrors.aliyun.com/repo/Centos-7.repo<i class="fa fa-external-link"></i></span></p>
+</blockquote>
+<h3 id="2-安装"><a href="#2-安装" class="headerlink" title="2.安装"></a>2.安装</h3><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">yum</span> install -y yum-utils device-mapper-persistent-<span class="class"><span class="keyword">data</span> lvm2</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">显示以下docter版本</span><br><span class="line">yum <span class="keyword">list</span> docker-<span class="keyword">ce</span>.x86_64 --showduplicates | <span class="keyword">sort</span> -r</span><br></pre></td></tr></table></figure>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">使用docter核心的</span><br><span class="line">yum install -y --setopt=obsoletes=<span class="number">0</span> \</span><br><span class="line">docker-ce<span class="number">-17.03</span><span class="number">.2</span>.ce<span class="number">-1.</span>el7.centos.x86_64 \</span><br><span class="line">docker-ce-selinux<span class="number">-17.03</span><span class="number">.2</span>.ce<span class="number">-1.</span>el7.centos.noarch</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>systemctl daemon-reload</p>
+</blockquote>
+<h3 id="3-启动"><a href="#3-启动" class="headerlink" title="3.启动"></a>3.启动</h3><blockquote>
+<p>systemctl restart docker</p>
+</blockquote>
+<h3 id="4-看版本"><a href="#4-看版本" class="headerlink" title="4.看版本"></a>4.看版本</h3><blockquote>
+<p>docker version</p>
+</blockquote>
+<h3 id="5-看详细信息"><a href="#5-看详细信息" class="headerlink" title="5.看详细信息"></a>5.看详细信息</h3><blockquote>
+<p>docker  info</p>
+</blockquote>
+<h3 id="6-配置镜像加速"><a href="#6-配置镜像加速" class="headerlink" title="6.配置镜像加速"></a>6.配置镜像加速</h3><h4 id="阿里云Docker-hub"><a href="#阿里云Docker-hub" class="headerlink" title="阿里云Docker-hub"></a>阿里云Docker-hub</h4><p><span class="exturl" data-url="aHR0cHM6Ly9jci5jb25zb2xlLmFsaXl1bi5jb20vY24taGFuZ3pob3UvbWlycm9ycw==" title="https://cr.console.aliyun.com/cn-hangzhou/mirrors">https://cr.console.aliyun.com/cn-hangzhou/mirrors<i class="fa fa-external-link"></i></span></p>
+<blockquote>
+<p>mkdir -p /etc/docker</p>
+</blockquote>
+<blockquote>
+<p>tee /etc/docker/daemon.json &lt;&lt;-‘EOF’<br>{<br>   “registry-mirrors”: [“<span class="exturl" data-url="aHR0cHM6Ly82OHJteXpnNy5taXJyb3IuYWxpeXVuY3MuY29tJnF1b3Q7XQ==" title="https://68rmyzg7.mirror.aliyuncs.com&quot;]">https://68rmyzg7.mirror.aliyuncs.com&quot;]<i class="fa fa-external-link"></i></span><br>}<br>EOF      </p>
+<p>​<br>或者:</p>
+</blockquote>
+<p>vim   /etc/docker/daemon.json</p>
+<pre><code>{
+     &quot;registry-mirrors&quot;: [&quot;https://68rmyzg7.mirror.aliyuncs.com&quot;]
+}
+</code></pre><h3 id="7-pull常用镜像"><a href="#7-pull常用镜像" class="headerlink" title="7.pull常用镜像"></a>7.pull常用镜像</h3><blockquote>
+<p>控的</p>
+<p>docker pull  centos:6.9  </p>
+<p>docker pull  centos:7.5.1804</p>
+<p>  一起完事,不用现装</p>
+<p>docker pull  nginx</p>
+<p>检查</p>
+<p>docker images</p>
+</blockquote>
+<h3 id="8-启动docker镜像"><a href="#8-启动docker镜像" class="headerlink" title="8.启动docker镜像"></a>8.启动docker镜像</h3><blockquote>
+<p>docker run -it centos:6.9</p>
+<p>查看启动</p>
+<p>cat /etc/redhat-release</p>
+</blockquote>
+<h1 id="七-docker简介"><a href="#七-docker简介" class="headerlink" title="七.docker简介"></a>七.docker简介</h1><p><img src="/2019/03/04/linux/Linux/Snipaste_2019-01-20_16-48-36.png" alt="1547974124248"></p>
+<p><img src="/2019/03/04/linux/Linux/Snipaste_2019-01-20_16-49-11.png" alt="1547974164615"></p>
+<p><img src="/2019/03/04/linux/Linux/Snipaste_2019-01-20_16-49-32.png" alt="1547974177784"></p>
+<p><img src="/2019/03/04/linux/Linux/Snipaste_2019-01-20_16-49-53.png" alt="1547974202645"></p>
+<p><img src="/2019/03/04/linux/Linux/Snipaste_2019-01-20_16-50-50.png" alt="1547974258767"></p>
+<p><img src="/2019/03/04/linux/Linux/Snipaste_2019-01-20_16-52-39.png" alt="1547974367288"></p>
+<p><img src="/2019/03/04/linux/Linux/Snipaste_2019-01-20_16-52-55.png" alt="1547974386485"></p>
+<p><img src="/2019/03/04/linux/Linux/Snipaste_2019-01-20_16-53-22.png" alt="1547974413699"></p>
+<p><img src="/2019/03/04/linux/Linux/Snipaste_2019-01-20_16-53-40.png" alt="1547974430631"></p>
+<p>详情</p>
+<h6 id="D-软件-qq记录-1328044392-FileRecv-Docker技术v4-1-pptx"><a href="#D-软件-qq记录-1328044392-FileRecv-Docker技术v4-1-pptx" class="headerlink" title="D:\软件\qq记录\1328044392\FileRecv\Docker技术v4 (1).pptx"></a>D:\软件\qq记录\1328044392\FileRecv\Docker技术v4 (1).pptx</h6><p>CPU   MEM   IO</p>
+<p>OS  :  Kernel</p>
+<h1 id="day5"><a href="#day5" class="headerlink" title="day5"></a>day5</h1><h6 id="先启动docker"><a href="#先启动docker" class="headerlink" title="先启动docker"></a>先启动docker</h6><blockquote>
+<p>systemctl start docker.service</p>
+</blockquote>
+<h6 id="镜像-镜像仓库-容器"><a href="#镜像-镜像仓库-容器" class="headerlink" title="镜像-镜像仓库-容器"></a>镜像-镜像仓库-容器</h6><h1 id="-2"><a href="#-2" class="headerlink" title></a><img src="/2019/03/04/linux/Snipaste_2019-01-21_09-36-20.png" alt="a"></h1><blockquote>
+<p>docker images –no-trunc</p>
+</blockquote>
+<h1 id="1-镜像管理"><a href="#1-镜像管理" class="headerlink" title="1.镜像管理"></a>1.镜像管理</h1><h2 id="1-1-获取镜像"><a href="#1-1-获取镜像" class="headerlink" title="1.1 获取镜像"></a>1.1 获取镜像</h2><blockquote>
+<p>docker search centos<br>docker pull centos:6.9<br>docker pull centos:7.5.1804<br>docker pull nginx</p>
+</blockquote>
+<h2 id="1-2-查询镜像"><a href="#1-2-查询镜像" class="headerlink" title="1.2 查询镜像"></a>1.2 查询镜像</h2><blockquote>
+<p>docker images</p>
+</blockquote>
+<h3 id="只显示镜像的id号"><a href="#只显示镜像的id号" class="headerlink" title="只显示镜像的id号"></a>只显示镜像的id号</h3><blockquote>
+<p>docker images -q </p>
+</blockquote>
+<h3 id="详细的说明"><a href="#详细的说明" class="headerlink" title="详细的说明"></a>详细的说明</h3><blockquote>
+<p>docker inspect ID/name:tag</p>
+</blockquote>
+<h2 id="1-3-删除镜像"><a href="#1-3-删除镜像" class="headerlink" title="1.3 删除镜像"></a>1.3 删除镜像</h2><blockquote>
+<p>docker rmi  ID </p>
+<p>删除所有</p>
+<p>docker rmi <code>docker images -q</code></p>
+<p>docker rmi $(docker images -q)</p>
+<p>containerId=$(docker ps -aqf ‘name=centos’)</p>
+<p>docker stop $containerId</p>
+<p>docker rm $containerId</p>
+<p>imageId = $(docker image -q centos:7.5.1804)</p>
+<p>docker rmi $imageId</p>
+</blockquote>
+<h6 id="安装一个最小镜像测试"><a href="#安装一个最小镜像测试" class="headerlink" title="安装一个最小镜像测试"></a>安装一个最小镜像测试</h6><blockquote>
+<p>docker pull busybox</p>
+<p>docker image save nginx &gt;/tmp/busybox.tar.gz</p>
+<p>docker images</p>
+<p>docker rmi busybox:latest</p>
+<p>docker images</p>
+<p>docker load -i /tmp/</p>
+<p>docker load -i /tmp/busybox.tar</p>
+<p>docker images;</p>
+<p>停止容器</p>
+<p>docker stop $(docker ps -a | grep “Exited” | awk ‘{print $1 }’)</p>
+<p>删除容器</p>
+<p>docker rm $(docker ps -a | grep “Exited” | awk ‘{print $1 }’)</p>
+<p>或</p>
+<p>docker rm -v $(docker ps -aq -f status=exited)</p>
+<p>删除镜像</p>
+<p>docker rmi $(docker images | grep “none” | awk ‘{print $3}’)</p>
+<hr>
+<p>作者：xjj1314<br>来源：CSDN<br>原文：<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3hqajEzMTQvYXJ0aWNsZS9kZXRhaWxzLzczNTUwMzg4" title="https://blog.csdn.net/xjj1314/article/details/73550388">https://blog.csdn.net/xjj1314/article/details/73550388<i class="fa fa-external-link"></i></span><br>版权声明：本文为博主原创文章，转载请附上博文链接！</p>
+</blockquote>
+<h2 id="1-4-导入导出镜像"><a href="#1-4-导入导出镜像" class="headerlink" title="1.4 导入导出镜像"></a>1.4 导入导出镜像</h2><blockquote>
+<p>[root@docker ~]# docker image save nginx &gt;/opt/nginx.tar.gz<br>[root@docker ~]# docker image load -i /opt/nginx.tar.gz</p>
+</blockquote>
+<h2 id="1-5-启动容器并获取镜像"><a href="#1-5-启动容器并获取镜像" class="headerlink" title="1.5 启动容器并获取镜像"></a>1.5 启动容器并获取镜像</h2><blockquote>
+<p>[root@docker ~]# docker  run -d -p 80:80 httpd<br>[root@docker ~]# docker ps -a</p>
+<p> [root@docker ~]# docker images</p>
+</blockquote>
+<h1 id="二-Docker镜像制作"><a href="#二-Docker镜像制作" class="headerlink" title="二.Docker镜像制作"></a>二.Docker镜像制作</h1><h2 id="1-6-docker一步一步学习制作镜像"><a href="#1-6-docker一步一步学习制作镜像" class="headerlink" title="1.6 docker一步一步学习制作镜像"></a>1.6 docker一步一步学习制作镜像</h2><p>​    语法:<br>    第一个镜像创建:<br>    docker ps -a<br>    docker commit xxxxxx oldguo/wordpress:v1<br>    docker images </p>
+<p>制作镜像: centos7.5+vim+net-tools+iproute+sshd</p>
+<h2 id="1-启动新容器"><a href="#1-启动新容器" class="headerlink" title="1.启动新容器"></a>1.启动新容器</h2><blockquote>
+<p>docker run -it –name “centos7.5” 76d6bc25b8a5</p>
+</blockquote>
+<h2 id="2-优化yum源"><a href="#2-优化yum源" class="headerlink" title="2.优化yum源"></a>2.优化yum源</h2><blockquote>
+<p>mv /etc/yum.repos.d/*.repo /tmp<br>echo -e “[ftp]\nname=ftp\nbaseurl=<span class="exturl" data-url="ZnRwOi8vMTAuMC4wLjEwMC9wdWIvY2VudG9zN1xuZ3BnY2hlY2s9MCZxdW90OyZndDsvZXRjL3l1bS5yZXBvcy5kL2Z0cC5yZXBv" title="ftp://10.0.0.100/pub/centos7\ngpgcheck=0&quot;&gt;/etc/yum.repos.d/ftp.repo">ftp://10.0.0.100/pub/centos7\ngpgcheck=0&quot;&gt;/etc/yum.repos.d/ftp.repo<i class="fa fa-external-link"></i></span></p>
+</blockquote>
+<h2 id="3-安装必须软件包"><a href="#3-安装必须软件包" class="headerlink" title="3.安装必须软件包"></a>3.安装必须软件包</h2><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="keyword">install</span> -y vim net-tools  iproute   openssh-*   -y</span><br></pre></td></tr></table></figure>
+<h2 id="4-启动SSHD"><a href="#4-启动SSHD" class="headerlink" title="4.启动SSHD"></a>4.启动SSHD</h2><blockquote>
+<p> mkdir /var/run/sshd<br> echo ‘UseDNS no’ &gt;&gt; /etc/ssh/sshd_config<br> sed -i -e ‘/pam_loginuid.so/d’ /etc/pam.d/sshd<br> echo ‘root:123456’ | chpasswd<br> /usr/bin/ssh-keygen -A<br> /usr/sbin/sshd -D </p>
+</blockquote>
+<h6 id="注意-以上操作做完之后-会一直不退出-需要用以下命令退回到宿主机-并不关闭容器"><a href="#注意-以上操作做完之后-会一直不退出-需要用以下命令退回到宿主机-并不关闭容器" class="headerlink" title="注意: 以上操作做完之后,会一直不退出,需要用以下命令退回到宿主机,并不关闭容器"></a>注意: 以上操作做完之后,会一直不退出,需要用以下命令退回到宿主机,并不关闭容器</h6><p> ctrl p  q</p>
+<h2 id="5-制作镜像"><a href="#5-制作镜像" class="headerlink" title="5.制作镜像"></a>5.制作镜像</h2><blockquote>
+<p>docker commit centos7.5 oldguo/centos7_sshd:v2</p>
+</blockquote>
+<h1 id="三-使用dockerfile构建镜像"><a href="#三-使用dockerfile构建镜像" class="headerlink" title="三.使用dockerfile构建镜像"></a>三.使用dockerfile构建镜像</h1><h2 id="6-dockerfile-制作镜像的过程"><a href="#6-dockerfile-制作镜像的过程" class="headerlink" title="6. dockerfile 制作镜像的过程"></a>6. dockerfile 制作镜像的过程</h2><h2 id="Centos7-5"><a href="#Centos7-5" class="headerlink" title="Centos7.5"></a>Centos7.5<img src="/2019/03/04/linux/E:/blog-git\ljy\source\_posts\linux\1551862491222.png" alt="15480428773"></h2><blockquote>
+<p>cd /opt</p>
+<p>mkdir dockerfile</p>
+<p>cd dockerfile</p>
+<p>[root@docker sshd]# vim  dockerfile<br>FROM centos:7.5.1804<br>RUN mv /etc/yum.repos.d/<em>.repo /tmp<br>RUN echo -e “[ftp]\nname=ftp\nbaseurl=<span class="exturl" data-url="ZnRwOi8vMTAuMC4wLjEwMC9wdWIvY2VudG9zN1xuZ3BnY2hlY2s9MCZxdW90OyZndDsvZXRjL3l1bS5yZXBvcy5kL2Z0cC5yZXBv" title="ftp://10.0.0.100/pub/centos7\ngpgcheck=0&quot;&gt;/etc/yum.repos.d/ftp.repo">ftp://10.0.0.100/pub/centos7\ngpgcheck=0&quot;&gt;/etc/yum.repos.d/ftp.repo<i class="fa fa-external-link"></i></span><br>RUN yum install -y openssh-server<br>RUN yum install -y openssh-clients<br>RUN yum install net-tools</em> -y<br>RUN yum install iproute-* -y<br>RUN mkdir /var/run/sshd<br>RUN echo ‘UseDNS no’ &gt;&gt; /etc/ssh/sshd_config<br>RUN sed -i -e ‘/pam_loginuid.so/d’ /etc/pam.d/sshd<br>RUN echo ‘root:123456’ | chpasswd<br>RUN /usr/bin/ssh-keygen -A<br>EXPOSE 22<br>CMD [“/usr/sbin/sshd”, “-D”]</p>
+</blockquote>
+<h6 id="dockerfile取名"><a href="#dockerfile取名" class="headerlink" title="dockerfile取名"></a>dockerfile取名</h6><blockquote>
+<p>docker build -t “oldguo/centos7_sshd:v3” /opt/dockerfile</p>
+</blockquote>
+<p>===========================================</p>
+<h1 id="四-容器的管理"><a href="#四-容器的管理" class="headerlink" title="四.容器的管理"></a>四.容器的管理</h1><h2 id="2-容器基本管理"><a href="#2-容器基本管理" class="headerlink" title="2.容器基本管理"></a>2.容器基本管理</h2><h3 id="2-0-容器的类型"><a href="#2-0-容器的类型" class="headerlink" title="2.0 容器的类型"></a>2.0 容器的类型</h3><blockquote>
+<p>​    工具类(暂时):vim<br>         docker run -it –name=”test_vim”  3fe2fe0dab2e /bin/bash<br>    服务类(持续):nginx (</p>
+<p>细节:nginx进程里面没有</p>
+<p>netstat -lnp|grep 8081</p>
+<p>ps -ef|grep nginx</p>
+<p>)<br>        docker run -d -p 8081:80 –name=”discuz” nginx:1.14</p>
+</blockquote>
+<h6 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h6><blockquote>
+<p>Docker报错 WARNING: IPv4 forwarding is disabled. Networking will not work.</p>
+<p>vim  /usr/lib/sysctl.d/00-system.conf</p>
+<p>net.ipv4.ip_forward=1 </p>
+<p>删除错误的容器</p>
+<p>systemctl restart network </p>
+</blockquote>
+<p>2.1 容器的多类启动方式<br> (1)交互式启动<br> [root@docker ~]# docker run -it –name “testcentos” centos:6.9 /bin/bash<br> 主要是针对于工具类的容器,一旦exit容器,容器就自动关闭<br> (2)守护式启动<br>  1.交互式启动容器+Ctrl+p+q<br>  [root@docker ~]# docker run  -it –name “testnginx” nginx /bin/bash<br>  加ctrl+p+q<br>    [root@docker ~]# docker attach testnginx<br>   2.死循环<br> docker run  –name testnginx1  -d nginx /bin/sh -c “while true ;do echo hello world; sleep 1;done”<br>   3.服务前台运行<br>   sshd -D<br>   nginx -g “”</p>
+<p>   hang 夯住</p>
+<p>2.2 容器的常用管理命令<br>docker ps -a  -q -l</p>
+<p>docker rm 容器ID|容器名称<br>批量删除已关闭<br>docker rm -v $(docker ps -aq -f status=exited)<br>批量强制删除所有<br>docker rm -f <code>docker ps -a –q</code></p>
+<p>docker top nginx<br>docker inspect nginx<br>docker attach 容器ID|容器名称（工具类）配合ctrl+p+q<br>docker exec  -i -t  容器ID|容器名称 /bin/bash(服务类）,一般是做服务类容器调试用<br>[root@docker ~]# docker exec -it  centos6.9   /bin/bash</p>
+<pre><code>docker stop
+docker kill
+
+docker  start -i
+docker  restart 容器ID|容器名称
+</code></pre><p>​<br>​    </p>
+<ol start="3">
+<li>数据卷的使用(持久化)</li>
+</ol>
+<p>​    </p>
+<p>4.制作私有仓库</p>
+<p>4.1 配置私有仓库</p>
+<p>docker run -d -p 5000:5000 –restart=always –name registry -v /opt/Registry:/var/lib/registry  registry</p>
+<p>vim /etc/docker/daemon.json</p>
+<p>{<br>   “registry-mirrors”: [“<span class="exturl" data-url="aHR0cHM6Ly82OHJteXpnNy5taXJyb3IuYWxpeXVuY3MuY29tJnF1b3Q7XQ==" title="https://68rmyzg7.mirror.aliyuncs.com&quot;]">https://68rmyzg7.mirror.aliyuncs.com&quot;]<i class="fa fa-external-link"></i></span>,<br>   “insecure-registries”: [“10.0.0.100:5000”]<br>}</p>
+<p>systemctl  restart docker</p>
+<p>​<br>​<br>4.2 使用本地镜像:<br>4.2.1 制作本地镜像并push到</p>
+<p>[root@docker ~]# docker tag nginx 10.0.0.100:5000/oldguo/nginx:v1<br>[root@docker ~]# docker images<br>[root@docker ~]# docker push 10.0.0.100:5000/oldguo/nginx:v1</p>
+<p>4.2.2 异地进行pull镜像<br>[root@docker ~]# docker pull  10.0.0.100:5000/oldguo/nginx:v1    </p>
+<p>​    </p>
+<p>故障转移:(高可用)</p>
+<p>1.主备系统</p>
+<p>​<br>​      </p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/gongzhonghao.jpg" alt="李江洋 wechat" style="width: 200px; max-width: 100%;">
+  <div>python分享公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="李江洋 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="李江洋 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux-git/" rel="tag"># linux&git</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/03/git/" rel="next" title="git">
+                <i class="fa fa-chevron-left"></i> git
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/06/mysql笔记b/" rel="prev" title="mysql笔记b">
+                mysql笔记b <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="李江洋">
+            
+              <p class="site-author-name" itemprop="name">李江洋</p>
+              <p class="site-description motion-element" itemprop="description">记录学习的技能和遇到的问题</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">179</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lvdXJuYW1l" title="GitHub &rarr; https://github.com/yourname"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="bWFpbHRvOjEzMjgwNDQzOTJAcXEuY29t" title="E-Mail &rarr; mailto:1328044392@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL2V4YW1wbGUuY29t" title="http://example.com">Title</span>
+                  </li>
+                
+              </ul>
+            </div>
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#———-day1———"><span class="nav-number">1.</span> <span class="nav-text">———-day1———-</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#centos系统安装后的基本配置"><span class="nav-number">2.</span> <span class="nav-text">centos系统安装后的基本配置:</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CentOS的官方站"><span class="nav-number">2.1.</span> <span class="nav-text">CentOS的官方站</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#阿里云站点"><span class="nav-number">2.1.1.</span> <span class="nav-text">阿里云站点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-常用软件安装"><span class="nav-number">2.2.</span> <span class="nav-text">1.常用软件安装:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-主机名和网络"><span class="nav-number">2.3.</span> <span class="nav-text">2.主机名和网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-关闭防火墙"><span class="nav-number">2.4.</span> <span class="nav-text">3.关闭防火墙</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#确定防火墙"><span class="nav-number">2.4.1.</span> <span class="nav-text">确定防火墙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#永久关闭"><span class="nav-number">2.4.2.</span> <span class="nav-text">永久关闭</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#systemctl-disable-firewalld"><span class="nav-number">2.4.2.0.0.1.</span> <span class="nav-text">systemctl disable firewalld</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询防火墙"><span class="nav-number">2.4.3.</span> <span class="nav-text">查询防火墙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三种防火墙状态"><span class="nav-number">2.4.4.</span> <span class="nav-text">三种防火墙状态</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#disabled-No-SELinux-policy-is-loaded"><span class="nav-number">2.4.4.0.0.1.</span> <span class="nav-text">disabled - No SELinux policy is loaded.</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Centos命令基本结构"><span class="nav-number">3.</span> <span class="nav-text">2.Centos命令基本结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux命令"><span class="nav-number">3.1.</span> <span class="nav-text">Linux命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令的基本构成"><span class="nav-number">3.1.1.</span> <span class="nav-text">命令的基本构成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一般的套路"><span class="nav-number">3.1.1.1.</span> <span class="nav-text">一般的套路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参数-文件"><span class="nav-number">3.1.1.2.</span> <span class="nav-text">参数:文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#命令提示符"><span class="nav-number">3.1.1.3.</span> <span class="nav-text">命令提示符:</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四-Centos常用快捷键"><span class="nav-number">4.</span> <span class="nav-text">四.Centos常用快捷键</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用快捷键-bash-shell支持的快捷键"><span class="nav-number">4.1.</span> <span class="nav-text">常用快捷键(bash shell支持的快捷键)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TAB"><span class="nav-number">4.1.1.</span> <span class="nav-text">[TAB]:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#system-加tab键"><span class="nav-number">4.1.2.</span> <span class="nav-text">system 加tab键</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#了解一下ctrl"><span class="nav-number">4.1.2.0.1.</span> <span class="nav-text">了解一下ctrl+:</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#ctrl-a-把光标移动到行首"><span class="nav-number">4.1.2.0.1.1.</span> <span class="nav-text">ctrl + a  把光标移动到行首</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#ctrl-e-把光标移动到行尾"><span class="nav-number">4.1.2.0.1.2.</span> <span class="nav-text">ctrl + e  把光标移动到行尾</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#ctrl-y-粘贴"><span class="nav-number">4.1.2.0.1.3.</span> <span class="nav-text">ctrl + y  粘贴</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#tab键命令补全"><span class="nav-number">4.1.2.0.2.</span> <span class="nav-text">tab键命令补全</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五-Linux命令帮助及关机重启命令"><span class="nav-number">5.</span> <span class="nav-text">五.Linux命令帮助及关机重启命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-获取帮助"><span class="nav-number">5.1.</span> <span class="nav-text">1.获取帮助</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-关机重启"><span class="nav-number">5.2.</span> <span class="nav-text">2.关机重启</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#reboot"><span class="nav-number">5.2.0.0.0.1.</span> <span class="nav-text">reboot</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#关机"><span class="nav-number">5.2.0.0.0.2.</span> <span class="nav-text">关机</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#poweroff"><span class="nav-number">5.2.0.0.0.3.</span> <span class="nav-text">poweroff</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六-Linux-FHS文件系统层次化标准"><span class="nav-number">6.</span> <span class="nav-text">六.Linux FHS文件系统层次化标准</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#linux命令分类"><span class="nav-number">6.1.</span> <span class="nav-text">linux命令分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#绿色的是二进制的可执行文件"><span class="nav-number">6.1.1.</span> <span class="nav-text">绿色的是二进制的可执行文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-针对不同文件的管理命令"><span class="nav-number">6.1.2.</span> <span class="nav-text">1.针对不同文件的管理命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-目录"><span class="nav-number">6.1.3.</span> <span class="nav-text">1.1 目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FHS-文件系统层次化标准"><span class="nav-number">6.1.4.</span> <span class="nav-text">FHS 文件系统层次化标准</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2绝对路径-从”-“开始一个具体路径"><span class="nav-number">6.1.5.</span> <span class="nav-text">1.2绝对路径:从”/“开始一个具体路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3相对路径-从当前目录开始的具体路径-pwd可以查看当前所在目录"><span class="nav-number">6.1.6.</span> <span class="nav-text">1.3相对路径:从当前目录开始的具体路径(pwd可以查看当前所在目录)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#七-Linux目录基础管理"><span class="nav-number">7.</span> <span class="nav-text">七.Linux目录基础管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-1-创建目录"><span class="nav-number">7.1.</span> <span class="nav-text">1.1.1 创建目录:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#根下面创建一个目录"><span class="nav-number">7.1.1.</span> <span class="nav-text">根下面创建一个目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在当前所在目录创建目录"><span class="nav-number">7.1.2.</span> <span class="nav-text">在当前所在目录创建目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一次性创建3层目录"><span class="nav-number">7.1.3.</span> <span class="nav-text">一次性创建3层目录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-2-查询目录"><span class="nav-number">7.2.</span> <span class="nav-text">1.1.2 查询目录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#只能看一层"><span class="nav-number">7.2.1.</span> <span class="nav-text">只能看一层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#直接看所有目录"><span class="nav-number">7.2.2.</span> <span class="nav-text">直接看所有目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#只看2层"><span class="nav-number">7.2.3.</span> <span class="nav-text">只看2层</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-3-删除目录-危险"><span class="nav-number">7.3.</span> <span class="nav-text">1.1.3 删除目录(危险)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#通过文件句柄-有可能可以找回丢失数据-前提-不能重启-不能有大量数据写入"><span class="nav-number">7.3.1.</span> <span class="nav-text">通过文件句柄,有可能可以找回丢失数据(前提:不能重启,不能有大量数据写入)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-4-修改目录-剪切-复制"><span class="nav-number">7.4.</span> <span class="nav-text">1.1.4 修改目录(剪切,复制)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#剪切重命名"><span class="nav-number">7.4.1.</span> <span class="nav-text">剪切重命名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#只是重命名"><span class="nav-number">7.4.2.</span> <span class="nav-text">只是重命名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#把权限也复制"><span class="nav-number">7.4.3.</span> <span class="nav-text">把权限也复制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建a1-10"><span class="nav-number">7.4.4.</span> <span class="nav-text">创建a1-10</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-5-切换目录"><span class="nav-number">7.5.</span> <span class="nav-text">1.1.5 切换目录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#返回上一次的目录"><span class="nav-number">7.5.1.</span> <span class="nav-text">返回上一次的目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建a1-10-1"><span class="nav-number">7.5.2.</span> <span class="nav-text">创建a1-10</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#所有"><span class="nav-number">7.5.3.</span> <span class="nav-text">所有</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#八-目录与文件管理"><span class="nav-number">8.</span> <span class="nav-text">八.目录与文件管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-普通文件"><span class="nav-number">8.1.</span> <span class="nav-text">1.2 普通文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-0-种类"><span class="nav-number">8.1.1.</span> <span class="nav-text">1.2.0 种类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-1-文件创建"><span class="nav-number">8.2.</span> <span class="nav-text">1.2.1 文件创建</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#touch-a-txt-不能创建同名"><span class="nav-number">8.2.0.0.0.1.</span> <span class="nav-text">touch a.txt (不能创建同名)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-2-文件删除"><span class="nav-number">8.3.</span> <span class="nav-text">1.2.2 文件删除</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#rm-rf-a-txt"><span class="nav-number">8.3.0.0.0.1.</span> <span class="nav-text">rm -rf a.txt</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-3-文件查看"><span class="nav-number">8.4.</span> <span class="nav-text">1.2.3 文件查看</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#ls-l-a-txt-看文件属性"><span class="nav-number">8.4.0.0.0.1.</span> <span class="nav-text">ls -l a.txt    看文件属性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-小文件内容查看"><span class="nav-number">8.4.1.</span> <span class="nav-text">(1)小文件内容查看</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#cat-etc-passwd"><span class="nav-number">8.4.1.0.0.1.</span> <span class="nav-text">cat /etc/passwd</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-分页显示大文件内容"><span class="nav-number">8.4.2.</span> <span class="nav-text">(2)分页显示大文件内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-文件前多少行"><span class="nav-number">8.4.3.</span> <span class="nav-text">(3)文件前多少行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-文件后多少行"><span class="nav-number">8.4.4.</span> <span class="nav-text">(4)文件后多少行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#监控"><span class="nav-number">8.4.4.1.</span> <span class="nav-text">监控</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-4-剪切-复制"><span class="nav-number">8.5.</span> <span class="nav-text">1.2.4 剪切 复制</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#mv-命令和目录的操作一样"><span class="nav-number">8.5.0.0.0.1.</span> <span class="nav-text">mv 命令和目录的操作一样</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#cp-命令和目录的区别不需要加-r-加上也不报错"><span class="nav-number">8.5.0.0.0.2.</span> <span class="nav-text">cp 命令和目录的区别不需要加-r (加上也不报错)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-5-内容修改"><span class="nav-number">8.6.</span> <span class="nav-text">1.2.5 内容修改</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#重定向"><span class="nav-number">8.6.0.1.</span> <span class="nav-text">重定向</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cd-到当前目录"><span class="nav-number">8.6.0.2.</span> <span class="nav-text">cd 到当前目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vim-编辑器"><span class="nav-number">8.6.0.3.</span> <span class="nav-text">vim 编辑器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-查看文件内容"><span class="nav-number">8.6.0.4.</span> <span class="nav-text">1.查看文件内容</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#上下左右光标移动"><span class="nav-number">8.6.0.4.1.</span> <span class="nav-text">上下左右光标移动</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#搜索关键字"><span class="nav-number">8.6.0.4.2.</span> <span class="nav-text">/ 搜索关键字</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#yy-复制光标所在行"><span class="nav-number">8.6.0.4.3.</span> <span class="nav-text">yy 复制光标所在行</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#dG-删除光标到文本末尾"><span class="nav-number">8.6.0.4.4.</span> <span class="nav-text">dG  删除光标到文本末尾</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#r-替换光标所在字符"><span class="nav-number">8.6.0.4.5.</span> <span class="nav-text">r   替换光标所在字符</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#九-VIM的编辑模式与末行模式"><span class="nav-number">9.</span> <span class="nav-text">九.VIM的编辑模式与末行模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-编辑模式"><span class="nav-number">9.1.</span> <span class="nav-text">1.编辑模式:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-末行模式"><span class="nav-number">9.2.</span> <span class="nav-text">2.末行模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#只是退出"><span class="nav-number">9.2.1.</span> <span class="nav-text">只是退出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#保存退出"><span class="nav-number">9.2.2.</span> <span class="nav-text">保存退出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#替换退出"><span class="nav-number">9.2.3.</span> <span class="nav-text">替换退出</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#链接-快捷方式"><span class="nav-number">9.2.3.1.</span> <span class="nav-text">链接(快捷方式)</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#十-磁盘-文件系统管理-raid技术"><span class="nav-number">10.</span> <span class="nav-text">十.磁盘.文件系统管理,raid技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘-和-文件系统"><span class="nav-number">10.1.</span> <span class="nav-text">磁盘   和    文件系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-企业级磁盘类型"><span class="nav-number">10.2.</span> <span class="nav-text">2.1 企业级磁盘类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-文件系统"><span class="nav-number">10.3.</span> <span class="nav-text">2.2 文件系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方便用户使用和管理磁盘硬件的-辅助系统-Filesystem"><span class="nav-number">10.3.1.</span> <span class="nav-text">方便用户使用和管理磁盘硬件的,辅助系统(Filesystem)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux文件系统类型"><span class="nav-number">10.3.2.</span> <span class="nav-text">Linux文件系统类型:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-文件系统管理"><span class="nav-number">10.4.</span> <span class="nav-text">2.3 文件系统管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-分区"><span class="nav-number">10.4.1.</span> <span class="nav-text">2.3.1 分区</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#fdisk-dev-sdb"><span class="nav-number">10.4.1.0.0.1.</span> <span class="nav-text">fdisk   /dev/sdb</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#百度以下"><span class="nav-number">10.4.2.</span> <span class="nav-text">百度以下:</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-首先我们要添加一块足够我们使用的硬盘（我这里添加一块20G-的硬盘）"><span class="nav-number">10.4.2.0.1.</span> <span class="nav-text">1.首先我们要添加一块足够我们使用的硬盘（我这里添加一块20G 的硬盘）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-打开我们的命令行模式，"><span class="nav-number">10.4.2.0.2.</span> <span class="nav-text">2.打开我们的命令行模式，</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-在新建逻辑卷之前，我们要先新建一个物理卷，以便我-们创建逻辑卷组的时候引用。"><span class="nav-number">10.4.2.0.3.</span> <span class="nav-text">3.在新建逻辑卷之前，我们要先新建一个物理卷，以便我 们创建逻辑卷组的时候引用。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-创建完了以后我们要先查看我们系统中的逻辑卷组"><span class="nav-number">10.4.2.0.4.</span> <span class="nav-text">4.创建完了以后我们要先查看我们系统中的逻辑卷组</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#null"><span class="nav-number">10.4.2.0.5.</span> <span class="nav-text"> </span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#-1"><span class="nav-number">10.4.2.0.6.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-下面我们就开始对根分区对应的逻辑卷进行扩展"><span class="nav-number">10.4.2.0.7.</span> <span class="nav-text">5.下面我们就开始对根分区对应的逻辑卷进行扩展</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-扩展完成以后，是不会立刻生效的，我们需要输入"><span class="nav-number">10.4.2.0.8.</span> <span class="nav-text">6.扩展完成以后，是不会立刻生效的，我们需要输入</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-格式化成文件系统-XFS"><span class="nav-number">10.4.3.</span> <span class="nav-text">2.3.2 格式化成文件系统(XFS)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#mkfs-xfs-dev-sdb1"><span class="nav-number">10.4.3.0.0.1.</span> <span class="nav-text">mkfs.xfs /dev/sdb1</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-3-挂载设备"><span class="nav-number">10.4.4.</span> <span class="nav-text">2.3.3 挂载设备</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#mkdir-data"><span class="nav-number">10.4.4.0.0.1.</span> <span class="nav-text">mkdir /data</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-4-查看挂载的磁盘使用情况"><span class="nav-number">10.4.5.</span> <span class="nav-text">2.3.4 查看挂载的磁盘使用情况</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#df-h"><span class="nav-number">10.4.5.0.0.1.</span> <span class="nav-text">df -h</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-5-自动挂载文件系统"><span class="nav-number">10.4.6.</span> <span class="nav-text">2.3.5 自动挂载文件系统</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#vim-etc-fstab"><span class="nav-number">10.4.6.0.0.1.</span> <span class="nav-text">vim /etc/fstab</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用UUID更加安全"><span class="nav-number">10.4.6.1.</span> <span class="nav-text">使用UUID更加安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Raid"><span class="nav-number">10.5.</span> <span class="nav-text">Raid</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#功能特性"><span class="nav-number">10.5.0.1.</span> <span class="nav-text">功能特性:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Raid的工作级别"><span class="nav-number">10.5.0.2.</span> <span class="nav-text">Raid的工作级别    :</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#十一-Linux用户和组管理"><span class="nav-number">11.</span> <span class="nav-text">十一.Linux用户和组管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-用户-组-权限"><span class="nav-number">11.1.</span> <span class="nav-text">3.用户,组,权限</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-用户的作用"><span class="nav-number">11.1.1.</span> <span class="nav-text">3.1 用户的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-用户的定义"><span class="nav-number">11.1.2.</span> <span class="nav-text">3.2 用户的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-组"><span class="nav-number">11.1.3.</span> <span class="nav-text">3.3 组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-用户和组的管理"><span class="nav-number">11.1.4.</span> <span class="nav-text">3.4 用户和组的管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#组的管理"><span class="nav-number">11.1.4.1.</span> <span class="nav-text">组的管理:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用户的管理"><span class="nav-number">11.1.4.2.</span> <span class="nav-text">用户的管理:</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#设置密码"><span class="nav-number">11.1.4.2.1.</span> <span class="nav-text">设置密码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#切换用户"><span class="nav-number">11.1.4.2.2.</span> <span class="nav-text">切换用户</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#删除"><span class="nav-number">11.1.4.2.3.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#修改id"><span class="nav-number">11.1.4.2.4.</span> <span class="nav-text">修改id</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#十二用户-组-权限"><span class="nav-number">12.</span> <span class="nav-text">十二用户,组,权限</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1权限"><span class="nav-number">12.1.</span> <span class="nav-text">1权限:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#权限是作用在文件上的属性"><span class="nav-number">12.2.</span> <span class="nav-text">权限是作用在文件上的属性.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#普通权限的规划"><span class="nav-number">12.3.</span> <span class="nav-text">普通权限的规划:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#rwxr-xr-x"><span class="nav-number">12.3.1.</span> <span class="nav-text">rwxr-xr-x</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2程序管理666"><span class="nav-number">12.4.</span> <span class="nav-text">2程序管理666</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看所有进程"><span class="nav-number">12.4.1.</span> <span class="nav-text">查看所有进程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3安装启动httpd"><span class="nav-number">12.5.</span> <span class="nav-text">3安装启动httpd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4网络管理"><span class="nav-number">12.6.</span> <span class="nav-text">4网络管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修改IP地址"><span class="nav-number">12.6.1.</span> <span class="nav-text">修改IP地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重启网卡"><span class="nav-number">12.6.2.</span> <span class="nav-text">重启网卡</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#—————day3————"><span class="nav-number">13.</span> <span class="nav-text">—————day3————</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#软件包管理"><span class="nav-number">14.</span> <span class="nav-text">﻿软件包管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-经典互联网架构"><span class="nav-number">14.1.</span> <span class="nav-text">一.经典互联网架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#昨天补充"><span class="nav-number">14.2.</span> <span class="nav-text">昨天补充:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看已启动服务的端口"><span class="nav-number">14.3.</span> <span class="nav-text">查看已启动服务的端口</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#netstat-tulnp"><span class="nav-number">14.3.0.0.0.1.</span> <span class="nav-text">netstat -tulnp</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux要能上网"><span class="nav-number">14.4.</span> <span class="nav-text">Linux要能上网</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-使用网络yum源安装软件"><span class="nav-number">14.5.</span> <span class="nav-text">二.使用网络yum源安装软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-掌握Linux软件包安装方法"><span class="nav-number">14.6.</span> <span class="nav-text">1.掌握Linux软件包安装方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-rpm包管理"><span class="nav-number">14.6.1.</span> <span class="nav-text">2.1 rpm包管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-1-光盘挂载"><span class="nav-number">14.6.1.1.</span> <span class="nav-text">2.1.1 光盘挂载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-2-安装rpm包"><span class="nav-number">14.6.1.2.</span> <span class="nav-text">2.1.2 安装rpm包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-13-卸载rpm"><span class="nav-number">14.6.1.3.</span> <span class="nav-text">2.13 卸载rpm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-4-rpm包的查询"><span class="nav-number">14.6.1.4.</span> <span class="nav-text">2.1.4 rpm包的查询</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#所有软件包查询"><span class="nav-number">14.6.1.4.1.</span> <span class="nav-text">所有软件包查询</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#which查看命令的路径"><span class="nav-number">14.6.1.4.2.</span> <span class="nav-text">which查看命令的路径</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#依赖关系"><span class="nav-number">14.6.1.5.</span> <span class="nav-text">依赖关系</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-yum-使用"><span class="nav-number">14.6.2.</span> <span class="nav-text">2.2 yum 使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1-使用aliyun-yum站点源"><span class="nav-number">14.6.2.1.</span> <span class="nav-text">2.2.1 使用aliyun yum站点源</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Base源"><span class="nav-number">14.6.2.1.1.</span> <span class="nav-text">Base源</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在阿里云的光盘"><span class="nav-number">14.6.2.2.</span> <span class="nav-text">在阿里云的光盘</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#EPEL源"><span class="nav-number">14.6.2.2.1.</span> <span class="nav-text">EPEL源</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2-使用yum安装软件"><span class="nav-number">14.6.2.3.</span> <span class="nav-text">2.2.2 使用yum安装软件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三-本地yum源和局域网yum优化"><span class="nav-number">14.7.</span> <span class="nav-text">三.本地yum源和局域网yum优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-3-软件包查询及组安装"><span class="nav-number">14.7.0.1.</span> <span class="nav-text">2.2.3 软件包查询及组安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-4-卸载软件包"><span class="nav-number">14.7.0.2.</span> <span class="nav-text">2.2.4 卸载软件包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-5-优化yum源"><span class="nav-number">14.7.0.3.</span> <span class="nav-text">2.2.5 优化yum源</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-本地镜像yum源-光盘挂载到-mnt下"><span class="nav-number">14.7.0.3.1.</span> <span class="nav-text">(1)本地镜像yum源(光盘挂载到/mnt下)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-局域网yum源-ftp"><span class="nav-number">14.7.0.3.2.</span> <span class="nav-text">(2)局域网yum源(ftp)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四-linux压缩包解压方式"><span class="nav-number">15.</span> <span class="nav-text">四.linux压缩包解压方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-源码包应用"><span class="nav-number">15.0.1.</span> <span class="nav-text">2.3 源码包应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-1-解压"><span class="nav-number">15.0.1.1.</span> <span class="nav-text">2.3.1 解压</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-源码包安装"><span class="nav-number">15.0.1.2.</span> <span class="nav-text">2.3.2 源码包安装</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五-python源码包安装"><span class="nav-number">16.</span> <span class="nav-text">五.python源码包安装</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-python3-6源码包安装"><span class="nav-number">16.0.0.0.1.</span> <span class="nav-text">(1)python3.6源码包安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#mysql-源码包"><span class="nav-number">16.0.0.0.2.</span> <span class="nav-text">mysql 源码包</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六-redis的安装及简易配置"><span class="nav-number">17.</span> <span class="nav-text">六.redis的安装及简易配置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-redis-源码包安装"><span class="nav-number">17.0.0.0.1.</span> <span class="nav-text">(2) redis 源码包安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#修改环境变量"><span class="nav-number">17.0.0.0.2.</span> <span class="nav-text">修改环境变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#添加以下一行"><span class="nav-number">17.0.0.0.3.</span> <span class="nav-text">添加以下一行:</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#export-PATH-opt-redis-3-2-10-src-PATH"><span class="nav-number">17.0.0.0.3.1.</span> <span class="nav-text">export PATH=/opt/redis-3.2.10/src:$PATH</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#生效配置"><span class="nav-number">17.0.0.0.4.</span> <span class="nav-text">生效配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#启动redis"><span class="nav-number">17.0.0.0.5.</span> <span class="nav-text">启动redis</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#redis-server-amp"><span class="nav-number">17.0.0.0.5.1.</span> <span class="nav-text">redis-server &amp;</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-让python链接redis"><span class="nav-number">17.1.</span> <span class="nav-text">(3) 让python链接redis</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#手动安装python包"><span class="nav-number">17.1.0.0.1.</span> <span class="nav-text">手动安装python包</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#对redis的单实例进行连接操作"><span class="nav-number">17.1.0.0.2.</span> <span class="nav-text">对redis的单实例进行连接操作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#七-mysql5-7二进制包简易安装"><span class="nav-number">18.</span> <span class="nav-text">七.mysql5.7二进制包简易安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#二进制包-mysql5-7-20"><span class="nav-number">18.1.</span> <span class="nav-text">二进制包(mysql5.7.20)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-解压及制作软连接"><span class="nav-number">18.1.0.0.1.</span> <span class="nav-text">3.1 解压及制作软连接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-编辑环境变量"><span class="nav-number">18.1.0.0.2.</span> <span class="nav-text">3.2 编辑环境变量</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#export-PATH-opt-mysql-bin-PATH"><span class="nav-number">18.1.0.0.2.1.</span> <span class="nav-text">export PATH=/opt/mysql/bin:$PATH</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#source-etc-profile"><span class="nav-number">18.1.0.0.2.2.</span> <span class="nav-text">source /etc/profile</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-卸载自带mariadb"><span class="nav-number">18.1.0.0.3.</span> <span class="nav-text">3.3 卸载自带mariadb</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-4-生成配置文件-etc-my-cnf"><span class="nav-number">18.1.0.0.4.</span> <span class="nav-text">3.4 生成配置文件(/etc/my.cnf)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#八-mysql安装及测试"><span class="nav-number">19.</span> <span class="nav-text">八.mysql安装及测试</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-5-创建用户和数据目录-并授权"><span class="nav-number">19.0.0.0.1.</span> <span class="nav-text">3.5 创建用户和数据目录,并授权</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-6-初始化数据"><span class="nav-number">19.0.0.0.2.</span> <span class="nav-text">3.6 初始化数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#报错解决"><span class="nav-number">19.0.0.0.3.</span> <span class="nav-text">报错解决:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#再次初始化"><span class="nav-number">19.0.0.0.4.</span> <span class="nav-text">再次初始化:</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#3-7-启动mysql"><span class="nav-number">19.0.0.0.4.1.</span> <span class="nav-text">3.7 启动mysql</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#cd-opt-mysql-support-files"><span class="nav-number">19.0.0.0.4.2.</span> <span class="nav-text">cd /opt/mysql/support-files</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#mysql-server-start"><span class="nav-number">19.0.0.0.4.3.</span> <span class="nav-text">./mysql.server start</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#将文件拷贝"><span class="nav-number">19.0.0.0.4.4.</span> <span class="nav-text">将文件拷贝</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#cp-mysql-server-etc-init-d-mysqld"><span class="nav-number">19.0.0.0.4.5.</span> <span class="nav-text">cp mysql.server /etc/init.d/mysqld</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#etc-init-d-mysqld-restart"><span class="nav-number">19.0.0.0.4.6.</span> <span class="nav-text">/etc/init.d/mysqld restart</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#扩展-使用systemctl-管理mysql"><span class="nav-number">19.0.0.0.4.7.</span> <span class="nav-text">扩展:使用systemctl 管理mysql</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#vim-etc-systemd-system-mysqld-service"><span class="nav-number">19.0.0.0.4.8.</span> <span class="nav-text">vim /etc/systemd/system/mysqld.service</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-8-测试python3链接mysql"><span class="nav-number">19.0.0.0.5.</span> <span class="nav-text">3.8 测试python3链接mysql</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#grant-all-on-to-root-’10-0-0-’-identified-by-‘123’"><span class="nav-number">19.0.0.0.5.1.</span> <span class="nav-text">grant all on   .  to root@’10.0.0.%’ identified by ‘123’;</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#安装pymysql"><span class="nav-number">19.0.0.0.5.2.</span> <span class="nav-text">安装pymysql</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#九-互联网经典架构介绍-nginx安装"><span class="nav-number">20.</span> <span class="nav-text">九.互联网经典架构介绍+nginx安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-经典互联网架构项目-LNMP"><span class="nav-number">20.0.0.1.</span> <span class="nav-text">4.经典互联网架构项目(LNMP)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-使用官方Nginx-yum源"><span class="nav-number">20.0.0.1.1.</span> <span class="nav-text">1) 使用官方Nginx yum源</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#安装Nginx"><span class="nav-number">20.0.0.1.1.1.</span> <span class="nav-text">安装Nginx</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-启动Nginx，并将Nginx加入开机自启"><span class="nav-number">20.0.0.1.2.</span> <span class="nav-text">2) 启动Nginx，并将Nginx加入开机自启</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#systemctl-start-nginx"><span class="nav-number">20.0.0.1.2.1.</span> <span class="nav-text">systemctl start nginx</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#systemctl-enable-nginx"><span class="nav-number">20.0.0.1.2.2.</span> <span class="nav-text">systemctl enable nginx</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#十-php安装"><span class="nav-number">21.</span> <span class="nav-text">十.php安装</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-使用第三方扩展源安装php7-1"><span class="nav-number">21.0.0.0.1.</span> <span class="nav-text">3) 使用第三方扩展源安装php7.1</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#十一-django安装所需包"><span class="nav-number">22.</span> <span class="nav-text">十一.django安装所需包</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-依赖包"><span class="nav-number">22.1.</span> <span class="nav-text">1.依赖包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-安装Django框架和uwsgi"><span class="nav-number">22.2.</span> <span class="nav-text">2.安装Django框架和uwsgi</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#十二-安装并测试uwsgi"><span class="nav-number">23.</span> <span class="nav-text">十二.安装并测试uwsgi</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-测试uwsgi是否正常，新建-test-py文件，内容如下："><span class="nav-number">23.1.</span> <span class="nav-text">3.测试uwsgi是否正常，新建 test.py文件，内容如下：</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#useradd-test"><span class="nav-number">23.1.0.0.0.1.</span> <span class="nav-text">useradd test</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#su-test"><span class="nav-number">23.1.0.0.0.2.</span> <span class="nav-text">su - test</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-安装uwsgi"><span class="nav-number">23.2.</span> <span class="nav-text">4.安装uwsgi</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#uwsgi-–http-8001-–wsgi-file-test-py-amp"><span class="nav-number">23.2.0.0.0.1.</span> <span class="nav-text">uwsgi –http :8001 –wsgi-file test.py &amp;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#十三-django测试"><span class="nav-number">24.</span> <span class="nav-text">十三.django测试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-测试django是否正常，运行："><span class="nav-number">24.1.</span> <span class="nav-text">5.测试django是否正常，运行：</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#vim-settings-py"><span class="nav-number">24.1.0.0.0.1.</span> <span class="nav-text">vim settings.py</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#把-改成-‘-’"><span class="nav-number">24.1.0.0.0.2.</span> <span class="nav-text">把[] 改成[‘*’]</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-配置uwsgi-做代练发送给uwsgi"><span class="nav-number">24.2.</span> <span class="nav-text">6.配置uwsgi(做代练发送给uwsgi)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-配置Nginx"><span class="nav-number">24.3.</span> <span class="nav-text">7.配置Nginx</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#day4"><span class="nav-number">25.</span> <span class="nav-text">day4</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一-bbs项目-MySQL处理过程"><span class="nav-number">26.</span> <span class="nav-text">一.bbs项目-MySQL处理过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-LNM-Python-Django-uwsgi-redis项目"><span class="nav-number">26.1.</span> <span class="nav-text">1.LNM+Python Django+uwsgi+redis项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-数据库的处理"><span class="nav-number">26.1.1.</span> <span class="nav-text">1.数据库的处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-查看项目settings-py配置文件-修改以下两处"><span class="nav-number">26.1.2.</span> <span class="nav-text">2 查看项目settings.py配置文件,修改以下两处</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-MySQL用户的定义"><span class="nav-number">26.1.3.</span> <span class="nav-text">3.MySQL用户的定义</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#USERNAME-’白名单’"><span class="nav-number">26.1.3.0.0.1.</span> <span class="nav-text">USERNAME@’白名单’</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-grant-select-update-insert"><span class="nav-number">26.1.4.</span> <span class="nav-text">4.grant select,update,insert</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#比较麻烦"><span class="nav-number">26.1.5.</span> <span class="nav-text">比较麻烦</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#加状态-state状态"><span class="nav-number">26.1.5.0.0.1.</span> <span class="nav-text">加状态(state状态)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-创建mysql用户"><span class="nav-number">26.1.6.</span> <span class="nav-text">5.创建mysql用户:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二-bbs项目部署"><span class="nav-number">27.</span> <span class="nav-text">二.bbs项目部署</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-BBS项目部署"><span class="nav-number">27.1.</span> <span class="nav-text">6.BBS项目部署</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1-配置Nginx"><span class="nav-number">27.1.0.1.</span> <span class="nav-text">6.1 配置Nginx</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-配置uwsgi"><span class="nav-number">27.1.0.2.</span> <span class="nav-text">2.2 配置uwsgi</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#关闭所有已有的uwsgi进程"><span class="nav-number">27.1.0.2.0.1.</span> <span class="nav-text">关闭所有已有的uwsgi进程</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#kill-9-ps-ef-grep-uwsgi-awk-39-print-2-39"><span class="nav-number">27.1.0.2.0.2.</span> <span class="nav-text">kill -9 ps -ef |grep uwsgi|awk {&#39;print $2&#39;}`</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启动uwsgi"><span class="nav-number">27.1.0.3.</span> <span class="nav-text">启动uwsgi</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重启nginx"><span class="nav-number">27.1.0.4.</span> <span class="nav-text">重启nginx</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三-自动化运维体系中Python项目介绍Python-在运维工作中的经典应用"><span class="nav-number">28.</span> <span class="nav-text">三.自动化运维体系中Python项目介绍Python 在运维工作中的经典应用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-安装ansible"><span class="nav-number">28.1.</span> <span class="nav-text">1.安装ansible</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四-ansible安装和使用"><span class="nav-number">29.</span> <span class="nav-text">四.ansible安装和使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-启动ansible"><span class="nav-number">29.1.</span> <span class="nav-text">2.启动ansible</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#ansble按tab键"><span class="nav-number">29.1.0.0.0.1.</span> <span class="nav-text">ansble按tab键</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-克隆虚拟机"><span class="nav-number">29.2.</span> <span class="nav-text">3.克隆虚拟机</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五-ansible自动化部署体验"><span class="nav-number">30.</span> <span class="nav-text">五.ansible自动化部署体验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux的-SSHD-22"><span class="nav-number">30.1.</span> <span class="nav-text">Linux的 SSHD(22)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#ssh-10-0-0-200"><span class="nav-number">30.1.0.0.0.1.</span> <span class="nav-text">ssh 10.0.0.200</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#想办法不使用密码"><span class="nav-number">30.1.0.0.0.2.</span> <span class="nav-text">想办法不使用密码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-验证方式"><span class="nav-number">30.1.1.</span> <span class="nav-text">1.验证方式:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-管理被控端，管理机先生成秘钥，然后推送公钥"><span class="nav-number">30.1.2.</span> <span class="nav-text">2.管理被控端，管理机先生成秘钥，然后推送公钥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-配置被管理的主机清单"><span class="nav-number">30.1.3.</span> <span class="nav-text">3.配置被管理的主机清单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-使用ansible的ad-hoc测试"><span class="nav-number">30.1.4.</span> <span class="nav-text">4.使用ansible的ad-hoc测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-测试命令"><span class="nav-number">30.1.5.</span> <span class="nav-text">5.测试命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#执行远程命令"><span class="nav-number">30.1.5.1.</span> <span class="nav-text">#执行远程命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-ansible-playbook自动化安装nginx"><span class="nav-number">30.1.6.</span> <span class="nav-text">6.ansible playbook自动化安装nginx</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-default-conf-template文件如下"><span class="nav-number">30.1.7.</span> <span class="nav-text">7.default.conf.template文件如下</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-执行ansible-playbook"><span class="nav-number">30.1.8.</span> <span class="nav-text">8.执行ansible-playbook</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#检查语法"><span class="nav-number">30.1.8.1.</span> <span class="nav-text">检查语法</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#必须打印playbook-playbook-nginx-yml"><span class="nav-number">30.1.8.1.0.1.</span> <span class="nav-text">必须打印playbook: playbook_nginx.yml</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模拟执行"><span class="nav-number">30.1.8.2.</span> <span class="nav-text">模拟执行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行"><span class="nav-number">30.1.8.3.</span> <span class="nav-text">执行</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六-docker基础环境准备"><span class="nav-number">31.</span> <span class="nav-text">六.docker基础环境准备</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Docker容器技术"><span class="nav-number">31.1.</span> <span class="nav-text">1.Docker容器技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、环境准备类："><span class="nav-number">31.1.1.</span> <span class="nav-text">1、环境准备类：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-安装"><span class="nav-number">31.1.2.</span> <span class="nav-text">2.安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-启动"><span class="nav-number">31.1.3.</span> <span class="nav-text">3.启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-看版本"><span class="nav-number">31.1.4.</span> <span class="nav-text">4.看版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-看详细信息"><span class="nav-number">31.1.5.</span> <span class="nav-text">5.看详细信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-配置镜像加速"><span class="nav-number">31.1.6.</span> <span class="nav-text">6.配置镜像加速</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#阿里云Docker-hub"><span class="nav-number">31.1.6.1.</span> <span class="nav-text">阿里云Docker-hub</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-pull常用镜像"><span class="nav-number">31.1.7.</span> <span class="nav-text">7.pull常用镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-启动docker镜像"><span class="nav-number">31.1.8.</span> <span class="nav-text">8.启动docker镜像</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#七-docker简介"><span class="nav-number">32.</span> <span class="nav-text">七.docker简介</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#D-软件-qq记录-1328044392-FileRecv-Docker技术v4-1-pptx"><span class="nav-number">32.0.0.0.0.1.</span> <span class="nav-text">D:\软件\qq记录\1328044392\FileRecv\Docker技术v4 (1).pptx</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#day5"><span class="nav-number">33.</span> <span class="nav-text">day5</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#先启动docker"><span class="nav-number">33.0.0.0.0.1.</span> <span class="nav-text">先启动docker</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#镜像-镜像仓库-容器"><span class="nav-number">33.0.0.0.0.2.</span> <span class="nav-text">镜像-镜像仓库-容器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-2"><span class="nav-number">34.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-镜像管理"><span class="nav-number">35.</span> <span class="nav-text">1.镜像管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-获取镜像"><span class="nav-number">35.1.</span> <span class="nav-text">1.1 获取镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-查询镜像"><span class="nav-number">35.2.</span> <span class="nav-text">1.2 查询镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#只显示镜像的id号"><span class="nav-number">35.2.1.</span> <span class="nav-text">只显示镜像的id号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#详细的说明"><span class="nav-number">35.2.2.</span> <span class="nav-text">详细的说明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-删除镜像"><span class="nav-number">35.3.</span> <span class="nav-text">1.3 删除镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#安装一个最小镜像测试"><span class="nav-number">35.3.0.0.0.1.</span> <span class="nav-text">安装一个最小镜像测试</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-导入导出镜像"><span class="nav-number">35.4.</span> <span class="nav-text">1.4 导入导出镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-启动容器并获取镜像"><span class="nav-number">35.5.</span> <span class="nav-text">1.5 启动容器并获取镜像</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二-Docker镜像制作"><span class="nav-number">36.</span> <span class="nav-text">二.Docker镜像制作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-docker一步一步学习制作镜像"><span class="nav-number">36.1.</span> <span class="nav-text">1.6 docker一步一步学习制作镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-启动新容器"><span class="nav-number">36.2.</span> <span class="nav-text">1.启动新容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-优化yum源"><span class="nav-number">36.3.</span> <span class="nav-text">2.优化yum源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-安装必须软件包"><span class="nav-number">36.4.</span> <span class="nav-text">3.安装必须软件包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-启动SSHD"><span class="nav-number">36.5.</span> <span class="nav-text">4.启动SSHD</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#注意-以上操作做完之后-会一直不退出-需要用以下命令退回到宿主机-并不关闭容器"><span class="nav-number">36.5.0.0.0.1.</span> <span class="nav-text">注意: 以上操作做完之后,会一直不退出,需要用以下命令退回到宿主机,并不关闭容器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-制作镜像"><span class="nav-number">36.6.</span> <span class="nav-text">5.制作镜像</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三-使用dockerfile构建镜像"><span class="nav-number">37.</span> <span class="nav-text">三.使用dockerfile构建镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-dockerfile-制作镜像的过程"><span class="nav-number">37.1.</span> <span class="nav-text">6. dockerfile 制作镜像的过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Centos7-5"><span class="nav-number">37.2.</span> <span class="nav-text">Centos7.5</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#dockerfile取名"><span class="nav-number">37.2.0.0.0.1.</span> <span class="nav-text">dockerfile取名</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四-容器的管理"><span class="nav-number">38.</span> <span class="nav-text">四.容器的管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-容器基本管理"><span class="nav-number">38.1.</span> <span class="nav-text">2.容器基本管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-0-容器的类型"><span class="nav-number">38.1.1.</span> <span class="nav-text">2.0 容器的类型</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#报错"><span class="nav-number">38.1.1.0.0.1.</span> <span class="nav-text">报错</span></a></li></ol></li></ol></li></ol></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李江洋</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Pisces</span> v7.0.1</div>
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script id="ribbon" size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+  
+  <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ljyabc.github.io/2019/03/04/linux/";
+    this.page.identifier = "2019/03/04/linux/";
+    this.page.title = 'linux';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/exturl.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+   <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+</body>
+</html>

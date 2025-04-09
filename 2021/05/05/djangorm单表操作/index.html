@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="orm单标操作补充defer和only(数据库优化)12345678910# 我就想queryset中套author的对象,但是只有name    ret=models.Author.objects.all().only(&apos;name&apos;)    print(ret)    print(type(ret[0]))    for i in ret:        print(ret.first().se">
+<meta name="keywords" content="lnhdjango基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="djangorm单表操作">
+<meta property="og:url" content="https://ljyabc.github.io/2021/05/05/djangorm单表操作/index.html">
+<meta property="og:site_name" content="择墅居:李江洋">
+<meta property="og:description" content="orm单标操作补充defer和only(数据库优化)12345678910# 我就想queryset中套author的对象,但是只有name    ret=models.Author.objects.all().only(&apos;name&apos;)    print(ret)    print(type(ret[0]))    for i in ret:        print(ret.first().se">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2025-04-08T14:37:20.928Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="djangorm单表操作">
+<meta name="twitter:description" content="orm单标操作补充defer和only(数据库优化)12345678910# 我就想queryset中套author的对象,但是只有name    ret=models.Author.objects.all().only(&apos;name&apos;)    print(ret)    print(type(ret[0]))    for i in ret:        print(ret.first().se">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ljyabc.github.io/2021/05/05/djangorm单表操作/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>djangorm单表操作 | 择墅居:李江洋</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">择墅居:李江洋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">争做长沙别墅豪装第一品牌</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/book" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>book</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2021/05/05/djangorm单表操作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李江洋">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="择墅居:李江洋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">djangorm单表操作
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-05-05 14:28:53" itemprop="dateCreated datePublished" datetime="2021-05-05T14:28:53+08:00">2021-05-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2025-04-08 22:37:20" itemprop="dateModified" datetime="2025-04-08T22:37:20+08:00">2025-04-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/理解/" itemprop="url" rel="index"><span itemprop="name">理解</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2021/05/05/djangorm单表操作/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/05/05/djangorm单表操作/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="orm单标操作"><a href="#orm单标操作" class="headerlink" title="orm单标操作"></a>orm单标操作</h1><h2 id="补充defer和only-数据库优化"><a href="#补充defer和only-数据库优化" class="headerlink" title="补充defer和only(数据库优化)"></a>补充defer和only(数据库优化)</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 我就想queryset中套author的对象,但是只有name</span><br><span class="line">    <span class="keyword">ret</span>=models.Author.objects.<span class="keyword">all</span>().<span class="keyword">only</span>(<span class="string">'name'</span>)</span><br><span class="line">    <span class="keyword">print</span>(<span class="keyword">ret</span>)</span><br><span class="line">    <span class="keyword">print</span>(<span class="built_in">type</span>(<span class="keyword">ret</span>[<span class="number">0</span>]))</span><br><span class="line">    <span class="keyword">for</span> i in re<span class="variable">t:</span></span><br><span class="line">        <span class="keyword">print</span>(<span class="keyword">ret</span>.<span class="keyword">first</span>().sex)</span><br><span class="line">    <span class="keyword">ret</span>=models.Author.objects.<span class="keyword">all</span>()</span><br><span class="line">    <span class="keyword">for</span> i in re<span class="variable">t:</span></span><br><span class="line">        <span class="keyword">print</span>(<span class="keyword">ret</span>.<span class="keyword">first</span>().sex)</span><br><span class="line">    # 一旦指定<span class="keyword">only</span>,就不要再取没有的值了,否则会造成数据库压力</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># defer:除了指定之外的</span></span><br><span class="line">    ret=models.Author.objects.all().defer(<span class="string">'name'</span>)</span><br><span class="line">    <span class="comment"># print(ret[0].set)</span></span><br><span class="line"></span><br><span class="line">    print(ret[<span class="number">0</span>].name)</span><br><span class="line">only:只取我指定的字段,返回值是queryset里套对象,只是对象里只有指定的字段</span><br><span class="line">defer:反过来</span><br></pre></td></tr></table></figure>
+<h2 id="1-配置文件settings-py"><a href="#1-配置文件settings-py" class="headerlink" title="1.配置文件settings.py"></a>1.配置文件settings.py</h2><h3 id="mysql数据库"><a href="#mysql数据库" class="headerlink" title="mysql数据库"></a>mysql数据库</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">DATABASES = &#123;</span><br><span class="line">    <span class="string">'default'</span>: &#123;</span><br><span class="line">        <span class="string">'ENGINE'</span>: <span class="string">'django.db.backends.mysql'</span>,</span><br><span class="line">        <span class="string">'NAME'</span>: <span class="string">'danbiaochaxun'</span>,</span><br><span class="line">        <span class="string">'USER'</span>:<span class="string">'root'</span>,</span><br><span class="line">        <span class="string">'PASSWORD'</span>:<span class="string">''</span>,</span><br><span class="line">        <span class="string">'HOST'</span>:<span class="string">'127.0.0.1'</span>,</span><br><span class="line">        <span class="string">'PORT'</span>:<span class="string">'3306'</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="静态文件"><a href="#静态文件" class="headerlink" title="静态文件"></a>静态文件</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">STATICFILES_DIRS= [</span><br><span class="line">    os.path.join(BASE_DIR,<span class="string">'static'</span>)</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h3 id="app配置mysql"><a href="#app配置mysql" class="headerlink" title="app配置mysql"></a>app配置mysql</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pymysql</span><br><span class="line"></span><br><span class="line">pymysql.install_as_MySQLdb()</span><br></pre></td></tr></table></figure>
+<h2 id="2-数据库迁移"><a href="#2-数据库迁移" class="headerlink" title="2.数据库迁移"></a>2.数据库迁移</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-python3 manage.py makemigrations   ---&gt;只是对变化做一个记录,记录文件在app的migrations</span><br><span class="line">			-python3 manage.py migrate   ----&gt;把更改提交到数据库</span><br><span class="line">			-python3 manage.py showmigrations  ----&gt;查看那个没有提交到数据库</span><br></pre></td></tr></table></figure>
+<h2 id="3-在Python脚本中调用Django环境"><a href="#3-在Python脚本中调用Django环境" class="headerlink" title="3.在Python脚本中调用Django环境"></a>3.在Python脚本中调用Django环境</h2><p>在项目里面新建一个py文件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    os.environ.setdefault(<span class="string">"DJANGO_SETTINGS_MODULE"</span>, <span class="string">"untitled15.settings"</span>)</span><br><span class="line">    <span class="keyword">import</span> django</span><br><span class="line">    django.setup()</span><br></pre></td></tr></table></figure>
+<h2 id="4-orm操作"><a href="#4-orm操作" class="headerlink" title="4.orm操作"></a>4.orm操作</h2><h3 id="orm增加操作"><a href="#orm增加操作" class="headerlink" title="orm增加操作"></a>orm增加操作</h3><h4 id="方法一-create"><a href="#方法一-create" class="headerlink" title="方法一 create"></a>方法一 create</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    os.environ.setdefault(<span class="string">"DJANGO_SETTINGS_MODULE"</span>,<span class="string">"danbiaochaxun.settings"</span>)</span><br><span class="line">    <span class="keyword">import</span> django</span><br><span class="line">    django.setup() <span class="comment"># 启动django</span></span><br><span class="line">    <span class="keyword">from</span> app01 <span class="keyword">import</span> models</span><br><span class="line"><span class="comment"># 方法一: 直接 app01.Book.objects 对象 create返回一个结果是对象 Book object</span></span><br><span class="line">    <span class="comment"># 返回结果是一个对象</span></span><br><span class="line">    print(models.Book)</span><br><span class="line">    print(models.Book.objects)</span><br><span class="line">    print(models.Book.objects.all())</span><br><span class="line">    book=models.Book.objects.create(name=<span class="string">'红楼梦'</span>,price=<span class="number">23.8</span>,publish=<span class="string">'人民出版社'</span>,author=<span class="string">'曹雪芹'</span>,create_data=<span class="string">'2020-12-25'</span>)</span><br><span class="line">    print(book)   </span><br><span class="line">    print(book.name)</span><br><span class="line">    print(book.price)</span><br><span class="line">    print(book.publish)</span><br><span class="line">    print(book.author)</span><br><span class="line">    print(book.create_data)</span><br></pre></td></tr></table></figure>
+<h4 id="方法二-实例化生成一个对象"><a href="#方法二-实例化生成一个对象" class="headerlink" title="方法二 实例化生成一个对象"></a>方法二 实例化生成一个对象</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方法二  先 models.Book实例化生成一个对象 在 内存里面 然后通过save()写入数据库里</span></span><br><span class="line">    book=models.Book(name=<span class="string">'红楼梦2'</span>,price=<span class="number">23.8</span>,publish=<span class="string">'人民出版社'</span>,author=<span class="string">'曹雪芹'</span>,create_data=<span class="string">'2020-12-25'</span>)</span><br><span class="line">    print(book)  <span class="comment"># 只是在内存里面</span></span><br><span class="line">    print(book.name)</span><br><span class="line">    book.save() <span class="comment"># 写入硬盘</span></span><br></pre></td></tr></table></figure>
+<h4 id="时间格式"><a href="#时间格式" class="headerlink" title="时间格式"></a>时间格式</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">可以传字符串,可以传日期格式</span><br><span class="line">    <span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line">    ctime = datetime.datetime.now()</span><br><span class="line">    book = models.Book.objects.create(name=<span class="string">'西游记'</span>, price=<span class="number">73.8</span>, publish=<span class="string">'北京出版社'</span>, author=<span class="string">'吴承恩'</span>, create_data=ctime)</span><br><span class="line">    print(book.name)</span><br></pre></td></tr></table></figure>
+<h3 id="orm删除操作"><a href="#orm删除操作" class="headerlink" title="orm删除操作"></a>orm删除操作</h3><h4 id="原理先查后删"><a href="#原理先查后删" class="headerlink" title="原理先查后删"></a>原理先查后删</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">先查询出装载QuerySet对象的列表</span><br><span class="line">ret = models.Book.objects.filter(name=<span class="string">'西游记'</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="删除指定的全部数据（多条）"><a href="#删除指定的全部数据（多条）" class="headerlink" title="删除指定的全部数据（多条）"></a>删除指定的全部数据（多条）</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ret = models.Book.objects.filter(name=<span class="string">'西游记'</span>).delete()</span><br><span class="line">    print(ret)</span><br></pre></td></tr></table></figure>
+<h5 id="ret返回值"><a href="#ret返回值" class="headerlink" title="ret返回值"></a>ret返回值</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">返回的是行数</span><br></pre></td></tr></table></figure>
+<h4 id="删除指定的单条数据"><a href="#删除指定的单条数据" class="headerlink" title="删除指定的单条数据"></a>删除指定的单条数据</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ret = models.Book.objects.filter(name=<span class="string">'西游记'</span>).first()</span><br><span class="line">    ret.delete()</span><br><span class="line">    print(ret)</span><br></pre></td></tr></table></figure>
+<h3 id="orm修改操作"><a href="#orm修改操作" class="headerlink" title="orm修改操作"></a>orm修改操作</h3><h4 id="修改指定的全部数据"><a href="#修改指定的全部数据" class="headerlink" title="修改指定的全部数据"></a>修改指定的全部数据</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ret = models.Book.objects.filter(name= <span class="string">'西游记'</span>).update(price=<span class="number">20.9</span>)</span><br><span class="line">    print(ret)</span><br></pre></td></tr></table></figure>
+<h4 id="修改指定的单条数据"><a href="#修改指定的单条数据" class="headerlink" title="修改指定的单条数据"></a>修改指定的单条数据</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 对象修改(没有update方法,但是可以用save来修改)</span></span><br><span class="line">    book = models.Book.objects.filter(name=<span class="string">'西游记'</span>).first()</span><br><span class="line">    book.price=<span class="number">89</span></span><br><span class="line">    book.save()</span><br></pre></td></tr></table></figure>
+<h3 id="orm查询操作-查询API（重点哦）"><a href="#orm查询操作-查询API（重点哦）" class="headerlink" title="orm查询操作 查询API（重点哦）"></a>orm查询操作 查询API（重点哦）</h3><h4 id="all-查询所有结果"><a href="#all-查询所有结果" class="headerlink" title="all()  查询所有结果"></a>all()  查询所有结果</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(models.Book.objects) <span class="comment"># app01.Book.objects</span></span><br><span class="line">   ret=models.Book.objects.all()</span><br><span class="line">   print(ret)<span class="comment"># &lt;QuerySet [&lt;Book: 书名:红楼梦,价格:23.80&gt;, &lt;Book: 书名:红楼梦,价格:23.80&gt;]</span></span><br></pre></td></tr></table></figure>
+<h4 id="filter-kwargs-它包含了与所给筛选条件相匹配的对象"><a href="#filter-kwargs-它包含了与所给筛选条件相匹配的对象" class="headerlink" title="filter(**kwargs):  它包含了与所给筛选条件相匹配的对象"></a>filter(**kwargs):  它包含了与所给筛选条件相匹配的对象</h4><p>相当于where</p>
+<h5 id="queryset对象打印sql"><a href="#queryset对象打印sql" class="headerlink" title="queryset对象打印sql"></a>queryset对象打印sql</h5><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ret=models<span class="selector-class">.Book</span><span class="selector-class">.objects</span>.<span class="attribute">filter</span>(name=<span class="string">'西游记'</span>,price=<span class="string">'73.8'</span>)</span><br><span class="line">ret<span class="selector-class">.query</span> --&gt;queryset对象打印sql</span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(ret.query)</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="和first-指定查询出第一个结果"><a href="#和first-指定查询出第一个结果" class="headerlink" title="和first()指定查询出第一个结果"></a>和first()指定查询出第一个结果</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ret=models.Book.objects.filter(name=<span class="string">'西游记'</span>).first()</span><br><span class="line">print(ret)</span><br></pre></td></tr></table></figure>
+<h4 id="和last-指定查询出最后一个结果"><a href="#和last-指定查询出最后一个结果" class="headerlink" title="和last()指定查询出最后一个结果"></a>和last()指定查询出最后一个结果</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ret=models.Book.objects.filter(name=<span class="string">'西游记'</span>).last()</span><br><span class="line">print(ret)</span><br></pre></td></tr></table></figure>
+<h4 id="exists判断queryset对象是否存在"><a href="#exists判断queryset对象是否存在" class="headerlink" title="exists判断queryset对象是否存在"></a>exists判断queryset对象是否存在</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ret = models.Book.objects.filter(name=<span class="string">'西游记3355'</span>).exists()</span><br><span class="line">print(ret)</span><br></pre></td></tr></table></figure>
+<h5 id="filter指定查询出全部结果"><a href="#filter指定查询出全部结果" class="headerlink" title="filter指定查询出全部结果"></a>filter指定查询出全部结果</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ret=models.Book.objects.filter(name=<span class="string">'西游记'</span>)</span><br><span class="line">    print(type(ret))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> ret:</span><br><span class="line">        print(type(i))</span><br></pre></td></tr></table></figure>
+<h4 id="get查询多个结果或者0个结果会报错"><a href="#get查询多个结果或者0个结果会报错" class="headerlink" title="get查询多个结果或者0个结果会报错"></a>get查询多个结果或者0个结果会报错</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># get  有且只有一个结果,才能用,如果有一个,返回的是对象,不是queryset对象,通常用在,用id查询的情况</span></span><br><span class="line">    ret=models.Book.objects.get(name=<span class="string">"西游记2"</span>)</span><br><span class="line">    print(ret)</span><br><span class="line">    ret=models.Book.objects.get(id=<span class="string">"1"</span>)</span><br><span class="line">    print(ret)</span><br></pre></td></tr></table></figure>
+<h4 id="exclude查询，筛选出不是该条件的数据"><a href="#exclude查询，筛选出不是该条件的数据" class="headerlink" title="exclude查询，筛选出不是该条件的数据"></a>exclude查询，筛选出不是该条件的数据</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ret = models.Book.objects.exclude(name=<span class="string">'西游记'</span>)</span><br><span class="line">print(ret)</span><br><span class="line">print(ret.query)</span><br></pre></td></tr></table></figure>
+<h4 id="order-by-args-查询-排序"><a href="#order-by-args-查询-排序" class="headerlink" title="order_by(*args)查询 排序"></a>order_by(*args)查询 排序</h4><h5 id="正序"><a href="#正序" class="headerlink" title="正序"></a>正序</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ret=models.Book.objects.order_by(<span class="string">'price'</span>)</span><br><span class="line">print(ret)</span><br></pre></td></tr></table></figure>
+<h5 id="多个参数优先第一个order-by参数"><a href="#多个参数优先第一个order-by参数" class="headerlink" title="多个参数优先第一个order_by参数"></a>多个参数优先第一个order_by参数</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ret=models.Book.objects.filter(name=<span class="string">'西游记3338'</span>).order_by(<span class="string">'price'</span>,<span class="string">'-id'</span>)</span><br><span class="line">print(ret)</span><br></pre></td></tr></table></figure>
+<h4 id="倒叙reverse"><a href="#倒叙reverse" class="headerlink" title="倒叙reverse"></a>倒叙reverse</h4><p>order_by 负号能解决，但是提供了 reverse</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ret = models.Book.objects.filter(name=<span class="string">'西游记3338'</span>).order_by(<span class="string">'-id'</span>).reverse()</span><br><span class="line">print(ret)</span><br></pre></td></tr></table></figure>
+<h4 id="count个数返回一个int类型"><a href="#count个数返回一个int类型" class="headerlink" title="count个数返回一个int类型"></a>count个数返回一个int类型</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ret = models.Book.objects.filter(name=<span class="string">'西游记3338'</span>).count()</span><br><span class="line">print(ret)</span><br></pre></td></tr></table></figure>
+<h4 id="values-field-queryset对象里套字典"><a href="#values-field-queryset对象里套字典" class="headerlink" title="values(*field)queryset对象里套字典"></a>values(*field)queryset对象里套字典</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># values(*field): queryset对象里套字典</span></span><br><span class="line">ret=models.Book.objects.all().values(<span class="string">'name'</span>,<span class="string">'price'</span>)</span><br><span class="line">ret=models.Book.objects.all().values(<span class="string">'name'</span>)</span><br><span class="line">print(ret)</span><br></pre></td></tr></table></figure>
+<h4 id="value-listqueryset对象里套元组"><a href="#value-listqueryset对象里套元组" class="headerlink" title="value_listqueryset对象里套元组"></a>value_listqueryset对象里套元组</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ret=models.Book.objects.all().values_list(<span class="string">'name'</span>,<span class="string">'price'</span>)</span><br><span class="line">print(ret)</span><br></pre></td></tr></table></figure>
+<h4 id="distinct-必须完全一样-才能去重只要带了id-去重就没有意义了"><a href="#distinct-必须完全一样-才能去重只要带了id-去重就没有意义了" class="headerlink" title="distinct() 必须完全一样,才能去重只要带了id,去重就没有意义了"></a>distinct() 必须完全一样,才能去重只要带了id,去重就没有意义了</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ret=models.Book.objects.all().values(<span class="string">'name'</span>).distinct()</span><br><span class="line">print(ret)</span><br></pre></td></tr></table></figure>
+<h3 id="filter模糊查询"><a href="#filter模糊查询" class="headerlink" title="filter模糊查询"></a>filter模糊查询</h3><h4 id="lt-小于"><a href="#lt-小于" class="headerlink" title="__lt 小于"></a>__lt 小于</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ret=models.Book.objects.filter(price__gt=<span class="string">'89'</span>)</span><br><span class="line">print(ret)</span><br></pre></td></tr></table></figure>
+<h4 id="gt-大于"><a href="#gt-大于" class="headerlink" title="__gt 大于"></a>__gt 大于</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ret=models.Book.objects.filter(price__gt=<span class="string">'89'</span>)</span><br><span class="line">print(ret)</span><br></pre></td></tr></table></figure>
+<h4 id="lte小于等于"><a href="#lte小于等于" class="headerlink" title="__lte小于等于"></a>__lte小于等于</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ret = models.Book.objects.filter(price__lte=<span class="string">'89'</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="gte大于等于"><a href="#gte大于等于" class="headerlink" title="__gte大于等于"></a>__gte大于等于</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ret = models.Book.objects.filter(price__gte=<span class="string">'89'</span>)</span><br><span class="line">print(ret)</span><br></pre></td></tr></table></figure>
+<h4 id="in在什么容器里面"><a href="#in在什么容器里面" class="headerlink" title="__in在什么容器里面"></a>__in在什么容器里面</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ret=models.Book.objects.filter(price__in=[<span class="string">'23.8'</span>,<span class="string">'89'</span>,<span class="string">'100'</span>])</span><br><span class="line">print(ret)</span><br><span class="line">print(ret.query)</span><br></pre></td></tr></table></figure>
+<h4 id="range在什么范围"><a href="#range在什么范围" class="headerlink" title="__range在什么范围"></a>__range在什么范围</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ret=models.Book.objects.filter(price__range=[<span class="number">50</span>,<span class="number">100</span>])</span><br><span class="line">print(ret.query)</span><br></pre></td></tr></table></figure>
+<h4 id="contains-查询名字有’-红-’的书"><a href="#contains-查询名字有’-红-’的书" class="headerlink" title="__contains 查询名字有’%红%’的书"></a>__contains 查询名字有’%红%’的书</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ret=models.Book.objects.filter(name__contains=<span class="string">'红'</span>)</span><br><span class="line">print(ret)</span><br><span class="line">print(ret.query)</span><br></pre></td></tr></table></figure>
+<h4 id="icontains-查询名字带p的书-忽略大小写"><a href="#icontains-查询名字带p的书-忽略大小写" class="headerlink" title="__icontains 查询名字带p的书,忽略大小写"></a>__icontains 查询名字带p的书,忽略大小写</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ret=models.Book.objects.filter(name__icontains=<span class="string">'P'</span>)</span><br><span class="line">print(ret)</span><br><span class="line">print(ret.query)</span><br></pre></td></tr></table></figure>
+<h4 id="startswith以XX开头"><a href="#startswith以XX开头" class="headerlink" title="__startswith以XX开头"></a>__startswith以XX开头</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ret=models.Book.objects.filter(name__startswith=<span class="string">'红'</span>)</span><br><span class="line">print(ret)</span><br><span class="line">print(ret.query)</span><br></pre></td></tr></table></figure>
+<h4 id="endswith以XX开头"><a href="#endswith以XX开头" class="headerlink" title="__endswith以XX开头"></a>__endswith以XX开头</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ret=models.Book.objects.filter(name__endswith=<span class="string">'梦'</span>)</span><br><span class="line">print(ret)</span><br></pre></td></tr></table></figure>
+<h4 id="pub-date-year按年查询"><a href="#pub-date-year按年查询" class="headerlink" title="pub_date__year按年查询"></a>pub_date__year按年查询</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ret=models.Book.objects.filter(create_data__year=<span class="string">'2017'</span>)</span><br><span class="line">print(ret)</span><br></pre></td></tr></table></figure>
+<h4 id="pub-date-day按天查询"><a href="#pub-date-day按天查询" class="headerlink" title="pub_date__day按天查询"></a>pub_date__day按天查询</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ret = models.Book.objects.filter(create_data__day=<span class="string">'25'</span>)</span><br><span class="line">print(ret)</span><br></pre></td></tr></table></figure>
+<h2 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> 查询守约出版社出版过的价格大于<span class="number">200</span>的书籍</span><br><span class="line">		 </span><br><span class="line"><span class="number">2</span> 查询<span class="number">2017</span>年<span class="number">8</span>月出版的所有以py开头的书籍名称</span><br><span class="line"></span><br><span class="line"><span class="number">3</span> 查询价格为<span class="number">50</span>,<span class="number">100</span>或者<span class="number">150</span>的所有书籍名称及其出版社名称</span><br><span class="line"></span><br><span class="line"><span class="number">4</span> 查询价格在<span class="number">100</span>到<span class="number">200</span>之间的所有书籍名称及其价格</span><br><span class="line"></span><br><span class="line"><span class="number">5</span> 查询所有人民出版社出版的书籍的价格（从高到低排序，去重）</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/gongzhonghao.jpg" alt="李江洋 wechat" style="width: 200px; max-width: 100%;">
+  <div>python分享公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="李江洋 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="李江洋 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/lnhdjango基础/" rel="tag"># lnhdjango基础</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/05/05/djang元信息/" rel="next" title="djang元信息">
+                <i class="fa fa-chevron-left"></i> djang元信息
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/05/05/djangorm基本操作/" rel="prev" title="djangorm基本操作">
+                djangorm基本操作 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="李江洋">
+            
+              <p class="site-author-name" itemprop="name">李江洋</p>
+              <p class="site-description motion-element" itemprop="description">记录学习的技能和遇到的问题</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">179</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lvdXJuYW1l" title="GitHub &rarr; https://github.com/yourname"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="bWFpbHRvOjEzMjgwNDQzOTJAcXEuY29t" title="E-Mail &rarr; mailto:1328044392@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL2V4YW1wbGUuY29t" title="http://example.com">Title</span>
+                  </li>
+                
+              </ul>
+            </div>
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#orm单标操作"><span class="nav-number">1.</span> <span class="nav-text">orm单标操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#补充defer和only-数据库优化"><span class="nav-number">1.1.</span> <span class="nav-text">补充defer和only(数据库优化)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-配置文件settings-py"><span class="nav-number">1.2.</span> <span class="nav-text">1.配置文件settings.py</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql数据库"><span class="nav-number">1.2.1.</span> <span class="nav-text">mysql数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态文件"><span class="nav-number">1.2.2.</span> <span class="nav-text">静态文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#app配置mysql"><span class="nav-number">1.2.3.</span> <span class="nav-text">app配置mysql</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-数据库迁移"><span class="nav-number">1.3.</span> <span class="nav-text">2.数据库迁移</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-在Python脚本中调用Django环境"><span class="nav-number">1.4.</span> <span class="nav-text">3.在Python脚本中调用Django环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-orm操作"><span class="nav-number">1.5.</span> <span class="nav-text">4.orm操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#orm增加操作"><span class="nav-number">1.5.1.</span> <span class="nav-text">orm增加操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方法一-create"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">方法一 create</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法二-实例化生成一个对象"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">方法二 实例化生成一个对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#时间格式"><span class="nav-number">1.5.1.3.</span> <span class="nav-text">时间格式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orm删除操作"><span class="nav-number">1.5.2.</span> <span class="nav-text">orm删除操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#原理先查后删"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">原理先查后删</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除指定的全部数据（多条）"><span class="nav-number">1.5.2.2.</span> <span class="nav-text">删除指定的全部数据（多条）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ret返回值"><span class="nav-number">1.5.2.2.1.</span> <span class="nav-text">ret返回值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除指定的单条数据"><span class="nav-number">1.5.2.3.</span> <span class="nav-text">删除指定的单条数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orm修改操作"><span class="nav-number">1.5.3.</span> <span class="nav-text">orm修改操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#修改指定的全部数据"><span class="nav-number">1.5.3.1.</span> <span class="nav-text">修改指定的全部数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改指定的单条数据"><span class="nav-number">1.5.3.2.</span> <span class="nav-text">修改指定的单条数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orm查询操作-查询API（重点哦）"><span class="nav-number">1.5.4.</span> <span class="nav-text">orm查询操作 查询API（重点哦）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#all-查询所有结果"><span class="nav-number">1.5.4.1.</span> <span class="nav-text">all()  查询所有结果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#filter-kwargs-它包含了与所给筛选条件相匹配的对象"><span class="nav-number">1.5.4.2.</span> <span class="nav-text">filter(**kwargs):  它包含了与所给筛选条件相匹配的对象</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#queryset对象打印sql"><span class="nav-number">1.5.4.2.1.</span> <span class="nav-text">queryset对象打印sql</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#和first-指定查询出第一个结果"><span class="nav-number">1.5.4.3.</span> <span class="nav-text">和first()指定查询出第一个结果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#和last-指定查询出最后一个结果"><span class="nav-number">1.5.4.4.</span> <span class="nav-text">和last()指定查询出最后一个结果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exists判断queryset对象是否存在"><span class="nav-number">1.5.4.5.</span> <span class="nav-text">exists判断queryset对象是否存在</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#filter指定查询出全部结果"><span class="nav-number">1.5.4.5.1.</span> <span class="nav-text">filter指定查询出全部结果</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#get查询多个结果或者0个结果会报错"><span class="nav-number">1.5.4.6.</span> <span class="nav-text">get查询多个结果或者0个结果会报错</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exclude查询，筛选出不是该条件的数据"><span class="nav-number">1.5.4.7.</span> <span class="nav-text">exclude查询，筛选出不是该条件的数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#order-by-args-查询-排序"><span class="nav-number">1.5.4.8.</span> <span class="nav-text">order_by(*args)查询 排序</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#正序"><span class="nav-number">1.5.4.8.1.</span> <span class="nav-text">正序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#多个参数优先第一个order-by参数"><span class="nav-number">1.5.4.8.2.</span> <span class="nav-text">多个参数优先第一个order_by参数</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#倒叙reverse"><span class="nav-number">1.5.4.9.</span> <span class="nav-text">倒叙reverse</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#count个数返回一个int类型"><span class="nav-number">1.5.4.10.</span> <span class="nav-text">count个数返回一个int类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#values-field-queryset对象里套字典"><span class="nav-number">1.5.4.11.</span> <span class="nav-text">values(*field)queryset对象里套字典</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#value-listqueryset对象里套元组"><span class="nav-number">1.5.4.12.</span> <span class="nav-text">value_listqueryset对象里套元组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#distinct-必须完全一样-才能去重只要带了id-去重就没有意义了"><span class="nav-number">1.5.4.13.</span> <span class="nav-text">distinct() 必须完全一样,才能去重只要带了id,去重就没有意义了</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#filter模糊查询"><span class="nav-number">1.5.5.</span> <span class="nav-text">filter模糊查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lt-小于"><span class="nav-number">1.5.5.1.</span> <span class="nav-text">__lt 小于</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gt-大于"><span class="nav-number">1.5.5.2.</span> <span class="nav-text">__gt 大于</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lte小于等于"><span class="nav-number">1.5.5.3.</span> <span class="nav-text">__lte小于等于</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gte大于等于"><span class="nav-number">1.5.5.4.</span> <span class="nav-text">__gte大于等于</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#in在什么容器里面"><span class="nav-number">1.5.5.5.</span> <span class="nav-text">__in在什么容器里面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#range在什么范围"><span class="nav-number">1.5.5.6.</span> <span class="nav-text">__range在什么范围</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#contains-查询名字有’-红-’的书"><span class="nav-number">1.5.5.7.</span> <span class="nav-text">__contains 查询名字有’%红%’的书</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#icontains-查询名字带p的书-忽略大小写"><span class="nav-number">1.5.5.8.</span> <span class="nav-text">__icontains 查询名字带p的书,忽略大小写</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#startswith以XX开头"><span class="nav-number">1.5.5.9.</span> <span class="nav-text">__startswith以XX开头</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#endswith以XX开头"><span class="nav-number">1.5.5.10.</span> <span class="nav-text">__endswith以XX开头</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pub-date-year按年查询"><span class="nav-number">1.5.5.11.</span> <span class="nav-text">pub_date__year按年查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pub-date-day按天查询"><span class="nav-number">1.5.5.12.</span> <span class="nav-text">pub_date__day按天查询</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作业"><span class="nav-number">1.6.</span> <span class="nav-text">作业</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李江洋</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Pisces</span> v7.0.1</div>
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script id="ribbon" size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+  
+  <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ljyabc.github.io/2021/05/05/djangorm单表操作/";
+    this.page.identifier = "2021/05/05/djangorm单表操作/";
+    this.page.title = 'djangorm单表操作';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/exturl.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+   <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+</body>
+</html>

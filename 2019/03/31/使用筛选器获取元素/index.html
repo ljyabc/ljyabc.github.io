@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="使用筛选器获取元素1 过滤本质选择器的方法|jQuery对象的方法,方法的参数还可以加入选择器 语法1$(&apos;li&apos;).filter(&apos;.item&apos;).css(&apos;border&apos;, &apos;2px solid red&apos;); eq(index|-index)获取当前链式操作中第N个jQuery对象，返回jQuery对象  first()获取第一个元素 last()获取最后个元素 filter(expr|obj">
+<meta name="keywords" content="前端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用筛选器获取元素">
+<meta property="og:url" content="https://ljyabc.github.io/2019/03/31/使用筛选器获取元素/index.html">
+<meta property="og:site_name" content="择墅居:李江洋">
+<meta property="og:description" content="使用筛选器获取元素1 过滤本质选择器的方法|jQuery对象的方法,方法的参数还可以加入选择器 语法1$(&apos;li&apos;).filter(&apos;.item&apos;).css(&apos;border&apos;, &apos;2px solid red&apos;); eq(index|-index)获取当前链式操作中第N个jQuery对象，返回jQuery对象  first()获取第一个元素 last()获取最后个元素 filter(expr|obj">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/31/使用筛选器获取元素/E:/blog-git/ljy/source/_posts/使用筛选器获取元素/1554048274395.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/31/使用筛选器获取元素/E:/blog-git/ljy/source/_posts/使用筛选器获取元素/1554054616993.png">
+<meta property="og:updated_time" content="2025-04-08T14:38:19.041Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用筛选器获取元素">
+<meta name="twitter:description" content="使用筛选器获取元素1 过滤本质选择器的方法|jQuery对象的方法,方法的参数还可以加入选择器 语法1$(&apos;li&apos;).filter(&apos;.item&apos;).css(&apos;border&apos;, &apos;2px solid red&apos;); eq(index|-index)获取当前链式操作中第N个jQuery对象，返回jQuery对象  first()获取第一个元素 last()获取最后个元素 filter(expr|obj">
+<meta name="twitter:image" content="https://ljyabc.github.io/2019/03/31/使用筛选器获取元素/E:/blog-git/ljy/source/_posts/使用筛选器获取元素/1554048274395.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ljyabc.github.io/2019/03/31/使用筛选器获取元素/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>使用筛选器获取元素 | 择墅居:李江洋</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">择墅居:李江洋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">争做长沙别墅豪装第一品牌</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/book" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>book</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2019/03/31/使用筛选器获取元素/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李江洋">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="择墅居:李江洋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用筛选器获取元素
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-31 17:56:19" itemprop="dateCreated datePublished" datetime="2019-03-31T17:56:19+08:00">2019-03-31</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2025-04-08 22:38:19" itemprop="dateModified" datetime="2025-04-08T22:38:19+08:00">2025-04-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/03/31/使用筛选器获取元素/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/31/使用筛选器获取元素/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="使用筛选器获取元素"><a href="#使用筛选器获取元素" class="headerlink" title="使用筛选器获取元素"></a>使用筛选器获取元素</h1><h2 id="1-过滤"><a href="#1-过滤" class="headerlink" title="1 过滤"></a>1 过滤</h2><h3 id="本质"><a href="#本质" class="headerlink" title="本质"></a>本质</h3><p>选择器的方法|jQuery对象的方法,方法的参数还可以加入选择器</p>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'li'</span>).<span class="keyword">filter</span>(<span class="string">'.item'</span>).css(<span class="string">'border'</span>, <span class="string">'2px solid red'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="eq-index-index"><a href="#eq-index-index" class="headerlink" title="eq(index|-index)"></a>eq(index|-index)</h3><p>获取当前链式操作中第N个jQuery对象，返回jQuery对象</p>
+<p><img src="/2019/03/31/使用筛选器获取元素/E:/blog-git\ljy\source\_posts\使用筛选器获取元素\1554048274395.png" alt="1554048274395"></p>
+<h3 id="first"><a href="#first" class="headerlink" title="first()"></a>first()</h3><p>获取第一个元素</p>
+<h3 id="last"><a href="#last" class="headerlink" title="last()"></a>last()</h3><p>获取最后个元素</p>
+<h3 id="filter-expr-obj-ele-fn"><a href="#filter-expr-obj-ele-fn" class="headerlink" title="filter(expr|obj|ele|fn)"></a>filter(expr|obj|ele|fn)</h3><p>筛选出与指定表达式匹配的元素集合。</p>
+<h3 id="not-expr-ele-fn"><a href="#not-expr-ele-fn" class="headerlink" title="not(expr|ele|fn)"></a>not(expr|ele|fn)</h3><p> 从匹配元素的集合中删除与指定表达式匹配的元素</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span>Lorem ipsum 小丽丽 dolor.<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">				<span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span>Lorem ipsum dolor.<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">				<span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span>Lorem ipsum dolor.<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">				<span class="xml"><span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">'item'</span>&gt;</span>Lorem ipsum dolor.<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">				<span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span>Lorem ipsum dolor.<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$(<span class="string">'li'</span>)<span class="built_in">.filter</span>(<span class="string">'.item'</span>).css(<span class="string">'border'</span>, <span class="string">'2px solid red'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="has-expr-ele"><a href="#has-expr-ele" class="headerlink" title="has(expr|ele)"></a>has(expr|ele)</h3><p>保留包含特定后代的元素，去掉那些不含有指定后代的元素。</p>
+<h3 id="slice-start-end"><a href="#slice-start-end" class="headerlink" title="slice(start,[end])"></a>slice(start,[end])</h3><p>选取一个匹配的子集</p>
+<h2 id="2-查找"><a href="#2-查找" class="headerlink" title="2 查找"></a>2 查找</h2><h3 id="语法-1"><a href="#语法-1" class="headerlink" title="语法"></a>语法</h3><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(</span><span class="string">'#myItem'</span>).children().css(<span class="string">'border'</span>, <span class="string">'2px solid red'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="破坏性操作"><a href="#破坏性操作" class="headerlink" title="破坏性操作"></a>破坏性操作</h3><p>和过滤的区别就是查找出来的是元素的一部分</p>
+<h3 id="children-expr"><a href="#children-expr" class="headerlink" title="children([expr])"></a>children([expr])</h3><p> 取得一个包含匹配的元素集合中每一个元素的所有子元素的元素集合。</p>
+<h3 id="find-e-o-e"><a href="#find-e-o-e" class="headerlink" title="find(e|o|e)"></a>find(e|o|e)</h3><p> 搜索所有与指定表达式匹配的元素。这个函数是找出正在处理的元素的后代元素的好方法</p>
+<p>find的()里面可以指定找什么样的后代元素</p>
+<h3 id="parent-expr"><a href="#parent-expr" class="headerlink" title="parent([expr])"></a>parent([expr])</h3><p>取得一个包含着所有匹配元素的唯一父元素的元素集合</p>
+<h3 id="parents-expr"><a href="#parents-expr" class="headerlink" title="parents([expr])"></a>parents([expr])</h3><p>取得一个包含着所有匹配元素的祖先元素的元素集合（不包含根元素）</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span> $(<span class="string">"#myItem"</span>).parents(<span class="string">'ul'</span>).css(<span class="string">'border'</span>, <span class="string">'2px solid green'</span>);  <span class="regexp">//</span>所有的祖先元素</span><br></pre></td></tr></table></figure>
+<h3 id="parentsUntil-e-e-f"><a href="#parentsUntil-e-e-f" class="headerlink" title="parentsUntil([e|e][,f])"></a>parentsUntil([e|e][,f])</h3><p> 查找当前元素的所有的父辈元素，直到遇到匹配的那个元素为止</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span> $(<span class="string">"#myItem"</span>).parentsUntil(<span class="string">'body'</span>).css(<span class="string">'border'</span>, <span class="string">'2px solid green'</span>);  <span class="regexp">//</span>所有的祖先元素 指定一个结束位置</span><br></pre></td></tr></table></figure>
+<h3 id="offsetParent"><a href="#offsetParent" class="headerlink" title="offsetParent()"></a>offsetParent()</h3><p>返回第一个匹配元素用于定位的父节点。</p>
+<p>没写是html定位</p>
+<p>看谁加了position: relative;</p>
+<h3 id="后next-expr"><a href="#后next-expr" class="headerlink" title="后next([expr])"></a>后next([expr])</h3><p>  取得一个包含匹配的元素集合中每一个元素紧邻的后面同辈元素的元素集合</p>
+<h3 id="nextAll-expr"><a href="#nextAll-expr" class="headerlink" title="nextAll([expr])"></a>nextAll([expr])</h3><p> 查找当前元素之后所有的同辈元素</p>
+<h3 id="nextUntil-e-e-f"><a href="#nextUntil-e-e-f" class="headerlink" title="nextUntil([e|e][,f])"></a>nextUntil([e|e][,f])</h3><p> 查找当前元素之后所有的同辈元素，直到遇到匹配的那个元素为止</p>
+<h3 id="前prev-expr"><a href="#前prev-expr" class="headerlink" title="前prev([expr])"></a>前prev([expr])</h3><p> 取得一个包含匹配的元素集合中每一个元素紧邻的前一个同辈元素的元素集合</p>
+<h3 id="prevall-expr"><a href="#prevall-expr" class="headerlink" title="prevall([expr])"></a>prevall([expr])</h3><p>  查找当前元素之前所有的同辈元素</p>
+<h3 id="prevUntil-e-e-f"><a href="#prevUntil-e-e-f" class="headerlink" title="prevUntil([e|e][,f])"></a>prevUntil([e|e][,f])</h3><p>查找前面所有的兄弟元素 并且为其指定一个终止位置</p>
+<p>  查找当前元素之前所有的同辈元素，直到遇到匹配的那个元素为止</p>
+<h3 id="siblings-expr-所有的兄弟"><a href="#siblings-expr-所有的兄弟" class="headerlink" title="siblings([expr])      所有的兄弟"></a>siblings([expr])      所有的兄弟</h3><p>取得一个包含匹配的元素集合中每一个元素的所有唯一同辈元素的元素集合</p>
+<h3 id="closest-e-o-e"><a href="#closest-e-o-e" class="headerlink" title="closest(e|o|e)"></a>closest(e|o|e)</h3><p>  1.7* 从元素本身开始，逐级向上级元素匹配，并返回最先匹配的元素</p>
+<h2 id="3-串联"><a href="#3-串联" class="headerlink" title="3 串联"></a>3 串联</h2><h3 id="add-e-e-h-o-c"><a href="#add-e-e-h-o-c" class="headerlink" title="add(e|e|h|o[,c])"></a>add(e|e|h|o[,c])</h3><p>1.9* 把与表达式匹配的元素添加到jQuery对象中</p>
+<p><img src="/2019/03/31/使用筛选器获取元素/E:/blog-git\ljy\source\_posts\使用筛选器获取元素\1554054616993.png" alt="1554054616993"></p>
+<h3 id="andSelf"><a href="#andSelf" class="headerlink" title="andSelf()"></a>andSelf()</h3><p> 1.8- 加入先前所选的加入当前元素中</p>
+<h3 id="addBack"><a href="#addBack" class="headerlink" title="addBack()"></a>addBack()</h3><p>  1.9+ 添加堆栈中元素集合到当前集合，一个选择性的过滤选择器。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span>addback() 是加上自己的意思</span><br><span class="line">			<span class="regexp">//</span> $(<span class="string">'li.active'</span>).nextAll(<span class="string">'li'</span>).addBack().css(<span class="string">'border'</span>, <span class="string">'2px solid red'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="contents"><a href="#contents" class="headerlink" title="contents()"></a>contents()</h3><p> 查找匹配元素内部所有的子节点（包括文本节点）</p>
+<h3 id="end"><a href="#end" class="headerlink" title="end()"></a>end()</h3><p> 回到最近的一个”破坏性”操作之前</p>
+<figure class="highlight cal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">end</span>()回到上一次被破坏之前的状态</span><br><span class="line">			// $(<span class="string">'li.active'</span>).nextAll(<span class="string">'li'</span>).css(<span class="string">'border'</span>, <span class="string">'2px solid red'</span>).<span class="keyword">end</span>().css(<span class="string">'background'</span>, <span class="string">'pink'</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="改变元素"><a href="#改变元素" class="headerlink" title="改变元素"></a>改变元素</h2><h3 id="html-‘HELLO’"><a href="#html-‘HELLO’" class="headerlink" title="html(‘HELLO’)"></a>html(‘HELLO’)</h3><figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">等于box.innerHTML = <span class="comment">'<span class="doctag">&lt;ul&gt;</span><span class="doctag">&lt;li&gt;</span>HELLO<span class="doctag">&lt;/li&gt;</span><span class="doctag">&lt;/ul&gt;</span>'</span></span><br></pre></td></tr></table></figure>
+<h3 id="text-‘HELLO’"><a href="#text-‘HELLO’" class="headerlink" title=".text(‘HELLO’)"></a>.text(‘HELLO’)</h3><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">等于<span class="built_in">box</span>.innerText = <span class="string">'HELLO'</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-其他元素处理"><a href="#4-其他元素处理" class="headerlink" title="4 其他元素处理"></a>4 其他元素处理</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">is</span><span class="params">(expr|obj|ele|fn)</span></span>        根据选择器、DOM元素或 jQuery 对象来检测匹配元素集合，如果其中至少有一个元素符合这个给定的表达式就返回true</span><br><span class="line"><span class="function"><span class="title">map</span><span class="params">(callback)</span></span>            将一组元素转换成其他数组（不论是否是元素数组）</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/gongzhonghao.jpg" alt="李江洋 wechat" style="width: 200px; max-width: 100%;">
+  <div>python分享公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="李江洋 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="李江洋 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag"># 前端</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/31/jQuery选择器/" rel="next" title="jQuery选择器">
+                <i class="fa fa-chevron-left"></i> jQuery选择器
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/01/jQueryDOM操作/" rel="prev" title="jQueryDOM操作">
+                jQueryDOM操作 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="李江洋">
+            
+              <p class="site-author-name" itemprop="name">李江洋</p>
+              <p class="site-description motion-element" itemprop="description">记录学习的技能和遇到的问题</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">179</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lvdXJuYW1l" title="GitHub &rarr; https://github.com/yourname"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="bWFpbHRvOjEzMjgwNDQzOTJAcXEuY29t" title="E-Mail &rarr; mailto:1328044392@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL2V4YW1wbGUuY29t" title="http://example.com">Title</span>
+                  </li>
+                
+              </ul>
+            </div>
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#使用筛选器获取元素"><span class="nav-number">1.</span> <span class="nav-text">使用筛选器获取元素</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-过滤"><span class="nav-number">1.1.</span> <span class="nav-text">1 过滤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#本质"><span class="nav-number">1.1.1.</span> <span class="nav-text">本质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语法"><span class="nav-number">1.1.2.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eq-index-index"><span class="nav-number">1.1.3.</span> <span class="nav-text">eq(index|-index)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#first"><span class="nav-number">1.1.4.</span> <span class="nav-text">first()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#last"><span class="nav-number">1.1.5.</span> <span class="nav-text">last()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#filter-expr-obj-ele-fn"><span class="nav-number">1.1.6.</span> <span class="nav-text">filter(expr|obj|ele|fn)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#not-expr-ele-fn"><span class="nav-number">1.1.7.</span> <span class="nav-text">not(expr|ele|fn)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#has-expr-ele"><span class="nav-number">1.1.8.</span> <span class="nav-text">has(expr|ele)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#slice-start-end"><span class="nav-number">1.1.9.</span> <span class="nav-text">slice(start,[end])</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-查找"><span class="nav-number">1.2.</span> <span class="nav-text">2 查找</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#破坏性操作"><span class="nav-number">1.2.2.</span> <span class="nav-text">破坏性操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#children-expr"><span class="nav-number">1.2.3.</span> <span class="nav-text">children([expr])</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#find-e-o-e"><span class="nav-number">1.2.4.</span> <span class="nav-text">find(e|o|e)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#parent-expr"><span class="nav-number">1.2.5.</span> <span class="nav-text">parent([expr])</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#parents-expr"><span class="nav-number">1.2.6.</span> <span class="nav-text">parents([expr])</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#parentsUntil-e-e-f"><span class="nav-number">1.2.7.</span> <span class="nav-text">parentsUntil([e|e][,f])</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#offsetParent"><span class="nav-number">1.2.8.</span> <span class="nav-text">offsetParent()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#后next-expr"><span class="nav-number">1.2.9.</span> <span class="nav-text">后next([expr])</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nextAll-expr"><span class="nav-number">1.2.10.</span> <span class="nav-text">nextAll([expr])</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nextUntil-e-e-f"><span class="nav-number">1.2.11.</span> <span class="nav-text">nextUntil([e|e][,f])</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前prev-expr"><span class="nav-number">1.2.12.</span> <span class="nav-text">前prev([expr])</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#prevall-expr"><span class="nav-number">1.2.13.</span> <span class="nav-text">prevall([expr])</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#prevUntil-e-e-f"><span class="nav-number">1.2.14.</span> <span class="nav-text">prevUntil([e|e][,f])</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#siblings-expr-所有的兄弟"><span class="nav-number">1.2.15.</span> <span class="nav-text">siblings([expr])      所有的兄弟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#closest-e-o-e"><span class="nav-number">1.2.16.</span> <span class="nav-text">closest(e|o|e)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-串联"><span class="nav-number">1.3.</span> <span class="nav-text">3 串联</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#add-e-e-h-o-c"><span class="nav-number">1.3.1.</span> <span class="nav-text">add(e|e|h|o[,c])</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#andSelf"><span class="nav-number">1.3.2.</span> <span class="nav-text">andSelf()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#addBack"><span class="nav-number">1.3.3.</span> <span class="nav-text">addBack()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#contents"><span class="nav-number">1.3.4.</span> <span class="nav-text">contents()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#end"><span class="nav-number">1.3.5.</span> <span class="nav-text">end()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改变元素"><span class="nav-number">1.4.</span> <span class="nav-text">改变元素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#html-‘HELLO’"><span class="nav-number">1.4.1.</span> <span class="nav-text">html(‘HELLO’)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#text-‘HELLO’"><span class="nav-number">1.4.2.</span> <span class="nav-text">.text(‘HELLO’)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-其他元素处理"><span class="nav-number">1.5.</span> <span class="nav-text">4 其他元素处理</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李江洋</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Pisces</span> v7.0.1</div>
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script id="ribbon" size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+  
+  <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ljyabc.github.io/2019/03/31/使用筛选器获取元素/";
+    this.page.identifier = "2019/03/31/使用筛选器获取元素/";
+    this.page.title = '使用筛选器获取元素';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/exturl.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+   <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+</body>
+</html>

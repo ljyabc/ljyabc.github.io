@@ -1,0 +1,1585 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="选择器通过选择器，可以获取到页面元素。jQuery具有强大的选择器，跟CSS3选择器类似 本质jquery dom对象 1 基本选择器同JS 12345#id            根据给定的ID匹配一个元素element        根据给定的元素标签名匹配所有元素.class        根据给定的css类名匹配元素。*            匹配所有元素selector1,selecto">
+<meta name="keywords" content="前端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery选择器">
+<meta property="og:url" content="https://ljyabc.github.io/2019/03/31/jQuery选择器/index.html">
+<meta property="og:site_name" content="择墅居:李江洋">
+<meta property="og:description" content="选择器通过选择器，可以获取到页面元素。jQuery具有强大的选择器，跟CSS3选择器类似 本质jquery dom对象 1 基本选择器同JS 12345#id            根据给定的ID匹配一个元素element        根据给定的元素标签名匹配所有元素.class        根据给定的css类名匹配元素。*            匹配所有元素selector1,selecto">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/31/jQuery选择器/E:/blog-git/ljy/source/_posts/jQuery选择器/1554025095250.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/31/jQuery选择器/E:/blog-git/ljy/source/_posts/jQuery选择器/1554025184086.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/31/jQuery选择器/E:/blog-git/ljy/source/_posts/jQuery选择器/1554025913007.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/31/jQuery选择器/E:/blog-git/ljy/source/_posts/jQuery选择器/1554026026546.png">
+<meta property="og:image" content="https://ljyabc.github.io/2019/03/31/jQuery选择器/E:/blog-git/ljy/source/_posts/jQuery选择器/1554026060290.png">
+<meta property="og:updated_time" content="2025-04-08T14:37:39.424Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jQuery选择器">
+<meta name="twitter:description" content="选择器通过选择器，可以获取到页面元素。jQuery具有强大的选择器，跟CSS3选择器类似 本质jquery dom对象 1 基本选择器同JS 12345#id            根据给定的ID匹配一个元素element        根据给定的元素标签名匹配所有元素.class        根据给定的css类名匹配元素。*            匹配所有元素selector1,selecto">
+<meta name="twitter:image" content="https://ljyabc.github.io/2019/03/31/jQuery选择器/E:/blog-git/ljy/source/_posts/jQuery选择器/1554025095250.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ljyabc.github.io/2019/03/31/jQuery选择器/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>jQuery选择器 | 择墅居:李江洋</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">择墅居:李江洋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">争做长沙别墅豪装第一品牌</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/book" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>book</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ljyabc.github.io/2019/03/31/jQuery选择器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李江洋">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="择墅居:李江洋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">jQuery选择器
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-31 17:20:17" itemprop="dateCreated datePublished" datetime="2019-03-31T17:20:17+08:00">2019-03-31</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2025-04-08 22:37:39" itemprop="dateModified" datetime="2025-04-08T22:37:39+08:00">2025-04-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/理解/" itemprop="url" rel="index"><span itemprop="name">理解</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/03/31/jQuery选择器/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/31/jQuery选择器/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h1><p>通过选择器，可以获取到页面元素。jQuery具有强大的选择器，跟CSS3选择器类似</p>
+<h2 id="本质"><a href="#本质" class="headerlink" title="本质"></a>本质</h2><p>jquery dom对象</p>
+<h2 id="1-基本选择器"><a href="#1-基本选择器" class="headerlink" title="1 基本选择器"></a>1 基本选择器</h2><p>同JS</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#id            根据给定的ID匹配一个元素</span></span><br><span class="line">element        根据给定的元素标签名匹配所有元素</span><br><span class="line"><span class="class">.<span class="keyword">class</span>        根据给定的<span class="title">css</span>类名匹配元素。</span></span><br><span class="line">*            匹配所有元素</span><br><span class="line">selector1,selector2,selectorN    将每一个选择器匹配到的元素合并后一起返回</span><br></pre></td></tr></table></figure>
+<h2 id="2-层级选择器"><a href="#2-层级选择器" class="headerlink" title="2 层级选择器"></a>2 层级选择器</h2><p>同JS</p>
+<figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ancestor descendant    在给定的祖先元素下匹配所有的后代元素</span><br><span class="line">parent&gt;child        在给定的父元素下匹配所有的子元素</span><br><span class="line"><span class="built_in">prev</span>+<span class="built_in">next</span>            匹配所有紧接在 <span class="built_in">prev</span> 元素后的 <span class="built_in">next</span> 元素</span><br><span class="line"><span class="built_in">prev</span>~siblings        匹配 <span class="built_in">prev</span> 元素之后的所有 siblings 元素</span><br></pre></td></tr></table></figure>
+<h2 id="3-过滤选择器"><a href="#3-过滤选择器" class="headerlink" title="3 过滤选择器"></a>3 过滤选择器</h2><h3 id="first"><a href="#first" class="headerlink" title=":first"></a>:first</h3><p> 获取第一个元素</p>
+<h3 id="not-selector"><a href="#not-selector" class="headerlink" title=":not(selector)"></a>:not(selector)</h3><p> 去除所有与给定选择器匹配的元素</p>
+<h3 id="even"><a href="#even" class="headerlink" title=":even"></a>:even</h3><p>   匹配所有索引值为偶数的元素，从 0 开始计数</p>
+<h3 id="odd"><a href="#odd" class="headerlink" title=":odd"></a>:odd</h3><p> 匹配所有索引值为奇数的元素，从 0 开始计数</p>
+<h3 id="eq-index"><a href="#eq-index" class="headerlink" title=":eq(index)"></a>:eq(index)</h3><p>匹配一个给定索引值的元素</p>
+<h3 id="gt-index"><a href="#gt-index" class="headerlink" title=":gt(index)"></a>:gt(index)</h3><p>匹配所有大于给定索引值的元素</p>
+<h3 id="lang"><a href="#lang" class="headerlink" title=":lang"></a>:lang</h3><p> 选择指定语言的所有元素。1.9+</p>
+<h3 id="last"><a href="#last" class="headerlink" title=":last"></a>:last</h3><p> 获取最后个元素</p>
+<h3 id="lt-index"><a href="#lt-index" class="headerlink" title=":lt(index)"></a>:lt(index)</h3><p> 匹配所有小于给定索引值的元素</p>
+<h3 id="header"><a href="#header" class="headerlink" title=":header"></a>:header</h3><p> 匹配如 h1, h2, h3之类的标题元素</p>
+<h3 id="animated"><a href="#animated" class="headerlink" title=":animated"></a>:animated</h3><p> 匹配所有正在执行动画效果的元素</p>
+<h3 id="focus"><a href="#focus" class="headerlink" title=":focus"></a>:focus</h3><p> 匹配当前获取焦点的元素</p>
+<h3 id="root"><a href="#root" class="headerlink" title=":root"></a>:root</h3><p>选择该文档的根元素   1.9+</p>
+<h3 id="target"><a href="#target" class="headerlink" title=":target"></a>:target</h3><p>选择由文档URI的格式化识别码表示的目标元素    1.9</p>
+<h2 id="4-内容选择器"><a href="#4-内容选择器" class="headerlink" title="4 内容选择器"></a>4 内容选择器</h2><h3 id="contains-text"><a href="#contains-text" class="headerlink" title=":contains(text)"></a>:contains(text)</h3><p> 匹配包含给定文本的元素</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">li:</span>contains(<span class="string">''</span>)  不光选中内筒有xx的元素  还选中这个元素的父元素</span><br><span class="line">            <span class="variable">$(</span><span class="string">"li:contains('小丽丽')"</span>).css(<span class="string">'border'</span>, <span class="string">'2px solid red'</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/03/31/jQuery选择器/E:/blog-git\ljy\source\_posts\jQuery选择器\1554025095250.png" alt="1554025095250"></p>
+<h3 id="empty"><a href="#empty" class="headerlink" title=":empty"></a>:empty</h3><p>  匹配所有不包含子元素或者文本的空元素</p>
+<p>没有子元素，也不能有内容</p>
+<h3 id="has-selector"><a href="#has-selector" class="headerlink" title=":has(selector)"></a>:has(selector)</h3><p>匹配含有选择器所匹配的元素的元素</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//有这个子元素的元素</span></span><br><span class="line">			<span class="symbol">$</span>(<span class="string">"li:has('.item')"</span>).css(<span class="string">'border'</span>, <span class="string">'2px solid red'</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/03/31/jQuery选择器/E:/blog-git\ljy\source\_posts\jQuery选择器\1554025184086.png" alt="1554025184086"></p>
+<h3 id="parent"><a href="#parent" class="headerlink" title=":parent"></a>:parent</h3><p> 匹配含有子元素或者文本的元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">是有子元素 或者 内容  满足一个就够</span><br></pre></td></tr></table></figure>
+<h2 id="5-可见性选择器"><a href="#5-可见性选择器" class="headerlink" title="5 可见性选择器"></a>5 可见性选择器</h2><h3 id="hidden"><a href="#hidden" class="headerlink" title=":hidden"></a>:hidden</h3><p>匹配所有不可见元素，或者type为hidden的元素</p>
+<h3 id="visible"><a href="#visible" class="headerlink" title=":visible"></a>:visible</h3><p> 匹配所有的可见元素</p>
+<h2 id="6-属性选择器"><a href="#6-属性选择器" class="headerlink" title="6 属性选择器"></a>6 属性选择器</h2><p>与js一样</p>
+<h3 id="attribute"><a href="#attribute" class="headerlink" title="[attribute]"></a>[attribute]</h3><p>匹配包含给定属性的元素</p>
+<h3 id="attribute-value"><a href="#attribute-value" class="headerlink" title="[attribute=value]"></a>[attribute=value]</h3><p> 匹配给定的属性是某个特定值的元素</p>
+<h3 id="attribute-value-1"><a href="#attribute-value-1" class="headerlink" title="[attribute!=value]"></a>[attribute!=value]</h3><p> 匹配所有不含有指定的属性，或者属性不等于特定值的元素</p>
+<h3 id="attribute-value-2"><a href="#attribute-value-2" class="headerlink" title="[attribute^=value]"></a>[attribute^=value]</h3><p>匹配给定的属性是以某些值开始的元素</p>
+<h3 id="attribute-value-3"><a href="#attribute-value-3" class="headerlink" title="[attribute$=value]"></a>[attribute$=value]</h3><p> 匹配给定的属性是以某些值结尾的元素</p>
+<h3 id="attribute-value-4"><a href="#attribute-value-4" class="headerlink" title="[attribute*=value]"></a>[attribute*=value]</h3><p> 匹配给定的属性是以包含某些值的元素</p>
+<h3 id="attrSel1-attrSel2-attrSelN"><a href="#attrSel1-attrSel2-attrSelN" class="headerlink" title="[attrSel1][attrSel2][attrSelN]"></a>[attrSel1][attrSel2][attrSelN]</h3><p> 复合属性选择器，需要同时满足多个条件时使用</p>
+<h2 id="7-子元素选择器"><a href="#7-子元素选择器" class="headerlink" title="7 子元素选择器"></a>7 子元素选择器</h2><h3 id="first-child"><a href="#first-child" class="headerlink" title=":first-child"></a>:first-child</h3><p>  匹配所给选择器( :之前的选择器)的第一个子元素</p>
+<h3 id="first-of-type"><a href="#first-of-type" class="headerlink" title=":first-of-type"></a>:first-of-type</h3><p>  结构化伪类，匹配E的父元素的第一个E类型的孩子        1.9+</p>
+<h3 id="last-child"><a href="#last-child" class="headerlink" title=":last-child"></a>:last-child</h3><p>  匹配最后一个子元素</p>
+<h3 id="last-of-type"><a href="#last-of-type" class="headerlink" title=":last-of-type"></a>:last-of-type</h3><p>  结构化伪类，匹配E的父元素的最后一个E类型的孩子    1.9+</p>
+<h3 id="nth-child"><a href="#nth-child" class="headerlink" title=":nth-child()"></a>:nth-child()</h3><p>  匹配其父元素下的第N个子或奇偶元素        </p>
+<h3 id="nth-last-child"><a href="#nth-last-child" class="headerlink" title=":nth-last-child()"></a>:nth-last-child()</h3><p>选择所有他们父元素的第n个子元素。计数从最后一个元素开始到第一个    1.9+</p>
+<h3 id="nth-last-of-type"><a href="#nth-last-of-type" class="headerlink" title=":nth-last-of-type()"></a>:nth-last-of-type()</h3><p> 选择的所有他们的父级元素的第n个子元素，计数从最后一个元素到第一个    1.9+</p>
+<h3 id="nth-of-type"><a href="#nth-of-type" class="headerlink" title=":nth-of-type()"></a>:nth-of-type()</h3><p>  选择同属于一个父元素之下，并且标签名相同的子元素中的第n个    1.9+</p>
+<h3 id="only-child"><a href="#only-child" class="headerlink" title=":only-child"></a>:only-child</h3><p> 如果某个元素是父元素中唯一的子元素，那将会被匹配</p>
+<h3 id="only-of-type"><a href="#only-of-type" class="headerlink" title=":only-of-type"></a>:only-of-type</h3><p> 选择所有没有兄弟元素，且具有相同的元素名称的元素    1.9+</p>
+<h2 id="8-表单选择器"><a href="#8-表单选择器" class="headerlink" title="8 表单选择器"></a>8 表单选择器</h2><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(</span><span class="string">':text'</span>).css(<span class="string">'border'</span>, <span class="string">'1px solid red'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="input"><a href="#input" class="headerlink" title=":input"></a>:input</h3><p>   匹配所有 input, textarea, select 和 button 元素</p>
+<h3 id="text"><a href="#text" class="headerlink" title=":text"></a>:text</h3><p> 匹配所有的单行文本框</p>
+<h3 id="password"><a href="#password" class="headerlink" title=":password"></a>:password</h3><p>  匹配所有密码框</p>
+<h3 id="radio"><a href="#radio" class="headerlink" title=":radio"></a>:radio</h3><p>  匹配所有单选按钮</p>
+<h3 id="checkbox"><a href="#checkbox" class="headerlink" title=":checkbox"></a>:checkbox</h3><p>  匹配所有复选框</p>
+<h3 id="submit"><a href="#submit" class="headerlink" title=":submit"></a>:submit</h3><p>  匹配所有提交按钮，匹配 type=”submit” 的input或者button</p>
+<h3 id="image"><a href="#image" class="headerlink" title=":image"></a>:image</h3><p> 匹配所有图像域</p>
+<h3 id="reset"><a href="#reset" class="headerlink" title=":reset"></a>:reset</h3><p>  匹配所有重置按钮</p>
+<h3 id="button"><a href="#button" class="headerlink" title=":button"></a>:button</h3><p>​    匹配所有按钮</p>
+<h3 id="file"><a href="#file" class="headerlink" title=":file"></a>:file</h3><p> 匹配所有文件域</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=<span class="string">"text"</span> name=<span class="string">""</span> id=<span class="string">""</span>&gt; <span class="xml"><span class="tag">&lt;<span class="name">br</span>&gt;</span></span></span><br><span class="line">	&lt;input type="password" name="" id=""&gt; &lt;br&gt;</span><br><span class="line">	&lt;div&gt;&lt;/div&gt;</span><br><span class="line">	&lt;select name="" id=""&gt;</span><br><span class="line">		&lt;option value="1"&gt;1&lt;/option&gt;</span><br><span class="line">		&lt;option value="1" selected&gt;2&lt;/option&gt;</span><br><span class="line">		&lt;option value="1"&gt;3&lt;/option&gt;</span><br><span class="line">		&lt;option value="1"&gt;4&lt;/option&gt;</span><br><span class="line">	&lt;/select&gt;</span><br><span class="line">	&lt;button&gt;&lt;/button&gt;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	&lt;script src="../jquery-3.3.1.js"&gt;&lt;/script&gt;</span><br><span class="line">	&lt;script&gt;</span><br><span class="line">		$(function()&#123;</span><br><span class="line">            //1</span><br><span class="line">			//针对表单元素后面  :写type的名字 写</span><br><span class="line">			//$(':text').css('border', '1px solid red');</span><br><span class="line"></span><br><span class="line">			//2</span><br><span class="line">			//所有的表单控件(****)</span><br><span class="line">			//$(':input').css('border', '1px solid red');</span><br><span class="line"></span><br><span class="line">			//3</span><br><span class="line">			//只有表单有这个控制键</span><br><span class="line">			$(':enabled').css('border', '2px solid green')//(***)</span><br><span class="line"></span><br><span class="line">			//4</span><br><span class="line">			//选择默认的表单</span><br><span class="line">			// $(':selected').css('color', 'red'); //设置的是option(***)</span><br><span class="line">		&#125;)</span><br><span class="line">	&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="9-表单对象选择器"><a href="#9-表单对象选择器" class="headerlink" title="9 表单对象选择器"></a>9 表单对象选择器</h2><h3 id="enabled"><a href="#enabled" class="headerlink" title=":enabled"></a>:enabled</h3><p>匹配所有可用元素</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//只有表单有这个控制键</span></span><br><span class="line">			<span class="symbol">$</span>(<span class="string">':enabled'</span>).css(<span class="string">'border'</span>, <span class="string">'2px solid green'</span>)<span class="comment">//(***)</span></span><br></pre></td></tr></table></figure>
+<p><img src="/2019/03/31/jQuery选择器/E:/blog-git\ljy\source\_posts\jQuery选择器\1554025913007.png" alt="1554025913007"></p>
+<h3 id="disabled"><a href="#disabled" class="headerlink" title=":disabled"></a>:disabled</h3><p> 匹配所有不可用元素</p>
+<h3 id="checked"><a href="#checked" class="headerlink" title=":checked"></a>:checked</h3><p> 匹配所有选中的被选中元素(复选框、单选框等，select中的option)</p>
+<h3 id="selected"><a href="#selected" class="headerlink" title=":selected"></a>:selected</h3><p> 匹配所有选中的option元素</p>
+<p><img src="/2019/03/31/jQuery选择器/E:/blog-git\ljy\source\_posts\jQuery选择器\1554026026546.png" alt="1554026026546"></p>
+<p><img src="/2019/03/31/jQuery选择器/E:/blog-git\ljy\source\_posts\jQuery选择器\1554026060290.png" alt="1554026060290"></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/gongzhonghao.jpg" alt="李江洋 wechat" style="width: 200px; max-width: 100%;">
+  <div>python分享公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="李江洋 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="李江洋 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag"># 前端</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/31/mysql数据库管理/" rel="next" title="mysql数据库管理">
+                <i class="fa fa-chevron-left"></i> mysql数据库管理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/31/使用筛选器获取元素/" rel="prev" title="使用筛选器获取元素">
+                使用筛选器获取元素 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="李江洋">
+            
+              <p class="site-author-name" itemprop="name">李江洋</p>
+              <p class="site-description motion-element" itemprop="description">记录学习的技能和遇到的问题</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">179</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lvdXJuYW1l" title="GitHub &rarr; https://github.com/yourname"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="bWFpbHRvOjEzMjgwNDQzOTJAcXEuY29t" title="E-Mail &rarr; mailto:1328044392@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL2V4YW1wbGUuY29t" title="http://example.com">Title</span>
+                  </li>
+                
+              </ul>
+            </div>
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#选择器"><span class="nav-number">1.</span> <span class="nav-text">选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#本质"><span class="nav-number">1.1.</span> <span class="nav-text">本质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-基本选择器"><span class="nav-number">1.2.</span> <span class="nav-text">1 基本选择器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-层级选择器"><span class="nav-number">1.3.</span> <span class="nav-text">2 层级选择器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-过滤选择器"><span class="nav-number">1.4.</span> <span class="nav-text">3 过滤选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#first"><span class="nav-number">1.4.1.</span> <span class="nav-text">:first</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#not-selector"><span class="nav-number">1.4.2.</span> <span class="nav-text">:not(selector)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#even"><span class="nav-number">1.4.3.</span> <span class="nav-text">:even</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#odd"><span class="nav-number">1.4.4.</span> <span class="nav-text">:odd</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eq-index"><span class="nav-number">1.4.5.</span> <span class="nav-text">:eq(index)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gt-index"><span class="nav-number">1.4.6.</span> <span class="nav-text">:gt(index)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lang"><span class="nav-number">1.4.7.</span> <span class="nav-text">:lang</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#last"><span class="nav-number">1.4.8.</span> <span class="nav-text">:last</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lt-index"><span class="nav-number">1.4.9.</span> <span class="nav-text">:lt(index)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#header"><span class="nav-number">1.4.10.</span> <span class="nav-text">:header</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#animated"><span class="nav-number">1.4.11.</span> <span class="nav-text">:animated</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#focus"><span class="nav-number">1.4.12.</span> <span class="nav-text">:focus</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#root"><span class="nav-number">1.4.13.</span> <span class="nav-text">:root</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#target"><span class="nav-number">1.4.14.</span> <span class="nav-text">:target</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-内容选择器"><span class="nav-number">1.5.</span> <span class="nav-text">4 内容选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#contains-text"><span class="nav-number">1.5.1.</span> <span class="nav-text">:contains(text)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#empty"><span class="nav-number">1.5.2.</span> <span class="nav-text">:empty</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#has-selector"><span class="nav-number">1.5.3.</span> <span class="nav-text">:has(selector)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#parent"><span class="nav-number">1.5.4.</span> <span class="nav-text">:parent</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-可见性选择器"><span class="nav-number">1.6.</span> <span class="nav-text">5 可见性选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hidden"><span class="nav-number">1.6.1.</span> <span class="nav-text">:hidden</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#visible"><span class="nav-number">1.6.2.</span> <span class="nav-text">:visible</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-属性选择器"><span class="nav-number">1.7.</span> <span class="nav-text">6 属性选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#attribute"><span class="nav-number">1.7.1.</span> <span class="nav-text">[attribute]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#attribute-value"><span class="nav-number">1.7.2.</span> <span class="nav-text">[attribute=value]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#attribute-value-1"><span class="nav-number">1.7.3.</span> <span class="nav-text">[attribute!=value]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#attribute-value-2"><span class="nav-number">1.7.4.</span> <span class="nav-text">[attribute^=value]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#attribute-value-3"><span class="nav-number">1.7.5.</span> <span class="nav-text">[attribute$=value]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#attribute-value-4"><span class="nav-number">1.7.6.</span> <span class="nav-text">[attribute*=value]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#attrSel1-attrSel2-attrSelN"><span class="nav-number">1.7.7.</span> <span class="nav-text">[attrSel1][attrSel2][attrSelN]</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-子元素选择器"><span class="nav-number">1.8.</span> <span class="nav-text">7 子元素选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#first-child"><span class="nav-number">1.8.1.</span> <span class="nav-text">:first-child</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#first-of-type"><span class="nav-number">1.8.2.</span> <span class="nav-text">:first-of-type</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#last-child"><span class="nav-number">1.8.3.</span> <span class="nav-text">:last-child</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#last-of-type"><span class="nav-number">1.8.4.</span> <span class="nav-text">:last-of-type</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nth-child"><span class="nav-number">1.8.5.</span> <span class="nav-text">:nth-child()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nth-last-child"><span class="nav-number">1.8.6.</span> <span class="nav-text">:nth-last-child()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nth-last-of-type"><span class="nav-number">1.8.7.</span> <span class="nav-text">:nth-last-of-type()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nth-of-type"><span class="nav-number">1.8.8.</span> <span class="nav-text">:nth-of-type()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#only-child"><span class="nav-number">1.8.9.</span> <span class="nav-text">:only-child</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#only-of-type"><span class="nav-number">1.8.10.</span> <span class="nav-text">:only-of-type</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-表单选择器"><span class="nav-number">1.9.</span> <span class="nav-text">8 表单选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法"><span class="nav-number">1.9.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#input"><span class="nav-number">1.9.2.</span> <span class="nav-text">:input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#text"><span class="nav-number">1.9.3.</span> <span class="nav-text">:text</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#password"><span class="nav-number">1.9.4.</span> <span class="nav-text">:password</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#radio"><span class="nav-number">1.9.5.</span> <span class="nav-text">:radio</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#checkbox"><span class="nav-number">1.9.6.</span> <span class="nav-text">:checkbox</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#submit"><span class="nav-number">1.9.7.</span> <span class="nav-text">:submit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#image"><span class="nav-number">1.9.8.</span> <span class="nav-text">:image</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reset"><span class="nav-number">1.9.9.</span> <span class="nav-text">:reset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#button"><span class="nav-number">1.9.10.</span> <span class="nav-text">:button</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#file"><span class="nav-number">1.9.11.</span> <span class="nav-text">:file</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-表单对象选择器"><span class="nav-number">1.10.</span> <span class="nav-text">9 表单对象选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#enabled"><span class="nav-number">1.10.1.</span> <span class="nav-text">:enabled</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#disabled"><span class="nav-number">1.10.2.</span> <span class="nav-text">:disabled</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#checked"><span class="nav-number">1.10.3.</span> <span class="nav-text">:checked</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#selected"><span class="nav-number">1.10.4.</span> <span class="nav-text">:selected</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李江洋</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Pisces</span> v7.0.1</div>
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script id="ribbon" size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+  
+  <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ljyabc.github.io/2019/03/31/jQuery选择器/";
+    this.page.identifier = "2019/03/31/jQuery选择器/";
+    this.page.title = 'jQuery选择器';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/exturl.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+   <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+</body>
+</html>
